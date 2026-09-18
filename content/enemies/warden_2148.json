@@ -4,13 +4,32 @@
   "family": "warden",
   "era": "2148",
   "machine": false,
-  "stats": { "resolve": 140, "bandwidth": 3, "latency": 40, "signal": 20, "noise": 30, "grit": 45, "sync": -10, "continuity": 100 },
+  "stats": {
+    "resolve": 140,
+    "bandwidth": 2,
+    "latency": 40,
+    "signal": 20,
+    "noise": 30,
+    "grit": 40,
+    "sync": -10,
+    "continuity": 100
+  },
   "shield": 0,
-  "abilities": ["warden_baton", "warden_suppress"],
-  "immunities": ["signal"],
+  "abilities": [
+    "warden_baton",
+    "warden_suppress"
+  ],
+  "immunities": [
+    "signal"
+  ],
   "perception": 40,
   "rig": "warden",
   "xp": 80,
-  "drops": [{ "item": "ration", "chance": 0.5 }],
+  "drops": [
+    {
+      "item": "ration",
+      "chance": 0.5
+    }
+  ],
   "flavor": "Human. Paid. The resistance was not crushed by machines."
 }
