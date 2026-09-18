@@ -145,6 +145,11 @@ body[data-device='gamepad'] .glyph[data-btn='start'], body[data-device='gamepad'
 .battle .actor svg { width: 100%; height: 100%; }
 .battle .actor.active { transform: translateX(16px); }
 .battle .actor.down { opacity: 0.3; }
+.battle .actor.targeted { transform: translateY(-10px) scale(1.06); filter: drop-shadow(0 0 12px var(--commons)); }
+.battle .actor.targeted::after { content: '▼'; position: absolute; top: -22px; left: 50%; transform: translateX(-50%); color: var(--commons); font-size: 18px; animation: bob 700ms ease-in-out infinite alternate; }
+.battle .actor { position: relative; }
+.battle .card.targeted { border-color: var(--commons); box-shadow: inset 0 0 0 2px var(--commons); }
+@keyframes bob { from { transform: translate(-50%, 0); } to { transform: translate(-50%, 5px); } }
 .battle .actor.hit { animation: hitflash 300ms; }
 @keyframes hitflash { 0% { filter: brightness(2) saturate(0); } 100% { filter: none; } }
 .battle .gauges { grid-column: 2; grid-row: 1; display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: center; }
@@ -257,3 +262,18 @@ body[data-reduced-motion='true'] *, body[data-reduced-motion='true'] *::before, 
   .tech, .shop, .two { grid-template-columns: 1fr; }
   .stance { grid-template-columns: 1fr; }
 }
+
+/* Era map: the party walks a top-down valley; locations are nodes, wilds are encounter zones. */
+.map { position: relative; height: 100%; }
+.map svg.world { width: 100%; height: 100%; display: block; }
+.map .zone { fill: color-mix(in srgb, var(--cinder) 14%, transparent); stroke: var(--cinder); stroke-width: 1; stroke-dasharray: 6 5; }
+.map .zone-label { font-size: 16px; fill: var(--ink); opacity: 0.75; letter-spacing: 0.12em; text-transform: uppercase; }
+.map .road { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-dasharray: 14 10; opacity: 0.55; }
+.map .node-label { font-size: 20px; fill: var(--ink); text-anchor: middle; }
+.map .node-ring { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0; transition: opacity 200ms; }
+.map .node.near .node-ring { opacity: 1; }
+.map .node.locked { opacity: 0.35; }
+.map .token { transition: none; }
+.map .hud { position: absolute; top: 18px; left: 18px; max-width: 360px; }
+.map .near-prompt { position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); font-size: 18px; }
+.map .party-mini { position: absolute; top: 18px; right: 18px; display: flex; flex-direction: column; gap: 8px; width: 280px; }

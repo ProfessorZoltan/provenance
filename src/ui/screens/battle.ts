@@ -112,7 +112,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     <div class="bottom">
       ${party.map((p) => {
         const cap = rules.slackCap + (b.passives[p.id]?.slackCap ?? 0);
-        return `<div class="card panel ${actor?.id === p.id ? 'active' : ''} ${p.down ? 'down' : ''}">
+        return `<div class="card panel ${actor?.id === p.id ? 'active' : ''} ${p.down ? 'down' : ''} ${targeted?.id === p.id ? 'targeted' : ''}">
           <div style="display:flex;justify-content:space-between"><b>${esc(p.name)}</b><span class="small">${p.hp}/${p.maxHp}</span></div>
           <div class="bar hp" style="margin:4px 0"><i style="width:${Math.round((p.hp / p.maxHp) * 100)}%"></i></div>
           <div class="threads" title="Threads and Slack">${Array.from({ length: p.stats.bandwidth + cap }, (_, i) => `<i class="${i < p.threads ? 'on' : i >= p.stats.bandwidth && i - p.stats.bandwidth < p.slack ? 'slack' : ''}"></i>`).join('')}</div>

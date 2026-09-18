@@ -26,11 +26,14 @@ export class AudioEngine {
   private score: ScoreDef | null = null;
   private era: EraDef | null = null;
   private loopId: number | null = null;
+  private nextStepTime = 0;
   private step = 0;
   private tempo = 0;
   private entropy = 0;
   private sfxSynths: { sine: Tone.Synth; membrane: Tone.MembraneSynth; noise: Tone.NoiseSynth; fm: Tone.FMSynth } | null = null;
   private sfxLast = 0;
+  private lastCents = -1;
+  private layerOn = new Map<string, boolean>();
   private pendingScore: { score: ScoreDef; era: EraDef } | null = null;
 
   isStarted(): boolean {
@@ -76,23 +79,39 @@ export class AudioEngine {
     this.score = score;
     this.era = era;
     this.step = 0;
+    this.lastCents = -1;
+    this.layerOn.clear();
     for (const def of score.layers) this.layers.push(this.buildLayer(def, era));
-    const transport = Tone.getTransport();
-    transport.bpm.value = score.baseBpm + 1.5 * this.tempo;
-    transport.swing = score.swing;
-    transport.swingSubdivision = '8n';
-    this.loopId = transport.scheduleRepeat((time) => this.tick(time), '8n');
-    transport.start('+0.05');
+    // A lookahead scheduler on Tone's worker clock. The Transport's BPM is never automated:
+    // its tick parameter keeps every automation event forever and scans them on each lookup,
+    // which is what froze long 2148 battles. Tempo changes simply change the next step length.
+    this.nextStepTime = Tone.now() + 0.1;
+    this.loopId = Tone.getContext().setInterval(() => this.schedule(), 0.04);
     this.applyTempo();
     this.applyEntropy();
   }
 
+  private stepSeconds(): number {
+    if (!this.score) return 0.25;
+    const bpm = this.score.baseBpm + 1.5 * Math.min(40, Math.max(0, this.tempo));
+    return 30 / bpm; // one eighth note
+  }
+
+  private schedule(): void {
+    if (!this.score) return;
+    const horizon = Tone.now() + 0.2;
+    let guard = 0;
+    while (this.nextStepTime < horizon && guard++ < 8) {
+      const dur = this.stepSeconds() * (this.tempo >= 40 ? 2 : 1);
+      const swing = this.step % 2 === 1 ? this.score.swing * dur * 0.5 : 0;
+      this.tick(this.nextStepTime + swing);
+      this.nextStepTime += dur;
+    }
+  }
+
   stop(): void {
-    const transport = Tone.getTransport();
-    if (this.loopId !== null) transport.clear(this.loopId);
+    if (this.loopId !== null) Tone.getContext().clearInterval(this.loopId);
     this.loopId = null;
-    transport.stop();
-    transport.cancel();
     for (const l of this.layers) {
       l.synth.dispose();
       l.gain.dispose();
@@ -114,9 +133,10 @@ export class AudioEngine {
 
   private applyTempo(): void {
     if (!this.score || !this.started) return;
-    Tone.getTransport().bpm.rampTo(this.score.baseBpm + 1.5 * Math.min(40, this.tempo), 0.6);
     for (const l of this.layers) {
       const on = this.tempo >= l.def.minTempo;
+      if (this.layerOn.get(l.def.id) === on) continue;
+      this.layerOn.set(l.def.id, on);
       l.gain.gain.rampTo(on ? l.def.gain : 0, 0.8);
     }
   }
@@ -124,7 +144,9 @@ export class AudioEngine {
   private applyEntropy(): void {
     if (!this.started) return;
     const over = Math.max(0, this.entropy - 70) / 30;
-    const cents = over * 50;
+    const cents = Math.round(over * 50);
+    if (cents === this.lastCents) return;
+    this.lastCents = cents;
     for (const l of this.layers) {
       if (!l.pitched) continue;
       const s = l.synth as Pitched | Tone.PolySynth;
@@ -209,11 +231,21 @@ export class AudioEngine {
   }
 
   private note(l: LiveLayer, f: number, dur: string, time: number): void {
-    let detune = 0;
-    if (this.era?.id === '2148' && l.pitched) detune = (Math.random() - 0.5) * 100; // quarter-tone bends
+    // Quarter-tone bends in 2148 are applied to the frequency itself, so no automation events pile up.
+    const bend = this.era?.id === '2148' && l.pitched ? Math.pow(2, ((Math.random() - 0.5) * 100) / 1200) : 1;
     const s = l.synth;
-    if (s instanceof Tone.PolySynth) { s.set({ detune }); s.triggerAttackRelease(f, dur, time); }
-    else if (s instanceof Tone.Synth || s instanceof Tone.FMSynth) { s.detune.setValueAtTime(detune + Math.max(0, this.entropy - 70) / 30 * 50, time); s.triggerAttackRelease(f, dur, time); }
+    try {
+      if (s instanceof Tone.PolySynth || s instanceof Tone.Synth || s instanceof Tone.FMSynth) s.triggerAttackRelease(f * bend, dur, time);
+    } catch (e) {
+      console.warn('[music]', e);
+    }
+  }
+
+  /** Debug: automation event counts that must stay bounded during a long battle. */
+  stats(): { bpmEvents: number; layers: number; step: number; gainEvents: number } {
+    const bpm = Tone.getTransport().bpm as unknown as { _param?: { _events?: { length: number } } };
+    const gains = this.layers.map((l) => (l.gain.gain as unknown as { _events?: { length: number } })._events?.length ?? 0);
+    return { bpmEvents: bpm._param?._events?.length ?? -1, layers: this.layers.length, step: this.step, gainEvents: Math.max(0, ...gains) };
   }
 
   private tick(time: number): void {
@@ -222,11 +254,11 @@ export class AudioEngine {
     const bar = Math.floor(this.step / 8);
     const halfTime = this.tempo >= 40;
     this.step++;
-    if (halfTime && this.step % 2 === 1) return;
-    // 2148: tempo drifts ±6% on a slow cycle; a beat drops now and then.
-    if (this.era.tuning.drift > 0 && step === 0) {
-      const wobble = 1 + this.era.tuning.drift * Math.sin(bar / 5);
-      Tone.getTransport().bpm.linearRampTo((this.score.baseBpm + 1.5 * Math.min(40, this.tempo)) * wobble, 1.5, time);
+    // 2148: tempo drifts ±6% on a slow cycle, done as note-time jitter rather than BPM automation;
+    // a beat drops now and then.
+    if (this.era.tuning.drift > 0) {
+      const beat = this.stepSeconds() * 2;
+      time += this.era.tuning.drift * beat * Math.sin((bar * 8 + step) / 40);
     }
     const dropped = this.era.tuning.drift > 0 && Math.random() < 0.06;
     const motif = this.score.motif;
@@ -240,7 +272,7 @@ export class AudioEngine {
         case 'pad':
           if (step === 0 && bar % 2 === 0) {
             const chord = [0, 2, 4].map((d) => this.freq(d, 0));
-            if (s instanceof Tone.PolySynth) { s.set({ detune: 0 }); s.triggerAttackRelease(chord, halfTime ? '2m' : '1m', time); }
+            if (s instanceof Tone.PolySynth) s.triggerAttackRelease(chord, halfTime ? '2m' : '1m', time);
             else this.note(l, chord[0], '1m', time);
           }
           break;

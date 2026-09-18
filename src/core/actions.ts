@@ -10,10 +10,11 @@ export type Action =
   | { type: 'DIALOGUE_CHOOSE'; index: number }
   | { type: 'TRAVEL'; location: string }
   | { type: 'TIME_JUMP'; era: EraId }
-  | { type: 'EXPLORE' }
+  | { type: 'EXPLORE'; encounters?: string[] }
+  | { type: 'SET_MAP_POS'; x: number; y: number }
   | { type: 'SCAN_FIGHT' }
   | { type: 'SCAN_SKIP' }
-  | { type: 'START_ENCOUNTER'; encounterId: string; surprise?: boolean }
+  | { type: 'START_ENCOUNTER'; encounterId: string; surprise?: boolean; from?: 'map' | 'hub' }
   | { type: 'BATTLE_ABILITY'; actor: string; ability: string; target: string | null }
   | { type: 'BATTLE_ITEM'; actor: string; item: string; target: string }
   | { type: 'BATTLE_END_TURN'; actor: string }

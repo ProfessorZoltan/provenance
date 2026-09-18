@@ -29,7 +29,7 @@ export function resultScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
   const b = state.battle;
   const r = b?.pendingRewards;
   const enc = b ? ctx.content.encounters[b.encounterId] : null;
-  const go = () => ctx.store.dispatch({ type: 'SET_SCREEN', screen: { id: 'hub' } });
+  const go = () => ctx.store.dispatch({ type: 'SET_SCREEN', screen: { id: state.battleReturn } });
   const cur = b?.era === '2148' ? 'barter tokens' : 'allocation points';
   const flagText: Record<string, string> = {
     survivedSurprise: 'Held the line under a surprise attack.',

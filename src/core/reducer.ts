@@ -38,6 +38,9 @@ export function initialState(): GameState {
     scan: null,
     dialogue: null,
     journal: [],
+    map: { x: 800, y: 250 },
+    back: { id: 'hub' },
+    battleReturn: 'hub',
     settings: { reducedMotion: false, musicVolume: 0.7, sfxVolume: 0.8 },
     counters: { storyFights: 0, randomFights: 0, surprisesCancelled: 0, turns: 0 },
   };
@@ -119,7 +122,7 @@ function runAction(content: ContentDB, state: GameState, action: string, returnT
   const [kind, a, b] = action.split(':');
   switch (kind) {
     case 'battle':
-      return startEncounter(content, { ...state, dialogue: null, screen: returnTo }, a, undefined);
+      return startEncounter(content, { ...state, dialogue: null, screen: returnTo }, a, undefined, 'hub');
     case 'quest':
       if (a === 'accept') return reduce(content, state, { type: 'QUEST_ACCEPT', quest: b });
       if (a === 'complete') return reduce(content, state, { type: 'QUEST_COMPLETE', quest: b });
@@ -150,10 +153,16 @@ function dialogueNext(content: ContentDB, state: GameState): GameState {
 
 // ---------- travel ----------
 
+export function mapFor(content: ContentDB, era: EraId) {
+  return Object.values(content.maps).find((m) => m.era === era) ?? null;
+}
+
 function arrive(content: ContentDB, state: GameState, locationId: string): GameState {
   const loc = content.locations[locationId];
   if (!loc) throw new Error(`Unknown location ${locationId}`);
-  state = { ...state, location: locationId, era: loc.era, screen: { id: 'hub' }, scan: null };
+  const node = mapFor(content, loc.era)?.nodes.find((n) => n.location === locationId);
+  const map = node ? { x: node.x, y: node.y + node.radius + 24 } : state.map;
+  state = { ...state, location: locationId, era: loc.era, screen: { id: 'hub' }, scan: null, map, back: { id: 'hub' } };
   const variant = activeVariant(content, state, loc);
   if (variant?.storyDialogue && !state.flags.includes(`seen:${variant.storyDialogue}`)) {
     state = addFlags(state, [`seen:${variant.storyDialogue}`]);
@@ -168,12 +177,12 @@ function arrive(content: ContentDB, state: GameState, locationId: string): GameS
 
 // ---------- encounters ----------
 
-function startEncounter(content: ContentDB, state: GameState, encounterId: string, surprise: boolean | undefined): GameState {
+function startEncounter(content: ContentDB, state: GameState, encounterId: string, surprise: boolean | undefined, from?: 'map' | 'hub'): GameState {
   const enc = content.encounters[encounterId];
   if (!enc) throw new Error(`Unknown encounter ${encounterId}`);
   const s = surprise ?? enc.surprise === 'always';
   const battle = createBattle(content, state, encounterId, s);
-  return { ...state, battle, scan: null, screen: { id: 'battle' }, rng: battle.rng };
+  return { ...state, battle, scan: null, screen: { id: 'battle' }, rng: battle.rng, battleReturn: from ?? state.battleReturn };
 }
 
 function finishBattle(content: ContentDB, state: GameState): GameState {
@@ -260,15 +269,21 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       return arrive(content, s, 'kell_2312');
     }
     case 'LOAD_STATE': {
-      const s = action.state;
+      const base = initialState();
+      const s: GameState = { ...base, ...action.state, map: action.state.map ?? base.map, back: { id: 'hub' }, battleReturn: action.state.battleReturn ?? 'hub' };
       const live = s.battle && s.battle.phase !== 'won' && s.battle.phase !== 'lost' ? s.battle : null;
       return { ...s, battle: live, scan: null, screen: live ? { id: 'battle' } : s.dialogue ? { id: 'dialogue' } : { id: 'hub' } };
     }
     case 'SET_SCREEN': {
       // Leaving the result screen discards the finished battle.
       const battle = state.screen.id === 'battleResult' && action.screen.id !== 'battleResult' ? null : state.battle;
-      return { ...state, screen: action.screen, battle };
+      // Overlay screens remember whether they were opened from the map or from inside a location.
+      const overlay = ['tech', 'party', 'inventory', 'save', 'settings', 'shop'].includes(action.screen.id);
+      const back = overlay && (state.screen.id === 'hub' || state.screen.id === 'map') ? state.screen : state.back;
+      return { ...state, screen: action.screen, battle, back };
     }
+    case 'SET_MAP_POS':
+      return { ...state, map: { x: action.x, y: action.y } };
     case 'SET_SETTINGS':
       return { ...state, settings: { ...state.settings, ...action.settings } };
 
@@ -303,8 +318,10 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
     }
 
     case 'TRAVEL': {
-      const from = content.locations[state.location];
-      if (!from.links.some((l) => l.to === action.location)) throw new Error('No road there');
+      const target = content.locations[action.location];
+      if (!target || target.era !== state.era) throw new Error('No road there');
+      const map = mapFor(content, state.era);
+      if (!map?.nodes.some((n) => n.location === action.location)) throw new Error('Not on this map');
       return arrive(content, state, action.location);
     }
     case 'TIME_JUMP': {
@@ -318,9 +335,9 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       return arrive(content, state, target.id);
     }
     case 'EXPLORE': {
-      const rolled = rollEncounter(content, state);
+      const rolled = rollEncounter(content, state, action.encounters);
       if (!rolled) throw new Error('Nothing to find here');
-      state = { ...state, rng: rolled.rng };
+      state = { ...state, rng: rolled.rng, battleReturn: action.encounters ? 'map' : 'hub' };
       if (rolled.cancelledBy) {
         const loc = content.locations[state.location];
         state = addFlags(state, [`surpriseCancelled:${loc.site}:${loc.era}`]);
@@ -336,9 +353,9 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
     }
     case 'SCAN_SKIP':
       // No penalty, no counter, no reinforcements later.
-      return { ...state, scan: null, screen: { id: 'hub' } };
+      return { ...state, scan: null, screen: { id: state.battleReturn } };
     case 'START_ENCOUNTER':
-      return startEncounter(content, state, action.encounterId, action.surprise);
+      return startEncounter(content, state, action.encounterId, action.surprise, action.from);
 
     case 'BATTLE_ABILITY': {
       if (!state.battle) throw new Error('No battle');
@@ -378,7 +395,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       }
       const loc = content.locations[state.location];
       const site = loc.kind === 'deepSite' ? loc.id : Object.values(content.locations).find((l) => l.kind === 'deepSite' && l.site === loc.site && l.era === loc.era)?.id ?? loc.id;
-      return { ...state, party, battle: null, location: site, screen: { id: 'hub' } };
+      return arrive(content, { ...state, party, battle: null }, site);
     }
     case 'REST': {
       const party = { ...state.party };

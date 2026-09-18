@@ -146,7 +146,7 @@ export type Screen =
   | { id: 'title' }
   | { id: 'newGame' }
   | { id: 'hub' }
-  | { id: 'travel' }
+  | { id: 'map' }
   | { id: 'timeJump' }
   | { id: 'scan' }
   | { id: 'battle' }
@@ -184,6 +184,9 @@ export interface GameState {
   scan: ScanState | null;
   dialogue: DialogueState | null;
   journal: string[];
+  map: { x: number; y: number };
+  back: Screen;
+  battleReturn: 'map' | 'hub';
   settings: Settings;
   counters: { storyFights: number; randomFights: number; surprisesCancelled: number; turns: number };
 }

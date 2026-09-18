@@ -51,13 +51,14 @@ export function buildScan(content: ContentDB, state: GameState, encounterId: str
 }
 
 /** Pick an encounter from the location's pool and roll for surprise. Returns null when the pool is empty. */
-export function rollEncounter(content: ContentDB, state: GameState): { encounterId: string; surprise: boolean; rng: number; cancelledBy: string | null } | null {
+export function rollEncounter(content: ContentDB, state: GameState, pool?: string[]): { encounterId: string; surprise: boolean; rng: number; cancelledBy: string | null } | null {
   const loc = content.locations[state.location];
-  if (!loc || loc.encounters.length === 0) return null;
+  const list = pool && pool.length ? pool : loc?.encounters ?? [];
+  if (!loc || list.length === 0) return null;
   let rng = state.rng;
   let idx: number;
-  [idx, rng] = rollInt(rng, loc.encounters.length);
-  const encounterId = loc.encounters[idx];
+  [idx, rng] = rollInt(rng, list.length);
+  const encounterId = list[idx];
   const enc = content.encounters[encounterId];
   const chance = ambushChance(content, state, enc);
   let r: number;

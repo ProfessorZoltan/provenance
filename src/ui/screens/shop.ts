@@ -15,7 +15,7 @@ export function shopScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scree
   const loc = content.locations[state.location];
   const shopId = activeVariant(content, state, loc)?.shop ?? loc.shop;
   const shop = shopId ? content.shops[shopId] : null;
-  if (!shop) { store.dispatch({ type: 'SET_SCREEN', screen: { id: 'hub' } }); return { input() {} }; }
+  if (!shop) { store.dispatch({ type: 'SET_SCREEN', screen: state.back }); return { input() {} }; }
   const cctx = conditionContext(content, state);
   const have = state.inventory.currency[shop.currency] ?? 0;
   const rerender = () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'shop' } });
@@ -51,7 +51,7 @@ export function shopScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scree
   return {
     input(btn) {
       if (btn === 'lb' || btn === 'rb' || btn === 'left' || btn === 'right') { mem.tab = mem.tab ? 0 : 1; rerender(); return; }
-      if (btn === 'b') { store.dispatch({ type: 'SET_SCREEN', screen: { id: 'hub' } }); return; }
+      if (btn === 'b') { store.dispatch({ type: 'SET_SCREEN', screen: state.back }); return; }
       m.input(btn);
     },
   };
@@ -103,7 +103,7 @@ export function inventoryScreen(root: HTMLElement, ctx: Ctx, state: GameState): 
     input(btn) {
       if (btn === 'lb' || btn === 'left') { mem.member = (mem.member + state.activeParty.length - 1) % state.activeParty.length; rerender(); return; }
       if (btn === 'rb' || btn === 'right') { mem.member = (mem.member + 1) % state.activeParty.length; rerender(); return; }
-      if (btn === 'b') { store.dispatch({ type: 'SET_SCREEN', screen: { id: 'hub' } }); return; }
+      if (btn === 'b') { store.dispatch({ type: 'SET_SCREEN', screen: state.back }); return; }
       m.input(btn);
     },
   };

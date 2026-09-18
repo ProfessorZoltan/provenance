@@ -29,11 +29,17 @@ export class Input {
   private raf = 0;
   private onDeviceChange: ((d: Device) => void)[] = [];
   private paused = false;
+  private keysDown = new Set<string>();
+  private padAxes = { x: 0, y: 0 };
+  private padDpad = { x: 0, y: 0 };
 
   constructor() {
+    window.addEventListener('keyup', (e) => this.keysDown.delete(e.code));
+    window.addEventListener('blur', () => this.keysDown.clear());
     window.addEventListener('keydown', (e) => {
       const btn = KEYS[e.code];
       if (!btn) return;
+      this.keysDown.add(e.code);
       if (e.code === 'Tab' || e.code === 'Space' || e.code === 'Backspace' || e.code.startsWith('Arrow')) e.preventDefault();
       if (e.repeat && !['up', 'down', 'left', 'right', 'scrollUp', 'scrollDown'].includes(btn)) return;
       this.setDevice('keyboard');
@@ -66,6 +72,21 @@ export class Input {
     this.paused = p;
   }
 
+  /** Continuous movement for walking the map: keyboard keys held, D-pad, or the left stick. */
+  moveVector(): { x: number; y: number } {
+    let x = 0, y = 0;
+    const k = this.keysDown;
+    if (k.has('ArrowLeft') || k.has('KeyA')) x -= 1;
+    if (k.has('ArrowRight') || k.has('KeyD')) x += 1;
+    if (k.has('ArrowUp') || k.has('KeyW')) y -= 1;
+    if (k.has('ArrowDown') || k.has('KeyS')) y += 1;
+    x += this.padDpad.x + this.padAxes.x;
+    y += this.padDpad.y + this.padAxes.y;
+    const len = Math.hypot(x, y);
+    if (len > 1) { x /= len; y /= len; }
+    return { x, y };
+  }
+
   emit(btn: Button): void {
     if (this.paused) return;
     for (const h of [...this.handlers]) h(btn);
@@ -91,6 +112,10 @@ export class Input {
         if (btn && (b.pressed || b.value > 0.6)) pressed.add(btn);
       });
       const ax = pad.axes[0] ?? 0, ay = pad.axes[1] ?? 0, ry = pad.axes[3] ?? 0;
+      const dz = (v: number) => (Math.abs(v) < 0.18 ? 0 : v);
+      this.padAxes = { x: dz(ax), y: dz(ay) };
+      this.padDpad = { x: (pressed.has('right') ? 1 : 0) - (pressed.has('left') ? 1 : 0), y: (pressed.has('down') ? 1 : 0) - (pressed.has('up') ? 1 : 0) };
+      if (this.padAxes.x || this.padAxes.y) this.setDevice('gamepad');
       if (ay < -0.5) pressed.add('up');
       if (ay > 0.5) pressed.add('down');
       if (ax < -0.5) pressed.add('left');

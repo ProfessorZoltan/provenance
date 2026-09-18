@@ -87,7 +87,7 @@ export function techScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scree
         ctx.toast(`${focused.name} unlocked.`);
       } else if (btn === 'a' && focused && !avail?.ok) {
         ctx.audio.sfx('cancel', state.era);
-      } else if (btn === 'b') store.dispatch({ type: 'SET_SCREEN', screen: { id: 'hub' } });
+      } else if (btn === 'b') store.dispatch({ type: 'SET_SCREEN', screen: state.back });
     },
   };
 }
@@ -104,5 +104,5 @@ export function partyScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scre
       <div class="kv"><b>Resolve</b><span>${cs.hp} / ${l.stats.resolve}</span><b>Continuity</b><span>${derived.continuity[id]}</span><b>Sync</b><span>${cs.sync}</span><b>Nodes</b><span>${cs.nodes.length} / 12</span></div></div>`;
   }).join('')}</section>`);
   ctx.setPrompts(prompts({ btn: 'b', label: 'Back' }));
-  return { input(btn) { if (btn === 'b') ctx.store.dispatch({ type: 'SET_SCREEN', screen: { id: 'hub' } }); } };
+  return { input(btn) { if (btn === 'b') ctx.store.dispatch({ type: 'SET_SCREEN', screen: state.back }); } };
 }

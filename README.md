@@ -28,9 +28,9 @@ standard-mapping controller to switch to gamepad glyphs.
 
 | Action | Controller | Keyboard |
 | --- | --- | --- |
-| Move / choose | D-pad or left stick | Arrows or WASD |
+| Walk the map / choose | Left stick or D-pad | WASD or arrows |
 | Confirm | A | Enter or Space |
-| Back / Skip encounter | B | Esc or Backspace |
+| Back / Leave a location / Skip encounter | B | Esc or Backspace |
 | Fork (battle), Party (hub) | X | X |
 | Inspect enemy (battle), Tech trees (hub) | Y | Y |
 | Previous / next target, tab, character | LB / RB | Q / E |
@@ -41,6 +41,11 @@ standard-mapping controller to switch to gamepad glyphs.
 | Scroll battle log | Right stick | PgUp / PgDn |
 
 Keyboard-only play works everywhere. Mouse clicks work on menus, dialogue and enemy targets.
+
+Travel is physical. Each era has a valley map: the party walks it with the stick or WASD,
+locations are nodes you step into and enter with A, and the dashed regions are wilds where
+random encounters roll as you walk (a Scan card still lets you skip them). The village gate
+appears as a node once Old Pell's quest is active. Time travel stays inside the Deep Site.
 Reduced motion (Settings, or the OS preference) freezes the parallax camera, halves particles
 and removes animation.
 
@@ -59,6 +64,7 @@ and removes animation.
 | Music: two battle pieces, two hub pieces, Tempo-linked layers, Entropy detune | `content/scores/`, `src/audio/engine.ts` |
 | Timeline: Arm the resistance / Let it fall, visible in Kell Village on return | `content/timelineChoices/`, `src/core/timeline.ts` |
 | Save: localStorage slot, JSON export and import, last three timeline snapshots | `src/core/save.ts` |
+| Era maps: nodes, roads and encounter zones per era | `content/maps/`, `src/ui/screens/map.ts` |
 
 ## Architecture
 
@@ -75,6 +81,9 @@ and removes animation.
 - `src/audio/engine.ts` turns a score JSON into Tone.js layers. BPM is `baseBpm + 1.5 × Tempo`;
   layers unmute at their `minTempo`; Entropy above 70 detunes the mix and adds a reversed echo
   send. 2312 pieces use 19-tone equal temperament, 2148 pieces drift ±6% and bend quarter tones.
+  Steps are scheduled by a lookahead loop on Tone's worker clock rather than by automating the
+  Transport BPM: the Transport's tick parameter keeps every automation event forever and scans
+  them on each lookup, which is what froze long 2148 battles in the first build.
 
 Small DSLs, all documented in their modules:
 
@@ -109,8 +118,8 @@ The design doc left these open; the slice picks a value so the loop is playable.
 
 ## Verified
 
-- `npm test`: 31 reducer tests covering battle determinism, damage type rules, Rewind, Fork,
-  Echo spawn, surprise attacks, node unlocking, timeline propagation, save round trip and a full
-  end-to-end slice run.
+- `npm test`: 40 reducer tests covering battle determinism, damage type rules, Rewind, Fork,
+  Echo spawn, surprise attacks, node unlocking, timeline propagation, map travel, save round trip,
+  a full end-to-end slice run and a 300-battle random-action fuzz that must never hang or throw.
 - `npm run build` typechecks and produces a static build; it was driven end to end in headless
   Chromium with no console errors. Safari has not been tested from this environment.

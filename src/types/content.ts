@@ -274,6 +274,43 @@ export interface ItemDef {
   effect?: { heal?: number; tempo?: number; revive?: boolean; slack?: number };
 }
 
+export interface MapNode {
+  id: string;
+  kind: 'location' | 'encounter';
+  location?: string;
+  encounter?: string;
+  x: number;
+  y: number;
+  radius: number;
+  label: string;
+  requires?: string[];
+  icon?: string;
+}
+
+export interface MapZone {
+  id: string;
+  label: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  encounters: string[];
+  chance: number;
+  stride: number;
+}
+
+export interface MapDef {
+  id: string;
+  era: EraId;
+  name: string;
+  width: number;
+  height: number;
+  spawn: { x: number; y: number };
+  nodes: MapNode[];
+  roads: number[][];
+  zones: MapZone[];
+}
+
 export interface RulesDef {
   slackCap: number;
   tempoMax: number;
@@ -309,5 +346,6 @@ export interface ContentDB {
   quests: Record<string, QuestDef>;
   shops: Record<string, ShopDef>;
   items: Record<string, ItemDef>;
+  maps: Record<string, MapDef>;
   rules: RulesDef;
 }

@@ -18,23 +18,15 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
 
   const items: MenuItem[] = [];
   if (sub === 'hub') {
-    if (loc.encounters.length) items.push({ id: 'explore', label: loc.kind === 'deepSite' ? 'Explore the grounds' : 'Explore', hint: 'Random encounter · Scan card first', onSelect: () => store.dispatch({ type: 'EXPLORE' }) });
-    for (const qid of loc.quests) {
-      const q = content.quests[qid];
-      if (state.quests[qid] === 'active') items.push({ id: `q:${qid}`, label: `Go to the gate`, hint: `Quest: ${q.name}`, onSelect: () => store.dispatch({ type: 'START_ENCOUNTER', encounterId: q.objectiveEncounter }) });
-    }
     for (const n of npcs) items.push({ id: `talk:${n}`, label: `Talk to ${npcName(content, n)}`, onSelect: () => store.dispatch({ type: 'START_DIALOGUE', id: npcDialogue(content, state, n), returnTo: { id: 'hub' } }) });
     if (shop) items.push({ id: 'shop', label: content.shops[shop].name, hint: 'Shop', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'shop' } }) });
     items.push({ id: 'rest', label: 'Rest', hint: 'Restore Resolve', onSelect: () => { store.dispatch({ type: 'REST' }); ctx.toast('The party rests. Resolve restored.'); } });
-    if (loc.links.length) items.push({ id: 'travel', label: 'Travel', hint: loc.links.map((l) => l.label).join(', '), onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'travel' } }) });
     if (loc.kind === 'deepSite' && loc.timeLinks.length) items.push({ id: 'jump', label: 'Descend beneath the chapel', hint: `Deep Site · ${loc.timeLinks.join(', ')}`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'timeJump' } }) });
     items.push({ id: 'tech', label: 'Tech trees', shortcut: 'y', hint: `${state.activeParty.reduce((s, id) => s + state.party[id].skillPoints, 0)} skill points unspent`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'tech', character: 'player' } }) });
     items.push({ id: 'inv', label: 'Party and inventory', shortcut: 'x', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'inventory' } }) });
     items.push({ id: 'save', label: 'Save / load', shortcut: 'start', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'save' } }) });
     items.push({ id: 'settings', label: 'Settings', shortcut: 'select', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'settings' } }) });
-  } else if (sub === 'travel') {
-    for (const l of loc.links) items.push({ id: l.to, label: l.label, hint: content.locations[l.to].type, onSelect: () => store.dispatch({ type: 'TRAVEL', location: l.to }) });
-    items.push({ id: 'back', label: 'Stay', shortcut: 'b', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'hub' } }) });
+    items.push({ id: 'leave', label: `Leave ${loc.name}`, shortcut: 'b', hint: 'Walk the valley', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'map' } }) });
   } else if (sub === 'timeJump') {
     for (const e of loc.timeLinks) {
       const target = Object.values(content.locations).find((l) => l.kind === 'deepSite' && l.site === loc.site && l.era === e);
@@ -43,7 +35,7 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
     items.push({ id: 'back', label: 'Stay in ' + loc.era, shortcut: 'b', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'hub' } }) });
   }
 
-  const heading = sub === 'travel' ? 'Roads from here' : sub === 'timeJump' ? 'Eras this site has stood in' : 'What now?';
+  const heading = sub === 'timeJump' ? 'Eras this site has stood in' : 'What now?';
   const flagsShown = [...state.flags, ...derived.flags];
   html(root, `<section class="hub">
     <div class="place panel">
@@ -63,13 +55,13 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
   root.querySelector('#m')!.appendChild(m.el);
   ctx.setPrompts(prompts(
     { btn: 'dpad', label: 'Move' }, { btn: 'a', label: 'Select' },
-    sub === 'hub' ? { btn: 'y', label: 'Tech trees' } : { btn: 'b', label: 'Back' },
-    sub === 'hub' && { btn: 'x', label: 'Party' }, sub === 'hub' && { btn: 'start', label: 'Save' },
+    sub === 'hub' ? { btn: 'b', label: 'Leave' } : { btn: 'b', label: 'Back' },
+    sub === 'hub' && { btn: 'y', label: 'Tech trees' }, sub === 'hub' && { btn: 'x', label: 'Party' }, sub === 'hub' && { btn: 'start', label: 'Save' },
   ));
   return {
     input(btn) {
       if (m.input(btn)) { if (btn === 'a') ctx.audio.sfx('confirm', state.era); return; }
-      if (btn === 'b' && sub !== 'hub') store.dispatch({ type: 'SET_SCREEN', screen: { id: 'hub' } });
+      if (btn === 'b') store.dispatch({ type: 'SET_SCREEN', screen: sub === 'hub' ? { id: 'map' } : { id: 'hub' } });
     },
   };
 }

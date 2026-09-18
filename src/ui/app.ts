@@ -13,13 +13,14 @@ import type { Ctx, ScreenFn, ScreenHandle } from './common';
 import { battleScreen } from './screens/battle';
 import { dialogueScreen } from './screens/dialogue';
 import { hubScreen } from './screens/hub';
+import { mapScreen } from './screens/map';
 import { gameOverScreen, newGameScreen, saveScreen, settingsScreen, titleScreen } from './screens/menus';
 import { resultScreen, scanScreen } from './screens/scan';
 import { inventoryScreen, shopScreen } from './screens/shop';
 import { partyScreen, techScreen } from './screens/tech';
 
 const SCREENS: Record<string, ScreenFn> = {
-  title: titleScreen, newGame: newGameScreen, hub: hubScreen, travel: hubScreen, timeJump: hubScreen,
+  title: titleScreen, newGame: newGameScreen, hub: hubScreen, map: mapScreen, timeJump: hubScreen,
   scan: scanScreen, battle: battleScreen, battleResult: resultScreen, dialogue: dialogueScreen,
   tech: techScreen, party: partyScreen, shop: shopScreen, inventory: inventoryScreen,
   save: saveScreen, gameOver: gameOverScreen, settings: settingsScreen,
@@ -120,6 +121,7 @@ export function createApp(store: Store, content: ContentDB, input: Input, audio:
   }
 
   function render(state: GameState, action: Action | null): void {
+    if (action?.type === 'SET_MAP_POS') return;
     if (state.started || state.screen.id === 'title' || state.screen.id === 'newGame' || state.screen.id === 'settings') syncBackground(state);
     const fn = SCREENS[state.screen.id] ?? titleScreen;
     handle?.destroy?.();
@@ -133,7 +135,7 @@ export function createApp(store: Store, content: ContentDB, input: Input, audio:
 
   input.on((btn) => {
     if (!audio.isStarted() && input.getDevice() === 'keyboard') void audio.start();
-    if (['up', 'down', 'left', 'right'].includes(btn)) audio.sfx('move', store.getState().era);
+    if (['up', 'down', 'left', 'right'].includes(btn) && store.getState().screen.id !== 'map') audio.sfx('move', store.getState().era);
     handle?.input(btn);
   });
   input.deviceChanged(() => render(store.getState(), null));

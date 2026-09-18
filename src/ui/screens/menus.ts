@@ -92,7 +92,7 @@ export function newGameScreen(root: HTMLElement, ctx: Ctx, _state: GameState): S
 
 export function settingsScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {
   const s = state.settings;
-  const back = () => ctx.store.dispatch({ type: 'SET_SCREEN', screen: state.started ? { id: 'hub' } : { id: 'title' } });
+  const back = () => ctx.store.dispatch({ type: 'SET_SCREEN', screen: state.started ? state.back : { id: 'title' } });
   html(root, `<section class="center"><div class="card panel settings">
     <div class="eyebrow">Settings</div>
     <div id="m"></div>
@@ -122,7 +122,7 @@ export function settingsScreen(root: HTMLElement, ctx: Ctx, state: GameState): S
 }
 
 export function saveScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {
-  const back = () => ctx.store.dispatch({ type: 'SET_SCREEN', screen: { id: 'hub' } });
+  const back = () => ctx.store.dispatch({ type: 'SET_SCREEN', screen: state.back });
   const snaps = state.world.snapshots;
   html(root, `<section class="center"><div class="card panel">
     <div class="eyebrow">Save and load</div>

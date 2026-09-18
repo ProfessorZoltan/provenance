@@ -6,7 +6,7 @@ const files = import.meta.glob('../../content/**/*.json', { eager: true, import:
 
 const FOLDERS = [
   'characters', 'nodes', 'abilities', 'enemies', 'encounters', 'locations', 'eras',
-  'scores', 'dialogues', 'timelineChoices', 'quests', 'shops', 'items',
+  'scores', 'dialogues', 'timelineChoices', 'quests', 'shops', 'items', 'maps',
 ] as const;
 
 type Folder = (typeof FOLDERS)[number];
@@ -93,6 +93,17 @@ function validate(c: ContentDB): void {
     for (const i of q.rewards.items) need(!!c.items[i], `quest ${q.id}: unknown item ${i}`);
   }
   for (const s of Object.values(c.shops)) for (const st of s.stock) need(!!c.items[st.item], `shop ${s.id}: unknown item ${st.item}`);
+  for (const m of Object.values(c.maps)) {
+    need(!!c.eras[m.era], `map ${m.id}: unknown era ${m.era}`);
+    for (const n of m.nodes) {
+      if (n.kind === 'location') need(!!n.location && !!c.locations[n.location] && c.locations[n.location].era === m.era, `map ${m.id}: node ${n.id} needs a location in ${m.era}`);
+      if (n.kind === 'encounter') need(!!n.encounter && !!c.encounters[n.encounter], `map ${m.id}: node ${n.id} needs an encounter`);
+    }
+    for (const z of m.zones) for (const e of z.encounters) need(!!c.encounters[e], `map ${m.id}: zone ${z.id} unknown encounter ${e}`);
+  }
+  for (const l of Object.values(c.locations)) {
+    need(Object.values(c.maps).some((m) => m.era === l.era && m.nodes.some((n) => n.location === l.id)), `location ${l.id}: no map node in ${l.era}`);
+  }
   if (problems.length) throw new Error('Content validation failed:\n' + problems.join('\n'));
 }
 
