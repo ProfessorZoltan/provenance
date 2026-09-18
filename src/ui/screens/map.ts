@@ -75,10 +75,12 @@ export function mapScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
 
   const place = () => { token.setAttribute('transform', `translate(${x} ${y})`); };
   const inZone = () => map.zones.find((z) => x >= z.x && x <= z.x + z.w && y >= z.y && y <= z.y + z.h) ?? null;
+  let primed = false;
   const updateNear = () => {
     const found = nodes.find(({ n }) => Math.hypot(n.x - x, n.y - y) <= n.radius) ?? null;
     const n = found?.n ?? null;
-    if (n === nearNode) return;
+    if (primed && n === nearNode) return;
+    primed = true;
     nearNode = n;
     svg.querySelectorAll('.node').forEach((el) => el.classList.toggle('near', (el as SVGGElement).dataset.node === n?.id));
     if (n) {
