@@ -1,0 +1,20 @@
+{
+  "id": "quiet_2148",
+  "lines": [
+    { "speaker": "narrator", "text": "Kell Stronghold, 2148. The chapel is a magazine, the terraces are fire steps, and the rain is grey with ash from the valleys. A woman in patched armor watches you climb out of the crypt without surprise." },
+    { "speaker": "ade", "text": "Captain Ade. Wren told me a long time ago that people would come up those stairs one day. She was younger. So was I." },
+    { "speaker": "dax", "text": "Ade. You are not supposed to know me yet. I was a kid in the Ash Camp when this wall fell." },
+    { "speaker": "ade", "text": "It has not fallen. Not yet. We have food for a month and rifles for a week. The Board's Wardens are in the valley: human enforcers, well paid, no drones. They are waiting for us to starve." },
+    { "speaker": "ade", "text": "The old armory is under the north terrace. Sealed since the founding. Wren's order has the key; you came up through the door it opens. Give it to us and we hold the winter. Or do not, and let Kell fall the way your history says it did." },
+    { "speaker": "wren", "text": "Auditor. Whatever we do here, the village above us in 2312 will be built on it." },
+    {
+      "speaker": "ade",
+      "text": "Well?",
+      "choices": [
+        { "text": "Arm the resistance. Open the armory.", "timelineChoice": "arm_resistance", "next": "quiet_armed" },
+        { "text": "Let it fall. We are not here to fight your war.", "timelineChoice": "let_it_fall", "next": "quiet_fall" },
+        { "text": "Not yet. We need to look around first.", "next": "quiet_defer" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "pell_offer",
+  "lines": [
+    { "speaker": "pell", "text": "You are the one from the monastery. The Auditor. I am Pell; I keep the gate, or I did before the drone came." },
+    { "speaker": "pell", "text": "Every night it circles lower. Allocation pattern: counting, deciding. If it decides we need managing, this stops being a free town." },
+    {
+      "speaker": "pell",
+      "text": "Go up to the gate and break it. I have a prayer wheel that belonged to the founding; it is worth something to a trader. It is yours.",
+      "choices": [
+        { "text": "We will clear the gate.", "action": "quest:accept:gate_drone", "syncDelta": 0 },
+        { "text": "Not now." }
+      ]
+    }
+  ]
+}

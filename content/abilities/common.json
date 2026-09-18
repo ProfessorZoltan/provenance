@@ -1,0 +1,5 @@
+[
+  { "id": "strike", "name": "Strike", "cost": 1, "damageType": "kinetic", "target": "enemy", "formula": "a.grit * 0.6 + 6", "tempoCost": 0, "entropyDelta": 0, "description": "A plain kinetic hit." },
+  { "id": "guard", "name": "Guard", "cost": 1, "target": "self", "tempoCost": 0, "entropyDelta": 0, "status": { "id": "guard", "turns": 1 }, "description": "Halve incoming damage until your next turn." },
+  { "id": "parley", "name": "Parley", "cost": 1, "target": "enemy", "tempoCost": 0, "entropyDelta": 0, "special": "parley", "requiresMachine": true, "description": "Talk a machine down. Needs party Sync of +40 or higher. Chance scales with Signal." }
+]

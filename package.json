@@ -1,0 +1,23 @@
+{
+  "name": "provenance",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Provenance: a browser RPG about who owns the future. Vertical slice.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "tone": "^15.1.22"
+  },
+  "devDependencies": {
+    "typescript": "5.9.2",
+    "vite": "7.1.7",
+    "vitest": "3.2.4"
+  }
+}

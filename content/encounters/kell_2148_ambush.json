@@ -1,0 +1,13 @@
+{
+  "id": "kell_2148_ambush",
+  "name": "The Board Was Waiting",
+  "era": "2148",
+  "location": "kell_2148",
+  "enemies": [{ "enemy": "warden_2148", "count": 1 }, { "enemy": "drone_hunter", "count": 2 }],
+  "surprise": "always",
+  "story": true,
+  "flavor": "The Board's enforcers were already inside the walls.",
+  "scanHints": [],
+  "rewardFlags": ["survivedSurprise"],
+  "music": "battle_2148"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "kell_armory",
+  "name": "Memorial Armory",
+  "era": "2312",
+  "currency": "allocation points",
+  "stock": [
+    { "item": "ration", "price": 12 },
+    { "item": "stim", "price": 20 },
+    { "item": "anchor_charm", "price": 50 },
+    { "item": "militia_kit", "price": 45 },
+    { "item": "relic_ash_blade", "price": 90 }
+  ]
+}

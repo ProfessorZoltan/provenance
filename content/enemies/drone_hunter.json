@@ -1,0 +1,17 @@
+{
+  "id": "drone_hunter",
+  "name": "Hunter Drone",
+  "family": "drone",
+  "era": "2148",
+  "machine": true,
+  "stats": { "resolve": 75, "bandwidth": 2, "latency": 4, "signal": 40, "noise": 45, "grit": 30, "sync": 100, "continuity": 100 },
+  "shield": 25,
+  "abilities": ["drone_dart", "drone_burn", "drone_lock"],
+  "immunities": [],
+  "perception": 55,
+  "rig": "drone_hunter",
+  "weakness": "signal",
+  "xp": 45,
+  "drops": [{ "item": "scrap", "chance": 0.7 }, { "item": "relic_hunter_lens", "chance": 0.15 }],
+  "flavor": "A Board-era kill drone. It does not count; it culls."
+}

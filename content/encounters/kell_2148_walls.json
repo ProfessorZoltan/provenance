@@ -1,0 +1,18 @@
+{
+  "id": "kell_2148_walls",
+  "name": "The Wall Walk",
+  "era": "2148",
+  "location": "kell_2148",
+  "enemies": [{ "enemy": "warden_2148", "count": 1 }, { "enemy": "drone_sentry", "count": 1 }],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Boots on the wall walk. Human boots.",
+  "scanHints": [
+    { "when": "signal>=40", "text": "A Warden and a Drone." },
+    { "when": "signal>=70", "text": "Board Warden: immune to Signal, shrugs off Thermal. Hit him with Kinetic." },
+    { "when": "noise>=40", "text": "Ambush chance shown." },
+    { "when": "party:wren", "text": "Wren: no Echoes here. Only people." },
+    { "when": "sync<=-40", "text": "Overload: the drone is the soft target." }
+  ],
+  "music": "battle_2148"
+}

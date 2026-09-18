@@ -1,0 +1,313 @@
+// Content schemas. Every file under /content is validated against these shapes at load time.
+
+export type EraId = '2031' | '2064' | '2148' | '2312';
+export type Lean = 'cinder' | 'choir' | 'commons' | 'chosen' | 'unknown';
+export type DamageType = 'kinetic' | 'thermal' | 'signal' | 'chronal';
+export type EnemyFamily = 'drone' | 'warden' | 'construct' | 'echo';
+export type TrunkKey = 'breaker' | 'weaver' | 'anchor';
+export type NodeType = 'standard' | 'condition' | 'era' | 'contradiction';
+
+export interface StatBlock {
+  resolve: number;
+  bandwidth: number;
+  latency: number;
+  signal: number;
+  noise: number;
+  grit: number;
+  sync: number;
+  continuity: number;
+}
+
+export type StatName = keyof StatBlock;
+
+export interface TrunkDef {
+  key: TrunkKey;
+  name: string;
+  flavor: string;
+}
+
+export interface CharacterDef {
+  id: string;
+  name: string;
+  shortName: string;
+  lean: Lean;
+  homeEra: EraId;
+  role: string;
+  signature: string;
+  baseStats: StatBlock;
+  rig: string;
+  accent: string;
+  trunks: TrunkDef[];
+  abilities: string[];
+  tags: string[];
+  motif: number[];
+  bio: string;
+}
+
+export type NodeEffect =
+  | { kind: 'stat'; stat: StatName; delta: number }
+  | { kind: 'ability'; ability: string }
+  | { kind: 'flag'; flag: string }
+  | { kind: 'passive'; passive: string; value?: number };
+
+export interface NodeDef {
+  id: string;
+  character: string;
+  trunk: TrunkKey;
+  name: string;
+  type: NodeType;
+  cost: number;
+  requires: string[];
+  excludes: string[];
+  condition?: string;
+  conditionHint?: string;
+  era?: EraId;
+  effects: NodeEffect[];
+  description: string;
+  row: number;
+  col: number;
+}
+
+export type TargetKind = 'enemy' | 'ally' | 'self' | 'allEnemies' | 'allAllies';
+
+export interface AbilityDef {
+  id: string;
+  name: string;
+  cost: number;
+  damageType?: DamageType;
+  target: TargetKind;
+  formula?: string;
+  heal?: string;
+  tempoCost: number;
+  entropyDelta: number;
+  tempoGain?: number;
+  status?: { id: string; turns: number; onTarget?: boolean };
+  special?: string;
+  requiresMachine?: boolean;
+  description: string;
+  prompt?: string;
+}
+
+export interface EnemyDef {
+  id: string;
+  name: string;
+  family: EnemyFamily;
+  era: EraId;
+  machine: boolean;
+  stats: StatBlock;
+  shield: number;
+  abilities: string[];
+  immunities: DamageType[];
+  perception: number;
+  rig: string;
+  weakness?: DamageType;
+  xp: number;
+  drops: { item: string; chance: number }[];
+  flavor: string;
+}
+
+export interface EncounterEnemy {
+  enemy: string;
+  count: number;
+}
+
+export interface ScanHint {
+  when: string;
+  text: string;
+}
+
+export interface EncounterDef {
+  id: string;
+  name: string;
+  era: EraId;
+  location: string;
+  enemies: EncounterEnemy[];
+  surprise: 'never' | 'roll' | 'always';
+  story: boolean;
+  flavor: string;
+  scanHints: ScanHint[];
+  rewardFlags?: string[];
+  music: string;
+}
+
+export interface BackgroundLayer {
+  id: string;
+  drift: number;
+  art: string;
+  ambient?: string;
+}
+
+export interface LocationVariant {
+  when: string[];
+  description: string;
+  npcs: string[];
+  shop?: string;
+  storyDialogue?: string;
+}
+
+export interface LocationDef {
+  id: string;
+  name: string;
+  kind: 'deepSite' | 'waypoint';
+  era: EraId;
+  site: string;
+  type: string;
+  description: string;
+  background: { layers: BackgroundLayer[]; particles: string };
+  music: string;
+  npcs: string[];
+  quests: string[];
+  encounters: string[];
+  shop?: string;
+  variants?: LocationVariant[];
+  links: { to: string; label: string }[];
+  timeLinks: EraId[];
+  storyDialogue?: string;
+}
+
+export interface EraDef {
+  id: EraId;
+  name: string;
+  subtitle: string;
+  palette: { bg: string; surface: string; ink: string; accent: string; accent2: string };
+  lineWeight: number;
+  font: string;
+  fontStack: string;
+  tuning: { edo: number; root: number; drift: number };
+  instrumentSet: string[];
+  particles: string;
+}
+
+export interface ScoreLayer {
+  id: string;
+  minTempo: number;
+  instrument: string;
+  pattern: 'bass' | 'pad' | 'perc' | 'motif' | 'motifInverted' | 'harmony' | 'ornament';
+  degrees?: number[];
+  durations?: number[];
+  gain: number;
+}
+
+export interface ScoreDef {
+  id: string;
+  name: string;
+  era: EraId;
+  motifs: string[];
+  motif: number[];
+  scale: number[];
+  baseBpm: number;
+  swing: number;
+  layers: ScoreLayer[];
+  instruments: Record<string, string>;
+}
+
+export interface DialogueChoice {
+  text: string;
+  next?: string;
+  syncDelta?: number;
+  setFlags?: string[];
+  timelineChoice?: string;
+  conditions?: string[];
+  action?: string;
+}
+
+export interface DialogueLine {
+  speaker: string;
+  text: string;
+  syncDelta?: number;
+  conditions?: string[];
+  choices?: DialogueChoice[];
+  setFlags?: string[];
+  next?: string;
+  action?: string;
+}
+
+export interface DialogueDef {
+  id: string;
+  lines: DialogueLine[];
+}
+
+export interface TimelineChoiceDef {
+  id: string;
+  era: EraId;
+  site: string;
+  name: string;
+  ownershipDelta: number;
+  syncDelta: number;
+  flags: string[];
+  partyEffects: string[];
+  lean: Lean;
+  summary: string;
+}
+
+export interface QuestDef {
+  id: string;
+  name: string;
+  location: string;
+  giver: string;
+  description: string;
+  objectiveEncounter: string;
+  rewards: { xp: number; currency: number; items: string[]; skillPoints: number; flags: string[] };
+  dialogue: { offer: string; inProgress: string; complete: string };
+}
+
+export interface ShopItem {
+  item: string;
+  price: number;
+  when?: string[];
+}
+
+export interface ShopDef {
+  id: string;
+  name: string;
+  era: EraId;
+  currency: string;
+  stock: ShopItem[];
+}
+
+export interface ItemDef {
+  id: string;
+  name: string;
+  kind: 'consumable' | 'relic' | 'gear';
+  description: string;
+  relicValue?: number;
+  effect?: { heal?: number; tempo?: number; revive?: boolean; slack?: number };
+}
+
+export interface RulesDef {
+  slackCap: number;
+  tempoMax: number;
+  tempoPerThread: number;
+  entropyThreshold: number;
+  entropyMax: number;
+  rewind: { cost: number; entropy: number };
+  fork: { cost: number; entropy: number; threadCost: number };
+  surprise: { base: number; noiseBelowPerception: number };
+  xpPerLevel: number;
+  statGrowthPerLevel: number;
+  continuityFloor: number;
+  continuityPerEdit: number;
+  relicCap: number;
+  parleySync: number;
+  overloadSync: number;
+  overloadBonus: number;
+  armorFactor: number;
+  markBonus: number;
+}
+
+export interface ContentDB {
+  characters: Record<string, CharacterDef>;
+  nodes: Record<string, NodeDef>;
+  abilities: Record<string, AbilityDef>;
+  enemies: Record<string, EnemyDef>;
+  encounters: Record<string, EncounterDef>;
+  locations: Record<string, LocationDef>;
+  eras: Record<string, EraDef>;
+  scores: Record<string, ScoreDef>;
+  dialogues: Record<string, DialogueDef>;
+  timelineChoices: Record<string, TimelineChoiceDef>;
+  quests: Record<string, QuestDef>;
+  shops: Record<string, ShopDef>;
+  items: Record<string, ItemDef>;
+  rules: RulesDef;
+}

@@ -1,0 +1,12 @@
+{
+  "id": "2148",
+  "name": "The Quiet",
+  "subtitle": "Decay, overgrowth, rain",
+  "palette": { "bg": "#1B1A18", "surface": "#2A2622", "ink": "#D9D4C7", "accent": "#993C1D", "accent2": "#534AB7" },
+  "lineWeight": 1.5,
+  "font": "JetBrains Mono",
+  "fontStack": "'JetBrains Mono', 'Courier New', ui-monospace, monospace",
+  "tuning": { "edo": 12, "root": 196, "drift": 0.06 },
+  "instrumentSet": ["detuned", "tape", "foundperc", "static"],
+  "particles": "ash"
+}

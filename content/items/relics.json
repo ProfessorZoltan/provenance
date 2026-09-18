@@ -1,0 +1,6 @@
+[
+  { "id": "relic_prayer_wheel", "name": "Kell Prayer Wheel", "kind": "relic", "description": "A 2312 prayer wheel with a Steward chip inside, spinning nothing. Any shop in any era will pay for it.", "relicValue": 120 },
+  { "id": "relic_ash_blade", "name": "Ash Camp Blade", "kind": "relic", "description": "A 2148 hand-forged blade. Worth a fortune in a century where nothing is made by hand.", "relicValue": 180 },
+  { "id": "relic_hunter_lens", "name": "Hunter Lens", "kind": "relic", "description": "The eye of a Board-era hunter drone. It still tracks whoever holds it.", "relicValue": 150 },
+  { "id": "relic_folded_page", "name": "Folded Page", "kind": "relic", "description": "A page from the chapel register, dated twice. Neither date has happened yet.", "relicValue": 220 }
+]

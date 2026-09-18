@@ -1,0 +1,9 @@
+{
+  "id": "kell_commissary_thin",
+  "name": "Allocated Exchange",
+  "era": "2312",
+  "currency": "allocation points",
+  "stock": [
+    { "item": "ration", "price": 20 }
+  ]
+}

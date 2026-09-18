@@ -1,0 +1,8 @@
+{
+  "id": "village_fall",
+  "lines": [
+    { "speaker": "narrator", "text": "Kell Village is quieter than you left it. A Steward sentry hangs over the square, humming. Half the stalls are shuttered. People move like they are being counted, because they are." },
+    { "speaker": "dax", "text": "That drone was not there before. Tell me that drone was not there before." },
+    { "speaker": "wren", "text": "It was not. The stronghold fell in 2148, the way it always had, and the Steward has watched this valley ever since. We chose this, Dax. Or we chose not to change it." }
+  ]
+}

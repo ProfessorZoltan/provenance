@@ -1,0 +1,20 @@
+{
+  "slackCap": 2,
+  "tempoMax": 40,
+  "tempoPerThread": 2,
+  "entropyThreshold": 70,
+  "entropyMax": 100,
+  "rewind": { "cost": 3, "entropy": 20 },
+  "fork": { "cost": 2, "entropy": 10, "threadCost": 1 },
+  "surprise": { "base": 5, "noiseBelowPerception": 15 },
+  "xpPerLevel": 100,
+  "statGrowthPerLevel": 0.05,
+  "continuityFloor": 10,
+  "continuityPerEdit": 15,
+  "relicCap": 5,
+  "parleySync": 40,
+  "overloadSync": -40,
+  "overloadBonus": 0.25,
+  "armorFactor": 0.2,
+  "markBonus": 0.25
+}

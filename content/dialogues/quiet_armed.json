@@ -1,0 +1,10 @@
+{
+  "id": "quiet_armed",
+  "lines": [
+    { "speaker": "narrator", "text": "The armory door has not moved in a hundred and seventeen years. It moves now. Rifles, powder, and, at the back, a rack of hand-forged blades from the founding, still oiled." },
+    { "speaker": "dax", "text": "That is my crew's steel. Ash Camp forge marks. They will be here by morning if the Captain sends the signal." },
+    { "speaker": "ade", "text": "Signal sent. Whatever you are, Auditor, you were the right thing to come up those stairs." },
+    { "speaker": "wren", "text": "Something is wrong. The Wardens are not in the valley. Listen. They are inside the walls." },
+    { "speaker": "narrator", "text": "The Board was waiting.", "action": "battle:kell_2148_ambush" }
+  ]
+}

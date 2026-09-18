@@ -1,0 +1,21 @@
+{
+  "id": "player",
+  "name": "The Auditor",
+  "shortName": "Auditor",
+  "lean": "chosen",
+  "homeEra": "2312",
+  "role": "Flexible",
+  "signature": "Audit: mark an enemy to expose its weakness and stat sheet",
+  "baseStats": { "resolve": 120, "bandwidth": 3, "latency": 40, "signal": 45, "noise": 30, "grit": 35, "sync": 0, "continuity": 100 },
+  "rig": "auditor",
+  "accent": "#4FD1E6",
+  "trunks": [
+    { "key": "breaker", "name": "Enforcement", "flavor": "Damage scales with marks" },
+    { "key": "weaver", "name": "Ledger", "flavor": "Copy, cross-reference, expose" },
+    { "key": "anchor", "name": "Reconcile", "flavor": "Convert marks into Tempo" }
+  ],
+  "abilities": ["strike", "audit", "guard"],
+  "tags": [],
+  "motif": [0, 4, 7, 4, 2, 0],
+  "bio": "An Allocation Auditor for Enclave 7 who found a budget line older than the Steward, payable to Continuity Holdings. Asking about it was the last thing the Enclave let them do."
+}

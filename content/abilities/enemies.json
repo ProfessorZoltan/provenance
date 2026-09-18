@@ -1,0 +1,9 @@
+[
+  { "id": "drone_dart", "name": "Dart", "cost": 1, "damageType": "kinetic", "target": "enemy", "formula": "a.grit * 0.7 + 8", "tempoCost": 0, "entropyDelta": 0, "description": "A flechette burst." },
+  { "id": "drone_burn", "name": "Burn", "cost": 2, "damageType": "thermal", "target": "enemy", "formula": "a.signal * 0.6 + 12", "tempoCost": 0, "entropyDelta": 0, "description": "Focused heat." },
+  { "id": "drone_lock", "name": "Target Lock", "cost": 1, "target": "enemy", "tempoCost": 0, "entropyDelta": 0, "status": { "id": "locked", "turns": 2, "onTarget": true }, "description": "The next hit on this target cannot miss." },
+  { "id": "warden_baton", "name": "Baton", "cost": 1, "damageType": "kinetic", "target": "enemy", "formula": "a.grit * 0.9 + 10", "tempoCost": 0, "entropyDelta": 0, "description": "A shock baton." },
+  { "id": "warden_suppress", "name": "Suppress", "cost": 2, "damageType": "kinetic", "target": "allEnemies", "formula": "a.grit * 0.4 + 6", "tempoCost": 0, "entropyDelta": 0, "status": { "id": "fear", "turns": 2, "onTarget": true }, "description": "Covering fire. Everyone hit loses a thread next turn." },
+  { "id": "echo_fracture", "name": "Fracture", "cost": 2, "damageType": "chronal", "target": "enemy", "formula": "a.signal * 0.9 + 10", "tempoCost": 0, "entropyDelta": 5, "description": "A crack in the timeline. Raises the party's Entropy." },
+  { "id": "echo_mimic", "name": "Mimic", "cost": 1, "damageType": "kinetic", "target": "enemy", "formula": "a.grit * 0.8 + 8", "tempoCost": 0, "entropyDelta": 0, "description": "It uses your own stance." }
+]

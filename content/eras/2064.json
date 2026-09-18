@@ -1,0 +1,12 @@
+{
+  "id": "2064",
+  "name": "The Handover",
+  "subtitle": "Dense, glossy, bought",
+  "palette": { "bg": "#0C1F3A", "surface": "#132B4D", "ink": "#E8EEF7", "accent": "#C9A227", "accent2": "#85B7EB" },
+  "lineWeight": 2,
+  "font": "Barlow Condensed",
+  "fontStack": "'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif",
+  "tuning": { "edo": 12, "root": 220, "drift": 0 },
+  "instrumentSet": ["polysynth", "sidechainbass", "gatedperc", "choirpad"],
+  "particles": "glint"
+}

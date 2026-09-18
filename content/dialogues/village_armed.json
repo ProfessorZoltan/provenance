@@ -1,0 +1,8 @@
+{
+  "id": "village_armed",
+  "lines": [
+    { "speaker": "narrator", "text": "Kell Village is not the village you left. There is a memorial by the gate, a wall of names from a winter in 2148, and a line of hand-forged blades hung above it. The market is louder. Nobody looks at the sky." },
+    { "speaker": "dax", "text": "They remember it. They remember us. I am not sure I like being a legend, Sister." },
+    { "speaker": "wren", "text": "You are not a legend. You are a wall of names that a town chose to keep. That is better." }
+  ]
+}

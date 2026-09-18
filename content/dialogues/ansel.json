@@ -1,0 +1,9 @@
+{
+  "id": "ansel",
+  "lines": [
+    { "speaker": "ansel", "text": "Ansel, Commons assembly. We run this town by argument. It is slower than an algorithm and it is ours." },
+    { "speaker": "ansel", "text": "The assembly voted to keep the blades on the memorial wall instead of melting them down. Somebody has to remember that people fought for this.", "conditions": ["flag:armedResistance"], "syncDelta": -3 },
+    { "speaker": "ansel", "text": "You sound like you have made your peace with the Steward. Some of us have. The rest of us keep the assembly meeting anyway.", "conditions": ["sync>=30"] },
+    { "speaker": "ansel", "text": "Every era has its own money and none of it travels. Relics are the exception: old things, made things. Any shop pays for them. Carry five at most.", "conditions": ["!flag:armedResistance"] }
+  ]
+}
