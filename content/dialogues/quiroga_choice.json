@@ -1,0 +1,33 @@
+{
+  "id": "quiroga_choice",
+  "lines": [
+    {
+      "speaker": "quiroga",
+      "text": "There is a charter. Nine pages, five signatures, and a clause voting never to publish. It is in the end room and it is not locked, because nobody has ever needed to lock it."
+    },
+    {
+      "speaker": "quiroga",
+      "text": "So. Thursday is in two days and I have spent four years being outvoted politely. What are we doing.",
+      "choices": [
+        {
+          "text": "Put the charter in front of the press before the vote.",
+          "timelineChoice": "leak_charter",
+          "next": "charter_leaked"
+        },
+        {
+          "text": "Burn the room. The weights are on tape and the tape is in there.",
+          "timelineChoice": "burn_lab",
+          "next": "lab_burned"
+        },
+        {
+          "text": "Come with us instead. There is more of this than one Thursday.",
+          "action": "recruit:quiroga",
+          "next": "quiroga_joins"
+        },
+        {
+          "text": "Nothing yet."
+        }
+      ]
+    }
+  ]
+}

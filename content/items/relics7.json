@@ -1,0 +1,16 @@
+[
+  {
+    "id": "relic_pooling_charter",
+    "name": "The Pooling Charter",
+    "kind": "relic",
+    "description": "Nine pages, five signatures and a clause voting never to publish the weights. Seven to two.",
+    "relicValue": 320
+  },
+  {
+    "id": "relic_bench_tape",
+    "name": "Bench Tape",
+    "kind": "relic",
+    "description": "A physical tape of the original pooled weights, labelled in marker, from the room that either burned or did not.",
+    "relicValue": 280
+  }
+]

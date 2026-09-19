@@ -45,8 +45,9 @@ describe('era maps', () => {
     for (const era of ['2031', '2064', '2148', '2312'] as const) {
       const map = mapFor(content, era)!;
       const sites = map.nodes.filter((n) => n.location && content.locations[n.location]?.kind === 'deepSite');
-      expect(sites.map((n) => content.locations[n.location!].site).sort(), era).toEqual(['basin', 'capitol', 'halden', 'kell']);
-      expect(map.roads.length, era).toBeGreaterThanOrEqual(4);
+      expect(sites.map((n) => content.locations[n.location!].site).sort(), era)
+        .toEqual(['basin', 'capitol', 'halden', 'kell', 'meridian']);
+      expect(map.roads.length, era).toBeGreaterThanOrEqual(5);
     }
   });
 

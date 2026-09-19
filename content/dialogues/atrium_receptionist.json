@@ -1,0 +1,24 @@
+{
+  "id": "atrium_receptionist",
+  "lines": [
+    {
+      "speaker": "atrium_receptionist",
+      "text": "Visitors sign in. Everyone signs in. The founder signs in and he owns the pen."
+    },
+    {
+      "speaker": "atrium_receptionist",
+      "text": "The old lab? Back buildings. Nobody has an access reason for those any more; there is a form and nobody has filled it in since I started."
+    },
+    {
+      "speaker": "atrium_receptionist",
+      "text": "The ticker is allocation figures. I do not know what they mean and neither does anybody on this floor. It is calming, though."
+    },
+    {
+      "speaker": "atrium_receptionist",
+      "text": "There is a hold on the building today. Something about the senate. Nobody has told me what and I have stopped asking.",
+      "conditions": [
+        "flag:treatyAmended"
+      ]
+    }
+  ]
+}

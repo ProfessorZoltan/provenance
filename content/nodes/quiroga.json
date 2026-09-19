@@ -1,0 +1,332 @@
+[
+  {
+    "id": "q_tear_1",
+    "character": "quiroga",
+    "trunk": "breaker",
+    "name": "Seams",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 10
+      }
+    ],
+    "description": "Knows where a frame is bolted rather than welded. +10 Signal.",
+    "row": 0,
+    "col": 0
+  },
+  {
+    "id": "q_tear_2",
+    "character": "quiroga",
+    "trunk": "breaker",
+    "name": "Teardown",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "q_tear_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "teardown"
+      }
+    ],
+    "description": "Removes a Construct's shell without landing a hit.",
+    "row": 1,
+    "col": 0
+  },
+  {
+    "id": "q_tear_3",
+    "character": "quiroga",
+    "trunk": "breaker",
+    "name": "Open the Box",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "q_tear_2"
+    ],
+    "excludes": [
+      "q_tear_4"
+    ],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "vsMachine",
+        "value": 0.25
+      }
+    ],
+    "description": "+25% against machines. She would rather understand them than break them, and understanding them helps. Locks out Seal the Box.",
+    "row": 2,
+    "col": 0
+  },
+  {
+    "id": "q_tear_4",
+    "character": "quiroga",
+    "trunk": "breaker",
+    "name": "Seal the Box",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "q_tear_2"
+    ],
+    "excludes": [
+      "q_tear_3"
+    ],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "vsHuman",
+        "value": 0.25
+      },
+      {
+        "kind": "stat",
+        "stat": "grit",
+        "delta": 10
+      }
+    ],
+    "description": "+25% against people. Some of what she built was used by hands. Locks out Open the Box.",
+    "row": 3,
+    "col": 0
+  },
+  {
+    "id": "q_blue_1",
+    "character": "quiroga",
+    "trunk": "weaver",
+    "name": "Spare Parts",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "blueprint"
+      }
+    ],
+    "description": "Builds a Field Unit out of whatever is on the floor.",
+    "row": 0,
+    "col": 1
+  },
+  {
+    "id": "q_blue_2",
+    "character": "quiroga",
+    "trunk": "weaver",
+    "name": "Second Bench",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "q_blue_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "copyTurns",
+        "value": 2
+      }
+    ],
+    "description": "Field Units hold together two rounds longer.",
+    "row": 1,
+    "col": 1
+  },
+  {
+    "id": "q_blue_3",
+    "character": "quiroga",
+    "trunk": "weaver",
+    "name": "Field Repair",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "q_blue_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "field_repair"
+      }
+    ],
+    "description": "Engineering, applied to a person.",
+    "row": 2,
+    "col": 1
+  },
+  {
+    "id": "q_blue_4",
+    "character": "quiroga",
+    "trunk": "weaver",
+    "name": "Open Weights",
+    "type": "standard",
+    "cost": 3,
+    "requires": [
+      "q_blue_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "open_weights"
+      }
+    ],
+    "description": "Capstone. Every machine on the other side changes sides.",
+    "row": 3,
+    "col": 1
+  },
+  {
+    "id": "q_tol_1",
+    "character": "quiroga",
+    "trunk": "anchor",
+    "name": "Tolerances",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "tolerances"
+      }
+    ],
+    "description": "Nobody on this side goes down for two turns.",
+    "row": 0,
+    "col": 2
+  },
+  {
+    "id": "q_tol_2",
+    "character": "quiroga",
+    "trunk": "anchor",
+    "name": "Margin",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "q_tol_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "resolve",
+        "delta": 28
+      }
+    ],
+    "description": "+28 Resolve. She has been in a lot of rooms that went badly.",
+    "row": 1,
+    "col": 2
+  },
+  {
+    "id": "q_tol_3",
+    "character": "quiroga",
+    "trunk": "anchor",
+    "name": "Seven to Two",
+    "type": "condition",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 16
+      },
+      {
+        "kind": "passive",
+        "passive": "healBonus",
+        "value": 0.2
+      }
+    ],
+    "description": "The vote she lost, undone. She works differently on the other side of it.",
+    "row": 2,
+    "col": 2,
+    "condition": "flag:charterLeaked",
+    "conditionHint": "Leak the charter at Meridian in 2031."
+  },
+  {
+    "id": "q_tol_4",
+    "character": "quiroga",
+    "trunk": "anchor",
+    "name": "Anchored Machines",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "q_tol_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "extraRewind",
+        "value": 1
+      }
+    ],
+    "description": "One more Rewind per battle. She keeps a thing where she put it.",
+    "row": 3,
+    "col": 2
+  },
+  {
+    "id": "q_era_2031",
+    "character": "quiroga",
+    "trunk": "breaker",
+    "name": "Her Own Bench",
+    "type": "era",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 14
+      }
+    ],
+    "description": "Bought standing at the bench she built it on. +14 Signal.",
+    "row": 4,
+    "col": 0,
+    "era": "2031"
+  },
+  {
+    "id": "q_era_2064",
+    "character": "quiroga",
+    "trunk": "weaver",
+    "name": "Warehouse Floor",
+    "type": "era",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "copyTurns",
+        "value": 1
+      }
+    ],
+    "description": "Learned from a distribution hub with more spare parts than staff.",
+    "row": 4,
+    "col": 1,
+    "era": "2064"
+  },
+  {
+    "id": "q_era_2312",
+    "character": "quiroga",
+    "trunk": "anchor",
+    "name": "The Core",
+    "type": "era",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "continuity",
+        "delta": 20
+      }
+    ],
+    "description": "Bought standing inside the thing she wrote four fifths of.",
+    "row": 4,
+    "col": 2,
+    "era": "2312"
+  }
+]

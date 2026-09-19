@@ -1,0 +1,34 @@
+{
+  "id": "meridian_2064_atrium",
+  "name": "The Atrium",
+  "era": "2064",
+  "location": "meridian_2064",
+  "enemies": [
+    {
+      "enemy": "drone_sentry_2064",
+      "count": 2
+    },
+    {
+      "enemy": "warden_2064",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Lobby security, a ticker, and two machines that have decided your appointment does not exist.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones and a human."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Shielded drones. Thermal goes straight through."
+    },
+    {
+      "when": "party:strand_young",
+      "text": "Strand: I own this building. In about thirty years. Neither of us finds that useful right now."
+    }
+  ],
+  "music": "battle_2064"
+}

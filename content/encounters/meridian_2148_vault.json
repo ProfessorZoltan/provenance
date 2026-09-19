@@ -1,0 +1,37 @@
+{
+  "id": "meridian_2148_vault",
+  "name": "The Last Door",
+  "era": "2148",
+  "location": "meridian_2148",
+  "enemies": [
+    {
+      "enemy": "echo_graveyard",
+      "count": 1
+    },
+    {
+      "enemy": "construct_grafted",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "The last door, and everything that was in the atrium behind it, and something standing in front of all of it.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Construct and something Temporal."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Chronal only on the Echo; the shell is ordinary."
+    },
+    {
+      "when": "entropy>=70",
+      "text": "Your own Entropy is high enough to answer it."
+    }
+  ],
+  "music": "battle_2148",
+  "rewardFlags": [
+    "openedTheVault"
+  ]
+}

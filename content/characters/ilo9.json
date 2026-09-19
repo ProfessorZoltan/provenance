@@ -6,7 +6,9 @@
   "homeEra": "2148",
   "role": "Signal, support",
   "signature": "Fork: spawns short-lived copies of itself",
-  "leavesIf": "sync<=-60",
+  "leavesIf": [
+    "sync<=-60"
+  ],
   "leaveLine": "It does not argue. It simply stops answering, and the next time you look the chassis is cold.",
   "joinLine": "It has been reciting the same four seconds of a hymn for a hundred and sixty years, waiting for someone to hear it.",
   "baseStats": {

@@ -1,0 +1,34 @@
+{
+  "id": "meridian_2031_courtyard",
+  "name": "The Courtyard",
+  "era": "2031",
+  "location": "meridian_2031",
+  "enemies": [
+    {
+      "enemy": "drone_prototype_2031",
+      "count": 2
+    },
+    {
+      "enemy": "construct_prototype",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Test units on a lawn, following a pattern somebody wrote this morning and has not corrected.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones and a Construct."
+    },
+    {
+      "when": "signal>=70",
+      "text": "All prototypes. No shielding anywhere on the field."
+    },
+    {
+      "when": "party:quiroga",
+      "text": "Quiroga: I wrote that pattern. Give me thirty seconds with the frame."
+    }
+  ],
+  "music": "battle_2031"
+}

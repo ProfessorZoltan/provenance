@@ -1,0 +1,24 @@
+{
+  "id": "lab_burned",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "It goes up at four in the morning, and the tape goes with it, and so do four years of a woman's work."
+    },
+    {
+      "speaker": "quiroga",
+      "text": "You understand that it is rebuilt. Nine years, partial copies, worse at everything, and nobody who uses it will ever know it was ever better. That is what you have bought."
+    },
+    {
+      "speaker": "dax",
+      "text": "Good. Let them build it worse. Let them build it badly forever.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "Everything downstream of this room is now a copy of a copy, and the people held together by it in 2312 are held together more loosely."
+    }
+  ]
+}

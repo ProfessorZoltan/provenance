@@ -34,6 +34,10 @@
     {
       "item": "coolant_weave",
       "chance": 0.22
+    },
+    {
+      "item": "core_weave",
+      "chance": 0.18
     }
   ],
   "flavor": "Flies the cooling fields on a patrol pattern that has not been revised in eighty years."

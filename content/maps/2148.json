@@ -98,6 +98,16 @@
       "radius": 82,
       "label": "Museum Ruins",
       "icon": "ruin"
+    },
+    {
+      "id": "meridian_2148",
+      "kind": "location",
+      "location": "meridian_2148",
+      "x": 1180,
+      "y": 230,
+      "radius": 84,
+      "label": "The Sealed Vault",
+      "icon": "vault"
     }
   ],
   "roads": [
@@ -180,16 +190,24 @@
       350,
       1700,
       340
+    ],
+    [
+      1180,
+      314,
+      1280,
+      360,
+      1420,
+      400
     ]
   ],
   "zones": [
     {
       "id": "wall_walk",
       "label": "The wall walk",
-      "x": 760,
-      "y": 330,
-      "w": 380,
-      "h": 260,
+      "x": 700,
+      "y": 380,
+      "w": 240,
+      "h": 200,
       "encounters": [
         "kell_2148_walls",
         "kell_2148_ambush"
@@ -263,6 +281,20 @@
       "encounters": [
         "capitol_2148_columns",
         "capitol_2148_archive"
+      ],
+      "chance": 0.4,
+      "stride": 165
+    },
+    {
+      "id": "vault_corridor",
+      "label": "The corridor",
+      "x": 960,
+      "y": 330,
+      "w": 340,
+      "h": 200,
+      "encounters": [
+        "meridian_2148_corridor",
+        "meridian_2148_vault"
       ],
       "chance": 0.4,
       "stride": 165

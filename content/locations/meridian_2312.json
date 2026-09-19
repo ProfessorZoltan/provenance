@@ -1,0 +1,76 @@
+{
+  "id": "meridian_2312",
+  "name": "The Steward's Core",
+  "kind": "deepSite",
+  "era": "2312",
+  "site": "meridian",
+  "type": "Steward's core",
+  "art": "2312_meridian",
+  "description": "A lattice the size of a cathedral, humming at a pitch just under hearing. This is the Steward, and it is the only thing in the world that has never been allocated anything.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2312_meridian:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2312_meridian:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2312_meridian:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2312_meridian:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "snow"
+  },
+  "music": "hub_2312",
+  "npcs": [
+    "the_steward"
+  ],
+  "quests": [],
+  "encounters": [
+    "meridian_2312_lattice"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2031",
+    "2064",
+    "2148"
+  ],
+  "storyDialogue": "meridian_arrive_2312",
+  "variants": [
+    {
+      "when": [
+        "charterLeaked"
+      ],
+      "art": "2312_meridian",
+      "description": "A lattice the size of a cathedral, and a public terminal at the foot of it that should not exist. Somebody published the weights in 2031 and three centuries have not managed to close them again.",
+      "npcs": [
+        "the_steward",
+        "quiroga_2312"
+      ]
+    },
+    {
+      "when": [
+        "labBurned"
+      ],
+      "art": "2312_meridian",
+      "description": "A lattice the size of a cathedral, rebuilt twice from partial weights because the originals burned in 2031. It is worse at everything and nobody remembers it being otherwise.",
+      "npcs": [
+        "the_steward"
+      ]
+    }
+  ]
+}

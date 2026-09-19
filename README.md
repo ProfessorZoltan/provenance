@@ -1,11 +1,12 @@
 # Provenance
 
 A browser RPG about who owns the future. It began as the **vertical slice** from the design doc's
-Build brief and now opens with a playable prologue in the Allocation Office and runs four of the
-five Deep Sites, Kell, Port Halden, the Basin and Capitol Hill, across all four eras: 2031, 2064,
-2148 and 2312. Six party members, the Threads / Tempo / Entropy battle system, eighteen timeline
-choices whose order of play decides what survives, a case log that fills itself, ripple sites,
-shops, equipment, recruitment, quests and save/load.
+Build brief and now opens with a playable prologue in the Allocation Office and runs all five
+Deep Sites, Kell, Port Halden, the Basin, Capitol Hill and Meridian Campus, across all four eras:
+2031, 2064, 2148 and 2312. All eight party members, the Threads / Tempo / Entropy battle system,
+twenty-one timeline choices whose order of play decides what survives, a case log that fills itself,
+ripple sites, shops, equipment, recruitment, quests and save/load. The final dungeon and the five
+endings are the remaining piece.
 
 Everything is code-drawn and data-driven: art is SVG and canvas, music is generated live by
 Tone.js from JSON scores, and all content lives in `content/` as JSON.
@@ -74,22 +75,22 @@ and removes animation.
 
 | Piece | Where |
 | --- | --- |
-| Deep Sites: Kell, Port Halden, the Basin and Capitol Hill, each across 2031, 2064, 2148 and 2312 | `content/locations/` |
-| Waypoints: eighteen, including Kell Village, the Undercity Bazaar, the Basin Work Camp, Ash Camp and the Senate Annex | `content/locations/`, `content/shops/` |
-| Party: the Auditor, Wren, Dax, ILO-9, Mara Vesely and Tomas Hale, the last three by recruitment. Four active, the rest benched at half XP | `content/characters/` |
+| Deep Sites: all five, Kell, Port Halden, the Basin, Capitol Hill and Meridian, each across 2031, 2064, 2148 and 2312 | `content/locations/` |
+| Waypoints: twenty, the full set the design doc names | `content/locations/`, `content/shops/` |
+| Party: all eight, the Auditor, Wren, Dax, ILO-9, Mara, Hale, Quiroga and young Strand, five of them by recruitment. Four active, the rest benched at half XP | `content/characters/` |
 | Tech trees: 14 or more nodes each, one condition node, one contradiction pair and per-era nodes | `content/nodes/` |
-| Enemies: thirty-three across four families and four centuries, including Constructs with two health bars and racks that Kinetic cannot touch | `content/enemies/` |
-| Encounters: forty-four, with Scan card, Skip and scripted surprise attacks | `content/encounters/` |
+| Enemies: thirty-three across four families and four centuries, including Constructs whose shell can be taken off at the seam rather than beaten in | `content/enemies/` |
+| Encounters: fifty-one, with Scan card, Skip and scripted surprise attacks | `content/encounters/` |
 | Battle: Threads, Slack, Tempo with Rewind and Fork, Entropy with one Echo spawn per fight, Parley, Terms, Settlement and Held Shot | `src/core/battle/battle.ts` |
 | Backgrounds: one per location, four parallax layers each, one ambient animation, canvas particles | `src/art/pixel-backgrounds.ts` |
 | Music: four battle pieces and four hub pieces, Tempo-linked layers, Entropy detune | `content/scores/`, `src/audio/engine.ts` |
-| Timeline: eighteen choices across four eras and seven sites. A later edit at an earlier era erases everything downstream of it at that site | `content/timelineChoices/`, `src/core/timeline.ts` |
+| Timeline: twenty-one choices across four eras and eight sites, and all five endings computed from them. A later edit at an earlier era erases everything downstream of it at that site | `content/timelineChoices/`, `src/core/timeline.ts` |
 | Ripple sites: eight places whose state is decided in another century or by party Sync, including the Tolliver chain from 2031 to 2148 and the Basin crew list from 2031 to 2312 | `content/locations/`, `content/quests/` |
 | Equipment: two slots per character, era-specific gear, owner-locked pieces, Ownership-gated stock | `content/items/`, `src/ui/screens/roster.ts` |
 | Save: localStorage slot, JSON export and import, last three timeline snapshots | `src/core/save.ts` |
 | Era maps: three regions on one 2600x1100 map per era, with a camera that follows the party, a minimap, roads and encounter zones | `content/maps/`, `src/ui/screens/map.ts` |
 | Prologue: a walkable Allocation Office, the budget-line discovery at the monitor array, and the flight up the valley road. Skippable on a replay | `content/rooms/`, `src/ui/screens/room.ts` |
-| Case log: thirty-seven entries of names, dates, places and clues, written down as they are learned and struck through when the century they came from is rewritten | `content/log/`, `src/ui/screens/log.ts` |
+| Case log: forty-six entries of names, dates, places and clues, written down as they are learned and struck through when the century they came from is rewritten | `content/log/`, `src/ui/screens/log.ts` |
 | Player manual: in-game screen rendered from the shipped Markdown | `docs/PLAYER_MANUAL.md`, `src/ui/manual.ts` |
 
 ## Architecture
@@ -151,11 +152,12 @@ The design doc left these open; the slice picks a value so the loop is playable.
 
 ## Verified
 
-- `npm test`: 126 tests covering battle determinism, damage type rules, Rewind, Fork, Echo spawn,
+- `npm test`: 136 tests covering battle determinism, damage type rules, Rewind, Fork, Echo spawn,
   surprise attacks, Mara's Terms and Settlement, Hale's Held Shot and Killing Silence, node
   unlocking, timeline propagation across six independent sites, ripple-site state, Ownership-gated
   shop stock, map travel and node gating, save round trip, five full end-to-end runs including the
-  Handover, the Tolliver chain, the Basin crew list and the Enabling Act, a check that every quest
+  Handover, the Tolliver chain, the Basin crew list, the Enabling Act and the Founding, Quiroga's
+  Teardown and Open Weights, Strand's Buyout and Hostile Takeover, a check that every quest
   objective is winnable by a party that walked straight to it, battle narration paging, art-library
   resolution, the prologue from the first query to the door at Kell, the case log's unlock and
   supersede rules, and a 300-battle random-action fuzz that must never hang or throw.

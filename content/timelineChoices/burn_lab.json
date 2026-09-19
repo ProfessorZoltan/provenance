@@ -1,0 +1,16 @@
+{
+  "id": "burn_lab",
+  "era": "2031",
+  "site": "meridian",
+  "name": "Burn the lab",
+  "ownershipDelta": -20,
+  "syncDelta": -60,
+  "flags": [
+    "labBurned"
+  ],
+  "partyEffects": [
+    "continuityShock"
+  ],
+  "lean": "cinder",
+  "summary": "The pooled weights were on-site and on tape and the tape was in that room. It is all rebuilt inside nine years from partial copies, worse at everything, and nobody alive remembers it being otherwise."
+}

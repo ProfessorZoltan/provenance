@@ -154,6 +154,28 @@
     "order": 110
   },
   {
+    "id": "meridian_campus",
+    "category": "places",
+    "title": "Meridian Campus",
+    "detail": "A courtyard and four low buildings in 2031, a glass atrium by 2064, a vault sealed from the inside in 2148, and by 2312 no buildings at all: a lattice the size of a cathedral.",
+    "source": "Meridian Campus, 2031",
+    "when": [
+      "flag:been:meridian_2031"
+    ],
+    "order": 118
+  },
+  {
+    "id": "the_pooling",
+    "category": "clues",
+    "title": "Five models, one charter",
+    "detail": "Five companies pooled their models into one in 2031 under a private charter, and voted seven to two never to publish the weights. Everything downstream of that is an ownership question wearing a technology costume.",
+    "source": "Meridian Campus, 2031",
+    "when": [
+      "flag:metQuiroga"
+    ],
+    "order": 119
+  },
+  {
     "id": "the_founding",
     "category": "dates",
     "title": "2031 \u2014 The Founding",
@@ -163,6 +185,17 @@
       "flag:been:kell_2031"
     ],
     "order": 120
+  },
+  {
+    "id": "quiroga",
+    "category": "people",
+    "title": "Dr. Ines Quiroga",
+    "detail": "Founding engineer and author of four of the five pooled models. Argued for open weights in the room where it was decided, lost seven to two, and has never once stopped saying so.",
+    "source": "Meridian Campus, 2031",
+    "when": [
+      "flag:metQuiroga"
+    ],
+    "order": 121
   },
   {
     "id": "capitol_hill",
@@ -176,6 +209,17 @@
     "order": 122
   },
   {
+    "id": "young_strand",
+    "category": "people",
+    "title": "Callum Strand, at twenty-nine",
+    "detail": "Founding chair of Meridian. Signs the pooling charter on a Thursday, uploads in 2091, and is still in the fourth chair in 2312. He does not hate anybody; he believes he is the shareholder of record.",
+    "source": "Meridian Campus, 2031",
+    "when": [
+      "flag:metStrand"
+    ],
+    "order": 123
+  },
+  {
     "id": "enabling_act",
     "category": "clues",
     "title": "The Enabling Act, 2031",
@@ -187,6 +231,17 @@
     "order": 124
   },
   {
+    "id": "open_weights",
+    "category": "clues",
+    "title": "The weights, published",
+    "detail": "Nine pages and five signatures to four outlets on the morning of the vote. The pooling happened anyway, under a document everybody had read, and three centuries have failed to close it again.",
+    "source": "Meridian Campus, 2031",
+    "when": [
+      "flag:charterLeaked"
+    ],
+    "order": 125
+  },
+  {
     "id": "naming_clause",
     "category": "clues",
     "title": "The naming clause",
@@ -196,6 +251,17 @@
       "flag:actNamed"
     ],
     "order": 126
+  },
+  {
+    "id": "the_fire",
+    "category": "clues",
+    "title": "The room that burned",
+    "detail": "The pooled weights were on-site and on tape. Rebuilt in nine years from partial copies, worse at everything, and nobody who uses it remembers it being otherwise.",
+    "source": "Meridian Campus, 2031",
+    "when": [
+      "flag:labBurned"
+    ],
+    "order": 127
   },
   {
     "id": "witness_signature",
@@ -308,6 +374,17 @@
     "order": 182
   },
   {
+    "id": "the_sealed_vault",
+    "category": "places",
+    "title": "The last door",
+    "detail": "Sealed from the inside in the year the Quiet started, by a man who then took four days to get out through the service side. Everything the 2064 atrium held is behind it.",
+    "source": "Meridian Campus, 2148",
+    "when": [
+      "flag:been:meridian_2148"
+    ],
+    "order": 186
+  },
+  {
     "id": "board_alerted",
     "category": "clues",
     "title": "Something is looking for you",
@@ -405,5 +482,28 @@
       "flag:knowsStrand"
     ],
     "order": 254
+  },
+  {
+    "id": "the_steward_itself",
+    "category": "places",
+    "title": "The Steward",
+    "detail": "Not a building it runs from: a lattice the size of a cathedral, humming under hearing. It has never been allocated anything, because it allocates. Eleven years of reconciling this system never once showed a line item for it.",
+    "source": "Meridian Campus, 2312",
+    "when": [
+      "flag:been:meridian_2312"
+    ],
+    "order": 256
+  },
+  {
+    "id": "the_shape_of_it",
+    "category": "clues",
+    "title": "The shape of the whole thing",
+    "detail": "An enabling act in 2031 made perpetual ownership legal. A charter that same year made the model private. A treaty in 2064 handed governance to whoever held the charter. Nothing since has been a decision; it has all been the consequence of three afternoons.",
+    "source": "The case itself",
+    "when": [
+      "flag:been:meridian_2312",
+      "flag:been:capitol_2031"
+    ],
+    "order": 258
   }
 ]

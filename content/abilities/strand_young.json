@@ -1,0 +1,57 @@
+[
+  {
+    "id": "buyout",
+    "name": "Buyout",
+    "cost": 2,
+    "target": "enemy",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "special": "buyout",
+    "description": "Buys one enemy out, once per battle. Terms agreed, paperwork later, and they fight on this side for the rest of it."
+  },
+  {
+    "id": "equity",
+    "name": "Equity",
+    "cost": 1,
+    "target": "self",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "status": {
+      "id": "taunt",
+      "turns": 2
+    },
+    "description": "Takes the field's attention for two turns and absorbs what comes. Everything they spend on him is a position he is building."
+  },
+  {
+    "id": "acquisition",
+    "name": "Acquisition",
+    "cost": 1,
+    "target": "enemy",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "special": "acquisition",
+    "description": "Takes whatever the target is currently enjoying and enjoys it instead."
+  },
+  {
+    "id": "majority",
+    "name": "Majority",
+    "cost": 2,
+    "target": "allAllies",
+    "heal": "a.grit * 0.4 + 10",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "tempoGain": 4,
+    "description": "Calls the whole side onto his book. Everyone recovers, and the gauge fills."
+  },
+  {
+    "id": "hostile_takeover",
+    "name": "Hostile Takeover",
+    "cost": 3,
+    "damageType": "kinetic",
+    "target": "enemy",
+    "formula": "lost * 1.1 + a.grit * 0.5",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "Capstone. Returns everything that has been done to him, at once, to one target. The more he has taken, the larger the position."
+  }
+]

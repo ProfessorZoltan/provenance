@@ -77,8 +77,12 @@ function settleDepartures(content: ContentDB, state: GameState): GameState {
   for (const id of Object.keys(state.party)) {
     if (id === 'player') continue;
     const def = content.characters[id];
-    if (!def?.leavesIf) continue;
-    if (!evalAll([def.leavesIf], conditionContext(content, state))) continue;
+    if (!def?.leavesIf?.length) continue;
+    // A departure reads this person's own Continuity, not the party's lowest.
+    const derived = deriveWorld(content, state.world, state.party);
+    const ctx = conditionContext(content, state);
+    const mine = { ...ctx, stats: { ...ctx.stats, continuity: derived.continuity[id] ?? 100 } };
+    if (!evalAll(def.leavesIf, mine)) continue;
     if (Object.keys(state.party).length <= 1) continue;
     const party = { ...state.party };
     delete party[id];
@@ -145,6 +149,12 @@ export const NPC_NAMES: Record<string, string> = {
   curator_vos: 'Curator Vos', board_secretary: 'The Board Secretary',
   annex_staffer: 'Annex Staffer', annex_offer: 'Annex Staffer',
   annex_progress: 'Annex Staffer', annex_complete: 'Annex Staffer',
+  // Meridian Campus.
+  quiroga: 'Dr. Ines Quiroga', quiroga_lab: 'Dr. Ines Quiroga', quiroga_choice: 'Dr. Ines Quiroga',
+  quiroga_2312: 'Dr. Ines Quiroga',
+  strand_young: 'Callum Strand', strand_young_2031: 'Callum Strand', strand_choice: 'Callum Strand',
+  atrium_receptionist: 'Atrium Receptionist', vault_holdout: 'The Holdout',
+  the_steward: 'The Steward', bar_engineer: 'A Founders\' Bar engineer',
   wren: 'Sister Wren', dax: 'Dax Okonkwo', ade: 'Captain Ade', militia: 'Militia Captain', narrator: '', player: 'The Auditor',
 };
 
@@ -697,6 +707,11 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       for (const w of wiped) {
         const old = content.timelineChoices[w.choiceId];
         if (old) state = journal(state, `${old.name} never happened: ${c.era} now runs differently from ${w.era} onward.`);
+      }
+      // A choice whose party effect is a recruitment brings them along, the way the design table
+      // reads it: the decision is the recruitment, not a separate conversation afterwards.
+      for (const effect of c.partyEffects) {
+        if (effect.startsWith('recruit:')) state = reduce(content, state, { type: 'RECRUIT', character: effect.slice('recruit:'.length) });
       }
       return settleDepartures(content, state);
     }

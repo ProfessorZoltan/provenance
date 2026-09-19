@@ -1,0 +1,34 @@
+{
+  "id": "meridian_arrive_2312",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Meridian Campus, 2312. The buildings are gone. What is here is a lattice the size of a cathedral, humming at a pitch just under hearing."
+    },
+    {
+      "speaker": "player",
+      "text": "The Steward. Not a building it lives in, not a room it runs from. This. And in eleven years of reconciling this system I never once saw a line item for it, because nothing allocates to it. It allocates."
+    },
+    {
+      "speaker": "wren",
+      "text": "I have prayed in a building that felt like this and I want to be clear that I do not like the comparison.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "ilo9",
+      "text": "Four fifths of me is in there. I would like to go closer and I would also like never to go closer.",
+      "conditions": [
+        "party:ilo9"
+      ]
+    },
+    {
+      "speaker": "quiroga",
+      "text": "I can hear my own work. I can hear which parts are mine. That is not a figure of speech, I can hear it.",
+      "conditions": [
+        "party:quiroga"
+      ]
+    }
+  ]
+}

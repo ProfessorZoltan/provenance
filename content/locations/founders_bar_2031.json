@@ -1,0 +1,47 @@
+{
+  "id": "founders_bar_2031",
+  "name": "Founders' Bar",
+  "kind": "waypoint",
+  "era": "2031",
+  "site": "founders",
+  "type": "Faction hub",
+  "art": "2031_founders_bar",
+  "description": "A converted machine shop with a hand-built signal halo over the bar. Choir engineers drink here, and they believe, and they are mostly right, which is the problem.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2031_founders_bar:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2031_founders_bar:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2031_founders_bar:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2031_founders_bar:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "dust"
+  },
+  "music": "hub_2031",
+  "npcs": [
+    "bar_engineer"
+  ],
+  "quests": [],
+  "encounters": [],
+  "shop": "founders_bar",
+  "links": [],
+  "timeLinks": []
+}

@@ -19,6 +19,7 @@ export function conditionContext(content: ContentDB, state: GameState, entropy =
       sync: partySync(state),
       ownership: derived.ownership,
       entropy,
+      continuity: Math.min(100, ...state.activeParty.map((id) => derived.continuity[id] ?? 100)),
     },
   };
 }

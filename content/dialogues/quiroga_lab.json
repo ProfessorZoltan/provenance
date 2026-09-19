@@ -1,0 +1,65 @@
+{
+  "id": "quiroga_lab",
+  "lines": [
+    {
+      "speaker": "quiroga",
+      "text": "If you are from Strand's office you can tell him the answer is the same answer, and if you are not, you are trespassing, so it does not matter who you are.",
+      "conditions": [
+        "!party:quiroga",
+        "!flag:metQuiroga"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "Seven to two. You lost the vote on publishing the weights.",
+      "conditions": [
+        "!party:quiroga",
+        "!flag:metQuiroga"
+      ]
+    },
+    {
+      "speaker": "quiroga",
+      "text": "The vote is Thursday. It has not happened.",
+      "conditions": [
+        "!party:quiroga",
+        "!flag:metQuiroga"
+      ]
+    },
+    {
+      "speaker": "quiroga",
+      "text": "...Say that again. Say the number again.",
+      "conditions": [
+        "!party:quiroga",
+        "!flag:metQuiroga"
+      ],
+      "setFlags": [
+        "metQuiroga"
+      ]
+    },
+    {
+      "speaker": "quiroga",
+      "text": "Seven to two, and I am one of the two, and you knew it before Thursday. Right. I am going to stop asking who you are and start asking what you want.",
+      "conditions": [
+        "!party:quiroga",
+        "flag:metQuiroga"
+      ],
+      "next": "quiroga_choice"
+    },
+    {
+      "speaker": "quiroga",
+      "text": "It is published. Somebody put nine pages and five signatures in front of the press on the morning of the vote and the room could not hold. Whatever else happens to me, that happened.",
+      "conditions": [
+        "party:quiroga",
+        "flag:charterLeaked"
+      ]
+    },
+    {
+      "speaker": "quiroga",
+      "text": "I keep expecting to feel further away from my own century. Ask me again in a few days.",
+      "conditions": [
+        "party:quiroga",
+        "!flag:charterLeaked"
+      ]
+    }
+  ]
+}

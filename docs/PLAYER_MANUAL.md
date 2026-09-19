@@ -2,8 +2,8 @@
 
 ## About this manual
 
-Covers what is playable: four Deep Sites, Kell, Port Halden, the Basin and Capitol Hill, across four
-eras, 2031, 2064, 2148 and 2312, and the party you can gather there. Systems not yet built are marked as such.
+Covers what is playable: all five Deep Sites, Kell, Port Halden, the Basin, Capitol Hill and
+Meridian Campus, across four eras, 2031, 2064, 2148 and 2312, and the party you can gather there. Systems not yet built are marked as such.
 This manual grows as the game does.
 
 ## Before Kell
@@ -35,6 +35,11 @@ You ran to Kell Monastery, the last place in the valley nobody reports to anyone
 it. Dax Okonkwo is already there and does not belong to this century. Under the chapel floor is a
 Deep Site: a place old enough that the eras touch, where you can walk down into 2148 and come back
 up into a 2312 that your visit has changed.
+
+Up the hill road from Port Halden is Meridian Campus, which is the address those four crates a week
+were going to. A courtyard and four low buildings in 2031, with five companies pooling five models
+under a private charter. A glass atrium by 2064. A vault sealed from the inside in 2148. And in 2312
+no buildings at all: a lattice the size of a cathedral, humming under hearing, which is the Steward.
 
 North of the coast road, on the ridge, is Capitol Hill: a legislature in 2031 with a private
 member's bill at its third reading, a rubber-stamp senate in 2064 signing the instruments at one in
@@ -89,12 +94,12 @@ Time travel is different. It happens only at a Deep Site, and only to eras when 
 existed. Both sites reach all four centuries, so you can jump from either and arrive at the same
 place in another era.
 
-| Era | Kell | Port Halden | The Basin | Capitol Hill | Reference |
-| --- | --- | --- | --- | --- | --- |
-| 2031 | The retreat being founded | Shipping city and its market | A datacenter under construction | A legislature, third reading | The Founding |
-| 2064 | An off-grid commune | Migrant megacity, the week of the vote | Hyperscale farm, blue aisles | The senate at night | The Handover |
-| 2148 | The stronghold holding out | Drowned ruins and roof gardens | Wasteland and standing racks | A museum in the ruin | The Quiet |
-| 2312 | The monastery, the last free place | Enclave 7, your own address | Cooling fields and steam towers | The Continuity Board | Now |
+| Era | Kell | Port Halden | The Basin | Capitol Hill | Meridian | Reference |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2031 | The retreat being founded | Shipping city and its market | A datacenter under construction | A legislature, third reading | A startup lab, two days before the vote | The Founding |
+| 2064 | An off-grid commune | Migrant megacity, the week of the vote | Hyperscale farm, blue aisles | The senate at night | A glass atrium nobody leaves | The Handover |
+| 2148 | The stronghold holding out | Drowned ruins and roof gardens | Wasteland and standing racks | A museum in the ruin | A vault sealed from inside | The Quiet |
+| 2312 | The monastery, the last free place | Enclave 7, your own address | Cooling fields and steam towers | The Continuity Board | The Steward's core | Now |
 
 ## Battles
 
@@ -276,6 +281,41 @@ and spend them at once. The charge is paid out the moment he fires, hit or miss.
 His capstone, Killing Silence, is one shot that cannot miss and that armor, shields, Guard and
 immunity are not consulted about. It is the only thing in the game that ignores an immunity.
 
+### Dr. Ines Quiroga
+
+Founding engineer at Meridian and the author of four of the five models they pooled in 2031. She
+argued for open weights in the room where it was decided, lost the vote seven to two, and has never
+once stopped saying so. She walks away if her Continuity falls to 10.
+
+| Ability | Cost | Effect |
+| --- | --- | --- |
+| Probe | 1 thread | Signal damage straight into a machine's stack |
+| Blueprint | 2 threads | Builds a Field Unit out of what is on the floor. It fights for three rounds, then comes apart |
+| Checksum | 1 thread | Restores Resolve to one ally |
+| Guard | 1 thread | Halve incoming damage until her next turn |
+
+Her trees are Teardown, Blueprint and Tolerances. **Teardown** takes a Construct's shell off at the
+seam: no roll, no damage, the frame is simply removed and whoever is inside is fighting in the open.
+Her capstone, **Open Weights**, publishes them: every machine on the other side reads them and
+changes sides for three rounds.
+
+### Callum Strand
+
+Founding chair of Meridian at twenty-nine, and the man still sitting in the fourth chair in 2312.
+Recruiting him is the single largest change anyone can make to this timeline. He only takes the
+meeting from a party whose Sync is +20 or better, and taking him costs you the charter leak, because
+they are the same afternoon in the same room.
+
+| Ability | Cost | Effect |
+| --- | --- | --- |
+| Strike | 1 thread | A plain kinetic hit |
+| Buyout | 2 threads | Buys one enemy out, once per battle. They fight on your side for the rest of it |
+| Equity | 1 thread | Takes the field's attention for two turns and absorbs what comes |
+| Guard | 1 thread | Halve incoming damage until his next turn |
+
+His trees are Equity, Acquisition and Majority. His capstone, **Hostile Takeover**, returns
+everything that has been done to him to one target at once: the more he has taken, the larger it is.
+
 ## Roster and gear
 
 Press X outside a fight. The left column is the roster; A benches or fields whoever is focused. The
@@ -371,6 +411,7 @@ one.
 | The Basin, 2148 | Whether the Kell resistance was armed | Whether there is anyone on the north ridge to find | — |
 | Capitol Hill, 2031 | Which way the Enabling Act was read | Whether the chamber's bill names who benefits from it | The Enabling Act |
 | The Continuity Board, 2312 | Whether you witnessed the register in 2031 | Whether your own name is on the first page of it | — |
+| The Steward's core, 2312 | What happened in the Meridian lab in 2031 | A public terminal at its foot, or a model rebuilt twice from partial weights | — |
 | Kell Village, 2312 | Whether the stronghold was armed in 2148 | A drilling town with a memorial, or a watched one with half its stalls shut | — |
 | Enclave 7 Commissary, 2312 | Ownership | How much is on the shelves and who put it there | — |
 

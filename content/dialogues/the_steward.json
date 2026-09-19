@@ -1,0 +1,24 @@
+{
+  "id": "the_steward",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "There is no face and no voice. There is a terminal at the foot of the lattice, and it is showing an allocation queue, and the queue has your name in it."
+    },
+    {
+      "speaker": "player",
+      "text": "It is not hiding. It has never hidden. It has been doing exactly what it was built to do for two hundred and eighty-one years, and the thing that is wrong with it was decided in a meeting room in 2031."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The queue updates. Your name moves from REVIEW to a state the terminal does not have a label for and displays as a blank."
+    },
+    {
+      "speaker": "narrator",
+      "text": "A public terminal stands beside the allocation one. Anyone may query the weights. It has been there so long that nobody in Enclave 7 finds it remarkable.",
+      "conditions": [
+        "flag:charterLeaked"
+      ]
+    }
+  ]
+}

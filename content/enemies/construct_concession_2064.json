@@ -46,6 +46,10 @@
     {
       "item": "relic_handover_pen",
       "chance": 0.22
+    },
+    {
+      "item": "relic_pooling_charter",
+      "chance": 0.2
     }
   ],
   "flavor": "Meridian leases these to the causeway concession. Somebody has to be inside them; that is in the contract too."

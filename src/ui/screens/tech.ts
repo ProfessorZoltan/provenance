@@ -15,6 +15,8 @@ export function techScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scree
   const charId = state.screen.id === 'tech' ? state.screen.character : 'player';
   const def = content.characters[charId];
   const cs = state.party[charId];
+  // A tree only exists for somebody who is actually with you; anyone else has no nodes to spend on.
+  if (!def || !cs) { store.dispatch({ type: 'SET_SCREEN', screen: state.back }); return { input() {} }; }
   const nodes = nodesFor(content, charId);
   const ctxc = conditionContext(content, state);
   const grid: NodeDef[][] = [0, 1, 2].map((c) => nodes.filter((n) => n.col === c).sort((a, b) => a.row - b.row));

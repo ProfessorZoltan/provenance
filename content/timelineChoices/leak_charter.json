@@ -1,0 +1,16 @@
+{
+  "id": "leak_charter",
+  "era": "2031",
+  "site": "meridian",
+  "name": "Leak the charter",
+  "ownershipDelta": 50,
+  "syncDelta": 0,
+  "flags": [
+    "charterLeaked"
+  ],
+  "partyEffects": [
+    "quirogaEndures"
+  ],
+  "lean": "commons",
+  "summary": "The private charter goes to the press on the morning of the vote. The pooling happens anyway, under a document everybody has now read, and three centuries fail to close it again."
+}

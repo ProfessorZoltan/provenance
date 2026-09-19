@@ -1,0 +1,31 @@
+{
+  "id": "meridian_arrive_2031",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Meridian Campus, 2031. A courtyard, four low buildings, eighty people and a lawn with test units running a pattern across it."
+    },
+    {
+      "speaker": "player",
+      "text": "This is the room. Five companies pooling five models into one, and a vote on whether the weights get published. Everything I have chased for four days starts in a meeting room at the end of that path."
+    },
+    {
+      "speaker": "wren",
+      "text": "It looks like a school.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "It always does. Nobody has ever built one of these in a fortress.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "There is a woman at the far bench with amber goggles pushed up on her head, arguing with nobody, and a man in a good suit on the steps who has already noticed you."
+    }
+  ]
+}

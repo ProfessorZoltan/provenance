@@ -1,0 +1,31 @@
+{
+  "id": "strand_joins",
+  "lines": [
+    {
+      "speaker": "strand_young",
+      "text": "Right. I am going to do the unusual thing and take the meeting."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The founding chair of Meridian walks off his own campus two days before the vote, and does not come back, and does not upload in 2091, because he is not there to."
+    },
+    {
+      "speaker": "wren",
+      "text": "You have brought him with us.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "The seat is still occupied in 2312. Somebody sat in it. It is an open question who, now, and I would rather have him where I can see him."
+    },
+    {
+      "speaker": "dax",
+      "text": "This is the worst decision anybody has made in four centuries and I have been to four centuries.",
+      "conditions": [
+        "party:dax"
+      ]
+    }
+  ]
+}

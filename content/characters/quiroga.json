@@ -1,0 +1,59 @@
+{
+  "id": "quiroga",
+  "name": "Dr. Ines Quiroga",
+  "shortName": "Quiroga",
+  "lean": "commons",
+  "homeEra": "2031",
+  "leavesIf": [
+    "continuity<=10"
+  ],
+  "leaveLine": "I am not sure this is my century any more. I am not sure it is anyone's.",
+  "joinLine": "She wrote four of the five models they pooled, and she has been trying to get the weights published since the afternoon they closed them.",
+  "role": "Founding engineer, Signal and Anchor",
+  "signature": "Blueprint: puts a machine of her own on the field",
+  "baseStats": {
+    "resolve": 100,
+    "bandwidth": 3,
+    "latency": 34,
+    "signal": 68,
+    "noise": 32,
+    "grit": 22,
+    "sync": 55,
+    "continuity": 100
+  },
+  "rig": "quiroga",
+  "accent": "#D9A441",
+  "trunks": [
+    {
+      "key": "breaker",
+      "name": "Teardown",
+      "flavor": "Takes a machine apart rather than hitting it"
+    },
+    {
+      "key": "weaver",
+      "name": "Blueprint",
+      "flavor": "Builds allies out of what is lying about"
+    },
+    {
+      "key": "anchor",
+      "name": "Tolerances",
+      "flavor": "Holds a deployed machine together, and the party with it"
+    }
+  ],
+  "abilities": [
+    "probe",
+    "blueprint",
+    "checksum",
+    "guard"
+  ],
+  "tags": [],
+  "motif": [
+    0,
+    4,
+    7,
+    11,
+    7,
+    4
+  ],
+  "bio": "Founding engineer at Meridian and the author of four of the five models they pooled in 2031. She argued for open weights in the room where it was decided, lost the vote seven to two, and has never once stopped saying so."
+}

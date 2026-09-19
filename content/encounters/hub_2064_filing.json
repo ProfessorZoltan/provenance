@@ -1,0 +1,37 @@
+{
+  "id": "hub_2064_filing",
+  "name": "Aisle Nine",
+  "era": "2064",
+  "location": "meridian_hub_2064",
+  "enemies": [
+    {
+      "enemy": "construct_concession_2064",
+      "count": 1
+    },
+    {
+      "enemy": "drone_aisle_2064",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "The filing is behind the frame, and the frame has been told the filing is not to be disturbed.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Construct and a Drone."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Break the shell and the core is a person."
+    },
+    {
+      "when": "party:quiroga",
+      "text": "Quiroga: I can take that apart without hitting it, if somebody keeps the drone off me."
+    }
+  ],
+  "music": "battle_2064",
+  "rewardFlags": [
+    "readTheCharter"
+  ]
+}

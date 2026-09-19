@@ -88,6 +88,26 @@
       "radius": 82,
       "label": "Capitol Hill",
       "icon": "capitol"
+    },
+    {
+      "id": "meridian_2031",
+      "kind": "location",
+      "location": "meridian_2031",
+      "x": 1180,
+      "y": 230,
+      "radius": 84,
+      "label": "Meridian Campus",
+      "icon": "campus"
+    },
+    {
+      "id": "founders_bar_2031",
+      "kind": "location",
+      "location": "founders_bar_2031",
+      "x": 920,
+      "y": 200,
+      "radius": 70,
+      "label": "Founders' Bar",
+      "icon": "market"
     }
   ],
   "roads": [
@@ -162,16 +182,32 @@
       350,
       1700,
       340
+    ],
+    [
+      1180,
+      314,
+      1280,
+      360,
+      1420,
+      400
+    ],
+    [
+      1180,
+      230,
+      1050,
+      210,
+      940,
+      205
     ]
   ],
   "zones": [
     {
       "id": "terraces",
       "label": "The terraces",
-      "x": 760,
-      "y": 330,
-      "w": 380,
-      "h": 260,
+      "x": 700,
+      "y": 380,
+      "w": 240,
+      "h": 200,
       "encounters": [
         "kell_2031_terrace",
         "kell_2031_escort"
@@ -229,6 +265,19 @@
       "h": 210,
       "encounters": [
         "capitol_2031_lobby"
+      ],
+      "chance": 0.4,
+      "stride": 165
+    },
+    {
+      "id": "lawns",
+      "label": "The lawns",
+      "x": 960,
+      "y": 330,
+      "w": 340,
+      "h": 200,
+      "encounters": [
+        "meridian_2031_courtyard"
       ],
       "chance": 0.4,
       "stride": 165

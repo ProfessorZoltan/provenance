@@ -1,0 +1,35 @@
+{
+  "id": "strand_choice",
+  "lines": [
+    {
+      "speaker": "strand_young",
+      "text": "So stop me. But be specific, because I have been managed by professionals since I was twenty-two and vagueness is how it is always done."
+    },
+    {
+      "speaker": "player",
+      "text": "In 2091 you upload. In 2312 you are still in the chair and there are four billion people whose housing you decide and none of them can find your name."
+    },
+    {
+      "speaker": "strand_young",
+      "text": "...That is specific.",
+      "choices": [
+        {
+          "text": "Come with us. See it. Then decide what you sign.",
+          "timelineChoice": "recruit_strand",
+          "next": "strand_joins",
+          "conditions": [
+            "sync>=20"
+          ]
+        },
+        {
+          "text": "There is nothing to discuss. You are the problem.",
+          "syncDelta": -10,
+          "next": "strand_refused"
+        },
+        {
+          "text": "Say nothing and walk away."
+        }
+      ]
+    }
+  ]
+}

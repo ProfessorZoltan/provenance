@@ -1,0 +1,16 @@
+{
+  "id": "recruit_strand",
+  "era": "2031",
+  "site": "meridian",
+  "name": "Bring Strand with you",
+  "ownershipDelta": 10,
+  "syncDelta": 40,
+  "flags": [
+    "youngStrandInParty"
+  ],
+  "partyEffects": [
+    "recruit:strand_young"
+  ],
+  "lean": "choir",
+  "summary": "The founding chair of Meridian walks out of his own campus at twenty-nine and does not upload in 2091, because he is not there to. What sits in the fourth chair in 2312 is now an open question."
+}

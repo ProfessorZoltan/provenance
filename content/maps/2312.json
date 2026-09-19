@@ -124,6 +124,16 @@
       "radius": 82,
       "label": "The Continuity Board",
       "icon": "capitol"
+    },
+    {
+      "id": "meridian_2312",
+      "kind": "location",
+      "location": "meridian_2312",
+      "x": 1180,
+      "y": 230,
+      "radius": 84,
+      "label": "The Steward's Core",
+      "icon": "core"
     }
   ],
   "roads": [
@@ -206,16 +216,24 @@
       350,
       1700,
       340
+    ],
+    [
+      1180,
+      314,
+      1280,
+      360,
+      1420,
+      400
     ]
   ],
   "zones": [
     {
       "id": "perimeter",
       "label": "Perimeter",
-      "x": 760,
-      "y": 330,
-      "w": 400,
-      "h": 280,
+      "x": 700,
+      "y": 380,
+      "w": 240,
+      "h": 220,
       "encounters": [
         "kell_2312_perimeter",
         "kell_2312_enforcers"
@@ -259,6 +277,19 @@
       "h": 210,
       "encounters": [
         "capitol_2312_antechamber"
+      ],
+      "chance": 0.4,
+      "stride": 165
+    },
+    {
+      "id": "the_lattice",
+      "label": "The lattice",
+      "x": 960,
+      "y": 330,
+      "w": 340,
+      "h": 200,
+      "encounters": [
+        "meridian_2312_lattice"
       ],
       "chance": 0.4,
       "stride": 165

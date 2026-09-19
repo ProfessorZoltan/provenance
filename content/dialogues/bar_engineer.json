@@ -1,0 +1,27 @@
+{
+  "id": "bar_engineer",
+  "lines": [
+    {
+      "speaker": "bar_engineer",
+      "text": "Halo's hand-built. Draws a picture of the room's signal on the ceiling. It does nothing useful and it is the best thing anyone in here has made."
+    },
+    {
+      "speaker": "bar_engineer",
+      "text": "Half this bar works at Meridian and the other half wishes it did. Ask either half what they are building and you will get a different answer and both of them mean it."
+    },
+    {
+      "speaker": "bar_engineer",
+      "text": "There is a vote Thursday about publishing the weights. Everyone in here is for it and none of us has a vote, which is the whole of engineering in one sentence.",
+      "conditions": [
+        "!flag:charterLeaked"
+      ]
+    },
+    {
+      "speaker": "bar_engineer",
+      "text": "It is in the papers. All nine pages. This bar has not been this loud since it was a machine shop.",
+      "conditions": [
+        "flag:charterLeaked"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "halo_rig",
+    "name": "Signal Halo Rig",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2031",
+    "stats": {
+      "signal": 14,
+      "sync": 5
+    },
+    "description": "Hand-built over a bar by people who believed. +14 Signal, +5 Sync."
+  },
+  {
+    "id": "quiroga_slate",
+    "name": "Bench Slate",
+    "kind": "gear",
+    "slot": "weapon",
+    "era": "2031",
+    "onlyFor": [
+      "quiroga"
+    ],
+    "stats": {
+      "signal": 17,
+      "resolve": 10
+    },
+    "description": "Four fifths of the Steward, in her handwriting, on a slate she never got to publish. +17 Signal, +10 Resolve."
+  },
+  {
+    "id": "strand_cane",
+    "name": "Shareholder's Cane",
+    "kind": "gear",
+    "slot": "weapon",
+    "era": "2031",
+    "onlyFor": [
+      "strand_young"
+    ],
+    "stats": {
+      "grit": 16,
+      "resolve": 14
+    },
+    "description": "Affectation at twenty-nine, and a weapon by about thirty-one. +16 Grit, +14 Resolve."
+  },
+  {
+    "id": "core_weave",
+    "name": "Core Weave",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2312",
+    "stats": {
+      "resolve": 32,
+      "signal": 10,
+      "continuity": 8
+    },
+    "description": "Lining rated for a room that hums under hearing. +32 Resolve, +10 Signal, +8 Continuity."
+  }
+]

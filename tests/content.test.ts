@@ -4,8 +4,9 @@ import { content } from './helpers';
 import hubSource from '../src/ui/screens/hub.ts?raw';
 
 describe('content', () => {
-  it('covers four eras, six party members and every enemy family', () => {
-    expect(Object.keys(content.characters).sort()).toEqual(['dax', 'hale', 'ilo9', 'mara', 'player', 'wren']);
+  it('covers four eras, all eight party members and every enemy family', () => {
+    expect(Object.keys(content.characters).sort())
+      .toEqual(['dax', 'hale', 'ilo9', 'mara', 'player', 'quiroga', 'strand_young', 'wren']);
     expect([...new Set(Object.values(content.locations).map((l) => l.era))].sort()).toEqual(['2031', '2064', '2148', '2312']);
     const families = new Set(Object.values(content.enemies).map((e) => e.family));
     expect([...families].sort()).toEqual(['construct', 'drone', 'echo', 'warden']);
@@ -18,7 +19,7 @@ describe('content', () => {
   });
 
   it('gives every Deep Site a stop in all four eras, each reachable from the others', () => {
-    for (const site of ['kell', 'halden', 'basin', 'capitol']) {
+    for (const site of ['kell', 'halden', 'basin', 'capitol', 'meridian']) {
       const stops = Object.values(content.locations).filter((l) => l.kind === 'deepSite' && l.site === site);
       expect(stops.map((s) => s.era).sort(), site).toEqual(['2031', '2064', '2148', '2312']);
       for (const s of stops) {
@@ -136,7 +137,10 @@ describe('no dead ends', () => {
       .filter((e) => !e.enemies.some((g) => content.enemies[g.enemy].family === 'echo'))
       .flatMap((e) => e.rewardFlags ?? []));
     for (const flag of conditionFlags) {
-      const reachable = dialogueFlags.has(flag) || questFlags.has(flag) || safeFights.has(flag)
+      // Arriving somewhere sets been:<location>, and opening a conversation sets seen:<dialogue>.
+      const arrival = flag.startsWith('been:') && !!content.locations[flag.slice('been:'.length)];
+      const opened = flag.startsWith('seen:') && !!content.dialogues[flag.slice('seen:'.length)];
+      const reachable = arrival || opened || dialogueFlags.has(flag) || questFlags.has(flag) || safeFights.has(flag)
         || Object.values(content.timelineChoices).some((c) => c.flags.includes(flag));
       expect(reachable, `${flag} is only reachable through an Echo fight`).toBe(true);
       void echoFights;
@@ -144,9 +148,12 @@ describe('no dead ends', () => {
   });
 
   it('gives every recruitable character a way into the party', () => {
-    const recruits = new Set(Object.values(content.dialogues).flatMap((d) => d.lines.flatMap(
-      (l) => [l.action, ...(l.choices ?? []).map((c) => c.action)])).filter((a): a is string => !!a)
-      .filter((a) => a.startsWith('recruit:')).map((a) => a.slice('recruit:'.length)));
+    // Someone joins either through a dialogue action or as a timeline choice's party effect.
+    const recruits = new Set([
+      ...Object.values(content.dialogues).flatMap((d) => d.lines.flatMap(
+        (l) => [l.action, ...(l.choices ?? []).map((c) => c.action)])),
+      ...Object.values(content.timelineChoices).flatMap((c) => c.partyEffects),
+    ].filter((a): a is string => !!a && a.startsWith('recruit:')).map((a) => a.slice('recruit:'.length)));
     for (const id of Object.keys(content.characters)) {
       if (['player', 'wren', 'dax'].includes(id)) continue; // Act 1, always.
       expect(recruits.has(id), `${id} can never be recruited`).toBe(true);

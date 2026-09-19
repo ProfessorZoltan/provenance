@@ -221,7 +221,7 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   // and armor, shields, guard and immunity are all simply not consulted.
   if (ability.special === 'killingSilence') {
     const held = statusCount(actor, 'held');
-    const raw = evalFormula(ability.formula ?? '0', { a: actor.stats, d: target.stats, marks: 0 });
+    const raw = evalFormula(ability.formula ?? '0', { a: actor.stats, d: target.stats, marks: 0, lost: actor.maxHp - actor.hp });
     const dmg = Math.max(1, Math.round(raw * (1 + (0.6 + (p.holdBonus ?? 0)) * held)));
     let hp = Math.max(0, target.hp - dmg);
     const enemyDef = content.enemies[target.ref];
@@ -259,7 +259,7 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   if (r > chance) return { b, amount: 0, hit: false, immune: false, meta, note: `${actor.name} uses ${ability.name} on ${target.name}, and misses.` };
 
   const marks = alive(b, actor.side === 'party' ? 'enemy' : 'party').filter((e) => hasStatus(e, 'marked')).length;
-  let dmg = evalFormula(ability.formula ?? '0', { a: actor.stats, d: target.stats, marks });
+  let dmg = evalFormula(ability.formula ?? '0', { a: actor.stats, d: target.stats, marks, lost: actor.maxHp - actor.hp });
   const notes: string[] = [];
 
   if (hasStatus(target, 'marked')) dmg *= 1 + rules.markBonus + (p.markBonus ?? 0);
@@ -407,6 +407,70 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     }
     for (const f of foes) b = update(b, f.id, (c) => ({ ...c, down: true, parleyed: true, statuses: [] }));
     b = log(b, `${actor.name} settles. Every contract on the field is called in at once, and the fight is simply over.`, 'tempo', { actor: actor.name, ability: ability.name });
+    return afterAction(b, content);
+  }
+
+  // Quiroga takes a Construct apart rather than beating on its shell: the frame comes off and
+  // whoever is inside is fighting in the open, one bar down, without a hit landing.
+  if (ability.special === 'teardown') {
+    const t = chosen[0];
+    const def = t ? content.enemies[t.ref] : undefined;
+    if (!t || !def?.secondBar || t.bar === 2) {
+      b = log(b, `${actor.name} looks for a seam on ${t?.name ?? 'nothing'} and does not find one.`, 'warn', { actor: actor.name, ability: ability.name });
+      return afterAction(b, content);
+    }
+    const core = def.secondBar;
+    b = update(b, t.id, (c) => ({
+      ...c, hp: core.resolve, maxHp: core.resolve, shield: 0, maxShield: 0, bar: 2, name: core.name,
+      abilities: core.abilities ?? c.abilities, immunities: core.immunities ?? c.immunities,
+      weakness: core.weakness, statuses: c.statuses.filter((st) => st.id !== 'marked'),
+    }));
+    b = log(b, `${actor.name} takes ${t.name} apart at the seam. The shell comes off in one piece. ${core.flavor}`, 'tempo', { actor: actor.name, target: t.name, ability: ability.name });
+    return afterAction(b, content);
+  }
+
+  // Open Weights: every machine on the other side stops being on the other side.
+  if (ability.special === 'openWeights') {
+    const machines = alive(b, actor.side === 'party' ? 'enemy' : 'party').filter((c) => c.machine);
+    if (!machines.length) {
+      b = log(b, `${actor.name} opens the weights, and nothing on this field is listening.`, 'warn', { actor: actor.name, ability: ability.name });
+      return afterAction(b, content);
+    }
+    for (const m of machines) {
+      b = update(b, m.id, (c) => ({
+        ...c, side: actor.side, temporary: true, expiresAfterRound: b.round + 3, statuses: [],
+      }));
+    }
+    b = log(b, `${actor.name} publishes the weights. ${machines.map((m) => m.name).join(', ')} read them and change sides for three rounds.`, 'tempo', { actor: actor.name, ability: ability.name });
+    return afterAction(b, content);
+  }
+
+  // Buyout: one enemy per battle is bought outright, and stays bought.
+  if (ability.special === 'buyout') {
+    const t = chosen[0];
+    if (b.passives[actorId]?.boughtOut) {
+      b = log(b, `${actor.name} has already spent this fight's position.`, 'warn', { actor: actor.name, ability: ability.name });
+      return afterAction(b, content);
+    }
+    if (!t) return afterAction(b, content);
+    b = { ...b, passives: { ...b.passives, [actorId]: { ...(b.passives[actorId] ?? {}), boughtOut: 1 } } };
+    b = update(b, t.id, (c) => ({ ...c, side: actor.side, statuses: [], parleyed: false }));
+    b = log(b, `${actor.name} buys ${t.name} out. Terms agreed, paperwork later, and ${t.name} is on this side now.`, 'tempo', { actor: actor.name, target: t.name, ability: ability.name });
+    return afterAction(b, content);
+  }
+
+  // Acquisition: whatever the target is enjoying, the actor is enjoying instead.
+  if (ability.special === 'acquisition') {
+    const t = chosen[0];
+    const GOOD = ['guard', 'taunt', 'inspired', 'anchored', 'fixed', 'faraday', 'held'];
+    const taken = t ? t.statuses.filter((st) => GOOD.includes(st.id)) : [];
+    if (!t || !taken.length) {
+      b = log(b, `${actor.name} looks over ${t?.name ?? 'the field'} and finds nothing worth taking.`, 'warn', { actor: actor.name, ability: ability.name });
+      return afterAction(b, content);
+    }
+    b = update(b, t.id, (c) => ({ ...c, statuses: c.statuses.filter((st) => !GOOD.includes(st.id)) }));
+    b = update(b, actorId, (c) => ({ ...c, statuses: [...c.statuses, ...taken] }));
+    b = log(b, `${actor.name} acquires ${taken.map((st) => STATUS_NAMES[st.id] ?? st.id).join(' and ')} from ${t.name}.`, 'tempo', { actor: actor.name, target: t.name, ability: ability.name });
     return afterAction(b, content);
   }
 

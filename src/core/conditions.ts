@@ -1,8 +1,10 @@
 // Condition DSL shared by scan hints, dialogue lines, shop stock and condition nodes.
 //   flag:x (or bare x)   !flag:x   visited:2148   party:wren   era:2148
 //   quest:id:active|available|readyToTurnIn|complete
-//   signal>=40    noise>=70     sync<=-40        ownership>=50   entropy>=70
+//   signal>=40    noise>=70     sync<=-40        ownership>=50   entropy>=70   continuity<=10
 // `signal` and `noise` read the highest value in the active party; `sync` is the party average.
+// `continuity` is the lowest in the active party, except while deciding whether one person walks
+// away, where it is that person's own.
 
 export interface ConditionContext {
   flags: string[];
@@ -10,13 +12,13 @@ export interface ConditionContext {
   party: string[];
   era: string;
   quests: Record<string, string>;
-  stats: { signal: number; noise: number; sync: number; ownership: number; entropy: number };
+  stats: { signal: number; noise: number; sync: number; ownership: number; entropy: number; continuity: number };
 }
 
 export function evalCondition(cond: string, ctx: ConditionContext): boolean {
   const c = cond.trim();
   if (c.startsWith('!')) return !evalCondition(c.slice(1), ctx);
-  const cmp = c.match(/^(signal|noise|sync|ownership|entropy)\s*(>=|<=|>|<|==)\s*(-?\d+)$/);
+  const cmp = c.match(/^(signal|noise|sync|ownership|entropy|continuity)\s*(>=|<=|>|<|==)\s*(-?\d+)$/);
   if (cmp) {
     const v = ctx.stats[cmp[1] as keyof ConditionContext['stats']];
     const n = parseInt(cmp[3], 10);

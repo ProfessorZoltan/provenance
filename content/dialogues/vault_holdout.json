@@ -1,0 +1,31 @@
+{
+  "id": "vault_holdout",
+  "lines": [
+    {
+      "speaker": "vault_holdout",
+      "text": "Do not touch the last door. I have been not touching it for eleven years and I would like that to continue."
+    },
+    {
+      "speaker": "vault_holdout",
+      "text": "My grandfather sealed it. From the inside, then out through the service side, which took him four days. There are documents behind there that people were killed for in his century."
+    },
+    {
+      "speaker": "vault_holdout",
+      "text": "You are going to open it. Everyone who comes down here is going to open it. I just like to be on record as having said."
+    },
+    {
+      "speaker": "vault_holdout",
+      "text": "Well. It is open. I have been down there and it is nine pages and five signatures and I do not understand why anybody died for it.",
+      "conditions": [
+        "flag:openedTheVault"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "Because it is the only copy that says who agreed to it.",
+      "conditions": [
+        "flag:openedTheVault"
+      ]
+    }
+  ]
+}

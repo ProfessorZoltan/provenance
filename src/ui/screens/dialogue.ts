@@ -33,6 +33,12 @@ const SPEAKER_RIG: Record<string, { rig: string; accent: string }> = {
   curator_vos: { rig: 'faction_trainer', accent: 'var(--cinder)' },
   board_secretary: { rig: 'faction_trainer', accent: 'var(--chosen)' },
   annex_staffer: { rig: 'engineer', accent: 'var(--commons)' },
+  // Meridian Campus.
+  quiroga: { rig: 'quiroga', accent: 'var(--commons)' },
+  strand_young: { rig: 'strand_young', accent: 'var(--chosen)' },
+  atrium_receptionist: { rig: 'shopkeeper', accent: 'var(--chosen)' },
+  vault_holdout: { rig: 'refugee', accent: 'var(--cinder)' },
+  bar_engineer: { rig: 'engineer', accent: 'var(--choir)' },
 };
 
 export function dialogueScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {

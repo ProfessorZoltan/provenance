@@ -1,0 +1,35 @@
+{
+  "id": "founders_bar",
+  "name": "Behind the Bar",
+  "era": "2031",
+  "currency": "credits",
+  "stock": [
+    {
+      "item": "ration",
+      "price": 10
+    },
+    {
+      "item": "stim",
+      "price": 18
+    },
+    {
+      "item": "survey_optic",
+      "price": 58
+    },
+    {
+      "item": "frame_plating",
+      "price": 64
+    },
+    {
+      "item": "halo_rig",
+      "price": 78
+    },
+    {
+      "item": "quiroga_slate",
+      "price": 88,
+      "when": [
+        "party:quiroga"
+      ]
+    }
+  ]
+}

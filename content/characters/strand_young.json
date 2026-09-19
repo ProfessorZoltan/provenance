@@ -1,0 +1,60 @@
+{
+  "id": "strand_young",
+  "name": "Callum Strand",
+  "shortName": "Strand",
+  "lean": "chosen",
+  "homeEra": "2031",
+  "leavesIf": [
+    "flag:been:meridian_2312",
+    "ownership<=-50"
+  ],
+  "leaveLine": "The position has moved against me. I am going to go and be somewhere it has not.",
+  "joinLine": "He is twenty-nine, he has read the room better than anyone in it, and he has decided the room is wrong.",
+  "role": "Tank, acquisition",
+  "signature": "Buyout: takes one enemy per battle onto your side, permanently",
+  "baseStats": {
+    "resolve": 175,
+    "bandwidth": 3,
+    "latency": 44,
+    "signal": 40,
+    "noise": 24,
+    "grit": 52,
+    "sync": 20,
+    "continuity": 100
+  },
+  "rig": "strand_young",
+  "accent": "#C8A24C",
+  "trunks": [
+    {
+      "key": "breaker",
+      "name": "Equity",
+      "flavor": "Takes the hit, and the hit becomes the position"
+    },
+    {
+      "key": "weaver",
+      "name": "Acquisition",
+      "flavor": "Whatever they have, he has instead"
+    },
+    {
+      "key": "anchor",
+      "name": "Majority",
+      "flavor": "Holds the whole side up on his own book"
+    }
+  ],
+  "abilities": [
+    "strike",
+    "buyout",
+    "equity",
+    "guard"
+  ],
+  "tags": [],
+  "motif": [
+    0,
+    -1,
+    -5,
+    -8,
+    -5,
+    -1
+  ],
+  "bio": "Founding CEO of Meridian at twenty-nine, and the man who will still be sitting in the fourth chair in 2312. Recruiting him is the largest change anyone can make to this timeline, and he knows it, which is the only reason he says yes."
+}

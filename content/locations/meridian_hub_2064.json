@@ -1,0 +1,47 @@
+{
+  "id": "meridian_hub_2064",
+  "name": "Meridian Distribution Hub",
+  "kind": "waypoint",
+  "era": "2064",
+  "site": "distribution",
+  "type": "Ruin",
+  "art": "2064_meridian_distribution_hub",
+  "description": "A shuttered warehouse of conveyors and cargo stacks with armed loading drones still running a pick list from eleven years ago. The charter's physical copy was filed here, because nobody files anything anywhere sensible.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2064_meridian_distribution_hub:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2064_meridian_distribution_hub:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2064_meridian_distribution_hub:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2064_meridian_distribution_hub:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "glint"
+  },
+  "music": "hub_2064",
+  "npcs": [],
+  "quests": [],
+  "encounters": [
+    "hub_2064_conveyors",
+    "hub_2064_filing"
+  ],
+  "links": [],
+  "timeLinks": []
+}

@@ -1,0 +1,34 @@
+{
+  "id": "meridian_2312_lattice",
+  "name": "Among the Lattice",
+  "era": "2312",
+  "location": "meridian_2312",
+  "enemies": [
+    {
+      "enemy": "drone_coolant_2312",
+      "count": 2
+    },
+    {
+      "enemy": "warden_2312",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Maintenance, on a schedule, in a room that nobody is allocated to enter.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two machines and a human."
+    },
+    {
+      "when": "signal>=70",
+      "text": "The drones shrug off Thermal; the Warden shrugs off Signal."
+    },
+    {
+      "when": "party:quiroga",
+      "text": "Quiroga: I can hear four of my own models in that hum and I would like to sit down."
+    }
+  ],
+  "music": "battle_2312"
+}

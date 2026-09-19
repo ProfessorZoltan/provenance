@@ -1,0 +1,30 @@
+{
+  "id": "hub_2064_conveyors",
+  "name": "The Pick List",
+  "era": "2064",
+  "location": "meridian_hub_2064",
+  "enemies": [
+    {
+      "enemy": "drone_aisle_2064",
+      "count": 3
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Three loading units working a pick list from eleven years ago, and you are standing in aisle nine.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Three Drones."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Shielded. Thermal or Wreck."
+    },
+    {
+      "when": "party:hale",
+      "text": "Hale: they turn at the end of the aisle. Hold one and take it on the turn."
+    }
+  ],
+  "music": "battle_2064"
+}

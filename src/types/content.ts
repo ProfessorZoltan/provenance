@@ -33,8 +33,8 @@ export interface CharacterDef {
   shortName: string;
   lean: Lean;
   homeEra: EraId;
-  /** Condition that makes this member walk away, evaluated whenever the world moves. */
-  leavesIf?: string;
+  /** Conditions that make this member walk away, all of which must hold. Evaluated whenever the world moves. */
+  leavesIf?: string[];
   leaveLine?: string;
   joinLine?: string;
   role: string;

@@ -1,0 +1,75 @@
+{
+  "id": "meridian_2031",
+  "name": "Meridian Campus",
+  "kind": "deepSite",
+  "era": "2031",
+  "site": "meridian",
+  "type": "Startup lab",
+  "art": "2031_meridian",
+  "description": "A courtyard, four low buildings and eighty people. Five companies are pooling their models in the room at the end, and the vote on whether to publish the weights is this week.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2031_meridian:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2031_meridian:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2031_meridian:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2031_meridian:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "dust"
+  },
+  "music": "hub_2031",
+  "npcs": [
+    "quiroga_lab",
+    "strand_young_2031"
+  ],
+  "quests": [],
+  "encounters": [
+    "meridian_2031_courtyard"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2064",
+    "2148",
+    "2312"
+  ],
+  "storyDialogue": "meridian_arrive_2031",
+  "variants": [
+    {
+      "when": [
+        "labBurned"
+      ],
+      "art": "2031_meridian",
+      "description": "What the fire left of a courtyard and four low buildings. The pooled models were on-site and on tape, and the tape was in the room that burned.",
+      "npcs": []
+    },
+    {
+      "when": [
+        "charterLeaked"
+      ],
+      "art": "2031_meridian",
+      "description": "A courtyard with press on it. The charter is public, the vote is being re-run in front of people who were not invited, and nobody in the end room is enjoying it.",
+      "npcs": [
+        "quiroga_lab",
+        "strand_young_2031"
+      ]
+    }
+  ]
+}

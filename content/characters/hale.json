@@ -4,7 +4,9 @@
   "shortName": "Hale",
   "lean": "cinder",
   "homeEra": "2148",
-  "leavesIf": "sync>=60",
+  "leavesIf": [
+    "sync>=60"
+  ],
   "leaveLine": "You've all gone soft on the things. I'm not watching that from the inside.",
   "joinLine": "He has been on that ridge for eleven days and has not once been wrong about where a drone would be.",
   "role": "Sniper, Noise",

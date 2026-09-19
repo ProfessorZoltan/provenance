@@ -1,0 +1,53 @@
+{
+  "id": "meridian_2148",
+  "name": "Meridian Campus",
+  "kind": "deepSite",
+  "era": "2148",
+  "site": "meridian",
+  "type": "Sealed vault",
+  "art": "2148_meridian",
+  "description": "A vault corridor with a flooded floor, sealed from the inside in the year the Quiet started. Everything that was in the atrium is behind the last door, and the last door has not been opened since.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2148_meridian:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2148_meridian:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2148_meridian:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2148_meridian:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "ash"
+  },
+  "music": "hub_2148",
+  "npcs": [
+    "vault_holdout"
+  ],
+  "quests": [],
+  "encounters": [
+    "meridian_2148_corridor"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2031",
+    "2064",
+    "2312"
+  ],
+  "storyDialogue": "meridian_arrive_2148"
+}

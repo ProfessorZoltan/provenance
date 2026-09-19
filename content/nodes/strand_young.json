@@ -1,0 +1,328 @@
+[
+  {
+    "id": "s_eq_1",
+    "character": "strand_young",
+    "trunk": "breaker",
+    "name": "Position",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "equity"
+      }
+    ],
+    "description": "Takes the field's attention and absorbs what comes.",
+    "row": 0,
+    "col": 0
+  },
+  {
+    "id": "s_eq_2",
+    "character": "strand_young",
+    "trunk": "breaker",
+    "name": "Leverage Ratio",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "s_eq_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "guardBonus",
+        "value": 0.2
+      }
+    ],
+    "description": "Guard and taunt cut 70% instead of 50%.",
+    "row": 1,
+    "col": 0
+  },
+  {
+    "id": "s_eq_3",
+    "character": "strand_young",
+    "trunk": "breaker",
+    "name": "Hostile Takeover",
+    "type": "standard",
+    "cost": 3,
+    "requires": [
+      "s_eq_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "hostile_takeover"
+      }
+    ],
+    "description": "Capstone. Everything done to him, returned at once.",
+    "row": 2,
+    "col": 0
+  },
+  {
+    "id": "s_eq_4",
+    "character": "strand_young",
+    "trunk": "breaker",
+    "name": "Write It Down",
+    "type": "condition",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "grit",
+        "delta": 14
+      },
+      {
+        "kind": "passive",
+        "passive": "partyAccuracy",
+        "value": 0.08
+      }
+    ],
+    "description": "He has seen the register with his own signature two centuries ahead of him and it has changed how he plays.",
+    "row": 3,
+    "col": 0,
+    "condition": "flag:been:capitol_2312",
+    "conditionHint": "Take him to the Continuity Board in 2312."
+  },
+  {
+    "id": "s_acq_1",
+    "character": "strand_young",
+    "trunk": "weaver",
+    "name": "Due Diligence",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "acquisition"
+      }
+    ],
+    "description": "Takes whatever the target is enjoying.",
+    "row": 0,
+    "col": 1
+  },
+  {
+    "id": "s_acq_2",
+    "character": "strand_young",
+    "trunk": "weaver",
+    "name": "Controlling Stake",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "s_acq_1"
+    ],
+    "excludes": [
+      "s_acq_3"
+    ],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "markBonus",
+        "value": 0.2
+      }
+    ],
+    "description": "+20% on a marked target. He buys what is already distressed. Locks out Friendly Merger.",
+    "row": 1,
+    "col": 1
+  },
+  {
+    "id": "s_acq_3",
+    "character": "strand_young",
+    "trunk": "weaver",
+    "name": "Friendly Merger",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "s_acq_1"
+    ],
+    "excludes": [
+      "s_acq_2"
+    ],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "parleyBonus",
+        "value": 0.25
+      }
+    ],
+    "description": "Parley lands far more often. He would rather agree terms than take them. Locks out Controlling Stake.",
+    "row": 2,
+    "col": 1
+  },
+  {
+    "id": "s_acq_4",
+    "character": "strand_young",
+    "trunk": "weaver",
+    "name": "Second Position",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "s_acq_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "bandwidth",
+        "delta": 1
+      }
+    ],
+    "description": "A fourth thread. He does two things at once as a matter of temperament.",
+    "row": 3,
+    "col": 1
+  },
+  {
+    "id": "s_maj_1",
+    "character": "strand_young",
+    "trunk": "anchor",
+    "name": "The Book",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "majority"
+      }
+    ],
+    "description": "Heals the whole side and fills the gauge.",
+    "row": 0,
+    "col": 2
+  },
+  {
+    "id": "s_maj_2",
+    "character": "strand_young",
+    "trunk": "anchor",
+    "name": "Majority",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "s_maj_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "resolve",
+        "delta": 40
+      }
+    ],
+    "description": "+40 Resolve. He is the largest single holding on this field.",
+    "row": 1,
+    "col": 2
+  },
+  {
+    "id": "s_maj_3",
+    "character": "strand_young",
+    "trunk": "anchor",
+    "name": "Indemnity",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "s_maj_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "healBonus",
+        "value": 0.25
+      }
+    ],
+    "description": "Everything he restores restores more.",
+    "row": 2,
+    "col": 2
+  },
+  {
+    "id": "s_maj_4",
+    "character": "strand_young",
+    "trunk": "anchor",
+    "name": "Perpetuity",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "s_maj_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "continuity",
+        "delta": 25
+      }
+    ],
+    "description": "+25 Continuity. Whatever else is true of him, he lasts.",
+    "row": 3,
+    "col": 2
+  },
+  {
+    "id": "s_era_2031",
+    "character": "strand_young",
+    "trunk": "breaker",
+    "name": "Founder's Terms",
+    "type": "era",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "grit",
+        "delta": 14
+      }
+    ],
+    "description": "Bought in the year he signed. +14 Grit.",
+    "row": 4,
+    "col": 0,
+    "era": "2031"
+  },
+  {
+    "id": "s_era_2064",
+    "character": "strand_young",
+    "trunk": "weaver",
+    "name": "The Handover Table",
+    "type": "era",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "markBonus",
+        "value": 0.15
+      }
+    ],
+    "description": "Bought watching his own instruments signed at one in the morning.",
+    "row": 4,
+    "col": 1,
+    "era": "2064"
+  },
+  {
+    "id": "s_era_2312",
+    "character": "strand_young",
+    "trunk": "anchor",
+    "name": "The Fourth Chair",
+    "type": "era",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "resolve",
+        "delta": 45
+      }
+    ],
+    "description": "Bought standing in front of a seat with his own name on it, still occupied.",
+    "row": 4,
+    "col": 2,
+    "era": "2312"
+  }
+]

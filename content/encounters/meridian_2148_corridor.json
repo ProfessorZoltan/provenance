@@ -1,0 +1,34 @@
+{
+  "id": "meridian_2148_corridor",
+  "name": "The Vault Corridor",
+  "era": "2148",
+  "location": "meridian_2148",
+  "enemies": [
+    {
+      "enemy": "construct_grafted",
+      "count": 1
+    },
+    {
+      "enemy": "drone_derelict_2148",
+      "count": 2
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Something has been maintaining this corridor for a hundred and sixty years and it is not pleased to see a door open.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones and a Construct."
+    },
+    {
+      "when": "signal>=70",
+      "text": "The Construct has a person in it. Signal stops at the shell."
+    },
+    {
+      "when": "party:quiroga",
+      "text": "Quiroga: that frame is mine. That is a 2031 chassis with a century of repairs on it."
+    }
+  ],
+  "music": "battle_2148"
+}
