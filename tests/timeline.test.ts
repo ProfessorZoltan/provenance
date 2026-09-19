@@ -206,3 +206,39 @@ describe('ripple sites', () => {
       .toEqual(['arm_resistance', 'causeway_hope', 'sell_bakery']);
   });
 });
+
+describe('Capitol Hill', () => {
+  const withChoice = (id: string) => {
+    const s = newGame(13);
+    return { ...s, world: applyChoice(content, s.world, id, 1) };
+  };
+
+  it('offers three readings of the Enabling Act, each its own shape of 2031', () => {
+    const acts = ['name_the_beneficiary', 'strike_the_act', 'sign_as_witness'];
+    for (const id of acts) expect(content.timelineChoices[id].site, id).toBe('capitol');
+    const base = deriveWorld(content, newGame(13).world, newGame(13).party);
+    expect(deriveWorld(content, withChoice('name_the_beneficiary').world, newGame(13).party).ownership - base.ownership).toBe(25);
+    expect(deriveWorld(content, withChoice('strike_the_act').world, newGame(13).party).sync - base.sync).toBe(-15);
+    expect(deriveWorld(content, withChoice('sign_as_witness').world, newGame(13).party).flags).toContain('auditorWitnessed');
+    // One House, one afternoon: the three readings overwrite each other and nothing else.
+    let w = applyChoice(content, newGame(13).world, 'amend_treaty', 1);
+    w = applyChoice(content, w, 'name_the_beneficiary', 2);
+    w = applyChoice(content, w, 'strike_the_act', 3);
+    expect(activeChoices(w.history).map((h) => h.choiceId).sort()).toEqual(['amend_treaty', 'strike_the_act']);
+  });
+
+  it('puts the Auditor into the provenance chain if she witnesses the register', () => {
+    const s = withChoice('sign_as_witness');
+    const chamber = activeVariant(content, s, content.locations.capitol_2312)!;
+    expect(chamber.description).toMatch(/your own name is in it/i);
+    const founding = activeVariant(content, s, content.locations.capitol_2031);
+    expect(founding, 'the 2031 chamber only changes when the act itself did').toBeNull();
+  });
+
+  it('shows the naming clause reaching 2031 forward into the chamber itself', () => {
+    expect(activeVariant(content, withChoice('name_the_beneficiary'), content.locations.capitol_2031)!.description)
+      .toMatch(/who benefits/);
+    expect(activeVariant(content, withChoice('strike_the_act'), content.locations.capitol_2031)!.description)
+      .toMatch(/withdrawn at third reading/i);
+  });
+});

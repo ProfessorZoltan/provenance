@@ -18,7 +18,7 @@ describe('content', () => {
   });
 
   it('gives every Deep Site a stop in all four eras, each reachable from the others', () => {
-    for (const site of ['kell', 'halden', 'basin']) {
+    for (const site of ['kell', 'halden', 'basin', 'capitol']) {
       const stops = Object.values(content.locations).filter((l) => l.kind === 'deepSite' && l.site === site);
       expect(stops.map((s) => s.era).sort(), site).toEqual(['2031', '2064', '2148', '2312']);
       for (const s of stops) {

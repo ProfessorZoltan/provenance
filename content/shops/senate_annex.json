@@ -1,0 +1,38 @@
+{
+  "id": "senate_annex",
+  "name": "The Annex Store",
+  "era": "2064",
+  "currency": "credits",
+  "stock": [
+    {
+      "item": "ration",
+      "price": 12
+    },
+    {
+      "item": "stim",
+      "price": 20
+    },
+    {
+      "item": "gallery_lens",
+      "price": 66
+    },
+    {
+      "item": "glass_optics",
+      "price": 72
+    },
+    {
+      "item": "mara_folio",
+      "price": 80,
+      "when": [
+        "party:mara"
+      ]
+    },
+    {
+      "item": "anchor_charm",
+      "price": 58,
+      "when": [
+        "ownership>=-20"
+      ]
+    }
+  ]
+}

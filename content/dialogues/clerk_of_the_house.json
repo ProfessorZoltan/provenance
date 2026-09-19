@@ -1,0 +1,49 @@
+{
+  "id": "clerk_of_the_house",
+  "lines": [
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "Gallery is full, floor is closed, and if you are press you are late by about four hours."
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "Third reading of a private member's bill. It will pass on the nod, because forty members and none of them briefed against it.",
+      "conditions": [
+        "!flag:actNamed",
+        "!flag:actStruck",
+        "!flag:auditorWitnessed"
+      ]
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "You have read it. Nobody reads them. Go on then, what does it do.",
+      "conditions": [
+        "!flag:actNamed",
+        "!flag:actStruck",
+        "!flag:auditorWitnessed"
+      ],
+      "next": "enabling_act"
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "Carried, with the naming clause. Eleven pages and one of them is now about who benefits. That is the most anyone has got out of this House in my time.",
+      "conditions": [
+        "flag:actNamed"
+      ]
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "Withdrawn. And it will be back as a schedule to a finance act inside a year, which is the same bill with nobody watching. I have seen it four times.",
+      "conditions": [
+        "flag:actStruck"
+      ]
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "You witnessed the register. Odd thing to want. It is a signature that outlives the signatory and most people find that unpleasant.",
+      "conditions": [
+        "flag:auditorWitnessed"
+      ]
+    }
+  ]
+}

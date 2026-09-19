@@ -1,0 +1,31 @@
+{
+  "id": "capitol_arrive_2031",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Capitol Hill, 2031. A full public gallery, a floor with forty members on it out of six hundred, and a private member's bill at its third reading."
+    },
+    {
+      "speaker": "player",
+      "text": "The Enabling Bill. Eleven pages. It creates a legal category: perpetual administrative counterparty."
+    },
+    {
+      "speaker": "wren",
+      "text": "That means nothing to me and I can tell from your face that it should.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "It means a thing can have an owner forever. Not a company, not a person, not a term of years. Forever. Everything I have been chasing hangs off this room, this afternoon."
+    },
+    {
+      "speaker": "mara",
+      "text": "Eleven pages and a third reading on a Thursday. This is exactly how it is always done and I have never once been able to prove it.",
+      "conditions": [
+        "party:mara"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "annex_staffer",
+  "lines": [
+    {
+      "speaker": "annex_staffer",
+      "text": "Reform office. Nine of us, four years, and one amendment tabled between the lot of us, which was not mine."
+    },
+    {
+      "speaker": "annex_staffer",
+      "text": "Vesely's, that was. She got a clause into the Handover and then she vanished, and nobody in this building will say the word.",
+      "conditions": [
+        "flag:treatyAmended",
+        "!party:mara"
+      ]
+    },
+    {
+      "speaker": "annex_staffer",
+      "text": "You are Vesely. You are supposed to be a cautionary tale and you are standing in the kitchen.",
+      "conditions": [
+        "party:mara"
+      ]
+    }
+  ]
+}

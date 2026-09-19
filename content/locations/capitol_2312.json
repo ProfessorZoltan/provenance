@@ -1,0 +1,75 @@
+{
+  "id": "capitol_2312",
+  "name": "The Continuity Board",
+  "kind": "deepSite",
+  "era": "2312",
+  "site": "capitol",
+  "type": "Continuity Board seat",
+  "art": "2312_capitol",
+  "description": "Four chairs and a table, in a room the allocation system has no entry for. The Board sits above the Steward. It has met four times in two hundred years and it is not in session now.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2312_capitol:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2312_capitol:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2312_capitol:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2312_capitol:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "snow"
+  },
+  "music": "hub_2312",
+  "npcs": [
+    "board_secretary"
+  ],
+  "quests": [],
+  "encounters": [
+    "capitol_2312_antechamber"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2031",
+    "2064",
+    "2148"
+  ],
+  "storyDialogue": "capitol_arrive_2312",
+  "variants": [
+    {
+      "when": [
+        "auditorWitnessed"
+      ],
+      "art": "2312_capitol",
+      "description": "Four chairs and a table, and a register on it that runs back to 2031. Your own name is in it, in your own hand, on the first page.",
+      "npcs": [
+        "board_secretary"
+      ]
+    },
+    {
+      "when": [
+        "boardAlerted"
+      ],
+      "art": "2312_capitol",
+      "description": "Four chairs and a table, and a great deal of enforcement in a room that has never needed any. Somebody told it its history was being edited.",
+      "npcs": [
+        "board_secretary"
+      ]
+    }
+  ]
+}

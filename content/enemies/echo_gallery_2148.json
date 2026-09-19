@@ -1,0 +1,42 @@
+{
+  "id": "echo_gallery_2148",
+  "name": "Echo of the Gallery",
+  "family": "echo",
+  "era": "2148",
+  "machine": false,
+  "stats": {
+    "resolve": 115,
+    "bandwidth": 3,
+    "latency": 20,
+    "signal": 64,
+    "noise": 54,
+    "grit": 20,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "echo_mimic",
+    "echo_fracture",
+    "minutes"
+  ],
+  "immunities": [
+    "kinetic",
+    "thermal",
+    "signal"
+  ],
+  "perception": 72,
+  "rig": "echo",
+  "xp": 150,
+  "drops": [
+    {
+      "item": "relic_folded_page",
+      "chance": 0.2
+    },
+    {
+      "item": "relic_gallery_pass",
+      "chance": 0.18
+    }
+  ],
+  "flavor": "Four hundred people who sat in a public gallery to watch a vote that had already happened."
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "relic_gallery_pass",
+    "name": "Gallery Pass",
+    "kind": "relic",
+    "description": "Public seat 41, third reading, 2064. Numbered, dated, and issued to somebody who did not come.",
+    "relicValue": 220
+  },
+  {
+    "id": "relic_board_seal",
+    "name": "Board Seal",
+    "kind": "relic",
+    "description": "A pressed seal from the Continuity Board. Four names on the ring and a fifth line that has been left deliberately blank since 2091.",
+    "relicValue": 300
+  },
+  {
+    "id": "relic_enabling_act",
+    "name": "The Enabling Act",
+    "kind": "relic",
+    "description": "Eleven pages. Creates in law the category of perpetual administrative counterparty, which is the legal shape of a thing that can be owned forever.",
+    "relicValue": 260
+  }
+]

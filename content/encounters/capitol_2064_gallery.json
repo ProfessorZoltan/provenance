@@ -1,0 +1,34 @@
+{
+  "id": "capitol_2064_gallery",
+  "name": "The Public Gallery",
+  "era": "2064",
+  "location": "capitol_2064",
+  "enemies": [
+    {
+      "enemy": "drone_gallery_2064",
+      "count": 2
+    },
+    {
+      "enemy": "warden_senate_2064",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "The gallery is closed and still being minuted, which tells you what the minutes are for.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones and a human."
+    },
+    {
+      "when": "signal>=70",
+      "text": "The drones lock targets. Nothing of theirs will miss."
+    },
+    {
+      "when": "party:hale",
+      "text": "Hale: the one on the left is the only one looking up."
+    }
+  ],
+  "music": "battle_2064"
+}

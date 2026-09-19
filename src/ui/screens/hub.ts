@@ -11,6 +11,7 @@ const DESCEND: Record<string, string> = {
   kell: 'Descend beneath the chapel',
   halden: 'Go down into the harbour workings',
   basin: 'Go down into the cable trench',
+  capitol: 'Go down into the division lobby',
 };
 
 export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {

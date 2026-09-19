@@ -114,6 +114,16 @@
       "requires": [
         "flag:fleeing"
       ]
+    },
+    {
+      "id": "capitol_2312",
+      "kind": "location",
+      "location": "capitol_2312",
+      "x": 1760,
+      "y": 250,
+      "radius": 82,
+      "label": "The Continuity Board",
+      "icon": "capitol"
     }
   ],
   "roads": [
@@ -180,6 +190,22 @@
       700,
       1450,
       550
+    ],
+    [
+      1700,
+      340,
+      1730,
+      300,
+      1760,
+      270
+    ],
+    [
+      1450,
+      400,
+      1600,
+      350,
+      1700,
+      340
     ]
   ],
   "zones": [
@@ -220,6 +246,19 @@
       "encounters": [
         "basin_2312_fields",
         "perimeter_2312_patrol"
+      ],
+      "chance": 0.4,
+      "stride": 165
+    },
+    {
+      "id": "antechambers",
+      "label": "The antechambers",
+      "x": 1540,
+      "y": 400,
+      "w": 350,
+      "h": 210,
+      "encounters": [
+        "capitol_2312_antechamber"
       ],
       "chance": 0.4,
       "stride": 165

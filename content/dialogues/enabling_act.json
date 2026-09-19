@@ -1,0 +1,37 @@
+{
+  "id": "enabling_act",
+  "lines": [
+    {
+      "speaker": "player",
+      "text": "It creates a counterparty that has no term. Not ninety-nine years, not a life. No term. A thing that can be owned in perpetuity by whoever is holding the paper."
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "Right. And nobody in that chamber will read past the long title. So. You have got about eleven minutes and I have got a clerk's discretion, which is more power than it sounds and less than you want."
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "Say what you want done and I will tell you if it can be.",
+      "choices": [
+        {
+          "text": "Make it name its beneficiary in the public register.",
+          "timelineChoice": "name_the_beneficiary",
+          "next": "act_named"
+        },
+        {
+          "text": "Have it withdrawn. Kill it at third reading.",
+          "timelineChoice": "strike_the_act",
+          "next": "act_struck"
+        },
+        {
+          "text": "Let it pass, and witness the register myself.",
+          "timelineChoice": "sign_as_witness",
+          "next": "act_witnessed"
+        },
+        {
+          "text": "Nothing. It is not my House."
+        }
+      ]
+    }
+  ]
+}

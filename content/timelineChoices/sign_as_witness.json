@@ -1,0 +1,14 @@
+{
+  "id": "sign_as_witness",
+  "era": "2031",
+  "site": "capitol",
+  "name": "Witness the register yourself",
+  "ownershipDelta": 10,
+  "syncDelta": 0,
+  "flags": [
+    "auditorWitnessed"
+  ],
+  "partyEffects": [],
+  "lean": "chosen",
+  "summary": "A witness signature is a small thing and it lasts forever. Your name is now in the provenance chain of the instrument you were auditing, two hundred and eighty-one years before you audited it."
+}

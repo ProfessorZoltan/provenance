@@ -1,0 +1,14 @@
+{
+  "id": "name_the_beneficiary",
+  "era": "2031",
+  "site": "capitol",
+  "name": "Make the act name its beneficiary",
+  "ownershipDelta": 25,
+  "syncDelta": 0,
+  "flags": [
+    "actNamed"
+  ],
+  "partyEffects": [],
+  "lean": "commons",
+  "summary": "The Enabling Act passes with a clause requiring any perpetual counterparty to be named in the public register. It costs its sponsor nothing and it is the reason anyone can ever look this up."
+}

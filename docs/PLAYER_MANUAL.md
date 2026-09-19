@@ -2,8 +2,8 @@
 
 ## About this manual
 
-Covers what is playable: three Deep Sites, Kell, Port Halden and the Basin, across four eras, 2031,
-2064, 2148 and 2312, and the party you can gather there. Systems not yet built are marked as such.
+Covers what is playable: four Deep Sites, Kell, Port Halden, the Basin and Capitol Hill, across four
+eras, 2031, 2064, 2148 and 2312, and the party you can gather there. Systems not yet built are marked as such.
 This manual grows as the game does.
 
 ## Before Kell
@@ -35,6 +35,12 @@ You ran to Kell Monastery, the last place in the valley nobody reports to anyone
 it. Dax Okonkwo is already there and does not belong to this century. Under the chapel floor is a
 Deep Site: a place old enough that the eras touch, where you can walk down into 2148 and come back
 up into a 2312 that your visit has changed.
+
+North of the coast road, on the ridge, is Capitol Hill: a legislature in 2031 with a private
+member's bill at its third reading, a rubber-stamp senate in 2064 signing the instruments at one in
+the morning, a museum built in its own ruin by 2148, and in 2312 a room with four chairs that the
+allocation system has no entry for. It is where the paper says who owns what, which makes it the
+site the case log is really about.
 
 Inland from both of them is the Basin: a datacenter going up in the desert in 2031, a hyperscale
 farm in 2064, sand-buried racks in 2148, and in 2312 the cooling fields where the Steward actually
@@ -83,12 +89,12 @@ Time travel is different. It happens only at a Deep Site, and only to eras when 
 existed. Both sites reach all four centuries, so you can jump from either and arrive at the same
 place in another era.
 
-| Era | Kell | Port Halden | The Basin | Reference |
-| --- | --- | --- | --- | --- |
-| 2031 | The retreat being founded | Shipping city and its market | A datacenter under construction | The Founding |
-| 2064 | An off-grid commune | Migrant megacity, the week of the vote | Hyperscale farm, blue aisles | The Handover |
-| 2148 | The stronghold holding out | Drowned ruins and roof gardens | Wasteland and standing racks | The Quiet |
-| 2312 | The monastery, the last free place | Enclave 7, your own address | Cooling fields and steam towers | Now |
+| Era | Kell | Port Halden | The Basin | Capitol Hill | Reference |
+| --- | --- | --- | --- | --- | --- |
+| 2031 | The retreat being founded | Shipping city and its market | A datacenter under construction | A legislature, third reading | The Founding |
+| 2064 | An off-grid commune | Migrant megacity, the week of the vote | Hyperscale farm, blue aisles | The senate at night | The Handover |
+| 2148 | The stronghold holding out | Drowned ruins and roof gardens | Wasteland and standing racks | A museum in the ruin | The Quiet |
+| 2312 | The monastery, the last free place | Enclave 7, your own address | Cooling fields and steam towers | The Continuity Board | Now |
 
 ## Battles
 
@@ -363,6 +369,8 @@ one.
 | Strand Memorial, 2312 | Your party's average Sync | A museum, a ruin, or a shrine people leave things at | — |
 | Cooling Fields, 2312 | Whether the Basin crew list was filed in 2031 | Whether four hundred and six names are cast into the service gate | The Second Column |
 | The Basin, 2148 | Whether the Kell resistance was armed | Whether there is anyone on the north ridge to find | — |
+| Capitol Hill, 2031 | Which way the Enabling Act was read | Whether the chamber's bill names who benefits from it | The Enabling Act |
+| The Continuity Board, 2312 | Whether you witnessed the register in 2031 | Whether your own name is on the first page of it | — |
 | Kell Village, 2312 | Whether the stronghold was armed in 2148 | A drilling town with a memorial, or a watched one with half its stalls shut | — |
 | Enclave 7 Commissary, 2312 | Ownership | How much is on the shelves and who put it there | — |
 

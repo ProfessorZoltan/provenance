@@ -1,0 +1,34 @@
+{
+  "id": "capitol_2148_columns",
+  "name": "Among the Columns",
+  "era": "2148",
+  "location": "capitol_2148",
+  "enemies": [
+    {
+      "enemy": "echo_gallery_2148",
+      "count": 1
+    },
+    {
+      "enemy": "drone_derelict_2148",
+      "count": 2
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Four hundred people are sitting in a gallery that has not had a roof for ninety years.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones and something Temporal."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Chronal only, on the Echo."
+    },
+    {
+      "when": "party:wren",
+      "text": "Wren: they are all facing the same way. They are still watching the vote."
+    }
+  ],
+  "music": "battle_2148"
+}

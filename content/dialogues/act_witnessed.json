@@ -1,0 +1,24 @@
+{
+  "id": "act_witnessed",
+  "lines": [
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "Two signatures, then. Sponsor and witness. Print underneath. You will want to use a name you do not mind keeping."
+    },
+    {
+      "speaker": "narrator",
+      "text": "You write it. It is the first entry in a register that will still be open in 2312, and it is in your handwriting."
+    },
+    {
+      "speaker": "player",
+      "text": "Provenance is the record of who owned a thing and when. I have just put myself in the chain of the instrument I was auditing."
+    },
+    {
+      "speaker": "wren",
+      "text": "That was not a small thing to do and you did it very quickly.",
+      "conditions": [
+        "party:wren"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "capitol_arrive_2312",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Capitol Hill, 2312. The building is gone. What is here is a room, four chairs and a table, and the allocation system has no entry for any of it."
+    },
+    {
+      "speaker": "player",
+      "text": "The Continuity Board. I have reconciled this Enclave for eleven years and I have never seen this line item, because there isn't one. It isn't paid for. It owns the thing that does the paying."
+    },
+    {
+      "speaker": "wren",
+      "text": "Four chairs. Not four hundred. Four.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "The Board sits above the Steward. It has met four times in two hundred years, and it is not in session now, which is the only reason you are still standing."
+    },
+    {
+      "speaker": "narrator",
+      "text": "There is a register on the table that runs back to 2031, and your own name is on the first page in your own handwriting.",
+      "conditions": [
+        "flag:auditorWitnessed"
+      ]
+    }
+  ]
+}

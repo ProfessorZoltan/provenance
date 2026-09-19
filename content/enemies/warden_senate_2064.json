@@ -1,0 +1,40 @@
+{
+  "id": "warden_senate_2064",
+  "name": "Chamber Security",
+  "family": "warden",
+  "era": "2064",
+  "machine": false,
+  "stats": {
+    "resolve": 145,
+    "bandwidth": 3,
+    "latency": 33,
+    "signal": 28,
+    "noise": 32,
+    "grit": 48,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "warden_baton",
+    "warden_suppress",
+    "proxy_vote"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 50,
+  "rig": "warden_2064",
+  "xp": 110,
+  "drops": [
+    {
+      "item": "stim",
+      "chance": 0.45
+    },
+    {
+      "item": "gallery_lens",
+      "chance": 0.15
+    }
+  ],
+  "flavor": "Private contract, public building, and no confusion in his own mind about which pays."
+}

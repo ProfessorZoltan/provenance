@@ -1,0 +1,75 @@
+{
+  "id": "capitol_2031",
+  "name": "Capitol Hill",
+  "kind": "deepSite",
+  "era": "2031",
+  "site": "capitol",
+  "type": "Legislature",
+  "art": "2031_capitol",
+  "description": "A full gallery, a half-empty floor, and a private member's bill at its third reading that nobody outside this building has heard of.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2031_capitol:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2031_capitol:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2031_capitol:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2031_capitol:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "dust"
+  },
+  "music": "hub_2031",
+  "npcs": [
+    "clerk_of_the_house"
+  ],
+  "quests": [],
+  "encounters": [
+    "capitol_2031_lobby"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2064",
+    "2148",
+    "2312"
+  ],
+  "storyDialogue": "capitol_arrive_2031",
+  "variants": [
+    {
+      "when": [
+        "actNamed"
+      ],
+      "art": "2031_capitol",
+      "description": "The chamber, and a bill that now has to say who benefits from it. Eleven pages, one clause longer than it was this morning.",
+      "npcs": [
+        "clerk_of_the_house"
+      ]
+    },
+    {
+      "when": [
+        "actStruck"
+      ],
+      "art": "2031_capitol",
+      "description": "The chamber, emptier than it should be. The bill was withdrawn at third reading and will be back within the year as a schedule to a finance act nobody reads.",
+      "npcs": [
+        "clerk_of_the_house"
+      ]
+    }
+  ]
+}

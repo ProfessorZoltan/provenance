@@ -1,0 +1,49 @@
+{
+  "id": "senate_annex_2064",
+  "name": "Senate Annex",
+  "kind": "waypoint",
+  "era": "2064",
+  "site": "annex",
+  "type": "Faction hub",
+  "art": "2064_senate_annex",
+  "description": "A severe mirrored building behind security glass where reform staffers draft amendments nobody tables. Mara has a desk in here, or had one.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2064_senate_annex:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2064_senate_annex:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2064_senate_annex:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2064_senate_annex:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "glint"
+  },
+  "music": "hub_2064",
+  "npcs": [
+    "annex_staffer"
+  ],
+  "quests": [
+    "annex_registry"
+  ],
+  "encounters": [],
+  "shop": "senate_annex",
+  "links": [],
+  "timeLinks": []
+}

@@ -237,3 +237,63 @@ describe('the third Deep Site', () => {
     expect(activeVariant(content, s, content.locations.basin_2312)!.description).toMatch(/four hundred and six names/);
   });
 });
+
+describe('the fourth Deep Site', () => {
+  it('reads the Enabling Act in 2031 and finds the Board waiting in 2312', () => {
+    let s = skipDialogue(newGame(515));
+    s = run(s, { type: 'TRAVEL', location: 'kell_2312' }, { type: 'TIME_JUMP', era: '2031' });
+    s = skipDialogue(s);
+    s = reduce(s, { type: 'TRAVEL', location: 'capitol_2031' });
+    s = skipDialogue(s);
+    expect(s.location).toBe('capitol_2031');
+
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'clerk_of_the_house', returnTo: { id: 'hub' } });
+    s = skipDialogue(s, 0); // read it out, then make it name its beneficiary
+    expect(s.world.history.map((h) => h.choiceId)).toContain('name_the_beneficiary');
+    expect(s.log).toContain('enabling_act');
+    expect(s.log).toContain('naming_clause');
+
+    // 2312: the room the allocation system has no entry for.
+    s = run(s, { type: 'TIME_JUMP', era: '2312' });
+    s = skipDialogue(s);
+    expect(s.location).toBe('capitol_2312');
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'board_secretary', returnTo: { id: 'hub' } });
+    s = skipDialogue(s);
+    expect(s.flags).toContain('knowsStrand');
+    expect(s.log).toContain('the_chair');
+    expect(s.log).toContain('continuity_board');
+  });
+
+  it('runs the annex register quest from the 2064 cloakroom', () => {
+    let s = skipDialogue(newGame(616));
+    s = run(s, { type: 'TRAVEL', location: 'kell_2312' }, { type: 'TIME_JUMP', era: '2064' });
+    s = skipDialogue(s);
+    s = reduce(s, { type: 'TRAVEL', location: 'senate_annex_2064' });
+    expect(npcDialogue(content, s, 'annex_staffer')).toBe('annex_offer');
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'annex_offer', returnTo: { id: 'hub' } });
+    s = skipDialogue(s, 0);
+    expect(s.quests.annex_registry).toBe('active');
+
+    s = reduce(s, { type: 'START_ENCOUNTER', encounterId: 'capitol_2064_cloakroom' });
+    s = autoBattle(s);
+    expect(s.battle?.phase).toBe('won');
+    s = run(s, { type: 'BATTLE_FINISH' }, { type: 'SET_SCREEN', screen: { id: 'hub' } });
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'annex_complete', returnTo: { id: 'hub' } });
+    s = skipDialogue(s);
+    expect(s.quests.annex_registry).toBe('complete');
+    expect(s.inventory.relics).toContain('relic_gallery_pass');
+    expect(s.log).toContain('declared_interests');
+  });
+});
+
+describe('quest objectives are beatable', () => {
+  it('lets a party that walked straight there win every quest fight', () => {
+    for (const q of Object.values(content.quests)) {
+      for (const seed of [4, 41, 97]) {
+        let s = reduce(newGame(seed), { type: 'START_ENCOUNTER', encounterId: q.objectiveEncounter });
+        s = autoBattle(s);
+        expect(s.battle?.phase, `${q.id} at seed ${seed}`).toBe('won');
+      }
+    }
+  });
+});

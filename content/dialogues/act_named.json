@@ -1,0 +1,24 @@
+{
+  "id": "act_named",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "A naming clause, moved from the chair, accepted without division because nobody on that floor can see a reason to object to a register."
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "Any perpetual counterparty must be named in the public register. That is all it says. It will hold up for three hundred years because it is boring."
+    },
+    {
+      "speaker": "player",
+      "text": "In my century there is a budget line that has been paid to a name for two hundred and eighty-one years, and the only reason the name is there at all is this afternoon."
+    },
+    {
+      "speaker": "mara",
+      "text": "One clause. On a Thursday. You have just done in eleven minutes what I could not do in four years.",
+      "conditions": [
+        "party:mara"
+      ]
+    }
+  ]
+}

@@ -27,6 +27,12 @@ const SPEAKER_RIG: Record<string, { rig: string; accent: string }> = {
   plant_supervisor: { rig: 'engineer', accent: 'var(--choir)' }, camp_clerk: { rig: 'shopkeeper', accent: 'var(--commons)' },
   ash_smith: { rig: 'militia', accent: 'var(--cinder)' }, fens_salvager: { rig: 'refugee', accent: 'var(--cinder)' },
   field_auditor: { rig: 'faction_trainer', accent: 'var(--chosen)' },
+  // Capitol Hill.
+  clerk_of_the_house: { rig: 'faction_trainer', accent: 'var(--commons)' },
+  night_clerk: { rig: 'shopkeeper', accent: 'var(--commons)' },
+  curator_vos: { rig: 'faction_trainer', accent: 'var(--cinder)' },
+  board_secretary: { rig: 'faction_trainer', accent: 'var(--chosen)' },
+  annex_staffer: { rig: 'engineer', accent: 'var(--commons)' },
 };
 
 export function dialogueScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {

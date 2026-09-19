@@ -1,0 +1,44 @@
+{
+  "id": "warden_capitol_2031",
+  "name": "Sergeant-at-Arms",
+  "family": "warden",
+  "era": "2031",
+  "machine": false,
+  "stats": {
+    "resolve": 130,
+    "bandwidth": 3,
+    "latency": 34,
+    "signal": 22,
+    "noise": 26,
+    "grit": 44,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "gavel",
+    "warden_baton",
+    "point_of_order"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 42,
+  "rig": "warden_2031",
+  "xp": 88,
+  "drops": [
+    {
+      "item": "ration",
+      "chance": 0.5
+    },
+    {
+      "item": "house_mace",
+      "chance": 0.2
+    },
+    {
+      "item": "relic_enabling_act",
+      "chance": 0.16
+    }
+  ],
+  "flavor": "Keeps order in a chamber where order is the only thing anyone agrees on."
+}

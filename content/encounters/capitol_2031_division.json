@@ -1,0 +1,29 @@
+{
+  "id": "capitol_2031_division",
+  "name": "The Division Bell",
+  "era": "2031",
+  "location": "capitol_2031",
+  "enemies": [
+    {
+      "enemy": "warden_capitol_2031",
+      "count": 2
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "Two of them between you and the division lobby, and eleven minutes on the bell.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two humans."
+    },
+    {
+      "when": "noise>=60",
+      "text": "There is a members' stair on the far side."
+    }
+  ],
+  "music": "battle_2031",
+  "rewardFlags": [
+    "sawTheDivision"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "capitol_2148_archive",
+  "name": "The Closed Archive",
+  "era": "2148",
+  "location": "capitol_2148",
+  "enemies": [
+    {
+      "enemy": "echo_gallery_2148",
+      "count": 2
+    },
+    {
+      "enemy": "drone_derelict_2148",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "The part of the museum that is not curated, because nobody was ever paid to curate it.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "One Drone and two Temporal."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Both Echoes answer Chronal and nothing else."
+    },
+    {
+      "when": "entropy>=70",
+      "text": "Your own Entropy is high enough to add to the gallery."
+    }
+  ],
+  "music": "battle_2148"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "capitol_2031_lobby",
+  "name": "The Lobby",
+  "era": "2031",
+  "location": "capitol_2031",
+  "enemies": [
+    {
+      "enemy": "warden_capitol_2031",
+      "count": 1
+    },
+    {
+      "enemy": "drone_prototype_2031",
+      "count": 2
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "The Sergeant-at-Arms has decided you are not accredited, and he is right.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "One human and two Drones."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Signal does nothing to a man with a mace."
+    },
+    {
+      "when": "party:mara",
+      "text": "Mara: he is enforcing a standing order, not a grudge. That is a thing you can argue with."
+    }
+  ],
+  "music": "battle_2031"
+}

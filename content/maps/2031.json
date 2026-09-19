@@ -78,6 +78,16 @@
       "radius": 74,
       "label": "Basin Work Camp",
       "icon": "camp"
+    },
+    {
+      "id": "capitol_2031",
+      "kind": "location",
+      "location": "capitol_2031",
+      "x": 1760,
+      "y": 250,
+      "radius": 82,
+      "label": "Capitol Hill",
+      "icon": "capitol"
     }
   ],
   "roads": [
@@ -136,6 +146,22 @@
       610,
       2040,
       710
+    ],
+    [
+      1700,
+      340,
+      1730,
+      300,
+      1760,
+      270
+    ],
+    [
+      1450,
+      400,
+      1600,
+      350,
+      1700,
+      340
     ]
   ],
   "zones": [
@@ -193,6 +219,19 @@
       ],
       "chance": 0.4,
       "stride": 170
+    },
+    {
+      "id": "lobbies",
+      "label": "The lobbies",
+      "x": 1540,
+      "y": 400,
+      "w": 350,
+      "h": 210,
+      "encounters": [
+        "capitol_2031_lobby"
+      ],
+      "chance": 0.4,
+      "stride": 165
     }
   ]
 }

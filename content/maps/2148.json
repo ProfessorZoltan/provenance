@@ -88,6 +88,16 @@
       "radius": 74,
       "label": "The Fens",
       "icon": "fens"
+    },
+    {
+      "id": "capitol_2148",
+      "kind": "location",
+      "location": "capitol_2148",
+      "x": 1760,
+      "y": 250,
+      "radius": 82,
+      "label": "Museum Ruins",
+      "icon": "ruin"
     }
   ],
   "roads": [
@@ -154,6 +164,22 @@
       890,
       1810,
       900
+    ],
+    [
+      1700,
+      340,
+      1730,
+      300,
+      1760,
+      270
+    ],
+    [
+      1450,
+      400,
+      1600,
+      350,
+      1700,
+      340
     ]
   ],
   "zones": [
@@ -226,6 +252,20 @@
       ],
       "chance": 0.5,
       "stride": 150
+    },
+    {
+      "id": "fallen_columns",
+      "label": "Fallen columns",
+      "x": 1540,
+      "y": 400,
+      "w": 350,
+      "h": 210,
+      "encounters": [
+        "capitol_2148_columns",
+        "capitol_2148_archive"
+      ],
+      "chance": 0.4,
+      "stride": 165
     }
   ]
 }

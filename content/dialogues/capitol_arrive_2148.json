@@ -1,0 +1,24 @@
+{
+  "id": "capitol_arrive_2148",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Capitol Hill, 2148. Fallen columns, no roof, and a museum built in the ruin of the chamber by people who were paid to build it."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Every exhibit is accurate. There is a case for the Handover, a case for the Founding, and a nineteen-month gap between them with a card in it that says RECORDS INCOMPLETE."
+    },
+    {
+      "speaker": "dax",
+      "text": "My grandmother came here on a school trip. She said it was the first time she understood that a building could lie to you politely.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "It isn't lying. That is the horrible part. Every word in here is true and the shape of it is a lie."
+    }
+  ]
+}

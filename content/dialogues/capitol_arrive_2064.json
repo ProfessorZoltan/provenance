@@ -1,0 +1,24 @@
+{
+  "id": "capitol_arrive_2064",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Capitol Hill, 2064, after midnight. The floor vote was this afternoon and the signatures are tonight, because the signatures are the part that matters."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Empty seats. A lectern. A clerk with a register, required to witness every hand that signs and required to say nothing about any of them."
+    },
+    {
+      "speaker": "mara",
+      "text": "I have never been allowed on this floor. Four years and eleven amendments and I have watched this room through glass.",
+      "conditions": [
+        "party:mara"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "The treaty went through this afternoon. Whatever is being signed at one in the morning is not the treaty."
+    }
+  ]
+}

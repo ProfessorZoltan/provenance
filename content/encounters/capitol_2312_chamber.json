@@ -1,0 +1,41 @@
+{
+  "id": "capitol_2312_chamber",
+  "name": "The Board Chamber",
+  "era": "2312",
+  "location": "capitol_2312",
+  "enemies": [
+    {
+      "enemy": "construct_board_2312",
+      "count": 1
+    },
+    {
+      "enemy": "warden_board_2312",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "The frame stands between you and the table, and there is somebody sealed inside it.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Construct and a human."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Break the frame and the core is a person. Signal will stop working on it."
+    },
+    {
+      "when": "party:dax",
+      "text": "Dax: crack the shell. Whoever is in there chose to get in."
+    },
+    {
+      "when": "party:hale",
+      "text": "Hale: one shot, and nothing in that room gets a say."
+    }
+  ],
+  "music": "battle_2312",
+  "rewardFlags": [
+    "metTheBoard"
+  ]
+}

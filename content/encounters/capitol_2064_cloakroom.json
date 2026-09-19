@@ -1,0 +1,34 @@
+{
+  "id": "capitol_2064_cloakroom",
+  "name": "The Cloakroom",
+  "era": "2064",
+  "location": "capitol_2064",
+  "enemies": [
+    {
+      "enemy": "warden_senate_2064",
+      "count": 1
+    },
+    {
+      "enemy": "drone_gallery_2064",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "One on the door and one minuting the room, where the signatures actually happened.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "One human and one Drone."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Private security, immune to Signal. The drone is shielded but not."
+    },
+    {
+      "when": "party:mara",
+      "text": "Mara: he is on a contract, and a contract has terms."
+    }
+  ],
+  "music": "battle_2064"
+}

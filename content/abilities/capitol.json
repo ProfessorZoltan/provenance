@@ -1,0 +1,70 @@
+[
+  {
+    "id": "point_of_order",
+    "name": "Point of Order",
+    "cost": 1,
+    "target": "enemy",
+    "status": {
+      "id": "bound",
+      "turns": 2,
+      "onTarget": true
+    },
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "Rules the target out of order. It is bound by the terms of the room."
+  },
+  {
+    "id": "gavel",
+    "name": "Gavel",
+    "cost": 2,
+    "damageType": "kinetic",
+    "target": "enemy",
+    "formula": "a.grit * 1.0 + 12",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "The chair decides, and the chair has a hammer."
+  },
+  {
+    "id": "redaction",
+    "name": "Redaction",
+    "cost": 2,
+    "damageType": "signal",
+    "target": "allEnemies",
+    "formula": "a.signal * 0.5 + 8",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "status": {
+      "id": "fear",
+      "turns": 2,
+      "onTarget": true
+    },
+    "description": "Strikes the record. Everything it touches loses a thread and a line."
+  },
+  {
+    "id": "minutes",
+    "name": "Read the Minutes",
+    "cost": 1,
+    "target": "enemy",
+    "status": {
+      "id": "locked",
+      "turns": 3,
+      "onTarget": true
+    },
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "Says aloud exactly where the target was standing. Nothing misses it."
+  },
+  {
+    "id": "proxy_vote",
+    "name": "Proxy Vote",
+    "cost": 2,
+    "target": "allAllies",
+    "status": {
+      "id": "inspired",
+      "turns": 3
+    },
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "Votes everyone else's shares. The whole side hits harder."
+  }
+]

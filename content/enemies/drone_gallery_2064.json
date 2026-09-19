@@ -1,0 +1,38 @@
+{
+  "id": "drone_gallery_2064",
+  "name": "Gallery Drone",
+  "family": "drone",
+  "era": "2064",
+  "machine": true,
+  "stats": {
+    "resolve": 92,
+    "bandwidth": 3,
+    "latency": 22,
+    "signal": 50,
+    "noise": 46,
+    "grit": 24,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 40,
+  "abilities": [
+    "minutes",
+    "drone_dart",
+    "redaction"
+  ],
+  "immunities": [],
+  "perception": 62,
+  "rig": "drone_sentry_2064",
+  "xp": 100,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.6
+    },
+    {
+      "item": "gallery_lens",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Minutes the chamber. It has never once been asked to stop minuting it."
+}

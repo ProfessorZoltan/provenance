@@ -1,0 +1,24 @@
+{
+  "id": "annex_registry",
+  "name": "The Register of Interests",
+  "location": "senate_annex_2064",
+  "giver": "annex_staffer",
+  "description": "Every member declares their interests, and the declarations are public, and nobody reads them. A staffer wants the 2031 register cross-checked against the Handover signatories, and the only copy is in the chamber.",
+  "objectiveEncounter": "capitol_2064_cloakroom",
+  "rewards": {
+    "xp": 90,
+    "currency": 70,
+    "items": [
+      "relic_gallery_pass"
+    ],
+    "skillPoints": 1,
+    "flags": [
+      "registerRead"
+    ]
+  },
+  "dialogue": {
+    "offer": "annex_offer",
+    "inProgress": "annex_progress",
+    "complete": "annex_complete"
+  }
+}

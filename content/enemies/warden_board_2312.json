@@ -1,0 +1,40 @@
+{
+  "id": "warden_board_2312",
+  "name": "Chamber Warden",
+  "family": "warden",
+  "era": "2312",
+  "machine": false,
+  "stats": {
+    "resolve": 200,
+    "bandwidth": 3,
+    "latency": 28,
+    "signal": 38,
+    "noise": 34,
+    "grit": 60,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "gavel",
+    "warden_suppress",
+    "point_of_order"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 66,
+  "rig": "warden_2312",
+  "xp": 200,
+  "drops": [
+    {
+      "item": "stim",
+      "chance": 0.5
+    },
+    {
+      "item": "board_weave",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Allocated to a room that has met four times in two hundred years."
+}

@@ -139,6 +139,12 @@ export const NPC_NAMES: Record<string, string> = {
   site_engineer: 'Site Engineer', plant_supervisor: 'Plant Supervisor', plant_supervisor_2: 'Plant Supervisor',
   camp_clerk: 'Camp Clerk', camp_clerk_offer: 'Camp Clerk', camp_clerk_progress: 'Camp Clerk', camp_clerk_complete: 'Camp Clerk',
   ash_smith: 'The Smith', fens_salvager: 'Fens Salvager', field_auditor: 'Field Auditor',
+  // Capitol Hill.
+  clerk_of_the_house: 'Clerk of the House', enabling_act: 'Clerk of the House',
+  night_clerk: 'The Night Clerk', night_clerk_names: 'The Night Clerk',
+  curator_vos: 'Curator Vos', board_secretary: 'The Board Secretary',
+  annex_staffer: 'Annex Staffer', annex_offer: 'Annex Staffer',
+  annex_progress: 'Annex Staffer', annex_complete: 'Annex Staffer',
   wren: 'Sister Wren', dax: 'Dax Okonkwo', ade: 'Captain Ade', militia: 'Militia Captain', narrator: '', player: 'The Auditor',
 };
 

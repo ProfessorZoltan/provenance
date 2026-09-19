@@ -1,0 +1,52 @@
+{
+  "id": "construct_board_2312",
+  "name": "Board Enforcement Frame",
+  "family": "construct",
+  "era": "2312",
+  "machine": true,
+  "stats": {
+    "resolve": 185,
+    "bandwidth": 3,
+    "latency": 30,
+    "signal": 62,
+    "noise": 26,
+    "grit": 54,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 62,
+  "secondBar": {
+    "name": "Proxy Holder",
+    "resolve": 120,
+    "abilities": [
+      "proxy_vote",
+      "point_of_order",
+      "warden_baton"
+    ],
+    "immunities": [
+      "signal"
+    ],
+    "weakness": "kinetic",
+    "flavor": "A woman in a good coat who has held somebody else's shares for thirty-one years."
+  },
+  "abilities": [
+    "redaction",
+    "minutes",
+    "drone_dart"
+  ],
+  "immunities": [],
+  "perception": 70,
+  "rig": "construct_grafted",
+  "xp": 210,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.8
+    },
+    {
+      "item": "relic_board_seal",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "The Board does not keep guards. It keeps a frame, and inside the frame it keeps a proxy."
+}

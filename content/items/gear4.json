@@ -1,0 +1,39 @@
+[
+  {
+    "id": "house_mace",
+    "name": "House Mace",
+    "kind": "gear",
+    "slot": "weapon",
+    "era": "2031",
+    "stats": {
+      "grit": 13,
+      "resolve": 8
+    },
+    "description": "Ceremonial, heavy, and never once used ceremonially. +13 Grit, +8 Resolve."
+  },
+  {
+    "id": "gallery_lens",
+    "name": "Gallery Lens",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2064",
+    "stats": {
+      "signal": 12,
+      "noise": 7
+    },
+    "description": "Minuting optics off a chamber drone. +12 Signal, +7 Noise."
+  },
+  {
+    "id": "board_weave",
+    "name": "Board Weave",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2312",
+    "stats": {
+      "resolve": 30,
+      "continuity": 10,
+      "grit": 6
+    },
+    "description": "Lining from a coat cut for a room with four chairs in it. +30 Resolve, +10 Continuity, +6 Grit."
+  }
+]

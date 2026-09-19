@@ -1,0 +1,47 @@
+{
+  "id": "night_clerk",
+  "lines": [
+    {
+      "speaker": "night_clerk",
+      "text": "Chamber is closed. I am required to be here and you are required not to be, so let us both be reasonable about it."
+    },
+    {
+      "speaker": "night_clerk",
+      "text": "The vote was at four. What happens at one in the morning is schedules, annexes and the instruments that give effect to the thing that was voted on. Nobody votes on those."
+    },
+    {
+      "speaker": "night_clerk",
+      "text": "Eleven signatures tonight and I witnessed every one. Four of them I could not tell you the employer of, and I am required to ask.",
+      "choices": [
+        {
+          "text": "Who signed and could not be placed?",
+          "setFlags": [
+            "nightSignatures"
+          ],
+          "next": "night_clerk_names"
+        },
+        {
+          "text": "Why write it down if nobody reads it?",
+          "syncDelta": 5
+        },
+        {
+          "text": "Leave him to it."
+        }
+      ]
+    },
+    {
+      "speaker": "night_clerk",
+      "text": "Your clause is in the instrument, not just the treaty. I copied it into the schedule myself at two in the morning. Somebody two centuries from now is going to be very glad of a clerk who could not sleep.",
+      "conditions": [
+        "flag:treatyAmended"
+      ]
+    },
+    {
+      "speaker": "night_clerk",
+      "text": "No treaty to give effect to, so no instruments, so no signatures. I sat here until four with an empty register and it was the worst night of my working life.",
+      "conditions": [
+        "flag:voteSabotaged"
+      ]
+    }
+  ]
+}

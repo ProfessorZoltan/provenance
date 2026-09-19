@@ -1,0 +1,53 @@
+{
+  "id": "capitol_2148",
+  "name": "Capitol Hill",
+  "kind": "deepSite",
+  "era": "2148",
+  "site": "capitol",
+  "type": "Museum",
+  "art": "2148_capitol",
+  "description": "Fallen columns and a museum built in the ruin of the chamber, curated by people who were paid to curate it. The exhibits are accurate. The gaps are the exhibit.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2148_capitol:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2148_capitol:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2148_capitol:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2148_capitol:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "ash"
+  },
+  "music": "hub_2148",
+  "npcs": [
+    "curator_vos"
+  ],
+  "quests": [],
+  "encounters": [
+    "capitol_2148_columns"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2031",
+    "2064",
+    "2312"
+  ],
+  "storyDialogue": "capitol_arrive_2148"
+}

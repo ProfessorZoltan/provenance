@@ -1,0 +1,14 @@
+{
+  "id": "strike_the_act",
+  "era": "2031",
+  "site": "capitol",
+  "name": "Have the act withdrawn",
+  "ownershipDelta": -10,
+  "syncDelta": -15,
+  "flags": [
+    "actStruck"
+  ],
+  "partyEffects": [],
+  "lean": "cinder",
+  "summary": "Withdrawn at third reading to applause from four people. It returns within the year as a schedule to a finance act, unamended, undebated and unreported."
+}

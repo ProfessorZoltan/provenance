@@ -68,6 +68,26 @@
       "radius": 84,
       "label": "The Basin",
       "icon": "basin"
+    },
+    {
+      "id": "capitol_2064",
+      "kind": "location",
+      "location": "capitol_2064",
+      "x": 1760,
+      "y": 250,
+      "radius": 82,
+      "label": "Capitol Hill",
+      "icon": "capitol"
+    },
+    {
+      "id": "senate_annex_2064",
+      "kind": "location",
+      "location": "senate_annex_2064",
+      "x": 1980,
+      "y": 190,
+      "radius": 72,
+      "label": "Senate Annex",
+      "icon": "tower"
     }
   ],
   "roads": [
@@ -116,6 +136,30 @@
       340,
       2160,
       370
+    ],
+    [
+      1700,
+      340,
+      1730,
+      300,
+      1760,
+      270
+    ],
+    [
+      1450,
+      400,
+      1600,
+      350,
+      1700,
+      340
+    ],
+    [
+      1760,
+      230,
+      1870,
+      200,
+      1960,
+      190
     ]
   ],
   "zones": [
@@ -172,6 +216,20 @@
         "basin_2064_plant"
       ],
       "chance": 0.42,
+      "stride": 165
+    },
+    {
+      "id": "cloakrooms",
+      "label": "The cloakrooms",
+      "x": 1540,
+      "y": 400,
+      "w": 350,
+      "h": 210,
+      "encounters": [
+        "capitol_2064_gallery",
+        "capitol_2064_cloakroom"
+      ],
+      "chance": 0.4,
       "stride": 165
     }
   ]

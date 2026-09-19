@@ -1,0 +1,41 @@
+{
+  "id": "curator_vos",
+  "lines": [
+    {
+      "speaker": "curator_vos",
+      "text": "Mind the third column, it has been going to fall for sixty years. Admission is nothing; there is nobody to pay and nothing to spend it on."
+    },
+    {
+      "speaker": "curator_vos",
+      "text": "Everything in here is true. I check. It is the only professional standard I have left and I keep it out of spite."
+    },
+    {
+      "speaker": "curator_vos",
+      "text": "There is a nineteen-month gap between the Founding case and the Handover case. I have never been able to fill it and I have stopped being allowed to ask.",
+      "conditions": [
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "curator_vos",
+      "text": "The gap filled itself. Eleven senators, four firms and a holding company, sourced to a public record that did not exist when I catalogued this room. I have re-labelled the case and I am not going to explain the new card to anybody.",
+      "conditions": [
+        "flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "curator_vos",
+      "text": "There is a register in the Founding case with two signatures on it. Sponsor and witness. The witness is a name nobody has ever identified and the handwriting is modern.",
+      "conditions": [
+        "flag:auditorWitnessed"
+      ]
+    },
+    {
+      "speaker": "curator_vos",
+      "text": "The gallery is still full, if you go out at the right hour. Four hundred people who came to watch a vote that had already been decided, and none of them have left.",
+      "conditions": [
+        "visited:2064"
+      ]
+    }
+  ]
+}
