@@ -25,6 +25,7 @@ export function titleScreen(root: HTMLElement, ctx: Ctx, _state: GameState): Scr
       if (s) ctx.store.dispatch({ type: 'LOAD_STATE', state: s });
     } },
     { id: 'import', label: 'Import save file', hint: 'JSON exported earlier', onSelect: () => importSave(ctx) },
+    { id: 'manual', label: 'Player manual', hint: 'How to play, and what the gauges mean', onSelect: () => ctx.store.dispatch({ type: 'SET_SCREEN', screen: { id: 'manual' } }) },
     { id: 'settings', label: 'Settings', shortcut: 'select', onSelect: () => ctx.store.dispatch({ type: 'SET_SCREEN', screen: { id: 'settings' } }) },
   ], mem.title ?? 0, (i) => { mem.title = i; });
   root.querySelector('#title-menu')!.appendChild(m.el);
@@ -102,6 +103,7 @@ export function settingsScreen(root: HTMLElement, ctx: Ctx, state: GameState): S
     { id: 'motion', label: `Reduced motion: ${s.reducedMotion ? 'on' : 'off'}`, hint: 'Freezes the camera, halves particles', onSelect: () => ctx.store.dispatch({ type: 'SET_SETTINGS', settings: { reducedMotion: !s.reducedMotion } }) },
     { id: 'music', label: `Music volume: ${Math.round(s.musicVolume * 100)}%`, hint: '← → adjust' },
     { id: 'sfx', label: `Effects volume: ${Math.round(s.sfxVolume * 100)}%`, hint: '← → adjust' },
+    { id: 'manual', label: 'Player manual', hint: 'How to play, and what the gauges mean', onSelect: () => ctx.store.dispatch({ type: 'SET_SCREEN', screen: { id: 'manual' } }) },
     { id: 'back', label: 'Back', shortcut: 'b', onSelect: back },
   ], mem.settings ?? 0, (i) => { mem.settings = i; });
   root.querySelector('#m')!.appendChild(m.el);

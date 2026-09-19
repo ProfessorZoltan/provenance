@@ -163,6 +163,7 @@ export type Screen =
   | { id: 'shop' }
   | { id: 'inventory' }
   | { id: 'save' }
+  | { id: 'manual' }
   | { id: 'gameOver' }
   | { id: 'settings' };
 

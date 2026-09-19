@@ -395,3 +395,31 @@ body[data-reduced-motion='true'] .battle .narration-box { animation: none; }
 .battle .actionmenu .eyebrow { flex: 0 0 auto; }
 .battle .actionmenu .menu { flex: 1 1 auto; overflow-y: auto; min-height: 0; }
 .battle .actionmenu .desc { flex: 0 0 auto; border-top: 1px solid #38496f; padding-top: 6px; }
+
+/* Player manual: contents on the left, one section at a time on the right. */
+.manual { display: grid; grid-template-columns: minmax(210px, 290px) 1fr; gap: 16px; height: 100%; min-height: 0; }
+.manual .toc { overflow-y: auto; min-height: 0; padding: 14px 10px; }
+.manual .toc .group { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; opacity: 0.6; margin: 12px 8px 4px; }
+.manual .toc .page { padding: 7px 10px; cursor: pointer; border-left: 3px solid transparent; font-size: 14px; }
+.manual .toc .page.lvl3 { padding-left: 24px; font-size: 13px; opacity: 0.85; }
+.manual .toc .page.focused { background: #334775; border-left-color: #f4cb76; opacity: 1; }
+.manual .body { overflow-y: auto; min-height: 0; padding: 20px 26px; max-width: 78ch; }
+.manual .body h2 { font-size: 24px; margin-bottom: 14px; color: #f4cb76; }
+.manual .body h4 { font-size: 14px; margin: 16px 0 4px; }
+.manual .body p { margin-bottom: 12px; line-height: 1.6; }
+.manual .body ul { margin: 0 0 12px; padding-left: 20px; line-height: 1.6; }
+.manual .body li { margin-bottom: 4px; }
+.manual .body table { width: 100%; border-collapse: collapse; margin: 6px 0 16px; font-size: 13.5px; }
+.manual .body th { text-align: left; padding: 6px 10px 6px 0; border-bottom: 2px solid #c3d1ed; font-weight: 500; }
+.manual .body td { padding: 6px 10px 6px 0; border-bottom: 1px solid #38496f; vertical-align: top; line-height: 1.45; }
+.manual .body tr td:first-child { padding-right: 16px; }
+.manual .body .end-note { margin-top: 20px; padding-top: 10px; border-top: 1px solid #38496f; opacity: 0.7; }
+@media (max-width: 900px) {
+  .manual { grid-template-columns: 1fr; grid-template-rows: minmax(90px, 26%) 1fr; }
+  .manual .toc nav { display: flex; flex-wrap: wrap; gap: 4px 6px; align-content: flex-start; }
+  .manual .toc .group { width: 100%; margin: 6px 0 0; }
+  .manual .toc .page { padding: 5px 9px; }
+  .manual .toc .page { border-left: none; border-bottom: 3px solid transparent; }
+  .manual .toc .page.lvl3 { padding-left: 10px; }
+  .manual .body { padding: 14px 16px; }
+}

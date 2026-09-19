@@ -24,6 +24,7 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
     if (loc.kind === 'deepSite' && loc.timeLinks.length) items.push({ id: 'jump', label: 'Descend beneath the chapel', hint: `Deep Site · ${loc.timeLinks.join(', ')}`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'timeJump' } }) });
     items.push({ id: 'tech', label: 'Tech trees', shortcut: 'y', hint: `${state.activeParty.reduce((s, id) => s + state.party[id].skillPoints, 0)} skill points unspent`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'tech', character: 'player' } }) });
     items.push({ id: 'inv', label: 'Party and inventory', shortcut: 'x', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'inventory' } }) });
+    items.push({ id: 'manual', label: 'Player manual', hint: 'How to play' , onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'manual' } }) });
     items.push({ id: 'save', label: 'Save / load', shortcut: 'start', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'save' } }) });
     items.push({ id: 'settings', label: 'Settings', shortcut: 'select', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'settings' } }) });
     items.push({ id: 'leave', label: `Leave ${loc.name}`, shortcut: 'b', hint: 'Walk the valley', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'map' } }) });

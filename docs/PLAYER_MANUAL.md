@@ -1,5 +1,7 @@
 # Provenance — Player Manual
 
+## About this manual
+
 Covers the playable slice: Kell Monastery and Kell Village in 2312, Kell Stronghold in 2148, and
 the three party members you start with. Systems not yet built are marked as such. This manual
 grows as the game does.

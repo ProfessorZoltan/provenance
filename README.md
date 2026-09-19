@@ -23,6 +23,8 @@ when online and fall back to system fonts offline.
 
 New players should start with the [player manual](docs/PLAYER_MANUAL.md): lore, controls, the
 Threads and Tempo systems, each character's starting abilities, and what Shield, Signal and Sync do.
+The same document is readable in-game from the title menu, any location's action list, or Settings.
+The screen renders that Markdown file directly, so the two can never drift apart.
 
 ## Controls
 

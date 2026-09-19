@@ -278,7 +278,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       // Leaving the result screen discards the finished battle.
       const battle = state.screen.id === 'battleResult' && action.screen.id !== 'battleResult' ? null : state.battle;
       // Overlay screens remember whether they were opened from the map or from inside a location.
-      const overlay = ['tech', 'party', 'inventory', 'save', 'settings', 'shop'].includes(action.screen.id);
+      const overlay = ['tech', 'party', 'inventory', 'save', 'settings', 'shop', 'manual'].includes(action.screen.id);
       const back = overlay && (state.screen.id === 'hub' || state.screen.id === 'map') ? state.screen : state.back;
       return { ...state, screen: action.screen, battle, back };
     }

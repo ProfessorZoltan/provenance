@@ -14,6 +14,7 @@ import { advanceNarration, narrationPending, resetNarration, syncNarration } fro
 import { battleScreen } from './screens/battle';
 import { dialogueScreen } from './screens/dialogue';
 import { hubScreen } from './screens/hub';
+import { manualScreen } from './screens/manual';
 import { mapScreen } from './screens/map';
 import { gameOverScreen, newGameScreen, saveScreen, settingsScreen, titleScreen } from './screens/menus';
 import { resultScreen, scanScreen } from './screens/scan';
@@ -24,7 +25,7 @@ const SCREENS: Record<string, ScreenFn> = {
   title: titleScreen, newGame: newGameScreen, hub: hubScreen, map: mapScreen, timeJump: hubScreen,
   scan: scanScreen, battle: battleScreen, battleResult: resultScreen, dialogue: dialogueScreen,
   tech: techScreen, party: partyScreen, shop: shopScreen, inventory: inventoryScreen,
-  save: saveScreen, gameOver: gameOverScreen, settings: settingsScreen,
+  save: saveScreen, gameOver: gameOverScreen, settings: settingsScreen, manual: manualScreen,
 };
 
 export function createApp(store: Store, content: ContentDB, input: Input, audio: AudioEngine): void {
@@ -141,7 +142,7 @@ export function createApp(store: Store, content: ContentDB, input: Input, audio:
 
   function render(state: GameState, action: Action | null): void {
     if (action?.type === 'SET_MAP_POS') return;
-    if (state.started || state.screen.id === 'title' || state.screen.id === 'newGame' || state.screen.id === 'settings') syncBackground(state);
+    if (state.started || ['title', 'newGame', 'settings', 'manual'].includes(state.screen.id)) syncBackground(state);
     queueNarration(state);
     const fn = SCREENS[state.screen.id] ?? titleScreen;
     handle?.destroy?.();
