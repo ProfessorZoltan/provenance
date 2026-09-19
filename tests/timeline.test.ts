@@ -4,6 +4,7 @@ import { activeVariant } from '../src/core/reducer';
 import { conditionContext } from '../src/core/encounter';
 import { evalAll } from '../src/core/conditions';
 import { content, newGame, reduce, run, skipDialogue } from './helpers';
+import type { GameState } from '../src/types/state';
 
 describe('timeline', () => {
   it('derives Ownership, Sync and flags from history, never storing them', () => {
@@ -133,5 +134,75 @@ describe('Port Halden and the Handover', () => {
     expect(stocked(0)).toBeGreaterThan(stocked(-60));
     // Rations are allocated no matter what the ledger says.
     expect(stocked(-100)).toBeGreaterThanOrEqual(1);
+  });
+});
+
+describe('ripple sites', () => {
+  /** Walk a state forward with a ripple choice already taken. */
+  const withChoice = (id: string) => {
+    const s = newGame(7);
+    return { ...s, world: applyChoice(content, s.world, id, 1) };
+  };
+  const variantOf = (s: GameState, loc: string) => activeVariant(content, s, content.locations[loc]);
+
+  it('turns the Tolliver bakery into a safehouse in 2148, or leaves a shell', () => {
+    // Untouched history: the corner burned, so there is nothing on it in 2148.
+    const untouched = newGame(7);
+    expect(variantOf(untouched, 'tolliver_safehouse_2148')).toBeNull();
+    expect(content.locations.tolliver_safehouse_2148.npcs).toEqual([]);
+
+    const saved = withChoice('save_bakery');
+    const present = variantOf(saved, 'tolliver_safehouse_2148')!;
+    expect(present.art).toBe('2148_tolliver_safehouse_present');
+    expect(present.npcs).toContain('safehouse_keeper');
+    expect(present.shop).toBe('tolliver_safehouse');
+    expect(variantOf(saved, 'tolliver_bakery_2031')!.art).toBe('2031_tolliver_bakery_saved');
+
+    const sold = withChoice('sell_bakery');
+    expect(variantOf(sold, 'tolliver_safehouse_2148')!.art).toBe('2148_tolliver_safehouse_absent');
+    expect(variantOf(sold, 'tolliver_safehouse_2148')!.npcs).toEqual([]);
+    expect(variantOf(sold, 'tolliver_bakery_2031')!.art).toBe('2031_tolliver_bakery_burned');
+  });
+
+  it('keeps the ripple small: a side chain nudges Ownership without deciding it', () => {
+    const base = deriveWorld(content, newGame(7).world, newGame(7).party);
+    for (const id of ['save_bakery', 'sell_bakery', 'causeway_hope', 'causeway_truth']) {
+      const d = deriveWorld(content, withChoice(id).world, newGame(7).party);
+      expect(Math.abs(d.ownership - base.ownership), id).toBeLessThanOrEqual(10);
+      expect(Math.abs(d.sync - base.sync), id).toBeLessThanOrEqual(10);
+    }
+  });
+
+  it('answers on the 2064 causeway with who is standing on the 2148 roofs', () => {
+    expect(variantOf(newGame(7), 'the_stacks_2148')).toBeNull();
+    const warned = variantOf(withChoice('causeway_hope'), 'the_stacks_2148')!;
+    expect(warned.npcs).toContain('stacks_swimmer');
+    expect(warned.description).toMatch(/swimming line/);
+    const told = variantOf(withChoice('causeway_truth'), 'the_stacks_2148')!;
+    expect(told.npcs).not.toContain('stacks_swimmer');
+  });
+
+  it('gives the Strand Memorial a face for every Sync band, museum by default', () => {
+    const atSync = (sync: number) => {
+      const s = newGame(7);
+      const party = Object.fromEntries(Object.entries(s.party).map(([k, c]) => [k, { ...c, sync }]));
+      return variantOf({ ...s, party }, 'strand_memorial_2312')!;
+    };
+    expect(atSync(60).art).toBe('2312_strand_memorial_shrine');
+    expect(atSync(-60).art).toBe('2312_strand_memorial_ruin');
+    expect(atSync(0).art).toBe('2312_strand_memorial_museum');
+  });
+
+  it('leaves the ripple sites independent of the Deep Sites and of each other', () => {
+    const s = newGame(7);
+    let w = applyChoice(content, s.world, 'arm_resistance', 1);
+    w = applyChoice(content, w, 'save_bakery', 2);
+    w = applyChoice(content, w, 'causeway_hope', 3);
+    expect(activeChoices(w.history).map((h) => h.choiceId).sort())
+      .toEqual(['arm_resistance', 'causeway_hope', 'save_bakery']);
+    // Redoing one ripple replaces only itself.
+    w = applyChoice(content, w, 'sell_bakery', 4);
+    expect(activeChoices(w.history).map((h) => h.choiceId).sort())
+      .toEqual(['arm_resistance', 'causeway_hope', 'sell_bakery']);
   });
 });

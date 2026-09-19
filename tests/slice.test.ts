@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { deserialize, serialize } from '../src/core/save';
+import { activeVariant, npcDialogue } from '../src/core/reducer';
 import { evalAll } from '../src/core/conditions';
 import { conditionContext } from '../src/core/encounter';
 import { deriveWorld } from '../src/core/timeline';
@@ -136,5 +137,47 @@ describe('the second Deep Site', () => {
     s = reduce(s, { type: 'START_DIALOGUE', id: 'mara_vesely', returnTo: { id: 'hub' } });
     s = skipDialogue(s, 0);
     expect(Object.keys(s.party)).not.toContain('mara');
+  });
+});
+
+describe('a ripple end to end', () => {
+  it('saves the bakery in 2031 and finds the safehouse open in 2148', () => {
+    let s = skipDialogue(newGame(808));
+    s = run(s, { type: 'TRAVEL', location: 'kell_2312' }, { type: 'TIME_JUMP', era: '2031' });
+    s = skipDialogue(s);
+    s = reduce(s, { type: 'TRAVEL', location: 'tolliver_bakery_2031' });
+    expect(s.location).toBe('tolliver_bakery_2031');
+
+    // Mattie is a quest giver, so her door routes by quest status.
+    expect(npcDialogue(content, s, 'mattie_tolliver')).toBe('tolliver_offer');
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'tolliver_offer', returnTo: { id: 'hub' } });
+    s = skipDialogue(s, 0);
+    expect(s.quests.tolliver_fire).toBe('active');
+    expect(npcDialogue(content, s, 'mattie_tolliver')).toBe('tolliver_progress');
+
+    s = reduce(s, { type: 'START_ENCOUNTER', encounterId: 'tolliver_2031_arson' });
+    s = autoBattle(s);
+    expect(s.battle?.phase).toBe('won');
+    s = run(s, { type: 'BATTLE_FINISH' }, { type: 'SET_SCREEN', screen: { id: 'hub' } });
+    expect(s.quests.tolliver_fire).toBe('readyToTurnIn');
+
+    // Turning it in is where the ripple is chosen.
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'tolliver_complete', returnTo: { id: 'hub' } });
+    s = skipDialogue(s, 0);
+    expect(s.quests.tolliver_fire).toBe('complete');
+    expect(s.inventory.relics).toContain('relic_tolliver_sign');
+    expect(s.world.history.map((h) => h.choiceId)).toContain('save_bakery');
+    expect(npcDialogue(content, s, 'mattie_tolliver')).toBe('mattie_tolliver_after');
+
+    // A hundred and seventeen years later, the corner is a refuge with a shop in it.
+    s = run(s, { type: 'TRAVEL', location: 'halden_2031' }, { type: 'TIME_JUMP', era: '2148' });
+    s = skipDialogue(s);
+    if (s.screen.id === 'battle') { s = autoBattle(s); s = run(s, { type: 'BATTLE_FINISH' }, { type: 'SET_SCREEN', screen: { id: 'hub' } }); }
+    s = reduce(s, { type: 'TRAVEL', location: 'tolliver_safehouse_2148' });
+    const v = activeVariant(content, s, content.locations.tolliver_safehouse_2148)!;
+    expect(v.shop).toBe('tolliver_safehouse');
+    expect(v.npcs).toContain('safehouse_keeper');
+    s = reduce(s, { type: 'SHOP_SELL_RELIC', item: 'relic_tolliver_sign' });
+    expect(s.inventory.currency['barter tokens']).toBeGreaterThan(0);
   });
 });

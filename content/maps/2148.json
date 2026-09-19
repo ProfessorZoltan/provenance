@@ -48,6 +48,16 @@
       "radius": 76,
       "label": "The Stacks",
       "icon": "market"
+    },
+    {
+      "id": "tolliver_safehouse_2148",
+      "kind": "location",
+      "location": "tolliver_safehouse_2148",
+      "x": 1010,
+      "y": 790,
+      "radius": 70,
+      "label": "Tolliver Corner",
+      "icon": "village"
     }
   ],
   "roads": [
@@ -80,6 +90,14 @@
       660,
       1270,
       720
+    ],
+    [
+      1380,
+      480,
+      1210,
+      620,
+      1060,
+      750
     ]
   ],
   "zones": [

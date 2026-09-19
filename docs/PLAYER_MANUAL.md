@@ -304,6 +304,25 @@ So an era you are saving for last is an era that can undo your work. Plan the se
 Two hidden values track it all. Keep your eyes on how people talk to you; that is the only readout
 you get.
 
+### Ripple sites
+
+Some waypoints are not fixed. A **ripple site** is a place whose state was decided somewhere else,
+in another century, usually by a side quest rather than a Deep Site choice. Their swings are small
+on purpose: five to ten points of Ownership or Sync, enough to colour an ending but never to pick
+one.
+
+| Ripple site | Decided by | What changes | Reference |
+| --- | --- | --- | --- |
+| Tolliver Bakery, 2031 | Whether you sit the night shift, and what you tell Mattie to do at nine the next morning | The corner is a going concern or a burnt shell | The Night Shift |
+| Tolliver Corner, 2148 | The same decision, 117 years upstream | A safehouse with a cellar, a trader and a bed, or a collapsed brick corner | — |
+| The Stacks, 2148 | What you tell Sana on the Migrant Causeway in 2064 | Whether anyone on those roofs was taught to swim | — |
+| Strand Memorial, 2312 | Your party's average Sync | A museum, a ruin, or a shrine people leave things at | — |
+| Kell Village, 2312 | Whether the stronghold was armed in 2148 | A drilling town with a memorial, or a watched one with half its stalls shut | — |
+| Enclave 7 Commissary, 2312 | Ownership | How much is on the shelves and who put it there | — |
+
+Nothing marks a ripple site on the map. You find out the same way you find out everything else in
+this game: by going there and looking.
+
 ## Money and Relics
 
 Each era has its own currency and it does not travel. 2031 and 2064 run on credits, 2148 on barter

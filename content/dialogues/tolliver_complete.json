@@ -1,0 +1,37 @@
+{
+  "id": "tolliver_complete",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The drum goes into the harbour. The drone goes into the drum. One of the two men will be explaining a broken wrist to somebody who does not care about him at all."
+    },
+    {
+      "speaker": "mattie_tolliver",
+      "text": "That's the second time this family's been told to move and the first time anybody stood in the alley for it."
+    },
+    {
+      "speaker": "mattie_tolliver",
+      "text": "Take the sign. It's older than me and it's coming off the wall either way this morning.",
+      "action": "quest:complete:tolliver_fire"
+    },
+    {
+      "speaker": "mattie_tolliver",
+      "text": "The port's solicitor is here at nine with a cheque and a deed of sale. I've got until nine to decide what this corner is for.",
+      "choices": [
+        {
+          "text": "Put the block in the family's name. Don't sell.",
+          "timelineChoice": "save_bakery",
+          "next": "tolliver_saved"
+        },
+        {
+          "text": "Take the cheque. One corner is not worth a life.",
+          "timelineChoice": "sell_bakery",
+          "next": "tolliver_sold"
+        },
+        {
+          "text": "It is not my corner to decide."
+        }
+      ]
+    }
+  ]
+}

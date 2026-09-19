@@ -1,0 +1,21 @@
+{
+  "id": "safehouse_keeper",
+  "lines": [
+    {
+      "speaker": "safehouse_keeper",
+      "text": "Green pennant. You know what it means or you wouldn't have come up the alley. Cellar's dry, there's a pot on, and nobody asks names."
+    },
+    {
+      "speaker": "safehouse_keeper",
+      "text": "Four generations. Great-great-grandmother wouldn't sell the corner in 2031 and every one of us since has been stuck with what that turned into."
+    },
+    {
+      "speaker": "safehouse_keeper",
+      "text": "You look at that sign like you've seen it before. It's older than the water."
+    },
+    {
+      "speaker": "narrator",
+      "text": "It is the same board. Scorched along one edge, green pennant on the left, and you were standing under it a hundred and seventeen years ago this morning."
+    }
+  ]
+}

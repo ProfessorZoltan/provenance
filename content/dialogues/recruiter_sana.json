@@ -18,17 +18,13 @@
       "choices": [
         {
           "text": "There are people on the roofs. They held.",
-          "syncDelta": 5,
-          "setFlags": [
-            "sanaTold"
-          ]
+          "timelineChoice": "causeway_hope",
+          "next": "sana_hope"
         },
         {
           "text": "Eighty-four years. Be honest with them about it.",
-          "syncDelta": -5,
-          "setFlags": [
-            "sanaTold"
-          ]
+          "timelineChoice": "causeway_truth",
+          "next": "sana_truth"
         },
         {
           "text": "Say nothing."
@@ -37,9 +33,16 @@
     },
     {
       "speaker": "recruiter_sana",
-      "text": "Right. Roofs. I can work with roofs. I'll start teaching the children to swim.",
+      "text": "I've a swimming line up between two chimneys and eleven children on it. You gave me that. I'd like to know it was worth the rope.",
       "conditions": [
-        "flag:sanaTold"
+        "flag:causewayWarned"
+      ]
+    },
+    {
+      "speaker": "recruiter_sana",
+      "text": "I stopped walking the road. You can't recruit people to a year. I tell them the date now and they go home and sit with it.",
+      "conditions": [
+        "flag:causewayTruth"
       ]
     }
   ]

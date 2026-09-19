@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { mapFor } from '../src/core/reducer';
+import { evalAll } from '../src/core/conditions';
+import { conditionContext } from '../src/core/encounter';
+import { createReducer, mapFor } from '../src/core/reducer';
 import { autoBattle, content, newGame, reduce, run, skipDialogue } from './helpers';
 
 describe('era maps', () => {
@@ -22,6 +24,20 @@ describe('era maps', () => {
         expect(z.y + z.h <= map.height, `${map.id}/${z.id}`).toBe(true);
       }
     }
+  });
+
+  it('hides a node whose requires are unmet, location or encounter, and refuses to travel there', () => {
+    const s = skipDialogue(newGame(5));
+    const gated = { ...content.maps.map_2312, nodes: content.maps.map_2312.nodes.map((n) =>
+      (n.location === 'kell_village_2312' ? { ...n, requires: ['flag:nobodyHasThis'] } : n)) };
+    const gatedContent = { ...content, maps: { ...content.maps, map_2312: gated } };
+    const cctx = conditionContext(gatedContent, s);
+    const visible = gated.nodes.filter((n) => evalAll(n.requires, cctx)).map((n) => n.id);
+    expect(visible).not.toContain('kell_village_2312');
+    expect(visible).toContain('kell_2312');
+    // The encounter node the village quest unlocks is gated the same way, and already was.
+    expect(visible).not.toContain('village_gate');
+    expect(() => createReducer(gatedContent)(s, { type: 'TRAVEL', location: 'kell_village_2312' })).toThrow();
   });
 
   it('puts both Deep Sites on the same map in every era, joined by road', () => {

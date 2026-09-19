@@ -1,0 +1,38 @@
+{
+  "id": "tolliver_2031_arson",
+  "name": "The Night Shift",
+  "era": "2031",
+  "location": "tolliver_bakery_2031",
+  "enemies": [
+    {
+      "enemy": "warden_2031",
+      "count": 2
+    },
+    {
+      "enemy": "drone_dock_2031",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "Two men with a drum of accelerant and a survey drone to film it for the claim.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two humans and one machine."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Private security on a clearance contract. Signal does nothing to a man."
+    },
+    {
+      "when": "noise>=60",
+      "text": "They are working the alley door; the shop front is clear."
+    },
+    {
+      "when": "party:dax",
+      "text": "Dax: this is the oldest job in the world and it has nothing to do with machines."
+    }
+  ],
+  "music": "battle_2031"
+}

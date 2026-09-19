@@ -43,5 +43,28 @@
   "encounters": [],
   "shop": "stacks_market",
   "links": [],
-  "timeLinks": []
+  "timeLinks": [],
+  "variants": [
+    {
+      "when": [
+        "causewayWarned"
+      ],
+      "description": "A trading post on the rooftops above the drowned city, and a swimming line strung between two chimneys with a queue of children on it. Nothing is bought with money here; everything is weighed.",
+      "npcs": [
+        "trader_sable",
+        "stacks_swimmer"
+      ],
+      "shop": "stacks_market"
+    },
+    {
+      "when": [
+        "causewayTruth"
+      ],
+      "description": "A trading post on the rooftops, thinner than it should be. The causeway generation stopped coming north a decade before the water did, and their grandchildren are not here.",
+      "npcs": [
+        "trader_sable"
+      ],
+      "shop": "stacks_market"
+    }
+  ]
 }

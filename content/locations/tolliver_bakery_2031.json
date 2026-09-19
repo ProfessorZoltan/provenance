@@ -1,0 +1,70 @@
+{
+  "id": "tolliver_bakery_2031",
+  "name": "Tolliver Bakery",
+  "kind": "waypoint",
+  "era": "2031",
+  "site": "tolliver",
+  "type": "Ripple site",
+  "art": "2031_tolliver_bakery",
+  "description": "A brick corner bakery on the last block the port has not bought. The ovens have been lit at four in the morning for sixty years, and the block around it is being cleared.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2031_tolliver_bakery:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2031_tolliver_bakery:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2031_tolliver_bakery:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2031_tolliver_bakery:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "dust"
+  },
+  "music": "hub_2031",
+  "npcs": [
+    "mattie_tolliver"
+  ],
+  "quests": [
+    "tolliver_fire"
+  ],
+  "encounters": [],
+  "links": [],
+  "timeLinks": [],
+  "variants": [
+    {
+      "when": [
+        "tolliverSaved"
+      ],
+      "art": "2031_tolliver_bakery_saved",
+      "description": "The bakery, and the block around it, in the family's name. There is a green pennant over the door and a queue out of it at five in the morning.",
+      "npcs": [
+        "mattie_tolliver"
+      ]
+    },
+    {
+      "when": [
+        "tolliverSold"
+      ],
+      "art": "2031_tolliver_bakery_burned",
+      "description": "What the fire left. The oven still stands because an oven is mostly brick, and somebody has boarded the window from the inside.",
+      "npcs": [
+        "mattie_tolliver"
+      ]
+    }
+  ]
+}

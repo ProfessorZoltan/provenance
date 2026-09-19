@@ -1,0 +1,76 @@
+{
+  "id": "strand_memorial_2312",
+  "name": "Strand Memorial",
+  "kind": "waypoint",
+  "era": "2312",
+  "site": "strand",
+  "type": "Ripple site",
+  "art": "2312_strand_memorial",
+  "description": "A civic memorial to the founder of Meridian, allocated one hundred square metres and a docent. What it is for changes with who is standing in front of it.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2312_strand_memorial:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2312_strand_memorial:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2312_strand_memorial:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2312_strand_memorial:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "snow"
+  },
+  "music": "hub_2312",
+  "npcs": [
+    "memorial_docent"
+  ],
+  "quests": [],
+  "encounters": [],
+  "links": [],
+  "timeLinks": [],
+  "variants": [
+    {
+      "when": [
+        "sync>=40"
+      ],
+      "art": "2312_strand_memorial_shrine",
+      "description": "Not a memorial any more. People have brought things: handwriting, wire flowers, a prayer wheel, a child's drawing of a machine with a face. The allocation office has stopped removing them.",
+      "npcs": [
+        "memorial_docent"
+      ]
+    },
+    {
+      "when": [
+        "sync<=-40"
+      ],
+      "art": "2312_strand_memorial_ruin",
+      "description": "The monument is down and the archive behind it is dark. Nobody has been allocated to clear it, which tells you what the Steward thinks it is worth.",
+      "npcs": [
+        "memorial_docent"
+      ]
+    },
+    {
+      "when": [],
+      "art": "2312_strand_memorial_museum",
+      "description": "A museum, and a careful one. Founding documents behind glass, a timeline with no gaps in it, and a plaque naming Callum Strand a steward of the public interest.",
+      "npcs": [
+        "memorial_docent"
+      ]
+    }
+  ]
+}

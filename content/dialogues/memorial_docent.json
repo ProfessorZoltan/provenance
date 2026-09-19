@@ -1,0 +1,49 @@
+{
+  "id": "memorial_docent",
+  "lines": [
+    {
+      "speaker": "memorial_docent",
+      "text": "Allocated ninety seconds per visitor. I have never once used them, so take as long as you like."
+    },
+    {
+      "speaker": "memorial_docent",
+      "text": "Callum Strand. Founder of Meridian, signatory to the Handover, and, the plaque says, a steward of the public interest. The plaque is two hundred years old and has been re-cast eleven times.",
+      "conditions": [
+        "!sync>=40",
+        "!sync<=-40"
+      ]
+    },
+    {
+      "speaker": "memorial_docent",
+      "text": "People started leaving things. Wire flowers, handwriting, a drawing of a machine with a face on it. I am supposed to clear them nightly and I have stopped.",
+      "conditions": [
+        "sync>=40"
+      ]
+    },
+    {
+      "speaker": "memorial_docent",
+      "text": "It came down and nothing was allocated to put it back up. That is how you know what a thing is actually worth here: not what they build, what they bother to repair.",
+      "conditions": [
+        "sync<=-40"
+      ]
+    },
+    {
+      "speaker": "memorial_docent",
+      "text": "The founding documents are behind glass and there is a gap in them. Nineteen months in 2064 with nothing catalogued. I have filed about it four times.",
+      "conditions": [
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "memorial_docent",
+      "text": "The gap in the founding documents filled itself last quarter. Eleven senators, four firms and a holding company, all catalogued, all sourced to a public record I have never been able to find.",
+      "conditions": [
+        "flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "memorial_docent",
+      "text": "Provenance, they call that. The record of who owned a thing and when. It is most of my job and almost none of this building."
+    }
+  ]
+}

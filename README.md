@@ -59,8 +59,9 @@ Travel is physical. Each era has one map holding both Deep Sites, Kell in the no
 Port Halden on the coast, joined by the coast road: the party walks it with the stick or WASD,
 locations are nodes you step into and enter with A, and the dashed regions are wilds where
 random encounters roll as you walk (a Scan card still lets you skip them). The village gate
-appears as a node once Old Pell's quest is active. Time travel stays inside a Deep Site, and both
-sites reach all four eras.
+appears as a node once Old Pell's quest is active; any node whose conditions are unmet is not on
+the map and cannot be travelled to. Time travel stays inside a Deep Site, and both sites reach all
+four eras.
 
 Reduced motion (Settings, or the OS preference) freezes the parallax camera, halves particles
 and removes animation.
@@ -70,15 +71,16 @@ and removes animation.
 | Piece | Where |
 | --- | --- |
 | Deep Sites: Kell and Port Halden, each across 2031, 2064, 2148 and 2312 | `content/locations/` |
-| Waypoints: nine, including Kell Village, Halden Market, the Undercity Bazaar and the Enclave 7 Commissary | `content/locations/`, `content/shops/` |
+| Waypoints: twelve, including Kell Village, Halden Market, the Undercity Bazaar and the Enclave 7 Commissary | `content/locations/`, `content/shops/` |
 | Party: the Auditor, Wren, Dax, ILO-9 and Mara Vesely, the last two by recruitment. Four active, the rest benched at half XP | `content/characters/` |
 | Tech trees: 14 or more nodes each, one condition node, one contradiction pair and per-era nodes | `content/nodes/` |
 | Enemies: eighteen across four families and four centuries, including Constructs with two health bars | `content/enemies/` |
-| Encounters: twenty-five, with Scan card, Skip and scripted surprise attacks | `content/encounters/` |
+| Encounters: twenty-six, with Scan card, Skip and scripted surprise attacks | `content/encounters/` |
 | Battle: Threads, Slack, Tempo with Rewind and Fork, Entropy with one Echo spawn per fight, Parley, Terms and Settlement | `src/core/battle/battle.ts` |
 | Backgrounds: one per location, four parallax layers each, one ambient animation, canvas particles | `src/art/pixel-backgrounds.ts` |
 | Music: four battle pieces and four hub pieces, Tempo-linked layers, Entropy detune | `content/scores/`, `src/audio/engine.ts` |
-| Timeline: nine choices across four eras and three sites. A later edit at an earlier era erases everything downstream of it at that site | `content/timelineChoices/`, `src/core/timeline.ts` |
+| Timeline: thirteen choices across four eras and five sites. A later edit at an earlier era erases everything downstream of it at that site | `content/timelineChoices/`, `src/core/timeline.ts` |
+| Ripple sites: six waypoints whose state is decided in another century or by party Sync, including the Tolliver chain from 2031 to 2148 | `content/locations/`, `content/quests/tolliver_fire.json` |
 | Equipment: two slots per character, era-specific gear, owner-locked pieces, Ownership-gated stock | `content/items/`, `src/ui/screens/roster.ts` |
 | Save: localStorage slot, JSON export and import, last three timeline snapshots | `src/core/save.ts` |
 | Era maps: both regions on one map per era, with roads and encounter zones | `content/maps/`, `src/ui/screens/map.ts` |
@@ -141,11 +143,12 @@ The design doc left these open; the slice picks a value so the loop is playable.
 
 ## Verified
 
-- `npm test`: 89 tests covering battle determinism, damage type rules, Rewind, Fork, Echo spawn,
-  surprise attacks, Mara's Terms and Settlement, node unlocking, timeline propagation across two
-  independent sites, Ownership-gated shop stock, map travel between both regions, save round trip,
-  two full end-to-end runs including the Handover, battle narration paging, art-library resolution,
-  and a 300-battle random-action fuzz that must never hang or throw.
+- `npm test`: 96 tests covering battle determinism, damage type rules, Rewind, Fork, Echo spawn,
+  surprise attacks, Mara's Terms and Settlement, node unlocking, timeline propagation across five
+  independent sites, ripple-site state, Ownership-gated shop stock, map travel and node gating,
+  save round trip, three full end-to-end runs including the Handover and the Tolliver chain, battle
+  narration paging, art-library resolution, and a 300-battle random-action fuzz that must never
+  hang or throw.
 - `npm run build` typechecks and produces a static build; it was driven end to end in headless
   Chromium with no console errors. Safari has not been tested from this environment.
 

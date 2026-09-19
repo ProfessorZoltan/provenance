@@ -1,0 +1,31 @@
+{
+  "id": "tolliver_safehouse",
+  "name": "The Cellar",
+  "era": "2148",
+  "currency": "barter tokens",
+  "stock": [
+    {
+      "item": "ration",
+      "price": 8
+    },
+    {
+      "item": "stim",
+      "price": 16
+    },
+    {
+      "item": "fog_shroud",
+      "price": 55
+    },
+    {
+      "item": "anchor_charm",
+      "price": 42
+    },
+    {
+      "item": "tide_weave",
+      "price": 80,
+      "when": [
+        "ownership>=0"
+      ]
+    }
+  ]
+}

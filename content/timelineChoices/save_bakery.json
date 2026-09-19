@@ -1,0 +1,14 @@
+{
+  "id": "save_bakery",
+  "era": "2031",
+  "site": "tolliver",
+  "name": "Sign the block to the family",
+  "ownershipDelta": 8,
+  "syncDelta": 5,
+  "flags": [
+    "tolliverSaved"
+  ],
+  "partyEffects": [],
+  "lean": "commons",
+  "summary": "One freehold on one corner stays in the name of the people who work it. In a hundred and seventeen years it is the only building on this coast that opens its door at night."
+}

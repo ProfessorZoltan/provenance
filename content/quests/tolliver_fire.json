@@ -1,0 +1,24 @@
+{
+  "id": "tolliver_fire",
+  "name": "The Night Shift",
+  "location": "tolliver_bakery_2031",
+  "giver": "mattie_tolliver",
+  "description": "Mattie Tolliver says men have been round three nights running, measuring. The block is being cleared and the bakery is the last freehold on it. Sit the night shift with her.",
+  "objectiveEncounter": "tolliver_2031_arson",
+  "rewards": {
+    "xp": 70,
+    "currency": 50,
+    "items": [
+      "relic_tolliver_sign"
+    ],
+    "skillPoints": 1,
+    "flags": [
+      "tolliverDefended"
+    ]
+  },
+  "dialogue": {
+    "offer": "tolliver_offer",
+    "inProgress": "tolliver_progress",
+    "complete": "tolliver_complete"
+  }
+}

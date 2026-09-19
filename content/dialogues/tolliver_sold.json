@@ -1,0 +1,20 @@
+{
+  "id": "tolliver_sold",
+  "lines": [
+    {
+      "speaker": "mattie_tolliver",
+      "text": "It's a good price and I've got two children. You'd take it. Don't stand there and tell me you wouldn't take it."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The Tollivers are paid, properly and legally, and they are fine. The corner burns in the spring regardless, because the claim was always the point."
+    },
+    {
+      "speaker": "dax",
+      "text": "Nobody did anything wrong. That's the bit that gets me. Every single person in that transaction behaved reasonably.",
+      "conditions": [
+        "party:dax"
+      ]
+    }
+  ]
+}

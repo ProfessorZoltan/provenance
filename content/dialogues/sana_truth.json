@@ -1,0 +1,20 @@
+{
+  "id": "sana_truth",
+  "lines": [
+    {
+      "speaker": "recruiter_sana",
+      "text": "Eighty-four years. Say that again."
+    },
+    {
+      "speaker": "recruiter_sana",
+      "text": "Then there's no list. You can't recruit people to a year, you can only tell them the date and watch them go home and sit down with it."
+    },
+    {
+      "speaker": "wren",
+      "text": "You told her the truth. It was the truth. I am only saying that both of those can be so.",
+      "conditions": [
+        "party:wren"
+      ]
+    }
+  ]
+}

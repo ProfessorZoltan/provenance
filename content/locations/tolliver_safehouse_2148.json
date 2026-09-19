@@ -1,0 +1,65 @@
+{
+  "id": "tolliver_safehouse_2148",
+  "name": "Tolliver Corner",
+  "kind": "waypoint",
+  "era": "2148",
+  "site": "tolliver",
+  "type": "Ripple site",
+  "art": "2148_tolliver_safehouse",
+  "description": "A collapsed brick corner on the tide line, vines through the roof. Somebody baked here once. Nobody has since.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2148_tolliver_safehouse:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2148_tolliver_safehouse:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2148_tolliver_safehouse:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2148_tolliver_safehouse:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "ash"
+  },
+  "music": "hub_2148",
+  "npcs": [],
+  "quests": [],
+  "encounters": [],
+  "links": [],
+  "timeLinks": [],
+  "variants": [
+    {
+      "when": [
+        "tolliverSaved"
+      ],
+      "art": "2148_tolliver_safehouse_present",
+      "description": "The Tolliver Safehouse. Lamps in the cellar, a barricade across the alley, and four generations of one family who never had to sell the freehold. Everyone on this coast knows the green pennant means a bed.",
+      "npcs": [
+        "safehouse_keeper"
+      ],
+      "shop": "tolliver_safehouse"
+    },
+    {
+      "when": [
+        "tolliverSold"
+      ],
+      "art": "2148_tolliver_safehouse_absent",
+      "description": "A collapsed brick corner and a scorch line under the vines, a hundred and seventeen years old. You were standing in it when it was still warm.",
+      "npcs": []
+    }
+  ]
+}

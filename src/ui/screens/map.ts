@@ -54,7 +54,9 @@ export function mapScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
   const cctx = conditionContext(content, state);
   const derived = deriveWorld(content, state.world, state.party);
   const flags = [...state.flags, ...derived.flags];
-  const nodes = map.nodes.map((n) => ({ n, ok: evalAll(n.requires, cctx) })).filter(({ n, ok }) => n.kind === 'location' || ok);
+  // A node whose `requires` are unmet is not on the map at all, location or encounter: a place that
+  // does not exist in this version of history should not be walkable to.
+  const nodes = map.nodes.map((n) => ({ n, ok: evalAll(n.requires, cctx) })).filter(({ ok }) => ok);
 
   html(root, `<section class="map">
     ${worldSvg(map, era, flags, nodes)}

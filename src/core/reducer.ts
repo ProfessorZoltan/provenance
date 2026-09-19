@@ -128,6 +128,10 @@ export const NPC_NAMES: Record<string, string> = {
   delegate_okafor: 'Delegate Okafor', commune_speaker: 'The Speaker', fence_moro: 'Moro',
   recruiter_sana: 'Sana', quarter_regular: 'A Glass Quarter regular', survivor_ives: 'Ives',
   supervisor_aldana: 'Supervisor Aldana', clerk_novi: 'Clerk Novi',
+  // Ripple sites.
+  mattie_tolliver: 'Mattie Tolliver', mattie_tolliver_after: 'Mattie Tolliver',
+  tolliver_offer: 'Mattie Tolliver', tolliver_progress: 'Mattie Tolliver', tolliver_complete: 'Mattie Tolliver',
+  safehouse_keeper: 'The Keeper', stacks_swimmer: 'The Swimmer', memorial_docent: 'The Docent',
   wren: 'Sister Wren', dax: 'Dax Okonkwo', ade: 'Captain Ade', militia: 'Militia Captain', narrator: '', player: 'The Auditor',
 };
 
@@ -375,7 +379,9 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       const target = content.locations[action.location];
       if (!target || target.era !== state.era) throw new Error('No road there');
       const map = mapFor(content, state.era);
-      if (!map?.nodes.some((n) => n.location === action.location)) throw new Error('Not on this map');
+      const node = map?.nodes.find((n) => n.location === action.location);
+      if (!node) throw new Error('Not on this map');
+      if (!evalAll(node.requires, conditionContext(content, state))) throw new Error('Not on this map');
       return arrive(content, state, action.location);
     }
     case 'TIME_JUMP': {

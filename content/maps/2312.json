@@ -61,6 +61,16 @@
       "radius": 70,
       "label": "Commissary",
       "icon": "market"
+    },
+    {
+      "id": "strand_memorial_2312",
+      "kind": "location",
+      "location": "strand_memorial_2312",
+      "x": 1080,
+      "y": 740,
+      "radius": 70,
+      "label": "Strand Memorial",
+      "icon": "gate"
     }
   ],
   "roads": [
@@ -93,6 +103,14 @@
       640,
       1720,
       670
+    ],
+    [
+      1380,
+      480,
+      1230,
+      600,
+      1130,
+      700
     ]
   ],
   "zones": [

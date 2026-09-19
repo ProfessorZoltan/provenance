@@ -1,0 +1,14 @@
+{
+  "id": "sell_bakery",
+  "era": "2031",
+  "site": "tolliver",
+  "name": "Take the clearance money",
+  "ownershipDelta": -5,
+  "syncDelta": -5,
+  "flags": [
+    "tolliverSold"
+  ],
+  "partyEffects": [],
+  "lean": "chosen",
+  "summary": "The Tollivers are paid, properly and legally, and the corner burns the following spring anyway. The family is fine. The corner is not."
+}

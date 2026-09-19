@@ -1,0 +1,14 @@
+{
+  "id": "causeway_hope",
+  "era": "2064",
+  "site": "causeway",
+  "name": "Tell them the roofs hold",
+  "ownershipDelta": 5,
+  "syncDelta": 5,
+  "flags": [
+    "causewayWarned"
+  ],
+  "partyEffects": [],
+  "lean": "commons",
+  "summary": "Sana starts teaching the causeway's children to swim. Eighty-four years later there are people on the rooftops who know why."
+}

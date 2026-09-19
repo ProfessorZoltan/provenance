@@ -48,6 +48,16 @@
       "radius": 70,
       "label": "Halden Market",
       "icon": "market"
+    },
+    {
+      "id": "tolliver_bakery_2031",
+      "kind": "location",
+      "location": "tolliver_bakery_2031",
+      "x": 1010,
+      "y": 790,
+      "radius": 70,
+      "label": "Tolliver Bakery",
+      "icon": "market"
     }
   ],
   "roads": [
@@ -80,6 +90,14 @@
       650,
       1700,
       700
+    ],
+    [
+      1380,
+      480,
+      1210,
+      620,
+      1060,
+      750
     ]
   ],
   "zones": [

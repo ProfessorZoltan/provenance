@@ -1,0 +1,14 @@
+{
+  "id": "causeway_truth",
+  "era": "2064",
+  "site": "causeway",
+  "name": "Tell them how long it takes",
+  "ownershipDelta": 0,
+  "syncDelta": -5,
+  "flags": [
+    "causewayTruth"
+  ],
+  "partyEffects": [],
+  "lean": "cinder",
+  "summary": "Sana stops recruiting. Knowing the date does not help anyone who has to live the years in between, and the causeway empties a decade early."
+}

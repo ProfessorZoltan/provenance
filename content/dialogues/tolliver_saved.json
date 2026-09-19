@@ -1,0 +1,20 @@
+{
+  "id": "tolliver_saved",
+  "lines": [
+    {
+      "speaker": "mattie_tolliver",
+      "text": "Then it's not for sale. Not this year, not to them, and it says so in writing now, which is the only kind of saying that lasts."
+    },
+    {
+      "speaker": "wren",
+      "text": "Provenance. That is the whole of it, isn't it. One line on one deed.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "It is a corner shop on a block nobody will remember. Write it down anyway: the record of who owned a thing, and when."
+    }
+  ]
+}
