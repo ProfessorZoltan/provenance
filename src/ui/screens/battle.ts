@@ -179,11 +179,47 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     actions.innerHTML = `<div class="eyebrow">Enemy turn</div><p class="small">${esc(actor?.name ?? '')} is acting.</p>`;
     ctx.setPrompts(prompts({ btn: 'scrollUp', label: 'Scroll log' }));
   } else if (ui.mode === 'menu') {
+    // Tempo abilities sit in the action list beside the abilities so they explain themselves.
+    // The shortcut glyph on each row teaches the button for players who prefer it.
+    const canFork = b.tempo >= rules.fork.cost && actor!.threads > rules.fork.threadCost;
+    const canRewind = b.rewindsLeft > 0 && b.tempo >= rules.rewind.cost && !!b.rewindPoint;
+    const forkReason = b.tempo < rules.fork.cost ? `Needs ${rules.fork.cost} Tempo.`
+      : actor!.threads <= rules.fork.threadCost ? 'Needs a thread to spare beyond the action itself.' : '';
+    const rewindReason = !b.rewindPoint ? 'Nothing to undo yet: the enemy has not acted.'
+      : b.rewindsLeft <= 0 ? 'No Rewinds left this battle.'
+      : b.tempo < rules.rewind.cost ? `Needs ${rules.rewind.cost} Tempo.` : '';
     const items: MenuItem[] = abilityItems(false);
+    items.push({
+      id: 'fork',
+      label: b.fork ? 'Commit the fork' : 'Fork',
+      shortcut: 'x',
+      cost: b.fork ? '' : `${rules.fork.cost} Tempo`,
+      hint: b.fork
+        ? 'Carry out the action you previewed, exactly as the preview showed it.'
+        : `${forkReason} Spend ${rules.fork.cost} Tempo and 1 thread to see exactly what an action would do before committing. Raises Entropy by ${rules.fork.entropy}.`.trim(),
+      disabled: !b.fork && !canFork,
+      onSelect: () => {
+        if (b.fork) { commit(b.fork.abilityId, b.fork.targetId || null, false); return; }
+        setMode('forkPick');
+      },
+    });
+    items.push({
+      id: 'rewind',
+      label: 'Rewind',
+      shortcut: 'lt',
+      cost: `${rules.rewind.cost} Tempo`,
+      hint: `${rewindReason} Spend ${rules.rewind.cost} Tempo to undo the enemy's last turn and make them take it again. ${b.rewindsLeft} left this battle. Raises Entropy by ${rules.rewind.entropy}.`.trim(),
+      disabled: !canRewind,
+      onSelect: () => {
+        store.dispatch({ type: 'BATTLE_REWIND' });
+        const e = store.lastError();
+        if (e) ctx.toast(e.message);
+      },
+    });
     const itemCount = Object.values(state.inventory.items).reduce((s, n) => s + n, 0);
     items.push({ id: 'items', label: 'Items', cost: `1⟋`, hint: itemCount ? `${itemCount} carried` : 'None carried', disabled: !itemCount || actor!.threads < 1, onSelect: () => setMode('items') });
     items.push({ id: 'end', label: 'End turn', shortcut: 'rt', hint: actor!.threads ? `Bank ${Math.min(actor!.threads, rules.slackCap + (b.passives[actor!.id]?.slackCap ?? 0))} Slack` : '', onSelect: () => store.dispatch({ type: 'BATTLE_END_TURN', actor: actor!.id }) });
-    actions.innerHTML = `<div class="eyebrow">${esc(actor!.name)} · ${actor!.threads} threads</div>`;
+    actions.innerHTML = `<div class="eyebrow">${esc(actor!.name)} · ${actor!.threads} threads · ${b.tempo} Tempo</div>`;
     const desc = document.createElement('div');
     desc.className = 'desc';
     const describe = (i: number) => { const it = items[i]; desc.textContent = it?.hint ?? content.abilities[it?.id ?? '']?.description ?? ''; };
@@ -191,12 +227,8 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     actions.appendChild(m.el);
     actions.appendChild(desc);
     describe(m.index);
-    const canFork = b.tempo >= rules.fork.cost && actor!.threads > rules.fork.threadCost;
-    const canRewind = b.rewindsLeft > 0 && b.tempo >= rules.rewind.cost && !!b.rewindPoint;
     ctx.setPrompts(prompts(
       { btn: 'dpad', label: 'Choose' }, { btn: 'a', label: 'Use' },
-      b.fork ? { btn: 'x', label: 'Commit fork' } : { btn: 'x', label: `Fork (${rules.fork.cost} Tempo)`, disabled: !canFork },
-      { btn: 'lt', label: `Rewind (${rules.rewind.cost} Tempo)`, disabled: !canRewind },
       { btn: 'y', label: 'Inspect' }, { btn: 'rt', label: 'End turn' },
     ));
   } else if (ui.mode === 'target' || ui.mode === 'forkTarget') {

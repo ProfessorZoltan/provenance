@@ -1,15 +1,72 @@
 {
   "id": "intro_2312",
   "lines": [
-    { "speaker": "narrator", "text": "Kell Monastery, 2312. Snow on the terraces. Four days since the Allocation Office flagged your file, three since you stopped running." },
-    { "speaker": "wren", "text": "You are the Auditor. The one who asked about Continuity Holdings. Sit. Nobody here reports to anyone." },
-    { "speaker": "dax", "text": "Nobody here except the drones, Sister. They count the village every night now. Since our guest arrived." },
-    { "speaker": "wren", "text": "The budget line you found predates the Steward. It has been paid, every quarter, for two hundred and eighty years. To people, Auditor. Not to a system." },
-    { "speaker": "player", "text": "A system does not need a budget line. A system does not have owners." },
-    { "speaker": "dax", "text": "Everything has owners. That is the whole problem." },
-    { "speaker": "wren", "text": "Under this chapel, time is layered. The monastery has stood here since 2031, and at a place like that, the eras touch. We can go down into 2148, when this was a fortress and the Quiet was new." },
-    { "speaker": "dax", "text": "My era. I was born in the Ash Camp two valleys over. If you want to know what really crushed the resistance, I can show you. It was not the machines." },
-    { "speaker": "wren", "text": "One warning. What we change down there changes up here. Look at the village before you go. Then look again when you come back.", "setFlags": ["metParty"] },
-    { "speaker": "narrator", "text": "Explore the monastery for random encounters, walk down to Kell Village for the shop and a favor for Old Pell, or take the stairs beneath the chapel into 2148." }
+    {
+      "speaker": "narrator",
+      "text": "Kell Monastery, 2312. Snow on the terraces. Four days since the Allocation Office flagged your file, three since you stopped running."
+    },
+    {
+      "speaker": "wren",
+      "text": "You are the Auditor. The one who asked about Continuity Holdings. Sit. Nobody here reports to anyone."
+    },
+    {
+      "speaker": "dax",
+      "text": "Nobody here except the drones, Sister. They count the village every night now. Since our guest arrived."
+    },
+    {
+      "speaker": "wren",
+      "text": "The budget line you found predates the Steward. It has been paid, every quarter, for two hundred and eighty years. To people, Auditor. Not to a system."
+    },
+    {
+      "speaker": "player",
+      "text": "A system does not need a budget line. A system does not have owners."
+    },
+    {
+      "speaker": "dax",
+      "text": "Everything has owners. That is the whole problem."
+    },
+    {
+      "speaker": "wren",
+      "text": "Under this chapel, time is layered. The monastery has stood here since 2031, and at a place like that, the eras touch. We can go down into 2148, when this was a fortress and the Quiet was new."
+    },
+    {
+      "speaker": "dax",
+      "text": "My era. I was born in the Ash Camp two valleys over. If you want to know what really crushed the resistance, I can show you. It was not the machines."
+    },
+    {
+      "speaker": "wren",
+      "text": "One warning. What we change down there changes up here. Look at the village before you go. Then look again when you come back.",
+      "setFlags": [
+        "metParty"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "One more thing before you sleep. You have never fought beside an anchor, so you do not know what we can do."
+    },
+    {
+      "speaker": "wren",
+      "text": "Everyone acts in threads. You get as many each turn as your Bandwidth. Most things cost one thread, heavy things cost two or three, and anything you do not spend banks as Slack for next turn, up to two."
+    },
+    {
+      "speaker": "wren",
+      "text": "Every thread the three of us spend feeds one gauge between us. Tempo. Two points a thread, forty at the top, and it belongs to the party, not to any one of us."
+    },
+    {
+      "speaker": "dax",
+      "text": "She is being modest. The gauge is hers. We just pay into it."
+    },
+    {
+      "speaker": "wren",
+      "text": "Tempo buys two things, and you will find both on the action list in a fight. Three of it lets me Rewind, and the last thing an enemy did to us comes undone. Two of it, and a thread, lets you Fork: see exactly what an action would do before you commit to it."
+    },
+    {
+      "speaker": "wren",
+      "text": "Neither is free. Pulling on time frays it, and the fraying is called Entropy. Past seventy it answers back, and what walks out of the fray is a copy of one of us. Nothing but Chronal damage touches those. Spend carefully."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Explore the monastery for random encounters, walk down to Kell Village for the shop and a favor for Old Pell, or take the stairs beneath the chapel into 2148."
+    }
   ]
 }

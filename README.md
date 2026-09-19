@@ -21,6 +21,9 @@ npm test           # Vitest reducer suite
 The build uses relative asset paths, so `dist/` needs no server. Fonts load from Google Fonts
 when online and fall back to system fonts offline.
 
+New players should start with the [player manual](docs/PLAYER_MANUAL.md): lore, controls, the
+Threads and Tempo systems, each character's starting abilities, and what Shield, Signal and Sync do.
+
 ## Controls
 
 Every on-screen prompt shows the button for the device you used last. Press any button on a
@@ -34,12 +37,12 @@ standard-mapping controller to switch to gamepad glyphs.
 | Fork (battle), Party (hub) | X | X |
 | Inspect enemy (battle), Tech trees (hub) | Y | Y |
 | Previous / next target, tab, character | LB / RB | Q / E |
-| Rewind (battle) | LT | Z |
 | End turn (battle) | RT | C |
 | Save / load menu | Start | M |
 | Settings | Select | Tab |
 | Scroll battle log | Right stick | PgUp / PgDn |
 | Dismiss a battle report | A | Enter |
+| Rewind (also in the action list) | LT | Z |
 
 Battles narrate themselves. Every hit, heal, miss, Tempo spend and Entropy spike appears in a box
 in the middle of the field, naming who did what to whom with which ability, and nothing else moves

@@ -390,3 +390,8 @@ body[data-reduced-motion='true'] *, body[data-reduced-motion='true'] *::before, 
 .battle .narration-more { margin-top: 8px; padding-top: 8px; border-top: 1px solid #38496f; font-size: 12px; display: flex; align-items: center; gap: 8px; }
 @keyframes narration-in { from { transform: translateY(6px); opacity: 0; } to { transform: none; opacity: 1; } }
 body[data-reduced-motion='true'] .battle .narration-box { animation: none; }
+/* The action list scrolls, but the description of the focused action stays pinned and visible. */
+.battle .actionmenu { display: flex; flex-direction: column; max-height: 300px; overflow: hidden; }
+.battle .actionmenu .eyebrow { flex: 0 0 auto; }
+.battle .actionmenu .menu { flex: 1 1 auto; overflow-y: auto; min-height: 0; }
+.battle .actionmenu .desc { flex: 0 0 auto; border-top: 1px solid #38496f; padding-top: 6px; }

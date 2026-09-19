@@ -7,7 +7,7 @@ import type { BattleLogEntry, BattleState } from '../types/state';
 const LINES_PER_PAGE = 3;
 
 let pages: BattleLogEntry[][] = [];
-let consumed = 0;
+let seen = new WeakSet<BattleLogEntry>();
 let key = '';
 
 function battleKey(b: BattleState): string {
@@ -19,7 +19,12 @@ function narratable(line: BattleLogEntry): boolean {
   return line.kind !== 'system';
 }
 
-/** Queue any log lines added since the last sync. Returns the page now on screen, if it is new. */
+/**
+ * Queue any log lines added since the last sync. Returns the page now on screen, if it is new.
+ * Lines are tracked by object identity rather than by count, because a Rewind rewrites the tail
+ * of the log: the surviving prefix keeps its entries, so the Rewind's own message still narrates
+ * while the undone turn's messages are dropped from the queue.
+ */
 export function syncNarration(b: BattleState | null): BattleLogEntry[] | null {
   if (!b) {
     resetNarration();
@@ -29,19 +34,19 @@ export function syncNarration(b: BattleState | null): BattleLogEntry[] | null {
   if (k !== key) {
     key = k;
     pages = [];
-    consumed = 0;
+    seen = new WeakSet();
   }
-  if (b.log.length < consumed) {
-    // A Rewind truncated the log: drop anything queued past the new end.
-    consumed = b.log.length;
-    pages = [];
-    return null;
+  const fresh: BattleLogEntry[] = [];
+  for (const line of b.log) {
+    if (seen.has(line)) continue;
+    seen.add(line);
+    if (narratable(line)) fresh.push(line);
   }
-  const fresh = b.log.slice(consumed).filter(narratable);
-  consumed = b.log.length;
-  if (!fresh.length) return null;
+  // Anything queued but not yet read that the Rewind erased never gets shown.
+  pages = pages.filter((p) => p.every((line) => b.log.includes(line)));
   const before = pages.length;
   for (let i = 0; i < fresh.length; i += LINES_PER_PAGE) pages.push(fresh.slice(i, i + LINES_PER_PAGE));
+  if (pages.length === before) return null;
   return before === 0 ? pages[0] : null;
 }
 
@@ -61,6 +66,6 @@ export function advanceNarration(): BattleLogEntry[] | null {
 
 export function resetNarration(): void {
   pages = [];
-  consumed = 0;
+  seen = new WeakSet();
   key = '';
 }

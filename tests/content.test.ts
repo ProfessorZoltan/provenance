@@ -33,3 +33,22 @@ describe('content', () => {
     }
   });
 });
+
+describe('teaching the systems', () => {
+  it('has Wren explain threads, Tempo, Rewind, Fork and Entropy in the Act 1 intro', () => {
+    const text = content.dialogues.intro_2312.lines.map((l) => l.text).join(' ');
+    for (const term of ['thread', 'Slack', 'Tempo', 'Rewind', 'Fork', 'Entropy']) {
+      expect(text, term).toContain(term);
+    }
+  });
+
+  it('lets the player ask Wren to go over the gauges again', () => {
+    const choice = content.dialogues.wren_hub.lines.flatMap((l) => l.choices ?? []).find((c) => c.next === 'wren_tempo_lesson');
+    expect(choice).toBeDefined();
+    const lesson = content.dialogues.wren_tempo_lesson.lines.map((l) => l.text).join(' ');
+    expect(lesson).toContain('Rewind');
+    expect(lesson).toContain('Fork');
+    expect(lesson).toContain('Entropy');
+    expect(lesson).toMatch(/two points|Two points/i);
+  });
+})
