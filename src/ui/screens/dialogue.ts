@@ -8,8 +8,8 @@ import { menu } from '../menu';
 
 const SPEAKER_RIG: Record<string, { rig: string; accent: string }> = {
   wren: { rig: 'wren', accent: 'var(--commons)' }, dax: { rig: 'dax', accent: 'var(--cinder)' },
-  ade: { rig: 'warden', accent: 'var(--commons)' }, pell: { rig: 'wren', accent: 'var(--commons)' },
-  ansel: { rig: 'auditor', accent: 'var(--commons)' }, militia: { rig: 'warden', accent: 'var(--cinder)' },
+  ade: { rig: 'ade', accent: 'var(--commons)' }, pell: { rig: 'pell', accent: 'var(--commons)' },
+  ansel: { rig: 'ansel', accent: 'var(--commons)' }, militia: { rig: 'militia', accent: 'var(--cinder)' },
 };
 
 export function dialogueScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {

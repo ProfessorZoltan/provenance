@@ -123,3 +123,13 @@ The design doc left these open; the slice picks a value so the loop is playable.
   a full end-to-end slice run and a 300-battle random-action fuzz that must never hang or throw.
 - `npm run build` typechecks and produces a static build; it was driven end to end in headless
   Chromium with no console errors. Safari has not been tested from this environment.
+
+## Pixel-art library
+
+The full design-guide art inventory is in [docs/ART_GUIDE.md](docs/ART_GUIDE.md). Browse the searchable catalog at `/art/` while running the game, or open `public/art/index.html` directly.
+
+- `npm run art:build` regenerates the original SVGs, manifests, catalog and Markdown cross-reference from `scripts/art-*.mjs`.
+- `npm run art:check` validates coverage, file references, pose bounds and distinct states.
+- `public/art/catalog.json` is the complete inventory. `src/art/library.ts` provides runtime lookup.
+
+The artwork covers future game content; it does not implement the unreleased locations, recruitment, quests or endings. See the guide for proposed visual interpretations and integration examples.

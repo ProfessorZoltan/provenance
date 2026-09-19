@@ -72,11 +72,12 @@ export function createApp(store: Store, content: ContentDB, input: Input, audio:
     const derived = deriveWorld(content, state.world, state.party);
     const flags = [...state.flags, ...derived.flags];
     const variant = activeVariant(content, state, loc);
-    const key = `${loc.id}|${variant?.shop ?? ''}|${state.settings.reducedMotion}`;
+    const isBattle = state.screen.id === 'battle';
+    const key = `${loc.id}|${variant?.shop ?? ''}|${state.settings.reducedMotion}|${isBattle}|${flags.join(',')}`;
     applyEra(era, state.settings.reducedMotion);
     if (key !== bgKey) {
       bg?.destroy();
-      bg = mountBackground(bgRoot, loc, era, flags, state.settings.reducedMotion);
+      bg = mountBackground(bgRoot, loc, era, flags, state.settings.reducedMotion, isBattle);
       bgKey = key;
     }
   }

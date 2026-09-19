@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40" width="32" height="40" shape-rendering="crispEdges" role="img" aria-labelledby="title desc">
+<title id="title">ILO-9 down echo</title><desc id="desc">Original rectangular pixel art generated for Provenance.</desc>
+<g id="echo-offsets"><rect x="3" y="7" width="4" height="1" fill="#A9F2FC"/><rect x="24" y="14" width="3" height="1" fill="#8E62D1"/><rect x="6" y="27" width="2" height="5" fill="#A9F2FC"/></g><g id="legs"><rect x="20" y="36" width="11" height="2" fill="#17232C"/></g><g id="torso"><rect x="12" y="29" width="12" height="7" fill="#17232C"/><rect x="13" y="30" width="10" height="5" fill="#F1EFE8"/></g><g id="arm-l"><rect x="2" y="35" width="10" height="2" fill="#17232C"/></g><g id="arm-r"><rect x="23" y="34" width="7" height="3" fill="#17232C"/></g><g id="head"><rect x="4" y="29" width="9" height="6" fill="#17232C"/><rect x="5" y="30" width="7" height="4" fill="#F1EFE8"/></g><g id="weapon"><rect x="5" y="37" width="20" height="1" fill="#4FD1E6"/></g>
+</svg>

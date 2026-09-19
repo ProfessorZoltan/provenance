@@ -1,3 +1,4 @@
+import { artAssetUrl } from '../../art/library';
 import { rigSvg } from '../../art/rigs';
 import { abilityOptions, current, hasStatus, validTargets } from '../../core/battle/battle';
 import type { AbilityDef } from '../../types/content';
@@ -76,17 +77,19 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
 
   const rigFor = (c: Combatant): string => {
     if (c.side === 'party') return rigSvg(content.characters[c.ref].rig, accentFor(content, state, c.ref), 'currentColor', c.down ? 'down' : 'idle');
-    if (c.echoOf) return rigSvg(content.characters[c.echoOf].rig, accentFor(content, state, c.echoOf), 'currentColor', c.down ? 'down' : 'idle', true);
+    if (c.echoOf) return rigSvg(content.characters[c.echoOf].rig, accentFor(content, state, c.echoOf), 'currentColor', c.down ? 'down' : 'idle', true, b.era);
     const def = content.enemies[c.ref];
     const accent = c.family === 'echo' ? 'var(--choir)' : c.family === 'warden' ? 'var(--cinder)' : 'var(--accent)';
-    return rigSvg(def?.rig ?? 'auditor', accent, 'currentColor', c.down ? 'down' : 'idle', c.family === 'echo');
+    const baseRig = def?.rig ?? 'auditor';
+    const eraRig = `${baseRig}_${b.era}`;
+    return rigSvg(artAssetUrl(eraRig, 'idle') ? eraRig : baseRig, accent, 'currentColor', c.down ? 'down' : 'idle', c.family === 'echo');
   };
 
   const entropyClass = b.entropy >= rules.entropyThreshold ? 'e3' : b.entropy >= 50 ? 'e2' : b.entropy >= 25 ? 'e1' : '';
   const logLines = b.log.slice(Math.max(0, b.log.length - 16 - ui.logScroll), b.log.length - ui.logScroll);
 
   html(root, `<section class="battle">
-    <div class="stage">
+    <div class="stage"><div class="field-label">${esc(content.locations[state.location].name)} / ${esc(b.era)}</div>
       <div class="frame ${entropyClass}"></div>
       <div class="enemies">${enemies.map((e) => `<div class="enemy ${e.down ? 'down' : ''} ${targeted?.id === e.id ? 'targeted' : ''} ${actor?.id === e.id ? 'acting' : ''}" data-id="${e.id}">
         <div class="rig">${rigFor(e)}</div>
@@ -97,7 +100,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
       </div>`).join('')}</div>
       <div class="actorsrow">${party.map((p) => `<div class="actor ${p.down ? 'down' : ''} ${actor?.id === p.id ? 'active' : ''} ${targeted?.id === p.id ? 'targeted' : ''}">${rigFor(p)}</div>`).join('')}</div>
     </div>
-    <div class="gauges panel">
+    <div class="telemetry"><div class="gauges panel">
       ${tempoRing(b.tempo, rules.tempoMax)}
       <div>
         <div class="small">Round ${b.round} · ${b.surprise ? 'Surprise attack' : content.encounters[b.encounterId].name}</div>
@@ -109,7 +112,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
       ${b.fork ? `<div class="panel fork"><div class="eyebrow">Fork · ${esc(content.abilities[b.fork.abilityId].name)}${b.fork.targetId ? ' on ' + esc(b.combatants.find((c) => c.id === b.fork!.targetId)?.name ?? '') : ''}</div><ul class="small">${b.fork.lines.map((l) => `<li>${esc(l)}</li>`).join('')}</ul><div class="small" style="margin-top:6px">X commits this exact outcome.</div></div>` : ''}
       <div class="panel log" id="log">${logLines.map((l) => `<div class="${l.kind}">${esc(l.text)}</div>`).join('')}</div>
     </div>
-    <div class="bottom">
+    </div><div class="bottom">
       ${party.map((p) => {
         const cap = rules.slackCap + (b.passives[p.id]?.slackCap ?? 0);
         return `<div class="card panel ${actor?.id === p.id ? 'active' : ''} ${p.down ? 'down' : ''} ${targeted?.id === p.id ? 'targeted' : ''}">

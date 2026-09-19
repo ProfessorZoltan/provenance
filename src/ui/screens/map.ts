@@ -1,3 +1,4 @@
+import { tokenSvg } from '../../art/rigs';
 import { evalAll } from '../../core/conditions';
 import { conditionContext } from '../../core/encounter';
 import { mapFor } from '../../core/reducer';
@@ -63,7 +64,7 @@ export function mapScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
   token.innerHTML = `<ellipse cx="0" cy="14" rx="30" ry="8" fill="${era.palette.ink}" opacity="0.15"/>` + state.activeParty.map((id, i) => {
     const ox = (i - 1) * 22, oy = i === 0 ? 0 : -8;
     const col = i === 0 ? accent : content.characters[id].accent;
-    return `<g transform="translate(${ox} ${oy})"><circle r="15" fill="${era.palette.ink}"/><circle r="6" fill="${col}"/><title>${esc(content.characters[id].shortName)}</title></g>`;
+    return `<g transform="translate(${ox} ${oy})"><g transform="translate(-18 -24) scale(2)">${tokenSvg(content.characters[id].rig, col).replace('<svg ', '<svg width="18" height="22" ')}</g><title>${esc(content.characters[id].shortName)}</title></g>`;
   }).join('');
 
   let x = state.map.x, y = state.map.y;
