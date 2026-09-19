@@ -26,7 +26,7 @@ The library contains **151 catalog entries** and **637 standalone SVG files**. O
 ## Using this library in Claude Code or another editor
 
 1. Read this guide and `docs/GAME_DESIGN_v0.1.md` before adding content.
-2. Open `public/art/index.html` or `/art/` in the running game; search the catalog by name, era or role.
+2. Open `public/art/index.html` or `/art/` on the deployed site; search the catalog by name, era or role. `npm run art:export` writes `art-directory.html`, the same page with every SVG inlined, for reading offline or on a phone.
 3. Use `public/art/catalog.json` as the complete inventory. All `files` values are relative to `public/art/`. `src/art/catalog.json` is the bundled runtime subset.
 4. Use `artAssetUrl(id, role)` and `librarySvg(id, role)` from `src/art/library.ts` to render by stable ID. Do not copy pixel data into game logic.
 5. Add gameplay content separately in the existing JSON schemas. An art entry alone is not an unlock or encounter.

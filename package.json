@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "art:build": "node scripts/build-art.mjs",
-    "art:check": "node scripts/check-art.mjs"
+    "art:check": "node scripts/check-art.mjs",
+    "art:export": "node scripts/art-export.mjs"
   },
   "dependencies": {
     "tone": "^15.1.22"

@@ -151,7 +151,7 @@ The design doc left these open; the slice picks a value so the loop is playable.
 
 ## Verified
 
-- `npm test`: 118 tests covering battle determinism, damage type rules, Rewind, Fork, Echo spawn,
+- `npm test`: 120 tests covering battle determinism, damage type rules, Rewind, Fork, Echo spawn,
   surprise attacks, Mara's Terms and Settlement, Hale's Held Shot and Killing Silence, node
   unlocking, timeline propagation across six independent sites, ripple-site state, Ownership-gated
   shop stock, map travel and node gating, save round trip, five full end-to-end runs including the
@@ -163,10 +163,21 @@ The design doc left these open; the slice picks a value so the loop is playable.
 
 ## Pixel-art library
 
-The full design-guide art inventory is in [docs/ART_GUIDE.md](docs/ART_GUIDE.md). Browse the searchable catalog at `/art/` while running the game, or open `public/art/index.html` directly.
+The full design-guide art inventory is in [docs/ART_GUIDE.md](docs/ART_GUIDE.md). The searchable
+visual catalog is a plain web page with no dependencies, so it opens anywhere, including a phone.
+
+| Where | How to get there | Needs |
+| --- | --- | --- |
+| The deployed site | `/art/` on whatever host serves `dist/`, e.g. `https://<your-deploy>/art/` | A network, nothing else |
+| A local checkout | `npm run dev` then `/art/`, or open `public/art/index.html` in a browser | The repository on that machine |
+| Offline, one file | `npm run art:export` writes `art-directory.html` (~3 MB, every SVG inlined). Mail it to yourself, drop it in Drive, open it from Files | Nothing. It makes no network requests at all |
+
+`public/` is copied verbatim into `dist/` by Vite, so the catalog ships with every build of the game
+without any extra deployment step.
 
 - `npm run art:build` regenerates the original SVGs, manifests, catalog and Markdown cross-reference from `scripts/art-*.mjs`.
 - `npm run art:check` validates coverage, file references, pose bounds and distinct states.
+- `npm run art:export` bundles the catalog into one self-contained HTML file for offline reading.
 - `public/art/catalog.json` is the complete inventory. `src/art/library.ts` provides runtime lookup.
 
 The artwork covers future game content; it does not implement the unreleased locations, recruitment, quests or endings. See the guide for proposed visual interpretations and integration examples.
