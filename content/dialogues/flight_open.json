@@ -1,0 +1,21 @@
+{
+  "id": "flight_open",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The service door lets out onto the allocation yard, and the allocation yard lets out onto the road, and the road goes two ways."
+    },
+    {
+      "speaker": "player",
+      "text": "East is the Basin and the cooling fields, and there is nothing out there but the thing I have just annoyed. West is the valley."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Kell Monastery is north-west, up the valley, about four hours on foot. Walk. Running is what they are paid to notice."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Nobody is behind you yet. That is not the same as nobody coming."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "term_reconcile",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "It runs in four seconds, the way it always does, and it does not close."
+    },
+    {
+      "speaker": "player",
+      "text": "Off by a constant. Not a rounding drift, not a rate change. The same figure, every quarter, as far back as the shell will index."
+    },
+    {
+      "speaker": "narrator",
+      "text": "There is one line it cannot allocate to a department: 88-231-C. Quarterly. Outbound.",
+      "setFlags": [
+        "foundDiscrepancy"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "Outbound. The Enclave pays somebody."
+    }
+  ]
+}

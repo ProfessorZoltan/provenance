@@ -32,6 +32,8 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
     items.push({ id: 'tech', label: 'Tech trees', shortcut: 'y', hint: `${state.activeParty.reduce((s, id) => s + state.party[id].skillPoints, 0)} skill points unspent`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'tech', character: 'player' } }) });
     items.push({ id: 'roster', label: 'Roster and gear', shortcut: 'x', hint: `${state.activeParty.length} of ${content.rules.activePartyMax} active`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'roster' } }) });
     items.push({ id: 'inv', label: 'Items and timeline', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'inventory' } }) });
+    const unread = state.log.length - state.logRead;
+    items.push({ id: 'log', label: 'Case log', shortcut: 'lb', hint: unread > 0 ? `${unread} new` : `${state.log.length} entries`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'log' } }) });
     items.push({ id: 'manual', label: 'Player manual', hint: 'How to play' , onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'manual' } }) });
     items.push({ id: 'save', label: 'Save / load', shortcut: 'start', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'save' } }) });
     items.push({ id: 'settings', label: 'Settings', shortcut: 'select', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'settings' } }) });

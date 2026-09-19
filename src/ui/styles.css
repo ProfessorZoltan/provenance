@@ -503,3 +503,17 @@ section.tech > div:first-child { overflow-y: auto; min-height: 0; }
 .minimap-panel { position: absolute; left: 18px; bottom: 18px; width: 210px; padding: 8px; opacity: 0.92; }
 .minimap { display: block; width: 100%; height: auto; }
 @media (prefers-reduced-motion: reduce) { .minimap-panel { opacity: 1; } }
+
+/* The case log reuses the manual's two-column shell. */
+.log .toc .page { display: flex; justify-content: space-between; gap: 10px; }
+.log .toc .count { opacity: 0.55; font-variant-numeric: tabular-nums; }
+.log tr.superseded td { opacity: 0.5; text-decoration: line-through; }
+.log tr.superseded td:last-child, .log tr.superseded .small { text-decoration: none; }
+
+/* The prologue interior: one room, walked top-down. */
+.room { position: relative; height: 100%; display: grid; place-items: center; }
+.room-svg { width: min(100%, 1100px); height: auto; max-height: calc(100vh - 150px); }
+.room .prop rect, .room .prop circle, .room .prop line { transition: filter 160ms ease; }
+.room .prop.near rect, .room .prop.near circle { filter: drop-shadow(0 0 6px var(--accent)); }
+.room .hud { position: absolute; top: 18px; left: 18px; max-width: 380px; }
+@media (prefers-reduced-motion: reduce) { .room .prop rect, .room .prop circle, .room .prop line { transition: none; } }

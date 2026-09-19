@@ -91,6 +91,29 @@
       "requires": [
         "quest:gate_drone:active"
       ]
+    },
+    {
+      "id": "allocation_office_2312",
+      "kind": "location",
+      "location": "allocation_office_2312",
+      "x": 1600,
+      "y": 830,
+      "radius": 72,
+      "label": "Allocation Office",
+      "icon": "enclave"
+    },
+    {
+      "id": "valley_road",
+      "kind": "encounter",
+      "encounter": "office_2312_stairwell",
+      "x": 1010,
+      "y": 620,
+      "radius": 52,
+      "label": "Two on the road",
+      "icon": "gate",
+      "requires": [
+        "flag:fleeing"
+      ]
     }
   ],
   "roads": [
@@ -149,6 +172,14 @@
       610,
       2040,
       710
+    ],
+    [
+      1600,
+      830,
+      1500,
+      700,
+      1450,
+      550
     ]
   ],
   "zones": [

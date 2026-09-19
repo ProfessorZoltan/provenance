@@ -1,0 +1,26 @@
+{
+  "id": "kell_arrive_2312",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Four hours up the valley road. The monastery is a low building with a light on, which at this hour in this century is close to a miracle."
+    },
+    {
+      "speaker": "narrator",
+      "text": "A woman in a habit is standing in the doorway as though she has been expecting somebody for some time and is not fussy about who."
+    },
+    {
+      "speaker": "wren",
+      "text": "You walked up. Nobody walks up. Come inside before you are a silhouette on a road."
+    },
+    {
+      "speaker": "player",
+      "text": "You know who I am."
+    },
+    {
+      "speaker": "wren",
+      "text": "Only that you are the sort of trouble that arrives on foot at four in the morning. Come in. There is a man inside who is going to be extremely rude to you, and he is worth listening to anyway.",
+      "action": "prologue:arrive"
+    }
+  ]
+}

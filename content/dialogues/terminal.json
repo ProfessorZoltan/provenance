@@ -1,0 +1,52 @@
+{
+  "id": "terminal",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Four screens, an audit shell, and the whole quarter open in front of you.",
+      "choices": [
+        {
+          "text": "Reconcile the quarter.",
+          "next": "term_reconcile",
+          "conditions": [
+            "!flag:foundDiscrepancy"
+          ]
+        },
+        {
+          "text": "Trace the counterparty on the open line.",
+          "next": "term_counterparty",
+          "conditions": [
+            "flag:foundDiscrepancy",
+            "!flag:foundHoldings"
+          ]
+        },
+        {
+          "text": "Pull the full payment history.",
+          "next": "term_history",
+          "conditions": [
+            "flag:foundHoldings",
+            "!flag:foundTheLine"
+          ]
+        },
+        {
+          "text": "Query the governing charter itself.",
+          "next": "term_charter",
+          "conditions": [
+            "flag:foundTheLine",
+            "!flag:readCharter"
+          ]
+        },
+        {
+          "text": "Read it all again.",
+          "next": "term_reread",
+          "conditions": [
+            "flag:readCharter"
+          ]
+        },
+        {
+          "text": "Sit back."
+        }
+      ]
+    }
+  ]
+}

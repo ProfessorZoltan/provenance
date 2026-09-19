@@ -38,6 +38,8 @@ export function initialState(): GameState {
     scan: null,
     dialogue: null,
     journal: [],
+    log: [],
+    logRead: 0,
     map: { x: 800, y: 250 },
     back: { id: 'hub' },
     battleReturn: 'hub',
@@ -171,6 +173,8 @@ function applyLine(state: GameState, line: DialogueLine): GameState {
 function startDialogue(content: ContentDB, state: GameState, id: string, returnTo: Screen): GameState {
   const d = content.dialogues[id];
   if (!d) throw new Error(`Unknown dialogue ${id}`);
+  // Having opened a conversation is a condition in its own right; the case log leans on it.
+  state = addFlags(state, [`seen:${id}`]);
   const idx = d.lines.findIndex((l) => lineVisible(content, state, l));
   if (idx < 0) return { ...state, dialogue: null, screen: returnTo };
   state = { ...state, dialogue: { id, index: idx, returnTo }, screen: { id: 'dialogue' } };
@@ -188,6 +192,17 @@ function runAction(content: ContentDB, state: GameState, action: string, returnT
       throw new Error(`Unknown quest action ${action}`);
     case 'recruit':
       return reduce(content, state, { type: 'RECRUIT', character: a });
+    case 'prologue':
+      // Leaving the office puts the Auditor on the 2312 map, alone, four hours short of Kell.
+      if (a === 'flee') {
+        let s = addFlags({ ...state, dialogue: null }, ['fleeing']);
+        s = journal(s, 'File flagged. Out the service side and up the valley road.');
+        s = arrive(content, s, 'allocation_office_2312');
+        s = startDialogue(content, s, 'flight_open', { id: 'map' });
+        return { ...s, back: { id: 'map' } };
+      }
+      if (a === 'arrive') return joinAtKell(content, { ...state, dialogue: null });
+      throw new Error(`Unknown prologue step ${action}`);
     default:
       throw new Error(`Unknown dialogue action ${action}`);
   }
@@ -200,7 +215,7 @@ function dialogueNext(content: ContentDB, state: GameState): GameState {
   const line = d.lines[dlg.index];
   if (line.action) {
     state = runAction(content, state, line.action, dlg.returnTo);
-    if (state.screen.id !== 'dialogue') return state;
+    if (state.screen.id !== 'dialogue' || state.dialogue?.id !== dlg.id) return state;
   }
   if (line.next) return startDialogue(content, state, line.next, dlg.returnTo);
   for (let i = dlg.index + 1; i < d.lines.length; i++) {
@@ -210,6 +225,20 @@ function dialogueNext(content: ContentDB, state: GameState): GameState {
     }
   }
   return { ...state, dialogue: null, screen: dlg.returnTo };
+}
+
+/** The end of the prologue: Wren and Dax are met, and the game proper starts at Kell. */
+function joinAtKell(content: ContentDB, state: GameState): GameState {
+  let s: GameState = {
+    ...state,
+    dialogue: null,
+    flags: state.flags.filter((f) => f !== 'prologue' && f !== 'fleeing'),
+  };
+  s = reduce(content, s, { type: 'RECRUIT', character: 'wren' });
+  s = reduce(content, s, { type: 'RECRUIT', character: 'dax' });
+  s = addFlags(s, ['metParty']);
+  s = journal(s, 'Fled the Allocation Office. Kell Monastery, 2312.');
+  return arrive(content, s, 'kell_2312');
 }
 
 // ---------- travel ----------
@@ -224,6 +253,8 @@ function arrive(content: ContentDB, state: GameState, locationId: string): GameS
   const node = mapFor(content, loc.era)?.nodes.find((n) => n.location === locationId);
   const map = node ? { x: node.x, y: node.y + node.radius + 24 } : state.map;
   state = { ...state, location: locationId, era: loc.era, screen: { id: 'hub' }, scan: null, map, back: { id: 'hub' } };
+  // Having stood somewhere is a condition in its own right; the case log leans on it.
+  state = addFlags(state, [`been:${locationId}`]);
   const variant = activeVariant(content, state, loc);
   if (variant?.storyDialogue && !state.flags.includes(`seen:${variant.storyDialogue}`)) {
     state = addFlags(state, [`seen:${variant.storyDialogue}`]);
@@ -312,7 +343,29 @@ function finishBattle(content: ContentDB, state: GameState): GameState {
 // ---------- reducer ----------
 
 export function createReducer(content: ContentDB) {
-  return (state: GameState, action: Action): GameState => reduce(content, state, action);
+  return (state: GameState, action: Action): GameState => learn(content, reduce(content, state, action));
+}
+
+/**
+ * Appends any case-log entry whose conditions now hold. The log only ever grows: an entry whose
+ * condition stops holding later is marked superseded on screen rather than forgotten, because the
+ * Auditor does not unlearn a thing just because the century it came from was rewritten.
+ */
+export function learn(content: ContentDB, state: GameState): GameState {
+  if (!state.started) return state;
+  const known = new Set(state.log);
+  const ctx = conditionContext(content, state);
+  const found = Object.values(content.log)
+    .filter((e) => !known.has(e.id) && evalAll(e.when, ctx))
+    .sort((a, b) => a.order - b.order)
+    .map((e) => e.id);
+  return found.length ? { ...state, log: [...state.log, ...found] } : state;
+}
+
+/** An entry the Auditor learned whose condition no longer holds: true then, not true now. */
+export function logSuperseded(content: ContentDB, state: GameState): Set<string> {
+  const ctx = conditionContext(content, state);
+  return new Set(state.log.filter((id) => content.log[id] && !evalAll(content.log[id].when, ctx)));
 }
 
 function reduce(content: ContentDB, state: GameState, action: Action): GameState {
@@ -321,15 +374,26 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       const base = initialState();
       const seed = action.seed || seedFromString(String(Date.now()));
       const sync = action.lean === 'cinder' ? -30 : action.lean === 'choir' ? 30 : 0;
-      const party = {
-        player: newCharacter(content, 'player', sync, 0),
-        wren: newCharacter(content, 'wren', content.characters.wren.baseStats.sync, 0),
-        dax: newCharacter(content, 'dax', content.characters.dax.baseStats.sync, 0),
+      // The prologue is walked alone: Wren and Dax are at Kell, four hours up the valley road.
+      let s: GameState = {
+        ...base, seed, rng: seed, started: true,
+        party: { player: newCharacter(content, 'player', sync, 0) },
+        activeParty: ['player'],
+        location: 'allocation_office_2312',
+        map: { x: content.rooms.allocation_office.spawn.x, y: content.rooms.allocation_office.spawn.y },
+        screen: { id: 'room', room: 'allocation_office' },
       };
-      let s: GameState = { ...base, seed, rng: seed, started: true, party, activeParty: ['player', 'wren', 'dax'] };
-      s = addFlags(s, [`lean:${action.lean}`]);
-      s = journal(s, 'Fled the Allocation Office. Kell Monastery, 2312.');
-      return arrive(content, s, 'kell_2312');
+      s = addFlags(s, [`lean:${action.lean}`, 'prologue']);
+      s = journal(s, 'Allocation Office, Enclave 7. The quarter will not close.');
+      const room = content.rooms.allocation_office;
+      return room.storyDialogue
+        ? startDialogue(content, s, room.storyDialogue, { id: 'room', room: room.id })
+        : s;
+    }
+    case 'PROLOGUE_SKIP': {
+      // The New Game screen offers this on a replay, and the tests use it to get to the game.
+      if (!state.flags.includes('prologue')) return state;
+      return joinAtKell(content, state);
     }
     case 'LOAD_STATE': {
       const base = initialState();
@@ -338,10 +402,11 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       return { ...s, battle: live, scan: null, screen: live ? { id: 'battle' } : s.dialogue ? { id: 'dialogue' } : { id: 'hub' } };
     }
     case 'SET_SCREEN': {
+      if (action.screen.id === 'log') state = { ...state, logRead: state.log.length };
       // Leaving the result screen discards the finished battle.
       const battle = state.screen.id === 'battleResult' && action.screen.id !== 'battleResult' ? null : state.battle;
       // Overlay screens remember whether they were opened from the map or from inside a location.
-      const overlay = ['tech', 'party', 'inventory', 'save', 'settings', 'shop', 'manual', 'roster'].includes(action.screen.id);
+      const overlay = ['tech', 'party', 'inventory', 'save', 'settings', 'shop', 'manual', 'roster', 'log'].includes(action.screen.id);
       const back = overlay && (state.screen.id === 'hub' || state.screen.id === 'map') ? state.screen : state.back;
       return { ...state, screen: action.screen, battle, back };
     }
@@ -370,7 +435,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       if (choice.syncDelta) state = shiftSync(state, 'player', choice.syncDelta);
       if (choice.timelineChoice) state = reduce(content, state, { type: 'TIMELINE_CHOICE', choice: choice.timelineChoice });
       if (choice.action) state = runAction(content, state, choice.action, dlg.returnTo);
-      if (state.screen.id !== 'dialogue') return state;
+      if (state.screen.id !== 'dialogue' || state.dialogue?.id !== dlg.id) return state;
       if (choice.next) return startDialogue(content, state, choice.next, dlg.returnTo);
       // Fall through to the next visible line after the choice line.
       const d = content.dialogues[dlg.id];

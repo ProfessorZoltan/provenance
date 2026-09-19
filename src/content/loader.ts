@@ -6,7 +6,7 @@ const files = import.meta.glob('../../content/**/*.json', { eager: true, import:
 
 const FOLDERS = [
   'characters', 'nodes', 'abilities', 'enemies', 'encounters', 'locations', 'eras',
-  'scores', 'dialogues', 'timelineChoices', 'quests', 'shops', 'items', 'maps',
+  'scores', 'dialogues', 'timelineChoices', 'quests', 'shops', 'items', 'maps', 'log', 'rooms',
 ] as const;
 
 type Folder = (typeof FOLDERS)[number];
@@ -103,6 +103,25 @@ function validate(c: ContentDB): void {
   }
   for (const l of Object.values(c.locations)) {
     need(Object.values(c.maps).some((m) => m.era === l.era && m.nodes.some((n) => n.location === l.id)), `location ${l.id}: no map node in ${l.era}`);
+  }
+  for (const r of Object.values(c.rooms)) {
+    need(!!c.eras[r.era], `room ${r.id}: unknown era ${r.era}`);
+    need(!!c.scores[r.music], `room ${r.id}: unknown score ${r.music}`);
+    if (r.storyDialogue) need(!!c.dialogues[r.storyDialogue], `room ${r.id}: unknown story dialogue ${r.storyDialogue}`);
+    for (const p of r.props) {
+      if (p.kind === 'interact') {
+        need(!!p.dialogue, `room ${r.id}: prop ${p.id} has nothing to say`);
+        if (p.dialogue) need(!!c.dialogues[p.dialogue], `room ${r.id}: prop ${p.id} unknown dialogue ${p.dialogue}`);
+        need(!!p.label, `room ${r.id}: prop ${p.id} needs a label for its prompt`);
+      }
+      need(p.x >= 0 && p.y >= 0 && p.x + p.w <= r.width && p.y + p.h <= r.height, `room ${r.id}: prop ${p.id} is outside the room`);
+    }
+  }
+  const CATEGORIES = ['people', 'places', 'dates', 'clues'];
+  for (const e of Object.values(c.log)) {
+    need(CATEGORIES.includes(e.category), `log ${e.id}: unknown category ${e.category}`);
+    need(e.when.length > 0, `log ${e.id}: needs at least one condition, or it is known from the start`);
+    need(!!e.source, `log ${e.id}: needs a source`);
   }
   if (problems.length) throw new Error('Content validation failed:\n' + problems.join('\n'));
 }

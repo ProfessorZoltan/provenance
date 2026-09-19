@@ -1,0 +1,20 @@
+{
+  "id": "prologue_window",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Housing blocks in a grid, lit to the level the Steward has decided a night needs."
+    },
+    {
+      "speaker": "player",
+      "text": "Forty thousand people on this whole coast. The archive says nine million lived here once. I have never been able to make that number feel like anything."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The corridor lights are on now, all of them, and there is a shape at the far end of the glass that is not on this side of it.",
+      "conditions": [
+        "flag:fileFlagged"
+      ]
+    }
+  ]
+}

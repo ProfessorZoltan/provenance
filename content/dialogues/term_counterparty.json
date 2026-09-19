@@ -1,0 +1,24 @@
+{
+  "id": "term_counterparty",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The counterparty field resolves to a name and nothing else."
+    },
+    {
+      "speaker": "player",
+      "text": "Continuity Holdings. No address. No department. No staff record. No floor in any building in any Enclave.",
+      "setFlags": [
+        "foundHoldings"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "You file the standard query. It comes back accepted, and then it comes back nothing."
+    },
+    {
+      "speaker": "player",
+      "text": "Four times I have asked this shell a question it would not answer. All four were tonight."
+    }
+  ]
+}

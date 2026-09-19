@@ -1,0 +1,25 @@
+{
+  "id": "term_charter",
+  "lines": [
+    {
+      "speaker": "player",
+      "text": "Right. If it is paying somebody, there is an instrument that says so."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The Steward's governing charter opens. It is not a statute. It has parties, a term, and a schedule of consideration, which is what a contract has."
+    },
+    {
+      "speaker": "player",
+      "text": "There is a beneficiary clause and the record cannot resolve who it names. It has never been able to. It has simply never been asked.",
+      "setFlags": [
+        "readCharter"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "Somewhere below this floor a fan changes pitch. Your session ends without a prompt.",
+      "next": "prologue_flagged"
+    }
+  ]
+}

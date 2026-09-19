@@ -1,0 +1,17 @@
+{
+  "id": "prologue_open",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Enclave 7, 2312. Fourth floor, twenty-three forty. Everyone else signed out at six because the Steward allocates rest and the Steward is not cruel."
+    },
+    {
+      "speaker": "player",
+      "text": "Eleven years I have closed this quarter in an afternoon. Tonight it will not close, and it will not close by about the same amount it did not close last quarter."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The monitor array is on the desk. The window looks out over the housing blocks. The corridor door is shut, which is how doors are here."
+    }
+  ]
+}

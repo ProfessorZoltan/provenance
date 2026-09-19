@@ -1,0 +1,28 @@
+{
+  "id": "prologue_flagged",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "ACCESS REVOKED \u2014 ALLOCATION AUDITOR, ENCLAVE 7 \u2014 REVIEW FLAG APPLIED \u2014 ORIGINATING DEPARTMENT: \u2014"
+    },
+    {
+      "speaker": "player",
+      "text": "There is no originating department. A flag has to come from somewhere. Every flag in eleven years came from somewhere.",
+      "setFlags": [
+        "fileFlagged"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "The corridor lights come on in sequence, from the far end, toward you. Nobody has walked down that corridor since six."
+    },
+    {
+      "speaker": "player",
+      "text": "Kell. The monastery in the valley. It is the last place in this Enclave system that does not report to anyone."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Go. The door is the only way out and it is about to be the only way in."
+    }
+  ]
+}

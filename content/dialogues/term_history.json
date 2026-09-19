@@ -1,0 +1,24 @@
+{
+  "id": "term_history",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The index goes back further than the Enclave system does. Further than the Steward does."
+    },
+    {
+      "speaker": "player",
+      "text": "Two hundred and eighty-one years. Every quarter. Never late, never queried, never once flagged by an auditor, and I am the eleventh auditor to sit at this desk.",
+      "setFlags": [
+        "foundTheLine"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "A budget line older than the thing that administers it."
+    },
+    {
+      "speaker": "player",
+      "text": "Systems do not have owners. That is the first line of the training. Systems do not have owners, and this one is paying rent."
+    }
+  ]
+}

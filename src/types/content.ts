@@ -187,6 +187,51 @@ export interface LocationDef {
   storyDialogue?: string;
 }
 
+/**
+ * An interior the Auditor walks around: the prologue's Allocation Office, and anything like it
+ * later. Solid props block movement; interactive props raise a prompt when you stand on them.
+ */
+export interface RoomProp {
+  id: string;
+  kind: 'solid' | 'interact' | 'decor';
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  label?: string;
+  /** Dialogue id opened with A. Interactive props need one. */
+  dialogue?: string;
+  art?: 'desk' | 'monitors' | 'cabinet' | 'window' | 'door' | 'chair' | 'partition' | 'plant';
+  requires?: string[];
+}
+
+export interface RoomDef {
+  id: string;
+  name: string;
+  subtitle: string;
+  era: EraId;
+  width: number;
+  height: number;
+  spawn: { x: number; y: number };
+  music: string;
+  props: RoomProp[];
+  storyDialogue?: string;
+}
+
+/** One thing the Auditor has learned. Unlocks when its conditions first hold, and stays learned. */
+export type LogCategory = 'people' | 'places' | 'dates' | 'clues';
+
+export interface LogEntryDef {
+  id: string;
+  category: LogCategory;
+  title: string;
+  detail: string;
+  /** Where the Auditor learned it. Kept apart from the detail so the screen can column it. */
+  source: string;
+  when: string[];
+  order: number;
+}
+
 export interface EraDef {
   id: EraId;
   name: string;
@@ -377,5 +422,7 @@ export interface ContentDB {
   shops: Record<string, ShopDef>;
   items: Record<string, ItemDef>;
   maps: Record<string, MapDef>;
+  log: Record<string, LogEntryDef>;
+  rooms: Record<string, RoomDef>;
   rules: RulesDef;
 }

@@ -135,7 +135,8 @@ export function mapScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
     ctx.setPrompts(prompts(
       { btn: 'ls', label: 'Walk' },
       n ? { btn: 'a', label: n.kind === 'location' ? `Enter ${n.label}` : n.label } : null,
-      { btn: 'y', label: 'Tech trees' }, { btn: 'x', label: 'Roster' }, { btn: 'start', label: 'Save' }, { btn: 'select', label: 'Settings' },
+      { btn: 'y', label: 'Tech trees' }, { btn: 'x', label: 'Roster' }, { btn: 'lb', label: 'Case log' },
+      { btn: 'start', label: 'Save' }, { btn: 'select', label: 'Settings' },
     ));
   };
   const enter = () => {
@@ -186,6 +187,7 @@ export function mapScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
       else if (btn === 'x') { store.dispatch({ type: 'SET_MAP_POS', x, y }); store.dispatch({ type: 'SET_SCREEN', screen: { id: 'roster' } }); }
       else if (btn === 'start') { store.dispatch({ type: 'SET_MAP_POS', x, y }); store.dispatch({ type: 'SET_SCREEN', screen: { id: 'save' } }); }
       else if (btn === 'select') { store.dispatch({ type: 'SET_MAP_POS', x, y }); store.dispatch({ type: 'SET_SCREEN', screen: { id: 'settings' } }); }
+      else if (btn === 'lb') { store.dispatch({ type: 'SET_MAP_POS', x, y }); store.dispatch({ type: 'SET_SCREEN', screen: { id: 'log' } }); }
     },
     destroy() { done = true; cancelAnimationFrame(raf); },
   };

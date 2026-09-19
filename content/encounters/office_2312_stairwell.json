@@ -1,0 +1,29 @@
+{
+  "id": "office_2312_stairwell",
+  "name": "The Valley Road",
+  "era": "2312",
+  "location": "allocation_office_2312",
+  "enemies": [
+    {
+      "enemy": "drone_scout_2312",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "One of them on the valley road, low and slow, running a pattern rather than a hunt.",
+  "scanHints": [
+    {
+      "when": "always",
+      "text": "One machine, and you are on your own."
+    },
+    {
+      "when": "signal>=40",
+      "text": "A scout. Unshielded. It is looking, not fighting."
+    }
+  ],
+  "music": "battle_2312",
+  "rewardFlags": [
+    "outranThem"
+  ]
+}

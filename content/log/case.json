@@ -1,0 +1,310 @@
+[
+  {
+    "id": "enclave_7",
+    "category": "places",
+    "title": "Enclave 7",
+    "detail": "Forty thousand people on a coast the archive says once held nine million. Housing, work, medicine and speech, all allocated, none of it cruel.",
+    "source": "Allocation Office window, 2312",
+    "when": [
+      "flag:foundDiscrepancy"
+    ],
+    "order": 5
+  },
+  {
+    "id": "the_quarter",
+    "category": "clues",
+    "title": "An unreconciled quarter",
+    "detail": "Enclave 7's quarterly allocation does not close. The shortfall is small, constant, and has been there every quarter anyone has records for.",
+    "source": "Allocation Office terminal, 2312",
+    "when": [
+      "flag:foundDiscrepancy"
+    ],
+    "order": 10
+  },
+  {
+    "id": "continuity_holdings",
+    "category": "people",
+    "title": "Continuity Holdings",
+    "detail": "The counterparty on the unreconciled line. A holding company with no address, no staff and no floor in any building.",
+    "source": "Allocation Office terminal, 2312",
+    "when": [
+      "flag:foundHoldings"
+    ],
+    "order": 20
+  },
+  {
+    "id": "line_88231",
+    "category": "clues",
+    "title": "Budget line 88-231-C",
+    "detail": "Paid quarterly for two hundred and eighty-one years without a single query. Systems do not have owners; this one is being paid rent.",
+    "source": "Allocation Office terminal, 2312",
+    "when": [
+      "flag:foundTheLine"
+    ],
+    "order": 30
+  },
+  {
+    "id": "the_charter",
+    "category": "clues",
+    "title": "The charter is private",
+    "detail": "The Steward's governing instrument is not a statute. It is a contract, and it names a beneficiary the Enclave record cannot resolve.",
+    "source": "Allocation Office terminal, 2312",
+    "when": [
+      "flag:readCharter"
+    ],
+    "order": 40
+  },
+  {
+    "id": "the_note",
+    "category": "clues",
+    "title": "A note in your own file",
+    "detail": "Dated seven years ago: asks too many questions about counterparties. Somebody has been waiting a long time to be right about you.",
+    "source": "Allocation Office filing cabinet, 2312",
+    "when": [
+      "flag:seen:prologue_cabinet"
+    ],
+    "order": 45
+  },
+  {
+    "id": "your_file",
+    "category": "people",
+    "title": "Your own file, flagged",
+    "detail": "Four days after the charter query, your access is revoked and your name carries an enforcement flag with no originating department.",
+    "source": "Allocation Office, 2312",
+    "when": [
+      "flag:fileFlagged"
+    ],
+    "order": 50
+  },
+  {
+    "id": "valley_road",
+    "category": "places",
+    "title": "The valley road",
+    "detail": "Four hours on foot from the allocation yard to Kell. They watch it, but not closely, because nobody has ever had anywhere to walk to.",
+    "source": "The valley road, 2312",
+    "when": [
+      "flag:fleeing"
+    ],
+    "order": 55
+  },
+  {
+    "id": "kell_monastery",
+    "category": "places",
+    "title": "Kell Monastery",
+    "detail": "The last place in the valley that does not report to anyone. Sister Wren keeps it. The chapel floor is older than the building on top of it.",
+    "source": "Kell Monastery, 2312",
+    "when": [
+      "flag:been:kell_2312"
+    ],
+    "order": 60
+  },
+  {
+    "id": "wren",
+    "category": "people",
+    "title": "Sister Wren",
+    "detail": "Keeper of Kell and the party's chronal anchor. Rewinding a fight is only possible because she is standing in it.",
+    "source": "Kell Monastery, 2312",
+    "when": [
+      "party:wren"
+    ],
+    "order": 70
+  },
+  {
+    "id": "dax",
+    "category": "people",
+    "title": "Dax Okonkwo",
+    "detail": "Ash Camp born, 2148. A Cinder absolutist who does not belong to this century and has stopped pretending otherwise.",
+    "source": "Kell Monastery, 2312",
+    "when": [
+      "party:dax"
+    ],
+    "order": 80
+  },
+  {
+    "id": "deep_site",
+    "category": "clues",
+    "title": "A Deep Site",
+    "detail": "Some places are old enough that the eras touch. At one, you can walk down into an earlier century and come back up into a present your visit has changed.",
+    "source": "Kell Monastery chapel, 2312",
+    "when": [
+      "visited:2148"
+    ],
+    "order": 90
+  },
+  {
+    "id": "the_quiet",
+    "category": "dates",
+    "title": "2148 \u2014 The Quiet",
+    "detail": "The century the resistance lost. Kell held out as a stronghold; whether it was armed is now a decision you made rather than a fact you found.",
+    "source": "Kell Monastery, 2148",
+    "when": [
+      "flag:been:kell_2148"
+    ],
+    "order": 100
+  },
+  {
+    "id": "ilo9",
+    "category": "people",
+    "title": "ILO-9",
+    "detail": "A liturgical model buried in the Server Graveyard when the racks came down, still running on trickle power. It got one line wrong for a hundred and sixty years.",
+    "source": "Server Graveyard, 2148",
+    "when": [
+      "party:ilo9"
+    ],
+    "order": 110
+  },
+  {
+    "id": "the_founding",
+    "category": "dates",
+    "title": "2031 \u2014 The Founding",
+    "detail": "Kell is a mountain retreat being chartered, Port Halden is a working port, and the Basin is a hole in the ground with money going into it.",
+    "source": "Kell Retreat, 2031",
+    "when": [
+      "flag:been:kell_2031"
+    ],
+    "order": 120
+  },
+  {
+    "id": "port_halden",
+    "category": "places",
+    "title": "Port Halden",
+    "detail": "A shipping city in 2031, nine million people in 2064, drowned to the third storey by 2148, and your own Enclave 7 by 2312.",
+    "source": "Port Halden, 2031",
+    "when": [
+      "flag:been:halden_2031"
+    ],
+    "order": 130
+  },
+  {
+    "id": "four_crates",
+    "category": "clues",
+    "title": "Four crates a week",
+    "detail": "Leaving berth nine for a post box in the hills, consigned in-house so nobody on the dock ever sees the contents. Same signature for eleven years.",
+    "source": "Port Halden quay, 2031",
+    "when": [
+      "flag:haldenManifest"
+    ],
+    "order": 140
+  },
+  {
+    "id": "the_handover",
+    "category": "dates",
+    "title": "2064 \u2014 The Handover",
+    "detail": "Governance is ceded by treaty to a consortium, ratified by a senate that has been bought. Article nine assigns the instrument itself in a sentence about data custody.",
+    "source": "Port Halden, 2064",
+    "when": [
+      "flag:been:halden_2064"
+    ],
+    "order": 150
+  },
+  {
+    "id": "mara",
+    "category": "people",
+    "title": "Mara Vesely",
+    "detail": "A reform staffer who spent four years drafting amendments nobody read. She can talk almost anything into a contract.",
+    "source": "Port Halden, 2064",
+    "when": [
+      "party:mara"
+    ],
+    "order": 160
+  },
+  {
+    "id": "article_nine",
+    "category": "clues",
+    "title": "Article nine, amended",
+    "detail": "A cession must name its beneficiary. Twelve words, carried by three votes, and the reason the 2312 charter has an owner clause at all.",
+    "source": "Handover senate floor, 2064",
+    "when": [
+      "flag:treatyAmended"
+    ],
+    "order": 170
+  },
+  {
+    "id": "the_buyers",
+    "category": "clues",
+    "title": "Eleven senators and four firms",
+    "detail": "Every party that paid for the Handover, on the public record. The holding company's registered address is a post box above a shipping city.",
+    "source": "Handover senate floor, 2064",
+    "when": [
+      "flag:buyersExposed"
+    ],
+    "order": 180
+  },
+  {
+    "id": "board_alerted",
+    "category": "clues",
+    "title": "Something is looking for you",
+    "detail": "Putting the buyers on the record told somebody very old and very quiet that its history is being edited. Enforcement in Enclave 7 has no originating department.",
+    "source": "Enclave 7, 2312",
+    "when": [
+      "flag:boardAlerted"
+    ],
+    "order": 190
+  },
+  {
+    "id": "the_basin",
+    "category": "places",
+    "title": "The Basin",
+    "detail": "Four hundred megawatts of cooling for what the filings call a logistics facility. By 2312 it is where the Steward actually does its thinking.",
+    "source": "The Basin, 2031",
+    "when": [
+      "flag:been:basin_2031"
+    ],
+    "order": 200
+  },
+  {
+    "id": "second_column",
+    "category": "clues",
+    "title": "The second column",
+    "detail": "The Basin payroll is kept twice: four hundred and six names, and the same number again in a column that is not wages. It is a purchase order.",
+    "source": "Basin Work Camp, 2031",
+    "when": [
+      "flag:crewListFound"
+    ],
+    "order": 210
+  },
+  {
+    "id": "hale",
+    "category": "people",
+    "title": "Tomas Hale",
+    "detail": "Ash Camp's best shot and the only one of that crew who came back from the Basin. Eleven days on a ridge counting what comes out of the sand.",
+    "source": "The Basin, 2148",
+    "when": [
+      "party:hale"
+    ],
+    "order": 220
+  },
+  {
+    "id": "never_audited",
+    "category": "clues",
+    "title": "Never audited",
+    "detail": "The cooling fields have drawn power, water and maintenance for two hundred and eighty years against a line item nobody has ever queried. Except you.",
+    "source": "Cooling Fields, 2312",
+    "when": [
+      "flag:basinWatched"
+    ],
+    "order": 230
+  },
+  {
+    "id": "tolliver",
+    "category": "places",
+    "title": "The Tolliver corner",
+    "detail": "A brick corner bakery on the last block the port has not bought. What happens to it in 2031 decides whether there is a door open at night in 2148.",
+    "source": "Tolliver Bakery, 2031",
+    "when": [
+      "flag:been:tolliver_bakery_2031"
+    ],
+    "order": 240
+  },
+  {
+    "id": "strand",
+    "category": "people",
+    "title": "Callum Strand",
+    "detail": "Founder of Meridian, signatory to the Handover, and the name on a plaque that has been re-cast eleven times. The memorial's founding documents have a nineteen-month gap.",
+    "source": "Strand Memorial, 2312",
+    "when": [
+      "flag:been:strand_memorial_2312"
+    ],
+    "order": 250
+  }
+]

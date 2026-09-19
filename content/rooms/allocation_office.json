@@ -1,0 +1,107 @@
+{
+  "id": "allocation_office",
+  "name": "Allocation Office, Enclave 7",
+  "subtitle": "Fourth floor, 23:40",
+  "era": "2312",
+  "width": 960,
+  "height": 600,
+  "spawn": {
+    "x": 480,
+    "y": 520
+  },
+  "music": "hub_2312",
+  "storyDialogue": "prologue_open",
+  "props": [
+    {
+      "id": "workstation",
+      "kind": "interact",
+      "x": 330,
+      "y": 150,
+      "w": 300,
+      "h": 114,
+      "label": "The monitor array",
+      "dialogue": "terminal",
+      "art": "workstation"
+    },
+    {
+      "id": "chair",
+      "kind": "decor",
+      "x": 455,
+      "y": 278,
+      "w": 50,
+      "h": 44,
+      "art": "chair"
+    },
+    {
+      "id": "window",
+      "kind": "interact",
+      "x": 60,
+      "y": 40,
+      "w": 26,
+      "h": 220,
+      "label": "The window",
+      "dialogue": "prologue_window",
+      "art": "window"
+    },
+    {
+      "id": "cabinet",
+      "kind": "interact",
+      "x": 800,
+      "y": 90,
+      "w": 104,
+      "h": 150,
+      "label": "The filing cabinet",
+      "dialogue": "prologue_cabinet",
+      "art": "cabinet"
+    },
+    {
+      "id": "bench",
+      "kind": "interact",
+      "x": 120,
+      "y": 430,
+      "w": 150,
+      "h": 44,
+      "label": "The bench you ate lunch on",
+      "dialogue": "prologue_bench",
+      "art": "chair"
+    },
+    {
+      "id": "partition_l",
+      "kind": "solid",
+      "x": 250,
+      "y": 340,
+      "w": 20,
+      "h": 150,
+      "art": "partition"
+    },
+    {
+      "id": "partition_r",
+      "kind": "solid",
+      "x": 690,
+      "y": 340,
+      "w": 20,
+      "h": 150,
+      "art": "partition"
+    },
+    {
+      "id": "plant",
+      "kind": "decor",
+      "x": 750,
+      "y": 470,
+      "w": 54,
+      "h": 54,
+      "art": "plant"
+    },
+    {
+      "id": "door",
+      "kind": "interact",
+      "x": 880,
+      "y": 400,
+      "w": 24,
+      "h": 96,
+      "label": "The corridor door",
+      "dialogue": "prologue_door",
+      "art": "door"
+    }
+  ]
+}

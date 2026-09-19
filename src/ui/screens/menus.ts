@@ -75,17 +75,22 @@ export function newGameScreen(root: HTMLElement, ctx: Ctx, _state: GameState): S
       <div class="eyebrow" style="text-align:center;margin-bottom:14px">The Auditor's stance on the Steward</div>
       <div class="stance">${STANCES.map((s, i) => `<div class="card ${i === idx ? 'focused' : ''}" style="--stance-color:${s.color}" data-i="${i}"><h3>${s.name}</h3><p class="small">${s.text}</p></div>`).join('')}</div>
       <p class="small" style="text-align:center;margin-top:18px">Sync moves through dialogue afterwards. The party average gates faction content; it is never shown as a number.</p>
+      <p class="small" style="text-align:center;margin-top:10px">${glyph('x')} Skip the prologue and start at Kell.</p>
     </section>`);
     root.querySelectorAll('.card').forEach((c) => c.addEventListener('click', () => { idx = Number((c as HTMLElement).dataset.i); mem.stance = idx; start(); }));
   };
-  const start = () => ctx.store.dispatch({ type: 'NEW_GAME', seed: seedFromString(`${Date.now()}:${Math.random()}`), lean: STANCES[idx].id });
+  const start = (skip = false) => {
+    ctx.store.dispatch({ type: 'NEW_GAME', seed: seedFromString(`${Date.now()}:${Math.random()}`), lean: STANCES[idx].id });
+    if (skip) ctx.store.dispatch({ type: 'PROLOGUE_SKIP' });
+  };
   draw();
-  ctx.setPrompts(prompts({ btn: 'dpad', label: 'Choose stance' }, { btn: 'a', label: 'Begin' }, { btn: 'b', label: 'Back' }));
+  ctx.setPrompts(prompts({ btn: 'dpad', label: 'Choose stance' }, { btn: 'a', label: 'Begin' }, { btn: 'x', label: 'Skip prologue' }, { btn: 'b', label: 'Back' }));
   return {
     input(btn) {
       if (btn === 'left' || btn === 'lb') { idx = (idx + 2) % 3; mem.stance = idx; draw(); }
       else if (btn === 'right' || btn === 'rb') { idx = (idx + 1) % 3; mem.stance = idx; draw(); }
       else if (btn === 'a') { ctx.audio.sfx('confirm', '2312'); start(); }
+      else if (btn === 'x') { ctx.audio.sfx('confirm', '2312'); start(true); }
       else if (btn === 'b') ctx.store.dispatch({ type: 'SET_SCREEN', screen: { id: 'title' } });
     },
   };

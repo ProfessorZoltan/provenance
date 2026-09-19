@@ -55,5 +55,18 @@
     "2064",
     "2148"
   ],
-  "storyDialogue": "intro_2312"
+  "storyDialogue": "intro_2312",
+  "variants": [
+    {
+      "when": [
+        "fleeing"
+      ],
+      "description": "Snow on the terraces, a chapel with no cameras in it, and under the chapel floor, a place where time is layered.",
+      "npcs": [
+        "wren_hub",
+        "dax_hub"
+      ],
+      "storyDialogue": "kell_arrive_2312"
+    }
+  ]
 }

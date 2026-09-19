@@ -1,0 +1,17 @@
+{
+  "id": "prologue_cabinet",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Paper, because the Enclave keeps one physical copy of everything it cannot afford to have edited."
+    },
+    {
+      "speaker": "player",
+      "text": "My own personnel file is in here. Eleven years, four commendations, and a note from the fourth year saying I ask too many questions about counterparties."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The note is dated seven years before tonight. Somebody has been waiting a long time to be right about you."
+    }
+  ]
+}

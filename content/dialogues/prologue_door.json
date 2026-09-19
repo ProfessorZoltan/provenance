@@ -1,0 +1,35 @@
+{
+  "id": "prologue_door",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The corridor door. Shut, as doors are, and your card still opens it.",
+      "conditions": [
+        "!flag:foundDiscrepancy"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "The quarter is not closed. I am not walking out on an open quarter; I have never once done that.",
+      "conditions": [
+        "!flag:readCharter"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "The door, and behind it a corridor lit end to end. The card reader is dark. The door is not locked; it simply no longer belongs to you.",
+      "conditions": [
+        "flag:fileFlagged"
+      ],
+      "choices": [
+        {
+          "text": "Go. Down the stairs, out the service side, up the valley road.",
+          "action": "prologue:flee"
+        },
+        {
+          "text": "Not yet."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "prologue_bench",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "A bench against the wall by the lift. You have eaten lunch on it most working days for eleven years."
+    },
+    {
+      "speaker": "player",
+      "text": "If I close this quarter and go home, I eat lunch here tomorrow. That is genuinely the choice, and I am genuinely thinking about it."
+    },
+    {
+      "speaker": "narrator",
+      "text": "You already ran the reconciliation. That is the part that cannot be un-run.",
+      "conditions": [
+        "flag:foundDiscrepancy"
+      ]
+    }
+  ]
+}

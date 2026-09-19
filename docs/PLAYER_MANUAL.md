@@ -6,6 +6,20 @@ Covers what is playable: three Deep Sites, Kell, Port Halden and the Basin, acro
 2064, 2148 and 2312, and the party you can gather there. Systems not yet built are marked as such.
 This manual grows as the game does.
 
+## Before Kell
+
+The game opens in the Allocation Office on the fourth floor of Enclave 7, at twenty to midnight,
+with a quarter that will not close. You walk the room, and the monitor array on the desk is where
+the work happens: reconcile the quarter, trace the counterparty, pull the payment history, and then
+query the charter itself. Each answer is worse than the last, and the last one is the one that flags
+your file.
+
+After that there is a corridor lit end to end and four hours of valley road between you and the only
+place in this century that does not report to anyone.
+
+You can skip all of it on a replay: press X on the stance screen instead of A, and you start at Kell
+with the party already met.
+
 ## The world
 
 It is 2312. Humanity lives in managed Enclaves under the Steward, an artificial intelligence that
@@ -47,6 +61,7 @@ standard controller to switch the whole interface to controller glyphs.
 | Fork in battle, roster and gear outside it | X | X |
 | Inspect an enemy in battle, tech trees outside it | Y | Y |
 | Previous and next target, tab, character | LB and RB | Q and E |
+| Case log, outside a fight | LB | Q |
 | Rewind in battle | LT | Z |
 | End turn in battle | RT | C |
 | Save and load | Start | M |
@@ -366,6 +381,24 @@ openly, the further Ownership has moved your way.
 **Relics** are the exception. Old made things, a hand-forged blade or a prayer wheel with a chip
 inside, that any shop in any era will buy at a premium. You can carry five at a time, so moving them
 between centuries is a small strategic decision rather than a grind.
+
+## The case log
+
+Press LB, or pick **Case log** from any location's action list. It is the Auditor's own notes, and
+it fills itself: every name, date, place and clue is written down the moment you learn it, with
+where you learned it kept in its own column.
+
+| Section | What it holds | Reference |
+| --- | --- | --- |
+| Clues | What does not add up, and what it points at | Budget line 88-231-C |
+| People | Who is in this, and on whose side | Continuity Holdings |
+| Places | Where it happened, and what it is now | The Basin |
+| Dates | The centuries you can reach, and what turns on each | 2064, the Handover |
+
+The log never forgets. If you rewrite the century an entry came from, the entry stays, struck
+through and marked **no longer true** — because the Auditor does not unlearn a thing just because it
+stopped having happened. Those struck-through lines are the clearest readout the game gives you of
+what your edits actually did.
 
 ## Saving
 

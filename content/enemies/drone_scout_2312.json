@@ -1,0 +1,32 @@
+{
+  "id": "drone_scout_2312",
+  "name": "Census Scout",
+  "family": "drone",
+  "era": "2312",
+  "machine": true,
+  "stats": {
+    "resolve": 48,
+    "bandwidth": 1,
+    "latency": 30,
+    "signal": 26,
+    "noise": 30,
+    "grit": 8,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "drone_dart"
+  ],
+  "immunities": [],
+  "perception": 40,
+  "rig": "drone_sentry",
+  "xp": 40,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.5
+    }
+  ],
+  "flavor": "Allocated to count things on roads. It has never been asked to stop anybody and does not know how."
+}

@@ -171,6 +171,8 @@ export type Screen =
   | { id: 'inventory' }
   | { id: 'save' }
   | { id: 'manual' }
+  | { id: 'log' }
+  | { id: 'room'; room: string }
   | { id: 'roster' }
   | { id: 'gameOver' }
   | { id: 'settings' };
@@ -199,6 +201,9 @@ export interface GameState {
   scan: ScanState | null;
   dialogue: DialogueState | null;
   journal: string[];
+  /** Case log entry ids, in the order the Auditor learned them, and how many have been read. */
+  log: string[];
+  logRead: number;
   map: { x: number; y: number };
   back: Screen;
   battleReturn: 'map' | 'hub';

@@ -36,4 +36,5 @@ export type Action =
   | { type: 'QUEST_COMPLETE'; quest: string }
   | { type: 'TIMELINE_CHOICE'; choice: string }
   | { type: 'SET_SETTINGS'; settings: Partial<Settings> }
-  | { type: 'GAME_OVER_RETURN' };
+  | { type: 'GAME_OVER_RETURN' }
+  | { type: 'PROLOGUE_SKIP' };

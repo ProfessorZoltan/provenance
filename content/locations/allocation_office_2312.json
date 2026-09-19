@@ -1,0 +1,46 @@
+{
+  "id": "allocation_office_2312",
+  "name": "The Allocation Office",
+  "kind": "waypoint",
+  "era": "2312",
+  "site": "office",
+  "type": "Ruin",
+  "art": "2312_allocation_office",
+  "description": "Symmetric service desks, audit terminals and a corridor lit end to end. You worked here for eleven years and you are not going back up those stairs.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2312_allocation_office:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2312_allocation_office:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2312_allocation_office:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2312_allocation_office:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "snow"
+  },
+  "music": "hub_2312",
+  "npcs": [],
+  "quests": [],
+  "encounters": [
+    "office_2312_stairwell"
+  ],
+  "links": [],
+  "timeLinks": []
+}

@@ -6,7 +6,16 @@ import type { GameState } from '../src/types/state';
 export const content = getContent();
 export const reduce = createReducer(content);
 
+/**
+ * A new game past the prologue, at Kell with the party met. Tests that want the prologue itself
+ * use `newRun` and walk it.
+ */
 export function newGame(seed = 12345, lean: 'cinder' | 'choir' | 'commons' = 'commons'): GameState {
+  return reduce(newRun(seed, lean), { type: 'PROLOGUE_SKIP' });
+}
+
+/** A brand new game, standing in the Allocation Office with the quarter open. */
+export function newRun(seed = 12345, lean: 'cinder' | 'choir' | 'commons' = 'commons'): GameState {
   return reduce(initialState(), { type: 'NEW_GAME', seed, lean });
 }
 

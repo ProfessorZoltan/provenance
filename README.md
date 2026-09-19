@@ -1,10 +1,11 @@
 # Provenance
 
 A browser RPG about who owns the future. It began as the **vertical slice** from the design doc's
-Build brief and now runs three of the five Deep Sites, Kell, Port Halden and the Basin, across all
-four eras: 2031, 2064, 2148 and 2312. Six party members, the Threads / Tempo / Entropy battle
-system, fifteen timeline choices whose order of play decides what survives, ripple sites, shops,
-equipment, recruitment, quests and save/load.
+Build brief and now opens with a playable prologue in the Allocation Office and runs three of the
+five Deep Sites, Kell, Port Halden and the Basin, across all four eras: 2031, 2064, 2148 and 2312.
+Six party members, the Threads / Tempo / Entropy battle system, fifteen timeline choices whose order
+of play decides what survives, a case log that fills itself, ripple sites, shops, equipment,
+recruitment, quests and save/load.
 
 Everything is code-drawn and data-driven: art is SVG and canvas, music is generated live by
 Tone.js from JSON scores, and all content lives in `content/` as JSON.
@@ -44,6 +45,7 @@ standard-mapping controller to switch to gamepad glyphs.
 | Save / load menu | Start | M |
 | Settings | Select | Tab |
 | Scroll battle log | Right stick | PgUp / PgDn |
+| Case log (outside a fight) | LB | Q |
 | Dismiss a battle report | A | Enter |
 | Rewind (also in the action list) | LT | Z |
 
@@ -86,6 +88,8 @@ and removes animation.
 | Equipment: two slots per character, era-specific gear, owner-locked pieces, Ownership-gated stock | `content/items/`, `src/ui/screens/roster.ts` |
 | Save: localStorage slot, JSON export and import, last three timeline snapshots | `src/core/save.ts` |
 | Era maps: three regions on one 2600x1100 map per era, with a camera that follows the party, a minimap, roads and encounter zones | `content/maps/`, `src/ui/screens/map.ts` |
+| Prologue: a walkable Allocation Office, the budget-line discovery at the monitor array, and the flight up the valley road. Skippable on a replay | `content/rooms/`, `src/ui/screens/room.ts` |
+| Case log: names, dates, places and clues, written down as they are learned and struck through when the century they came from is rewritten | `content/log/`, `src/ui/screens/log.ts` |
 | Player manual: in-game screen rendered from the shipped Markdown | `docs/PLAYER_MANUAL.md`, `src/ui/manual.ts` |
 
 ## Architecture
@@ -97,7 +101,9 @@ and removes animation.
 - `src/core/rng.ts` is a seeded PRNG whose state lives in the store, so a battle is
   deterministic given its seed and can be replayed from the action log.
 - `src/content/loader.ts` globs `content/**/*.json`, groups files by folder, and validates
-  cross-references at startup. A file may hold one object or an array; each needs an `id`.
+  cross-references at startup. A file may hold one object or an array; each needs an `id`. The
+  folders are characters, nodes, abilities, enemies, encounters, locations, eras, scores, dialogues,
+  timelineChoices, quests, shops, items, maps, log and rooms.
 - `src/ui/` renders the current screen from state on every change. `input/input.ts` unifies
   keyboard and the Gamepad API into semantic buttons; `input/prompts.ts` draws the glyphs.
   `ui/narration.ts` queues battle log lines into dismissible pages; the queue is presentation
@@ -145,12 +151,13 @@ The design doc left these open; the slice picks a value so the loop is playable.
 
 ## Verified
 
-- `npm test`: 107 tests covering battle determinism, damage type rules, Rewind, Fork, Echo spawn,
+- `npm test`: 118 tests covering battle determinism, damage type rules, Rewind, Fork, Echo spawn,
   surprise attacks, Mara's Terms and Settlement, Hale's Held Shot and Killing Silence, node
   unlocking, timeline propagation across six independent sites, ripple-site state, Ownership-gated
   shop stock, map travel and node gating, save round trip, five full end-to-end runs including the
   Handover, the Tolliver chain and the Basin crew list, battle narration paging, art-library
-  resolution, and a 300-battle random-action fuzz that must never hang or throw.
+  resolution, the prologue from the first query to the door at Kell, the case log's unlock and
+  supersede rules, and a 300-battle random-action fuzz that must never hang or throw.
 - `npm run build` typechecks and produces a static build; it was driven end to end in headless
   Chromium with no console errors. Safari has not been tested from this environment.
 
