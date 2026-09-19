@@ -279,7 +279,8 @@ body[data-reduced-motion='true'] *, body[data-reduced-motion='true'] *::before, 
 .map .party-mini { position: absolute; top: 18px; right: 18px; display: flex; flex-direction: column; gap: 8px; width: 280px; }
 
 /* NES-inspired presentation: solid colors, pixel sprites, framed command windows. */
-body { font-family: 'Courier New', monospace; letter-spacing: 0; }
+/* Type stays per era (see the design doc): humanist sans in 2031, condensed grotesk in 2064,
+   monospace in 2148, geometric sans in 2312. applyEra() sets --font and --tracking. */
 .panel, .title #title-menu, .stance .card {
   background: #14234b; color: #f8efd5; border: 3px double #c3d1ed;
   border-radius: 0; box-shadow: 0 3px 0 #080f25; backdrop-filter: none;
@@ -372,3 +373,20 @@ body { font-family: 'Courier New', monospace; letter-spacing: 0; }
 .title > div:first-child, .title > p.small { background: #14234b; color: #f8efd5; border: 3px double #c3d1ed; box-shadow: 0 3px 0 #080f25; padding: 18px 28px; }
 .title > p.small { padding: 8px 14px; font-size: 12px; }
 .title h1 { color: #f4cb76; }
+
+/* Battle narration: one box in the middle of the field, dismissed with A. */
+.battle .narration { position: absolute; inset: 0; display: grid; place-items: center; z-index: 5; cursor: pointer; background: color-mix(in srgb, #050a18 45%, transparent); }
+.battle .narration-box {
+  width: min(560px, 82%); background: #14234b; color: #f8efd5; border: 3px double #c3d1ed;
+  box-shadow: 0 4px 0 #080f25; padding: 16px 20px 12px; animation: narration-in 140ms ease-out;
+}
+.battle .narration-box .eyebrow { margin-bottom: 2px; color: #f4cb76; opacity: 1; }
+.battle .narration-box p { font-size: 15px; line-height: 1.45; margin-bottom: 10px; }
+.battle .narration-box p:last-of-type { margin-bottom: 4px; }
+.battle .narration-box p.hit { color: #f8efd5; }
+.battle .narration-box p.heal { color: #79cf9b; }
+.battle .narration-box p.tempo { color: #b7a6f7; }
+.battle .narration-box p.warn { color: #f4977f; }
+.battle .narration-more { margin-top: 8px; padding-top: 8px; border-top: 1px solid #38496f; font-size: 12px; display: flex; align-items: center; gap: 8px; }
+@keyframes narration-in { from { transform: translateY(6px); opacity: 0; } to { transform: none; opacity: 1; } }
+body[data-reduced-motion='true'] .battle .narration-box { animation: none; }

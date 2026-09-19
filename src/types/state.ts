@@ -30,7 +30,13 @@ export interface Combatant {
   perception: number;
 }
 
-export interface BattleLogEntry {
+export interface LogMeta {
+  actor?: string;
+  target?: string;
+  ability?: string;
+}
+
+export interface BattleLogEntry extends LogMeta {
   turn: number;
   text: string;
   kind: 'info' | 'hit' | 'heal' | 'tempo' | 'warn' | 'system';

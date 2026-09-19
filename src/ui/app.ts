@@ -8,8 +8,9 @@ import type { Store } from '../core/store';
 import type { Input } from '../input/input';
 import { renderPrompts } from '../input/prompts';
 import type { ContentDB, EraDef } from '../types/content';
-import type { GameState } from '../types/state';
+import type { BattleLogEntry, GameState } from '../types/state';
 import type { Ctx, ScreenFn, ScreenHandle } from './common';
+import { advanceNarration, narrationPending, resetNarration, syncNarration } from './narration';
 import { battleScreen } from './screens/battle';
 import { dialogueScreen } from './screens/dialogue';
 import { hubScreen } from './screens/hub';
@@ -37,7 +38,6 @@ export function createApp(store: Store, content: ContentDB, input: Input, audio:
   let bgKey = '';
   let toastTimer = 0;
   let enemyTimer = 0;
-  let lastLogLen = 0;
   let lastScreen = '';
 
   const ctx: Ctx = {
@@ -50,7 +50,26 @@ export function createApp(store: Store, content: ContentDB, input: Input, audio:
     },
     setPrompts: renderPrompts,
     shake: () => bg?.shake(),
+    refresh: () => render(store.getState(), null),
+    advanceNarration() {
+      const state = store.getState();
+      const next = advanceNarration();
+      playPage(next, state.battle?.era ?? state.era);
+      // Re-rendering runs driveBattle again, which releases the enemy once the queue empties.
+      render(store.getState(), null);
+    },
   };
+
+  /** Sound and screen shake follow the narration box, so they land with the words. */
+  function playPage(page: BattleLogEntry[] | null, era: string): void {
+    if (!page) return;
+    for (const line of page) {
+      if (line.kind === 'hit') { ctx.shake(); audio.sfx(line.text.includes('chronal') ? 'chronal' : 'hit', era); }
+      else if (line.kind === 'heal') audio.sfx('heal', era);
+      else if (line.kind === 'tempo') audio.sfx('tempo', era);
+      else if (line.kind === 'warn') audio.sfx('warn', era);
+    }
+  }
 
   function applyEra(era: EraDef, reduced: boolean): void {
     const r = document.documentElement.style;
@@ -103,20 +122,19 @@ export function createApp(store: Store, content: ContentDB, input: Input, audio:
     audio.setEntropy(0);
   }
 
+  /** Queue new log lines before the screen draws, so the box lands in the same frame as the action. */
+  function queueNarration(state: GameState): void {
+    const b = state.battle;
+    if (!b || state.screen.id !== 'battle') { resetNarration(); return; }
+    playPage(syncNarration(b), b.era);
+  }
+
   function driveBattle(state: GameState): void {
     clearTimeout(enemyTimer);
     const b = state.battle;
-    if (!b || state.screen.id !== 'battle') { lastLogLen = 0; return; }
-    // Sound and shake for new log lines.
-    const fresh = b.log.slice(lastLogLen);
-    lastLogLen = b.log.length;
-    for (const line of fresh) {
-      if (line.kind === 'hit') { ctx.shake(); audio.sfx(line.text.includes('chronal') ? 'chronal' : 'hit', b.era); }
-      else if (line.kind === 'heal') audio.sfx('heal', b.era);
-      else if (line.kind === 'tempo') audio.sfx('tempo', b.era);
-      else if (line.kind === 'warn') audio.sfx('warn', b.era);
-    }
-    if (b.phase === 'enemy') {
+    if (!b || state.screen.id !== 'battle') return;
+    // The enemy waits while the player is still reading.
+    if (b.phase === 'enemy' && !narrationPending()) {
       enemyTimer = window.setTimeout(() => store.dispatch({ type: 'BATTLE_ENEMY_ACT' }), state.settings.reducedMotion ? 350 : 800);
     }
   }
@@ -124,6 +142,7 @@ export function createApp(store: Store, content: ContentDB, input: Input, audio:
   function render(state: GameState, action: Action | null): void {
     if (action?.type === 'SET_MAP_POS') return;
     if (state.started || state.screen.id === 'title' || state.screen.id === 'newGame' || state.screen.id === 'settings') syncBackground(state);
+    queueNarration(state);
     const fn = SCREENS[state.screen.id] ?? titleScreen;
     handle?.destroy?.();
     if (lastScreen !== state.screen.id) screenRoot.scrollTop = 0;

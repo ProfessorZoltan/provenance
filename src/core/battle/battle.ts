@@ -1,5 +1,5 @@
 import type { AbilityDef, ContentDB, DamageType, EnemyDef, ItemDef } from '../../types/content';
-import type { BattleLogEntry, BattleRewards, BattleState, Combatant, GameState, StatusEffect } from '../../types/state';
+import type { BattleLogEntry, BattleRewards, BattleState, Combatant, GameState, LogMeta, StatusEffect } from '../../types/state';
 import { evalFormula } from '../formula';
 import { roll, rollInt } from '../rng';
 import { partyLoadouts, partySync } from '../stats';
@@ -90,8 +90,8 @@ function statusCount(c: Combatant, id: string): number {
   return c.statuses.filter((s) => s.id === id).length;
 }
 
-function log(b: BattleState, text: string, kind: BattleLogEntry['kind'] = 'info'): BattleState {
-  return { ...b, log: [...b.log, { turn: b.round, text, kind }] };
+function log(b: BattleState, text: string, kind: BattleLogEntry['kind'] = 'info', meta: LogMeta = {}): BattleState {
+  return { ...b, log: [...b.log, { turn: b.round, text, kind, ...meta }] };
 }
 
 function update(b: BattleState, id: string, fn: (c: Combatant) => Combatant): BattleState {
@@ -198,21 +198,27 @@ interface HitResult {
   hit: boolean;
   immune: boolean;
   note: string;
+  meta: LogMeta;
 }
 
 function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, ability: AbilityDef, content: ContentDB): HitResult {
   const rules = content.rules;
   const type = ability.damageType as DamageType;
+  const meta: LogMeta = { actor: actor.name, target: target.name, ability: ability.name };
   const p = b.passives[actor.id] ?? {};
   const partyAccuracy = actor.side === 'party'
     ? Object.values(b.passives).reduce((s, pp) => s + (pp.partyAccuracy ?? 0), 0)
     : 0;
 
   // Immunities and type rules.
-  if (target.immunities.includes(type)) return { b, amount: 0, hit: true, immune: true, note: `${target.name} is immune to ${type}.` };
-  if (type === 'signal' && !target.machine) return { b, amount: 0, hit: true, immune: true, note: `Signal has no effect on ${target.name}.` };
+  if (target.immunities.includes(type)) {
+    return { b, amount: 0, hit: true, immune: true, meta, note: `${actor.name} uses ${ability.name} on ${target.name}, but ${target.name} is immune to ${type} damage.` };
+  }
+  if (type === 'signal' && !target.machine) {
+    return { b, amount: 0, hit: true, immune: true, meta, note: `${actor.name} uses ${ability.name} on ${target.name}, but Signal only bites on machines.` };
+  }
   if (hasStatus(target, 'faraday') && (type === 'signal' || type === 'thermal')) {
-    return { b, amount: 0, hit: true, immune: true, note: `Faraday shields ${target.name}.` };
+    return { b, amount: 0, hit: true, immune: true, meta, note: `${actor.name} uses ${ability.name} on ${target.name}, but Faraday shields it.` };
   }
 
   // Accuracy.
@@ -220,7 +226,7 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   if (type === 'chronal' || hasStatus(target, 'locked')) chance = 1;
   const [r, rng] = roll(b.rng);
   b = { ...b, rng };
-  if (r > chance) return { b, amount: 0, hit: false, immune: false, note: `${actor.name} misses ${target.name}.` };
+  if (r > chance) return { b, amount: 0, hit: false, immune: false, meta, note: `${actor.name} uses ${ability.name} on ${target.name}, and misses.` };
 
   const marks = alive(b, actor.side === 'party' ? 'enemy' : 'party').filter((e) => hasStatus(e, 'marked')).length;
   let dmg = evalFormula(ability.formula ?? '0', { a: actor.stats, d: target.stats, marks });
@@ -271,7 +277,10 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
     notes.push(`+${heal} garnished`);
   }
   const tail = notes.length ? ` (${notes.join(', ')})` : '';
-  return { b, amount: dmg, hit: true, immune: false, note: `${actor.name} hits ${target.name} for ${dmg} ${type}${tail}.${down ? ` ${target.name} is down.` : ''}` };
+  return {
+    b, amount: dmg, hit: true, immune: false, meta,
+    note: `${actor.name} uses ${ability.name} on ${target.name}: ${dmg} ${type} damage${tail}.${down ? ` ${target.name} goes down.` : ''}`,
+  };
 }
 
 function applyStatus(b: BattleState, target: Combatant, status: StatusEffect, content: ContentDB, actorId: string): BattleState {
@@ -324,9 +333,9 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     b = { ...b, rng };
     if (r < chance) {
       b = update(b, t.id, (c) => ({ ...c, down: true, parleyed: true, statuses: [] }));
-      b = log(b, `${actor.name} talks ${t.name} down. It powers off and drifts away.`, 'tempo');
+      b = log(b, `${actor.name} talks ${t.name} down. It powers off and drifts away.`, 'tempo', { actor: actor.name, target: t.name, ability: ability.name });
     } else {
-      b = log(b, `${t.name} does not listen.`, 'info');
+      b = log(b, `${actor.name} tries to talk ${t.name} down, but it does not listen.`, 'info', { actor: actor.name, target: t.name, ability: ability.name });
     }
     return afterAction(b, content);
   }
@@ -336,7 +345,7 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     const gain = foes.length * 4;
     b = { ...b, tempo: Math.min(rules.tempoMax, b.tempo + gain) };
     for (const f of foes) b = update(b, f.id, (c) => ({ ...c, statuses: c.statuses.filter((s) => s.id !== 'marked') }));
-    b = log(b, `${actor.name} reconciles ${foes.length} mark${foes.length === 1 ? '' : 's'} into ${gain} Tempo.`, 'tempo');
+    b = log(b, `${actor.name} reconciles ${foes.length} mark${foes.length === 1 ? '' : 's'} into ${gain} Tempo.`, 'tempo', { actor: actor.name, ability: ability.name });
     return afterAction(b, content);
   }
 
@@ -344,13 +353,13 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     const mult = (b.passives[actorId]?.penanceDouble ?? 0) > 0 ? 2 : 1;
     const cost = Math.round(actor.maxHp * 0.15 * mult);
     b = update(b, actorId, (c) => ({ ...c, hp: Math.max(1, c.hp - cost) }));
-    b = log(b, `${actor.name} gives up ${cost} Resolve.`, 'warn');
+    b = log(b, `${actor.name} gives up ${cost} Resolve to pay for ${ability.name}.`, 'warn', { actor: actor.name, ability: ability.name });
   }
 
   for (const t of chosen) {
     if (ability.formula && ability.damageType) {
       const r = resolveDamage(b, b.combatants.find((c) => c.id === actorId)!, b.combatants.find((c) => c.id === t.id)!, ability, content);
-      b = log(r.b, r.note, r.immune ? 'warn' : 'hit');
+      b = log(r.b, r.note, r.immune ? 'warn' : 'hit', r.meta);
       if (!r.hit || r.immune) continue;
     }
     if (ability.heal) {
@@ -363,14 +372,15 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
       }
       const healed = Math.round(amount);
       b = update(b, t.id, (c) => ({ ...c, hp: Math.min(c.maxHp, c.hp + healed) }));
-      b = log(b, `${a.name} restores ${healed} Resolve to ${t.name}.`, 'heal');
+      b = log(b, `${a.name} uses ${ability.name} on ${t.name}: ${healed} Resolve restored.`, 'heal', { actor: a.name, target: t.name, ability: ability.name });
     }
     if (ability.status) {
       const tgt = b.combatants.find((c) => c.id === t.id)!;
       if (!tgt.down) {
         b = applyStatus(b, tgt, { id: ability.status.id, turns: ability.status.turns }, content, actorId);
-        if (ability.special === 'mark') b = log(b, `${actor.name} marks ${t.name}: weakness ${t.weakness ?? 'none'}, Grit ${t.stats.grit}, Noise ${t.stats.noise}.`, 'tempo');
-        else if (!ability.formula) b = log(b, `${actor.name} uses ${ability.name} on ${t.name}.`, 'info');
+        const m = { actor: actor.name, target: t.name, ability: ability.name };
+        if (ability.special === 'mark') b = log(b, `${actor.name} marks ${t.name}: weakness ${t.weakness ?? 'none'}, Grit ${t.stats.grit}, Noise ${t.stats.noise}.`, 'tempo', m);
+        else if (!ability.formula) b = log(b, `${actor.name} uses ${ability.name} on ${t.name}.`, 'info', m);
       }
     }
   }
@@ -402,7 +412,7 @@ export function useItem(b: BattleState, actorId: string, item: ItemDef, targetId
     slack: Math.min(slackCap(b, c, content), c.slack + (e.slack ?? 0)),
   }));
   if (e.tempo) b = { ...b, tempo: Math.min(content.rules.tempoMax, b.tempo + e.tempo) };
-  b = log(b, `${actor.name} uses ${item.name} on ${target.name}.`, 'heal');
+  b = log(b, `${actor.name} uses ${item.name} on ${target.name}.`, 'heal', { actor: actor.name, target: target.name, ability: item.name });
   return afterAction(b, content);
 }
 
@@ -430,7 +440,7 @@ export function rewind(b: BattleState, content: ContentDB): BattleState {
     fork: null,
     phase: 'enemy',
   };
-  nb = log(nb, `Rewind. ${rp.description} is undone. Entropy ${entropy}.`, 'tempo');
+  nb = log(nb, `Rewind: ${rp.description} is undone. Entropy rises to ${entropy}.`, 'tempo', { ability: 'Rewind' });
   return nb;
 }
 
@@ -462,7 +472,7 @@ export function fork(b: BattleState, actorId: string, abilityId: string, targetI
   for (const c of sim.combatants) if (!nb.combatants.some((o) => o.id === c.id)) lines.push(`${c.name} would appear`);
   if (sim.tempo !== nb.tempo) lines.push(`Tempo ${sim.tempo - nb.tempo > 0 ? '+' : ''}${sim.tempo - nb.tempo}`);
   if (!lines.length) lines.push('No visible change.');
-  nb = log(nb, `Fork: previewing ${content.abilities[abilityId].name}. Entropy ${nb.entropy}.`, 'tempo');
+  nb = log(nb, `Fork: previewing ${content.abilities[abilityId].name}. Entropy rises to ${nb.entropy}.`, 'tempo', { ability: 'Fork' });
   return { ...nb, fork: { abilityId, targetId: targetId ?? '', lines } };
 }
 

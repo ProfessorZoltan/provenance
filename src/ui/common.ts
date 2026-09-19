@@ -17,6 +17,10 @@ export interface Ctx {
   toast(msg: string): void;
   setPrompts(p: Prompt[]): void;
   shake(): void;
+  /** Redraw the current screen without going through the store. */
+  refresh(): void;
+  /** Dismiss the battle narration box on screen and show the next one. */
+  advanceNarration(): void;
 }
 
 export interface ScreenHandle {

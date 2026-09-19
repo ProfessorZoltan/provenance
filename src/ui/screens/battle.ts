@@ -5,6 +5,7 @@ import type { AbilityDef } from '../../types/content';
 import type { BattleState, Combatant, GameState } from '../../types/state';
 import type { Button } from '../../input/input';
 import { accentFor, esc, html, prompts, type Ctx, type ScreenHandle } from '../common';
+import { currentPage, narrationPending } from '../narration';
 import { menu, type MenuItem } from '../menu';
 
 type Mode = 'menu' | 'target' | 'items' | 'itemTarget' | 'forkPick' | 'forkTarget' | 'inspect';
@@ -88,8 +89,16 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
   const entropyClass = b.entropy >= rules.entropyThreshold ? 'e3' : b.entropy >= 50 ? 'e2' : b.entropy >= 25 ? 'e1' : '';
   const logLines = b.log.slice(Math.max(0, b.log.length - 16 - ui.logScroll), b.log.length - ui.logScroll);
 
+  const page = currentPage();
+  const narrating = narrationPending();
+
   html(root, `<section class="battle">
     <div class="stage"><div class="field-label">${esc(content.locations[state.location].name)} / ${esc(b.era)}</div>
+      ${page ? `<div class="narration" role="alert"><div class="narration-box">${page.map((line) => {
+        const who = line.actor && line.target && line.actor !== line.target ? `${line.actor} → ${line.target}` : line.actor ?? '';
+        const head = [who, line.ability].filter(Boolean).join(' · ');
+        return `${head ? `<div class="eyebrow">${esc(head)}</div>` : ''}<p class="${line.kind}">${esc(line.text)}</p>`;
+      }).join('')}<div class="narration-more"><span class="glyph" data-btn="a"><span class="pad">A</span><span class="key">Enter</span></span> Continue</div></div></div>` : ''}
       <div class="frame ${entropyClass}"></div>
       <div class="enemies">${enemies.map((e) => `<div class="enemy ${e.down ? 'down' : ''} ${targeted?.id === e.id ? 'targeted' : ''} ${actor?.id === e.id ? 'acting' : ''}" data-id="${e.id}">
         <div class="rig">${rigFor(e)}</div>
@@ -160,7 +169,10 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     if (err) { Object.assign(ui, prev); ctx.toast(err.message); ctx.audio.sfx('cancel', b.era); rerender(); }
   };
 
-  if (over) {
+  if (narrating) {
+    actions.innerHTML = `<div class="eyebrow">${b.phase === 'won' ? 'Victory' : b.phase === 'lost' ? 'Defeat' : playerTurn ? esc(actor!.name) : 'Enemy turn'}</div><p class="small">Read the report, then continue.</p>`;
+    ctx.setPrompts(prompts({ btn: 'a', label: 'Continue' }));
+  } else if (over) {
     actions.innerHTML = `<div class="eyebrow">${b.phase === 'won' ? 'Victory' : 'Defeat'}</div><p class="small">${b.phase === 'won' ? 'The field is clear.' : 'The party falls.'}</p>`;
     ctx.setPrompts(prompts({ btn: 'a', label: 'Continue' }));
   } else if (!playerTurn) {
@@ -219,6 +231,8 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     ctx.setPrompts(prompts({ btn: 'lb', label: 'Prev' }, { btn: 'rb', label: 'Next' }, { btn: 'b', label: 'Back' }));
   }
 
+  root.querySelector('.narration')?.addEventListener('click', () => ctx.advanceNarration());
+
   // Clicking an enemy while targeting picks it.
   root.querySelectorAll('.enemy').forEach((el) => el.addEventListener('click', () => {
     const id = (el as HTMLElement).dataset.id!;
@@ -244,6 +258,10 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
 
   return {
     input(btn: Button) {
+      if (narrating) {
+        if (btn === 'a' || btn === 'b') ctx.advanceNarration();
+        return;
+      }
       if (btn === 'scrollUp') { ui.logScroll = Math.min(Math.max(0, b.log.length - 4), ui.logScroll + 3); rerender(); return; }
       if (btn === 'scrollDown') { ui.logScroll = Math.max(0, ui.logScroll - 3); rerender(); return; }
       if (over) { if (btn === 'a' || btn === 'b') store.dispatch({ type: 'BATTLE_FINISH' }); return; }

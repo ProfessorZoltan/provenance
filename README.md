@@ -39,8 +39,15 @@ standard-mapping controller to switch to gamepad glyphs.
 | Save / load menu | Start | M |
 | Settings | Select | Tab |
 | Scroll battle log | Right stick | PgUp / PgDn |
+| Dismiss a battle report | A | Enter |
 
-Keyboard-only play works everywhere. Mouse clicks work on menus, dialogue and enemy targets.
+Battles narrate themselves. Every hit, heal, miss, Tempo spend and Entropy spike appears in a box
+in the middle of the field, naming who did what to whom with which ability, and nothing else moves
+until you dismiss it. Long enemy turns are paged three lines at a time. The side log keeps the
+full history.
+
+Keyboard-only play works everywhere. Mouse clicks work on menus, dialogue, enemy targets and the
+battle report box.
 
 Travel is physical. Each era has a valley map: the party walks it with the stick or WASD,
 locations are nodes you step into and enter with A, and the dashed regions are wilds where
@@ -78,6 +85,11 @@ and removes animation.
   cross-references at startup. A file may hold one object or an array; each needs an `id`.
 - `src/ui/` renders the current screen from state on every change. `input/input.ts` unifies
   keyboard and the Gamepad API into semantic buttons; `input/prompts.ts` draws the glyphs.
+  `ui/narration.ts` queues battle log lines into dismissible pages; the queue is presentation
+  state, so the log in `GameState` stays the single source of truth.
+- Type is per era, set from the era JSON: humanist sans in 2031, condensed grotesk in 2064,
+  monospace in 2148, geometric sans in 2312. `applyEra()` swaps the `--font` and `--tracking`
+  custom properties, so one layout carries four centuries.
 - `src/audio/engine.ts` turns a score JSON into Tone.js layers. BPM is `baseBpm + 1.5 × Tempo`;
   layers unmute at their `minTempo`; Entropy above 70 detunes the mix and adds a reversed echo
   send. 2312 pieces use 19-tone equal temperament, 2148 pieces drift ±6% and bend quarter tones.
@@ -118,9 +130,10 @@ The design doc left these open; the slice picks a value so the loop is playable.
 
 ## Verified
 
-- `npm test`: 40 reducer tests covering battle determinism, damage type rules, Rewind, Fork,
+- `npm test`: 48 tests covering battle determinism, damage type rules, Rewind, Fork,
   Echo spawn, surprise attacks, node unlocking, timeline propagation, map travel, save round trip,
-  a full end-to-end slice run and a 300-battle random-action fuzz that must never hang or throw.
+  a full end-to-end slice run, battle narration paging, art-library resolution, and a 300-battle
+  random-action fuzz that must never hang or throw.
 - `npm run build` typechecks and produces a static build; it was driven end to end in headless
   Chromium with no console errors. Safari has not been tested from this environment.
 
