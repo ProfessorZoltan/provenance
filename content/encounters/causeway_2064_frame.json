@@ -1,0 +1,34 @@
+{
+  "id": "causeway_2064_frame",
+  "name": "Leased Frame",
+  "era": "2064",
+  "location": "migrant_causeway_2064",
+  "enemies": [
+    {
+      "enemy": "construct_concession_2064",
+      "count": 1
+    },
+    {
+      "enemy": "drone_sentry_2064",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Something tall and glass-fronted is walking the line, and there is a person inside it.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Construct and a Drone."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Concession Frame: two bars. The shell is a machine; what is inside it is not."
+    },
+    {
+      "when": "party:wren",
+      "text": "Wren: whoever is in that frame is at work. Remember that before you finish it."
+    }
+  ],
+  "music": "battle_2064"
+}

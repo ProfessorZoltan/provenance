@@ -1,0 +1,15 @@
+{
+  "id": "expose_buyers",
+  "era": "2064",
+  "site": "halden",
+  "name": "Expose the buyers",
+  "ownershipDelta": 40,
+  "syncDelta": 0,
+  "flags": [
+    "buyersExposed",
+    "boardAlerted"
+  ],
+  "partyEffects": [],
+  "lean": "commons",
+  "summary": "Every name that paid for a senator goes on the record. The Handover is delayed by a decade and the Board learns that someone is editing its history."
+}

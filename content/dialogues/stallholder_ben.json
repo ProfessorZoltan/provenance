@@ -1,0 +1,27 @@
+{
+  "id": "stallholder_ben",
+  "lines": [
+    {
+      "speaker": "stallholder_ben",
+      "text": "Everything here fell off something. I don't ask what, you don't ask how, we both do very well."
+    },
+    {
+      "speaker": "stallholder_ben",
+      "text": "Prototype boards, mostly. Campus up the hill throws out more in a month than this street sells in a year.",
+      "conditions": [
+        "!visited:2148"
+      ]
+    },
+    {
+      "speaker": "stallholder_ben",
+      "text": "You keep buying the old analog stuff and none of the new boards. Either you're sentimental or you know something.",
+      "conditions": [
+        "visited:2148"
+      ]
+    },
+    {
+      "speaker": "stallholder_ben",
+      "text": "Relics I'll always take. Hand-made goes up in value; mass-made goes down. Same in any century, I expect."
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "delegate_okafor",
+  "lines": [
+    {
+      "speaker": "delegate_okafor",
+      "text": "Visitors' gallery is closed, the floor is closed, and the vote is in ninety minutes. So whatever this is, be quick and be interesting.",
+      "conditions": [
+        "!flag:treatyAmended",
+        "!flag:voteSabotaged",
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "delegate_okafor",
+      "text": "The Handover is a procurement treaty. That is all. We are contracting allocation services to a consortium because we are very bad at allocation and they are very good at it.",
+      "conditions": [
+        "!flag:treatyAmended",
+        "!flag:voteSabotaged",
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "Article nine assigns the governing instrument itself. You are not hiring them. You are selling them the chair.",
+      "conditions": [
+        "!flag:treatyAmended",
+        "!flag:voteSabotaged",
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "delegate_okafor",
+      "text": "Vesely has been saying that for four years and nobody has read past the summary yet. Talk to her. She has ninety minutes too.",
+      "conditions": [
+        "!flag:treatyAmended",
+        "!flag:voteSabotaged",
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "delegate_okafor",
+      "text": "The amendment carried. Forty-one to thirty-eight and a clause that names who governance can be ceded to. It changes less than you think and more than they wanted.",
+      "conditions": [
+        "flag:treatyAmended"
+      ]
+    },
+    {
+      "speaker": "delegate_okafor",
+      "text": "The session collapsed, the treaty went through by order six months later, and there is nobody left in this building who would have argued with it. I hope that was worth whatever you wanted.",
+      "conditions": [
+        "flag:voteSabotaged"
+      ]
+    },
+    {
+      "speaker": "delegate_okafor",
+      "text": "Eleven senators, four firms and one holding company, all on the record. The vote is delayed a decade. Somebody very old and very quiet is now looking for you.",
+      "conditions": [
+        "flag:buyersExposed"
+      ]
+    }
+  ]
+}

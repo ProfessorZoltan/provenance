@@ -1,0 +1,17 @@
+{
+  "id": "halden_manifest",
+  "lines": [
+    {
+      "speaker": "dock_foreman",
+      "text": "Continuity Holdings. That's the name on every line. Eleven years, one signature, never a query, never a late payment."
+    },
+    {
+      "speaker": "player",
+      "text": "Two hundred and eighty-one years, actually. I've seen the other end of that ledger."
+    },
+    {
+      "speaker": "dock_foreman",
+      "text": "Right. Well. If you find out what's in the crates, don't tell me. I've got a daughter and a mortgage and I like not knowing."
+    }
+  ]
+}

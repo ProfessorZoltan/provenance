@@ -1,9 +1,10 @@
 # Provenance
 
-A browser RPG about who owns the future. This repository holds the **vertical slice** from the
-design doc's Build brief: Kell Monastery in 2312 and 2148, Kell Village, three party members,
-five encounters, the Threads / Tempo / Entropy battle system, one timeline choice that changes
-the village on return, and save/load.
+A browser RPG about who owns the future. It began as the **vertical slice** from the design doc's
+Build brief and now runs two of the five Deep Sites, Kell and Port Halden, across all four eras:
+2031, 2064, 2148 and 2312. Five party members, the Threads / Tempo / Entropy battle system, nine
+timeline choices whose order of play decides what survives, shops, equipment, recruitment,
+quests and save/load.
 
 Everything is code-drawn and data-driven: art is SVG and canvas, music is generated live by
 Tone.js from JSON scores, and all content lives in `content/` as JSON.
@@ -54,30 +55,34 @@ full history.
 Keyboard-only play works everywhere. Mouse clicks work on menus, dialogue, enemy targets and the
 battle report box.
 
-Travel is physical. Each era has a valley map: the party walks it with the stick or WASD,
+Travel is physical. Each era has one map holding both Deep Sites, Kell in the north-west and
+Port Halden on the coast, joined by the coast road: the party walks it with the stick or WASD,
 locations are nodes you step into and enter with A, and the dashed regions are wilds where
 random encounters roll as you walk (a Scan card still lets you skip them). The village gate
-appears as a node once Old Pell's quest is active. Time travel stays inside the Deep Site.
+appears as a node once Old Pell's quest is active. Time travel stays inside a Deep Site, and both
+sites reach all four eras.
+
 Reduced motion (Settings, or the OS preference) freezes the parallax camera, halves particles
 and removes animation.
 
-## What the slice contains
+## What is built
 
 | Piece | Where |
 | --- | --- |
-| Sites: Kell across 2031, 2148 and 2312, with four waypoints | `content/locations/` |
-| Waypoint: Kell Village 2312, one shop, quest "Snow on the Wire" | `content/locations/`, `content/quests/`, `content/shops/` |
-| Party: the Auditor, Wren, Dax, and ILO-9 by recruitment. Four active, the rest benched | `content/characters/` |
-| Tech trees: 12 nodes each, one condition node and one contradiction pair per character | `content/nodes/` |
-| Enemies: eleven across four families, including Constructs with two health bars | `content/enemies/` |
-| Encounters: five, with Scan card, Skip, one scripted surprise attack | `content/encounters/` |
-| Battle: Threads, Slack, Tempo with Rewind and Fork, Entropy with one Echo spawn per fight | `src/core/battle/battle.ts` |
-| Backgrounds: two, four parallax layers each, one ambient animation, canvas particles | `src/art/backgrounds.ts` |
-| Music: two battle pieces, two hub pieces, Tempo-linked layers, Entropy detune | `content/scores/`, `src/audio/engine.ts` |
-| Timeline: six choices across two eras. An upstream edit rewrites everything downstream of it at that site | `content/timelineChoices/`, `src/core/timeline.ts` |
-| Equipment: two slots per character, era-specific gear, owner-locked pieces | `content/items/gear.json`, `src/ui/screens/roster.ts` |
+| Deep Sites: Kell and Port Halden, each across 2031, 2064, 2148 and 2312 | `content/locations/` |
+| Waypoints: nine, including Kell Village, Halden Market, the Undercity Bazaar and the Enclave 7 Commissary | `content/locations/`, `content/shops/` |
+| Party: the Auditor, Wren, Dax, ILO-9 and Mara Vesely, the last two by recruitment. Four active, the rest benched at half XP | `content/characters/` |
+| Tech trees: 14 or more nodes each, one condition node, one contradiction pair and per-era nodes | `content/nodes/` |
+| Enemies: eighteen across four families and four centuries, including Constructs with two health bars | `content/enemies/` |
+| Encounters: twenty-five, with Scan card, Skip and scripted surprise attacks | `content/encounters/` |
+| Battle: Threads, Slack, Tempo with Rewind and Fork, Entropy with one Echo spawn per fight, Parley, Terms and Settlement | `src/core/battle/battle.ts` |
+| Backgrounds: one per location, four parallax layers each, one ambient animation, canvas particles | `src/art/pixel-backgrounds.ts` |
+| Music: four battle pieces and four hub pieces, Tempo-linked layers, Entropy detune | `content/scores/`, `src/audio/engine.ts` |
+| Timeline: nine choices across four eras and three sites. A later edit at an earlier era erases everything downstream of it at that site | `content/timelineChoices/`, `src/core/timeline.ts` |
+| Equipment: two slots per character, era-specific gear, owner-locked pieces, Ownership-gated stock | `content/items/`, `src/ui/screens/roster.ts` |
 | Save: localStorage slot, JSON export and import, last three timeline snapshots | `src/core/save.ts` |
-| Era maps: nodes, roads and encounter zones per era | `content/maps/`, `src/ui/screens/map.ts` |
+| Era maps: both regions on one map per era, with roads and encounter zones | `content/maps/`, `src/ui/screens/map.ts` |
+| Player manual: in-game screen rendered from the shipped Markdown | `docs/PLAYER_MANUAL.md`, `src/ui/manual.ts` |
 
 ## Architecture
 
@@ -124,22 +129,23 @@ The design doc left these open; the slice picks a value so the loop is playable.
 | Question | Decision |
 | --- | --- |
 | Leveling | 100 XP per level, +1 skill point per level, +5% to Resolve, Grit, Signal and Noise per level. Everyone starts with 2 points. |
-| Base stats | Auditor 120/3/40/45/30/35, Wren 95/3/50/55/25/20, Dax 160/3/60/10/20/60 (Resolve, Bandwidth, Latency, Signal, Noise, Grit). |
+| Base stats | Auditor 120/3/40/45/30/35, Wren 95/3/50/55/25/20, Dax 160/3/60/10/20/60, Mara 105/3/38/60/40/25 (Resolve, Bandwidth, Latency, Signal, Noise, Grit). |
 | Tempo | +2 per thread spent by the party, cap 40. Rewind costs 3 and +20 Entropy; Fork costs 2 Tempo, 1 thread and +10 Entropy. Rewinds per battle = Anchor characters (Wren) plus Chronal Anchor nodes. |
 | Echo spawn | At Entropy ≥ 70, once per fight, a copy of a random living party member at 60% Resolve, immune to everything but Chronal. |
 | Overload / Parley | Party average Sync ≤ -40 gives +25% Kinetic vs machines and disables Signal abilities; ≥ +40 adds a Parley action against machines. |
-| Items | Four consumables plus Relics. Ordinary equipment is out of scope for the slice. |
-| Party swap | All three members are always active; benching arrives with the fourth recruit. |
+| Items | Thirty-one: consumables, two-slot equipment per era, and Relics that any century's shop buys at a premium. |
+| Party swap | Four active at a time; anyone benched still earns XP at half rate. |
 | Defeat | The party wakes at the Deep Site at a quarter Resolve. Nothing else is lost. |
 | Autosave | After a battle result, a timeline choice, a quest turn-in and a time jump. Manual save, export and import are in the Save menu. |
 | Difficulty | No options yet; enemies do not scale. |
 
 ## Verified
 
-- `npm test`: 76 tests covering battle determinism, damage type rules, Rewind, Fork,
-  Echo spawn, surprise attacks, node unlocking, timeline propagation, map travel, save round trip,
-  a full end-to-end slice run, battle narration paging, art-library resolution, and a 300-battle
-  random-action fuzz that must never hang or throw.
+- `npm test`: 89 tests covering battle determinism, damage type rules, Rewind, Fork, Echo spawn,
+  surprise attacks, Mara's Terms and Settlement, node unlocking, timeline propagation across two
+  independent sites, Ownership-gated shop stock, map travel between both regions, save round trip,
+  two full end-to-end runs including the Handover, battle narration paging, art-library resolution,
+  and a 300-battle random-action fuzz that must never hang or throw.
 - `npm run build` typechecks and produces a static build; it was driven end to end in headless
   Chromium with no console errors. Safari has not been tested from this environment.
 

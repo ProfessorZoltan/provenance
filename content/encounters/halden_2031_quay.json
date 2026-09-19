@@ -1,0 +1,34 @@
+{
+  "id": "halden_2031_quay",
+  "name": "Quayside",
+  "era": "2031",
+  "location": "halden_2031",
+  "enemies": [
+    {
+      "enemy": "drone_dock_2031",
+      "count": 2
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Two loaders working a stack, and neither of them has been told the quay is closed.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones. Industrial, not security."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Dock Loaders: barely armoured, and Signal goes straight through."
+    },
+    {
+      "when": "noise>=40",
+      "text": "Ambush chance shown."
+    },
+    {
+      "when": "party:dax",
+      "text": "Dax: those are machines doing a job. I still say burn them."
+    }
+  ],
+  "music": "battle_2031"
+}

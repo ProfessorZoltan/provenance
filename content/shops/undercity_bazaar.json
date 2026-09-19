@@ -1,0 +1,38 @@
+{
+  "id": "undercity_bazaar",
+  "name": "Undercity Bazaar",
+  "era": "2064",
+  "currency": "credits",
+  "stock": [
+    {
+      "item": "ration",
+      "price": 14
+    },
+    {
+      "item": "stim",
+      "price": 22
+    },
+    {
+      "item": "glass_optics",
+      "price": 70
+    },
+    {
+      "item": "causeway_coat",
+      "price": 75
+    },
+    {
+      "item": "mara_folio",
+      "price": 90,
+      "when": [
+        "party:mara"
+      ]
+    },
+    {
+      "item": "enforcer_visor",
+      "price": 110,
+      "when": [
+        "ownership>=0"
+      ]
+    }
+  ]
+}

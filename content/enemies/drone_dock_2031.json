@@ -1,0 +1,38 @@
+{
+  "id": "drone_dock_2031",
+  "name": "Dock Loader",
+  "family": "drone",
+  "era": "2031",
+  "machine": true,
+  "stats": {
+    "resolve": 62,
+    "bandwidth": 2,
+    "latency": 40,
+    "signal": 10,
+    "noise": 10,
+    "grit": 34,
+    "sync": 100,
+    "continuity": 100
+  },
+  "shield": 8,
+  "abilities": [
+    "warden_baton",
+    "drone_dart"
+  ],
+  "immunities": [],
+  "perception": 15,
+  "rig": "drone_sentry",
+  "weakness": "signal",
+  "xp": 30,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.8
+    },
+    {
+      "item": "relic_dock_manifest",
+      "chance": 0.14
+    }
+  ],
+  "flavor": "Not built to fight. Built to lift four tonnes, and nobody wrote down what it should do if you are in the way."
+}

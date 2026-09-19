@@ -1,0 +1,31 @@
+{
+  "id": "halden_arrive_2148",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Port Halden, 2148. The sea took the first two storeys and stopped there, politely, as though it had been allocated exactly that much."
+    },
+    {
+      "speaker": "narrator",
+      "text": "What is left is roof gardens, rope bridges, and the noise water makes in a stairwell that goes down forever."
+    },
+    {
+      "speaker": "dax",
+      "text": "I came through here as a kid. There were more roofs then.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "Nine million people. The Enclave census for this whole coast in my century is forty thousand."
+    },
+    {
+      "speaker": "wren",
+      "text": "Then we are standing in the difference.",
+      "conditions": [
+        "party:wren"
+      ]
+    }
+  ]
+}

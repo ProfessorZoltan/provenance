@@ -1,0 +1,76 @@
+[
+  {
+    "id": "glass_optics",
+    "name": "Glass Quarter Optics",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2064",
+    "stats": {
+      "signal": 13,
+      "noise": 5
+    },
+    "description": "Mirrored lenses off a concession drone. +13 Signal, +5 Noise."
+  },
+  {
+    "id": "causeway_coat",
+    "name": "Causeway Coat",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2064",
+    "stats": {
+      "resolve": 30,
+      "grit": 6
+    },
+    "description": "Lined for a wind that comes off the water all year. +30 Resolve, +6 Grit."
+  },
+  {
+    "id": "dock_maul",
+    "name": "Dock Maul",
+    "kind": "gear",
+    "slot": "weapon",
+    "era": "2031",
+    "stats": {
+      "grit": 12
+    },
+    "description": "A loader's breaker bar, bought cheap on the Halden quayside. +12 Grit."
+  },
+  {
+    "id": "mara_folio",
+    "name": "Amendment Folio",
+    "kind": "gear",
+    "slot": "weapon",
+    "era": "2064",
+    "onlyFor": [
+      "mara"
+    ],
+    "stats": {
+      "signal": 15,
+      "resolve": 10
+    },
+    "description": "Four years of drafts she never got to the floor. +15 Signal, +10 Resolve."
+  },
+  {
+    "id": "tide_weave",
+    "name": "Tide Line Weave",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2148",
+    "stats": {
+      "noise": 12,
+      "continuity": 8
+    },
+    "description": "Salvaged from the drowned quarter and stubbornly still itself. +12 Noise, +8 Continuity."
+  },
+  {
+    "id": "enclave_badge",
+    "name": "Auditor's Badge",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2312",
+    "stats": {
+      "signal": 8,
+      "resolve": 15
+    },
+    "description": "Your old credential. Still flagged, still opens two doors in Enclave 7. +8 Signal, +15 Resolve."
+  }
+]

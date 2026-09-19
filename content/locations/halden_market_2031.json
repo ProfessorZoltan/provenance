@@ -1,0 +1,47 @@
+{
+  "id": "halden_market_2031",
+  "name": "Halden Market",
+  "kind": "waypoint",
+  "era": "2031",
+  "site": "market",
+  "type": "Settlement",
+  "art": "2031_halden_market",
+  "description": "Everything that falls off a crate ends up on this street. It is the cheapest place in any century, and half of it will be rare in a hundred years.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2031_halden_market:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2031_halden_market:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2031_halden_market:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2031_halden_market:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "dust"
+  },
+  "music": "hub_2031",
+  "npcs": [
+    "stallholder_ben"
+  ],
+  "quests": [],
+  "encounters": [],
+  "links": [],
+  "timeLinks": [],
+  "shop": "halden_market"
+}

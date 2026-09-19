@@ -240,6 +240,8 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   const notes: string[] = [];
 
   if (hasStatus(target, 'marked')) dmg *= 1 + rules.markBonus + (p.markBonus ?? 0);
+  if (hasStatus(target, 'bound')) { dmg *= 1.2 + (p.boundBonus ?? 0); notes.push('in breach'); }
+  if (hasStatus(actor, 'bound')) { dmg *= 0.7; notes.push('bound by terms'); }
   dmg *= 1 + 0.15 * statusCount(actor, 'inspired');
   if (ability.special === 'scalesWithMarks') dmg *= 1 + 0.3 * marks;
   if (target.machine) dmg *= 1 + (p.vsMachine ?? 0);
@@ -315,6 +317,7 @@ function applyStatus(b: BattleState, target: Combatant, status: StatusEffect, co
   if (status.id === 'fear' && target.family === 'drone') return b;
   let turns = status.turns;
   if (status.id === 'marked') turns += b.passives[actorId]?.markDuration ?? 0;
+  if (status.id === 'bound') turns += b.passives[actorId]?.boundTurns ?? 0;
   void content;
   return update(b, target.id, (c) => ({ ...c, statuses: [...c.statuses, { ...status, turns }] }));
 }
@@ -356,7 +359,7 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
 
   if (ability.special === 'parley') {
     const t = chosen[0];
-    const chance = clamp(0.4 + actor.stats.signal / 200 - t.stats.noise / 400, 0.2, 0.95);
+    const chance = clamp(0.4 + actor.stats.signal / 200 - t.stats.noise / 400 + (b.passives[actorId]?.parleyBonus ?? 0), 0.2, 0.95);
     const [r, rng] = roll(b.rng);
     b = { ...b, rng };
     if (r < chance) {
@@ -365,6 +368,18 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     } else {
       b = log(b, `${actor.name} tries to talk ${t.name} down, but it does not listen.`, 'info', { actor: actor.name, target: t.name, ability: ability.name });
     }
+    return afterAction(b, content);
+  }
+
+  if (ability.special === 'settlement') {
+    const foes = alive(b, actor.side === 'party' ? 'enemy' : 'party');
+    const loose = foes.filter((f) => !hasStatus(f, 'bound'));
+    if (loose.length) {
+      b = log(b, `${actor.name} calls for terms, but ${loose.map((f) => f.name).join(' and ')} ${loose.length === 1 ? 'is' : 'are'} not bound to anything.`, 'warn', { actor: actor.name, ability: ability.name });
+      return afterAction(b, content);
+    }
+    for (const f of foes) b = update(b, f.id, (c) => ({ ...c, down: true, parleyed: true, statuses: [] }));
+    b = log(b, `${actor.name} settles. Every contract on the field is called in at once, and the fight is simply over.`, 'tempo', { actor: actor.name, ability: ability.name });
     return afterAction(b, content);
   }
 
@@ -534,7 +549,7 @@ export function fork(b: BattleState, actorId: string, abilityId: string, targetI
 
 const STATUS_NAMES: Record<string, string> = {
   guard: 'Guard', taunt: 'Bulwark', marked: 'a mark', inspired: 'Litany', anchored: 'an anchor',
-  fixed: 'Fixed Point', faraday: 'Faraday', fear: 'Fear', locked: 'Target Lock',
+  fixed: 'Fixed Point', faraday: 'Faraday', fear: 'Fear', locked: 'Target Lock', bound: 'Terms',
 };
 
 function maybeSpawnEcho(b: BattleState, content: ContentDB): BattleState {

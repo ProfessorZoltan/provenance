@@ -1,0 +1,75 @@
+{
+  "id": "mara_vesely",
+  "lines": [
+    {
+      "speaker": "mara_vesely",
+      "text": "Four years. Two hundred pages. Nine substantive amendments, none of them tabled, because tabling requires a sponsor and I am staff.",
+      "conditions": [
+        "!flag:treatyAmended",
+        "!flag:voteSabotaged",
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "mara_vesely",
+      "text": "Article nine is the one. Everything else is procurement. Article nine cedes the instrument, and it does it in a sentence about data custody that runs to a hundred and forty words.",
+      "conditions": [
+        "!flag:treatyAmended",
+        "!flag:voteSabotaged",
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "mara_vesely",
+      "text": "I can get one thing onto the floor before the reading. One. Tell me which, because I have stopped being able to see it.",
+      "conditions": [
+        "!flag:treatyAmended",
+        "!flag:voteSabotaged",
+        "!flag:buyersExposed"
+      ],
+      "next": "handover_choice"
+    },
+    {
+      "speaker": "mara_vesely",
+      "text": "It carried. I have been in this building eleven years and today is the first time anything I wrote survived a reading.",
+      "conditions": [
+        "flag:treatyAmended",
+        "!party:mara"
+      ]
+    },
+    {
+      "speaker": "mara_vesely",
+      "text": "And now I would like to know who you actually are, and I would like to come with you when you tell me.",
+      "conditions": [
+        "flag:treatyAmended",
+        "!party:mara"
+      ],
+      "choices": [
+        {
+          "text": "We change what already happened. Come and see.",
+          "action": "recruit:mara",
+          "syncDelta": 5
+        },
+        {
+          "text": "It is safer here.",
+          "next": "mara_declined"
+        }
+      ]
+    },
+    {
+      "speaker": "mara_vesely",
+      "text": "Two hundred and forty-eight years downstream and my clause is still in force. Every so often I would like a moment to sit with that.",
+      "conditions": [
+        "party:mara"
+      ]
+    },
+    {
+      "speaker": "mara_vesely",
+      "text": "The record is public now. Every buyer, every price. I did not write that amendment, but I will spend the next decade defending it.",
+      "conditions": [
+        "flag:buyersExposed",
+        "!flag:treatyAmended"
+      ]
+    }
+  ]
+}

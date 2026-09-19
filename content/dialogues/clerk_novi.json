@@ -1,0 +1,30 @@
+{
+  "id": "clerk_novi",
+  "lines": [
+    {
+      "speaker": "clerk_novi",
+      "text": "Allocated goods only. If it is not on the quarterly schedule it does not exist, and I would ask you not to describe it to me."
+    },
+    {
+      "speaker": "clerk_novi",
+      "text": "Two shelves. Both rations. The schedule came down eleven percent and no explanation is owed to a commissary clerk.",
+      "conditions": [
+        "ownership<=-20"
+      ]
+    },
+    {
+      "speaker": "clerk_novi",
+      "text": "Half of this came in from outside the schedule and I have stopped filing the discrepancy. There is a clause somewhere that says people may hold things. I have read it nine times.",
+      "conditions": [
+        "ownership>=20"
+      ]
+    },
+    {
+      "speaker": "clerk_novi",
+      "text": "You are the auditor who asked the question. No, I will not report it. I would quite like to know the answer.",
+      "conditions": [
+        "flag:buyersExposed"
+      ]
+    }
+  ]
+}

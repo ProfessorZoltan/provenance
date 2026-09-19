@@ -1,0 +1,47 @@
+{
+  "id": "undercity_bazaar_2064",
+  "name": "Undercity Bazaar",
+  "kind": "waypoint",
+  "era": "2064",
+  "site": "undercity",
+  "type": "Settlement",
+  "art": "2064_undercity_bazaar",
+  "description": "Below the waterline, under the glass. Signal gear that the concession has not licensed, priced by how much trouble it is to hold.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2064_undercity_bazaar:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2064_undercity_bazaar:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2064_undercity_bazaar:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2064_undercity_bazaar:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "glint"
+  },
+  "music": "hub_2064",
+  "npcs": [
+    "fence_moro"
+  ],
+  "quests": [],
+  "encounters": [],
+  "links": [],
+  "timeLinks": [],
+  "shop": "undercity_bazaar"
+}

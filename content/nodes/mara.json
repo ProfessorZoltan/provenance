@@ -1,0 +1,333 @@
+[
+  {
+    "id": "m_lev_1",
+    "character": "mara",
+    "trunk": "breaker",
+    "name": "Fine Print",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 8
+      }
+    ],
+    "description": "+8 Signal. She reads the clause nobody else finished.",
+    "row": 0,
+    "col": 0
+  },
+  {
+    "id": "m_lev_2",
+    "character": "mara",
+    "trunk": "breaker",
+    "name": "Leverage",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "m_lev_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "leverage"
+      }
+    ],
+    "description": "Grants Leverage: a heavy hit that punishes anything already bound.",
+    "row": 1,
+    "col": 0
+  },
+  {
+    "id": "m_lev_3",
+    "character": "mara",
+    "trunk": "breaker",
+    "name": "Penalty on Breach",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "m_lev_2"
+    ],
+    "excludes": [
+      "m_dip_3"
+    ],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "boundBonus",
+        "value": 0.25
+      }
+    ],
+    "description": "Bound enemies take a further 25%. Locks out Good Faith.",
+    "row": 2,
+    "col": 0
+  },
+  {
+    "id": "m_lev_4",
+    "character": "mara",
+    "trunk": "breaker",
+    "name": "Liquidated Damages",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "m_lev_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "grit",
+        "delta": 14
+      }
+    ],
+    "description": "+14 Grit. She stopped waiting for anyone to honour anything.",
+    "row": 3,
+    "col": 0
+  },
+  {
+    "id": "m_dip_1",
+    "character": "mara",
+    "trunk": "weaver",
+    "name": "Diplomacy",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "parleyBonus",
+        "value": 0.2
+      }
+    ],
+    "description": "Her Parley lands 20% more often than anyone else's.",
+    "row": 0,
+    "col": 1
+  },
+  {
+    "id": "m_dip_2",
+    "character": "mara",
+    "trunk": "weaver",
+    "name": "Open Session",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "m_dip_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "accord"
+      }
+    ],
+    "description": "Grants Accord: a party-wide buff that also fills the gauge.",
+    "row": 1,
+    "col": 1
+  },
+  {
+    "id": "m_dip_3",
+    "character": "mara",
+    "trunk": "weaver",
+    "name": "Good Faith",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "m_dip_1"
+    ],
+    "excludes": [
+      "m_lev_3"
+    ],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "good_faith"
+      },
+      {
+        "kind": "passive",
+        "passive": "healBonus",
+        "value": 0.2
+      }
+    ],
+    "description": "Grants Good Faith and strengthens all healing. Locks out Penalty on Breach.",
+    "row": 2,
+    "col": 1
+  },
+  {
+    "id": "m_dip_4",
+    "character": "mara",
+    "trunk": "weaver",
+    "name": "Settlement",
+    "type": "standard",
+    "cost": 3,
+    "requires": [
+      "m_dip_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "settlement"
+      }
+    ],
+    "description": "Capstone. Grants Settlement: end a fight with every enemy bound.",
+    "row": 3,
+    "col": 1
+  },
+  {
+    "id": "m_acc_1",
+    "character": "mara",
+    "trunk": "anchor",
+    "name": "Standing Order",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "resolve",
+        "delta": 25
+      }
+    ],
+    "description": "+25 Resolve. Four years of committee taught her to absorb things.",
+    "row": 0,
+    "col": 2
+  },
+  {
+    "id": "m_acc_2",
+    "character": "mara",
+    "trunk": "anchor",
+    "name": "Quorum Call",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "m_acc_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "openingTempo",
+        "value": 4
+      }
+    ],
+    "description": "Every battle opens with 4 Tempo. She starts talking before anyone is ready.",
+    "row": 1,
+    "col": 2
+  },
+  {
+    "id": "m_acc_3",
+    "character": "mara",
+    "trunk": "anchor",
+    "name": "Read the Amendment",
+    "type": "condition",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 14
+      },
+      {
+        "kind": "passive",
+        "passive": "boundTurns",
+        "value": 1
+      }
+    ],
+    "description": "+14 Signal and her contracts hold a turn longer. She has to see the treaty amended.",
+    "row": 2,
+    "col": 2,
+    "condition": "flag:treatyAmended",
+    "conditionHint": "There is a version of the Handover she would sign. Go and make it exist."
+  },
+  {
+    "id": "m_acc_4",
+    "character": "mara",
+    "trunk": "anchor",
+    "name": "Binding Arbitration",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "m_acc_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "extraRewind",
+        "value": 1
+      }
+    ],
+    "description": "One more Rewind per battle. Someone has to be able to call a recess.",
+    "row": 3,
+    "col": 2
+  },
+  {
+    "id": "m_era_2064",
+    "character": "mara",
+    "trunk": "breaker",
+    "name": "Floor Privileges",
+    "type": "era",
+    "era": "2064",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 14
+      }
+    ],
+    "description": "+14 Signal. Only in 2064, where she still has a pass and a desk.",
+    "row": 4,
+    "col": 0
+  },
+  {
+    "id": "m_era_2312",
+    "character": "mara",
+    "trunk": "weaver",
+    "name": "Three Centuries of Standing",
+    "type": "era",
+    "era": "2312",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "parleyBonus",
+        "value": 0.15
+      }
+    ],
+    "description": "Parley lands more often still. Only in 2312, where her amendment is either law or a footnote.",
+    "row": 4,
+    "col": 1
+  },
+  {
+    "id": "m_era_2148",
+    "character": "mara",
+    "trunk": "anchor",
+    "name": "What It Cost",
+    "type": "era",
+    "era": "2148",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "resolve",
+        "delta": 40
+      }
+    ],
+    "description": "+40 Resolve. Only in 2148, standing in what the treaty produced.",
+    "row": 4,
+    "col": 2
+  }
+]

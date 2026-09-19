@@ -1,0 +1,53 @@
+{
+  "id": "halden_2148",
+  "name": "Port Halden",
+  "kind": "deepSite",
+  "era": "2148",
+  "site": "halden",
+  "type": "Drowned ruins",
+  "art": "2148_halden",
+  "description": "The tide comes into the third storey now. What is left of nine million people is a grid of roof gardens and a sound the water makes in the stairwells.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2148_halden:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2148_halden:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2148_halden:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2148_halden:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "ash"
+  },
+  "music": "hub_2148",
+  "npcs": [
+    "survivor_ives"
+  ],
+  "quests": [],
+  "encounters": [
+    "halden_2148_tideline"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2031",
+    "2064",
+    "2312"
+  ],
+  "storyDialogue": "halden_arrive_2148"
+}

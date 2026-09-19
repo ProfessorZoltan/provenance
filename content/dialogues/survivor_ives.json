@@ -1,0 +1,38 @@
+{
+  "id": "survivor_ives",
+  "lines": [
+    {
+      "speaker": "survivor_ives",
+      "text": "Mind the third bridge, it's rope over rope now. We lost a man to it in spring and we still call it the good one."
+    },
+    {
+      "speaker": "survivor_ives",
+      "text": "Forty-one of us on these roofs. My grandmother said nine million once and I told her to stop lying to children."
+    },
+    {
+      "speaker": "survivor_ives",
+      "text": "There's a thing in the stairwells. Comes up with the tide, looks like someone you knew, and it isn't. Don't answer it."
+    },
+    {
+      "speaker": "survivor_ives",
+      "text": "You went down there, then. Nobody's done that in my lifetime and come back up talking.",
+      "conditions": [
+        "flag:tidelineCleared"
+      ]
+    },
+    {
+      "speaker": "survivor_ives",
+      "text": "Water's lower this year. Two steps lower. Nobody can tell me why and I've stopped asking the kind of question that has no answer.",
+      "conditions": [
+        "ownership>=30"
+      ]
+    },
+    {
+      "speaker": "survivor_ives",
+      "text": "Heard your century's got walls and rations and a machine doing the counting. Ours has got weather. I'll keep the weather.",
+      "conditions": [
+        "visited:2312"
+      ]
+    }
+  ]
+}

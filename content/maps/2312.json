@@ -1,19 +1,19 @@
 {
   "id": "map_2312",
   "era": "2312",
-  "name": "Kell Valley, 2312",
-  "width": 1600,
-  "height": 900,
+  "name": "Kell Valley and Enclave 7, 2312",
+  "width": 2000,
+  "height": 1000,
   "spawn": {
-    "x": 800,
-    "y": 250
+    "x": 620,
+    "y": 260
   },
   "nodes": [
     {
       "id": "kell_2312",
       "kind": "location",
       "location": "kell_2312",
-      "x": 800,
+      "x": 620,
       "y": 210,
       "radius": 80,
       "label": "Kell Monastery",
@@ -23,8 +23,8 @@
       "id": "kell_village_2312",
       "kind": "location",
       "location": "kell_village_2312",
-      "x": 430,
-      "y": 660,
+      "x": 300,
+      "y": 720,
       "radius": 80,
       "label": "Kell Village",
       "icon": "village"
@@ -33,50 +33,95 @@
       "id": "village_gate",
       "kind": "encounter",
       "encounter": "kell_2312_gate",
-      "x": 600,
-      "y": 520,
+      "x": 450,
+      "y": 560,
       "radius": 46,
       "label": "Village gate",
       "icon": "gate",
       "requires": [
         "quest:gate_drone:active"
       ]
+    },
+    {
+      "id": "halden_2312",
+      "kind": "location",
+      "location": "halden_2312",
+      "x": 1450,
+      "y": 440,
+      "radius": 80,
+      "label": "Enclave 7",
+      "icon": "enclave"
+    },
+    {
+      "id": "enclave7_commissary_2312",
+      "kind": "location",
+      "location": "enclave7_commissary_2312",
+      "x": 1720,
+      "y": 710,
+      "radius": 70,
+      "label": "Commissary",
+      "icon": "market"
     }
   ],
   "roads": [
     [
-      800,
+      620,
       290,
-      720,
-      400,
-      600,
-      520,
+      540,
       430,
-      600
+      450,
+      560,
+      300,
+      650
     ],
     [
-      800,
+      620,
       290,
-      960,
-      400,
-      1130,
-      470
+      790,
+      430,
+      1010,
+      560,
+      1220,
+      570,
+      1380,
+      480
+    ],
+    [
+      1450,
+      520,
+      1630,
+      640,
+      1720,
+      670
     ]
   ],
   "zones": [
     {
       "id": "perimeter",
       "label": "Perimeter",
-      "x": 940,
-      "y": 330,
-      "w": 520,
-      "h": 420,
+      "x": 760,
+      "y": 300,
+      "w": 400,
+      "h": 280,
       "encounters": [
         "kell_2312_perimeter",
         "kell_2312_enforcers"
       ],
       "chance": 0.4,
-      "stride": 160
+      "stride": 165
+    },
+    {
+      "id": "blocks",
+      "label": "The blocks",
+      "x": 1160,
+      "y": 180,
+      "w": 330,
+      "h": 220,
+      "encounters": [
+        "halden_2312_blocks"
+      ],
+      "chance": 0.38,
+      "stride": 170
     }
   ]
 }

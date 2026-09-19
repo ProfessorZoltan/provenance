@@ -246,3 +246,80 @@ describe('fork preview', () => {
     expect(current(s.battle!)?.threads).toBe(2);
   });
 });
+
+describe("Mara's contracts", () => {
+  /** A 2064 battle with Mara in the party and a clear turn for her. */
+  function withMara(seed = 11, enc = 'halden_2064_terrace', diplomacy = false): GameState {
+    let s = reduce(newGame(seed), { type: 'RECRUIT', character: 'mara' });
+    if (diplomacy) {
+      s = { ...s, party: { ...s.party, mara: { ...s.party.mara, skillPoints: 9 } } };
+      s = run(s,
+        { type: 'UNLOCK_NODE', character: 'mara', node: 'm_dip_1' },
+        { type: 'UNLOCK_NODE', character: 'mara', node: 'm_dip_2' },
+        { type: 'UNLOCK_NODE', character: 'mara', node: 'm_dip_4' });
+    }
+    s = reduce(s, { type: 'START_ENCOUNTER', encounterId: enc, surprise: false });
+    let guard = 30;
+    while (guard-- > 0 && current(s.battle!)?.id !== 'mara') {
+      if (s.battle!.phase === 'enemy') { s = reduce(s, { type: 'BATTLE_ENEMY_ACT' }); continue; }
+      s = reduce(s, { type: 'BATTLE_END_TURN', actor: current(s.battle!)!.id });
+    }
+    return s;
+  }
+
+  it('makes a bound enemy take more and deal less', () => {
+    const s = withMara();
+    expect(current(s.battle!)?.id).toBe('mara');
+    const foe = s.battle!.combatants.find((c) => c.side === 'enemy' && !c.down)!;
+    // Kinetic lands on the shield first, so measure the whole pool.
+    const hpOf = (b: typeof s.battle) => { const c = b!.combatants.find((x) => x.id === foe.id)!; return c.hp + c.shield; };
+    const plain = hpOf(s.battle) - hpOf(resolveAbility(s.battle!, 'mara', 'strike', foe.id, content));
+    const bound = reduce(s, { type: 'BATTLE_ABILITY', actor: 'mara', ability: 'terms', target: foe.id });
+    expect(bound.battle!.combatants.find((c) => c.id === foe.id)!.statuses.some((st) => st.id === 'bound')).toBe(true);
+    const inBreach = hpOf(bound.battle) - hpOf(resolveAbility(bound.battle!, 'mara', 'strike', foe.id, content));
+    expect(inBreach, 'a bound enemy takes more').toBeGreaterThan(plain);
+
+    // ...and hits back softer, because breaching the terms costs it.
+    const auditorHp = (b: typeof s.battle) => b!.combatants.find((c) => c.id === 'player')!.hp;
+    const armed = (b: typeof s.battle) => ({ ...b!, combatants: b!.combatants.map((c) => (c.id === foe.id ? { ...c, threads: 3 } : c)) });
+    const free = auditorHp(s.battle) - auditorHp(resolveAbility(armed(s.battle), foe.id, 'drone_dart', 'player', content));
+    const held = auditorHp(bound.battle) - auditorHp(resolveAbility(armed(bound.battle), foe.id, 'drone_dart', 'player', content));
+    expect(held, 'a bound enemy deals less').toBeLessThan(free);
+  });
+
+  it('ends the fight when Settlement is called and every enemy is bound', () => {
+    let s = withMara(11, 'halden_2064_terrace', true);
+    // Bind everything on the field, ending turns as Mara runs out of threads.
+    let guard = 40;
+    while (guard-- > 0) {
+      const loose = s.battle!.combatants.filter((c) => c.side === 'enemy' && !c.down && !c.statuses.some((st) => st.id === 'bound'));
+      if (!loose.length) break;
+      const actor = current(s.battle!);
+      if (s.battle!.phase === 'enemy') { s = reduce(s, { type: 'BATTLE_ENEMY_ACT' }); continue; }
+      if (actor?.id !== 'mara' || actor.threads < 1) { s = reduce(s, { type: 'BATTLE_END_TURN', actor: actor!.id }); continue; }
+      s = reduce(s, { type: 'BATTLE_ABILITY', actor: 'mara', ability: 'terms', target: loose[0].id });
+    }
+    expect(s.battle!.combatants.filter((c) => c.side === 'enemy' && !c.down).every((c) => c.statuses.some((st) => st.id === 'bound'))).toBe(true);
+    // Get Mara a fresh turn with three threads, then settle.
+    guard = 40;
+    while (guard-- > 0 && !(current(s.battle!)?.id === 'mara' && current(s.battle!)!.threads >= 3)) {
+      if (s.battle!.phase === 'enemy') { s = reduce(s, { type: 'BATTLE_ENEMY_ACT' }); continue; }
+      s = reduce(s, { type: 'BATTLE_END_TURN', actor: current(s.battle!)!.id });
+    }
+    s = reduce(s, { type: 'BATTLE_ABILITY', actor: 'mara', ability: 'settlement', target: 'mara' });
+    expect(s.battle!.phase).toBe('won');
+    expect(s.battle!.combatants.filter((c) => c.side === 'enemy').every((c) => c.parleyed)).toBe(true);
+  });
+
+  it('refuses to settle while anything on the field is unbound', () => {
+    let s = withMara(11, 'halden_2064_terrace', true);
+    let guard = 40;
+    while (guard-- > 0 && !(current(s.battle!)?.id === 'mara' && current(s.battle!)!.threads >= 3)) {
+      if (s.battle!.phase === 'enemy') { s = reduce(s, { type: 'BATTLE_ENEMY_ACT' }); continue; }
+      s = reduce(s, { type: 'BATTLE_END_TURN', actor: current(s.battle!)!.id });
+    }
+    s = reduce(s, { type: 'BATTLE_ABILITY', actor: 'mara', ability: 'settlement', target: 'mara' });
+    expect(s.battle!.phase).not.toBe('won');
+    expect(s.battle!.log.some((l) => /not bound to anything/.test(l.text))).toBe(true);
+  });
+});

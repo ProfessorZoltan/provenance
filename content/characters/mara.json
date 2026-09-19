@@ -1,0 +1,55 @@
+{
+  "id": "mara",
+  "name": "Mara Vesely",
+  "shortName": "Mara",
+  "lean": "choir",
+  "homeEra": "2064",
+  "role": "Negotiator, Parley",
+  "signature": "Terms: binds an enemy to a contract with a condition",
+  "joinLine": "She has read the treaty more carefully than the people who wrote it, and she is furious in a very organised way.",
+  "baseStats": {
+    "resolve": 105,
+    "bandwidth": 3,
+    "latency": 38,
+    "signal": 60,
+    "noise": 40,
+    "grit": 25,
+    "sync": 45,
+    "continuity": 100
+  },
+  "rig": "mara",
+  "accent": "#C9A227",
+  "trunks": [
+    {
+      "key": "breaker",
+      "name": "Leverage",
+      "flavor": "Debuffs that punish a contract broken"
+    },
+    {
+      "key": "weaver",
+      "name": "Diplomacy",
+      "flavor": "Parley at a Sync nobody else can reach"
+    },
+    {
+      "key": "anchor",
+      "name": "Accord",
+      "flavor": "Terms that cover the whole party"
+    }
+  ],
+  "abilities": [
+    "strike",
+    "terms",
+    "parley",
+    "guard"
+  ],
+  "tags": [],
+  "motif": [
+    0,
+    5,
+    4,
+    7,
+    5,
+    0
+  ],
+  "bio": "A reform staffer in the Handover senate who spent four years drafting amendments nobody read. She can talk almost anything into a contract, and she has never once been able to talk anyone out of signing the wrong one."
+}

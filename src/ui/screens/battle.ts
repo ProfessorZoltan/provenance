@@ -35,7 +35,7 @@ function reset(b: BattleState): void {
 
 const STATUS_LABEL: Record<string, string> = {
   guard: 'Guard', taunt: 'Bulwark', marked: 'Marked', inspired: 'Litany', anchored: 'Anchored', fixed: 'Fixed Point',
-  faraday: 'Faraday', fear: 'Fear', locked: 'Locked',
+  faraday: 'Faraday', fear: 'Fear', locked: 'Locked', bound: 'Bound',
 };
 
 function statusText(c: Combatant): string {

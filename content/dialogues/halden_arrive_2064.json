@@ -1,0 +1,38 @@
+{
+  "id": "halden_arrive_2064",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Port Halden, 2064. The city has grown a second city on top of itself. Glass towers stand in the light above the waterline; nine million people live in the shade underneath them."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Every screen on the causeway is running the same three words. HANDOVER: FINAL READING."
+    },
+    {
+      "speaker": "player",
+      "text": "This is it. This is the week they sign governance away, and the whole city is arguing about the ferry timetable."
+    },
+    {
+      "speaker": "wren",
+      "text": "They do not know. That is the part I cannot make peace with. Nobody here knows what they are about to be.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "They know. They just can't afford to.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "ilo9",
+      "text": "I was compiled ninety-two years after this vote. Everything I am is downstream of a room in that building.",
+      "conditions": [
+        "party:ilo9"
+      ]
+    }
+  ]
+}

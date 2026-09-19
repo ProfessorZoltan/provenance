@@ -1,0 +1,43 @@
+{
+  "id": "commune_speaker",
+  "lines": [
+    {
+      "speaker": "commune_speaker",
+      "text": "We don't do names up here and we don't do headcounts. You can eat, you can sleep, and if you're counting anybody you can leave."
+    },
+    {
+      "speaker": "commune_speaker",
+      "text": "Forty of us. Was eleven when I came up. People walk out of Halden with nothing and they get to the third terrace before they stop flinching."
+    },
+    {
+      "speaker": "commune_speaker",
+      "text": "There's an old woman in the founding charter who kept this place common instead of endowed. Whoever she was, she's the reason there's a gate here and nobody's on it.",
+      "conditions": [
+        "flag:retreatCommon"
+      ]
+    },
+    {
+      "speaker": "commune_speaker",
+      "text": "Endowed land, this. There's a trust and a wall and a list of who's entitled. We're on the list. Plenty aren't.",
+      "conditions": [
+        "flag:retreatEndowed"
+      ]
+    },
+    {
+      "speaker": "commune_speaker",
+      "text": "The vote's this week down there. Won't change anything up here. That's rather the point of up here.",
+      "conditions": [
+        "!flag:treatyAmended",
+        "!flag:voteSabotaged",
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "commune_speaker",
+      "text": "Word came up that somebody got a clause into the Handover. Forty people cheered at a treaty. I've never seen that before.",
+      "conditions": [
+        "flag:treatyAmended"
+      ]
+    }
+  ]
+}

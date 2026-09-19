@@ -1,0 +1,29 @@
+{
+  "id": "handover_choice",
+  "lines": [
+    {
+      "speaker": "mara_vesely",
+      "text": "One thing on the floor. Choose it.",
+      "choices": [
+        {
+          "text": "Amend article nine. Name who governance can be ceded to.",
+          "timelineChoice": "amend_treaty",
+          "next": "handover_amended"
+        },
+        {
+          "text": "Collapse the session. No treaty today.",
+          "timelineChoice": "sabotage_vote",
+          "next": "handover_sabotaged"
+        },
+        {
+          "text": "Put the buyers on the record instead.",
+          "timelineChoice": "expose_buyers",
+          "next": "handover_exposed"
+        },
+        {
+          "text": "It is not my vote to cast."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "halden_2312",
+  "name": "Enclave 7",
+  "kind": "deepSite",
+  "era": "2312",
+  "site": "halden",
+  "type": "Enclave 7",
+  "art": "2312_halden",
+  "description": "Your Enclave. Housing block, allocation office, the bench you ate lunch on for eleven years. Everything is exactly where you left it, which is the problem.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2312_halden:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2312_halden:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2312_halden:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2312_halden:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "snow"
+  },
+  "music": "hub_2312",
+  "npcs": [
+    "supervisor_aldana"
+  ],
+  "quests": [],
+  "encounters": [
+    "halden_2312_blocks"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2031",
+    "2064",
+    "2148"
+  ],
+  "storyDialogue": "halden_arrive_2312",
+  "variants": [
+    {
+      "when": [
+        "buyersExposed"
+      ],
+      "art": "2312_halden",
+      "description": "Your Enclave, and a great deal more enforcement than it used to carry. Exposing the buyers in 2064 put this address on a list.",
+      "npcs": [
+        "supervisor_aldana"
+      ]
+    }
+  ]
+}

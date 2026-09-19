@@ -1,0 +1,46 @@
+{
+  "id": "recruiter_sana",
+  "lines": [
+    {
+      "speaker": "recruiter_sana",
+      "text": "Four kilometres of concrete and a patrol every twenty minutes. Don't run. Running is what they're paid to notice."
+    },
+    {
+      "speaker": "recruiter_sana",
+      "text": "I walk this road picking people up. Not for the militia, whatever the patrol writes down. For a list of who's still standing when the water comes."
+    },
+    {
+      "speaker": "recruiter_sana",
+      "text": "You've been to the other side of that, haven't you. Don't tell me if it's bad. Tell me if there's anyone left.",
+      "conditions": [
+        "visited:2148"
+      ],
+      "choices": [
+        {
+          "text": "There are people on the roofs. They held.",
+          "syncDelta": 5,
+          "setFlags": [
+            "sanaTold"
+          ]
+        },
+        {
+          "text": "Eighty-four years. Be honest with them about it.",
+          "syncDelta": -5,
+          "setFlags": [
+            "sanaTold"
+          ]
+        },
+        {
+          "text": "Say nothing."
+        }
+      ]
+    },
+    {
+      "speaker": "recruiter_sana",
+      "text": "Right. Roofs. I can work with roofs. I'll start teaching the children to swim.",
+      "conditions": [
+        "flag:sanaTold"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "relic_handover_pen",
+    "name": "Handover Pen",
+    "kind": "relic",
+    "description": "The pen from the ratification photograph. Nine senators used it and none of them kept it.",
+    "relicValue": 280
+  },
+  {
+    "id": "relic_dock_manifest",
+    "name": "Dock Manifest",
+    "kind": "relic",
+    "description": "A 2031 cargo manifest listing four crates to Meridian Campus and no sender.",
+    "relicValue": 170
+  },
+  {
+    "id": "relic_tide_bell",
+    "name": "Tide Bell",
+    "kind": "relic",
+    "description": "Rung from a rooftop in 2148 to tell the drowned quarter the water was coming up again.",
+    "relicValue": 210
+  }
+]

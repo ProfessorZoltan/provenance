@@ -1,0 +1,31 @@
+{
+  "id": "halden_arrive_2031",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Port Halden, 2031. Six in the morning and the quay has been awake for three hours. Cranes, gulls, diesel, and a line of containers going somewhere nobody on this dock has ever been."
+    },
+    {
+      "speaker": "player",
+      "text": "Four crates a week. Same consignor, same hill address, eighty years before anybody called it the Steward."
+    },
+    {
+      "speaker": "wren",
+      "text": "You are looking for the first payment. This is where a thing gets a price and stops being an idea.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "It's a port. Somebody loaded it, somebody signed for it, and somebody got paid. That's all a beginning ever is.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "The foreman is watching you from the weighbridge and has decided you are not from the union."
+    }
+  ]
+}

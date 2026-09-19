@@ -1,0 +1,41 @@
+{
+  "id": "halden_2148_tideline",
+  "name": "The Tide Line",
+  "era": "2148",
+  "location": "halden_2148",
+  "enemies": [
+    {
+      "enemy": "echo_drowned_2148",
+      "count": 1
+    },
+    {
+      "enemy": "drone_derelict_2148",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "The water is at the third storey and something on the stair is going down into it, over and over.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Drone and something Temporal."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Echo of the Tide Line: only Chronal damage touches it."
+    },
+    {
+      "when": "party:wren",
+      "text": "Wren: there are a great many people in that one shape."
+    },
+    {
+      "when": "entropy>=70",
+      "text": "Your own Entropy is high enough to add to their number."
+    }
+  ],
+  "music": "battle_2148",
+  "rewardFlags": [
+    "tidelineCleared"
+  ]
+}

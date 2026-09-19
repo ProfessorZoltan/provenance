@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { deserialize, serialize } from '../src/core/save';
+import { evalAll } from '../src/core/conditions';
+import { conditionContext } from '../src/core/encounter';
+import { deriveWorld } from '../src/core/timeline';
+import type { GameState } from '../src/types/state';
 import { autoBattle, content, newGame, reduce, run, skipDialogue } from './helpers';
 
 describe('vertical slice end to end', () => {
@@ -81,5 +85,56 @@ describe('vertical slice end to end', () => {
     const ids = Object.keys(content.characters);
     expect(ids.length).toBeGreaterThanOrEqual(3);
     expect(Object.values(content.encounters).every((e) => e.enemies.every((g) => content.enemies[g.enemy]))).toBe(true);
+  });
+});
+
+describe('the second Deep Site', () => {
+  it('walks to Port Halden in 2064, settles the Handover and brings Mara home', () => {
+    let s = skipDialogue(newGame(4242));
+    // Both sites sit on one map per era, so Halden is reached on foot from Kell.
+    s = run(s, { type: 'TRAVEL', location: 'kell_2312' }, { type: 'TRAVEL', location: 'halden_2312' });
+    expect(s.location).toBe('halden_2312');
+    s = skipDialogue(s);
+
+    // 2064 is only reachable because both sites already existed then.
+    s = reduce(s, { type: 'TIME_JUMP', era: '2064' });
+    expect(s.location).toBe('halden_2064');
+    s = skipDialogue(s);
+    expect(s.world.visitedEras).toContain('2064');
+
+    // Vesely puts one thing on the floor: amend article nine.
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'mara_vesely', returnTo: { id: 'hub' } });
+    s = skipDialogue(s, 0);
+    expect(s.world.history.map((h) => h.choiceId)).toContain('amend_treaty');
+
+    // Having carried her clause, she asks to come along.
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'mara_vesely', returnTo: { id: 'hub' } });
+    s = skipDialogue(s, 0);
+    expect(Object.keys(s.party)).toContain('mara');
+    expect(s.activeParty).toContain('mara');
+
+    // And the change is waiting at home: the clause is in the charter and the commissary has more on its shelves.
+    const before = deriveWorld(content, newGame(4242).world, s.party).ownership;
+    s = run(s, { type: 'TIME_JUMP', era: '2312' });
+    expect(s.location).toBe('halden_2312');
+    expect(deriveWorld(content, s.world, s.party).ownership).toBe(before + 30);
+    s = reduce(s, { type: 'TRAVEL', location: 'enclave7_commissary_2312' });
+    const onSale = (st: GameState) => content.shops.enclave7_commissary.stock
+      .filter((x) => evalAll(x.when, conditionContext(content, st))).length;
+    expect(onSale(s), 'the shelves carry more than they did').toBeGreaterThan(onSale(skipDialogue(newGame(4242))));
+  });
+
+  it('keeps Mara out of the party when the vote was sabotaged instead', () => {
+    let s = skipDialogue(newGame(99));
+    s = run(s, { type: 'TRAVEL', location: 'kell_2312' }, { type: 'TRAVEL', location: 'halden_2312' });
+    s = skipDialogue(s);
+    s = reduce(s, { type: 'TIME_JUMP', era: '2064' });
+    s = skipDialogue(s);
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'mara_vesely', returnTo: { id: 'hub' } });
+    s = skipDialogue(s, 1); // Collapse the session.
+    expect(s.world.history.map((h) => h.choiceId)).toContain('sabotage_vote');
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'mara_vesely', returnTo: { id: 'hub' } });
+    s = skipDialogue(s, 0);
+    expect(Object.keys(s.party)).not.toContain('mara');
   });
 });

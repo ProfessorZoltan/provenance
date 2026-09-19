@@ -1,0 +1,37 @@
+{
+  "id": "quarter_regular",
+  "lines": [
+    {
+      "speaker": "quarter_regular",
+      "text": "Sit. Nobody up here discusses the treaty, which is how you can tell everybody up here wrote part of it."
+    },
+    {
+      "speaker": "quarter_regular",
+      "text": "Word in the bar is that ownership is being renegotiated somewhere nobody can point to. Everyone's very calm about it, which is how I know it's true.",
+      "conditions": [
+        "ownership>=20"
+      ]
+    },
+    {
+      "speaker": "quarter_regular",
+      "text": "Everything is going through on schedule and nobody is nervous. That's the worst sign there is. Nervous means somebody still thinks they could lose.",
+      "conditions": [
+        "ownership<=-20"
+      ]
+    },
+    {
+      "speaker": "quarter_regular",
+      "text": "Your friend in the habit has been getting looks all evening. This is not a century that's kind to the devout.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "quarter_regular",
+      "text": "The consortium's people talk about their model the way my father talked about his dog. That should frighten me more than it does.",
+      "conditions": [
+        "sync>=30"
+      ]
+    }
+  ]
+}

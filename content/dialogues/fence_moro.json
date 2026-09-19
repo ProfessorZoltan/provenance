@@ -1,0 +1,30 @@
+{
+  "id": "fence_moro",
+  "lines": [
+    {
+      "speaker": "fence_moro",
+      "text": "Under the waterline, under the glass, under the concession's licensing schedule. Three kinds of under. Best prices in the city."
+    },
+    {
+      "speaker": "fence_moro",
+      "text": "Signal gear moves with the politics. When ownership's contested the price goes up, because so does the risk. When it's settled the price goes up too, because then it's contraband.",
+      "conditions": [
+        "ownership>=20"
+      ]
+    },
+    {
+      "speaker": "fence_moro",
+      "text": "Quiet month. Nobody's contesting anything, so nobody needs anything they can't license. Shelf's thin.",
+      "conditions": [
+        "ownership<=-20"
+      ]
+    },
+    {
+      "speaker": "fence_moro",
+      "text": "You've got the look of somebody carrying a relic. I buy those. Don't tell me where it's from, I'll only worry.",
+      "conditions": [
+        "visited:2031"
+      ]
+    }
+  ]
+}

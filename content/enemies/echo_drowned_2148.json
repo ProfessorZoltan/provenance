@@ -1,0 +1,43 @@
+{
+  "id": "echo_drowned_2148",
+  "name": "Echo of the Tide Line",
+  "family": "echo",
+  "era": "2148",
+  "machine": false,
+  "stats": {
+    "resolve": 115,
+    "bandwidth": 3,
+    "latency": 9,
+    "signal": 55,
+    "noise": 50,
+    "grit": 32,
+    "sync": 0,
+    "continuity": 40
+  },
+  "shield": 0,
+  "abilities": [
+    "echo_fracture",
+    "echo_mimic",
+    "warden_suppress"
+  ],
+  "immunities": [
+    "kinetic",
+    "thermal",
+    "signal"
+  ],
+  "perception": 60,
+  "rig": "echo",
+  "weakness": "chronal",
+  "xp": 140,
+  "drops": [
+    {
+      "item": "relic_folded_page",
+      "chance": 0.3
+    },
+    {
+      "item": "relic_tide_bell",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Half a million people left this city in eleven years. Some of the leaving is still happening here."
+}

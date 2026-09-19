@@ -1,0 +1,39 @@
+{
+  "id": "warden_2064",
+  "name": "Causeway Warden",
+  "family": "warden",
+  "era": "2064",
+  "machine": false,
+  "stats": {
+    "resolve": 135,
+    "bandwidth": 3,
+    "latency": 36,
+    "signal": 25,
+    "noise": 30,
+    "grit": 46,
+    "sync": 20,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "warden_baton",
+    "warden_suppress"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 45,
+  "rig": "warden",
+  "xp": 95,
+  "drops": [
+    {
+      "item": "stim",
+      "chance": 0.45
+    },
+    {
+      "item": "causeway_coat",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Paid by the concession, sworn to the city, and clear in his own mind about which of those is real."
+}

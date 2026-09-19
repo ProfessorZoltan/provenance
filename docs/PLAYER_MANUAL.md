@@ -2,8 +2,9 @@
 
 ## About this manual
 
-Covers what is playable: the Kell valley across three eras, 2031, 2148 and 2312, and the party you
-can gather there. Systems not yet built are marked as such. This manual grows as the game does.
+Covers what is playable: two Deep Sites, Kell and Port Halden, across four eras, 2031, 2064, 2148
+and 2312, and the party you can gather there. Systems not yet built are marked as such. This manual
+grows as the game does.
 
 ## The world
 
@@ -20,6 +21,11 @@ You ran to Kell Monastery, the last place in the valley nobody reports to anyone
 it. Dax Okonkwo is already there and does not belong to this century. Under the chapel floor is a
 Deep Site: a place old enough that the eras touch, where you can walk down into 2148 and come back
 up into a 2312 that your visit has changed.
+
+Down the coast road from Kell is Port Halden, and it is a Deep Site too. In 2031 it is a working
+shipping city, and four crates a week leave its quay for an address in the hills. In 2064 it is nine
+million people stacked on a city built for two, in the week the Handover treaty goes to the floor. In
+2148 the sea is in the third storey. In 2312 it is Enclave 7, and Enclave 7 is where you used to live.
 
 "Provenance" is the record of who owned a thing, and when. That is the question the game is about.
 
@@ -46,12 +52,21 @@ Mouse clicks work on menus, dialogue, enemy portraits and the battle report box.
 
 ## Getting around
 
-Travel is physical. Each era has a valley map you walk. Buildings are places you step into and
-enter with A. The dashed regions are wilds, where something may find you as you cross.
+Travel is physical. Each era has one map you walk, holding both the Kell valley in the north-west
+and Port Halden on the coast to the south-east, with the coast road between them. Buildings are
+places you step into and enter with A. The dashed regions are wilds, where something may find you as
+you cross.
 
 Time travel is different. It happens only at a Deep Site, and only to eras when that site already
-existed. That means the chapel at Kell, which reaches three centuries: the retreat being founded in
-2031, the stronghold holding out in 2148, and the monastery in 2312.
+existed. Both sites reach all four centuries, so you can jump from either and arrive at the same
+place in another era.
+
+| Era | Kell | Port Halden | Reference |
+| --- | --- | --- | --- |
+| 2031 | The retreat being founded | Shipping city and its market | The Founding |
+| 2064 | An off-grid commune | Migrant megacity, the week of the vote | The Handover |
+| 2148 | The stronghold holding out | Drowned ruins and roof gardens | The Quiet |
+| 2312 | The monastery, the last free place | Enclave 7, your own address | Now |
 
 ## Battles
 
@@ -112,8 +127,10 @@ Entropy resets between battles. Spend deliberately.
 | Constructs | Two health bars. Break the machine shell and whoever is inside keeps fighting, with their own kit and their own weaknesses. The core is usually human, so Signal stops working on it |
 | Echoes | Temporal. Immune to everything but Chronal |
 
-Enemies differ by century. A 2031 prototype has no shielding at all and folds to Signal. The same
-role in 2148 has been rained on for a hundred years and hits harder than it should.
+Enemies differ by century. A 2031 prototype has no shielding at all and folds to Signal. A 2064
+machine is the polished commercial article, well shielded and well maintained, and the Wardens beside
+it are private security rather than state enforcers. The same role in 2148 has been rained on for a
+hundred years and hits harder than it should.
 
 ### Encounters
 
@@ -193,6 +210,22 @@ Where everyone else has a Breaker trunk, ILO-9 has Fork: it puts short-lived cop
 field that act for a couple of rounds and then dissolve. Two at a time at most, and a copy falling
 is not a party wipe.
 
+### Mara Vesely
+
+A reform staffer in the 2064 Handover senate who spent four years drafting amendments nobody read.
+She joins at Port Halden in 2064, and only if you did not collapse the vote she had been waiting for.
+
+| Ability | Cost | Effect |
+| --- | --- | --- |
+| Strike | 1 thread | A plain kinetic hit |
+| Terms | 1 thread | Binds an enemy to a contract for three turns. While bound it takes 20% more damage and deals 30% less, because breaching costs it |
+| Parley | 1 thread | Talks a machine down. Hers lands more often than anyone else's |
+| Guard | 1 thread | Halve incoming damage until her next turn |
+
+Her trees are Leverage, which punishes a contract already broken, Diplomacy, which ends fights
+without having them, and Accord, which puts everyone under the same terms. Her capstone, Settlement,
+ends a battle outright if every enemy on the field is bound by Terms when she calls it.
+
 ## Roster and gear
 
 Press X outside a fight. The left column is the roster; A benches or fields whoever is focused. The
@@ -263,7 +296,8 @@ and the last edit you make to it wins:
   differently.
 - Change 2031 first and then 2148, and both stand. You shaped the founding, then shaped what grew
   out of it.
-- Different places are independent. Editing the monastery does not touch the Server Graveyard.
+- Different places are independent. Editing the monastery does not touch the Server Graveyard, and
+  nothing you do at Port Halden rewrites a decision you made at Kell.
 
 So an era you are saving for last is an era that can undo your work. Plan the sequence.
 
@@ -272,8 +306,12 @@ you get.
 
 ## Money and Relics
 
-Each era has its own currency and it does not travel. 2031 runs on credits, 2148 on barter tokens,
-2312 on allocation points.
+Each era has its own currency and it does not travel. 2031 and 2064 run on credits, 2148 on barter
+tokens, 2312 on allocation points.
+
+What a shop will sell you also depends on how much of the world is owned by the people living in it.
+The Undercity Bazaar in 2064 and the Enclave 7 Commissary in 2312 both stock more, and stock it more
+openly, the further Ownership has moved your way.
 
 **Relics** are the exception. Old made things, a hand-forged blade or a prayer wheel with a chip
 inside, that any shop in any era will buy at a premium. You can carry five at a time, so moving them

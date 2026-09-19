@@ -1,0 +1,39 @@
+{
+  "id": "drone_hunter_2064",
+  "name": "Acquisition Drone",
+  "family": "drone",
+  "era": "2064",
+  "machine": true,
+  "stats": {
+    "resolve": 82,
+    "bandwidth": 3,
+    "latency": 6,
+    "signal": 55,
+    "noise": 50,
+    "grit": 30,
+    "sync": 100,
+    "continuity": 100
+  },
+  "shield": 22,
+  "abilities": [
+    "drone_burn",
+    "drone_dart",
+    "drone_lock"
+  ],
+  "immunities": [],
+  "perception": 60,
+  "rig": "drone_hunter",
+  "weakness": "signal",
+  "xp": 60,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.75
+    },
+    {
+      "item": "relic_handover_pen",
+      "chance": 0.14
+    }
+  ],
+  "flavor": "It is not security. It is due diligence with rotors."
+}

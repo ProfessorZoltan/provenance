@@ -190,6 +190,32 @@ export class AudioEngine {
         pitched = false;
         break;
       }
+      case 'polysynth': {
+        // Glossy and hard-edged: a bright saw through a fixed filter, quantised by the scheduler.
+        const filter = new Tone.Filter(2600, 'lowpass').connect(gain);
+        synth = new Tone.PolySynth(Tone.Synth, {
+          oscillator: { type: 'sawtooth' },
+          envelope: { attack: 0.005, decay: 0.22, sustain: 0.25, release: 0.5 },
+        }).connect(filter);
+        extra.push(filter);
+        break;
+      }
+      case 'choirpad': {
+        const chorus = new Tone.Chorus(1.2, 3.2, 0.45).start().connect(gain);
+        synth = new Tone.PolySynth(Tone.Synth, {
+          oscillator: { type: 'triangle' },
+          envelope: { attack: 0.9, decay: 0.6, sustain: 0.75, release: 2.4 },
+        }).connect(chorus);
+        extra.push(chorus);
+        break;
+      }
+      case 'gatedperc': {
+        const hp = new Tone.Filter(1400, 'highpass').connect(gain);
+        synth = new Tone.NoiseSynth({ noise: { type: 'white' }, envelope: { attack: 0.001, decay: 0.07, sustain: 0 } }).connect(hp);
+        extra.push(hp);
+        pitched = false;
+        break;
+      }
       case 'membrane':
         synth = new Tone.MembraneSynth({ pitchDecay: 0.05, octaves: 6 }).connect(gain);
         pitched = false;

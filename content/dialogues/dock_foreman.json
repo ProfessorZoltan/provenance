@@ -1,0 +1,54 @@
+{
+  "id": "dock_foreman",
+  "lines": [
+    {
+      "speaker": "dock_foreman",
+      "text": "You're not union, you're not customs, and you're not lost, because lost people look at the water. So what are you.",
+      "conditions": [
+        "!flag:haldenManifest"
+      ]
+    },
+    {
+      "speaker": "dock_foreman",
+      "text": "Berth nine. Four a week, every week, crated in-house so we never see what's inside. Consignor's a shell with a post box and the post box is up in the hills.",
+      "conditions": [
+        "!flag:haldenManifest"
+      ],
+      "choices": [
+        {
+          "text": "Who signs the manifest?",
+          "setFlags": [
+            "haldenManifest"
+          ],
+          "next": "halden_manifest"
+        },
+        {
+          "text": "Does anyone here ask?",
+          "syncDelta": -5,
+          "setFlags": [
+            "haldenManifest"
+          ],
+          "next": "halden_manifest"
+        },
+        {
+          "text": "Nothing. Good morning."
+        }
+      ]
+    },
+    {
+      "speaker": "dock_foreman",
+      "text": "Continuity Holdings. Same signature for eleven years and I've never met a soul from there. Pay's on time, though. Pay's always on time.",
+      "conditions": [
+        "flag:haldenManifest"
+      ]
+    },
+    {
+      "speaker": "dock_foreman",
+      "text": "You lot from the future, then? No, don't answer. Everyone on this dock is from somewhere they don't want to discuss.",
+      "conditions": [
+        "flag:haldenManifest",
+        "visited:2312"
+      ]
+    }
+  ]
+}

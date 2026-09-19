@@ -122,6 +122,12 @@ export const NPC_NAMES: Record<string, string> = {
   ilse_kell: 'Mother Ilse Kell', ilse: 'Mother Ilse Kell', vance: 'Aurelia Vance',
   salvager_ruth: 'Ruth', ruth: 'Ruth', trader_sable: 'Sable', sable: 'Sable',
   ilo9: 'ILO-9', ilo9_hub: 'ILO-9', ilo9_bound_dlg: 'ILO-9, bound',
+  // Port Halden and the 2064 Handover.
+  dock_foreman: 'Dock Foreman', halden_manifest: 'Dock Foreman', stallholder_ben: 'Ben',
+  mara_vesely: 'Mara Vesely', mara: 'Mara Vesely', mara_declined: 'Mara Vesely', handover_choice: 'Mara Vesely',
+  delegate_okafor: 'Delegate Okafor', commune_speaker: 'The Speaker', fence_moro: 'Moro',
+  recruiter_sana: 'Sana', quarter_regular: 'A Glass Quarter regular', survivor_ives: 'Ives',
+  supervisor_aldana: 'Supervisor Aldana', clerk_novi: 'Clerk Novi',
   wren: 'Sister Wren', dax: 'Dax Okonkwo', ade: 'Captain Ade', militia: 'Militia Captain', narrator: '', player: 'The Auditor',
 };
 

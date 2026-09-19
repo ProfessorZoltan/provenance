@@ -1,0 +1,34 @@
+{
+  "id": "causeway_2064_patrol",
+  "name": "Causeway Patrol",
+  "era": "2064",
+  "location": "migrant_causeway_2064",
+  "enemies": [
+    {
+      "enemy": "warden_2064",
+      "count": 1
+    },
+    {
+      "enemy": "drone_hunter_2064",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "A patrol on the concrete, checking papers that most of the people here do not have.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Warden and a Drone."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Causeway Warden: immune to Signal. The Acquisition Drone is weak to it."
+    },
+    {
+      "when": "party:mara",
+      "text": "Mara: he is on a concession contract. There will be a clause he does not want tested."
+    }
+  ],
+  "music": "battle_2064"
+}

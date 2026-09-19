@@ -1,0 +1,34 @@
+{
+  "id": "halden_2312_blocks",
+  "name": "Housing Block Sweep",
+  "era": "2312",
+  "location": "halden_2312",
+  "enemies": [
+    {
+      "enemy": "warden_2312",
+      "count": 1
+    },
+    {
+      "enemy": "drone_sentry",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "An enforcer and a drone, working the walkway door by door. You know the procedure. You used to file it.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Warden and a Drone."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Allocation Enforcer: human and immune to Signal."
+    },
+    {
+      "when": "party:player",
+      "text": "Auditor: you signed off on this detail's budget line for six years."
+    }
+  ],
+  "music": "battle_2312"
+}

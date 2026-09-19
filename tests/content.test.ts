@@ -3,15 +3,27 @@ import { NPC_NAMES } from '../src/core/reducer';
 import { content } from './helpers';
 
 describe('content', () => {
-  it('covers three eras, four party members and every enemy family', () => {
-    expect(Object.keys(content.characters).sort()).toEqual(['dax', 'ilo9', 'player', 'wren']);
-    expect([...new Set(Object.values(content.locations).map((l) => l.era))].sort()).toEqual(['2031', '2148', '2312']);
+  it('covers four eras, five party members and every enemy family', () => {
+    expect(Object.keys(content.characters).sort()).toEqual(['dax', 'ilo9', 'mara', 'player', 'wren']);
+    expect([...new Set(Object.values(content.locations).map((l) => l.era))].sort()).toEqual(['2031', '2064', '2148', '2312']);
     const families = new Set(Object.values(content.enemies).map((e) => e.family));
     expect([...families].sort()).toEqual(['construct', 'drone', 'echo', 'warden']);
-    for (const era of ['2031', '2148', '2312']) {
+    for (const era of ['2031', '2064', '2148', '2312']) {
       expect(Object.values(content.enemies).some((e) => e.era === era), era).toBe(true);
       expect(Object.values(content.scores).some((s) => s.era === era && s.id.startsWith('battle')), era).toBe(true);
+      expect(Object.values(content.scores).some((s) => s.era === era && s.id.startsWith('hub')), era).toBe(true);
       expect(Object.values(content.maps).some((m) => m.era === era), era).toBe(true);
+    }
+  });
+
+  it('gives both Deep Sites a stop in all four eras, each reachable from the others', () => {
+    for (const site of ['kell', 'halden']) {
+      const stops = Object.values(content.locations).filter((l) => l.kind === 'deepSite' && l.site === site);
+      expect(stops.map((s) => s.era).sort(), site).toEqual(['2031', '2064', '2148', '2312']);
+      for (const s of stops) {
+        // A Deep Site reaches every era it existed in except the one you are standing in.
+        expect([...s.timeLinks].sort(), s.id).toEqual(['2031', '2064', '2148', '2312'].filter((e) => e !== s.era));
+      }
     }
   });
 
@@ -54,6 +66,15 @@ describe('content', () => {
         expect(item.slot, item.id).toBeTruthy();
         for (const who of item.onlyFor ?? []) expect(content.characters[who], `${item.id} is for ${who}`).toBeDefined();
       }
+    }
+  });
+
+  it('leaves no item in the catalog that a player could never get hold of', () => {
+    const sold = new Set(Object.values(content.shops).flatMap((s) => s.stock.map((r) => r.item)));
+    const dropped = new Set(Object.values(content.enemies).flatMap((e) => (e.drops ?? []).map((d) => d.item)));
+    const rewarded = new Set(Object.values(content.quests).flatMap((q) => q.rewards.items));
+    for (const item of Object.values(content.items)) {
+      expect(sold.has(item.id) || dropped.has(item.id) || rewarded.has(item.id), item.id).toBe(true);
     }
   });
 

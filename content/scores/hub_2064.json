@@ -1,0 +1,64 @@
+{
+  "id": "hub_2064",
+  "name": "The Glass Quarter",
+  "era": "2064",
+  "motifs": [
+    "site:halden"
+  ],
+  "motif": [
+    0,
+    4,
+    3,
+    7,
+    4,
+    0,
+    -2
+  ],
+  "scale": [
+    0,
+    2,
+    3,
+    5,
+    7,
+    8,
+    10
+  ],
+  "baseBpm": 84,
+  "swing": 0,
+  "layers": [
+    {
+      "id": "pad",
+      "minTempo": 0,
+      "instrument": "choirpad",
+      "pattern": "pad",
+      "gain": 0.28
+    },
+    {
+      "id": "bass",
+      "minTempo": 0,
+      "instrument": "polysynth",
+      "pattern": "bass",
+      "gain": 0.3
+    },
+    {
+      "id": "motif",
+      "minTempo": 0,
+      "instrument": "polysynth",
+      "pattern": "motif",
+      "durations": [
+        2,
+        2,
+        4,
+        2,
+        2,
+        4,
+        6
+      ],
+      "gain": 0.2
+    }
+  ],
+  "instruments": {
+    "choirpad": "choirpad",
+    "polysynth": "polysynth"
+  }
+}

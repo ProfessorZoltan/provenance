@@ -1,0 +1,61 @@
+[
+  {
+    "id": "terms",
+    "name": "Terms",
+    "cost": 1,
+    "target": "enemy",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "status": {
+      "id": "bound",
+      "turns": 3,
+      "onTarget": true
+    },
+    "description": "Binds an enemy to a contract. While bound it deals 30% less damage and takes 20% more, because breaching costs it."
+  },
+  {
+    "id": "leverage",
+    "name": "Leverage",
+    "cost": 2,
+    "damageType": "kinetic",
+    "target": "enemy",
+    "formula": "a.signal * 0.8 + 10",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "Calls in a breach. Hits hardest on something already bound by Terms."
+  },
+  {
+    "id": "accord",
+    "name": "Accord",
+    "cost": 2,
+    "target": "allAllies",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "tempoGain": 4,
+    "status": {
+      "id": "inspired",
+      "turns": 3
+    },
+    "description": "Terms that cover everyone. The party hits 15% harder for three turns and the gauge fills."
+  },
+  {
+    "id": "good_faith",
+    "name": "Good Faith",
+    "cost": 1,
+    "target": "ally",
+    "heal": "a.signal * 0.45 + 12",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "Talks an ally back onto their feet. Less than a healer would manage, but it costs one thread."
+  },
+  {
+    "id": "settlement",
+    "name": "Settlement",
+    "cost": 3,
+    "target": "self",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "special": "settlement",
+    "description": "Capstone. If every enemy on the field is bound by Terms, the fight ends there and then."
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "id": "supervisor_aldana",
+  "lines": [
+    {
+      "speaker": "supervisor_aldana",
+      "text": "Your desk is still assigned to you. I have been asked four times to reallocate it and I have been busy each time.",
+      "conditions": [
+        "!flag:boardAlerted"
+      ]
+    },
+    {
+      "speaker": "supervisor_aldana",
+      "text": "The budget line you queried is still being paid. Two hundred and eighty-one years, quarterly, to a counterparty with no address. I ran it after you left. I should not have."
+    },
+    {
+      "speaker": "supervisor_aldana",
+      "text": "There is enforcement in this Enclave that was not here last quarter and there is no allocation entry explaining it. Whatever you did, it has an address now, and the address is my building.",
+      "conditions": [
+        "flag:boardAlerted"
+      ]
+    },
+    {
+      "speaker": "supervisor_aldana",
+      "text": "Something in the charter changed. There's a beneficiary clause in the instrument that nobody has ever been able to source, and this quarter, for the first time, it can be queried.",
+      "conditions": [
+        "flag:treatyAmended"
+      ]
+    },
+    {
+      "speaker": "supervisor_aldana",
+      "text": "Allocation is tighter this quarter than any quarter on record and the Steward will not say against what. Eleven years I have read these returns. This one is a different shape.",
+      "conditions": [
+        "flag:voteSabotaged"
+      ]
+    },
+    {
+      "speaker": "supervisor_aldana",
+      "text": "Go, before the second Warden finishes with your face. And Auditor: whatever you are doing, the ledger is moving. I can see it move."
+    }
+  ]
+}

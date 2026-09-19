@@ -1,0 +1,24 @@
+{
+  "id": "halden_2064_vote",
+  "name": "The Floor",
+  "era": "2064",
+  "location": "halden_2064",
+  "enemies": [
+    {
+      "enemy": "warden_2064",
+      "count": 2
+    },
+    {
+      "enemy": "drone_hunter_2064",
+      "count": 1
+    }
+  ],
+  "surprise": "always",
+  "story": true,
+  "flavor": "The concession does not need the vote to go a particular way. It needs you not to be in the room.",
+  "scanHints": [],
+  "music": "battle_2064",
+  "rewardFlags": [
+    "boardNoticed"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "halden_arrive_2312",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Enclave 7. Housing block, allocation office, a bench you ate lunch on for eleven years, and a quarterly budget line older than the Steward."
+    },
+    {
+      "speaker": "player",
+      "text": "I filed from that third window. Four days after I asked who Continuity Holdings were, my own access card stopped working."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Nothing here is ruined. Nothing here is even unpleasant. It is simply all decided, and it was decided somewhere you have now been standing.",
+      "conditions": [
+        "visited:2064"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "So this is where you grew up. It is very clean.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "Two Wardens at the block entrance are logging faces, and one of them is taking longer over yours than the other.",
+      "conditions": [
+        "flag:boardAlerted"
+      ]
+    }
+  ]
+}

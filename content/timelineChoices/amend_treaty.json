@@ -1,0 +1,16 @@
+{
+  "id": "amend_treaty",
+  "era": "2064",
+  "site": "halden",
+  "name": "Amend the treaty",
+  "ownershipDelta": 30,
+  "syncDelta": 10,
+  "flags": [
+    "treatyAmended"
+  ],
+  "partyEffects": [
+    "maraJoined"
+  ],
+  "lean": "commons",
+  "summary": "Vesely's amendment goes to the floor and survives it. Governance is ceded, but with a clause that says who it can be ceded to."
+}

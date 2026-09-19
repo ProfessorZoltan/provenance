@@ -1,0 +1,52 @@
+{
+  "id": "construct_concession_2064",
+  "name": "Concession Frame",
+  "family": "construct",
+  "era": "2064",
+  "machine": true,
+  "stats": {
+    "resolve": 120,
+    "bandwidth": 3,
+    "latency": 24,
+    "signal": 50,
+    "noise": 20,
+    "grit": 44,
+    "sync": 80,
+    "continuity": 100
+  },
+  "shield": 36,
+  "secondBar": {
+    "name": "Frame Operator",
+    "resolve": 88,
+    "abilities": [
+      "warden_baton",
+      "warden_suppress"
+    ],
+    "immunities": [
+      "signal"
+    ],
+    "weakness": "kinetic",
+    "flavor": "The glass comes off and there is a woman in a company coat still reading her instructions."
+  },
+  "abilities": [
+    "drone_dart",
+    "drone_burn",
+    "drone_lock"
+  ],
+  "immunities": [],
+  "perception": 55,
+  "rig": "construct_grafted",
+  "weakness": "signal",
+  "xp": 165,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.9
+    },
+    {
+      "item": "relic_handover_pen",
+      "chance": 0.22
+    }
+  ],
+  "flavor": "Meridian leases these to the causeway concession. Somebody has to be inside them; that is in the contract too."
+}

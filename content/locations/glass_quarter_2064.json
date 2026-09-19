@@ -1,0 +1,46 @@
+{
+  "id": "glass_quarter_2064",
+  "name": "Glass Quarter",
+  "kind": "waypoint",
+  "era": "2064",
+  "site": "glass",
+  "type": "Settlement",
+  "art": "2064_glass_quarter",
+  "description": "Above the waterline, where the people who drafted the treaty go to not discuss it. Rest, and listen to what they say when they think it does not matter.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2064_glass_quarter:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2064_glass_quarter:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2064_glass_quarter:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2064_glass_quarter:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "glint"
+  },
+  "music": "hub_2064",
+  "npcs": [
+    "quarter_regular"
+  ],
+  "quests": [],
+  "encounters": [],
+  "links": [],
+  "timeLinks": []
+}

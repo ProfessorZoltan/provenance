@@ -10,6 +10,15 @@ const SPEAKER_RIG: Record<string, { rig: string; accent: string }> = {
   wren: { rig: 'wren', accent: 'var(--commons)' }, dax: { rig: 'dax', accent: 'var(--cinder)' },
   ade: { rig: 'ade', accent: 'var(--commons)' }, pell: { rig: 'pell', accent: 'var(--commons)' },
   ansel: { rig: 'ansel', accent: 'var(--commons)' }, militia: { rig: 'militia', accent: 'var(--cinder)' },
+  ilse: { rig: 'faction_trainer', accent: 'var(--commons)' }, ilo9: { rig: 'ilo9', accent: 'var(--choir)' },
+  ruth: { rig: 'shopkeeper', accent: 'var(--commons)' }, sable: { rig: 'shopkeeper', accent: 'var(--commons)' },
+  // Port Halden and the 2064 Handover.
+  mara_vesely: { rig: 'mara', accent: 'var(--choir)' }, mara: { rig: 'mara', accent: 'var(--choir)' },
+  dock_foreman: { rig: 'engineer', accent: 'var(--commons)' }, stallholder_ben: { rig: 'shopkeeper', accent: 'var(--commons)' },
+  delegate_okafor: { rig: 'faction_trainer', accent: 'var(--chosen)' }, commune_speaker: { rig: 'faction_trainer', accent: 'var(--commons)' },
+  fence_moro: { rig: 'shopkeeper', accent: 'var(--cinder)' }, recruiter_sana: { rig: 'refugee', accent: 'var(--commons)' },
+  quarter_regular: { rig: 'engineer', accent: 'var(--chosen)' }, survivor_ives: { rig: 'refugee', accent: 'var(--cinder)' },
+  supervisor_aldana: { rig: 'faction_trainer', accent: 'var(--chosen)' }, clerk_novi: { rig: 'shopkeeper', accent: 'var(--chosen)' },
 };
 
 export function dialogueScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {

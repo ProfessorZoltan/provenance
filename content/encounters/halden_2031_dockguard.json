@@ -1,0 +1,30 @@
+{
+  "id": "halden_2031_dockguard",
+  "name": "Manifest Check",
+  "era": "2031",
+  "location": "halden_market_2031",
+  "enemies": [
+    {
+      "enemy": "warden_2031",
+      "count": 1
+    },
+    {
+      "enemy": "drone_dock_2031",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "A guard with a clipboard who has decided you are worth the paperwork.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Warden and a Drone."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Contract Guard: immune to Signal. Hit him with anything else."
+    }
+  ],
+  "music": "battle_2031"
+}

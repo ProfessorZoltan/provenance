@@ -1,0 +1,71 @@
+{
+  "id": "enclave7_commissary_2312",
+  "name": "Enclave 7 Commissary",
+  "kind": "waypoint",
+  "era": "2312",
+  "site": "commissary",
+  "type": "Settlement",
+  "art": "2312_enclave_7_commissary",
+  "description": "Allocated goods only. The shelves hold exactly what the Steward has decided Enclave 7 requires this quarter, and not one item more.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2312_enclave_7_commissary:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2312_enclave_7_commissary:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2312_enclave_7_commissary:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2312_enclave_7_commissary:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "snow"
+  },
+  "music": "hub_2312",
+  "npcs": [
+    "clerk_novi"
+  ],
+  "quests": [],
+  "encounters": [],
+  "links": [],
+  "timeLinks": [],
+  "shop": "enclave7_commissary",
+  "variants": [
+    {
+      "when": [
+        "ownership>=20"
+      ],
+      "art": "2312_enclave_7_commissary_open",
+      "description": "The commissary, and half the shelves are stocked by people rather than by allocation. Somebody, somewhere back there, opened something up.",
+      "npcs": [
+        "clerk_novi"
+      ],
+      "shop": "enclave7_commissary"
+    },
+    {
+      "when": [
+        "ownership<=-70"
+      ],
+      "art": "2312_enclave_7_commissary_allocated",
+      "description": "The commissary. Two shelves, both of them rations, and a queue that does not talk.",
+      "npcs": [
+        "clerk_novi"
+      ],
+      "shop": "enclave7_commissary"
+    }
+  ]
+}

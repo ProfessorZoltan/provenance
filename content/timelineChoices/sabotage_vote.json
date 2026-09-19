@@ -1,0 +1,16 @@
+{
+  "id": "sabotage_vote",
+  "era": "2064",
+  "site": "halden",
+  "name": "Sabotage the vote",
+  "ownershipDelta": -10,
+  "syncDelta": -30,
+  "flags": [
+    "voteSabotaged"
+  ],
+  "partyEffects": [
+    "maraUnavailable"
+  ],
+  "lean": "cinder",
+  "summary": "The session collapses. The Handover happens anyway, six months later, with nobody watching and no clause at all."
+}

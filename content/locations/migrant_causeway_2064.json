@@ -1,0 +1,48 @@
+{
+  "id": "migrant_causeway_2064",
+  "name": "Migrant Causeway",
+  "kind": "waypoint",
+  "era": "2064",
+  "site": "causeway",
+  "type": "Wilds",
+  "art": "2064_migrant_causeway",
+  "description": "Four kilometres of concrete between the ships and the stacks, patrolled by people paid by a concession. Most of 2148's resistance walked this road first.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2064_migrant_causeway:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2064_migrant_causeway:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2064_migrant_causeway:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2064_migrant_causeway:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "glint"
+  },
+  "music": "hub_2064",
+  "npcs": [
+    "recruiter_sana"
+  ],
+  "quests": [],
+  "encounters": [
+    "causeway_2064_patrol"
+  ],
+  "links": [],
+  "timeLinks": []
+}

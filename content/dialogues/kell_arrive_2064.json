@@ -1,0 +1,34 @@
+{
+  "id": "kell_arrive_2064",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Kell, 2064. The retreat has terraces now, and solar sails, and a water system somebody clever built out of scrap."
+    },
+    {
+      "speaker": "narrator",
+      "text": "About forty people live here. None of them appear in a census, which in this century is the entire point."
+    },
+    {
+      "speaker": "wren",
+      "text": "Oh. Oh, they kept the orchard.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "Two centuries and four hundred metres from where I was standing this morning. I am not equal to it.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Off-grid, unregistered and upslope of everything. My lot didn't invent that. We inherited it.",
+      "conditions": [
+        "party:dax"
+      ]
+    }
+  ]
+}

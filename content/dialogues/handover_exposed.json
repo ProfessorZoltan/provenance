@@ -1,0 +1,21 @@
+{
+  "id": "handover_exposed",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Eleven senators. Four firms. One holding company whose registered address is a post box in the hills above a shipping city."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The reading is suspended. It will be suspended for eleven years, and in the eleventh year it will pass anyway, with everyone watching."
+    },
+    {
+      "speaker": "player",
+      "text": "Continuity Holdings. Printed, filed, and in a public record that exists in my century too."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Somewhere downstream, something that has never been surprised in two hundred and eighty years makes a note."
+    }
+  ]
+}

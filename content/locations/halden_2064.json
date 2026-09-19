@@ -1,0 +1,54 @@
+{
+  "id": "halden_2064",
+  "name": "Port Halden",
+  "kind": "deepSite",
+  "era": "2064",
+  "site": "halden",
+  "type": "Migrant megacity",
+  "art": "2064_halden",
+  "description": "Nine million people stacked on a city built for two. Glass above the waterline, everything else below it, and the Handover treaty going to the floor this week.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2064_halden:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2064_halden:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2064_halden:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2064_halden:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "glint"
+  },
+  "music": "hub_2064",
+  "npcs": [
+    "mara_vesely",
+    "delegate_okafor"
+  ],
+  "quests": [],
+  "encounters": [
+    "halden_2064_terrace"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2031",
+    "2148",
+    "2312"
+  ],
+  "storyDialogue": "halden_arrive_2064"
+}

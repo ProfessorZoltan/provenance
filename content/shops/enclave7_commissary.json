@@ -1,0 +1,47 @@
+{
+  "id": "enclave7_commissary",
+  "name": "Enclave 7 Commissary",
+  "era": "2312",
+  "currency": "allocation points",
+  "stock": [
+    {
+      "item": "ration",
+      "price": 18
+    },
+    {
+      "item": "stim",
+      "price": 30,
+      "when": [
+        "ownership>=-40"
+      ]
+    },
+    {
+      "item": "anchor_charm",
+      "price": 65,
+      "when": [
+        "ownership>=-20"
+      ]
+    },
+    {
+      "item": "enclave_badge",
+      "price": 70,
+      "when": [
+        "ownership>=0"
+      ]
+    },
+    {
+      "item": "anchor_weave",
+      "price": 85,
+      "when": [
+        "ownership>=20"
+      ]
+    },
+    {
+      "item": "tide_weave",
+      "price": 95,
+      "when": [
+        "ownership>=40"
+      ]
+    }
+  ]
+}

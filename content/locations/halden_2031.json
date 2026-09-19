@@ -1,0 +1,53 @@
+{
+  "id": "halden_2031",
+  "name": "Port Halden",
+  "kind": "deepSite",
+  "era": "2031",
+  "site": "halden",
+  "type": "Shipping city",
+  "art": "2031_halden",
+  "description": "Container cranes at dawn and a quay that never stops. Four crates a week leave here for a campus in the hills and nobody on the dock can tell you who sends them.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2031_halden:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2031_halden:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2031_halden:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2031_halden:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "dust"
+  },
+  "music": "hub_2031",
+  "npcs": [
+    "dock_foreman"
+  ],
+  "quests": [],
+  "encounters": [
+    "halden_2031_quay"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2064",
+    "2148",
+    "2312"
+  ],
+  "storyDialogue": "halden_arrive_2031"
+}

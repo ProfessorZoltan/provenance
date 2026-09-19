@@ -1,0 +1,38 @@
+{
+  "id": "drone_sentry_2064",
+  "name": "Concession Drone",
+  "family": "drone",
+  "era": "2064",
+  "machine": true,
+  "stats": {
+    "resolve": 68,
+    "bandwidth": 2,
+    "latency": 10,
+    "signal": 45,
+    "noise": 25,
+    "grit": 26,
+    "sync": 100,
+    "continuity": 100
+  },
+  "shield": 28,
+  "abilities": [
+    "drone_dart",
+    "drone_lock"
+  ],
+  "immunities": [],
+  "perception": 45,
+  "rig": "drone_sentry",
+  "weakness": "thermal",
+  "xp": 42,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.7
+    },
+    {
+      "item": "glass_optics",
+      "chance": 0.18
+    }
+  ],
+  "flavor": "Crowd management, leased by the hour. The causeway concession pays for two hundred of these."
+}

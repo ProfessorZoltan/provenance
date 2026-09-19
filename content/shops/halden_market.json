@@ -1,0 +1,28 @@
+{
+  "id": "halden_market",
+  "name": "Halden Market",
+  "era": "2031",
+  "currency": "credits",
+  "stock": [
+    {
+      "item": "ration",
+      "price": 6
+    },
+    {
+      "item": "stim",
+      "price": 12
+    },
+    {
+      "item": "anchor_charm",
+      "price": 35
+    },
+    {
+      "item": "dock_maul",
+      "price": 40
+    },
+    {
+      "item": "frame_plating",
+      "price": 45
+    }
+  ]
+}

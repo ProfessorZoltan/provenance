@@ -1,19 +1,19 @@
 {
   "id": "map_2031",
   "era": "2031",
-  "name": "Kell Valley, 2031",
-  "width": 1600,
-  "height": 900,
+  "name": "Kell Valley and Port Halden, 2031",
+  "width": 2000,
+  "height": 1000,
   "spawn": {
-    "x": 800,
-    "y": 250
+    "x": 620,
+    "y": 260
   },
   "nodes": [
     {
       "id": "kell_2031",
       "kind": "location",
       "location": "kell_2031",
-      "x": 800,
+      "x": 620,
       "y": 210,
       "radius": 80,
       "label": "Kell Retreat",
@@ -23,41 +23,73 @@
       "id": "coastal_highway_2031",
       "kind": "location",
       "location": "coastal_highway_2031",
-      "x": 360,
-      "y": 690,
+      "x": 300,
+      "y": 720,
       "radius": 80,
       "label": "Coastal Highway",
       "icon": "village"
+    },
+    {
+      "id": "halden_2031",
+      "kind": "location",
+      "location": "halden_2031",
+      "x": 1450,
+      "y": 440,
+      "radius": 80,
+      "label": "Port Halden",
+      "icon": "port"
+    },
+    {
+      "id": "halden_market_2031",
+      "kind": "location",
+      "location": "halden_market_2031",
+      "x": 1700,
+      "y": 740,
+      "radius": 70,
+      "label": "Halden Market",
+      "icon": "market"
     }
   ],
   "roads": [
     [
-      800,
+      620,
       290,
-      700,
-      420,
       540,
+      420,
+      420,
       560,
-      360,
-      630
+      300,
+      640
     ],
     [
-      800,
+      620,
       290,
-      980,
-      400,
-      1150,
-      470
+      790,
+      430,
+      1010,
+      560,
+      1220,
+      570,
+      1380,
+      480
+    ],
+    [
+      1450,
+      520,
+      1600,
+      650,
+      1700,
+      700
     ]
   ],
   "zones": [
     {
       "id": "terraces",
       "label": "The terraces",
-      "x": 940,
-      "y": 330,
-      "w": 500,
-      "h": 380,
+      "x": 760,
+      "y": 300,
+      "w": 380,
+      "h": 260,
       "encounters": [
         "kell_2031_terrace",
         "kell_2031_escort"
@@ -68,9 +100,9 @@
     {
       "id": "salvage_yards",
       "label": "Salvage yards",
-      "x": 170,
-      "y": 360,
-      "w": 400,
+      "x": 120,
+      "y": 380,
+      "w": 360,
       "h": 260,
       "encounters": [
         "coastal_2031_salvage",
@@ -78,6 +110,20 @@
       ],
       "chance": 0.42,
       "stride": 165
+    },
+    {
+      "id": "berths",
+      "label": "The berths",
+      "x": 1170,
+      "y": 180,
+      "w": 330,
+      "h": 220,
+      "encounters": [
+        "halden_2031_quay",
+        "halden_2031_dockguard"
+      ],
+      "chance": 0.42,
+      "stride": 170
     }
   ]
 }

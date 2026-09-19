@@ -1,0 +1,144 @@
+{
+  "id": "map_2064",
+  "era": "2064",
+  "name": "The Kell Commune and Port Halden, 2064",
+  "width": 2000,
+  "height": 1000,
+  "spawn": {
+    "x": 620,
+    "y": 260
+  },
+  "nodes": [
+    {
+      "id": "kell_2064",
+      "kind": "location",
+      "location": "kell_2064",
+      "x": 620,
+      "y": 210,
+      "radius": 80,
+      "label": "Kell Commune",
+      "icon": "monastery"
+    },
+    {
+      "id": "halden_2064",
+      "kind": "location",
+      "location": "halden_2064",
+      "x": 1450,
+      "y": 420,
+      "radius": 80,
+      "label": "Port Halden",
+      "icon": "tower"
+    },
+    {
+      "id": "glass_quarter_2064",
+      "kind": "location",
+      "location": "glass_quarter_2064",
+      "x": 1210,
+      "y": 220,
+      "radius": 70,
+      "label": "Glass Quarter",
+      "icon": "tower"
+    },
+    {
+      "id": "undercity_bazaar_2064",
+      "kind": "location",
+      "location": "undercity_bazaar_2064",
+      "x": 1720,
+      "y": 680,
+      "radius": 70,
+      "label": "Undercity Bazaar",
+      "icon": "market"
+    },
+    {
+      "id": "migrant_causeway_2064",
+      "kind": "location",
+      "location": "migrant_causeway_2064",
+      "x": 1010,
+      "y": 700,
+      "radius": 76,
+      "label": "Migrant Causeway",
+      "icon": "gate"
+    }
+  ],
+  "roads": [
+    [
+      620,
+      290,
+      700,
+      430,
+      850,
+      570,
+      960,
+      660
+    ],
+    [
+      1010,
+      700,
+      1200,
+      650,
+      1350,
+      510,
+      1430,
+      460
+    ],
+    [
+      1430,
+      350,
+      1310,
+      265,
+      1250,
+      240
+    ],
+    [
+      1480,
+      470,
+      1630,
+      600,
+      1720,
+      650
+    ]
+  ],
+  "zones": [
+    {
+      "id": "commune_terraces",
+      "label": "The terraces",
+      "x": 740,
+      "y": 300,
+      "w": 360,
+      "h": 240,
+      "encounters": [
+        "kell_2064_terraces"
+      ],
+      "chance": 0.38,
+      "stride": 165
+    },
+    {
+      "id": "causeway",
+      "label": "The causeway",
+      "x": 840,
+      "y": 610,
+      "w": 420,
+      "h": 270,
+      "encounters": [
+        "causeway_2064_patrol",
+        "causeway_2064_frame"
+      ],
+      "chance": 0.44,
+      "stride": 160
+    },
+    {
+      "id": "upper_terrace",
+      "label": "Upper terrace",
+      "x": 1160,
+      "y": 470,
+      "w": 300,
+      "h": 220,
+      "encounters": [
+        "halden_2064_terrace",
+        "halden_2064_vote"
+      ],
+      "chance": 0.4,
+      "stride": 170
+    }
+  ]
+}

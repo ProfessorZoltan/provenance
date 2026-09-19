@@ -9,8 +9,28 @@ describe('era maps', () => {
       expect(map, loc.id).not.toBeNull();
       expect(map!.nodes.some((n) => n.location === loc.id), loc.id).toBe(true);
     }
-    expect(mapFor(content, '2312')!.zones.length).toBeGreaterThan(0);
-    expect(mapFor(content, '2148')!.zones.length).toBe(2);
+    for (const era of ['2031', '2064', '2148', '2312'] as const) {
+      const map = mapFor(content, era)!;
+      expect(map.zones.length, era).toBeGreaterThan(0);
+      // Both Deep Sites share one map per era, so nothing may sit off the edge of it.
+      for (const n of map.nodes) {
+        expect(n.x > n.radius && n.x < map.width - n.radius, `${map.id}/${n.id} x`).toBe(true);
+        expect(n.y > 150 && n.y < map.height - n.radius, `${map.id}/${n.id} y`).toBe(true);
+      }
+      for (const z of map.zones) {
+        expect(z.x + z.w <= map.width, `${map.id}/${z.id}`).toBe(true);
+        expect(z.y + z.h <= map.height, `${map.id}/${z.id}`).toBe(true);
+      }
+    }
+  });
+
+  it('puts both Deep Sites on the same map in every era, joined by road', () => {
+    for (const era of ['2031', '2064', '2148', '2312'] as const) {
+      const map = mapFor(content, era)!;
+      const sites = map.nodes.filter((n) => n.location && content.locations[n.location]?.kind === 'deepSite');
+      expect(sites.map((n) => content.locations[n.location!].site).sort(), era).toEqual(['halden', 'kell']);
+      expect(map.roads.length, era).toBeGreaterThanOrEqual(2);
+    }
   });
 
   it('arrival places the party at the location node and hub leads back to the map', () => {

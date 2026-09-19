@@ -1,0 +1,34 @@
+{
+  "id": "halden_2064_terrace",
+  "name": "Concession Sweep",
+  "era": "2064",
+  "location": "halden_2064",
+  "enemies": [
+    {
+      "enemy": "drone_sentry_2064",
+      "count": 2
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Two drones working the terrace in a pattern, politely, the way a broom works a floor.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones. Licensed crowd management."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Concession Drones: shielded. Thermal burns straight through."
+    },
+    {
+      "when": "sync>=40",
+      "text": "Parley: they are leased, not loyal."
+    },
+    {
+      "when": "noise>=40",
+      "text": "Ambush chance shown."
+    }
+  ],
+  "music": "battle_2064"
+}
