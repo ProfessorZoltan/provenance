@@ -79,7 +79,7 @@ written under them.
 
 | Ability | Cost | Effect | Entropy |
 | --- | --- | --- | --- |
-| Fork | 2 Tempo and 1 thread | Shows exactly what an action would do, down to the number, before you commit. Pressing X again carries out that exact outcome | +10 |
+| Fork | 2 Tempo and 1 thread | Names the exact damage, the Resolve before and after, shields, status and gauge changes, before you commit. X carries out precisely that outcome; B discards the preview and the Tempo stays spent | +10 |
 | Rewind | 3 Tempo | Undoes the enemy's last turn. They take it again, differently. Once per battle, plus one more for each additional anchor or the right training | +20 |
 
 Two further Tempo abilities from the design, Echo and Collapse, are not built yet.

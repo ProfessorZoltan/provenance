@@ -379,6 +379,10 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
     case 'BATTLE_FORK':
       if (!state.battle) throw new Error('No battle');
       return { ...state, battle: fork(state.battle, action.actor, action.ability, action.target, content) };
+    case 'BATTLE_FORK_DISCARD':
+      // The Tempo is already spent: looking is what it bought.
+      if (!state.battle) throw new Error('No battle');
+      return { ...state, battle: { ...state.battle, fork: null } };
     case 'BATTLE_ENEMY_ACT':
       if (!state.battle) throw new Error('No battle');
       return { ...state, battle: enemyTurn(state.battle, content) };

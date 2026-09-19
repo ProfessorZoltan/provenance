@@ -423,3 +423,49 @@ body[data-reduced-motion='true'] .battle .narration-box { animation: none; }
   .manual .toc .page.lvl3 { padding-left: 10px; }
   .manual .body { padding: 14px 16px; }
 }
+
+/* Fork preview: the exact outcome, over the field rather than off to the side. */
+.battle .fork-preview { position: absolute; inset: 0; display: grid; place-items: center; z-index: 4; pointer-events: none; }
+.battle .fork-box {
+  width: min(560px, 82%); background: #1a1746; color: #f8efd5; border: 3px double #b7a6f7;
+  box-shadow: 0 4px 0 #080f25; padding: 14px 20px 10px;
+}
+.battle .fork-box .eyebrow { color: #b7a6f7; opacity: 1; margin-bottom: 8px; }
+.battle .fork-box ul { margin: 0; padding-left: 18px; }
+.battle .fork-box li { font-size: 14px; line-height: 1.5; margin-bottom: 4px; }
+.battle .fork-foot { margin-top: 10px; padding-top: 8px; border-top: 1px solid #4a3f86; display: flex; gap: 20px; font-size: 12px; flex-wrap: wrap; }
+
+/* Long columns scroll instead of being clipped. */
+.two { height: 100%; min-height: 0; }
+.two > * { min-height: 0; overflow-y: auto; }
+.battle { grid-template-rows: minmax(0, 1fr) auto; }
+.battle .stage { min-height: min(320px, 38vh); }
+.battle .bottom { min-height: 0; max-height: 52vh; overflow-y: auto; }
+.battle .telemetry { min-height: 0; }
+.scroll-hint { font-size: 11px; opacity: 0.6; text-align: center; padding: 2px 0 0; }
+/* The focused tech node reads at a glance. */
+.tech .node.focused { outline: 4px solid #f4cb76; outline-offset: 0; box-shadow: 0 0 0 2px #0b1128 inset; }
+
+/* Tech tree wiring: prerequisites are traces on a board, contradictions are cut traces. */
+.tech .grid { position: relative; }
+.tech .grid svg.wires { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 0; overflow: visible; }
+.tech .grid .trunk { position: relative; z-index: 1; }
+.tech .wire { fill: none; stroke: #4a5f8c; stroke-width: 2; }
+.tech .wire.live { stroke: #79cf9b; stroke-width: 2.5; }
+.tech .wire.cut { stroke: #f4977f; stroke-width: 1.5; stroke-dasharray: 5 5; opacity: 0.55; }
+.tech .pad { fill: #4a5f8c; }
+.tech .pad.live { fill: #79cf9b; }
+.tech .via { fill: #14234b; stroke: #4a5f8c; stroke-width: 1.5; }
+.tech .via.live { stroke: #79cf9b; }
+.tech .tabs .sp { color: #f4cb76; font-weight: 700; font-size: 11px; }
+.tech .points-banner { margin: 0 0 12px; padding: 7px 12px; border: var(--line) solid var(--ink-soft); background: #14234b; color: #b9c3d8; font-size: 13px; }
+.tech .points-banner.has { color: #f4cb76; border-color: #f4cb76; }
+.tech .points-banner .small { color: #b9c3d8; }
+/* Room between rows so the traces between prerequisites are legible as a board. */
+.tech .node { margin-bottom: 26px; }
+.tech .grid { column-gap: 22px; }
+.tech .wire { stroke: #6b83b8; }
+.tech .pad { fill: #6b83b8; }
+.tech .via { stroke: #6b83b8; }
+.tech .node { position: relative; z-index: 1; }
+section.two { overflow-y: auto; }

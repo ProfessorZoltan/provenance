@@ -20,6 +20,7 @@ export type Action =
   | { type: 'BATTLE_END_TURN'; actor: string }
   | { type: 'BATTLE_REWIND' }
   | { type: 'BATTLE_FORK'; actor: string; ability: string; target: string | null }
+  | { type: 'BATTLE_FORK_DISCARD' }
   | { type: 'BATTLE_ENEMY_ACT' }
   | { type: 'BATTLE_FINISH' }
   | { type: 'REST' }

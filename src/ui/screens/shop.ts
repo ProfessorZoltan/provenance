@@ -98,9 +98,13 @@ export function inventoryScreen(root: HTMLElement, ctx: Ctx, state: GameState): 
   </section>`);
   const m = menu(items, mem.inv, (i) => { mem.inv = i; });
   root.querySelector('#m')!.appendChild(m.el);
-  ctx.setPrompts(prompts({ btn: 'dpad', label: 'Move' }, { btn: 'a', label: 'Use item' }, { btn: 'lb', label: 'Prev member' }, { btn: 'rb', label: 'Next member' }, { btn: 'b', label: 'Back' }));
+  const column = root.querySelector('.two > div:first-child') as HTMLElement;
+  column.querySelectorAll('.panel')[mem.member]?.scrollIntoView({ block: 'nearest' });
+  ctx.setPrompts(prompts({ btn: 'dpad', label: 'Move' }, { btn: 'a', label: 'Use item' }, { btn: 'lb', label: 'Prev member' }, { btn: 'rb', label: 'Next member' }, { btn: 'rs', label: 'Scroll' }, { btn: 'b', label: 'Back' }));
   return {
     input(btn) {
+      if (btn === 'scrollUp') { column.scrollBy({ top: -column.clientHeight * 0.6 }); return; }
+      if (btn === 'scrollDown') { column.scrollBy({ top: column.clientHeight * 0.6 }); return; }
       if (btn === 'lb' || btn === 'left') { mem.member = (mem.member + state.activeParty.length - 1) % state.activeParty.length; rerender(); return; }
       if (btn === 'rb' || btn === 'right') { mem.member = (mem.member + 1) % state.activeParty.length; rerender(); return; }
       if (btn === 'b') { store.dispatch({ type: 'SET_SCREEN', screen: state.back }); return; }

@@ -2,20 +2,94 @@
   "id": "battle_2148",
   "name": "Human Boots",
   "era": "2148",
-  "motifs": ["site:kell", "faction:cinder"],
-  "motif": [0, 2, 4, 7, 4, 2, 0, -3],
-  "scale": [0, 2, 3, 5, 7, 8, 10],
+  "motifs": [
+    "site:kell",
+    "faction:cinder"
+  ],
+  "motif": [
+    0,
+    2,
+    4,
+    7,
+    4,
+    2,
+    0,
+    -3
+  ],
+  "scale": [
+    0,
+    2,
+    3,
+    5,
+    7,
+    8,
+    10
+  ],
   "baseBpm": 104,
   "swing": 0.12,
   "layers": [
-    { "id": "bass", "minTempo": 0, "instrument": "detuned", "pattern": "bass", "gain": 0.4 },
-    { "id": "pad", "minTempo": 0, "instrument": "tape", "pattern": "pad", "gain": 0.25 },
-    { "id": "found", "minTempo": 0, "instrument": "foundperc", "pattern": "perc", "gain": 0.3 },
-    { "id": "motif", "minTempo": 10, "instrument": "detuned", "pattern": "motif", "gain": 0.3 },
-    { "id": "drums", "minTempo": 20, "instrument": "membrane", "pattern": "perc", "gain": 0.5 },
-    { "id": "harmony", "minTempo": 20, "instrument": "tape", "pattern": "harmony", "gain": 0.2 },
-    { "id": "inverted", "minTempo": 30, "instrument": "detuned", "pattern": "motifInverted", "gain": 0.3 },
-    { "id": "static", "minTempo": 30, "instrument": "static", "pattern": "ornament", "gain": 0.15 }
+    {
+      "id": "bass",
+      "minTempo": 0,
+      "instrument": "detuned",
+      "pattern": "bass",
+      "gain": 0.4
+    },
+    {
+      "id": "pad",
+      "minTempo": 0,
+      "instrument": "tape",
+      "pattern": "pad",
+      "gain": 0.25
+    },
+    {
+      "id": "found",
+      "minTempo": 0,
+      "instrument": "foundperc",
+      "pattern": "perc",
+      "gain": 0.3
+    },
+    {
+      "id": "motif",
+      "minTempo": 10,
+      "instrument": "detuned",
+      "pattern": "motif",
+      "gain": 0.3
+    },
+    {
+      "id": "drums",
+      "minTempo": 20,
+      "instrument": "membrane",
+      "pattern": "perc",
+      "gain": 0.5
+    },
+    {
+      "id": "harmony",
+      "minTempo": 20,
+      "instrument": "tape",
+      "pattern": "harmony",
+      "gain": 0.2
+    },
+    {
+      "id": "inverted",
+      "minTempo": 30,
+      "instrument": "detuned",
+      "pattern": "motifInverted",
+      "gain": 0.18
+    },
+    {
+      "id": "static",
+      "minTempo": 30,
+      "instrument": "static",
+      "pattern": "ornament",
+      "gain": 0.08
+    }
   ],
-  "instruments": { "detuned": "detuned", "tape": "tape", "foundperc": "foundperc", "membrane": "membrane", "static": "static" }
+  "instruments": {
+    "detuned": "detuned",
+    "tape": "tape",
+    "foundperc": "foundperc",
+    "membrane": "membrane",
+    "static": "static"
+  }
 }

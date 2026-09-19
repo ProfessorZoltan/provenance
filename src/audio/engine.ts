@@ -182,11 +182,11 @@ export class AudioEngine {
         synth = new Tone.FMSynth({ harmonicity: 2.5, modulationIndex: 6, envelope: { attack: 0.01, decay: 0.4, sustain: 0.2, release: 1.2 }, modulationEnvelope: { attack: 0.01, decay: 0.3, sustain: 0.1, release: 0.6 } }).connect(gain);
         break;
       case 'granular': {
-        const filter = new Tone.Filter(600, 'lowpass').connect(gain);
-        const lfo = new Tone.LFO(0.08, 300, 1400).start();
-        lfo.connect(filter.frequency);
-        synth = new Tone.NoiseSynth({ noise: { type: 'pink' }, envelope: { attack: 2.5, decay: 1, sustain: 0.6, release: 3 } }).connect(filter);
-        extra.push(filter, lfo);
+        // A still, dark swell. An earlier version swept this filter with an LFO, which read as a
+        // siren under the 19-tone motif; the sweep is gone and the texture stays where it belongs.
+        const filter = new Tone.Filter(480, 'lowpass').connect(gain);
+        synth = new Tone.NoiseSynth({ noise: { type: 'pink' }, envelope: { attack: 3.5, decay: 1.5, sustain: 0.5, release: 4 } }).connect(filter);
+        extra.push(filter);
         pitched = false;
         break;
       }
@@ -324,7 +324,8 @@ export class AudioEngine {
           s.fm.triggerAttackRelease(880, 0.25, now); s.fm.triggerAttackRelease(870, 0.25, now + 0.12);
           break;
         case 'heal':
-          s.sine.envelope.attack = 0.01; s.sine.triggerAttackRelease(523, 0.1, now); s.sine.triggerAttackRelease(784, 0.15, now + 0.09);
+          // Soft and low rather than a bell pair: two chimes over the music read as an alarm.
+          s.sine.envelope.attack = 0.02; s.sine.triggerAttackRelease(392, 0.12, now); s.sine.triggerAttackRelease(523, 0.16, now + 0.1);
           break;
         case 'tempo':
           s.fm.triggerAttackRelease(440, 0.08, now); s.fm.triggerAttackRelease(660, 0.08, now + 0.07); s.fm.triggerAttackRelease(990, 0.12, now + 0.14);

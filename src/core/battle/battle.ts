@@ -462,19 +462,30 @@ export function fork(b: BattleState, actorId: string, abilityId: string, targetI
     const after = sim.combatants.find((c) => c.id === before.id);
     if (!after) continue;
     const parts: string[] = [];
-    if (after.hp !== before.hp) parts.push(`${after.hp - before.hp > 0 ? '+' : ''}${after.hp - before.hp} Resolve`);
-    if (after.shield !== before.shield) parts.push(`${after.shield - before.shield} shield`);
-    if (after.down && !before.down) parts.push(after.parleyed ? 'talked down' : 'down');
-    const gained = after.statuses.filter((s) => !before.statuses.some((o) => o.id === s.id));
-    if (gained.length) parts.push(gained.map((s) => s.id).join(', '));
-    if (parts.length) lines.push(`${after.name}: ${parts.join(', ')}`);
+    const hp = after.hp - before.hp;
+    if (hp < 0) parts.push(`takes ${-hp} damage, Resolve ${before.hp} → ${after.hp}`);
+    if (hp > 0) parts.push(`recovers ${hp} Resolve, ${before.hp} → ${after.hp}`);
+    if (after.shield !== before.shield) parts.push(`shield ${before.shield} → ${after.shield}`);
+    if (after.down && !before.down) parts.push(after.parleyed ? 'is talked down' : 'goes down');
+    const gained = after.statuses.filter((st) => !before.statuses.some((o) => o.id === st.id));
+    if (gained.length) parts.push(`gains ${gained.map((st) => STATUS_NAMES[st.id] ?? st.id).join(', ')}`);
+    if (hp === 0 && after.shield === before.shield && !parts.length) continue;
+    if (parts.length) lines.push(`${after.name} ${parts.join(', ')}.`);
   }
-  for (const c of sim.combatants) if (!nb.combatants.some((o) => o.id === c.id)) lines.push(`${c.name} would appear`);
-  if (sim.tempo !== nb.tempo) lines.push(`Tempo ${sim.tempo - nb.tempo > 0 ? '+' : ''}${sim.tempo - nb.tempo}`);
-  if (!lines.length) lines.push('No visible change.');
+  for (const c of sim.combatants) if (!nb.combatants.some((o) => o.id === c.id)) lines.push(`${c.name} would appear.`);
+  if (!lines.length) lines.push('Nothing on the field would change.');
+  const tempoDelta = sim.tempo - nb.tempo;
+  if (tempoDelta) lines.push(`Tempo ${tempoDelta > 0 ? '+' : ''}${tempoDelta}.`);
+  const entropyDelta = sim.entropy - nb.entropy;
+  if (entropyDelta) lines.push(`Entropy +${entropyDelta}.`);
   nb = log(nb, `Fork: previewing ${content.abilities[abilityId].name}. Entropy rises to ${nb.entropy}.`, 'tempo', { ability: 'Fork' });
   return { ...nb, fork: { abilityId, targetId: targetId ?? '', lines } };
 }
+
+const STATUS_NAMES: Record<string, string> = {
+  guard: 'Guard', taunt: 'Bulwark', marked: 'a mark', inspired: 'Litany', anchored: 'an anchor',
+  fixed: 'Fixed Point', faraday: 'Faraday', fear: 'Fear', locked: 'Target Lock',
+};
 
 function maybeSpawnEcho(b: BattleState, content: ContentDB): BattleState {
   if (b.echoSpawned || b.entropy < content.rules.entropyThreshold) return b;

@@ -103,13 +103,17 @@ describe('battle', () => {
     expect(fb.entropy).toBe(b.entropy + content.rules.fork.entropy);
     expect(current(fb)!.threads).toBe(threads - content.rules.fork.threadCost);
     expect(fb.fork?.lines.length).toBeGreaterThan(0);
-    // Committing the same action yields the previewed result.
+    // The preview is a promise: committing lands on exactly the Resolve it named.
     const committed = reduce(forked, { type: 'BATTLE_ABILITY', actor: actor.id, ability: 'strike', target: target.id });
     const t = committed.battle!.combatants.find((c) => c.id === target.id)!;
-    const previewed = fb.fork!.lines.find((l) => l.startsWith(t.name));
+    const line = fb.fork!.lines.find((l) => l.startsWith(t.name));
+    expect(line, 'the preview names the target').toBeDefined();
+    const promised = line!.match(/takes (\d+) damage, Resolve (\d+) → (\d+)/);
+    expect(promised, `parseable preview line: ${line}`).not.toBeNull();
     const before = fb.combatants.find((c) => c.id === target.id)!;
-    const delta = t.hp - before.hp + (t.shield - before.shield);
-    if (previewed) expect(previewed).toContain(String(delta).replace('-', '-'));
+    expect(Number(promised![2])).toBe(before.hp);
+    expect(Number(promised![3])).toBe(t.hp);
+    expect(Number(promised![1])).toBe(before.hp - t.hp);
     expect(committed.battle!.fork).toBeNull();
   });
 
@@ -197,5 +201,48 @@ describe('battle', () => {
     expect(s.party.player.hp).toBe(hpInBattle);
     expect(s.inventory.currency['allocation points']).toBe(60 + 30);
     expect(s.counters.randomFights).toBe(1);
+  });
+});
+
+describe('fork preview', () => {
+  function onTurn(threads: number, tempo = 20): GameState {
+    const s = reduce(newGame(3), { type: 'START_ENCOUNTER', encounterId: 'kell_2312_perimeter', surprise: false });
+    const b = s.battle!;
+    return { ...s, battle: { ...b, phase: 'player' as const, tempo, turnIndex: b.order.indexOf('player'),
+      combatants: b.combatants.map((c) => (c.id === 'player' ? { ...c, threads } : c)) } };
+  }
+
+  it('leaves the actor on turn with the threads they paid for', () => {
+    let s = onTurn(3);
+    const target = s.battle!.combatants.find((c) => c.side === 'enemy')!.id;
+    s = reduce(s, { type: 'BATTLE_FORK', actor: 'player', ability: 'strike', target });
+    expect(current(s.battle!)?.id, 'still the Auditor after forking').toBe('player');
+    expect(current(s.battle!)?.threads).toBe(2);
+    s = reduce(s, { type: 'BATTLE_ABILITY', actor: 'player', ability: 'strike', target });
+    expect(current(s.battle!)?.id, 'still the Auditor after committing').toBe('player');
+    expect(current(s.battle!)?.threads).toBe(1);
+    expect(s.battle!.phase).toBe('player');
+  });
+
+  it('spells out damage, shields, status and the gauges', () => {
+    const s = onTurn(3);
+    const drone = s.battle!.combatants.find((c) => c.side === 'enemy')!;
+    const marked = reduce(s, { type: 'BATTLE_FORK', actor: 'player', ability: 'audit', target: drone.id });
+    const text = marked.battle!.fork!.lines.join(' ');
+    expect(text).toContain('gains a mark');
+    expect(text).toContain('Tempo +');
+    const hit = reduce(s, { type: 'BATTLE_FORK', actor: 'player', ability: 'strike', target: drone.id });
+    expect(hit.battle!.fork!.lines.join(' ')).toMatch(/takes \d+ damage, Resolve \d+ → \d+/);
+  });
+
+  it('can be discarded, keeping the Tempo it already cost', () => {
+    let s = onTurn(3);
+    const target = s.battle!.combatants.find((c) => c.side === 'enemy')!.id;
+    s = reduce(s, { type: 'BATTLE_FORK', actor: 'player', ability: 'strike', target });
+    const spentTempo = s.battle!.tempo;
+    s = reduce(s, { type: 'BATTLE_FORK_DISCARD' });
+    expect(s.battle!.fork).toBeNull();
+    expect(s.battle!.tempo).toBe(spentTempo);
+    expect(current(s.battle!)?.threads).toBe(2);
   });
 });

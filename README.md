@@ -135,7 +135,7 @@ The design doc left these open; the slice picks a value so the loop is playable.
 
 ## Verified
 
-- `npm test`: 48 tests covering battle determinism, damage type rules, Rewind, Fork,
+- `npm test`: 60 tests covering battle determinism, damage type rules, Rewind, Fork,
   Echo spawn, surprise attacks, node unlocking, timeline propagation, map travel, save round trip,
   a full end-to-end slice run, battle narration paging, art-library resolution, and a 300-battle
   random-action fuzz that must never hang or throw.

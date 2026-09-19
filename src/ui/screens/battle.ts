@@ -94,6 +94,11 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
 
   html(root, `<section class="battle">
     <div class="stage"><div class="field-label">${esc(content.locations[state.location].name)} / ${esc(b.era)}</div>
+      ${b.fork && !page ? `<div class="fork-preview" role="status"><div class="fork-box">
+        <div class="eyebrow">Fork · ${esc(content.abilities[b.fork.abilityId].name)}${b.fork.targetId ? ' on ' + esc(b.combatants.find((c) => c.id === b.fork!.targetId)?.name ?? '') : ''}</div>
+        <ul>${b.fork.lines.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>
+        <div class="fork-foot"><span class="prompt"><span class="glyph" data-btn="x"><span class="pad">X</span><span class="key">X</span></span> Commit exactly this</span><span class="prompt"><span class="glyph" data-btn="b"><span class="pad">B</span><span class="key">Esc</span></span> Choose something else</span></div>
+      </div></div>` : ''}
       ${page ? `<div class="narration" role="alert"><div class="narration-box">${page.map((line) => {
         const who = line.actor && line.target && line.actor !== line.target ? `${line.actor} → ${line.target}` : line.actor ?? '';
         const head = [who, line.ability].filter(Boolean).join(' · ');
@@ -118,7 +123,6 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
       </div>
     </div>
     <div class="side">
-      ${b.fork ? `<div class="panel fork"><div class="eyebrow">Fork · ${esc(content.abilities[b.fork.abilityId].name)}${b.fork.targetId ? ' on ' + esc(b.combatants.find((c) => c.id === b.fork!.targetId)?.name ?? '') : ''}</div><ul class="small">${b.fork.lines.map((l) => `<li>${esc(l)}</li>`).join('')}</ul><div class="small" style="margin-top:6px">X commits this exact outcome.</div></div>` : ''}
       <div class="panel log" id="log">${logLines.map((l) => `<div class="${l.kind}">${esc(l.text)}</div>`).join('')}</div>
     </div>
     </div><div class="bottom">
@@ -228,8 +232,10 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     actions.appendChild(desc);
     describe(m.index);
     ctx.setPrompts(prompts(
-      { btn: 'dpad', label: 'Choose' }, { btn: 'a', label: 'Use' },
-      { btn: 'y', label: 'Inspect' }, { btn: 'rt', label: 'End turn' },
+      { btn: 'dpad', label: 'Choose' },
+      b.fork ? { btn: 'x', label: 'Commit fork' } : { btn: 'a', label: 'Use' },
+      b.fork ? { btn: 'b', label: 'Discard fork' } : { btn: 'y', label: 'Inspect' },
+      { btn: 'rt', label: 'End turn' },
     ));
   } else if (ui.mode === 'target' || ui.mode === 'forkTarget') {
     const a = content.abilities[ui.ability!];
@@ -305,6 +311,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
             if (b.tempo < rules.fork.cost) { ctx.toast(`Fork needs ${rules.fork.cost} Tempo.`); return; }
             setMode('forkPick'); return;
           }
+          if (btn === 'b' && b.fork) { store.dispatch({ type: 'BATTLE_FORK_DISCARD' }); return; }
           if (btn === 'lt') { store.dispatch({ type: 'BATTLE_REWIND' }); const e = store.lastError(); if (e) ctx.toast(e.message); return; }
           if (btn === 'y') { setMode('inspect', { targetIdx: 0 }); return; }
           m?.input(btn);

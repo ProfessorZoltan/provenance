@@ -2,15 +2,66 @@
   "id": "hub_2312",
   "name": "The Last Free Place",
   "era": "2312",
-  "motifs": ["site:kell"],
-  "motif": [0, 2, 4, 7, 4, 2, 0, -3],
-  "scale": [0, 3, 5, 8, 11, 14, 16],
+  "motifs": [
+    "site:kell"
+  ],
+  "motif": [
+    0,
+    2,
+    4,
+    7,
+    4,
+    2,
+    0,
+    -3
+  ],
+  "scale": [
+    0,
+    3,
+    5,
+    8,
+    11,
+    14,
+    16
+  ],
   "baseBpm": 54,
   "swing": 0,
   "layers": [
-    { "id": "drone", "minTempo": 0, "instrument": "sine", "pattern": "pad", "gain": 0.35 },
-    { "id": "bells", "minTempo": 0, "instrument": "fm", "pattern": "motif", "durations": [4, 2, 2, 6, 2, 2, 4, 8], "gain": 0.22 },
-    { "id": "swell", "minTempo": 0, "instrument": "granular", "pattern": "ornament", "gain": 0.12 }
+    {
+      "id": "drone",
+      "minTempo": 0,
+      "instrument": "sine",
+      "pattern": "pad",
+      "gain": 0.35
+    },
+    {
+      "id": "bells",
+      "minTempo": 0,
+      "instrument": "fm",
+      "pattern": "motif",
+      "durations": [
+        4,
+        2,
+        2,
+        6,
+        2,
+        2,
+        4,
+        8
+      ],
+      "gain": 0.22
+    },
+    {
+      "id": "swell",
+      "minTempo": 0,
+      "instrument": "granular",
+      "pattern": "ornament",
+      "gain": 0.07
+    }
   ],
-  "instruments": { "sine": "sine", "fm": "fm", "granular": "granular" }
+  "instruments": {
+    "sine": "sine",
+    "fm": "fm",
+    "granular": "granular"
+  }
 }
