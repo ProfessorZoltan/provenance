@@ -108,7 +108,9 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
       <div class="enemies">${enemies.map((e) => `<div class="enemy ${e.down ? 'down' : ''} ${targeted?.id === e.id ? 'targeted' : ''} ${actor?.id === e.id ? 'acting' : ''}" data-id="${e.id}">
         <div class="rig">${rigFor(e)}</div>
         <div class="nm"><span>${esc(e.name)}</span>${hasStatus(e, 'marked') ? '<span class="marker">MARKED</span>' : ''}</div>
-        <div class="bar hp"><i style="width:${Math.round((e.hp / e.maxHp) * 100)}%"></i></div>
+        ${e.bar ? `<div class="bar hp"><i style="width:${e.bar === 2 ? 0 : Math.round((e.hp / e.maxHp) * 100)}%"></i></div>
+        <div class="bar core ${e.bar === 2 ? 'on' : ''}" style="margin-top:2px"><i style="width:${e.bar === 2 ? Math.round((e.hp / e.maxHp) * 100) : 100}%"></i></div>`
+        : `<div class="bar hp"><i style="width:${Math.round((e.hp / e.maxHp) * 100)}%"></i></div>`}
         ${e.maxShield ? `<div class="bar shield" style="margin-top:2px"><i style="width:${Math.round((e.shield / e.maxShield) * 100)}%"></i></div>` : ''}
         <div class="st">${hasStatus(e, 'marked') || b.combatants.some((c) => c.side === 'party' && c.ref === 'player' && (b.passives.player?.markDuration ?? 0) > 0) ? `${e.hp}/${e.maxHp}${e.maxShield ? ` · shield ${e.shield}` : ''} · weak: ${e.weakness ?? 'none'}` : e.parleyed ? 'talked down' : e.down ? 'down' : statusText(e) || '&nbsp;'}</div>
       </div>`).join('')}</div>

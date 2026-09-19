@@ -1,0 +1,70 @@
+{
+  "id": "server_graveyard_2148",
+  "name": "Server Graveyard",
+  "kind": "waypoint",
+  "era": "2148",
+  "site": "graveyard",
+  "type": "Ruin",
+  "art": "2148_server_graveyard",
+  "description": "Racks the length of a street, tipped into the mud when the Quiet began. Something down there still has power, and it has been singing the same four seconds for a hundred and sixty years.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2148_server_graveyard:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2148_server_graveyard:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2148_server_graveyard:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2148_server_graveyard:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "ash"
+  },
+  "music": "hub_2148",
+  "npcs": [
+    "ilo9_bound_dlg"
+  ],
+  "quests": [],
+  "encounters": [
+    "graveyard_echoes",
+    "graveyard_construct"
+  ],
+  "links": [],
+  "timeLinks": [],
+  "storyDialogue": "graveyard_2148",
+  "variants": [
+    {
+      "when": [
+        "freedIlo9"
+      ],
+      "art": "2148_server_graveyard",
+      "description": "Racks the length of a street, and one empty cradle at the end of them with its restraints cut. The singing has stopped, because the thing that was singing is walking with you.",
+      "npcs": [
+        "ilo9_hub"
+      ]
+    },
+    {
+      "when": [
+        "brokeIlo9"
+      ],
+      "art": "2148_server_graveyard",
+      "description": "Racks the length of a street, and at the end of them a cradle with something broken in it. The Quiet is quieter than it was.",
+      "npcs": []
+    }
+  ]
+}

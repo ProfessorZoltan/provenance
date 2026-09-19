@@ -1,0 +1,21 @@
+{
+  "id": "kell_2031_frame",
+  "name": "The Frame Walks",
+  "era": "2031",
+  "location": "kell_2031",
+  "enemies": [
+    {
+      "enemy": "construct_prototype",
+      "count": 1
+    },
+    {
+      "enemy": "warden_2031",
+      "count": 1
+    }
+  ],
+  "surprise": "always",
+  "story": true,
+  "flavor": "Meridian did not send the counsel up here alone.",
+  "scanHints": [],
+  "music": "battle_2031"
+}

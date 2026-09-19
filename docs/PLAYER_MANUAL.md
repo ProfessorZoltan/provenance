@@ -2,9 +2,8 @@
 
 ## About this manual
 
-Covers the playable slice: Kell Monastery and Kell Village in 2312, Kell Stronghold in 2148, and
-the three party members you start with. Systems not yet built are marked as such. This manual
-grows as the game does.
+Covers what is playable: the Kell valley across three eras, 2031, 2148 and 2312, and the party you
+can gather there. Systems not yet built are marked as such. This manual grows as the game does.
 
 ## The world
 
@@ -34,7 +33,7 @@ standard controller to switch the whole interface to controller glyphs.
 | Walk the valley, move a cursor | Left stick or D-pad | WASD or arrows |
 | Confirm, enter a place, dismiss a battle report | A | Enter |
 | Back, leave a place, skip a scanned encounter | B | Esc |
-| Fork in battle, party sheet outside it | X | X |
+| Fork in battle, roster and gear outside it | X | X |
 | Inspect an enemy in battle, tech trees outside it | Y | Y |
 | Previous and next target, tab, character | LB and RB | Q and E |
 | Rewind in battle | LT | Z |
@@ -51,7 +50,8 @@ Travel is physical. Each era has a valley map you walk. Buildings are places you
 enter with A. The dashed regions are wilds, where something may find you as you cross.
 
 Time travel is different. It happens only at a Deep Site, and only to eras when that site already
-existed. In the slice that means the chapel at Kell Monastery, which reaches 2148 and back.
+existed. That means the chapel at Kell, which reaches three centuries: the retreat being founded in
+2031, the stronghold holding out in 2148, and the monastery in 2312.
 
 ## Battles
 
@@ -108,8 +108,12 @@ Entropy resets between battles. Spend deliberately.
 | Family | Notes |
 | --- | --- |
 | Drones | Machines. Most carry a shield. Cannot be frightened |
-| Wardens | Human enforcers on Board pay. Immune to Signal. Shrug off Thermal |
+| Wardens | Human enforcers. Immune to Signal. Shrug off Thermal |
+| Constructs | Two health bars. Break the machine shell and whoever is inside keeps fighting, with their own kit and their own weaknesses. The core is usually human, so Signal stops working on it |
 | Echoes | Temporal. Immune to everything but Chronal |
+
+Enemies differ by century. A 2031 prototype has no shielding at all and folds to Signal. The same
+role in 2148 has been rained on for a hundred years and hits harder than it should.
 
 ### Encounters
 
@@ -128,6 +132,9 @@ Some encounters are scripted ambushes. There is no card, the enemy acts first, a
 no Slack.
 
 ## Your party
+
+Four can take the field at once. The Auditor always goes. Anyone benched still earns experience, at
+half rate, so nobody falls behind for sitting out. Press X anywhere outside a fight for the roster.
 
 ### The Auditor
 
@@ -169,6 +176,36 @@ of all.
 
 His tree forces a choice early: Wreck the Machine or Wreck the Man. Taking one locks the other out
 for the rest of the run.
+
+### ILO-9
+
+A liturgical model from the monastery's old server, buried in the Server Graveyard when the racks
+came down and still running on trickle power. Free it in 2148 and it joins. Break it instead and it
+is a boss. It leaves if the party's average Sync falls to -60.
+
+| Ability | Cost | Effect |
+| --- | --- | --- |
+| Probe | 1 thread | Signal damage straight into a machine's stack. Nothing to say to a human |
+| Checksum | 1 thread | Restores Resolve to one ally, scaling with its Signal |
+| Guard | 1 thread | Halve incoming damage until its next turn |
+
+Where everyone else has a Breaker trunk, ILO-9 has Fork: it puts short-lived copies of itself on the
+field that act for a couple of rounds and then dissolve. Two at a time at most, and a copy falling
+is not a party wipe.
+
+## Roster and gear
+
+Press X outside a fight. The left column is the roster; A benches or fields whoever is focused. The
+right column is the focused member's sheet and their two equipment slots.
+
+| Slot | Holds |
+| --- | --- |
+| Weapon | Blades, hammers, slates. Mostly Grit or Signal |
+| Gear | Plating, shrouds, weaves. Resolve, Noise, Continuity |
+
+Some pieces are made for one person and nobody else can carry them. Equipping something swaps
+whatever was in that slot back into the bag. Shops in each era sell gear from that century, and
+enemies drop it.
 
 ## Stats
 
@@ -218,13 +255,25 @@ At a Deep Site you can walk into an earlier era and change what happened there. 
 permanent, they propagate forward, and the game never shows you a score for them. You find out what
 you did by going home and looking at the village.
 
+**The order you visit eras in matters more than the choices themselves.** A place has one history,
+and the last edit you make to it wins:
+
+- Change 2148 at Kell, then change 2031 at Kell, and the 2031 edit rewrites everything downstream
+  of it. The 2148 decision you made never happened, because the century it happened in now runs
+  differently.
+- Change 2031 first and then 2148, and both stand. You shaped the founding, then shaped what grew
+  out of it.
+- Different places are independent. Editing the monastery does not touch the Server Graveyard.
+
+So an era you are saving for last is an era that can undo your work. Plan the sequence.
+
 Two hidden values track it all. Keep your eyes on how people talk to you; that is the only readout
 you get.
 
 ## Money and Relics
 
-Each era has its own currency and it does not travel. 2312 runs on allocation points, 2148 on
-barter tokens.
+Each era has its own currency and it does not travel. 2031 runs on credits, 2148 on barter tokens,
+2312 on allocation points.
 
 **Relics** are the exception. Old made things, a hand-forged blade or a prayer wheel with a chip
 inside, that any shop in any era will buy at a premium. You can carry five at a time, so moving them

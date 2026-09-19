@@ -1,0 +1,53 @@
+{
+  "id": "construct_grafted",
+  "name": "Grafted Construct",
+  "family": "construct",
+  "era": "2148",
+  "machine": true,
+  "stats": {
+    "resolve": 110,
+    "bandwidth": 3,
+    "latency": 20,
+    "signal": 45,
+    "noise": 25,
+    "grit": 48,
+    "sync": 40,
+    "continuity": 100
+  },
+  "shield": 30,
+  "secondBar": {
+    "name": "Grafted Core",
+    "resolve": 95,
+    "abilities": [
+      "warden_baton",
+      "warden_suppress",
+      "drone_burn"
+    ],
+    "immunities": [
+      "signal"
+    ],
+    "weakness": "thermal",
+    "flavor": "Drone plating falls away from a Warden who agreed to this."
+  },
+  "abilities": [
+    "drone_dart",
+    "drone_burn",
+    "drone_lock"
+  ],
+  "immunities": [],
+  "perception": 50,
+  "rig": "construct_grafted",
+  "weakness": "signal",
+  "xp": 150,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.9
+    },
+    {
+      "item": "relic_graft_seal",
+      "chance": 0.25
+    }
+  ],
+  "flavor": "Drone geometry grafted onto a Warden rig. The Board stopped distinguishing between its tools."
+}

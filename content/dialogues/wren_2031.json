@@ -1,0 +1,29 @@
+{
+  "id": "wren_2031",
+  "lines": [
+    {
+      "speaker": "wren",
+      "text": "I have knelt on that stone every morning for thirty years and it is not there yet. It is in the quarry. I find that harder than the drowned streets.",
+      "conditions": [
+        "!flag:retreatEndowed",
+        "!flag:retreatCommon"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "We bought the wall and the wall bought us. I am going to be very careful about what I say to Ilse from here.",
+      "conditions": [
+        "flag:retreatEndowed"
+      ],
+      "syncDelta": -3
+    },
+    {
+      "speaker": "wren",
+      "text": "Poor and open. That is the order I joined. Thank you, Auditor.",
+      "conditions": [
+        "flag:retreatCommon"
+      ],
+      "syncDelta": 3
+    }
+  ]
+}

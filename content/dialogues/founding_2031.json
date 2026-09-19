@@ -1,0 +1,40 @@
+{
+  "id": "founding_2031",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Kell, 2031. Six timber buildings on a shelf of rock, a well that works, and a smell of cut pine. Nothing is bricked up because nothing has happened yet."
+    },
+    {
+      "speaker": "wren",
+      "text": "This is the founding year of my order. I have read the charter every winter of my life and I have never seen the hand that wrote it."
+    },
+    {
+      "speaker": "dax",
+      "text": "Smells like a building site. Everything worth being afraid of is still in a lab somewhere."
+    },
+    {
+      "speaker": "ilse",
+      "text": "You came up the mountain without a cart and you are not dressed for it. Ilse Kell. I dug the well, so I get to ask what you want."
+    },
+    {
+      "speaker": "narrator",
+      "text": "A second party is already on the terrace: a woman in a good coat with a leather case, and two small flying machines idling above her shoulder."
+    },
+    {
+      "speaker": "vance",
+      "text": "Aurelia Vance, counsel to Meridian. I was here first and I am also waiting for an answer.",
+      "setFlags": [
+        "metVance"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "Auditor. Whatever is decided on this terrace, my order inherits it. So does the village. So does the fortress in 2148 and the free town in 2312."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Speak to Ilse Kell, or to Vance, when you are ready to weigh in."
+    }
+  ]
+}

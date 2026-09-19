@@ -65,16 +65,17 @@ and removes animation.
 
 | Piece | Where |
 | --- | --- |
-| Sites: Kell Monastery 2312 and Kell Stronghold 2148 | `content/locations/` |
+| Sites: Kell across 2031, 2148 and 2312, with four waypoints | `content/locations/` |
 | Waypoint: Kell Village 2312, one shop, quest "Snow on the Wire" | `content/locations/`, `content/quests/`, `content/shops/` |
-| Party: the Auditor, Sister Wren, Dax Okonkwo | `content/characters/` |
+| Party: the Auditor, Wren, Dax, and ILO-9 by recruitment. Four active, the rest benched | `content/characters/` |
 | Tech trees: 12 nodes each, one condition node and one contradiction pair per character | `content/nodes/` |
-| Enemies: Sentry Drone, Hunter Drone, Board Warden, Echo of the Chapel | `content/enemies/` |
+| Enemies: eleven across four families, including Constructs with two health bars | `content/enemies/` |
 | Encounters: five, with Scan card, Skip, one scripted surprise attack | `content/encounters/` |
 | Battle: Threads, Slack, Tempo with Rewind and Fork, Entropy with one Echo spawn per fight | `src/core/battle/battle.ts` |
 | Backgrounds: two, four parallax layers each, one ambient animation, canvas particles | `src/art/backgrounds.ts` |
 | Music: two battle pieces, two hub pieces, Tempo-linked layers, Entropy detune | `content/scores/`, `src/audio/engine.ts` |
-| Timeline: Arm the resistance / Let it fall, visible in Kell Village on return | `content/timelineChoices/`, `src/core/timeline.ts` |
+| Timeline: six choices across two eras. An upstream edit rewrites everything downstream of it at that site | `content/timelineChoices/`, `src/core/timeline.ts` |
+| Equipment: two slots per character, era-specific gear, owner-locked pieces | `content/items/gear.json`, `src/ui/screens/roster.ts` |
 | Save: localStorage slot, JSON export and import, last three timeline snapshots | `src/core/save.ts` |
 | Era maps: nodes, roads and encounter zones per era | `content/maps/`, `src/ui/screens/map.ts` |
 
@@ -135,7 +136,7 @@ The design doc left these open; the slice picks a value so the loop is playable.
 
 ## Verified
 
-- `npm test`: 60 tests covering battle determinism, damage type rules, Rewind, Fork,
+- `npm test`: 76 tests covering battle determinism, damage type rules, Rewind, Fork,
   Echo spawn, surprise attacks, node unlocking, timeline propagation, map travel, save round trip,
   a full end-to-end slice run, battle narration paging, art-library resolution, and a 300-battle
   random-action fuzz that must never hang or throw.

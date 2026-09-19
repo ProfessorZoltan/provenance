@@ -1,0 +1,85 @@
+[
+  {
+    "id": "probe",
+    "name": "Probe",
+    "cost": 1,
+    "damageType": "signal",
+    "target": "enemy",
+    "formula": "a.signal * 0.7 + 8",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "requiresMachine": true,
+    "description": "A clean read straight into a machine's stack. Nothing to say to a human."
+  },
+  {
+    "id": "checksum",
+    "name": "Checksum",
+    "cost": 1,
+    "target": "ally",
+    "heal": "a.signal * 0.5 + 14",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "Compares an ally against the version of them that was not hurt, and closes the difference."
+  },
+  {
+    "id": "instance",
+    "name": "Instance",
+    "cost": 2,
+    "target": "self",
+    "tempoCost": 0,
+    "entropyDelta": 6,
+    "special": "spawnAlly",
+    "spawn": {
+      "name": "ILO-9 copy",
+      "hpFactor": 0.35,
+      "turns": 2,
+      "abilities": [
+        "probe",
+        "guard"
+      ]
+    },
+    "description": "Runs a second ILO-9 on borrowed cycles. It acts for two rounds, then dissolves. Two at a time at most."
+  },
+  {
+    "id": "root_access",
+    "name": "Root Access",
+    "cost": 2,
+    "damageType": "signal",
+    "target": "enemy",
+    "formula": "a.signal * 0.5 + 6",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "requiresMachine": true,
+    "status": {
+      "id": "locked",
+      "turns": 2,
+      "onTarget": true
+    },
+    "description": "Takes the wheel long enough that the machine cannot dodge anything for two turns."
+  },
+  {
+    "id": "open_hymn",
+    "name": "Open Hymn",
+    "cost": 1,
+    "target": "allAllies",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "tempoGain": 3,
+    "status": {
+      "id": "inspired",
+      "turns": 2
+    },
+    "description": "The four seconds it has been reciting since 2148, sung out loud. The party hits 15% harder and the gauge fills."
+  },
+  {
+    "id": "ghost_protocol",
+    "name": "Ghost Protocol",
+    "cost": 3,
+    "target": "enemy",
+    "tempoCost": 0,
+    "entropyDelta": 10,
+    "special": "parley",
+    "requiresMachine": true,
+    "description": "Capstone. Walks into a Construct and wears it. Far more reliable than Parley, at the cost of Entropy."
+  }
+]

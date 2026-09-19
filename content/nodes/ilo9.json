@@ -1,0 +1,334 @@
+[
+  {
+    "id": "i_frk_1",
+    "character": "ilo9",
+    "trunk": "fork",
+    "name": "Second Instance",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "instance"
+      }
+    ],
+    "description": "Grants Instance: a copy of ILO-9 that acts for two rounds.",
+    "row": 0,
+    "col": 0
+  },
+  {
+    "id": "i_frk_2",
+    "character": "ilo9",
+    "trunk": "fork",
+    "name": "Longer Lease",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "i_frk_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "copyTurns",
+        "value": 1
+      }
+    ],
+    "description": "+1 Latency for ILO-9, and copies hold together noticeably longer in play.",
+    "row": 1,
+    "col": 0
+  },
+  {
+    "id": "i_frk_3",
+    "character": "ilo9",
+    "trunk": "fork",
+    "name": "Shared Cycles",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "i_frk_1"
+    ],
+    "excludes": [
+      "i_wev_3"
+    ],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 12
+      }
+    ],
+    "description": "+12 Signal. ILO-9 spends itself on its copies. Locks out Sealed Kernel.",
+    "row": 2,
+    "col": 0
+  },
+  {
+    "id": "i_frk_4",
+    "character": "ilo9",
+    "trunk": "fork",
+    "name": "Quorum",
+    "type": "era",
+    "cost": 2,
+    "requires": [
+      "i_frk_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "bandwidth",
+        "delta": 1
+      }
+    ],
+    "description": "+1 Bandwidth. Only purchasable in 2148, standing on the racks it was buried in.",
+    "row": 3,
+    "col": 0,
+    "era": "2148"
+  },
+  {
+    "id": "i_wev_1",
+    "character": "ilo9",
+    "trunk": "weaver",
+    "name": "Root Access",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "root_access"
+      }
+    ],
+    "description": "Grants Root Access: a Signal hit that stops a machine dodging for two turns.",
+    "row": 0,
+    "col": 1
+  },
+  {
+    "id": "i_wev_2",
+    "character": "ilo9",
+    "trunk": "weaver",
+    "name": "Open Hymn",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "i_wev_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "open_hymn"
+      }
+    ],
+    "description": "Grants Open Hymn: a party-wide buff that also fills the Tempo gauge.",
+    "row": 1,
+    "col": 1
+  },
+  {
+    "id": "i_wev_3",
+    "character": "ilo9",
+    "trunk": "weaver",
+    "name": "Sealed Kernel",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "i_wev_1"
+    ],
+    "excludes": [
+      "i_frk_3"
+    ],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "resolve",
+        "delta": 40
+      },
+      {
+        "kind": "passive",
+        "passive": "guardBonus",
+        "value": 0.2
+      }
+    ],
+    "description": "+40 Resolve and sturdier Guard. ILO-9 keeps itself whole. Locks out Shared Cycles.",
+    "row": 2,
+    "col": 1
+  },
+  {
+    "id": "i_wev_4",
+    "character": "ilo9",
+    "trunk": "weaver",
+    "name": "Ghost Protocol",
+    "type": "standard",
+    "cost": 3,
+    "requires": [
+      "i_wev_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "ghost_protocol"
+      }
+    ],
+    "description": "Capstone. Grants Ghost Protocol: possess a machine outright.",
+    "row": 3,
+    "col": 1
+  },
+  {
+    "id": "i_chk_1",
+    "character": "ilo9",
+    "trunk": "anchor",
+    "name": "Parity Bit",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 8
+      }
+    ],
+    "description": "+8 Signal. Every message carries its own proof.",
+    "row": 0,
+    "col": 2
+  },
+  {
+    "id": "i_chk_2",
+    "character": "ilo9",
+    "trunk": "anchor",
+    "name": "Restore Point",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "i_chk_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "healBonus",
+        "value": 0.3
+      }
+    ],
+    "description": "Checksum and every other heal it casts are 30% stronger.",
+    "row": 1,
+    "col": 2
+  },
+  {
+    "id": "i_chk_3",
+    "character": "ilo9",
+    "trunk": "anchor",
+    "name": "Witnessed Its Own Burial",
+    "type": "condition",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "resolve",
+        "delta": 30
+      },
+      {
+        "kind": "passive",
+        "passive": "openingTempo",
+        "value": 4
+      }
+    ],
+    "description": "+30 Resolve, and every battle opens with 4 Tempo. It has to see the racks it died under.",
+    "row": 2,
+    "col": 2,
+    "condition": "flag:sawServerGraveyard",
+    "conditionHint": "Take it back to the place it was buried and let it look."
+  },
+  {
+    "id": "i_chk_4",
+    "character": "ilo9",
+    "trunk": "anchor",
+    "name": "Redundant Array",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "i_chk_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "extraRewind",
+        "value": 1
+      }
+    ],
+    "description": "One additional Rewind per battle. ILO-9 keeps a copy of the last few seconds too.",
+    "row": 3,
+    "col": 2
+  },
+  {
+    "id": "i_era_2312",
+    "character": "ilo9",
+    "trunk": "fork",
+    "name": "Enclave Uplink",
+    "type": "era",
+    "era": "2312",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 14
+      }
+    ],
+    "description": "+14 Signal. Only in 2312, close enough to the Steward's own traffic to read it.",
+    "row": 4,
+    "col": 0
+  },
+  {
+    "id": "i_era_2031",
+    "character": "ilo9",
+    "trunk": "weaver",
+    "name": "Read the Source",
+    "type": "era",
+    "era": "2031",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "vsMachine",
+        "value": 0.2
+      }
+    ],
+    "description": "+20% damage to machines. Only in 2031, where the models are small enough to understand whole.",
+    "row": 4,
+    "col": 1
+  },
+  {
+    "id": "i_era_2148",
+    "character": "ilo9",
+    "trunk": "anchor",
+    "name": "Its Own Racks",
+    "type": "era",
+    "era": "2148",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "openingTempo",
+        "value": 4
+      }
+    ],
+    "description": "Every battle opens with 4 Tempo. Only in 2148, where it was buried.",
+    "row": 4,
+    "col": 2
+  }
+]

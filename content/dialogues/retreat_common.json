@@ -1,0 +1,22 @@
+{
+  "id": "retreat_common",
+  "lines": [
+    {
+      "speaker": "ilse",
+      "text": "Then we starve honestly. Miss Vance, take your case down the mountain."
+    },
+    {
+      "speaker": "vance",
+      "text": "You will regret this within the year. Everyone does."
+    },
+    {
+      "speaker": "wren",
+      "text": "That is the charter I grew up under. Word for word. I always assumed it was written by someone braver than me."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Vance closes her case without hurrying. Behind her, something tall unfolds itself off the transport and starts up the path.",
+      "action": "battle:kell_2031_frame"
+    }
+  ]
+}

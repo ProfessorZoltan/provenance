@@ -4,14 +4,79 @@
   "name": "Kell Valley, 2312",
   "width": 1600,
   "height": 900,
-  "spawn": { "x": 800, "y": 250 },
+  "spawn": {
+    "x": 800,
+    "y": 250
+  },
   "nodes": [
-    { "id": "kell_2312", "kind": "location", "location": "kell_2312", "x": 800, "y": 210, "radius": 80, "label": "Kell Monastery", "icon": "monastery" },
-    { "id": "kell_village_2312", "kind": "location", "location": "kell_village_2312", "x": 430, "y": 660, "radius": 80, "label": "Kell Village", "icon": "village" },
-    { "id": "village_gate", "kind": "encounter", "encounter": "kell_2312_gate", "x": 600, "y": 520, "radius": 46, "label": "Village gate", "icon": "gate", "requires": ["quest:gate_drone:active"] }
+    {
+      "id": "kell_2312",
+      "kind": "location",
+      "location": "kell_2312",
+      "x": 800,
+      "y": 210,
+      "radius": 80,
+      "label": "Kell Monastery",
+      "icon": "monastery"
+    },
+    {
+      "id": "kell_village_2312",
+      "kind": "location",
+      "location": "kell_village_2312",
+      "x": 430,
+      "y": 660,
+      "radius": 80,
+      "label": "Kell Village",
+      "icon": "village"
+    },
+    {
+      "id": "village_gate",
+      "kind": "encounter",
+      "encounter": "kell_2312_gate",
+      "x": 600,
+      "y": 520,
+      "radius": 46,
+      "label": "Village gate",
+      "icon": "gate",
+      "requires": [
+        "quest:gate_drone:active"
+      ]
+    }
   ],
-  "roads": [[800, 290, 720, 400, 600, 520, 430, 600], [800, 290, 960, 400, 1130, 470]],
+  "roads": [
+    [
+      800,
+      290,
+      720,
+      400,
+      600,
+      520,
+      430,
+      600
+    ],
+    [
+      800,
+      290,
+      960,
+      400,
+      1130,
+      470
+    ]
+  ],
   "zones": [
-    { "id": "perimeter", "label": "Perimeter", "x": 940, "y": 330, "w": 520, "h": 420, "encounters": ["kell_2312_perimeter"], "chance": 0.4, "stride": 160 }
+    {
+      "id": "perimeter",
+      "label": "Perimeter",
+      "x": 940,
+      "y": 330,
+      "w": 520,
+      "h": 420,
+      "encounters": [
+        "kell_2312_perimeter",
+        "kell_2312_enforcers"
+      ],
+      "chance": 0.4,
+      "stride": 160
+    }
   ]
 }

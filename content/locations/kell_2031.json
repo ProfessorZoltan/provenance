@@ -1,0 +1,81 @@
+{
+  "id": "kell_2031",
+  "name": "Kell Retreat",
+  "kind": "deepSite",
+  "era": "2031",
+  "site": "kell",
+  "type": "Mountain retreat",
+  "art": "2031_kell",
+  "description": "Six timber buildings, a well, and a founder who has not decided yet what any of it is for. The stone the chapel will stand on is still in the ground.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2031_kell:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2031_kell:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2031_kell:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2031_kell:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "dust"
+  },
+  "music": "hub_2031",
+  "npcs": [
+    "ilse_kell",
+    "vance",
+    "wren_2031",
+    "dax_2031"
+  ],
+  "quests": [],
+  "encounters": [
+    "kell_2031_terrace"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2148",
+    "2312"
+  ],
+  "storyDialogue": "founding_2031",
+  "variants": [
+    {
+      "when": [
+        "retreatEndowed"
+      ],
+      "art": "2031_kell",
+      "description": "Six timber buildings and a surveyor's stakes for six more. Meridian's money has arrived and the walls it buys are already drawn on paper.",
+      "npcs": [
+        "ilse_kell",
+        "wren_2031",
+        "dax_2031"
+      ]
+    },
+    {
+      "when": [
+        "retreatCommon"
+      ],
+      "art": "2031_kell",
+      "description": "Six timber buildings and a well, and a charter nailed to the door that says this place belongs to whoever is standing in it.",
+      "npcs": [
+        "ilse_kell",
+        "wren_2031",
+        "dax_2031"
+      ]
+    }
+  ]
+}

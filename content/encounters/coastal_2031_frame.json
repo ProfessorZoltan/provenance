@@ -1,0 +1,34 @@
+{
+  "id": "coastal_2031_frame",
+  "name": "Walking Frame",
+  "era": "2031",
+  "location": "coastal_highway_2031",
+  "enemies": [
+    {
+      "enemy": "construct_prototype",
+      "count": 1
+    },
+    {
+      "enemy": "drone_prototype_2031",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "An exoskeleton is pacing the fence line, and it is not empty.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Construct and a Drone."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Walking Frame: shell first, then the man inside it. Thermal burns the shell fastest."
+    },
+    {
+      "when": "party:wren",
+      "text": "Wren: there is a person in that thing. Whatever you do, know that."
+    }
+  ],
+  "music": "battle_2031"
+}

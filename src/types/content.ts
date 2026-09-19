@@ -4,7 +4,8 @@ export type EraId = '2031' | '2064' | '2148' | '2312';
 export type Lean = 'cinder' | 'choir' | 'commons' | 'chosen' | 'unknown';
 export type DamageType = 'kinetic' | 'thermal' | 'signal' | 'chronal';
 export type EnemyFamily = 'drone' | 'warden' | 'construct' | 'echo';
-export type TrunkKey = 'breaker' | 'weaver' | 'anchor';
+export type TrunkKey = 'breaker' | 'weaver' | 'anchor' | 'fork';
+export type EquipSlot = 'weapon' | 'gear';
 export type NodeType = 'standard' | 'condition' | 'era' | 'contradiction';
 
 export interface StatBlock {
@@ -32,6 +33,10 @@ export interface CharacterDef {
   shortName: string;
   lean: Lean;
   homeEra: EraId;
+  /** Condition that makes this member walk away, evaluated whenever the world moves. */
+  leavesIf?: string;
+  leaveLine?: string;
+  joinLine?: string;
   role: string;
   signature: string;
   baseStats: StatBlock;
@@ -84,8 +89,20 @@ export interface AbilityDef {
   status?: { id: string; turns: number; onTarget?: boolean };
   special?: string;
   requiresMachine?: boolean;
+  /** For abilities that put a short-lived copy of the caster on the field. */
+  spawn?: { name: string; hpFactor: number; turns: number; abilities: string[] };
   description: string;
   prompt?: string;
+}
+
+/** A Construct's second health bar: break the shell and the core keeps fighting, differently. */
+export interface SecondBar {
+  name: string;
+  resolve: number;
+  abilities?: string[];
+  immunities?: DamageType[];
+  weakness?: DamageType;
+  flavor: string;
 }
 
 export interface EnemyDef {
@@ -96,6 +113,7 @@ export interface EnemyDef {
   machine: boolean;
   stats: StatBlock;
   shield: number;
+  secondBar?: SecondBar;
   abilities: string[];
   immunities: DamageType[];
   perception: number;
@@ -143,6 +161,8 @@ export interface LocationVariant {
   npcs: string[];
   shop?: string;
   storyDialogue?: string;
+  /** Catalog asset id for this variant's scene, if it differs from the location's. */
+  art?: string;
 }
 
 export interface LocationDef {
@@ -153,6 +173,8 @@ export interface LocationDef {
   site: string;
   type: string;
   description: string;
+  /** Catalog asset id under public/art/locations, e.g. "2148_server_graveyard". */
+  art: string;
   background: { layers: BackgroundLayer[]; particles: string };
   music: string;
   npcs: string[];
@@ -272,6 +294,12 @@ export interface ItemDef {
   description: string;
   relicValue?: number;
   effect?: { heal?: number; tempo?: number; revive?: boolean; slack?: number };
+  /** Gear only: where it goes, what it changes, and who may carry it. */
+  slot?: EquipSlot;
+  stats?: Partial<StatBlock>;
+  grants?: string[];
+  onlyFor?: string[];
+  era?: EraId;
 }
 
 export interface MapNode {
@@ -322,6 +350,8 @@ export interface RulesDef {
   surprise: { base: number; noiseBelowPerception: number };
   xpPerLevel: number;
   statGrowthPerLevel: number;
+  activePartyMax: number;
+  benchedXpShare: number;
   continuityFloor: number;
   continuityPerEdit: number;
   relicCap: number;

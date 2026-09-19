@@ -1,0 +1,38 @@
+{
+  "id": "drone_prototype_2031",
+  "name": "Prototype Drone",
+  "family": "drone",
+  "era": "2031",
+  "machine": true,
+  "stats": {
+    "resolve": 38,
+    "bandwidth": 2,
+    "latency": 5,
+    "signal": 20,
+    "noise": 30,
+    "grit": 12,
+    "sync": 100,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "drone_dart",
+    "drone_lock"
+  ],
+  "immunities": [],
+  "perception": 25,
+  "rig": "drone_sentry",
+  "weakness": "signal",
+  "xp": 22,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.5
+    },
+    {
+      "item": "relic_prototype_chip",
+      "chance": 0.12
+    }
+  ],
+  "flavor": "Meridian's first field unit. It flies beautifully and thinks about as well as a wasp."
+}

@@ -1,0 +1,41 @@
+{
+  "id": "graveyard_echoes",
+  "name": "Among the Racks",
+  "era": "2148",
+  "location": "server_graveyard_2148",
+  "enemies": [
+    {
+      "enemy": "echo_graveyard",
+      "count": 1
+    },
+    {
+      "enemy": "drone_derelict_2148",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "The mud remembers footsteps that are not being made.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Drone and something Temporal."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Echo of the Racks: only Chronal damage touches it."
+    },
+    {
+      "when": "party:wren",
+      "text": "Wren: it is one shape made of many people. Be quick about it."
+    },
+    {
+      "when": "entropy>=70",
+      "text": "Your own Entropy is high enough to add to their number."
+    }
+  ],
+  "music": "battle_2148",
+  "rewardFlags": [
+    "sawServerGraveyard"
+  ]
+}

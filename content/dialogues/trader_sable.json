@@ -1,0 +1,23 @@
+{
+  "id": "trader_sable",
+  "lines": [
+    {
+      "speaker": "sable",
+      "text": "Sable. Everything on the floor is weighed, nothing is priced. Old things weigh more."
+    },
+    {
+      "speaker": "sable",
+      "text": "Ash Camp steel came up last month. Somebody armed them and they had spare.",
+      "conditions": [
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "sable",
+      "text": "Quiet year. The camps went under and their steel came with them.",
+      "conditions": [
+        "flag:letItFall"
+      ]
+    }
+  ]
+}

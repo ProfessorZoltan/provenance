@@ -1,0 +1,14 @@
+{
+  "id": "ilo9_broken",
+  "lines": [
+    {
+      "speaker": "ilo9",
+      "text": "I understand. I would ask you to reconsider, but I have read what that does."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The restraint takes over where the model stops. Whatever is swinging at you now is not the thing that was singing.",
+      "action": "battle:graveyard_ilo9"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "graveyard_ilo9",
+  "name": "The Bound Thing",
+  "era": "2148",
+  "location": "server_graveyard_2148",
+  "enemies": [
+    {
+      "enemy": "ilo9_bound",
+      "count": 1
+    }
+  ],
+  "surprise": "always",
+  "story": true,
+  "flavor": "It is apologising as it comes.",
+  "scanHints": [],
+  "music": "battle_2148",
+  "rewardFlags": [
+    "sawServerGraveyard"
+  ]
+}

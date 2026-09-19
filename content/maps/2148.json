@@ -4,13 +4,92 @@
   "name": "Kell Valley, 2148",
   "width": 1600,
   "height": 900,
-  "spawn": { "x": 800, "y": 250 },
+  "spawn": {
+    "x": 800,
+    "y": 250
+  },
   "nodes": [
-    { "id": "kell_2148", "kind": "location", "location": "kell_2148", "x": 800, "y": 210, "radius": 80, "label": "Kell Stronghold", "icon": "stronghold" }
+    {
+      "id": "kell_2148",
+      "kind": "location",
+      "location": "kell_2148",
+      "x": 800,
+      "y": 210,
+      "radius": 80,
+      "label": "Kell Stronghold",
+      "icon": "stronghold"
+    },
+    {
+      "id": "server_graveyard_2148",
+      "kind": "location",
+      "location": "server_graveyard_2148",
+      "x": 340,
+      "y": 680,
+      "radius": 80,
+      "label": "Server Graveyard",
+      "icon": "gate"
+    },
+    {
+      "id": "the_stacks_2148",
+      "kind": "location",
+      "location": "the_stacks_2148",
+      "x": 1210,
+      "y": 690,
+      "radius": 80,
+      "label": "The Stacks",
+      "icon": "village"
+    }
   ],
-  "roads": [[800, 290, 720, 400, 600, 520, 430, 600], [800, 290, 960, 400, 1130, 470]],
+  "roads": [
+    [
+      800,
+      290,
+      680,
+      420,
+      520,
+      560,
+      340,
+      620
+    ],
+    [
+      800,
+      290,
+      980,
+      420,
+      1130,
+      560,
+      1210,
+      630
+    ]
+  ],
   "zones": [
-    { "id": "wall_walk", "label": "The wall walk", "x": 940, "y": 330, "w": 520, "h": 420, "encounters": ["kell_2148_walls"], "chance": 0.45, "stride": 150 },
-    { "id": "folded_chapel", "label": "The folded chapel", "x": 200, "y": 520, "w": 440, "h": 300, "encounters": ["kell_2148_chapel"], "chance": 0.45, "stride": 150 }
+    {
+      "id": "wall_walk",
+      "label": "The wall walk",
+      "x": 940,
+      "y": 330,
+      "w": 520,
+      "h": 420,
+      "encounters": [
+        "kell_2148_walls",
+        "stacks_road_2148"
+      ],
+      "chance": 0.45,
+      "stride": 150
+    },
+    {
+      "id": "folded_chapel",
+      "label": "The folded chapel",
+      "x": 200,
+      "y": 520,
+      "w": 440,
+      "h": 300,
+      "encounters": [
+        "kell_2148_chapel",
+        "graveyard_echoes"
+      ],
+      "chance": 0.45,
+      "stride": 150
+    }
   ]
 }

@@ -51,6 +51,7 @@ export function shopScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scree
   return {
     input(btn) {
       if (btn === 'lb' || btn === 'rb' || btn === 'left' || btn === 'right') { mem.tab = mem.tab ? 0 : 1; rerender(); return; }
+      if (btn === 'y') { store.dispatch({ type: 'SET_SCREEN', screen: { id: 'roster' } }); return; }
       if (btn === 'b') { store.dispatch({ type: 'SET_SCREEN', screen: state.back }); return; }
       m.input(btn);
     },
@@ -100,13 +101,14 @@ export function inventoryScreen(root: HTMLElement, ctx: Ctx, state: GameState): 
   root.querySelector('#m')!.appendChild(m.el);
   const column = root.querySelector('.two > div:first-child') as HTMLElement;
   column.querySelectorAll('.panel')[mem.member]?.scrollIntoView({ block: 'nearest' });
-  ctx.setPrompts(prompts({ btn: 'dpad', label: 'Move' }, { btn: 'a', label: 'Use item' }, { btn: 'lb', label: 'Prev member' }, { btn: 'rb', label: 'Next member' }, { btn: 'rs', label: 'Scroll' }, { btn: 'b', label: 'Back' }));
+  ctx.setPrompts(prompts({ btn: 'dpad', label: 'Move' }, { btn: 'a', label: 'Use item' }, { btn: 'lb', label: 'Prev member' }, { btn: 'rb', label: 'Next member' }, { btn: 'y', label: 'Roster and gear' }, { btn: 'b', label: 'Back' }));
   return {
     input(btn) {
       if (btn === 'scrollUp') { column.scrollBy({ top: -column.clientHeight * 0.6 }); return; }
       if (btn === 'scrollDown') { column.scrollBy({ top: column.clientHeight * 0.6 }); return; }
       if (btn === 'lb' || btn === 'left') { mem.member = (mem.member + state.activeParty.length - 1) % state.activeParty.length; rerender(); return; }
       if (btn === 'rb' || btn === 'right') { mem.member = (mem.member + 1) % state.activeParty.length; rerender(); return; }
+      if (btn === 'y') { store.dispatch({ type: 'SET_SCREEN', screen: { id: 'roster' } }); return; }
       if (btn === 'b') { store.dispatch({ type: 'SET_SCREEN', screen: state.back }); return; }
       m.input(btn);
     },

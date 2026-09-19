@@ -1,0 +1,79 @@
+{
+  "id": "battle_2031",
+  "name": "Small Models",
+  "era": "2031",
+  "motifs": [
+    "site:kell"
+  ],
+  "motif": [
+    0,
+    2,
+    4,
+    7,
+    4,
+    2,
+    0,
+    -3
+  ],
+  "scale": [
+    0,
+    2,
+    4,
+    5,
+    7,
+    9,
+    11
+  ],
+  "baseBpm": 100,
+  "swing": 0.06,
+  "layers": [
+    {
+      "id": "bass",
+      "minTempo": 0,
+      "instrument": "sinepluck",
+      "pattern": "bass",
+      "gain": 0.36
+    },
+    {
+      "id": "pad",
+      "minTempo": 0,
+      "instrument": "tape",
+      "pattern": "pad",
+      "gain": 0.22
+    },
+    {
+      "id": "brush",
+      "minTempo": 0,
+      "instrument": "foundperc",
+      "pattern": "perc",
+      "gain": 0.22
+    },
+    {
+      "id": "motif",
+      "minTempo": 10,
+      "instrument": "sinepluck",
+      "pattern": "motif",
+      "gain": 0.24
+    },
+    {
+      "id": "drums",
+      "minTempo": 20,
+      "instrument": "membrane",
+      "pattern": "perc",
+      "gain": 0.4
+    },
+    {
+      "id": "harmony",
+      "minTempo": 20,
+      "instrument": "tape",
+      "pattern": "harmony",
+      "gain": 0.18
+    }
+  ],
+  "instruments": {
+    "sinepluck": "sinepluck",
+    "tape": "tape",
+    "foundperc": "foundperc",
+    "membrane": "membrane"
+  }
+}

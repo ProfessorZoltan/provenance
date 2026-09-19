@@ -6,6 +6,7 @@
   "site": "kell",
   "type": "Faction hub (Commons)",
   "description": "The free town below the monastery. Nobody here is allocated anything. They trade, argue and keep the road open.",
+  "art": "2312_kell_village",
   "background": {
     "layers": [
       {
@@ -56,7 +57,8 @@
         "militia_captain"
       ],
       "shop": "kell_armory",
-      "storyDialogue": "village_armed"
+      "storyDialogue": "village_armed",
+      "art": "2312_kell_village_armed_resistance"
     },
     {
       "when": [
@@ -68,7 +70,8 @@
         "ansel_quiet"
       ],
       "shop": "kell_commissary_thin",
-      "storyDialogue": "village_fall"
+      "storyDialogue": "village_fall",
+      "art": "2312_kell_village_let_it_fall"
     }
   ],
   "links": [

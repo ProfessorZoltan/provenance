@@ -1,29 +1,60 @@
 import { describe, expect, it } from 'vitest';
+import { NPC_NAMES } from '../src/core/reducer';
 import { content } from './helpers';
 
 describe('content', () => {
-  it('loads every slice folder', () => {
-    expect(Object.keys(content.characters).sort()).toEqual(['dax', 'player', 'wren']);
-    expect(Object.keys(content.encounters)).toHaveLength(5);
-    expect(Object.keys(content.enemies).sort()).toEqual(['drone_hunter', 'drone_sentry', 'echo_kell', 'warden_2148']);
-    expect(Object.keys(content.scores)).toHaveLength(4);
-    expect(Object.keys(content.timelineChoices).sort()).toEqual(['arm_resistance', 'let_it_fall']);
+  it('covers three eras, four party members and every enemy family', () => {
+    expect(Object.keys(content.characters).sort()).toEqual(['dax', 'ilo9', 'player', 'wren']);
+    expect([...new Set(Object.values(content.locations).map((l) => l.era))].sort()).toEqual(['2031', '2148', '2312']);
+    const families = new Set(Object.values(content.enemies).map((e) => e.family));
+    expect([...families].sort()).toEqual(['construct', 'drone', 'echo', 'warden']);
+    for (const era of ['2031', '2148', '2312']) {
+      expect(Object.values(content.enemies).some((e) => e.era === era), era).toBe(true);
+      expect(Object.values(content.scores).some((s) => s.era === era && s.id.startsWith('battle')), era).toBe(true);
+      expect(Object.values(content.maps).some((m) => m.era === era), era).toBe(true);
+    }
   });
 
-  it('gives each character 12 nodes with one condition node and one contradiction pair', () => {
+  it('gives each character a full tree with one condition node, a contradiction pair and era nodes', () => {
     for (const id of Object.keys(content.characters)) {
       const nodes = Object.values(content.nodes).filter((n) => n.character === id);
-      expect(nodes, id).toHaveLength(12);
+      expect(nodes.length, id).toBeGreaterThanOrEqual(14);
       expect(nodes.filter((n) => n.type === 'condition'), id).toHaveLength(1);
       const contradictions = nodes.filter((n) => n.type === 'contradiction');
       expect(contradictions, id).toHaveLength(2);
       expect(contradictions[0].excludes).toContain(contradictions[1].id);
       expect(contradictions[1].excludes).toContain(contradictions[0].id);
+      const eraNodes = nodes.filter((n) => n.type === 'era');
+      expect(eraNodes.length, `${id} era nodes`).toBeGreaterThanOrEqual(2);
+      for (const n of eraNodes) expect(n.era, n.id).toBeTruthy();
     }
   });
 
-  it('has exactly one surprise-only encounter in the slice', () => {
-    expect(Object.values(content.encounters).filter((e) => e.surprise === 'always')).toHaveLength(1);
+  it('keeps every Construct honest about its second bar', () => {
+    const constructs = Object.values(content.enemies).filter((e) => e.family === 'construct');
+    expect(constructs.length).toBeGreaterThan(0);
+    for (const c of constructs) {
+      expect(c.secondBar, c.id).toBeDefined();
+      expect(c.secondBar!.resolve, c.id).toBeGreaterThan(0);
+      expect(c.secondBar!.flavor, c.id).toBeTruthy();
+    }
+  });
+
+  it('gates every surprise-only encounter behind a story beat', () => {
+    const ambushes = Object.values(content.encounters).filter((e) => e.surprise === 'always');
+    expect(ambushes.length).toBeGreaterThan(0);
+    for (const a of ambushes) expect(a.story, a.id).toBe(true);
+  });
+
+  it('only sells gear that a character could wear', () => {
+    for (const shop of Object.values(content.shops)) {
+      for (const row of shop.stock) {
+        const item = content.items[row.item];
+        if (item.kind !== 'gear') continue;
+        expect(item.slot, item.id).toBeTruthy();
+        for (const who of item.onlyFor ?? []) expect(content.characters[who], `${item.id} is for ${who}`).toBeDefined();
+      }
+    }
   });
 
   it('gives every location four parallax layers and one ambient animation', () => {
@@ -52,3 +83,16 @@ describe('teaching the systems', () => {
     expect(lesson).toMatch(/two points|Two points/i);
   });
 })
+
+describe('presentation of people', () => {
+  it('names every speaker and every NPC a location offers', () => {
+    const speakers = new Set<string>();
+    for (const d of Object.values(content.dialogues)) for (const l of d.lines) speakers.add(l.speaker);
+    for (const l of Object.values(content.locations)) {
+      for (const n of [...l.npcs, ...(l.variants ?? []).flatMap((v) => v.npcs)]) speakers.add(n);
+    }
+    speakers.delete('narrator');
+    const unnamed = [...speakers].filter((s) => !NPC_NAMES[s] && !content.characters[s]);
+    expect(unnamed, `these would show as raw ids: ${unnamed.join(', ')}`).toEqual([]);
+  });
+});

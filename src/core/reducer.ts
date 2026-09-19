@@ -7,7 +7,7 @@ import { buildScan, conditionContext, rollEncounter } from './encounter';
 import { seedFromString } from './rng';
 import { levelForXp, loadout, maxHp } from './stats';
 import { unlockNode } from './tech';
-import { applyChoice, clamp, deriveWorld, markVisited } from './timeline';
+import { applyChoice, choicesOverwrittenBy, clamp, deriveWorld, markVisited } from './timeline';
 
 export const STATE_VERSION = 1;
 
@@ -46,10 +46,49 @@ export function initialState(): GameState {
   };
 }
 
-function newCharacter(content: ContentDB, id: string, sync: number, recruitedAt: number): CharacterState {
-  const cs: CharacterState = { id, xp: 0, level: 1, skillPoints: 2, nodes: [], sync, hp: 0, recruitedAt };
+function newCharacter(content: ContentDB, id: string, sync: number, recruitedAt: number, xp = 0): CharacterState {
+  const level = levelForXp(xp, content.rules.xpPerLevel);
+  const cs: CharacterState = {
+    id, xp, level, skillPoints: 1 + level, nodes: [], sync, hp: 0, recruitedAt,
+    equipment: { weapon: null, gear: null },
+  };
   cs.hp = maxHp(content, content.characters[id], cs);
   return cs;
+}
+
+/** A recruit arrives near the party's level rather than at 1, so they are worth fielding. */
+function recruitXp(content: ContentDB, state: GameState): number {
+  const xps = Object.values(state.party).map((c) => c.xp);
+  if (!xps.length) return 0;
+  return Math.round(xps.reduce((a, b) => a + b, 0) / xps.length);
+}
+
+export function isActive(state: GameState, id: string): boolean {
+  return state.activeParty.includes(id);
+}
+
+/**
+ * Anyone whose leave condition now holds walks out. The Auditor never leaves, and the last
+ * standing member never leaves, so a run cannot be stranded without a party.
+ */
+function settleDepartures(content: ContentDB, state: GameState): GameState {
+  for (const id of Object.keys(state.party)) {
+    if (id === 'player') continue;
+    const def = content.characters[id];
+    if (!def?.leavesIf) continue;
+    if (!evalAll([def.leavesIf], conditionContext(content, state))) continue;
+    if (Object.keys(state.party).length <= 1) continue;
+    const party = { ...state.party };
+    delete party[id];
+    state = {
+      ...state,
+      party,
+      activeParty: state.activeParty.filter((a) => a !== id),
+      flags: state.flags.includes(`left:${id}`) ? state.flags : [...state.flags, `left:${id}`],
+    };
+    state = journal(state, `${def.name} has left the party. ${def.leaveLine ?? ''}`.trim());
+  }
+  return state;
 }
 
 export function activeVariant(content: ContentDB, state: GameState, loc: LocationDef): LocationVariant | null {
@@ -76,8 +115,13 @@ export function npcName(content: ContentDB, npcId: string): string {
 }
 
 export const NPC_NAMES: Record<string, string> = {
+  // Dialogue ids used as NPCs on a location, and the speaker ids used inside lines.
   wren_hub: 'Sister Wren', dax_hub: 'Dax Okonkwo', dax_2148: 'Dax Okonkwo', captain_ade: 'Captain Ade',
+  wren_2031: 'Sister Wren', dax_2031: 'Dax Okonkwo', wren_tempo_lesson: 'Sister Wren',
   pell: 'Old Pell', ansel: 'Ansel', ansel_quiet: 'Ansel', militia_captain: 'Militia Captain',
+  ilse_kell: 'Mother Ilse Kell', ilse: 'Mother Ilse Kell', vance: 'Aurelia Vance',
+  salvager_ruth: 'Ruth', ruth: 'Ruth', trader_sable: 'Sable', sable: 'Sable',
+  ilo9: 'ILO-9', ilo9_hub: 'ILO-9', ilo9_bound_dlg: 'ILO-9, bound',
   wren: 'Sister Wren', dax: 'Dax Okonkwo', ade: 'Captain Ade', militia: 'Militia Captain', narrator: '', player: 'The Auditor',
 };
 
@@ -127,6 +171,8 @@ function runAction(content: ContentDB, state: GameState, action: string, returnT
       if (a === 'accept') return reduce(content, state, { type: 'QUEST_ACCEPT', quest: b });
       if (a === 'complete') return reduce(content, state, { type: 'QUEST_COMPLETE', quest: b });
       throw new Error(`Unknown quest action ${action}`);
+    case 'recruit':
+      return reduce(content, state, { type: 'RECRUIT', character: a });
     default:
       throw new Error(`Unknown dialogue action ${action}`);
   }
@@ -204,10 +250,12 @@ function finishBattle(content: ContentDB, state: GameState): GameState {
   const levelUps: string[] = [];
   if (r) {
     party = { ...state.party };
-    for (const id of state.activeParty) {
+    const share = content.rules.benchedXpShare;
+    for (const id of Object.keys(party)) {
       const cs = party[id];
       if (!cs) continue;
-      const xp = cs.xp + r.xp;
+      const gain = state.activeParty.includes(id) ? r.xp : Math.round(r.xp * share);
+      const xp = cs.xp + gain;
       const level = levelForXp(xp, content.rules.xpPerLevel);
       let next = { ...cs, xp };
       if (level > cs.level) {
@@ -215,7 +263,7 @@ function finishBattle(content: ContentDB, state: GameState): GameState {
         next = { ...next, level, skillPoints: cs.skillPoints + (level - cs.level) };
         const after = maxHp(content, content.characters[id], next);
         next.hp = Math.min(after, next.hp + (after - before));
-        levelUps.push(`${content.characters[id].shortName} reaches level ${level}`);
+        if (state.activeParty.includes(id)) levelUps.push(`${content.characters[id].shortName} reaches level ${level}`);
       }
       party[id] = next;
     }
@@ -278,7 +326,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       // Leaving the result screen discards the finished battle.
       const battle = state.screen.id === 'battleResult' && action.screen.id !== 'battleResult' ? null : state.battle;
       // Overlay screens remember whether they were opened from the map or from inside a location.
-      const overlay = ['tech', 'party', 'inventory', 'save', 'settings', 'shop', 'manual'].includes(action.screen.id);
+      const overlay = ['tech', 'party', 'inventory', 'save', 'settings', 'shop', 'manual', 'roster'].includes(action.screen.id);
       const back = overlay && (state.screen.id === 'hub' || state.screen.id === 'map') ? state.screen : state.back;
       return { ...state, screen: action.screen, battle, back };
     }
@@ -410,6 +458,59 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       return { ...state, party };
     }
 
+    case 'SET_ACTIVE_PARTY': {
+      const roster = Object.keys(state.party);
+      const next = action.members.filter((id) => roster.includes(id));
+      if (!next.includes('player')) throw new Error('The Auditor cannot be benched');
+      if (next.length === 0) throw new Error('Someone has to go');
+      if (next.length > content.rules.activePartyMax) throw new Error(`At most ${content.rules.activePartyMax} can be active`);
+      if (new Set(next).size !== next.length) throw new Error('Duplicate member');
+      if (state.battle) throw new Error('Not in the middle of a fight');
+      return { ...state, activeParty: next };
+    }
+    case 'EQUIP': {
+      const cs = state.party[action.character];
+      const def = content.items[action.item];
+      if (!cs) throw new Error('Unknown character');
+      if (!def || def.kind !== 'gear' || !def.slot) throw new Error('That is not equipment');
+      if (def.onlyFor && !def.onlyFor.includes(cs.id)) throw new Error(`${def.name} is not for ${content.characters[cs.id].shortName}`);
+      if ((state.inventory.items[action.item] ?? 0) <= 0) throw new Error('You do not carry that');
+      const items = { ...state.inventory.items, [action.item]: state.inventory.items[action.item] - 1 };
+      const previous = cs.equipment[def.slot];
+      if (previous) items[previous] = (items[previous] ?? 0) + 1;
+      const before = maxHp(content, content.characters[cs.id], cs);
+      const next: CharacterState = { ...cs, equipment: { ...cs.equipment, [def.slot]: action.item } };
+      const after = maxHp(content, content.characters[cs.id], next);
+      next.hp = Math.max(1, Math.min(after, next.hp + (after - before)));
+      return { ...state, party: { ...state.party, [cs.id]: next }, inventory: { ...state.inventory, items } };
+    }
+    case 'UNEQUIP': {
+      const cs = state.party[action.character];
+      if (!cs) throw new Error('Unknown character');
+      const held = cs.equipment[action.slot];
+      if (!held) throw new Error('Nothing in that slot');
+      const before = maxHp(content, content.characters[cs.id], cs);
+      const next: CharacterState = { ...cs, equipment: { ...cs.equipment, [action.slot]: null } };
+      const after = maxHp(content, content.characters[cs.id], next);
+      next.hp = Math.max(1, Math.min(after, next.hp));
+      void before;
+      return {
+        ...state,
+        party: { ...state.party, [cs.id]: next },
+        inventory: { ...state.inventory, items: { ...state.inventory.items, [held]: (state.inventory.items[held] ?? 0) + 1 } },
+      };
+    }
+    case 'RECRUIT': {
+      const def = content.characters[action.character];
+      if (!def) throw new Error(`Unknown character ${action.character}`);
+      if (state.party[action.character]) return state;
+      const cs = newCharacter(content, action.character, def.baseStats.sync, state.world.history.length, recruitXp(content, state));
+      let next: GameState = { ...state, party: { ...state.party, [action.character]: cs } };
+      if (next.activeParty.length < content.rules.activePartyMax) next = { ...next, activeParty: [...next.activeParty, action.character] };
+      next = addFlags(next, [`recruited:${action.character}`]);
+      next = journal(next, `${def.name} joined the party. ${def.joinLine ?? ''}`.trim());
+      return settleDepartures(content, next);
+    }
     case 'UNLOCK_NODE': {
       const cs = state.party[action.character];
       if (!cs) throw new Error('Unknown character');
@@ -477,12 +578,13 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       if (!q) throw new Error('Unknown quest');
       if (state.quests[q.id] !== 'readyToTurnIn') throw new Error('Quest is not ready to turn in');
       const party = { ...state.party };
-      for (const id of state.activeParty) {
+      for (const id of Object.keys(party)) {
         const cs = party[id];
         if (!cs) continue;
-        const xp = cs.xp + q.rewards.xp;
+        const active = state.activeParty.includes(id);
+        const xp = cs.xp + Math.round(q.rewards.xp * (active ? 1 : content.rules.benchedXpShare));
         const level = levelForXp(xp, content.rules.xpPerLevel);
-        party[id] = { ...cs, xp, level, skillPoints: cs.skillPoints + q.rewards.skillPoints + (level - cs.level) };
+        party[id] = { ...cs, xp, level, skillPoints: cs.skillPoints + (active ? q.rewards.skillPoints : 0) + (level - cs.level) };
       }
       const cur = currencyFor(content.locations[q.location].era);
       const inv = { ...state.inventory, currency: { ...state.inventory.currency, [cur]: (state.inventory.currency[cur] ?? 0) + q.rewards.currency } };
@@ -503,7 +605,12 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       state = { ...state, world };
       const derived = deriveWorld(content, world, state.party);
       state = journal(state, `Timeline: ${c.name}. ${c.summary} (${derived.ending} is where this is heading.)`);
-      return state;
+      const wiped = choicesOverwrittenBy(state.world.history.slice(0, -1), c.era, c.site);
+      for (const w of wiped) {
+        const old = content.timelineChoices[w.choiceId];
+        if (old) state = journal(state, `${old.name} never happened: ${c.era} now runs differently from ${w.era} onward.`);
+      }
+      return settleDepartures(content, state);
     }
     default:
       return state;

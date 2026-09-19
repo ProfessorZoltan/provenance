@@ -1,0 +1,32 @@
+{
+  "id": "stacks_market",
+  "name": "The Weighing Floor",
+  "era": "2148",
+  "currency": "barter tokens",
+  "stock": [
+    {
+      "item": "ration",
+      "price": 10
+    },
+    {
+      "item": "stim",
+      "price": 18
+    },
+    {
+      "item": "anchor_charm",
+      "price": 45
+    },
+    {
+      "item": "ash_blade",
+      "price": 70
+    },
+    {
+      "item": "fog_shroud",
+      "price": 60
+    },
+    {
+      "item": "dax_hammer",
+      "price": 95
+    }
+  ]
+}

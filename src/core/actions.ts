@@ -25,6 +25,10 @@ export type Action =
   | { type: 'BATTLE_FINISH' }
   | { type: 'REST' }
   | { type: 'UNLOCK_NODE'; character: string; node: string }
+  | { type: 'SET_ACTIVE_PARTY'; members: string[] }
+  | { type: 'EQUIP'; character: string; item: string }
+  | { type: 'UNEQUIP'; character: string; slot: 'weapon' | 'gear' }
+  | { type: 'RECRUIT'; character: string }
   | { type: 'SHOP_BUY'; item: string }
   | { type: 'SHOP_SELL_RELIC'; item: string }
   | { type: 'USE_ITEM'; item: string; target: string }

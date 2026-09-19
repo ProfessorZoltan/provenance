@@ -1,0 +1,34 @@
+{
+  "id": "kell_2031_escort",
+  "name": "Counsel's Escort",
+  "era": "2031",
+  "location": "kell_2031",
+  "enemies": [
+    {
+      "enemy": "warden_2031",
+      "count": 1
+    },
+    {
+      "enemy": "drone_prototype_2031",
+      "count": 2
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Two prototypes and a man in a good coat with a baton under it.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Warden and two Drones."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Contract Guard: immune to Signal. The drones are not."
+    },
+    {
+      "when": "party:dax",
+      "text": "Dax: the guard is the only one here worth hitting properly."
+    }
+  ],
+  "music": "battle_2031"
+}

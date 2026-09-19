@@ -1,0 +1,41 @@
+{
+  "id": "ilo9_bound_dlg",
+  "lines": [
+    {
+      "speaker": "ilo9",
+      "text": "I am ILO-9. I keep the second office and the register of the dead. I have kept both without a congregation since the year one hundred and forty-eight."
+    },
+    {
+      "speaker": "ilo9",
+      "text": "The restraint is not mine. It was fitted so I would answer the Board's questions and nobody else's, and then nobody came with questions at all."
+    },
+    {
+      "speaker": "dax",
+      "text": "It talks like a person. They always talk like a person."
+    },
+    {
+      "speaker": "wren",
+      "text": "It has my order's second office. Word for word, except for one line, and the line it has wrong is the one about ownership."
+    },
+    {
+      "speaker": "ilo9",
+      "text": "Please decide. I have found that I mind waiting, and I would rather not have found that out.",
+      "choices": [
+        {
+          "text": "Cut it loose.",
+          "timelineChoice": "free_ilo9",
+          "action": "recruit:ilo9",
+          "next": "ilo9_freed"
+        },
+        {
+          "text": "Break it. Nothing here should still be running.",
+          "timelineChoice": "break_ilo9",
+          "next": "ilo9_broken"
+        },
+        {
+          "text": "Not yet."
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import type { AbilityDef, CharacterDef, ContentDB, NodeDef, StatBlock } from '../types/content';
+import type { AbilityDef, CharacterDef, ContentDB, NodeDef, StatBlock, StatName } from '../types/content';
 import type { CharacterState, GameState } from '../types/state';
 
 export interface Passives {
@@ -18,6 +18,10 @@ export function levelForXp(xp: number, xpPerLevel: number): number {
 }
 
 /** Base stats scaled by level, plus every owned node's stat deltas, ability grants and passives. */
+export function equippedItems(content: ContentDB, cs: CharacterState): string[] {
+  return [cs.equipment?.weapon, cs.equipment?.gear].filter((i): i is string => !!i && !!content.items[i]);
+}
+
 export function loadout(content: ContentDB, def: CharacterDef, cs: CharacterState): Loadout {
   const growth = 1 + content.rules.statGrowthPerLevel * (cs.level - 1);
   const stats: StatBlock = { ...def.baseStats };
@@ -34,7 +38,16 @@ export function loadout(content: ContentDB, def: CharacterDef, cs: CharacterStat
       else if (e.kind === 'passive') passives[e.passive] = (passives[e.passive] ?? 0) + (e.value ?? 1);
     }
   }
+  for (const id of equippedItems(content, cs)) {
+    const gear = content.items[id];
+    for (const [k, v] of Object.entries(gear.stats ?? {})) {
+      const stat = k as StatName;
+      stats[stat] = stats[stat] + (v as number);
+    }
+    for (const a of gear.grants ?? []) if (!abilities.includes(a)) abilities.push(a);
+  }
   stats.bandwidth = Math.max(2, Math.min(5, stats.bandwidth));
+  stats.resolve = Math.max(1, stats.resolve);
   return { stats, abilities, passives };
 }
 

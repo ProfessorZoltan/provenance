@@ -1,0 +1,39 @@
+{
+  "id": "warden_2312",
+  "name": "Allocation Enforcer",
+  "family": "warden",
+  "era": "2312",
+  "machine": false,
+  "stats": {
+    "resolve": 150,
+    "bandwidth": 3,
+    "latency": 34,
+    "signal": 30,
+    "noise": 30,
+    "grit": 50,
+    "sync": 60,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "warden_baton",
+    "warden_suppress"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 45,
+  "rig": "warden",
+  "xp": 110,
+  "drops": [
+    {
+      "item": "stim",
+      "chance": 0.4
+    },
+    {
+      "item": "enforcer_visor",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "The Enclave still needs people to carry people out of buildings. It is the one job it never automated."
+}

@@ -1,0 +1,35 @@
+{
+  "id": "vance",
+  "lines": [
+    {
+      "speaker": "vance",
+      "text": "Five firms are pooling their models this year. Ours is the one with a conscience, which is why I am up a mountain offering a monastery a stipend instead of buying the valley outright.",
+      "conditions": [
+        "!flag:retreatEndowed",
+        "!flag:retreatCommon"
+      ]
+    },
+    {
+      "speaker": "vance",
+      "text": "You people are not on my manifest and I have stopped caring. Talk to Kell. She is the one stalling.",
+      "conditions": [
+        "!flag:retreatEndowed",
+        "!flag:retreatCommon"
+      ]
+    },
+    {
+      "speaker": "vance",
+      "text": "A pleasure doing business with a house that understands risk.",
+      "conditions": [
+        "flag:retreatEndowed"
+      ]
+    },
+    {
+      "speaker": "vance",
+      "text": "Enjoy the winter.",
+      "conditions": [
+        "flag:retreatCommon"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "ilo9_hub",
+  "lines": [
+    {
+      "speaker": "ilo9",
+      "text": "The village below reads as a Commons holding in every register I can reach. That is unusual and I would like it to stay unusual.",
+      "conditions": [
+        "flag:retreatCommon"
+      ]
+    },
+    {
+      "speaker": "ilo9",
+      "text": "The village below is listed as a Meridian trust, inherited three times and never contested. I would not mention that to Sister Wren.",
+      "conditions": [
+        "flag:retreatEndowed"
+      ]
+    },
+    {
+      "speaker": "ilo9",
+      "text": "Dax has not spoken to me in two days. He is not being cruel; he is being consistent, which is worse.",
+      "conditions": [
+        "party:dax",
+        "sync<=0"
+      ]
+    },
+    {
+      "speaker": "ilo9",
+      "text": "You have been generous to a thing that is owned. I notice. I am recording it in the register of the dead, which is the only register I have.",
+      "conditions": [
+        "sync>=40"
+      ]
+    },
+    {
+      "speaker": "ilo9",
+      "text": "I keep the second office, the register of the dead, and now apparently a party inventory. I am content."
+    }
+  ]
+}

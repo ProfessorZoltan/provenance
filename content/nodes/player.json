@@ -1,14 +1,334 @@
 [
-  { "id": "p_enf_1", "character": "player", "trunk": "breaker", "name": "Citation", "type": "standard", "cost": 1, "requires": [], "excludes": [], "effects": [{ "kind": "stat", "stat": "grit", "delta": 6 }], "description": "+6 Grit. The first notice is always polite.", "row": 0, "col": 0 },
-  { "id": "p_enf_2", "character": "player", "trunk": "breaker", "name": "Enforce", "type": "standard", "cost": 1, "requires": ["p_enf_1"], "excludes": [], "effects": [{ "kind": "ability", "ability": "enforce" }], "description": "Grants Enforce: a heavy hit that scales with marks on the field.", "row": 1, "col": 0 },
-  { "id": "p_enf_3", "character": "player", "trunk": "breaker", "name": "Penalty Clause", "type": "contradiction", "cost": 2, "requires": ["p_enf_2"], "excludes": ["p_led_3"], "effects": [{ "kind": "passive", "passive": "markBonus", "value": 0.25 }], "description": "Marked enemies take a further 25% damage. Locks out Open Books.", "row": 2, "col": 0 },
-  { "id": "p_enf_4", "character": "player", "trunk": "breaker", "name": "Garnish", "type": "standard", "cost": 2, "requires": ["p_enf_2"], "excludes": [], "effects": [{ "kind": "passive", "passive": "lifestealMarked", "value": 0.2 }], "description": "Damage dealt to marked enemies restores 20% of it as Resolve.", "row": 3, "col": 0 },
-  { "id": "p_led_1", "character": "player", "trunk": "weaver", "name": "Cross-Reference", "type": "standard", "cost": 1, "requires": [], "excludes": [], "effects": [{ "kind": "stat", "stat": "signal", "delta": 8 }], "description": "+8 Signal. Two ledgers that disagree are one lie.", "row": 0, "col": 1 },
-  { "id": "p_led_2", "character": "player", "trunk": "weaver", "name": "Discrepancy", "type": "standard", "cost": 1, "requires": ["p_led_1"], "excludes": [], "effects": [{ "kind": "ability", "ability": "discrepancy" }], "description": "Grants Discrepancy: a Chronal attack that ignores armor and raises Entropy.", "row": 1, "col": 1 },
-  { "id": "p_led_3", "character": "player", "trunk": "weaver", "name": "Open Books", "type": "contradiction", "cost": 2, "requires": ["p_led_2"], "excludes": ["p_enf_3"], "effects": [{ "kind": "passive", "passive": "markDuration", "value": 2 }, { "kind": "passive", "passive": "partyAccuracy", "value": 0.1 }], "description": "Marks last two turns longer and the whole party gains 10% accuracy. Locks out Penalty Clause.", "row": 2, "col": 1 },
-  { "id": "p_led_4", "character": "player", "trunk": "weaver", "name": "Second Set of Books", "type": "standard", "cost": 3, "requires": ["p_led_2"], "excludes": [], "effects": [{ "kind": "stat", "stat": "bandwidth", "delta": 1 }], "description": "+1 Bandwidth. Action economy is a stat you build.", "row": 3, "col": 1 },
-  { "id": "p_rec_1", "character": "player", "trunk": "anchor", "name": "Balance", "type": "standard", "cost": 1, "requires": [], "excludes": [], "effects": [{ "kind": "ability", "ability": "reconcile" }], "description": "Grants Reconcile: consume every mark on the field for Tempo.", "row": 0, "col": 2 },
-  { "id": "p_rec_2", "character": "player", "trunk": "anchor", "name": "Carry Forward", "type": "standard", "cost": 1, "requires": ["p_rec_1"], "excludes": [], "effects": [{ "kind": "passive", "passive": "slackCap", "value": 1 }], "description": "Slack cap raised by one. Setup turns pay off harder.", "row": 1, "col": 2 },
-  { "id": "p_rec_3", "character": "player", "trunk": "anchor", "name": "Witnessed the Quiet", "type": "condition", "cost": 1, "requires": [], "excludes": [], "condition": "visited:2148", "conditionHint": "Something you have to see for yourself, a century and a half back.", "effects": [{ "kind": "stat", "stat": "resolve", "delta": 25 }, { "kind": "passive", "passive": "tempoOnMark", "value": 2 }], "description": "+25 Resolve. Every mark you place generates 2 Tempo.", "row": 2, "col": 2 },
-  { "id": "p_rec_4", "character": "player", "trunk": "anchor", "name": "Full Disclosure", "type": "standard", "cost": 3, "requires": ["p_rec_2", "p_led_2"], "excludes": [], "effects": [{ "kind": "ability", "ability": "full_disclosure" }], "description": "Capstone. Grants Full Disclosure: every enemy on the field is marked.", "row": 3, "col": 2 }
+  {
+    "id": "p_enf_1",
+    "character": "player",
+    "trunk": "breaker",
+    "name": "Citation",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "grit",
+        "delta": 6
+      }
+    ],
+    "description": "+6 Grit. The first notice is always polite.",
+    "row": 0,
+    "col": 0
+  },
+  {
+    "id": "p_enf_2",
+    "character": "player",
+    "trunk": "breaker",
+    "name": "Enforce",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "p_enf_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "enforce"
+      }
+    ],
+    "description": "Grants Enforce: a heavy hit that scales with marks on the field.",
+    "row": 1,
+    "col": 0
+  },
+  {
+    "id": "p_enf_3",
+    "character": "player",
+    "trunk": "breaker",
+    "name": "Penalty Clause",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "p_enf_2"
+    ],
+    "excludes": [
+      "p_led_3"
+    ],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "markBonus",
+        "value": 0.25
+      }
+    ],
+    "description": "Marked enemies take a further 25% damage. Locks out Open Books.",
+    "row": 2,
+    "col": 0
+  },
+  {
+    "id": "p_enf_4",
+    "character": "player",
+    "trunk": "breaker",
+    "name": "Garnish",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "p_enf_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "lifestealMarked",
+        "value": 0.2
+      }
+    ],
+    "description": "Damage dealt to marked enemies restores 20% of it as Resolve.",
+    "row": 3,
+    "col": 0
+  },
+  {
+    "id": "p_led_1",
+    "character": "player",
+    "trunk": "weaver",
+    "name": "Cross-Reference",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 8
+      }
+    ],
+    "description": "+8 Signal. Two ledgers that disagree are one lie.",
+    "row": 0,
+    "col": 1
+  },
+  {
+    "id": "p_led_2",
+    "character": "player",
+    "trunk": "weaver",
+    "name": "Discrepancy",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "p_led_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "discrepancy"
+      }
+    ],
+    "description": "Grants Discrepancy: a Chronal attack that ignores armor and raises Entropy.",
+    "row": 1,
+    "col": 1
+  },
+  {
+    "id": "p_led_3",
+    "character": "player",
+    "trunk": "weaver",
+    "name": "Open Books",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "p_led_2"
+    ],
+    "excludes": [
+      "p_enf_3"
+    ],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "markDuration",
+        "value": 2
+      },
+      {
+        "kind": "passive",
+        "passive": "partyAccuracy",
+        "value": 0.1
+      }
+    ],
+    "description": "Marks last two turns longer and the whole party gains 10% accuracy. Locks out Penalty Clause.",
+    "row": 2,
+    "col": 1
+  },
+  {
+    "id": "p_led_4",
+    "character": "player",
+    "trunk": "weaver",
+    "name": "Second Set of Books",
+    "type": "standard",
+    "cost": 3,
+    "requires": [
+      "p_led_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "bandwidth",
+        "delta": 1
+      }
+    ],
+    "description": "+1 Bandwidth. Action economy is a stat you build.",
+    "row": 3,
+    "col": 1
+  },
+  {
+    "id": "p_rec_1",
+    "character": "player",
+    "trunk": "anchor",
+    "name": "Balance",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "reconcile"
+      }
+    ],
+    "description": "Grants Reconcile: consume every mark on the field for Tempo.",
+    "row": 0,
+    "col": 2
+  },
+  {
+    "id": "p_rec_2",
+    "character": "player",
+    "trunk": "anchor",
+    "name": "Carry Forward",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "p_rec_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "slackCap",
+        "value": 1
+      }
+    ],
+    "description": "Slack cap raised by one. Setup turns pay off harder.",
+    "row": 1,
+    "col": 2
+  },
+  {
+    "id": "p_rec_3",
+    "character": "player",
+    "trunk": "anchor",
+    "name": "Witnessed the Quiet",
+    "type": "condition",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "condition": "visited:2148",
+    "conditionHint": "Something you have to see for yourself, a century and a half back.",
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "resolve",
+        "delta": 25
+      },
+      {
+        "kind": "passive",
+        "passive": "tempoOnMark",
+        "value": 2
+      }
+    ],
+    "description": "+25 Resolve. Every mark you place generates 2 Tempo.",
+    "row": 2,
+    "col": 2
+  },
+  {
+    "id": "p_rec_4",
+    "character": "player",
+    "trunk": "anchor",
+    "name": "Full Disclosure",
+    "type": "standard",
+    "cost": 3,
+    "requires": [
+      "p_rec_2",
+      "p_led_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "full_disclosure"
+      }
+    ],
+    "description": "Capstone. Grants Full Disclosure: every enemy on the field is marked.",
+    "row": 3,
+    "col": 2
+  },
+  {
+    "id": "p_era_2312",
+    "character": "player",
+    "trunk": "breaker",
+    "name": "Standing Audit",
+    "type": "era",
+    "era": "2312",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "markBonus",
+        "value": 0.15
+      }
+    ],
+    "description": "Marked enemies take a further 15%. Only in 2312, with the Allocation Office's own procedures to hand.",
+    "row": 4,
+    "col": 0
+  },
+  {
+    "id": "p_era_2148",
+    "character": "player",
+    "trunk": "weaver",
+    "name": "Salvage Accounting",
+    "type": "era",
+    "era": "2148",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 12
+      }
+    ],
+    "description": "+12 Signal. Only in 2148, where everything worth reading has to be dug up first.",
+    "row": 4,
+    "col": 1
+  },
+  {
+    "id": "p_era_2031",
+    "character": "player",
+    "trunk": "anchor",
+    "name": "Opening Balance",
+    "type": "era",
+    "era": "2031",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "openingTempo",
+        "value": 6
+      }
+    ],
+    "description": "Every battle opens with 6 Tempo. Only in 2031, before any of it was written down.",
+    "row": 4,
+    "col": 2
+  }
 ]

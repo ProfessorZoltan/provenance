@@ -28,6 +28,12 @@ export interface Combatant {
   parleyed?: boolean;
   echoOf?: string;
   perception: number;
+  /** Constructs fight on after their shell breaks; bar 2 is the core. */
+  bar?: number;
+  secondBarName?: string;
+  /** A short-lived copy: it fights, then dissolves, and the party does not lose when it falls. */
+  temporary?: boolean;
+  expiresAfterRound?: number;
 }
 
 export interface LogMeta {
@@ -101,6 +107,7 @@ export interface CharacterState {
   sync: number;
   hp: number;
   recruitedAt: number;
+  equipment: { weapon: string | null; gear: string | null };
 }
 
 export interface HistoryEntry {
@@ -164,6 +171,7 @@ export type Screen =
   | { id: 'inventory' }
   | { id: 'save' }
   | { id: 'manual' }
+  | { id: 'roster' }
   | { id: 'gameOver' }
   | { id: 'settings' };
 

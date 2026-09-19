@@ -1,4 +1,4 @@
-import type { AbilityDef, ContentDB, DamageType, EnemyDef, ItemDef } from '../../types/content';
+import type { AbilityDef, ContentDB, DamageType, EnemyDef, ItemDef, SecondBar } from '../../types/content';
 import type { BattleLogEntry, BattleRewards, BattleState, Combatant, GameState, LogMeta, StatusEffect } from '../../types/state';
 import { evalFormula } from '../formula';
 import { roll, rollInt } from '../rng';
@@ -69,6 +69,8 @@ function enemyCombatant(def: EnemyDef, id: string, name: string): Combatant {
     shield: def.shield, maxShield: def.shield, threads: 0, slack: 0, statuses: [],
     abilities: [...def.abilities], immunities: [...def.immunities], weakness: def.weakness,
     down: false, perception: def.perception,
+    bar: def.secondBar ? 1 : undefined,
+    secondBarName: def.secondBar?.name,
   };
 }
 
@@ -155,6 +157,11 @@ function tickStatuses(c: Combatant): Combatant {
 function beginTurn(b: BattleState): BattleState {
   const actor = current(b);
   if (!actor) return b;
+  if (actor.temporary && actor.expiresAfterRound !== undefined && b.round > actor.expiresAfterRound) {
+    b = update(b, actor.id, (c) => ({ ...c, down: true, hp: 0, statuses: [] }));
+    b = log(b, `${actor.name} runs out of time and dissolves.`, 'tempo', { actor: actor.name });
+    return advance(b);
+  }
   let c = tickStatuses(actor);
   let threads = c.stats.bandwidth + (c.side === 'party' ? c.slack : 0);
   if (hasStatus(c, 'fear')) threads = Math.max(1, threads - 1);
@@ -268,8 +275,26 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   }
   if ((hasStatus(target, 'anchored') || hasStatus(target, 'fixed')) && hp < 1) { hp = 1; notes.push('anchored'); }
   hp = Math.max(0, hp);
-  const down = hp <= 0;
-  b = update(b, target.id, (c) => ({ ...c, hp, shield, down, statuses: down ? [] : c.statuses }));
+  let down = hp <= 0;
+
+  // A Construct's shell is only the first bar: break it and the core keeps fighting, with its
+  // own Resolve, its own kit and its own weaknesses.
+  const enemyDef = content.enemies[target.ref];
+  let broke: SecondBar | null = null;
+  if (down && target.bar === 1 && enemyDef?.secondBar) {
+    broke = enemyDef.secondBar;
+    down = false;
+    hp = broke.resolve;
+  }
+  b = update(b, target.id, (c) => (broke
+    ? {
+        ...c, hp, shield: 0, down: false, bar: 2, name: broke.name, maxHp: broke.resolve,
+        abilities: broke.abilities ?? c.abilities,
+        immunities: broke.immunities ?? c.immunities,
+        weakness: broke.weakness,
+        statuses: c.statuses.filter((st) => st.id !== 'marked'),
+      }
+    : { ...c, hp, shield, down, statuses: down ? [] : c.statuses }));
 
   if (hasStatus(target, 'marked') && (p.lifestealMarked ?? 0) > 0 && dmg > 0) {
     const heal = Math.round(dmg * (p.lifestealMarked ?? 0));
@@ -277,9 +302,12 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
     notes.push(`+${heal} garnished`);
   }
   const tail = notes.length ? ` (${notes.join(', ')})` : '';
+  const outcome = broke
+    ? ` The shell splits. ${broke.flavor}`
+    : down ? ` ${target.name} goes down.` : '';
   return {
     b, amount: dmg, hit: true, immune: false, meta,
-    note: `${actor.name} uses ${ability.name} on ${target.name}: ${dmg} ${type} damage${tail}.${down ? ` ${target.name} goes down.` : ''}`,
+    note: `${actor.name} uses ${ability.name} on ${target.name}: ${dmg} ${type} damage${tail}.${outcome}`,
   };
 }
 
@@ -337,6 +365,28 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     } else {
       b = log(b, `${actor.name} tries to talk ${t.name} down, but it does not listen.`, 'info', { actor: actor.name, target: t.name, ability: ability.name });
     }
+    return afterAction(b, content);
+  }
+
+  if (ability.special === 'spawnAlly' && ability.spawn) {
+    const spec = ability.spawn;
+    const live = alive(b, actor.side).filter((c) => c.temporary).length;
+    if (live >= 2) {
+      b = log(b, `${actor.name} cannot hold a third copy together.`, 'warn', { actor: actor.name, ability: ability.name });
+      return afterAction(b, content);
+    }
+    const hp = Math.max(1, Math.round(actor.maxHp * spec.hpFactor));
+    const copy: Combatant = {
+      id: `copy:${actorId}:${b.round}:${live}`, ref: actor.ref, name: `${spec.name} ${live + 1}`,
+      side: actor.side, machine: actor.machine, stats: { ...actor.stats, latency: actor.stats.latency + 2 },
+      hp, maxHp: hp, shield: 0, maxShield: 0, threads: 0, slack: 0, statuses: [],
+      abilities: [...spec.abilities], immunities: [], down: false, perception: actor.perception,
+      temporary: true, expiresAfterRound: b.round + spec.turns,
+    };
+    const order = [...b.order];
+    order.splice(b.turnIndex + 1, 0, copy.id);
+    b = { ...b, combatants: [...b.combatants, copy], order };
+    b = log(b, `${actor.name} forks a copy of itself. ${copy.name} holds for ${spec.turns} round${spec.turns === 1 ? '' : 's'}.`, 'tempo', { actor: actor.name, ability: ability.name });
     return afterAction(b, content);
   }
 
@@ -556,7 +606,7 @@ function checkEnd(b: BattleState, content: ContentDB): BattleState {
     b = { ...b, phase: 'won', pendingRewards: rewards(b, content) };
     return log(b, 'The field is clear.', 'system');
   }
-  if (alive(b, 'party').length === 0) {
+  if (alive(b, 'party').filter((c) => !c.temporary).length === 0) {
     b = { ...b, phase: 'lost' };
     return log(b, 'The party falls.', 'warn');
   }

@@ -4,13 +4,23 @@ import type { CharacterState, DerivedWorld, HistoryEntry, TimelineSnapshot, Worl
 export const MAX_SNAPSHOTS = 3;
 
 /**
- * The era visited last in play has the final say on any variable it touches:
- * for each (era, site) only the most recent history entry is active.
+ * The era visited last in play has the final say. Replaying the same era and site replaces the
+ * earlier decision, and editing an era upstream of one you already changed rewrites everything
+ * downstream of it at that site: a different 2031 means the 2148 you built no longer happened.
+ * Choices at other sites are untouched.
  */
 export function activeChoices(history: HistoryEntry[]): HistoryEntry[] {
-  const latest = new Map<string, HistoryEntry>();
-  for (const h of history) latest.set(`${h.era}:${h.site}`, h);
-  return [...latest.values()].sort((a, b) => a.order - b.order);
+  let active: HistoryEntry[] = [];
+  for (const h of history) {
+    active = active.filter((a) => a.site !== h.site || Number(a.era) < Number(h.era));
+    active.push(h);
+  }
+  return [...active].sort((a, b) => a.order - b.order);
+}
+
+/** History entries an edit at this era and site would erase, for warning the player first. */
+export function choicesOverwrittenBy(history: HistoryEntry[], era: EraId, site: string): HistoryEntry[] {
+  return activeChoices(history).filter((a) => a.site === site && Number(a.era) >= Number(era));
 }
 
 export function continuityFor(content: ContentDB, world: WorldState, cs: CharacterState): number {

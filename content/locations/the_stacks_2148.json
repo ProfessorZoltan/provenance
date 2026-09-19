@@ -1,0 +1,47 @@
+{
+  "id": "the_stacks_2148",
+  "name": "The Stacks",
+  "kind": "waypoint",
+  "era": "2148",
+  "site": "stacks",
+  "type": "Settlement",
+  "art": "2148_the_stacks",
+  "description": "A trading post on the rooftops above a drowned street. Nothing is bought with money here; everything is weighed.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2148_the_stacks:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2148_the_stacks:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2148_the_stacks:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2148_the_stacks:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "ash"
+  },
+  "music": "hub_2148",
+  "npcs": [
+    "trader_sable"
+  ],
+  "quests": [],
+  "encounters": [],
+  "shop": "stacks_market",
+  "links": [],
+  "timeLinks": []
+}

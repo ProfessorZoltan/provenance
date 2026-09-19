@@ -6,20 +6,53 @@
   "site": "kell",
   "type": "The last free place",
   "description": "Snow on the terraces, a chapel with no cameras in it, and under the chapel floor, a place where time is layered.",
+  "art": "2312_kell",
   "background": {
     "layers": [
-      { "id": "sky", "drift": 0.1, "art": "kell2312_sky", "ambient": "pulse" },
-      { "id": "mid", "drift": 0.3, "art": "kell2312_monastery", "ambient": "breathe" },
-      { "id": "near", "drift": 0.6, "art": "kell2312_floor" },
-      { "id": "fore", "drift": 1.0, "art": "kell2312_fore", "ambient": "sway" }
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "kell2312_sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "kell2312_monastery",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "kell2312_floor"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "kell2312_fore",
+        "ambient": "sway"
+      }
     ],
     "particles": "snow"
   },
   "music": "hub_2312",
-  "npcs": ["wren_hub", "dax_hub"],
+  "npcs": [
+    "wren_hub",
+    "dax_hub"
+  ],
   "quests": [],
-  "encounters": ["kell_2312_perimeter"],
-  "links": [{ "to": "kell_village_2312", "label": "Kell Village" }],
-  "timeLinks": ["2148"],
+  "encounters": [
+    "kell_2312_perimeter"
+  ],
+  "links": [
+    {
+      "to": "kell_village_2312",
+      "label": "Kell Village"
+    }
+  ],
+  "timeLinks": [
+    "2031",
+    "2148"
+  ],
   "storyDialogue": "intro_2312"
 }

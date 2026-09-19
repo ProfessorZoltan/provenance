@@ -9,10 +9,10 @@ export interface BackgroundHandle {
   setReducedMotion(v: boolean): void;
 }
 
-export function mountBackground(root: HTMLElement, loc: LocationDef, era: EraDef, flags: string[], reducedMotion: boolean, battle = false): BackgroundHandle {
+export function mountBackground(root: HTMLElement, loc: LocationDef, era: EraDef, flags: string[], reducedMotion: boolean, battle = false, assetId?: string): BackgroundHandle {
   root.innerHTML = '';
   const layers: { el: HTMLDivElement; drift: number }[] = [];
-  const asset = sceneAssetId(loc.id, flags);
+  const asset = assetId ?? sceneAssetId(loc);
   const roles = ['sky', 'distant', 'midground', 'foreground'];
   const hasScene = roles.every(role => artAssetUrl(asset, role));
   const sceneLayers = hasScene ? roles.map((role, i) => ({ art: `${asset}:${role}`, drift: [0.1, 0.3, 0.6, 1][i] })) : loc.background.layers;

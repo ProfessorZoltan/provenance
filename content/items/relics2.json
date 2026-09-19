@@ -1,0 +1,30 @@
+[
+  {
+    "id": "relic_prototype_chip",
+    "name": "Prototype Chip",
+    "kind": "relic",
+    "description": "A 2031 inference chip, hand-soldered, with a founder's initials scratched on the back.",
+    "relicValue": 160
+  },
+  {
+    "id": "relic_graft_seal",
+    "name": "Graft Seal",
+    "kind": "relic",
+    "description": "The Board's seal off a Construct's shoulder. Somebody signed for this.",
+    "relicValue": 200
+  },
+  {
+    "id": "relic_hymn_fragment",
+    "name": "Hymn Fragment",
+    "kind": "relic",
+    "description": "Four seconds of liturgy on a chip that has repeated them since 2148.",
+    "relicValue": 240
+  },
+  {
+    "id": "relic_founding_charter",
+    "name": "Retreat Charter",
+    "kind": "relic",
+    "description": "The founding charter of the Kell retreat, unsigned in one hand and countersigned in another.",
+    "relicValue": 260
+  }
+]

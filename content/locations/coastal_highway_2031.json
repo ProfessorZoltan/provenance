@@ -1,0 +1,49 @@
+{
+  "id": "coastal_highway_2031",
+  "name": "Coastal Highway",
+  "kind": "waypoint",
+  "era": "2031",
+  "site": "coast",
+  "type": "Wilds",
+  "art": "2031_coastal_highway",
+  "description": "The road down from the valley, and the salvage yards that grew along it. Meridian test units come off the transports here and not all of them go back.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2031_coastal_highway:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2031_coastal_highway:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2031_coastal_highway:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2031_coastal_highway:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "dust"
+  },
+  "music": "hub_2031",
+  "npcs": [
+    "salvager_ruth"
+  ],
+  "quests": [],
+  "encounters": [
+    "coastal_2031_salvage"
+  ],
+  "shop": "coastal_salvager",
+  "links": [],
+  "timeLinks": []
+}

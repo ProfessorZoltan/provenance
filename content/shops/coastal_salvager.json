@@ -1,0 +1,24 @@
+{
+  "id": "coastal_salvager",
+  "name": "Ruth's Yard",
+  "era": "2031",
+  "currency": "credits",
+  "stock": [
+    {
+      "item": "ration",
+      "price": 8
+    },
+    {
+      "item": "stim",
+      "price": 16
+    },
+    {
+      "item": "frame_plating",
+      "price": 55
+    },
+    {
+      "item": "prototype_harness",
+      "price": 85
+    }
+  ]
+}

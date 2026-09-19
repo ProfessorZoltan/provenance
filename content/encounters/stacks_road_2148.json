@@ -1,0 +1,34 @@
+{
+  "id": "stacks_road_2148",
+  "name": "Rooftop Patrol",
+  "era": "2148",
+  "location": "the_stacks_2148",
+  "enemies": [
+    {
+      "enemy": "warden_2148",
+      "count": 1
+    },
+    {
+      "enemy": "drone_derelict_2148",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Board pay reaches the rooftops too.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Warden and a Drone."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Board Warden: immune to Signal, shrugs off Thermal. The drone is nearly dead already."
+    },
+    {
+      "when": "noise>=40",
+      "text": "Ambush chance shown."
+    }
+  ],
+  "music": "battle_2148"
+}

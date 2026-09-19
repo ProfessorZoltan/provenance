@@ -2,15 +2,9 @@ import { librarySvg } from './library';
 import type { EraDef } from '../types/content';
 
 // A 320 x 180 tile scene shared by the hub and battlefield. No raster filtering.
-export function sceneAssetId(locationId: string, flags: string[]): string {
-  if (locationId === 'kell_village_2312') {
-    if (flags.includes('armedResistance')) return '2312_kell_village_armed_resistance';
-    if (flags.includes('letItFall')) return '2312_kell_village_let_it_fall';
-    return '2312_kell_village';
-  }
-  if (locationId === 'kell_2312') return '2312_kell';
-  if (locationId === 'kell_2148') return '2148_kell';
-  return locationId;
+// The asset id comes from the location JSON, so a new place is content, not code.
+export function sceneAssetId(loc: { id: string; art?: string }, variant?: { art?: string } | null): string {
+  return variant?.art ?? loc.art ?? loc.id;
 }
 export function sceneSvg(id: string, role: string): string | undefined {
   return librarySvg(id, role, '0 0 320 180', 'scene-art');
@@ -19,13 +13,6 @@ export function pixelBackground(id: string, era: EraDef, flags: string[]): strin
   // New JSON content can name any catalog asset directly: "2031_meridian:sky".
   if (id.includes(':')) {
     const [asset, role] = id.split(':');
-    const art = sceneSvg(asset, role);
-    if (art) return art;
-  }
-  const legacy = /^kell(2312|2148)_(sky|monastery|walls|village|floor|fore)$/.exec(id);
-  if (legacy) {
-    const role = ({ sky: 'sky', monastery: 'distant', walls: 'distant', village: 'distant', floor: 'midground', fore: 'foreground' } as Record<string, string>)[legacy[2]];
-    const asset = legacy[2] === 'village' ? sceneAssetId('kell_village_2312', flags) : `${legacy[1]}_kell`;
     const art = sceneSvg(asset, role);
     if (art) return art;
   }

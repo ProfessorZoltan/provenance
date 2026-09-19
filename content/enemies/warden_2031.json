@@ -1,0 +1,35 @@
+{
+  "id": "warden_2031",
+  "name": "Contract Guard",
+  "family": "warden",
+  "era": "2031",
+  "machine": false,
+  "stats": {
+    "resolve": 105,
+    "bandwidth": 2,
+    "latency": 44,
+    "signal": 15,
+    "noise": 25,
+    "grit": 34,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "warden_baton",
+    "warden_suppress"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 35,
+  "rig": "warden",
+  "xp": 55,
+  "drops": [
+    {
+      "item": "ration",
+      "chance": 0.45
+    }
+  ],
+  "flavor": "Private security on a founding-era retainer. He does not know what he is guarding and he has not asked."
+}

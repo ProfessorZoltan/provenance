@@ -1,0 +1,36 @@
+{
+  "id": "ilse_kell",
+  "lines": [
+    {
+      "speaker": "ilse",
+      "text": "Meridian wants to endow us. Buildings, a wall, a stipend, and a seat on our own board for one of theirs. I have been staring at it for two days.",
+      "conditions": [
+        "!flag:retreatEndowed",
+        "!flag:retreatCommon"
+      ]
+    },
+    {
+      "speaker": "ilse",
+      "text": "We took their money. There will be a wall by spring and a name on the gate that is not ours. I will not pretend that costs nothing.",
+      "conditions": [
+        "flag:retreatEndowed"
+      ]
+    },
+    {
+      "speaker": "ilse",
+      "text": "We refused. We will be cold for twenty years and we will own every cold inch of it.",
+      "conditions": [
+        "flag:retreatCommon"
+      ]
+    },
+    {
+      "speaker": "ilse",
+      "text": "If you have an opinion, say it. I would rather be argued with than agreed with.",
+      "conditions": [
+        "!flag:retreatEndowed",
+        "!flag:retreatCommon"
+      ],
+      "next": "retreat_choice"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "graveyard_construct",
+  "name": "Board Salvage Crew",
+  "era": "2148",
+  "location": "server_graveyard_2148",
+  "enemies": [
+    {
+      "enemy": "construct_grafted",
+      "count": 1
+    },
+    {
+      "enemy": "drone_derelict_2148",
+      "count": 2
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Something tall is pulling racks out of the mud and stacking them.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Construct and two Drones."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Grafted Construct: two bars. Break the plating and a Warden is still inside, immune to Signal."
+    },
+    {
+      "when": "party:dax",
+      "text": "Dax: they grafted a man into a drone. That is the whole argument, right there."
+    }
+  ],
+  "music": "battle_2148",
+  "rewardFlags": [
+    "sawServerGraveyard"
+  ]
+}

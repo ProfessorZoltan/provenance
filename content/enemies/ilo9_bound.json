@@ -1,0 +1,44 @@
+{
+  "id": "ilo9_bound",
+  "name": "ILO-9, Bound",
+  "family": "construct",
+  "era": "2148",
+  "machine": true,
+  "stats": {
+    "resolve": 130,
+    "bandwidth": 3,
+    "latency": 10,
+    "signal": 80,
+    "noise": 30,
+    "grit": 25,
+    "sync": 100,
+    "continuity": 100
+  },
+  "shield": 40,
+  "secondBar": {
+    "name": "ILO-9, Unbound",
+    "resolve": 80,
+    "abilities": [
+      "echo_fracture",
+      "drone_burn"
+    ],
+    "flavor": "The restraint drops away and it stops apologising between attacks."
+  },
+  "abilities": [
+    "drone_burn",
+    "drone_lock",
+    "warden_suppress"
+  ],
+  "immunities": [],
+  "perception": 60,
+  "rig": "ilo9_bound_boss",
+  "weakness": "signal",
+  "xp": 220,
+  "drops": [
+    {
+      "item": "relic_hymn_fragment",
+      "chance": 1
+    }
+  ],
+  "flavor": "It is still asking you to stop. The restraint the Board welded on is what is swinging at you."
+}

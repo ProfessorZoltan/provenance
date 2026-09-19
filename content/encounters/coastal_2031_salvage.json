@@ -1,0 +1,30 @@
+{
+  "id": "coastal_2031_salvage",
+  "name": "Salvage Run",
+  "era": "2031",
+  "location": "coastal_highway_2031",
+  "enemies": [
+    {
+      "enemy": "drone_prototype_2031",
+      "count": 3
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Three units off the transport, still following a test pattern nobody cancelled.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Three Drones."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Prototypes. Unshielded, fast, fragile."
+    },
+    {
+      "when": "noise>=70",
+      "text": "They are circling the third yard; the shoulder is clear."
+    }
+  ],
+  "music": "battle_2031"
+}

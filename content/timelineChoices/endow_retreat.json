@@ -1,0 +1,14 @@
+{
+  "id": "endow_retreat",
+  "era": "2031",
+  "site": "kell",
+  "name": "Take Meridian's endowment",
+  "ownershipDelta": -20,
+  "syncDelta": 10,
+  "flags": [
+    "retreatEndowed"
+  ],
+  "partyEffects": [],
+  "lean": "choir",
+  "summary": "Kell is founded as a private trust. It is walled, funded and answerable, and every century after inherits that."
+}

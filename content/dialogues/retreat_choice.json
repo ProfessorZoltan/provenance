@@ -1,0 +1,24 @@
+{
+  "id": "retreat_choice",
+  "lines": [
+    {
+      "speaker": "ilse",
+      "text": "So. Endowed and safe, or common and poor. Which do you want to be standing in, three hundred years from now?",
+      "choices": [
+        {
+          "text": "Take the endowment. A wall keeps people alive.",
+          "timelineChoice": "endow_retreat",
+          "next": "retreat_endowed"
+        },
+        {
+          "text": "Keep it common. A wall decides who is inside it.",
+          "timelineChoice": "keep_retreat_common",
+          "next": "retreat_common"
+        },
+        {
+          "text": "It is not my charter to sign."
+        }
+      ]
+    }
+  ]
+}

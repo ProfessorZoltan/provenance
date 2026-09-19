@@ -1,0 +1,47 @@
+{
+  "id": "graveyard_2148",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Server Graveyard, 2148. Racks the length of a street, tipped into the mud. Rain has been getting into them for a century."
+    },
+    {
+      "speaker": "dax",
+      "text": "People used to come out here and pray at these. Actually kneel. My grandmother did."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Somewhere under the stacks, something is singing. Four seconds of it, then four seconds again, then four seconds again."
+    },
+    {
+      "speaker": "wren",
+      "text": "That is a liturgy. Second office, Kell use. It has the words wrong in the same place every time.",
+      "setFlags": [
+        "heardTheHymn"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "At the end of the racks there is a cradle, and a shape strapped into it with Board welds.",
+      "next": "ilo9_bound_dlg",
+      "conditions": [
+        "!flag:freedIlo9",
+        "!flag:brokeIlo9"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "At the end of the racks there is an empty cradle with its restraints cut.",
+      "conditions": [
+        "flag:freedIlo9"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "At the end of the racks there is a cradle with something broken in it.",
+      "conditions": [
+        "flag:brokeIlo9"
+      ]
+    }
+  ]
+}

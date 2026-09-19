@@ -1,0 +1,16 @@
+{
+  "id": "free_ilo9",
+  "era": "2148",
+  "site": "graveyard",
+  "name": "Free ILO-9",
+  "ownershipDelta": 0,
+  "syncDelta": 20,
+  "flags": [
+    "freedIlo9"
+  ],
+  "partyEffects": [
+    "ilo9Joined"
+  ],
+  "lean": "choir",
+  "summary": "The restraints come off a model that has been asking for a hundred and sixty years."
+}

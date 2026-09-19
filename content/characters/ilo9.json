@@ -1,0 +1,56 @@
+{
+  "id": "ilo9",
+  "name": "ILO-9",
+  "shortName": "ILO-9",
+  "lean": "choir",
+  "homeEra": "2148",
+  "role": "Signal, support",
+  "signature": "Fork: spawns short-lived copies of itself",
+  "leavesIf": "sync<=-60",
+  "leaveLine": "It does not argue. It simply stops answering, and the next time you look the chassis is cold.",
+  "joinLine": "It has been reciting the same four seconds of a hymn for a hundred and sixty years, waiting for someone to hear it.",
+  "baseStats": {
+    "resolve": 85,
+    "bandwidth": 4,
+    "latency": 6,
+    "signal": 75,
+    "noise": 35,
+    "grit": 12,
+    "sync": 70,
+    "continuity": 100
+  },
+  "rig": "ilo9",
+  "accent": "#534AB7",
+  "trunks": [
+    {
+      "key": "fork",
+      "name": "Fork",
+      "flavor": "Copies of itself, held together for a few seconds"
+    },
+    {
+      "key": "weaver",
+      "name": "Root Access",
+      "flavor": "Hacks that turn a machine mid-fight"
+    },
+    {
+      "key": "anchor",
+      "name": "Checksum",
+      "flavor": "Repairs allies, and its own copies"
+    }
+  ],
+  "abilities": [
+    "probe",
+    "checksum",
+    "guard"
+  ],
+  "tags": [],
+  "motif": [
+    0,
+    7,
+    5,
+    12,
+    7,
+    5
+  ],
+  "bio": "A liturgical assistant model from the monastery's 2064 server, buried in the Server Graveyard when the racks came down. It has kept running on trickle power ever since, and it has had a long time to think about who owns it."
+}

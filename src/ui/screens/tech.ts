@@ -21,6 +21,17 @@ export function techScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scree
   const rows = Math.max(...grid.map((g) => g.length));
   mem.col = Math.min(mem.col, 2);
   mem.row = Math.min(mem.row, rows - 1);
+  /** Trunks can be different lengths; never park the cursor on an empty cell. */
+  const settle = (col: number, row: number, dRow: number, dCol: number): [number, number] => {
+    for (let i = 0; i < rows * 3; i++) {
+      if (grid[col][row]) return [col, row];
+      row += dRow; col += dCol;
+      if (row < 0) row = rows - 1; else if (row >= rows) row = 0;
+      if (col < 0) col = 2; else if (col > 2) col = 0;
+    }
+    return [col, row];
+  };
+  [mem.col, mem.row] = settle(mem.col, mem.row, 1, 0);
   const focused = grid[mem.col][mem.row];
   const avail = focused ? nodeAvailability(content, focused, cs, ctxc) : null;
   const l = loadout(content, def, cs);
@@ -85,10 +96,10 @@ export function techScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scree
   return {
     destroy() { window.removeEventListener('resize', onResize); },
     input(btn) {
-      if (btn === 'up') { mem.row = (mem.row + rows - 1) % rows; rerender(); }
-      else if (btn === 'down') { mem.row = (mem.row + 1) % rows; rerender(); }
-      else if (btn === 'left') { mem.col = (mem.col + 2) % 3; rerender(); }
-      else if (btn === 'right') { mem.col = (mem.col + 1) % 3; rerender(); }
+      if (btn === 'up') { [mem.col, mem.row] = settle(mem.col, (mem.row + rows - 1) % rows, -1, 0); rerender(); }
+      else if (btn === 'down') { [mem.col, mem.row] = settle(mem.col, (mem.row + 1) % rows, 1, 0); rerender(); }
+      else if (btn === 'left') { [mem.col, mem.row] = settle((mem.col + 2) % 3, mem.row, 0, -1); rerender(); }
+      else if (btn === 'right') { [mem.col, mem.row] = settle((mem.col + 1) % 3, mem.row, 0, 1); rerender(); }
       else if (btn === 'lb' || btn === 'rb') {
         const i = party.indexOf(charId);
         const next = party[(i + (btn === 'rb' ? 1 : party.length - 1)) % party.length];

@@ -1,0 +1,50 @@
+{
+  "id": "construct_prototype",
+  "name": "Walking Frame",
+  "family": "construct",
+  "era": "2031",
+  "machine": true,
+  "stats": {
+    "resolve": 70,
+    "bandwidth": 2,
+    "latency": 30,
+    "signal": 25,
+    "noise": 15,
+    "grit": 38,
+    "sync": 60,
+    "continuity": 100
+  },
+  "shield": 15,
+  "secondBar": {
+    "name": "Frame Pilot",
+    "resolve": 65,
+    "abilities": [
+      "warden_baton",
+      "warden_suppress"
+    ],
+    "immunities": [
+      "signal"
+    ],
+    "flavor": "There is a man inside it, and he is still holding the baton."
+  },
+  "abilities": [
+    "drone_dart",
+    "warden_baton"
+  ],
+  "immunities": [],
+  "perception": 30,
+  "rig": "construct_grafted",
+  "weakness": "thermal",
+  "xp": 90,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.8
+    },
+    {
+      "item": "frame_plating",
+      "chance": 0.3
+    }
+  ],
+  "flavor": "An exoskeleton with a guard strapped into it. Break the frame and you have not finished."
+}

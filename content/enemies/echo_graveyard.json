@@ -1,0 +1,39 @@
+{
+  "id": "echo_graveyard",
+  "name": "Echo of the Racks",
+  "family": "echo",
+  "era": "2148",
+  "machine": false,
+  "stats": {
+    "resolve": 105,
+    "bandwidth": 3,
+    "latency": 8,
+    "signal": 60,
+    "noise": 45,
+    "grit": 30,
+    "sync": 0,
+    "continuity": 40
+  },
+  "shield": 0,
+  "abilities": [
+    "echo_fracture",
+    "echo_mimic",
+    "drone_lock"
+  ],
+  "immunities": [
+    "kinetic",
+    "thermal",
+    "signal"
+  ],
+  "perception": 65,
+  "rig": "echo",
+  "weakness": "chronal",
+  "xp": 130,
+  "drops": [
+    {
+      "item": "relic_folded_page",
+      "chance": 0.35
+    }
+  ],
+  "flavor": "Every engineer who ever knelt at these racks, folded into one shape that keeps reaching for a cable."
+}

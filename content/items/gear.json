@@ -1,0 +1,119 @@
+[
+  {
+    "id": "ash_blade",
+    "name": "Ash Camp Blade",
+    "kind": "gear",
+    "slot": "weapon",
+    "era": "2148",
+    "stats": {
+      "grit": 10
+    },
+    "description": "Hand-forged steel from the Ash Camp forge. +10 Grit."
+  },
+  {
+    "id": "auditors_slate",
+    "name": "Auditor's Slate",
+    "kind": "gear",
+    "slot": "weapon",
+    "era": "2312",
+    "onlyFor": [
+      "player"
+    ],
+    "stats": {
+      "signal": 12
+    },
+    "description": "Your own slate, still flagged. +12 Signal."
+  },
+  {
+    "id": "wren_censer",
+    "name": "Kell Censer",
+    "kind": "gear",
+    "slot": "weapon",
+    "era": "2312",
+    "onlyFor": [
+      "wren"
+    ],
+    "stats": {
+      "signal": 10,
+      "resolve": 15
+    },
+    "description": "Brass and old smoke. +10 Signal, +15 Resolve."
+  },
+  {
+    "id": "dax_hammer",
+    "name": "Breaker's Hammer",
+    "kind": "gear",
+    "slot": "weapon",
+    "era": "2148",
+    "onlyFor": [
+      "dax"
+    ],
+    "stats": {
+      "grit": 14,
+      "latency": 6
+    },
+    "description": "Heavy enough to be a bad idea. +14 Grit, but 6 slower."
+  },
+  {
+    "id": "frame_plating",
+    "name": "Frame Plating",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2031",
+    "stats": {
+      "resolve": 35,
+      "noise": -8
+    },
+    "description": "Cut from a walking frame. +35 Resolve, harder to hide in. -8 Noise."
+  },
+  {
+    "id": "fog_shroud",
+    "name": "Fen Shroud",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2148",
+    "stats": {
+      "noise": 16
+    },
+    "description": "Woven for the fog on the Fens. +16 Noise."
+  },
+  {
+    "id": "enforcer_visor",
+    "name": "Enforcer's Visor",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2312",
+    "stats": {
+      "signal": 9,
+      "latency": -5
+    },
+    "description": "Allocation optics. +9 Signal, 5 faster."
+  },
+  {
+    "id": "anchor_weave",
+    "name": "Anchor Weave",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2312",
+    "stats": {
+      "continuity": 10,
+      "resolve": 20
+    },
+    "description": "Wren's order wove these for people who travel. +20 Resolve, +10 Continuity."
+  },
+  {
+    "id": "prototype_harness",
+    "name": "Prototype Harness",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2031",
+    "onlyFor": [
+      "ilo9"
+    ],
+    "stats": {
+      "signal": 14,
+      "bandwidth": 1
+    },
+    "description": "A founding-era chassis mount that fits ILO-9 exactly, which should not be possible. +14 Signal, +1 Bandwidth."
+  }
+]

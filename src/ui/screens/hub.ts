@@ -23,7 +23,8 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
     items.push({ id: 'rest', label: 'Rest', hint: 'Restore Resolve', onSelect: () => { store.dispatch({ type: 'REST' }); ctx.toast('The party rests. Resolve restored.'); } });
     if (loc.kind === 'deepSite' && loc.timeLinks.length) items.push({ id: 'jump', label: 'Descend beneath the chapel', hint: `Deep Site · ${loc.timeLinks.join(', ')}`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'timeJump' } }) });
     items.push({ id: 'tech', label: 'Tech trees', shortcut: 'y', hint: `${state.activeParty.reduce((s, id) => s + state.party[id].skillPoints, 0)} skill points unspent`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'tech', character: 'player' } }) });
-    items.push({ id: 'inv', label: 'Party and inventory', shortcut: 'x', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'inventory' } }) });
+    items.push({ id: 'roster', label: 'Roster and gear', shortcut: 'x', hint: `${state.activeParty.length} of ${content.rules.activePartyMax} active`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'roster' } }) });
+    items.push({ id: 'inv', label: 'Items and timeline', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'inventory' } }) });
     items.push({ id: 'manual', label: 'Player manual', hint: 'How to play' , onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'manual' } }) });
     items.push({ id: 'save', label: 'Save / load', shortcut: 'start', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'save' } }) });
     items.push({ id: 'settings', label: 'Settings', shortcut: 'select', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'settings' } }) });

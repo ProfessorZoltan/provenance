@@ -4,8 +4,25 @@
   "era": "2312",
   "currency": "allocation points",
   "stock": [
-    { "item": "ration", "price": 15 },
-    { "item": "stim", "price": 25 },
-    { "item": "anchor_charm", "price": 60 }
+    {
+      "item": "ration",
+      "price": 15
+    },
+    {
+      "item": "stim",
+      "price": 25
+    },
+    {
+      "item": "anchor_charm",
+      "price": 60
+    },
+    {
+      "item": "anchor_weave",
+      "price": 70
+    },
+    {
+      "item": "auditors_slate",
+      "price": 80
+    }
   ]
 }

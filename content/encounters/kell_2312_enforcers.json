@@ -1,0 +1,38 @@
+{
+  "id": "kell_2312_enforcers",
+  "name": "Allocation Detail",
+  "era": "2312",
+  "location": "kell_2312",
+  "enemies": [
+    {
+      "enemy": "warden_2312",
+      "count": 1
+    },
+    {
+      "enemy": "drone_sentry",
+      "count": 2
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Three figures on the perimeter road, and one of them is walking.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Warden and two Drones."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Allocation Enforcer: human, immune to Signal, and considerably tougher than the drones."
+    },
+    {
+      "when": "noise>=40",
+      "text": "Ambush chance shown."
+    },
+    {
+      "when": "sync>=40",
+      "text": "Parley: the drones will listen. The enforcer will not."
+    }
+  ],
+  "music": "battle_2312"
+}

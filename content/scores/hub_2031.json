@@ -1,0 +1,59 @@
+{
+  "id": "hub_2031",
+  "name": "Before Anything Was Signed",
+  "era": "2031",
+  "motifs": [
+    "site:kell"
+  ],
+  "motif": [
+    0,
+    2,
+    4,
+    7,
+    4,
+    2,
+    0,
+    -3
+  ],
+  "scale": [
+    0,
+    2,
+    4,
+    5,
+    7,
+    9,
+    11
+  ],
+  "baseBpm": 68,
+  "swing": 0.04,
+  "layers": [
+    {
+      "id": "pad",
+      "minTempo": 0,
+      "instrument": "tape",
+      "pattern": "pad",
+      "gain": 0.26
+    },
+    {
+      "id": "piano",
+      "minTempo": 0,
+      "instrument": "sinepluck",
+      "pattern": "motif",
+      "durations": [
+        4,
+        2,
+        2,
+        6,
+        2,
+        2,
+        4,
+        8
+      ],
+      "gain": 0.24
+    }
+  ],
+  "instruments": {
+    "tape": "tape",
+    "sinepluck": "sinepluck"
+  }
+}

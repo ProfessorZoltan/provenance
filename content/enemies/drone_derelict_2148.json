@@ -1,0 +1,34 @@
+{
+  "id": "drone_derelict_2148",
+  "name": "Derelict Drone",
+  "family": "drone",
+  "era": "2148",
+  "machine": true,
+  "stats": {
+    "resolve": 52,
+    "bandwidth": 2,
+    "latency": 14,
+    "signal": 30,
+    "noise": 20,
+    "grit": 20,
+    "sync": 100,
+    "continuity": 100
+  },
+  "shield": 10,
+  "abilities": [
+    "drone_burn",
+    "drone_dart"
+  ],
+  "immunities": [],
+  "perception": 30,
+  "rig": "drone_sentry",
+  "weakness": "kinetic",
+  "xp": 38,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.85
+    }
+  ],
+  "flavor": "It has been running one instruction for a century, and the instruction is hurt whatever moves."
+}

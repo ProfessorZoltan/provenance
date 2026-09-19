@@ -1,0 +1,34 @@
+{
+  "id": "kell_2031_terrace",
+  "name": "Test Flight",
+  "era": "2031",
+  "location": "kell_2031",
+  "enemies": [
+    {
+      "enemy": "drone_prototype_2031",
+      "count": 2
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Something small is turning circles over the terraces, and it keeps losing height.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones. Nothing like the ones you know."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Prototype units. No shielding at all, and Signal goes straight in."
+    },
+    {
+      "when": "noise>=40",
+      "text": "Ambush chance shown."
+    },
+    {
+      "when": "sync>=40",
+      "text": "Parley: these are simple enough to simply ask."
+    }
+  ],
+  "music": "battle_2031"
+}

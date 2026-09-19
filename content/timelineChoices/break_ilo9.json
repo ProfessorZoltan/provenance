@@ -1,0 +1,16 @@
+{
+  "id": "break_ilo9",
+  "era": "2148",
+  "site": "graveyard",
+  "name": "Break ILO-9",
+  "ownershipDelta": 0,
+  "syncDelta": -20,
+  "flags": [
+    "brokeIlo9"
+  ],
+  "partyEffects": [
+    "ilo9Unavailable"
+  ],
+  "lean": "cinder",
+  "summary": "The singing stops. Whatever it was asking for, it does not ask again."
+}

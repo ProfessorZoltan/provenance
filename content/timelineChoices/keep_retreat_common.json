@@ -1,0 +1,14 @@
+{
+  "id": "keep_retreat_common",
+  "era": "2031",
+  "site": "kell",
+  "name": "Keep the retreat common",
+  "ownershipDelta": 25,
+  "syncDelta": 0,
+  "flags": [
+    "retreatCommon"
+  ],
+  "partyEffects": [],
+  "lean": "commons",
+  "summary": "Kell is founded as a commons, poor and open. It belongs to whoever is standing in it, in every century after."
+}

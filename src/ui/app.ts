@@ -1,4 +1,5 @@
 import { mountBackground, type BackgroundHandle } from '../art/backgrounds';
+import { sceneAssetId } from '../art/pixel-backgrounds';
 import { FILTER_DEFS } from '../art/rigs';
 import type { AudioEngine } from '../audio/engine';
 import type { Action } from '../core/actions';
@@ -15,6 +16,7 @@ import { battleScreen } from './screens/battle';
 import { dialogueScreen } from './screens/dialogue';
 import { hubScreen } from './screens/hub';
 import { manualScreen } from './screens/manual';
+import { rosterScreen } from './screens/roster';
 import { mapScreen } from './screens/map';
 import { gameOverScreen, newGameScreen, saveScreen, settingsScreen, titleScreen } from './screens/menus';
 import { resultScreen, scanScreen } from './screens/scan';
@@ -25,7 +27,7 @@ const SCREENS: Record<string, ScreenFn> = {
   title: titleScreen, newGame: newGameScreen, hub: hubScreen, map: mapScreen, timeJump: hubScreen,
   scan: scanScreen, battle: battleScreen, battleResult: resultScreen, dialogue: dialogueScreen,
   tech: techScreen, party: partyScreen, shop: shopScreen, inventory: inventoryScreen,
-  save: saveScreen, gameOver: gameOverScreen, settings: settingsScreen, manual: manualScreen,
+  save: saveScreen, gameOver: gameOverScreen, settings: settingsScreen, manual: manualScreen, roster: rosterScreen,
 };
 
 export function createApp(store: Store, content: ContentDB, input: Input, audio: AudioEngine): void {
@@ -93,11 +95,12 @@ export function createApp(store: Store, content: ContentDB, input: Input, audio:
     const flags = [...state.flags, ...derived.flags];
     const variant = activeVariant(content, state, loc);
     const isBattle = state.screen.id === 'battle';
-    const key = `${loc.id}|${variant?.shop ?? ''}|${state.settings.reducedMotion}|${isBattle}|${flags.join(',')}`;
+    const asset = sceneAssetId(loc, variant);
+    const key = `${loc.id}|${asset}|${state.settings.reducedMotion}|${isBattle}`;
     applyEra(era, state.settings.reducedMotion);
     if (key !== bgKey) {
       bg?.destroy();
-      bg = mountBackground(bgRoot, loc, era, flags, state.settings.reducedMotion, isBattle);
+      bg = mountBackground(bgRoot, loc, era, flags, state.settings.reducedMotion, isBattle, asset);
       bgKey = key;
     }
   }

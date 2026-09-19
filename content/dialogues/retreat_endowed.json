@@ -1,0 +1,22 @@
+{
+  "id": "retreat_endowed",
+  "lines": [
+    {
+      "speaker": "ilse",
+      "text": "Then I will sign it. God help me, I will sign it."
+    },
+    {
+      "speaker": "vance",
+      "text": "A sensible house. Meridian will have the surveyors up by Thursday."
+    },
+    {
+      "speaker": "wren",
+      "text": "My order will be a tenant of Meridian for three centuries and never once write that down. I did not know."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Vance closes her case. Behind her, something tall unfolds itself off the transport and starts up the path.",
+      "action": "battle:kell_2031_frame"
+    }
+  ]
+}
