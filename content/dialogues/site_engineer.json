@@ -1,0 +1,24 @@
+{
+  "id": "site_engineer",
+  "lines": [
+    {
+      "speaker": "site_engineer",
+      "text": "Hard hat or off the grade, and I don't care which. We pour at six and the schedule is the schedule."
+    },
+    {
+      "speaker": "site_engineer",
+      "text": "Four hundred megawatts, they want. I've built three of these and I've never seen a spec ask for that much cooling for a logistics shed."
+    },
+    {
+      "speaker": "site_engineer",
+      "text": "Ask the camp clerk about the payroll if you want something to lose sleep over. I stopped asking in week nine."
+    },
+    {
+      "speaker": "site_engineer",
+      "text": "You lot keep looking at the frame like you know what goes in it. If you do, don't tell me at work.",
+      "conditions": [
+        "visited:2064"
+      ]
+    }
+  ]
+}

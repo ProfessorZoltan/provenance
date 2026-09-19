@@ -1,0 +1,37 @@
+{
+  "id": "drone_aisle_2064",
+  "name": "Aisle Runner",
+  "family": "drone",
+  "era": "2064",
+  "machine": true,
+  "stats": {
+    "resolve": 88,
+    "bandwidth": 3,
+    "latency": 24,
+    "signal": 44,
+    "noise": 50,
+    "grit": 26,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 34,
+  "abilities": [
+    "drone_dart",
+    "coolant_vent"
+  ],
+  "immunities": [],
+  "perception": 55,
+  "rig": "drone_hunter_2064",
+  "xp": 92,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.6
+    },
+    {
+      "item": "basin_coil",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Runs the blue aisles at head height, and has right of way over everything including you."
+}

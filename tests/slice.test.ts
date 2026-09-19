@@ -181,3 +181,59 @@ describe('a ripple end to end', () => {
     expect(s.inventory.currency['barter tokens']).toBeGreaterThan(0);
   });
 });
+
+describe('the third Deep Site', () => {
+  it('walks inland to the Basin, and only finds Hale there if Kell was armed', () => {
+    // Let it fall at Kell in 2148, and the ridge above the Basin is empty.
+    let quiet = skipDialogue(newGame(1212));
+    quiet = run(quiet, { type: 'TRAVEL', location: 'kell_2312' }, { type: 'TIME_JUMP', era: '2148' });
+    quiet = skipDialogue(quiet, 1); // let it fall
+    if (quiet.screen.id === 'battle') { quiet = autoBattle(quiet); quiet = run(quiet, { type: 'BATTLE_FINISH' }, { type: 'SET_SCREEN', screen: { id: 'hub' } }); }
+    quiet = reduce(quiet, { type: 'TRAVEL', location: 'basin_2148' });
+    quiet = skipDialogue(quiet);
+    expect(activeVariant(content, quiet, content.locations.basin_2148)!.npcs).toEqual([]);
+
+    // Arm it instead and he is on the north ridge.
+    let s = skipDialogue(newGame(1212));
+    s = run(s, { type: 'TRAVEL', location: 'kell_2312' }, { type: 'TIME_JUMP', era: '2148' });
+    s = skipDialogue(s, 0); // arm the resistance
+    if (s.screen.id === 'battle') { s = autoBattle(s); s = run(s, { type: 'BATTLE_FINISH' }, { type: 'SET_SCREEN', screen: { id: 'hub' } }); }
+    s = reduce(s, { type: 'TRAVEL', location: 'basin_2148' });
+    s = skipDialogue(s);
+    expect(activeVariant(content, s, content.locations.basin_2148)!.npcs).toContain('hale_ridge');
+
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'hale_ridge', returnTo: { id: 'hub' } });
+    s = skipDialogue(s, 0);
+    expect(Object.keys(s.party)).toContain('hale');
+    // Ash Camp sells him a rifle nobody else can carry.
+    expect(content.shops.ash_camp.stock.find((r) => r.item === 'hale_rifle')!.when).toEqual(['party:hale']);
+  });
+
+  it('runs the Basin crew list forward into a plaque at the cooling fields', () => {
+    let s = skipDialogue(newGame(1313));
+    s = run(s, { type: 'TRAVEL', location: 'kell_2312' }, { type: 'TIME_JUMP', era: '2031' });
+    s = skipDialogue(s);
+    s = reduce(s, { type: 'TRAVEL', location: 'basin_work_camp_2031' });
+    expect(npcDialogue(content, s, 'camp_clerk')).toBe('camp_clerk_offer');
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'camp_clerk_offer', returnTo: { id: 'hub' } });
+    s = skipDialogue(s, 0);
+    expect(s.quests.basin_crew).toBe('active');
+
+    s = reduce(s, { type: 'START_ENCOUNTER', encounterId: 'camp_2031_foreman' });
+    s = autoBattle(s);
+    expect(s.battle?.phase).toBe('won');
+    s = run(s, { type: 'BATTLE_FINISH' }, { type: 'SET_SCREEN', screen: { id: 'hub' } });
+
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'camp_clerk_complete', returnTo: { id: 'hub' } });
+    s = skipDialogue(s, 0);
+    expect(s.quests.basin_crew).toBe('complete');
+    expect(s.inventory.relics).toContain('relic_crew_list');
+    expect(s.world.history.map((h) => h.choiceId)).toContain('name_the_crew');
+
+    // Two hundred and eighty years later the names are cast into the service gate.
+    s = run(s, { type: 'TRAVEL', location: 'basin_2031' }, { type: 'TIME_JUMP', era: '2312' });
+    s = skipDialogue(s);
+    expect(s.location).toBe('basin_2312');
+    expect(activeVariant(content, s, content.locations.basin_2312)!.description).toMatch(/four hundred and six names/);
+  });
+});

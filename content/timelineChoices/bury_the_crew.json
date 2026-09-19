@@ -1,0 +1,14 @@
+{
+  "id": "bury_the_crew",
+  "era": "2031",
+  "site": "workcamp",
+  "name": "Put the list back",
+  "ownershipDelta": -5,
+  "syncDelta": 0,
+  "flags": [
+    "crewBuried"
+  ],
+  "partyEffects": [],
+  "lean": "chosen",
+  "summary": "The second column stays a number. The Basin is built by nobody in particular, which is how every record of it reads from here on."
+}

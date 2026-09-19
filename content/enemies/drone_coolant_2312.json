@@ -1,0 +1,40 @@
+{
+  "id": "drone_coolant_2312",
+  "name": "Coolant Drone",
+  "family": "drone",
+  "era": "2312",
+  "machine": true,
+  "stats": {
+    "resolve": 120,
+    "bandwidth": 3,
+    "latency": 22,
+    "signal": 60,
+    "noise": 48,
+    "grit": 34,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 52,
+  "abilities": [
+    "coolant_vent",
+    "drone_lock",
+    "drone_dart"
+  ],
+  "immunities": [
+    "thermal"
+  ],
+  "perception": 65,
+  "rig": "drone_hunter_2312",
+  "xp": 160,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.6
+    },
+    {
+      "item": "coolant_weave",
+      "chance": 0.22
+    }
+  ],
+  "flavor": "Flies the cooling fields on a patrol pattern that has not been revised in eighty years."
+}

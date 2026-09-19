@@ -323,3 +323,73 @@ describe("Mara's contracts", () => {
     expect(s.battle!.log.some((l) => /not bound to anything/.test(l.text))).toBe(true);
   });
 });
+
+describe("Hale's held shot", () => {
+  /** A 2148 Basin battle with Hale on the field and his release abilities in hand. */
+  function withHale(seed = 21, enc = 'basin_2148_racks'): GameState {
+    let s = reduce(newGame(seed), { type: 'RECRUIT', character: 'hale' });
+    s = { ...s, party: { ...s.party, hale: { ...s.party.hale, skillPoints: 12 } } };
+    s = run(s,
+      { type: 'UNLOCK_NODE', character: 'hale', node: 'h_long_1' },
+      { type: 'UNLOCK_NODE', character: 'hale', node: 'h_long_2' },
+      { type: 'UNLOCK_NODE', character: 'hale', node: 'h_rec_1' },
+      { type: 'UNLOCK_NODE', character: 'hale', node: 'h_rec_2' },
+      { type: 'UNLOCK_NODE', character: 'hale', node: 'h_rec_3' },
+      { type: 'UNLOCK_NODE', character: 'hale', node: 'h_rec_5' });
+    s = reduce(s, { type: 'START_ENCOUNTER', encounterId: enc, surprise: false });
+    let guard = 40;
+    while (guard-- > 0 && current(s.battle!)?.id !== 'hale') {
+      if (s.battle!.phase === 'enemy') { s = reduce(s, { type: 'BATTLE_ENEMY_ACT' }); continue; }
+      s = reduce(s, { type: 'BATTLE_END_TURN', actor: current(s.battle!)!.id });
+    }
+    return s;
+  }
+  const onHale = (s: GameState) => s.battle!.combatants.find((c) => c.id === 'hale')!;
+  const holds = (s: GameState) => onHale(s).statuses.filter((st) => st.id === 'held').length;
+
+  it('stacks a charge across turns and pays it into the shot', () => {
+    // The Basin plant floor: shielded, but nothing there shrugs off Kinetic.
+    let s = withHale(21, 'basin_2064_plant');
+    expect(current(s.battle!)?.id).toBe('hale');
+    const foe = s.battle!.combatants.find((c) => c.side === 'enemy' && !c.down && !c.immunities.includes('kinetic'))!;
+    const pool = (b: typeof s.battle) => { const c = b!.combatants.find((x) => x.id === foe.id)!; return c.hp + c.shield; };
+
+    const cold = pool(s.battle) - pool(resolveAbility(s.battle!, 'hale', 'longshot', foe.id, content));
+    s = reduce(s, { type: 'BATTLE_ABILITY', actor: 'hale', ability: 'hold', target: 'hale' });
+    expect(holds(s), 'one turn of holding').toBe(1);
+    const charged = pool(s.battle) - pool(resolveAbility(s.battle!, 'hale', 'longshot', foe.id, content));
+    expect(charged, 'a held shot hits harder').toBeGreaterThan(cold);
+
+    // Firing spends the whole charge, hit or miss.
+    s = reduce(s, { type: 'BATTLE_ABILITY', actor: 'hale', ability: 'longshot', target: foe.id });
+    expect(holds(s), 'the charge is gone').toBe(0);
+  });
+
+  it('carries the charge between turns rather than losing it at end of turn', () => {
+    let s = withHale();
+    s = reduce(s, { type: 'BATTLE_ABILITY', actor: 'hale', ability: 'hold', target: 'hale' });
+    s = reduce(s, { type: 'BATTLE_END_TURN', actor: 'hale' });
+    let guard = 40;
+    while (guard-- > 0 && current(s.battle!)?.id !== 'hale') {
+      if (s.battle!.phase === 'enemy') { s = reduce(s, { type: 'BATTLE_ENEMY_ACT' }); continue; }
+      if (s.battle!.phase === 'won' || s.battle!.phase === 'lost') break;
+      s = reduce(s, { type: 'BATTLE_END_TURN', actor: current(s.battle!)!.id });
+    }
+    expect(holds(s), 'still held a round later').toBeGreaterThanOrEqual(1);
+  });
+
+  it('lets Killing Silence through armor, shields and immunity alike', () => {
+    let s = withHale();
+    // The buried racks are immune to Kinetic and carry a shield; Longshot is kinetic.
+    const rack = s.battle!.combatants.find((c) => c.side === 'enemy' && c.immunities.includes('kinetic'))!;
+    const blocked = resolveAbility(s.battle!, 'hale', 'longshot', rack.id, content);
+    expect(blocked.combatants.find((c) => c.id === rack.id)!.hp, 'immune to the ordinary shot').toBe(rack.hp);
+    expect(blocked.log.some((l) => /immune/.test(l.text))).toBe(true);
+
+    const silenced = resolveAbility(s.battle!, 'hale', 'killing_silence', rack.id, content);
+    const after = silenced.combatants.find((c) => c.id === rack.id)!;
+    expect(after.hp, 'nothing on the field was asked').toBeLessThan(rack.hp);
+    expect(silenced.log.some((l) => /nothing on the field was asked/.test(l.text))).toBe(true);
+    void s;
+  });
+});

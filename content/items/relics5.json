@@ -1,0 +1,16 @@
+[
+  {
+    "id": "relic_basin_core",
+    "name": "Basin Core Sample",
+    "kind": "relic",
+    "description": "A cylinder of Basin concrete with a coin set in it, poured in 2033 by somebody who wanted to be in the building.",
+    "relicValue": 240
+  },
+  {
+    "id": "relic_crew_list",
+    "name": "Crew List",
+    "kind": "relic",
+    "description": "Payroll sheet, Basin site, week eleven. Four hundred and six names, and a second column nobody has ever explained.",
+    "relicValue": 200
+  }
+]

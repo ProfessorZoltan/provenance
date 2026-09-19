@@ -1,0 +1,20 @@
+{
+  "id": "hale_count",
+  "lines": [
+    {
+      "speaker": "hale",
+      "text": "Four hundred and one shapes out of that sand in eleven days, and every one of them is the same man carrying the same length of rebar."
+    },
+    {
+      "speaker": "wren",
+      "text": "It is not a man. It is a great many men, standing in the same place.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "hale",
+      "text": "Then somebody buried a crew out there, and the ground has been trying to give them back ever since. I'd want to know whose crew before I went down."
+    }
+  ]
+}

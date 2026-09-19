@@ -1,0 +1,79 @@
+{
+  "id": "hale_ridge",
+  "lines": [
+    {
+      "speaker": "hale",
+      "text": "Don't. There's a rack down there that wakes up when something moves fast, and you've got about four seconds of being interesting before it decides.",
+      "conditions": [
+        "!party:hale"
+      ]
+    },
+    {
+      "speaker": "hale",
+      "text": "Tomas Hale. Ash Camp. Eleven days up here counting what comes out of that sand, and I've got four hundred and one and no idea why they all look the same.",
+      "conditions": [
+        "!party:hale",
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Hale. You're not dead.",
+      "conditions": [
+        "!party:hale",
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "hale",
+      "text": "Not for want of the Basin trying. Kell sent rifles down in the spring. First time in my life anybody sent anything.",
+      "conditions": [
+        "!party:hale",
+        "party:dax",
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "hale",
+      "text": "You're going down there, then. You've got the look. I've watched eleven parties go down there and none of them had the look, which is why they're still down there.",
+      "conditions": [
+        "!party:hale",
+        "flag:armedResistance"
+      ],
+      "choices": [
+        {
+          "text": "Come with us. You know the ground.",
+          "action": "recruit:hale",
+          "setFlags": [
+            "basinWatched"
+          ]
+        },
+        {
+          "text": "Tell us what you've counted.",
+          "setFlags": [
+            "basinWatched"
+          ],
+          "next": "hale_count"
+        },
+        {
+          "text": "We'll manage."
+        }
+      ]
+    },
+    {
+      "speaker": "hale",
+      "text": "Ridge is a ridge. I'll be on it.",
+      "conditions": [
+        "!party:hale",
+        "!flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "hale",
+      "text": "Four hundred and one, and every one of them the same outline. I've stopped counting and started listening instead.",
+      "conditions": [
+        "party:hale"
+      ]
+    }
+  ]
+}

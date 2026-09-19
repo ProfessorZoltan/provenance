@@ -1,0 +1,57 @@
+{
+  "id": "hale",
+  "name": "Tomas Hale",
+  "shortName": "Hale",
+  "lean": "cinder",
+  "homeEra": "2148",
+  "leavesIf": "sync>=60",
+  "leaveLine": "You've all gone soft on the things. I'm not watching that from the inside.",
+  "joinLine": "He has been on that ridge for eleven days and has not once been wrong about where a drone would be.",
+  "role": "Sniper, Noise",
+  "signature": "Held Shot: charge a shot across turns, then spend the whole charge at once",
+  "baseStats": {
+    "resolve": 110,
+    "bandwidth": 3,
+    "latency": 30,
+    "signal": 55,
+    "noise": 70,
+    "grit": 30,
+    "sync": -35,
+    "continuity": 100
+  },
+  "rig": "hale",
+  "accent": "#B4552F",
+  "trunks": [
+    {
+      "key": "breaker",
+      "name": "Longshot",
+      "flavor": "One target, from further away than should be possible"
+    },
+    {
+      "key": "weaver",
+      "name": "Recon",
+      "flavor": "Reads a field before anyone walks into it"
+    },
+    {
+      "key": "anchor",
+      "name": "Patience",
+      "flavor": "Bank more, wait longer, hit once"
+    }
+  ],
+  "abilities": [
+    "strike",
+    "hold",
+    "longshot",
+    "guard"
+  ],
+  "tags": [],
+  "motif": [
+    0,
+    -3,
+    -5,
+    -3,
+    0,
+    -12
+  ],
+  "bio": "Ash Camp's best shot and the only one of that crew who ever came back from the Basin. He talks about machines the way other people talk about weather: without malice, and without any expectation of being talked out of it."
+}

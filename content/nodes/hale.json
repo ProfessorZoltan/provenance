@@ -1,0 +1,377 @@
+[
+  {
+    "id": "h_long_1",
+    "character": "hale",
+    "trunk": "breaker",
+    "name": "Windage",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "noise",
+        "delta": 10
+      }
+    ],
+    "description": "Reads the air between here and there. +10 Noise.",
+    "row": 0,
+    "col": 0
+  },
+  {
+    "id": "h_long_2",
+    "character": "hale",
+    "trunk": "breaker",
+    "name": "Longshot",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "h_long_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "longshot"
+      }
+    ],
+    "description": "The release. Spends the whole charge on one target.",
+    "row": 1,
+    "col": 0
+  },
+  {
+    "id": "h_long_3",
+    "character": "hale",
+    "trunk": "breaker",
+    "name": "Deep Breath",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "h_long_2"
+    ],
+    "excludes": [
+      "h_long_4"
+    ],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "holdBonus",
+        "value": 0.25
+      }
+    ],
+    "description": "Each turn held is worth 85% instead of 60%. Locks out Quick Hands.",
+    "row": 2,
+    "col": 0
+  },
+  {
+    "id": "h_long_4",
+    "character": "hale",
+    "trunk": "breaker",
+    "name": "Quick Hands",
+    "type": "contradiction",
+    "cost": 2,
+    "requires": [
+      "h_long_2"
+    ],
+    "excludes": [
+      "h_long_3"
+    ],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "slackCap",
+        "value": 1
+      },
+      {
+        "kind": "stat",
+        "stat": "bandwidth",
+        "delta": 1
+      }
+    ],
+    "description": "A fourth thread and one more Slack, for a shooter who will not wait. Locks out Deep Breath.",
+    "row": 3,
+    "col": 0
+  },
+  {
+    "id": "h_long_5",
+    "character": "hale",
+    "trunk": "breaker",
+    "name": "Ash Camp Doctrine",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "h_long_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "vsMachine",
+        "value": 0.2
+      }
+    ],
+    "description": "+20% damage against anything with a serial number.",
+    "row": 4,
+    "col": 0
+  },
+  {
+    "id": "h_rec_1",
+    "character": "hale",
+    "trunk": "weaver",
+    "name": "Ranging",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 10
+      }
+    ],
+    "description": "+10 Signal, which is most of what a Scan card is made of.",
+    "row": 0,
+    "col": 1
+  },
+  {
+    "id": "h_rec_2",
+    "character": "hale",
+    "trunk": "weaver",
+    "name": "Recon",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "h_rec_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "recon"
+      }
+    ],
+    "description": "Target-locks the whole field for two turns. Nobody misses.",
+    "row": 1,
+    "col": 1
+  },
+  {
+    "id": "h_rec_3",
+    "character": "hale",
+    "trunk": "weaver",
+    "name": "Spotter",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "h_rec_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "partyAccuracy",
+        "value": 0.1
+      }
+    ],
+    "description": "The party shoots 10% better while he is calling it.",
+    "row": 2,
+    "col": 1
+  },
+  {
+    "id": "h_rec_4",
+    "character": "hale",
+    "trunk": "weaver",
+    "name": "Cold Eye",
+    "type": "condition",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "noise",
+        "delta": 12
+      },
+      {
+        "kind": "passive",
+        "passive": "scanDepth",
+        "value": 1
+      }
+    ],
+    "description": "Eleven days on a ridge above the Basin. Scan cards read one band deeper for the whole party.",
+    "row": 3,
+    "col": 1,
+    "condition": "flag:basinWatched",
+    "conditionHint": "Sit a watch with him at the Basin in 2148."
+  },
+  {
+    "id": "h_rec_5",
+    "character": "hale",
+    "trunk": "weaver",
+    "name": "Killing Silence",
+    "type": "standard",
+    "cost": 3,
+    "requires": [
+      "h_rec_3"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "killing_silence"
+      }
+    ],
+    "description": "Capstone. One shot nothing on the field gets a say in.",
+    "row": 4,
+    "col": 1
+  },
+  {
+    "id": "h_pat_1",
+    "character": "hale",
+    "trunk": "anchor",
+    "name": "Stillness",
+    "type": "standard",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "ability",
+        "ability": "patience"
+      }
+    ],
+    "description": "Guard and six Tempo, for a turn spent doing nothing visible.",
+    "row": 0,
+    "col": 2
+  },
+  {
+    "id": "h_pat_2",
+    "character": "hale",
+    "trunk": "anchor",
+    "name": "Patience",
+    "type": "standard",
+    "cost": 1,
+    "requires": [
+      "h_pat_1"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "slackCap",
+        "value": 2
+      }
+    ],
+    "description": "Slack cap raised to four. Bank two turns and spend them at once.",
+    "row": 1,
+    "col": 2
+  },
+  {
+    "id": "h_pat_3",
+    "character": "hale",
+    "trunk": "anchor",
+    "name": "Dug In",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "h_pat_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "guardBonus",
+        "value": 0.2
+      }
+    ],
+    "description": "Guard cuts 70% instead of 50%.",
+    "row": 2,
+    "col": 2
+  },
+  {
+    "id": "h_pat_4",
+    "character": "hale",
+    "trunk": "anchor",
+    "name": "Long Watch",
+    "type": "standard",
+    "cost": 2,
+    "requires": [
+      "h_pat_2"
+    ],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "resolve",
+        "delta": 30
+      }
+    ],
+    "description": "+30 Resolve. Eleven days is eleven days.",
+    "row": 3,
+    "col": 2
+  },
+  {
+    "id": "h_era_2148",
+    "character": "hale",
+    "trunk": "breaker",
+    "name": "Basin Ranges",
+    "type": "era",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "noise",
+        "delta": 14
+      }
+    ],
+    "description": "Bought on the ground he learned to shoot on. +14 Noise.",
+    "row": 5,
+    "col": 0,
+    "era": "2148"
+  },
+  {
+    "id": "h_era_2031",
+    "character": "hale",
+    "trunk": "weaver",
+    "name": "Survey Optics",
+    "type": "era",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 12
+      }
+    ],
+    "description": "A theodolite lens off a 2031 work camp, ground for a different purpose. +12 Signal.",
+    "row": 5,
+    "col": 1,
+    "era": "2031"
+  },
+  {
+    "id": "h_era_2312",
+    "character": "hale",
+    "trunk": "anchor",
+    "name": "Cooling Field Discipline",
+    "type": "era",
+    "cost": 1,
+    "requires": [],
+    "excludes": [],
+    "effects": [
+      {
+        "kind": "passive",
+        "passive": "holdBonus",
+        "value": 0.15
+      }
+    ],
+    "description": "Learned watching drones fly a patrol pattern nobody had changed in eighty years.",
+    "row": 5,
+    "col": 2,
+    "era": "2312"
+  }
+]

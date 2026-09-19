@@ -1,0 +1,34 @@
+{
+  "id": "basin_2031_grade",
+  "name": "On the Grade",
+  "era": "2031",
+  "location": "basin_2031",
+  "enemies": [
+    {
+      "enemy": "drone_survey_2031",
+      "count": 3
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Three survey units working a grid, and you are standing in square forty-one.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Three Drones."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Survey prototypes. No shielding at all."
+    },
+    {
+      "when": "noise>=60",
+      "text": "The grid runs north; step two squares east and they pass you."
+    },
+    {
+      "when": "party:hale",
+      "text": "Hale: they fly the pattern even when they see you. Wait for the turn."
+    }
+  ],
+  "music": "battle_2031"
+}

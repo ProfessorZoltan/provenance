@@ -1,0 +1,31 @@
+{
+  "id": "basin_work_camp",
+  "name": "Camp Canteen",
+  "era": "2031",
+  "currency": "credits",
+  "stock": [
+    {
+      "item": "ration",
+      "price": 9
+    },
+    {
+      "item": "stim",
+      "price": 17
+    },
+    {
+      "item": "survey_optic",
+      "price": 60
+    },
+    {
+      "item": "dock_maul",
+      "price": 55
+    },
+    {
+      "item": "frame_plating",
+      "price": 70,
+      "when": [
+        "ownership>=-40"
+      ]
+    }
+  ]
+}

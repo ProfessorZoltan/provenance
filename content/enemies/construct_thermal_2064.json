@@ -1,0 +1,50 @@
+{
+  "id": "construct_thermal_2064",
+  "name": "Thermal Unit",
+  "family": "construct",
+  "era": "2064",
+  "machine": true,
+  "stats": {
+    "resolve": 150,
+    "bandwidth": 3,
+    "latency": 40,
+    "signal": 50,
+    "noise": 20,
+    "grit": 44,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 50,
+  "secondBar": {
+    "name": "Plant Engineer",
+    "resolve": 95,
+    "abilities": [
+      "warden_baton",
+      "coolant_vent"
+    ],
+    "immunities": [
+      "signal"
+    ],
+    "weakness": "kinetic",
+    "flavor": "There is a woman inside it who has been doing twelve-hour shifts in a cooling suit."
+  },
+  "abilities": [
+    "coolant_vent",
+    "drone_dart"
+  ],
+  "immunities": [],
+  "perception": 50,
+  "rig": "construct_grafted",
+  "xp": 150,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.8
+    },
+    {
+      "item": "relic_basin_core",
+      "chance": 0.18
+    }
+  ],
+  "flavor": "A maintenance frame with an operator sealed inside it for the heat."
+}

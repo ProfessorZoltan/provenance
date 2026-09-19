@@ -1,0 +1,53 @@
+{
+  "id": "basin_2064",
+  "name": "The Basin",
+  "kind": "deepSite",
+  "era": "2064",
+  "site": "basin",
+  "type": "Hyperscale farm",
+  "art": "2064_basin",
+  "description": "Blue aisles to the vanishing point, thirty degrees hotter than outside, and a noise you feel in your sternum rather than hear. This is where the thing that will be the Steward actually lives.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2064_basin:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2064_basin:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2064_basin:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2064_basin:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "glint"
+  },
+  "music": "hub_2064",
+  "npcs": [
+    "plant_supervisor"
+  ],
+  "quests": [],
+  "encounters": [
+    "basin_2064_aisle"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2031",
+    "2148",
+    "2312"
+  ],
+  "storyDialogue": "basin_arrive_2064"
+}

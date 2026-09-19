@@ -1,0 +1,40 @@
+{
+  "id": "warden_perimeter_2312",
+  "name": "Perimeter Warden",
+  "family": "warden",
+  "era": "2312",
+  "machine": false,
+  "stats": {
+    "resolve": 185,
+    "bandwidth": 3,
+    "latency": 32,
+    "signal": 35,
+    "noise": 38,
+    "grit": 58,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "warden_baton",
+    "warden_suppress",
+    "foreman_call"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 60,
+  "rig": "warden_2312",
+  "xp": 190,
+  "drops": [
+    {
+      "item": "stim",
+      "chance": 0.5
+    },
+    {
+      "item": "relic_basin_core",
+      "chance": 0.15
+    }
+  ],
+  "flavor": "Allocated to the fields, and allocated very well. This is the Steward taking something seriously."
+}

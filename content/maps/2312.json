@@ -1,12 +1,12 @@
 {
   "id": "map_2312",
   "era": "2312",
-  "name": "Kell Valley and Enclave 7, 2312",
-  "width": 2000,
-  "height": 1000,
+  "name": "The Allocated Coast, 2312",
+  "width": 2600,
+  "height": 1100,
   "spawn": {
     "x": 620,
-    "y": 260
+    "y": 300
   },
   "nodes": [
     {
@@ -14,7 +14,7 @@
       "kind": "location",
       "location": "kell_2312",
       "x": 620,
-      "y": 210,
+      "y": 240,
       "radius": 80,
       "label": "Kell Monastery",
       "icon": "monastery"
@@ -24,30 +24,17 @@
       "kind": "location",
       "location": "kell_village_2312",
       "x": 300,
-      "y": 720,
+      "y": 760,
       "radius": 80,
       "label": "Kell Village",
       "icon": "village"
-    },
-    {
-      "id": "village_gate",
-      "kind": "encounter",
-      "encounter": "kell_2312_gate",
-      "x": 450,
-      "y": 560,
-      "radius": 46,
-      "label": "Village gate",
-      "icon": "gate",
-      "requires": [
-        "quest:gate_drone:active"
-      ]
     },
     {
       "id": "halden_2312",
       "kind": "location",
       "location": "halden_2312",
       "x": 1450,
-      "y": 440,
+      "y": 470,
       "radius": 80,
       "label": "Enclave 7",
       "icon": "enclave"
@@ -57,7 +44,7 @@
       "kind": "location",
       "location": "enclave7_commissary_2312",
       "x": 1720,
-      "y": 710,
+      "y": 760,
       "radius": 70,
       "label": "Commissary",
       "icon": "market"
@@ -67,50 +54,101 @@
       "kind": "location",
       "location": "strand_memorial_2312",
       "x": 1080,
-      "y": 740,
+      "y": 790,
       "radius": 70,
       "label": "Strand Memorial",
       "icon": "gate"
+    },
+    {
+      "id": "basin_2312",
+      "kind": "location",
+      "location": "basin_2312",
+      "x": 2240,
+      "y": 380,
+      "radius": 84,
+      "label": "Cooling Fields",
+      "icon": "basin"
+    },
+    {
+      "id": "cooling_perimeter_2312",
+      "kind": "location",
+      "location": "cooling_perimeter_2312",
+      "x": 2010,
+      "y": 760,
+      "radius": 74,
+      "label": "Cooling Perimeter",
+      "icon": "camp"
+    },
+    {
+      "id": "village_gate",
+      "kind": "encounter",
+      "encounter": "kell_2312_gate",
+      "x": 450,
+      "y": 600,
+      "radius": 46,
+      "label": "Village gate",
+      "icon": "gate",
+      "requires": [
+        "quest:gate_drone:active"
+      ]
     }
   ],
   "roads": [
     [
       620,
-      290,
+      320,
       540,
-      430,
+      460,
       450,
-      560,
+      600,
       300,
-      650
+      680
     ],
     [
       620,
-      290,
+      320,
       790,
-      430,
+      460,
       1010,
-      560,
+      590,
       1220,
-      570,
+      600,
       1380,
-      480
+      510
     ],
     [
       1450,
-      520,
+      550,
       1630,
-      640,
+      680,
       1720,
-      670
+      720
     ],
     [
       1380,
-      480,
+      510,
       1230,
-      600,
+      640,
       1130,
-      700
+      750
+    ],
+    [
+      1450,
+      400,
+      1700,
+      340,
+      1950,
+      340,
+      2160,
+      370
+    ],
+    [
+      2240,
+      460,
+      2140,
+      610,
+      2040,
+      710
     ]
   ],
   "zones": [
@@ -118,7 +156,7 @@
       "id": "perimeter",
       "label": "Perimeter",
       "x": 760,
-      "y": 300,
+      "y": 330,
       "w": 400,
       "h": 280,
       "encounters": [
@@ -132,7 +170,7 @@
       "id": "blocks",
       "label": "The blocks",
       "x": 1160,
-      "y": 180,
+      "y": 200,
       "w": 330,
       "h": 220,
       "encounters": [
@@ -140,6 +178,20 @@
       ],
       "chance": 0.38,
       "stride": 170
+    },
+    {
+      "id": "steam_towers",
+      "label": "Steam towers",
+      "x": 1900,
+      "y": 430,
+      "w": 440,
+      "h": 260,
+      "encounters": [
+        "basin_2312_fields",
+        "perimeter_2312_patrol"
+      ],
+      "chance": 0.4,
+      "stride": 165
     }
   ]
 }

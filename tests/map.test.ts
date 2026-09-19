@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import mapSource from '../src/ui/screens/map.ts?raw';
 import { evalAll } from '../src/core/conditions';
 import { conditionContext } from '../src/core/encounter';
 import { createReducer, mapFor } from '../src/core/reducer';
@@ -40,12 +41,12 @@ describe('era maps', () => {
     expect(() => createReducer(gatedContent)(s, { type: 'TRAVEL', location: 'kell_village_2312' })).toThrow();
   });
 
-  it('puts both Deep Sites on the same map in every era, joined by road', () => {
+  it('puts every Deep Site on the same map in every era, joined by road', () => {
     for (const era of ['2031', '2064', '2148', '2312'] as const) {
       const map = mapFor(content, era)!;
       const sites = map.nodes.filter((n) => n.location && content.locations[n.location]?.kind === 'deepSite');
-      expect(sites.map((n) => content.locations[n.location!].site).sort(), era).toEqual(['halden', 'kell']);
-      expect(map.roads.length, era).toBeGreaterThanOrEqual(2);
+      expect(sites.map((n) => content.locations[n.location!].site).sort(), era).toEqual(['basin', 'halden', 'kell']);
+      expect(map.roads.length, era).toBeGreaterThanOrEqual(3);
     }
   });
 
@@ -88,5 +89,49 @@ describe('era maps', () => {
     expect(s.back.id).toBe('map');
     s = run(s, { type: 'SET_SCREEN', screen: s.back }, { type: 'SET_SCREEN', screen: { id: 'hub' } }, { type: 'SET_SCREEN', screen: { id: 'inventory' } });
     expect(s.back.id).toBe('hub');
+  });
+});
+
+describe('three regions on one map', () => {
+  it('shows a window of the world and clamps the camera to its edges', () => {
+    for (const era of ['2031', '2064', '2148', '2312'] as const) {
+      const map = mapFor(content, era)!;
+      expect(map.width, era).toBeGreaterThan(2000);
+      // Every location is inside the walkable box the map screen clamps the party to.
+      for (const n of map.nodes) {
+        expect(n.x >= 30 && n.x <= map.width - 30, `${map.id}/${n.id} x`).toBe(true);
+        expect(n.y >= 180 && n.y <= map.height - 40, `${map.id}/${n.id} y`).toBe(true);
+      }
+    }
+  });
+
+  it('gives the Basin its own road, waypoints and wilds in every era it has them', () => {
+    const basinWaypoints: Record<string, string[]> = {
+      '2031': ['basin_work_camp_2031'], '2064': [],
+      '2148': ['ash_camp_2148', 'the_fens_2148'], '2312': ['cooling_perimeter_2312'],
+    };
+    for (const [era, wps] of Object.entries(basinWaypoints)) {
+      const map = mapFor(content, era as '2031')!;
+      const ids = map.nodes.map((n) => n.id);
+      expect(ids, era).toContain(`basin_${era}`);
+      for (const w of wps) expect(ids, `${era}/${w}`).toContain(w);
+      // The Basin sits inland, east of both coastal sites.
+      const basin = map.nodes.find((n) => n.id === `basin_${era}`)!;
+      for (const n of map.nodes.filter((x) => /^(kell|halden)_/.test(x.id))) {
+        expect(basin.x, `${era}: basin is east of ${n.id}`).toBeGreaterThan(n.x);
+      }
+    }
+  });
+});
+
+describe('map icons', () => {
+  it('draws every icon a map node asks for rather than falling back to the village', () => {
+    const drawn = new Set([...mapSource.matchAll(/^ {2}(\w+): \(era\) =>/gm)].map((m) => m[1]));
+    for (const map of Object.values(content.maps)) {
+      for (const n of map.nodes) {
+        expect(n.icon, `${map.id}/${n.id} has no icon`).toBeTruthy();
+        expect(drawn.has(n.icon!), `${map.id}/${n.id} asks for an icon that is not drawn: ${n.icon}`).toBe(true);
+      }
+    }
   });
 });

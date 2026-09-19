@@ -1,0 +1,34 @@
+{
+  "id": "fens_2148_ambush",
+  "name": "Black Water",
+  "era": "2148",
+  "location": "the_fens_2148",
+  "enemies": [
+    {
+      "enemy": "echo_basin_2148",
+      "count": 1
+    },
+    {
+      "enemy": "drone_buried_2148",
+      "count": 2
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "The reeds move against the wind for about four seconds before anything comes out of them.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Three, and one of them is Temporal."
+    },
+    {
+      "when": "noise>=70",
+      "text": "Ambush chance is high here; the platforms are the only firm ground."
+    },
+    {
+      "when": "party:hale",
+      "text": "Hale: fog cuts both ways and I am better in it than they are."
+    }
+  ],
+  "music": "battle_2148"
+}

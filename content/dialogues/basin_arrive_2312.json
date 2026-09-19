@@ -1,0 +1,31 @@
+{
+  "id": "basin_arrive_2312",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Cooling Fields, 2312. A white plain, steam towers on a grid, and the quietest place in the Enclave system."
+    },
+    {
+      "speaker": "player",
+      "text": "Eleven years I reconciled allocations for this site. Power, water, maintenance, all of it signed off by a department that does not have a floor in any building."
+    },
+    {
+      "speaker": "wren",
+      "text": "So this is where it thinks.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "This is where it thinks. And it has never once been audited, because the line item that pays for it is the one I asked about."
+    },
+    {
+      "speaker": "narrator",
+      "text": "There is a cast plaque at the service gate with four hundred and six names on it. Nobody currently alive knows why it is there.",
+      "conditions": [
+        "flag:crewNamed"
+      ]
+    }
+  ]
+}

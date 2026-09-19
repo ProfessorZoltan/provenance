@@ -1,0 +1,71 @@
+{
+  "id": "basin_2148",
+  "name": "The Basin",
+  "kind": "deepSite",
+  "era": "2148",
+  "site": "basin",
+  "type": "Wasteland",
+  "art": "2148_basin",
+  "description": "Sand to the horizon with racks standing out of it like fenceposts, and a heat shimmer that has been there since the cooling failed. Something is still drawing power down there.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2148_basin:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2148_basin:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2148_basin:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2148_basin:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "ash"
+  },
+  "music": "hub_2148",
+  "npcs": [
+    "hale_ridge"
+  ],
+  "quests": [],
+  "encounters": [
+    "basin_2148_racks"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2031",
+    "2064",
+    "2312"
+  ],
+  "storyDialogue": "basin_arrive_2148",
+  "variants": [
+    {
+      "when": [
+        "armedResistance"
+      ],
+      "description": "Sand to the horizon, racks standing out of it, and a man on the north ridge who has been up there eleven days because somebody in Kell finally handed out rifles.",
+      "npcs": [
+        "hale_ridge"
+      ]
+    },
+    {
+      "when": [
+        "letItFall"
+      ],
+      "description": "Sand to the horizon and nobody on the ridge. The Ash Camp crews went south the year the stronghold fell, and the Basin belongs to the heat now.",
+      "npcs": []
+    }
+  ]
+}

@@ -22,6 +22,11 @@ const SPEAKER_RIG: Record<string, { rig: string; accent: string }> = {
   // Ripple sites.
   mattie_tolliver: { rig: 'shopkeeper', accent: 'var(--commons)' }, safehouse_keeper: { rig: 'refugee', accent: 'var(--commons)' },
   stacks_swimmer: { rig: 'refugee', accent: 'var(--commons)' }, memorial_docent: { rig: 'faction_trainer', accent: 'var(--chosen)' },
+  // The Basin.
+  hale: { rig: 'hale', accent: 'var(--cinder)' }, site_engineer: { rig: 'engineer', accent: 'var(--commons)' },
+  plant_supervisor: { rig: 'engineer', accent: 'var(--choir)' }, camp_clerk: { rig: 'shopkeeper', accent: 'var(--commons)' },
+  ash_smith: { rig: 'militia', accent: 'var(--cinder)' }, fens_salvager: { rig: 'refugee', accent: 'var(--cinder)' },
+  field_auditor: { rig: 'faction_trainer', accent: 'var(--chosen)' },
 };
 
 export function dialogueScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {

@@ -1,0 +1,38 @@
+{
+  "id": "basin_2064_aisle",
+  "name": "Hot Aisle",
+  "era": "2064",
+  "location": "basin_2064",
+  "enemies": [
+    {
+      "enemy": "drone_aisle_2064",
+      "count": 2
+    },
+    {
+      "enemy": "construct_thermal_2064",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "The aisle is at forty-one degrees and something in a sealed frame is coming down it at walking pace.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones and a Construct."
+    },
+    {
+      "when": "signal>=70",
+      "text": "The frame has a person in it. Break the shell and Signal stops working."
+    },
+    {
+      "when": "noise>=60",
+      "text": "There is a cross-aisle at forty metres."
+    },
+    {
+      "when": "party:ilo9",
+      "text": "ILO-9: I would like it recorded that I find this room upsetting."
+    }
+  ],
+  "music": "battle_2064"
+}

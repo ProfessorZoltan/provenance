@@ -1,0 +1,49 @@
+{
+  "id": "basin_work_camp_2031",
+  "name": "Basin Work Camp",
+  "kind": "waypoint",
+  "era": "2031",
+  "site": "workcamp",
+  "type": "Settlement",
+  "art": "2031_basin_work_camp",
+  "description": "Survey trailers, a canteen and eight hundred people on a twelve-week rotation. Half of them are not on any payroll you have been shown.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2031_basin_work_camp:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2031_basin_work_camp:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2031_basin_work_camp:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2031_basin_work_camp:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "dust"
+  },
+  "music": "hub_2031",
+  "npcs": [
+    "camp_clerk"
+  ],
+  "quests": [
+    "basin_crew"
+  ],
+  "encounters": [],
+  "shop": "basin_work_camp",
+  "links": [],
+  "timeLinks": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "basin_crew",
+  "name": "The Second Column",
+  "location": "basin_work_camp_2031",
+  "giver": "camp_clerk",
+  "description": "The camp clerk keeps two payrolls. One has four hundred and six names on it; the other has a number where the names should be. She would like to know why, and she would rather not ask the foreman herself.",
+  "objectiveEncounter": "camp_2031_foreman",
+  "rewards": {
+    "xp": 80,
+    "currency": 60,
+    "items": [
+      "relic_crew_list"
+    ],
+    "skillPoints": 1,
+    "flags": [
+      "crewListFound"
+    ]
+  },
+  "dialogue": {
+    "offer": "camp_clerk_offer",
+    "inProgress": "camp_clerk_progress",
+    "complete": "camp_clerk_complete"
+  }
+}

@@ -498,3 +498,8 @@ section.two { overflow-y: auto; }
 /* Trees are taller now that era nodes are in them. */
 section.tech > div:first-child { overflow-y: auto; min-height: 0; }
 .tech { min-height: 0; }
+
+/* The world is larger than one screen now, so the map carries its own overview. */
+.minimap-panel { position: absolute; left: 18px; bottom: 18px; width: 210px; padding: 8px; opacity: 0.92; }
+.minimap { display: block; width: 100%; height: auto; }
+@media (prefers-reduced-motion: reduce) { .minimap-panel { opacity: 1; } }

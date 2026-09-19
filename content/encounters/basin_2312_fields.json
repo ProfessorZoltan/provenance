@@ -1,0 +1,34 @@
+{
+  "id": "basin_2312_fields",
+  "name": "Between the Towers",
+  "era": "2312",
+  "location": "basin_2312",
+  "enemies": [
+    {
+      "enemy": "drone_coolant_2312",
+      "count": 2
+    },
+    {
+      "enemy": "warden_perimeter_2312",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "A patrol that has flown the same line for eighty years, and a Warden who was allocated here this morning.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones and a human."
+    },
+    {
+      "when": "signal>=70",
+      "text": "The Drones are immune to Thermal. The Warden is immune to Signal."
+    },
+    {
+      "when": "party:mara",
+      "text": "Mara: the Warden has a contract and the Drones do not. Only one of them can be talked to."
+    }
+  ],
+  "music": "battle_2312"
+}

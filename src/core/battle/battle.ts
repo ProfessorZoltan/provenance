@@ -217,6 +217,29 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
     ? Object.values(b.passives).reduce((s, pp) => s + (pp.partyAccuracy ?? 0), 0)
     : 0;
 
+  // Killing Silence spends the whole charge on one shot that nothing gets a say in: it cannot miss,
+  // and armor, shields, guard and immunity are all simply not consulted.
+  if (ability.special === 'killingSilence') {
+    const held = statusCount(actor, 'held');
+    const raw = evalFormula(ability.formula ?? '0', { a: actor.stats, d: target.stats, marks: 0 });
+    const dmg = Math.max(1, Math.round(raw * (1 + (0.6 + (p.holdBonus ?? 0)) * held)));
+    let hp = Math.max(0, target.hp - dmg);
+    const enemyDef = content.enemies[target.ref];
+    let broke: SecondBar | null = null;
+    if (hp <= 0 && target.bar === 1 && enemyDef?.secondBar) { broke = enemyDef.secondBar; hp = broke.resolve; }
+    const down = hp <= 0;
+    b = update(b, target.id, (c) => (broke
+      ? { ...c, hp, shield: 0, down: false, bar: 2, name: broke.name, maxHp: broke.resolve,
+          abilities: broke.abilities ?? c.abilities, immunities: broke.immunities ?? c.immunities,
+          weakness: broke.weakness, statuses: c.statuses.filter((st) => st.id !== 'marked') }
+      : { ...c, hp, down, statuses: down ? [] : c.statuses }));
+    b = update(b, actor.id, (c) => ({ ...c, statuses: c.statuses.filter((st) => st.id !== 'held') }));
+    const held_ = held > 0 ? ` (held ${held})` : '';
+    return { b, amount: dmg, hit: true, immune: false, meta,
+      note: `${actor.name} takes the shot. ${dmg} damage to ${target.name}${held_}, and nothing on the field was asked.`
+        + (broke ? ` The shell splits. ${broke.flavor}` : down ? ` ${target.name} goes down.` : '') };
+  }
+
   // Immunities and type rules.
   if (target.immunities.includes(type)) {
     return { b, amount: 0, hit: true, immune: true, meta, note: `${actor.name} uses ${ability.name} on ${target.name}, but ${target.name} is immune to ${type} damage.` };
@@ -244,6 +267,10 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   if (hasStatus(actor, 'bound')) { dmg *= 0.7; notes.push('bound by terms'); }
   dmg *= 1 + 0.15 * statusCount(actor, 'inspired');
   if (ability.special === 'scalesWithMarks') dmg *= 1 + 0.3 * marks;
+  // Held Shot: every turn Hale spends holding adds to the shot he finally takes.
+  const held = ability.special === 'release' ? statusCount(actor, 'held') : 0;
+  if (held > 0) notes.push(`held ${held}`);
+  dmg *= 1 + (0.6 + (p.holdBonus ?? 0)) * held;
   if (target.machine) dmg *= 1 + (p.vsMachine ?? 0);
   if (!target.machine && target.family !== 'echo') dmg *= 1 + (p.vsHuman ?? 0);
   if (type === 'thermal') dmg *= 1 + (p.thermalBonus ?? 0);
@@ -421,6 +448,9 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     b = log(b, `${actor.name} gives up ${cost} Resolve to pay for ${ability.name}.`, 'warn', { actor: actor.name, ability: ability.name });
   }
 
+  // A released shot spends the charge whether it lands or not; that is the risk of holding.
+  const spendsCharge = ability.special === 'release';
+
   for (const t of chosen) {
     if (ability.formula && ability.damageType) {
       const r = resolveDamage(b, b.combatants.find((c) => c.id === actorId)!, b.combatants.find((c) => c.id === t.id)!, ability, content);
@@ -449,6 +479,7 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
       }
     }
   }
+  if (spendsCharge) b = update(b, actorId, (c) => ({ ...c, statuses: c.statuses.filter((st) => st.id !== 'held') }));
   return afterAction(b, content);
 }
 
@@ -549,7 +580,7 @@ export function fork(b: BattleState, actorId: string, abilityId: string, targetI
 
 const STATUS_NAMES: Record<string, string> = {
   guard: 'Guard', taunt: 'Bulwark', marked: 'a mark', inspired: 'Litany', anchored: 'an anchor',
-  fixed: 'Fixed Point', faraday: 'Faraday', fear: 'Fear', locked: 'Target Lock', bound: 'Terms',
+  fixed: 'Fixed Point', faraday: 'Faraday', fear: 'Fear', locked: 'Target Lock', bound: 'Terms', held: 'Held',
 };
 
 function maybeSpawnEcho(b: BattleState, content: ContentDB): BattleState {

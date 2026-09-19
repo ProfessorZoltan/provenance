@@ -1,0 +1,17 @@
+{
+  "id": "crew_named",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "It goes to the labour board on a Thursday afternoon, in a folder, with four hundred and six names in alphabetical order."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Nothing happens. The board notes it, files it, and publishes it, because publishing is what the board does with things it has decided not to act on."
+    },
+    {
+      "speaker": "player",
+      "text": "Published. That's the whole point. It's in the record now and the record is the only thing that survives two hundred and eighty years."
+    }
+  ]
+}

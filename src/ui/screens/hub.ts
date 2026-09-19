@@ -6,6 +6,13 @@ import { menu, type MenuItem } from '../menu';
 
 const mem: Record<string, number> = {};
 
+/** Where a Deep Site's layers are reached from. A site with no line here gets the plain one. */
+const DESCEND: Record<string, string> = {
+  kell: 'Descend beneath the chapel',
+  halden: 'Go down into the harbour workings',
+  basin: 'Go down into the cable trench',
+};
+
 export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {
   const { content, store } = ctx;
   const loc = content.locations[state.location];
@@ -21,7 +28,7 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
     for (const n of npcs) items.push({ id: `talk:${n}`, label: `Talk to ${npcName(content, n)}`, onSelect: () => store.dispatch({ type: 'START_DIALOGUE', id: npcDialogue(content, state, n), returnTo: { id: 'hub' } }) });
     if (shop) items.push({ id: 'shop', label: content.shops[shop].name, hint: 'Shop', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'shop' } }) });
     items.push({ id: 'rest', label: 'Rest', hint: 'Restore Resolve', onSelect: () => { store.dispatch({ type: 'REST' }); ctx.toast('The party rests. Resolve restored.'); } });
-    if (loc.kind === 'deepSite' && loc.timeLinks.length) items.push({ id: 'jump', label: 'Descend beneath the chapel', hint: `Deep Site · ${loc.timeLinks.join(', ')}`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'timeJump' } }) });
+    if (loc.kind === 'deepSite' && loc.timeLinks.length) items.push({ id: 'jump', label: DESCEND[loc.site] ?? 'Go down where the eras touch', hint: `Deep Site · ${loc.timeLinks.join(', ')}`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'timeJump' } }) });
     items.push({ id: 'tech', label: 'Tech trees', shortcut: 'y', hint: `${state.activeParty.reduce((s, id) => s + state.party[id].skillPoints, 0)} skill points unspent`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'tech', character: 'player' } }) });
     items.push({ id: 'roster', label: 'Roster and gear', shortcut: 'x', hint: `${state.activeParty.length} of ${content.rules.activePartyMax} active`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'roster' } }) });
     items.push({ id: 'inv', label: 'Items and timeline', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'inventory' } }) });

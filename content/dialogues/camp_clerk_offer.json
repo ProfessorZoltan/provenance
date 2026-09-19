@@ -1,0 +1,30 @@
+{
+  "id": "camp_clerk_offer",
+  "lines": [
+    {
+      "speaker": "camp_clerk",
+      "text": "Two payrolls. One has four hundred and six names on it and goes to the accountants. The other has a number in the same box and goes somewhere I can't see."
+    },
+    {
+      "speaker": "camp_clerk",
+      "text": "Same number, same weeks, same hours. So either four hundred and six people are being paid twice, or there's a second crew on this site that I have never once seen eat."
+    },
+    {
+      "speaker": "camp_clerk",
+      "text": "The foreman signs both. I'd like to know what the second column is for, and I'd like to still have this job on Friday.",
+      "choices": [
+        {
+          "text": "We'll ask the foreman. Stay in the trailer.",
+          "action": "quest:accept:basin_crew"
+        },
+        {
+          "text": "Some columns are better left alone.",
+          "syncDelta": -5
+        },
+        {
+          "text": "Not our site."
+        }
+      ]
+    }
+  ]
+}

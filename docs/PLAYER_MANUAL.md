@@ -2,9 +2,9 @@
 
 ## About this manual
 
-Covers what is playable: two Deep Sites, Kell and Port Halden, across four eras, 2031, 2064, 2148
-and 2312, and the party you can gather there. Systems not yet built are marked as such. This manual
-grows as the game does.
+Covers what is playable: three Deep Sites, Kell, Port Halden and the Basin, across four eras, 2031,
+2064, 2148 and 2312, and the party you can gather there. Systems not yet built are marked as such.
+This manual grows as the game does.
 
 ## The world
 
@@ -21,6 +21,11 @@ You ran to Kell Monastery, the last place in the valley nobody reports to anyone
 it. Dax Okonkwo is already there and does not belong to this century. Under the chapel floor is a
 Deep Site: a place old enough that the eras touch, where you can walk down into 2148 and come back
 up into a 2312 that your visit has changed.
+
+Inland from both of them is the Basin: a datacenter going up in the desert in 2031, a hyperscale
+farm in 2064, sand-buried racks in 2148, and in 2312 the cooling fields where the Steward actually
+does its thinking. It has never once been audited, because the line item that pays for it is the
+one you asked about.
 
 Down the coast road from Kell is Port Halden, and it is a Deep Site too. In 2031 it is a working
 shipping city, and four crates a week leave its quay for an address in the hills. In 2064 it is nine
@@ -52,8 +57,10 @@ Mouse clicks work on menus, dialogue, enemy portraits and the battle report box.
 
 ## Getting around
 
-Travel is physical. Each era has one map you walk, holding both the Kell valley in the north-west
-and Port Halden on the coast to the south-east, with the coast road between them. Buildings are
+Travel is physical. Each era has one map you walk, holding the Kell valley in the north-west, Port
+Halden on the coast to the south-east, and the Basin inland to the east, joined by road. The map is
+larger than the screen: the view follows the party, and the panel in the bottom-left corner is the
+whole world with your position on it. Buildings are
 places you step into and enter with A. The dashed regions are wilds, where something may find you as
 you cross.
 
@@ -61,12 +68,12 @@ Time travel is different. It happens only at a Deep Site, and only to eras when 
 existed. Both sites reach all four centuries, so you can jump from either and arrive at the same
 place in another era.
 
-| Era | Kell | Port Halden | Reference |
-| --- | --- | --- | --- |
-| 2031 | The retreat being founded | Shipping city and its market | The Founding |
-| 2064 | An off-grid commune | Migrant megacity, the week of the vote | The Handover |
-| 2148 | The stronghold holding out | Drowned ruins and roof gardens | The Quiet |
-| 2312 | The monastery, the last free place | Enclave 7, your own address | Now |
+| Era | Kell | Port Halden | The Basin | Reference |
+| --- | --- | --- | --- | --- |
+| 2031 | The retreat being founded | Shipping city and its market | A datacenter under construction | The Founding |
+| 2064 | An off-grid commune | Migrant megacity, the week of the vote | Hyperscale farm, blue aisles | The Handover |
+| 2148 | The stronghold holding out | Drowned ruins and roof gardens | Wasteland and standing racks | The Quiet |
+| 2312 | The monastery, the last free place | Enclave 7, your own address | Cooling fields and steam towers | Now |
 
 ## Battles
 
@@ -126,6 +133,9 @@ Entropy resets between battles. Spend deliberately.
 | Wardens | Human enforcers. Immune to Signal. Shrug off Thermal |
 | Constructs | Two health bars. Break the machine shell and whoever is inside keeps fighting, with their own kit and their own weaknesses. The core is usually human, so Signal stops working on it |
 | Echoes | Temporal. Immune to everything but Chronal |
+
+Some enemies cannot be hurt the ordinary way at all. A rack buried in the Basin for eighty years
+shrugs off Kinetic entirely: sand simply moves. Read the Scan card.
 
 Enemies differ by century. A 2031 prototype has no shielding at all and folds to Signal. A 2064
 machine is the polished commercial article, well shielded and well maintained, and the Wardens beside
@@ -226,6 +236,25 @@ Her trees are Leverage, which punishes a contract already broken, Diplomacy, whi
 without having them, and Accord, which puts everyone under the same terms. Her capstone, Settlement,
 ends a battle outright if every enemy on the field is bound by Terms when she calls it.
 
+### Tomas Hale
+
+Ash Camp's best shot, and the only one of that crew who ever came back from the Basin. He is on a
+ridge above it in 2148, and he is only up there because somebody at Kell handed out rifles. He walks
+away if the party's average Sync climbs above +60.
+
+| Ability | Cost | Effect |
+| --- | --- | --- |
+| Strike | 1 thread | A plain kinetic hit |
+| Held Shot | 1 thread | Settle in. Every turn spent holding adds 60% to the shot you eventually take |
+| Guard | 1 thread | Halve incoming damage until his next turn |
+
+His trees are Longshot, which spends the charge on one target, Recon, which target-locks the whole
+field so nobody misses, and Patience, which raises the Slack cap to four so he can bank two turns
+and spend them at once. The charge is paid out the moment he fires, hit or miss.
+
+His capstone, Killing Silence, is one shot that cannot miss and that armor, shields, Guard and
+immunity are not consulted about. It is the only thing in the game that ignores an immunity.
+
 ## Roster and gear
 
 Press X outside a fight. The left column is the roster; A benches or fields whoever is focused. The
@@ -317,6 +346,8 @@ one.
 | Tolliver Corner, 2148 | The same decision, 117 years upstream | A safehouse with a cellar, a trader and a bed, or a collapsed brick corner | — |
 | The Stacks, 2148 | What you tell Sana on the Migrant Causeway in 2064 | Whether anyone on those roofs was taught to swim | — |
 | Strand Memorial, 2312 | Your party's average Sync | A museum, a ruin, or a shrine people leave things at | — |
+| Cooling Fields, 2312 | Whether the Basin crew list was filed in 2031 | Whether four hundred and six names are cast into the service gate | The Second Column |
+| The Basin, 2148 | Whether the Kell resistance was armed | Whether there is anyone on the north ridge to find | — |
 | Kell Village, 2312 | Whether the stronghold was armed in 2148 | A drilling town with a memorial, or a watched one with half its stalls shut | — |
 | Enclave 7 Commissary, 2312 | Ownership | How much is on the shelves and who put it there | — |
 

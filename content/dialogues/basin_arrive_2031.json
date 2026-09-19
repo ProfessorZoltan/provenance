@@ -1,0 +1,27 @@
+{
+  "id": "basin_arrive_2031",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The Basin, 2031. Four hundred hectares of graded sand, a frame going up in the middle of it, and a pour schedule that does not stop for dark."
+    },
+    {
+      "speaker": "player",
+      "text": "Meridian's filings say this is a logistics facility. Logistics facilities do not need four hundred megawatts."
+    },
+    {
+      "speaker": "dax",
+      "text": "It's a hole in the ground with money going into it. Everything I hate started as one of these.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "Eight hundred people are building it and not one of them has been told what it is. That is the part worth writing down.",
+      "conditions": [
+        "party:wren"
+      ]
+    }
+  ]
+}

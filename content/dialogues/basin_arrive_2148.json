@@ -1,0 +1,30 @@
+{
+  "id": "basin_arrive_2148",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The Basin, 2148. Sand to the horizon with racks standing out of it like fenceposts, and a heat shimmer over a machine that never stopped drawing power."
+    },
+    {
+      "speaker": "dax",
+      "text": "Ash Camp's two ridges that way. I learned to shoot on this ground and I have not come back to it since.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "There is a man on the north ridge. He has been there long enough that the sand has drifted against him, and he does not appear to have noticed you.",
+      "conditions": [
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "The ridges are empty. Whoever used to watch this place went south the year the stronghold fell.",
+      "conditions": [
+        "flag:letItFall"
+      ]
+    }
+  ]
+}

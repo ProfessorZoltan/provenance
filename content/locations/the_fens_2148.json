@@ -1,0 +1,48 @@
+{
+  "id": "the_fens_2148",
+  "name": "The Fens",
+  "kind": "waypoint",
+  "era": "2148",
+  "site": "fens",
+  "type": "Wilds",
+  "art": "2148_the_fens",
+  "description": "Where the Basin runoff meets the sea and neither wins. Fog, black water, reeds taller than Dax, and salvage worth the walk if you come back.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2148_the_fens:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2148_the_fens:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2148_the_fens:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2148_the_fens:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "ash"
+  },
+  "music": "hub_2148",
+  "npcs": [
+    "fens_salvager"
+  ],
+  "quests": [],
+  "encounters": [
+    "fens_2148_ambush"
+  ],
+  "links": [],
+  "timeLinks": []
+}

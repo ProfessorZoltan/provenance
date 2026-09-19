@@ -1,0 +1,38 @@
+{
+  "id": "ash_smith",
+  "lines": [
+    {
+      "speaker": "ash_smith",
+      "text": "Forge has been lit twenty years. Longer than that if you count my mother's, and I do."
+    },
+    {
+      "speaker": "ash_smith",
+      "text": "Okonkwo. God. Sit down before somebody sees you standing.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "ash_smith",
+      "text": "Kell sent rifles. Actual rifles, down an actual road, to actual people. Twenty years I've been told nobody would.",
+      "conditions": [
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "ash_smith",
+      "text": "Stronghold fell in the spring. We took forty of them in and buried nine. That's what Kell is to us now: nine holes and forty mouths.",
+      "conditions": [
+        "flag:letItFall"
+      ]
+    },
+    {
+      "speaker": "ash_smith",
+      "text": "Hale's out at the Basin on a ridge. Tell him the forge is still lit, he'll know what it means.",
+      "conditions": [
+        "!party:hale",
+        "flag:armedResistance"
+      ]
+    }
+  ]
+}

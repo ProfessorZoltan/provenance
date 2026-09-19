@@ -8,6 +8,16 @@ import type { GameState } from '../../types/state';
 import { accentFor, esc, html, partyStrip, prompts, type Ctx, type ScreenHandle } from '../common';
 
 const SPEED = 300; // map units per second
+// The camera shows this much of the world at once. A map smaller than the window is shown whole,
+// so a one-region era behaves exactly as it did before the world grew a third region.
+const VIEW_W = 1700, VIEW_H = 950;
+
+function camera(map: MapDef, x: number, y: number): string {
+  const w = Math.min(VIEW_W, map.width), h = Math.min(VIEW_H, map.height);
+  const cx = Math.max(0, Math.min(map.width - w, x - w / 2));
+  const cy = Math.max(0, Math.min(map.height - h, y - h / 2));
+  return `${cx} ${cy} ${w} ${h}`;
+}
 
 const ICONS: Record<string, (era: EraDef) => string> = {
   monastery: (era) => `<rect x="-44" y="-14" width="88" height="34" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/><polygon points="-14,-14 0,-34 14,-14" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/><rect x="-6" y="-8" width="12" height="14" fill="${era.palette.accent}" opacity="0.8"/>`,
@@ -18,6 +28,9 @@ const ICONS: Record<string, (era: EraDef) => string> = {
   drowned: (era) => `${[-30, 2].map((x) => `<rect x="${x}" y="-34" width="26" height="46" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/>`).join('')}<path d="M-46 12 q14 -8 26 0 t26 0 t26 0 t26 0" fill="none" stroke="${era.palette.accent2}" stroke-width="3"/><path d="M-46 24 q14 -8 26 0 t26 0 t26 0 t26 0" fill="none" stroke="${era.palette.accent2}" stroke-width="3" opacity="0.6"/>`,
   enclave: (era) => [-32, 0, 32].map((x) => `<rect x="${x - 13}" y="-30" width="26" height="48" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/>${[0, 12, 24].map((y) => `<rect x="${x - 7}" y="${-24 + y}" width="14" height="5" fill="${era.palette.accent}" opacity="0.7"/>`).join('')}`).join(''),
   market: (era) => `<path d="M-40 -6 L-30 -22 L30 -22 L40 -6 Z" fill="${era.palette.accent}" opacity="0.85" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/><rect x="-34" y="-6" width="68" height="24" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/><rect x="-8" y="2" width="16" height="16" fill="${era.palette.ink}" opacity="0.5"/>`,
+  basin: (era) => `${[-40, -14, 12].map((x) => `<rect x="${x}" y="-30" width="22" height="48" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/>${[0, 10, 20, 30].map((y) => `<rect x="${x + 4}" y="${-26 + y}" width="14" height="4" fill="${era.palette.accent2}" opacity="0.8"/>`).join('')}`).join('')}<rect x="-46" y="18" width="92" height="6" fill="${era.palette.ink}"/><path d="M34 -30 q10 -16 0 -30" fill="none" stroke="${era.palette.accent2}" stroke-width="3" opacity="0.7"/>`,
+  camp: (era) => `${[-30, 4].map((x) => `<polygon points="${x},-24 ${x + 24},4 ${x - 24},4" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/>`).join('')}<rect x="-46" y="4" width="92" height="14" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/><rect x="-4" y="-34" width="4" height="12" fill="${era.palette.ink}"/><rect x="0" y="-34" width="14" height="7" fill="${era.palette.accent}"/>`,
+  fens: (era) => `<path d="M-46 14 q14 -8 26 0 t26 0 t26 0 t26 0" fill="none" stroke="${era.palette.accent2}" stroke-width="3"/><path d="M-46 24 q14 -8 26 0 t26 0 t26 0 t26 0" fill="none" stroke="${era.palette.accent2}" stroke-width="3" opacity="0.6"/>${[-34, -18, -2, 14, 30].map((x, i) => `<path d="M${x} 14 q${i % 2 ? 6 : -6} -20 ${i % 2 ? 2 : -2} -34" fill="none" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/>`).join('')}`,
   gate: (era) => `<rect x="-22" y="-22" width="6" height="40" fill="${era.palette.ink}"/><rect x="16" y="-22" width="6" height="40" fill="${era.palette.ink}"/><rect x="-24" y="-26" width="48" height="6" fill="${era.palette.ink}"/><polygon points="-10,-40 0,-46 10,-40 0,-34" fill="${era.palette.accent}"/>`,
 };
 
@@ -26,7 +39,7 @@ function worldSvg(map: MapDef, era: EraDef, flags: string[], nodes: { n: MapNode
   const ridge = (y: number, amp: number) => `M0 ${y} ${Array.from({ length: 9 }, (_, i) => `L${(i * W) / 8} ${y - ((i * 37) % 3) * amp - (i % 2) * amp}`).join(' ')} L${W} ${y} L${W} 0 L0 0 Z`;
   const quiet = era.id === '2148';
   const coast = `M0 ${H} L0 ${H - 120} Q${W * 0.19} ${H - 200} ${W * 0.375} ${H - 80} T${W * 0.75} ${H - 120} T${W} ${H - 60} L${W} ${H} Z`;
-  return `<svg class="world" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  return `<svg class="world" viewBox="${camera(map, map.width / 2, map.height / 2)}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
     <rect width="${W}" height="${H}" fill="${era.palette.bg}"/>
     ${quiet ? '' : `<g stroke="${era.palette.accent2}" stroke-width="0.5" opacity="0.5">${Array.from({ length: Math.ceil(H / 50) }, (_, i) => `<line x1="0" y1="${i * 50}" x2="${W}" y2="${i * 50}"/>`).join('')}${Array.from({ length: Math.ceil(W / 50) }, (_, i) => `<line x1="${i * 50}" y1="0" x2="${i * 50}" y2="${H}"/>`).join('')}</g>`}
     <path d="${ridge(150, 40)}" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/>
@@ -46,6 +59,17 @@ function worldSvg(map: MapDef, era: EraDef, flags: string[], nodes: { n: MapNode
   </svg>`;
 }
 
+/** The whole world at a glance: every node as a dot, the party as a ring, the camera as a frame. */
+function minimapSvg(map: MapDef, era: EraDef, nodes: { n: MapNode; ok: boolean }[]): string {
+  return `<svg class="minimap" viewBox="0 0 ${map.width} ${map.height}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="${map.width}" height="${map.height}" fill="${era.palette.bg}" stroke="${era.palette.ink}" stroke-width="8" opacity="0.9"/>
+    ${map.roads.map((r) => `<path d="M${r[0]} ${r[1]} ${r.slice(2).map((v, i) => (i % 2 === 0 ? `L${v}` : ` ${v}`)).join('')}" fill="none" stroke="${era.palette.ink}" stroke-width="6" opacity="0.35"/>`).join('')}
+    ${nodes.filter(({ n }) => n.kind === 'location').map(({ n }) => `<circle cx="${n.x}" cy="${n.y}" r="26" fill="${era.palette.accent}"/>`).join('')}
+    <rect id="mini-view" x="0" y="0" width="0" height="0" fill="none" stroke="${era.palette.ink}" stroke-width="10"/>
+    <circle id="mini-token" cx="0" cy="0" r="40" fill="none" stroke="${era.palette.accent2}" stroke-width="14"/>
+  </svg>`;
+}
+
 export function mapScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {
   const { content, store, input } = ctx;
   const map = mapFor(content, state.era);
@@ -62,6 +86,7 @@ export function mapScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
     ${worldSvg(map, era, flags, nodes)}
     <div class="hud panel"><div class="eyebrow">${esc(era.id)} · ${esc(era.name)}</div><h2 style="font-size:20px">${esc(map.name)}</h2><p class="small">Walk with the left stick or WASD. Dashed regions are wilds: something may find you there, and the Scan card lets you skip it.</p></div>
     <div class="party-mini">${partyStrip(ctx, state)}</div>
+    <div class="minimap-panel panel">${minimapSvg(map, era, nodes)}</div>
     <div class="near-prompt panel" id="near" hidden></div>
   </section>`);
 
@@ -83,7 +108,17 @@ export function mapScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
   let raf = 0;
   let done = false;
 
-  const place = () => { token.setAttribute('transform', `translate(${x} ${y})`); };
+  const miniView = root.querySelector('#mini-view') as SVGRectElement;
+  const miniToken = root.querySelector('#mini-token') as SVGCircleElement;
+  const place = () => {
+    token.setAttribute('transform', `translate(${x} ${y})`);
+    const box = camera(map, x, y);
+    svg.setAttribute('viewBox', box);
+    const [vx, vy, vw, vh] = box.split(' ');
+    miniView.setAttribute('x', vx); miniView.setAttribute('y', vy);
+    miniView.setAttribute('width', vw); miniView.setAttribute('height', vh);
+    miniToken.setAttribute('cx', String(x)); miniToken.setAttribute('cy', String(y));
+  };
   const inZone = () => map.zones.find((z) => x >= z.x && x <= z.x + z.w && y >= z.y && y <= z.y + z.h) ?? null;
   let primed = false;
   const updateNear = () => {

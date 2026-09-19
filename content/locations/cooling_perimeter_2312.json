@@ -1,0 +1,46 @@
+{
+  "id": "cooling_perimeter_2312",
+  "name": "Cooling Perimeter",
+  "kind": "waypoint",
+  "era": "2312",
+  "site": "perimeter",
+  "type": "Wilds",
+  "art": "2312_cooling_perimeter",
+  "description": "Cyan service pipes across a white plain, patrolled on a pattern that predates everyone walking it. The rarest Signal parts in the world are lying about out here because nobody is allocated to pick them up.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2312_cooling_perimeter:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2312_cooling_perimeter:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2312_cooling_perimeter:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2312_cooling_perimeter:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "snow"
+  },
+  "music": "hub_2312",
+  "npcs": [],
+  "quests": [],
+  "encounters": [
+    "perimeter_2312_patrol"
+  ],
+  "links": [],
+  "timeLinks": []
+}

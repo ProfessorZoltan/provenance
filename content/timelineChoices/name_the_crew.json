@@ -1,0 +1,14 @@
+{
+  "id": "name_the_crew",
+  "era": "2031",
+  "site": "workcamp",
+  "name": "File the second column",
+  "ownershipDelta": 10,
+  "syncDelta": 0,
+  "flags": [
+    "crewNamed"
+  ],
+  "partyEffects": [],
+  "lean": "commons",
+  "summary": "Four hundred and six names go into the public record as the people who built the Basin. Two hundred and eighty years later they are cast into a plaque at the service gate, and nobody alive knows why it is there."
+}

@@ -1,0 +1,47 @@
+{
+  "id": "ash_camp_2148",
+  "name": "Ash Camp",
+  "kind": "waypoint",
+  "era": "2148",
+  "site": "ashcamp",
+  "type": "Faction hub",
+  "art": "2148_ash_camp",
+  "description": "Barricades, a stripped carrier and forge fires that have not gone out in twenty years. Dax grew up eating on that carrier's bonnet.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2148_ash_camp:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2148_ash_camp:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2148_ash_camp:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2148_ash_camp:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "ash"
+  },
+  "music": "hub_2148",
+  "npcs": [
+    "ash_smith"
+  ],
+  "quests": [],
+  "encounters": [],
+  "shop": "ash_camp",
+  "links": [],
+  "timeLinks": []
+}

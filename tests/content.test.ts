@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { NPC_NAMES } from '../src/core/reducer';
 import { content } from './helpers';
+import hubSource from '../src/ui/screens/hub.ts?raw';
 
 describe('content', () => {
-  it('covers four eras, five party members and every enemy family', () => {
-    expect(Object.keys(content.characters).sort()).toEqual(['dax', 'ilo9', 'mara', 'player', 'wren']);
+  it('covers four eras, six party members and every enemy family', () => {
+    expect(Object.keys(content.characters).sort()).toEqual(['dax', 'hale', 'ilo9', 'mara', 'player', 'wren']);
     expect([...new Set(Object.values(content.locations).map((l) => l.era))].sort()).toEqual(['2031', '2064', '2148', '2312']);
     const families = new Set(Object.values(content.enemies).map((e) => e.family));
     expect([...families].sort()).toEqual(['construct', 'drone', 'echo', 'warden']);
@@ -16,8 +17,8 @@ describe('content', () => {
     }
   });
 
-  it('gives both Deep Sites a stop in all four eras, each reachable from the others', () => {
-    for (const site of ['kell', 'halden']) {
+  it('gives every Deep Site a stop in all four eras, each reachable from the others', () => {
+    for (const site of ['kell', 'halden', 'basin']) {
       const stops = Object.values(content.locations).filter((l) => l.kind === 'deepSite' && l.site === site);
       expect(stops.map((s) => s.era).sort(), site).toEqual(['2031', '2064', '2148', '2312']);
       for (const s of stops) {
@@ -115,5 +116,50 @@ describe('presentation of people', () => {
     speakers.delete('narrator');
     const unnamed = [...speakers].filter((s) => !NPC_NAMES[s] && !content.characters[s]);
     expect(unnamed, `these would show as raw ids: ${unnamed.join(', ')}`).toEqual([]);
+  });
+});
+
+describe('no dead ends', () => {
+  it('never puts a condition node behind a fight the party might not be able to win', () => {
+    // An Echo answers only Chronal damage, so an encounter holding one must not be the only
+    // source of a flag anything else depends on.
+    const echoFights = new Set(Object.values(content.encounters)
+      .filter((e) => e.enemies.some((g) => content.enemies[g.enemy].family === 'echo'))
+      .flatMap((e) => e.rewardFlags ?? []));
+    const conditionFlags = Object.values(content.nodes)
+      .filter((n) => n.type === 'condition' && n.condition?.startsWith('flag:'))
+      .map((n) => n.condition!.slice('flag:'.length));
+    const dialogueFlags = new Set(Object.values(content.dialogues).flatMap((d) => d.lines.flatMap(
+      (l) => [...(l.setFlags ?? []), ...(l.choices ?? []).flatMap((c) => c.setFlags ?? [])])));
+    const questFlags = new Set(Object.values(content.quests).flatMap((q) => q.rewards.flags));
+    const safeFights = new Set(Object.values(content.encounters)
+      .filter((e) => !e.enemies.some((g) => content.enemies[g.enemy].family === 'echo'))
+      .flatMap((e) => e.rewardFlags ?? []));
+    for (const flag of conditionFlags) {
+      const reachable = dialogueFlags.has(flag) || questFlags.has(flag) || safeFights.has(flag)
+        || Object.values(content.timelineChoices).some((c) => c.flags.includes(flag));
+      expect(reachable, `${flag} is only reachable through an Echo fight`).toBe(true);
+      void echoFights;
+    }
+  });
+
+  it('gives every recruitable character a way into the party', () => {
+    const recruits = new Set(Object.values(content.dialogues).flatMap((d) => d.lines.flatMap(
+      (l) => [l.action, ...(l.choices ?? []).map((c) => c.action)])).filter((a): a is string => !!a)
+      .filter((a) => a.startsWith('recruit:')).map((a) => a.slice('recruit:'.length)));
+    for (const id of Object.keys(content.characters)) {
+      if (['player', 'wren', 'dax'].includes(id)) continue; // Act 1, always.
+      expect(recruits.has(id), `${id} can never be recruited`).toBe(true);
+    }
+  });
+});
+
+describe('site-specific presentation', () => {
+  it('names the way down at every Deep Site rather than talking about a chapel everywhere', () => {
+    const sites = new Set(Object.values(content.locations).filter((l) => l.kind === 'deepSite').map((l) => l.site));
+    const labels = [...hubSource.matchAll(/^ {2}(\w+): '([^']+)',$/gm)].reduce<Record<string, string>>(
+      (acc, m) => ({ ...acc, [m[1]]: m[2] }), {});
+    for (const site of sites) expect(labels[site], `${site} has no way-down label`).toBeTruthy();
+    expect(new Set(Object.values(labels)).size, 'each site describes its own descent').toBe(Object.keys(labels).length);
   });
 });

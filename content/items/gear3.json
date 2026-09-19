@@ -1,0 +1,65 @@
+[
+  {
+    "id": "survey_optic",
+    "name": "Survey Optic",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2031",
+    "stats": {
+      "signal": 11,
+      "noise": 4
+    },
+    "description": "A theodolite lens off a Basin work camp, ground down and re-mounted. +11 Signal, +4 Noise."
+  },
+  {
+    "id": "basin_coil",
+    "name": "Aisle Coil",
+    "kind": "gear",
+    "slot": "weapon",
+    "era": "2064",
+    "stats": {
+      "signal": 14,
+      "grit": 4
+    },
+    "description": "Superconducting winding pulled from a hot aisle. +14 Signal, +4 Grit."
+  },
+  {
+    "id": "coolant_weave",
+    "name": "Coolant Weave",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2312",
+    "stats": {
+      "resolve": 34,
+      "noise": 8
+    },
+    "description": "Field-crew lining, rated for a steam tower. +34 Resolve, +8 Noise."
+  },
+  {
+    "id": "hale_rifle",
+    "name": "Ridge Rifle",
+    "kind": "gear",
+    "slot": "weapon",
+    "era": "2148",
+    "onlyFor": [
+      "hale"
+    ],
+    "stats": {
+      "noise": 16,
+      "signal": 8
+    },
+    "description": "Eleven days on a ridge and one working sight. +16 Noise, +8 Signal."
+  },
+  {
+    "id": "ash_plate",
+    "name": "Ash Camp Plate",
+    "kind": "gear",
+    "slot": "gear",
+    "era": "2148",
+    "stats": {
+      "grit": 13,
+      "resolve": 18
+    },
+    "description": "Carrier armour cut down by somebody who had no torch and plenty of time. +13 Grit, +18 Resolve."
+  }
+]

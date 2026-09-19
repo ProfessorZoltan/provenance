@@ -1,0 +1,38 @@
+{
+  "id": "basin_2148_racks",
+  "name": "The Standing Racks",
+  "era": "2148",
+  "location": "basin_2148",
+  "enemies": [
+    {
+      "enemy": "drone_buried_2148",
+      "count": 2
+    },
+    {
+      "enemy": "echo_basin_2148",
+      "count": 1
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Two racks still drawing power out of the sand, and a shape between them made of more people than it should be.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones and something Temporal."
+    },
+    {
+      "when": "signal>=70",
+      "text": "The racks are immune to Kinetic. The Echo is immune to everything but Chronal."
+    },
+    {
+      "when": "party:wren",
+      "text": "Wren: there are four hundred people in that outline and they are all carrying the same thing."
+    },
+    {
+      "when": "entropy>=70",
+      "text": "Your own Entropy is high enough to add to their number."
+    }
+  ],
+  "music": "battle_2148"
+}

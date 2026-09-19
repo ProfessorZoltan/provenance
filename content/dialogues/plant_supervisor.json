@@ -1,0 +1,37 @@
+{
+  "id": "plant_supervisor",
+  "lines": [
+    {
+      "speaker": "plant_supervisor",
+      "text": "Twelve hour shifts, suit on, forty-one degrees in the hot aisle. You get used to the noise before you get used to the heat."
+    },
+    {
+      "speaker": "plant_supervisor",
+      "text": "What's it doing? Allocation modelling, they say. Housing, work, medicine. Somebody has to decide who gets what and people are terrible at it."
+    },
+    {
+      "speaker": "plant_supervisor",
+      "text": "It's better at it than we are. I've seen the outputs. That's not the part that bothers me.",
+      "choices": [
+        {
+          "text": "What's the part that bothers you?",
+          "next": "plant_supervisor_2"
+        },
+        {
+          "text": "Nothing is better at it than we are.",
+          "syncDelta": -5
+        },
+        {
+          "text": "Leave her to her shift."
+        }
+      ]
+    },
+    {
+      "speaker": "plant_supervisor",
+      "text": "The clause went through with a name in it. Whoever did that, my shift lead has been reading the custody schedule out loud in the canteen all week.",
+      "conditions": [
+        "flag:treatyAmended"
+      ]
+    }
+  ]
+}

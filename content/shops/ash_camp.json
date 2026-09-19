@@ -1,0 +1,35 @@
+{
+  "id": "ash_camp",
+  "name": "The Forge",
+  "era": "2148",
+  "currency": "barter tokens",
+  "stock": [
+    {
+      "item": "ration",
+      "price": 9
+    },
+    {
+      "item": "stim",
+      "price": 17
+    },
+    {
+      "item": "ash_plate",
+      "price": 68
+    },
+    {
+      "item": "ash_blade",
+      "price": 72
+    },
+    {
+      "item": "dax_hammer",
+      "price": 90
+    },
+    {
+      "item": "hale_rifle",
+      "price": 85,
+      "when": [
+        "party:hale"
+      ]
+    }
+  ]
+}

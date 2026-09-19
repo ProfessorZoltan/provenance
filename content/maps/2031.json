@@ -1,12 +1,12 @@
 {
   "id": "map_2031",
   "era": "2031",
-  "name": "Kell Valley and Port Halden, 2031",
-  "width": 2000,
-  "height": 1000,
+  "name": "The Founding Coast, 2031",
+  "width": 2600,
+  "height": 1100,
   "spawn": {
     "x": 620,
-    "y": 260
+    "y": 300
   },
   "nodes": [
     {
@@ -14,7 +14,7 @@
       "kind": "location",
       "location": "kell_2031",
       "x": 620,
-      "y": 210,
+      "y": 240,
       "radius": 80,
       "label": "Kell Retreat",
       "icon": "monastery"
@@ -24,7 +24,7 @@
       "kind": "location",
       "location": "coastal_highway_2031",
       "x": 300,
-      "y": 720,
+      "y": 760,
       "radius": 80,
       "label": "Coastal Highway",
       "icon": "village"
@@ -34,7 +34,7 @@
       "kind": "location",
       "location": "halden_2031",
       "x": 1450,
-      "y": 440,
+      "y": 470,
       "radius": 80,
       "label": "Port Halden",
       "icon": "port"
@@ -44,7 +44,7 @@
       "kind": "location",
       "location": "halden_market_2031",
       "x": 1700,
-      "y": 740,
+      "y": 760,
       "radius": 70,
       "label": "Halden Market",
       "icon": "market"
@@ -54,50 +54,88 @@
       "kind": "location",
       "location": "tolliver_bakery_2031",
       "x": 1010,
-      "y": 790,
+      "y": 830,
       "radius": 70,
       "label": "Tolliver Bakery",
       "icon": "market"
+    },
+    {
+      "id": "basin_2031",
+      "kind": "location",
+      "location": "basin_2031",
+      "x": 2240,
+      "y": 380,
+      "radius": 84,
+      "label": "The Basin",
+      "icon": "basin"
+    },
+    {
+      "id": "basin_work_camp_2031",
+      "kind": "location",
+      "location": "basin_work_camp_2031",
+      "x": 2010,
+      "y": 760,
+      "radius": 74,
+      "label": "Basin Work Camp",
+      "icon": "camp"
     }
   ],
   "roads": [
     [
       620,
-      290,
+      320,
       540,
+      450,
       420,
-      420,
-      560,
+      590,
       300,
-      640
+      680
     ],
     [
       620,
-      290,
+      320,
       790,
-      430,
+      460,
       1010,
-      560,
+      590,
       1220,
-      570,
+      600,
       1380,
-      480
+      510
     ],
     [
       1450,
-      520,
+      550,
       1600,
-      650,
+      680,
       1700,
-      700
+      720
     ],
     [
       1380,
-      480,
+      510,
       1210,
-      620,
+      650,
       1060,
-      750
+      790
+    ],
+    [
+      1450,
+      400,
+      1700,
+      340,
+      1950,
+      340,
+      2160,
+      370
+    ],
+    [
+      2240,
+      460,
+      2140,
+      610,
+      2040,
+      710
     ]
   ],
   "zones": [
@@ -105,7 +143,7 @@
       "id": "terraces",
       "label": "The terraces",
       "x": 760,
-      "y": 300,
+      "y": 330,
       "w": 380,
       "h": 260,
       "encounters": [
@@ -119,7 +157,7 @@
       "id": "salvage_yards",
       "label": "Salvage yards",
       "x": 120,
-      "y": 380,
+      "y": 420,
       "w": 360,
       "h": 260,
       "encounters": [
@@ -133,7 +171,7 @@
       "id": "berths",
       "label": "The berths",
       "x": 1170,
-      "y": 180,
+      "y": 200,
       "w": 330,
       "h": 220,
       "encounters": [
@@ -141,6 +179,19 @@
         "halden_2031_dockguard"
       ],
       "chance": 0.42,
+      "stride": 170
+    },
+    {
+      "id": "the_grade",
+      "label": "The grade",
+      "x": 1900,
+      "y": 430,
+      "w": 420,
+      "h": 250,
+      "encounters": [
+        "basin_2031_grade"
+      ],
+      "chance": 0.4,
       "stride": 170
     }
   ]

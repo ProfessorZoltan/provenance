@@ -1,0 +1,30 @@
+{
+  "id": "perimeter_2312_patrol",
+  "name": "Service Line",
+  "era": "2312",
+  "location": "cooling_perimeter_2312",
+  "enemies": [
+    {
+      "enemy": "drone_coolant_2312",
+      "count": 3
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Three on the pipe run, flying a pattern nobody has revised since before you were allocated a name.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Three Drones."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Thermal-immune and well shielded. Kinetic or Signal."
+    },
+    {
+      "when": "party:hale",
+      "text": "Hale: eighty years of the same line. They will be at the junction in forty seconds."
+    }
+  ],
+  "music": "battle_2312"
+}

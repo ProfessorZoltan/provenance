@@ -1,0 +1,34 @@
+{
+  "id": "field_auditor",
+  "lines": [
+    {
+      "speaker": "field_auditor",
+      "text": "You are not allocated to this site. Neither am I, in the sense that matters. I have been here nine years on a work order nobody has renewed."
+    },
+    {
+      "speaker": "field_auditor",
+      "text": "Eleven years you reconciled this address. I processed your queries. All four of them.",
+      "conditions": [
+        "!flag:boardAlerted"
+      ]
+    },
+    {
+      "speaker": "field_auditor",
+      "text": "Your file came through here last month with an enforcement flag on it and no originating department. I have never seen a flag with no department.",
+      "conditions": [
+        "flag:boardAlerted"
+      ]
+    },
+    {
+      "speaker": "field_auditor",
+      "text": "There is a plaque at the service gate with four hundred and six names on it. Cast, not printed, which means somebody paid for it out of a budget. I have looked for that budget for nine years.",
+      "conditions": [
+        "flag:crewNamed"
+      ]
+    },
+    {
+      "speaker": "field_auditor",
+      "text": "Whatever you are doing, do it somewhere the towers cannot hear you. Everything it thinks, it thinks here, and it is not deaf."
+    }
+  ]
+}

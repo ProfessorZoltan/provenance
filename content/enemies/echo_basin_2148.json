@@ -1,0 +1,37 @@
+{
+  "id": "echo_basin_2148",
+  "name": "Echo of the Crew",
+  "family": "echo",
+  "era": "2148",
+  "machine": false,
+  "stats": {
+    "resolve": 105,
+    "bandwidth": 3,
+    "latency": 20,
+    "signal": 62,
+    "noise": 56,
+    "grit": 22,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "echo_mimic",
+    "echo_fracture"
+  ],
+  "immunities": [
+    "kinetic",
+    "thermal",
+    "signal"
+  ],
+  "perception": 70,
+  "rig": "echo",
+  "xp": 140,
+  "drops": [
+    {
+      "item": "relic_folded_page",
+      "chance": 0.22
+    }
+  ],
+  "flavor": "Forty men in one outline, all of them carrying the same length of rebar."
+}

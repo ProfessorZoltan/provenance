@@ -1,0 +1,64 @@
+{
+  "id": "basin_2312",
+  "name": "Cooling Fields",
+  "kind": "deepSite",
+  "era": "2312",
+  "site": "basin",
+  "type": "Cooling fields",
+  "art": "2312_basin",
+  "description": "White plain, steam towers on a grid, and the quietest place in the Enclave system. Everything the Steward thinks, it thinks here, and the allocation for this site has never once been queried.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "2312_basin:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "2312_basin:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "2312_basin:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "2312_basin:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "snow"
+  },
+  "music": "hub_2312",
+  "npcs": [
+    "field_auditor"
+  ],
+  "quests": [],
+  "encounters": [
+    "basin_2312_fields"
+  ],
+  "links": [],
+  "timeLinks": [
+    "2031",
+    "2064",
+    "2148"
+  ],
+  "storyDialogue": "basin_arrive_2312",
+  "variants": [
+    {
+      "when": [
+        "crewNamed"
+      ],
+      "description": "White plain, steam towers, and a cast plaque at the service gate with four hundred and six names on it. Somebody in 2031 made the payroll a public document and it has been one ever since.",
+      "npcs": [
+        "field_auditor"
+      ]
+    }
+  ]
+}

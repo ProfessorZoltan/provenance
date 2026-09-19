@@ -132,6 +132,11 @@ export const NPC_NAMES: Record<string, string> = {
   mattie_tolliver: 'Mattie Tolliver', mattie_tolliver_after: 'Mattie Tolliver',
   tolliver_offer: 'Mattie Tolliver', tolliver_progress: 'Mattie Tolliver', tolliver_complete: 'Mattie Tolliver',
   safehouse_keeper: 'The Keeper', stacks_swimmer: 'The Swimmer', memorial_docent: 'The Docent',
+  // The Basin.
+  hale: 'Tomas Hale', hale_ridge: 'Tomas Hale', hale_count: 'Tomas Hale',
+  site_engineer: 'Site Engineer', plant_supervisor: 'Plant Supervisor', plant_supervisor_2: 'Plant Supervisor',
+  camp_clerk: 'Camp Clerk', camp_clerk_offer: 'Camp Clerk', camp_clerk_progress: 'Camp Clerk', camp_clerk_complete: 'Camp Clerk',
+  ash_smith: 'The Smith', fens_salvager: 'Fens Salvager', field_auditor: 'Field Auditor',
   wren: 'Sister Wren', dax: 'Dax Okonkwo', ade: 'Captain Ade', militia: 'Militia Captain', narrator: '', player: 'The Auditor',
 };
 

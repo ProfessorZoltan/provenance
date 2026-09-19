@@ -1,0 +1,31 @@
+{
+  "id": "basin_arrive_2064",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The Basin, 2064. Blue aisles to the vanishing point, forty-one degrees, and a sound you feel in your sternum rather than hear."
+    },
+    {
+      "speaker": "player",
+      "text": "This is it. Not the senate, not the campus. Whatever is going to be the Steward is running in this room right now, and it is about six months old."
+    },
+    {
+      "speaker": "ilo9",
+      "text": "I would like it recorded that I can feel the shape of this. It is the room I am a copy of a copy of.",
+      "conditions": [
+        "party:ilo9"
+      ]
+    },
+    {
+      "speaker": "mara",
+      "text": "Article nine assigns custody of exactly this. I have been arguing about this building for four years and I have never seen it.",
+      "conditions": [
+        "party:mara"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "Nothing in here is guarded. It does not need to be. Everyone who could reach it has already been paid."
+    }
+  ]
+}

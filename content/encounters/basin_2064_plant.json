@@ -1,0 +1,30 @@
+{
+  "id": "basin_2064_plant",
+  "name": "Plant Floor",
+  "era": "2064",
+  "location": "basin_2064",
+  "enemies": [
+    {
+      "enemy": "drone_aisle_2064",
+      "count": 3
+    }
+  ],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Three runners with right of way, and you in the aisle.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Three Drones."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Shielded. Thermal goes straight through it."
+    },
+    {
+      "when": "party:hale",
+      "text": "Hale: hold one and let the other two come to you."
+    }
+  ],
+  "music": "battle_2064"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "drone_buried_2148",
+  "name": "Buried Rack",
+  "family": "drone",
+  "era": "2148",
+  "machine": true,
+  "stats": {
+    "resolve": 130,
+    "bandwidth": 2,
+    "latency": 46,
+    "signal": 40,
+    "noise": 14,
+    "grit": 48,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 20,
+  "abilities": [
+    "sand_drag",
+    "drone_burn"
+  ],
+  "immunities": [
+    "kinetic"
+  ],
+  "perception": 20,
+  "rig": "drone_sentry_2148",
+  "xp": 118,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.7
+    },
+    {
+      "item": "ash_blade",
+      "chance": 0.12
+    }
+  ],
+  "flavor": "Eighty years of sand over a rack that never stopped drawing power. Kinetic just moves the dune."
+}

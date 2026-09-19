@@ -1,0 +1,51 @@
+[
+  {
+    "id": "drone_swarm",
+    "name": "Swarm",
+    "cost": 1,
+    "damageType": "kinetic",
+    "target": "allEnemies",
+    "formula": "a.noise * 0.35 + 4",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "A survey flight that does not prioritise."
+  },
+  {
+    "id": "coolant_vent",
+    "name": "Coolant Vent",
+    "cost": 2,
+    "damageType": "thermal",
+    "target": "allEnemies",
+    "formula": "a.signal * 0.45 + 9",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "Dumps a heat load into the aisle. Shields do not help."
+  },
+  {
+    "id": "sand_drag",
+    "name": "Sand Drag",
+    "cost": 1,
+    "target": "enemy",
+    "status": {
+      "id": "fear",
+      "turns": 2,
+      "onTarget": true
+    },
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "Buries a foot. Costs the target a thread next turn."
+  },
+  {
+    "id": "foreman_call",
+    "name": "Call It In",
+    "cost": 2,
+    "target": "allAllies",
+    "status": {
+      "id": "inspired",
+      "turns": 3
+    },
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "A crew boss on a radio. Everyone on his side hits harder."
+  }
+]
