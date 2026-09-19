@@ -1,0 +1,18 @@
+{
+  "id": "quiroga_bench_complete",
+  "lines": [
+    {
+      "speaker": "quiroga",
+      "text": "All of it. Every derivation, in order, including the four I was wrong about, which are the useful ones."
+    },
+    {
+      "speaker": "quiroga",
+      "text": "They did not burn these because they are dangerous. They burned them because storage costs money and nobody signed for the crate. That is somehow worse.",
+      "action": "quest:complete:quiroga_bench"
+    },
+    {
+      "speaker": "camp_clerk",
+      "text": "Take the slate too. It was in the crate and it is not on any manifest, so as far as this camp is concerned it does not exist."
+    }
+  ]
+}

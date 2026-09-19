@@ -1,0 +1,24 @@
+{
+  "id": "own_desk",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Fourth floor, the desk by the third window. Your card is dead, the terminal is dark, and the drawer is not locked because nobody has ever locked a drawer in this building."
+    },
+    {
+      "speaker": "player",
+      "text": "My own file. Eleven years, four commendations, and a note from the fourth year saying I ask too many questions about counterparties."
+    },
+    {
+      "speaker": "player",
+      "text": "And an addendum, dated the day I ran, in a hand I do not recognise: QUERY ORIGINATED WITH SUBJECT. NO PRIOR REQUEST ON RECORD.",
+      "setFlags": [
+        "auditedTheAuditor"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "Nobody asked me to look. That is what it means. For two hundred and eighty-one years nobody asked, and then I did, on my own, on a Tuesday."
+    }
+  ]
+}

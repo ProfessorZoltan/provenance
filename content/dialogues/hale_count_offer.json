@@ -1,0 +1,30 @@
+{
+  "id": "hale_count_offer",
+  "lines": [
+    {
+      "speaker": "fens_salvager",
+      "text": "Your shooter has been asking about a number. Four hundred and one."
+    },
+    {
+      "speaker": "fens_salvager",
+      "text": "Everything the Basin washed down comes out here. If there was a list, it is in the water, and so is whoever is carrying it."
+    },
+    {
+      "speaker": "hale",
+      "text": "I have counted them for eleven days and I have not got one name. I would like one name.",
+      "choices": [
+        {
+          "text": "Then we go into the water.",
+          "action": "quest:accept:hale_count"
+        },
+        {
+          "text": "A number is enough, Hale.",
+          "syncDelta": 5
+        },
+        {
+          "text": "Leave it."
+        }
+      ]
+    }
+  ]
+}

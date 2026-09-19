@@ -1,0 +1,16 @@
+{
+  "id": "fence_moro_after",
+  "lines": [
+    {
+      "speaker": "fence_moro",
+      "text": "Row nine is still row nine. Word went round that a lawyer did it, which nobody believes.",
+      "conditions": [
+        "flag:maraSettled"
+      ]
+    },
+    {
+      "speaker": "fence_moro",
+      "text": "Under the waterline, under the glass, under the licensing schedule. Best prices in the city."
+    }
+  ]
+}

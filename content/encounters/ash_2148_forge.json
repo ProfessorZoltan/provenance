@@ -1,0 +1,34 @@
+{
+  "id": "ash_2148_forge",
+  "name": "The Forge Fires",
+  "era": "2148",
+  "location": "ash_camp_2148",
+  "enemies": [
+    {
+      "enemy": "construct_grafted",
+      "count": 1
+    },
+    {
+      "enemy": "warden_2148",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "They have come for the forge, which has been lit for twenty years, which is the entire point of it.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Construct and a human."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Break the shell and the core is a person."
+    },
+    {
+      "when": "party:dax",
+      "text": "Dax: my mother cooked on that forge. Get out of my way."
+    }
+  ],
+  "music": "battle_2148"
+}

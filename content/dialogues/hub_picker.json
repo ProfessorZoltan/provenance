@@ -1,0 +1,20 @@
+{
+  "id": "hub_picker",
+  "lines": [
+    {
+      "speaker": "hub_picker",
+      "text": "Eleven years this place has been shut and the pick list is still running. I come in for the parts and I stay out of aisle nine."
+    },
+    {
+      "speaker": "hub_picker",
+      "text": "Aisle nine is filing. Actual paper filing, under guard, in a distribution warehouse. Ask yourself what gets filed in a shed."
+    },
+    {
+      "speaker": "hub_picker",
+      "text": "You went in. Nine pages, was it? People have been guessing about aisle nine for a decade and it is nine pages.",
+      "conditions": [
+        "flag:readTheCharter"
+      ]
+    }
+  ]
+}

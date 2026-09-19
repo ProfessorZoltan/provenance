@@ -1,0 +1,34 @@
+{
+  "id": "annex_2064_shredder",
+  "name": "The Shredder Room",
+  "era": "2064",
+  "location": "senate_annex_2064",
+  "enemies": [
+    {
+      "enemy": "warden_senate_2064",
+      "count": 1
+    },
+    {
+      "enemy": "drone_gallery_2064",
+      "count": 2
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "Somebody has booked the shredder room for four hours and the booking is under a name that does not work here.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "One human and two Drones."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Shielded drones; the man is not."
+    },
+    {
+      "when": "party:mara",
+      "text": "Mara: that is the registry copy. That is the only registry copy."
+    }
+  ],
+  "music": "battle_2064"
+}

@@ -36,7 +36,9 @@
     "particles": "glint"
   },
   "music": "hub_2064",
-  "npcs": [],
+  "npcs": [
+    "hub_picker"
+  ],
   "quests": [],
   "encounters": [
     "hub_2064_conveyors",

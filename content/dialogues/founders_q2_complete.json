@@ -1,0 +1,15 @@
+{
+  "id": "founders_q2_complete",
+  "lines": [
+    {
+      "speaker": "bar_engineer",
+      "text": "Halo's still up. Half this bar works at Meridian and tonight none of them are going to admit it."
+    },
+    {
+      "speaker": "bar_engineer",
+      "text": "There is a woman here who taught four of us to read a weights file. She will sit with your lot if you ask. That is not nothing; she does not sit with people.",
+      "syncDelta": 5,
+      "action": "quest:complete:founders_halo"
+    }
+  ]
+}

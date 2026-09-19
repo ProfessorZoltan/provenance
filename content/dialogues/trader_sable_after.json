@@ -1,0 +1,16 @@
+{
+  "id": "trader_sable_after",
+  "lines": [
+    {
+      "speaker": "trader_sable",
+      "text": "Your machine used the relay. Half the roofs heard it and nobody knows what it was. Good for trade, oddly.",
+      "conditions": [
+        "flag:ilo9Settled"
+      ]
+    },
+    {
+      "speaker": "trader_sable",
+      "text": "Everything here is weighed. Nothing is bought with money."
+    }
+  ]
+}

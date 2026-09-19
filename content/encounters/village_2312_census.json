@@ -1,0 +1,34 @@
+{
+  "id": "village_2312_census",
+  "name": "The Census Flight",
+  "era": "2312",
+  "location": "kell_village_2312",
+  "enemies": [
+    {
+      "enemy": "drone_scout_2312",
+      "count": 2
+    },
+    {
+      "enemy": "warden_2312",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "The village is counted every night, and tonight the count has arrived early and brought somebody with it.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two machines and a human."
+    },
+    {
+      "when": "signal>=70",
+      "text": "The scouts are unshielded. The Warden is not Signal-touchable."
+    },
+    {
+      "when": "party:wren",
+      "text": "Wren: they have never brought a person before. That is new and it is not good."
+    }
+  ],
+  "music": "battle_2312"
+}

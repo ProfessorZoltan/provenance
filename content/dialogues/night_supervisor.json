@@ -1,0 +1,27 @@
+{
+  "id": "night_supervisor",
+  "lines": [
+    {
+      "speaker": "night_supervisor",
+      "text": "Nights. Somebody has to be allocated to an empty building and it has been me for six years."
+    },
+    {
+      "speaker": "night_supervisor",
+      "text": "Your desk is still yours. Enforcement has been up four times and never once opened the drawer, because opening a drawer is not on anybody's work order."
+    },
+    {
+      "speaker": "night_supervisor",
+      "text": "You cleared the gate drone at Kell village. That went round this office. Nobody said anything out loud and everybody knew by Thursday.",
+      "conditions": [
+        "flag:clearedGate"
+      ]
+    },
+    {
+      "speaker": "night_supervisor",
+      "text": "You outran two on the valley road the night you left. I logged them as a maintenance excursion. It was the only interesting form I have filed in six years.",
+      "conditions": [
+        "flag:outranThem"
+      ]
+    }
+  ]
+}

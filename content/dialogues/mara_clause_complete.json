@@ -1,0 +1,18 @@
+{
+  "id": "mara_clause_complete",
+  "lines": [
+    {
+      "speaker": "mara",
+      "text": "The schedule is void. Not because I argued it, because I read it, and it cites a subsection that was struck at committee and never reinstated."
+    },
+    {
+      "speaker": "mara",
+      "text": "Four years of drafting and the useful skill turned out to be reading. Nobody reads them. That is the whole profession.",
+      "action": "quest:complete:mara_clause"
+    },
+    {
+      "speaker": "fence_moro",
+      "text": "Eleven stalls. You can have anything on mine you like and I will be insulted if you pay."
+    }
+  ]
+}

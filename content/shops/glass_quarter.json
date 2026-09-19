@@ -1,0 +1,31 @@
+{
+  "id": "glass_quarter",
+  "name": "The Quarter Bar",
+  "era": "2064",
+  "currency": "credits",
+  "stock": [
+    {
+      "item": "ration",
+      "price": 16
+    },
+    {
+      "item": "stim",
+      "price": 26
+    },
+    {
+      "item": "glass_optics",
+      "price": 80
+    },
+    {
+      "item": "causeway_coat",
+      "price": 82
+    },
+    {
+      "item": "anchor_charm",
+      "price": 70,
+      "when": [
+        "ownership>=-40"
+      ]
+    }
+  ]
+}

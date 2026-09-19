@@ -1,0 +1,33 @@
+{
+  "id": "ash_smith_after",
+  "lines": [
+    {
+      "speaker": "ash_smith",
+      "text": "Forge is lit, convoy is a story, and the Overload trainer is by the carrier.",
+      "conditions": [
+        "flag:cinderTrainer"
+      ]
+    },
+    {
+      "speaker": "ash_smith",
+      "text": "Go and sit with him. He does not explain twice and he barely explains once.",
+      "conditions": [
+        "flag:cinderTrainer",
+        "!flag:trained:Cinder"
+      ],
+      "choices": [
+        {
+          "text": "Sit with him.",
+          "action": "train:Cinder"
+        },
+        {
+          "text": "Later."
+        }
+      ]
+    },
+    {
+      "speaker": "ash_smith",
+      "text": "Forge has been lit twenty years. Longer than that if you count my mother's, and I do."
+    }
+  ]
+}

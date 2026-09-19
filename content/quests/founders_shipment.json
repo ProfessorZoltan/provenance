@@ -1,0 +1,25 @@
+{
+  "id": "founders_shipment",
+  "name": "The Wrong Shipment",
+  "location": "founders_bar_2031",
+  "giver": "bar_engineer",
+  "step": 1,
+  "description": "A crate came off the campus truck that was not on the campus manifest, and it is sitting behind the Founders' Bar with two prototypes walking around it.",
+  "objectiveEncounter": "founders_2031_shipment",
+  "rewards": {
+    "xp": 70,
+    "currency": 50,
+    "items": [
+      "halo_rig"
+    ],
+    "skillPoints": 0,
+    "flags": [
+      "choirFavour"
+    ]
+  },
+  "dialogue": {
+    "offer": "founders_q1_offer",
+    "inProgress": "founders_q1_progress",
+    "complete": "founders_q1_complete"
+  }
+}

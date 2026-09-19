@@ -1,0 +1,28 @@
+{
+  "id": "hale_count",
+  "name": "Four Hundred and One",
+  "location": "the_fens_2148",
+  "giver": "fens_salvager",
+  "step": 9,
+  "requires": [
+    "party:hale"
+  ],
+  "description": "Hale counted four hundred and one shapes out of the Basin sand and never once got a name. The Fens salvager knows where the crew list ended up.",
+  "objectiveEncounter": "fens_2148_count",
+  "rewards": {
+    "xp": 120,
+    "currency": 80,
+    "items": [
+      "hale_rifle"
+    ],
+    "skillPoints": 1,
+    "flags": [
+      "haleSettled"
+    ]
+  },
+  "dialogue": {
+    "offer": "hale_count_offer",
+    "inProgress": "hale_count_progress",
+    "complete": "hale_count_complete"
+  }
+}

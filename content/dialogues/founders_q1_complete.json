@@ -1,0 +1,15 @@
+{
+  "id": "founders_q1_complete",
+  "lines": [
+    {
+      "speaker": "bar_engineer",
+      "text": "Serial numbers off the bench, not off a line. Somebody is walking prototypes out of Meridian in ones and twos."
+    },
+    {
+      "speaker": "bar_engineer",
+      "text": "Take the halo rig. It is the second one I built and the first one that works.",
+      "syncDelta": 5,
+      "action": "quest:complete:founders_shipment"
+    }
+  ]
+}

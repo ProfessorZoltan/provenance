@@ -1,0 +1,30 @@
+{
+  "id": "quiroga_bench_offer",
+  "lines": [
+    {
+      "speaker": "camp_clerk",
+      "text": "There is a trailer on the north side with a crate of notebooks in it that came down from the campus and never went back."
+    },
+    {
+      "speaker": "camp_clerk",
+      "text": "Foreman has a work order to burn them Friday. I asked why and was told it was a work order, which is not an answer, which is why I am telling you."
+    },
+    {
+      "speaker": "quiroga",
+      "text": "That is four years of my handwriting. They took the bench notes when they took the vote.",
+      "choices": [
+        {
+          "text": "They are not burning those.",
+          "action": "quest:accept:quiroga_bench"
+        },
+        {
+          "text": "You remember the work. Let the paper go.",
+          "syncDelta": -5
+        },
+        {
+          "text": "Not our trailer."
+        }
+      ]
+    }
+  ]
+}

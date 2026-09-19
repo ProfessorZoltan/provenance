@@ -1,0 +1,28 @@
+{
+  "id": "quiroga_bench",
+  "name": "Her Own Bench",
+  "location": "basin_work_camp_2031",
+  "giver": "camp_clerk",
+  "step": 9,
+  "requires": [
+    "party:quiroga"
+  ],
+  "description": "Four years of Quiroga's working notes went to the Basin site in a crate and were never sent back. Somebody has now been told to burn them.",
+  "objectiveEncounter": "camp_2031_bench",
+  "rewards": {
+    "xp": 120,
+    "currency": 80,
+    "items": [
+      "quiroga_slate"
+    ],
+    "skillPoints": 1,
+    "flags": [
+      "quirogaSettled"
+    ]
+  },
+  "dialogue": {
+    "offer": "quiroga_bench_offer",
+    "inProgress": "quiroga_bench_progress",
+    "complete": "quiroga_bench_complete"
+  }
+}

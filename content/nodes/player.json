@@ -330,5 +330,59 @@
     "description": "Every battle opens with 6 Tempo. Only in 2031, before any of it was written down.",
     "row": 4,
     "col": 2
+  },
+  {
+    "id": "p_charter",
+    "character": "player",
+    "trunk": "weaver",
+    "name": "Read the Charter",
+    "type": "condition",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "condition": "flag:readTheCharter",
+    "conditionHint": "Find the charter's physical copy in the Meridian Distribution Hub, 2064.",
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "signal",
+        "delta": 12
+      },
+      {
+        "kind": "passive",
+        "passive": "markDuration",
+        "value": 1
+      }
+    ],
+    "description": "Nine pages and five signatures, read end to end. Marks last a turn longer, because you know what you are looking for.",
+    "row": 5,
+    "col": 1
+  },
+  {
+    "id": "p_audited",
+    "character": "player",
+    "trunk": "anchor",
+    "name": "Audited the Auditor",
+    "type": "condition",
+    "cost": 2,
+    "requires": [],
+    "excludes": [],
+    "condition": "flag:auditedTheAuditor",
+    "conditionHint": "Go back to your own desk in the Allocation Office and pull your own file.",
+    "effects": [
+      {
+        "kind": "stat",
+        "stat": "continuity",
+        "delta": 20
+      },
+      {
+        "kind": "passive",
+        "passive": "tempoOnMark",
+        "value": 1
+      }
+    ],
+    "description": "Your own file, your own commendations, and a note from the fourth year. Marking an enemy now returns Tempo.",
+    "row": 5,
+    "col": 2
   }
 ]

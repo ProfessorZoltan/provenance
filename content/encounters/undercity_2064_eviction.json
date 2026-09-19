@@ -1,0 +1,30 @@
+{
+  "id": "undercity_2064_eviction",
+  "name": "The Clause Nobody Read",
+  "era": "2064",
+  "location": "undercity_bazaar_2064",
+  "enemies": [
+    {
+      "enemy": "warden_2064",
+      "count": 2
+    },
+    {
+      "enemy": "drone_sentry_2064",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "A concession crew clearing a row of stalls under a schedule with a number and no name on it.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two humans and a Drone."
+    },
+    {
+      "when": "party:mara",
+      "text": "Mara: that schedule cites my article. My article. Word for word."
+    }
+  ],
+  "music": "battle_2064"
+}

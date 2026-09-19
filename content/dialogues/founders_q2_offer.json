@@ -1,0 +1,26 @@
+{
+  "id": "founders_q2_offer",
+  "lines": [
+    {
+      "speaker": "bar_engineer",
+      "text": "They have sent a frame for the halo. An actual frame, for a thing made of scrap that draws a picture on a ceiling."
+    },
+    {
+      "speaker": "bar_engineer",
+      "text": "It is not about the halo. It is about whether a room full of engineers gets to build something nobody has approved.",
+      "choices": [
+        {
+          "text": "Then it stays up.",
+          "action": "quest:accept:founders_halo"
+        },
+        {
+          "text": "It is a light on a ceiling.",
+          "syncDelta": -5
+        },
+        {
+          "text": "Let them have it."
+        }
+      ]
+    }
+  ]
+}

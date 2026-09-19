@@ -1,0 +1,15 @@
+{
+  "id": "ash_q2_complete",
+  "lines": [
+    {
+      "speaker": "ash_smith",
+      "text": "Still lit. Twenty years and one more night."
+    },
+    {
+      "speaker": "ash_smith",
+      "text": "Take the hammer; it was Okonkwo's grandmother's. And there is a man here who teaches people to hit things that are harder than the thing they are hitting with. He will sit with you now.",
+      "syncDelta": -5,
+      "action": "quest:complete:ash_forge"
+    }
+  ]
+}

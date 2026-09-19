@@ -1,0 +1,30 @@
+{
+  "id": "glass_2064_table",
+  "name": "The Table by the Window",
+  "era": "2064",
+  "location": "glass_quarter_2064",
+  "enemies": [
+    {
+      "enemy": "warden_senate_2064",
+      "count": 1
+    },
+    {
+      "enemy": "drone_gallery_2064",
+      "count": 2
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "Somebody at the concession has recognised a face that has been dead for thirty-three years.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "One human and two Drones."
+    },
+    {
+      "when": "party:strand_young",
+      "text": "Strand: they think I am a forgery of myself. It is the correct conclusion and I resent it."
+    }
+  ],
+  "music": "battle_2064"
+}

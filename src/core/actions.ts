@@ -21,6 +21,8 @@ export type Action =
   | { type: 'BATTLE_REWIND' }
   | { type: 'BATTLE_FORK'; actor: string; ability: string; target: string | null }
   | { type: 'BATTLE_FORK_DISCARD' }
+  | { type: 'BATTLE_COLLAPSE' }
+  | { type: 'BATTLE_ECHO'; character: string }
   | { type: 'BATTLE_ENEMY_ACT' }
   | { type: 'BATTLE_FINISH' }
   | { type: 'REST' }

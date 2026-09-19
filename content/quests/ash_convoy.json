@@ -1,0 +1,25 @@
+{
+  "id": "ash_convoy",
+  "name": "The Convoy",
+  "location": "ash_camp_2148",
+  "giver": "ash_smith",
+  "step": 1,
+  "description": "A Board convoy runs the ridge road every eight days with four crates on it and nobody has ever stopped one.",
+  "objectiveEncounter": "ash_2148_convoy",
+  "rewards": {
+    "xp": 90,
+    "currency": 60,
+    "items": [
+      "ash_plate"
+    ],
+    "skillPoints": 0,
+    "flags": [
+      "cinderFavour"
+    ]
+  },
+  "dialogue": {
+    "offer": "ash_q1_offer",
+    "inProgress": "ash_q1_progress",
+    "complete": "ash_q1_complete"
+  }
+}

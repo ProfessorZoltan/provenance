@@ -1,0 +1,30 @@
+{
+  "id": "stacks_2148_relay",
+  "name": "The Relay",
+  "era": "2148",
+  "location": "the_stacks_2148",
+  "enemies": [
+    {
+      "enemy": "drone_derelict_2148",
+      "count": 2
+    },
+    {
+      "enemy": "echo_worn_2148",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "A relay mast on the next roof, still carrying a liturgical channel to nobody.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones and something Temporal."
+    },
+    {
+      "when": "party:ilo9",
+      "text": "ILO-9: that is my channel. I have been the only thing on it for a hundred and sixty years."
+    }
+  ],
+  "music": "battle_2148"
+}

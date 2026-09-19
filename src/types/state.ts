@@ -84,6 +84,11 @@ export interface BattleState {
   rewindsLeft: number;
   rewindPoint: RewindPoint | null;
   fork: ForkPreview | null;
+  /** Collapse: a banked battle state, spent once to resume from instead of losing. */
+  collapsePoint: RewindPoint | null;
+  collapseUsed: boolean;
+  /** Echo: an other-era self assists once per battle. */
+  echoAssistUsed: boolean;
   echoSpawned: boolean;
   usedSignal: boolean;
   story: boolean;

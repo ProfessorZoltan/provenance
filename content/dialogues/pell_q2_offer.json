@@ -1,0 +1,26 @@
+{
+  "id": "pell_q2_offer",
+  "lines": [
+    {
+      "speaker": "pell",
+      "text": "Since you brought the gate drone down they count us every night. Used to be once a quarter and a form."
+    },
+    {
+      "speaker": "pell",
+      "text": "Tonight the count came early and it brought a man with it. That has not happened in my lifetime and my lifetime is most of this village's.",
+      "choices": [
+        {
+          "text": "Then it is the last count.",
+          "action": "quest:accept:village_census"
+        },
+        {
+          "text": "Let them count. A count is only a number.",
+          "syncDelta": 5
+        },
+        {
+          "text": "Not tonight."
+        }
+      ]
+    }
+  ]
+}

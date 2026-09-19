@@ -332,6 +332,10 @@ export interface QuestDef {
   name: string;
   location: string;
   giver: string;
+  /** Position in this giver's chain; they offer the lowest-numbered one still unfinished. */
+  step?: number;
+  /** Conditions that must hold before this step is offered at all. */
+  requires?: string[];
   description: string;
   objectiveEncounter: string;
   rewards: { xp: number; currency: number; items: string[]; skillPoints: number; flags: string[] };
@@ -412,6 +416,8 @@ export interface RulesDef {
   entropyMax: number;
   rewind: { cost: number; entropy: number };
   fork: { cost: number; entropy: number; threadCost: number };
+  echo: { cost: number; entropy: number; turns: number };
+  collapse: { cost: number; entropy: number };
   surprise: { base: number; noiseBelowPerception: number };
   xpPerLevel: number;
   statGrowthPerLevel: number;

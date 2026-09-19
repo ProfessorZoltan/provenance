@@ -154,6 +154,17 @@
     "order": 110
   },
   {
+    "id": "the_hymn",
+    "category": "clues",
+    "title": "One line, wrong, for a century",
+    "detail": "ILO-9 held a liturgical line it had mis-parsed for a hundred and sixty years on trickle power, and kept holding it, because nobody had come to correct it.",
+    "source": "Server Graveyard, 2148",
+    "when": [
+      "flag:heardTheHymn"
+    ],
+    "order": 111
+  },
+  {
     "id": "meridian_campus",
     "category": "places",
     "title": "Meridian Campus",
@@ -183,6 +194,17 @@
     "source": "Kell Retreat, 2031",
     "when": [
       "flag:been:kell_2031"
+    ],
+    "order": 120
+  },
+  {
+    "id": "aurelia_vance",
+    "category": "people",
+    "title": "Aurelia Vance",
+    "detail": "One of the five signatures on the pooling charter, and the only one who argued the clause out loud before signing it anyway.",
+    "source": "Meridian Campus, 2031",
+    "when": [
+      "flag:metVance"
     ],
     "order": 120
   },
@@ -238,6 +260,17 @@
     "source": "Meridian Campus, 2031",
     "when": [
       "flag:charterLeaked"
+    ],
+    "order": 125
+  },
+  {
+    "id": "the_division",
+    "category": "clues",
+    "title": "Forty members, no division",
+    "detail": "The Enabling Act's third reading was carried on the nod. There is no division list, because there was no division: nobody asked for one.",
+    "source": "Capitol Hill division lobby, 2031",
+    "when": [
+      "flag:sawTheDivision"
     ],
     "order": 125
   },
@@ -394,6 +427,17 @@
       "flag:boardAlerted"
     ],
     "order": 190
+  },
+  {
+    "id": "board_enforcement",
+    "category": "clues",
+    "title": "Enforcement with no department",
+    "detail": "After the buyers went on the record, Enclave 7 gained enforcement that no allocation entry pays for. The Board noticed its history being edited.",
+    "source": "Capitol Hill, 2312",
+    "when": [
+      "flag:boardNoticed"
+    ],
+    "order": 191
   },
   {
     "id": "the_basin",

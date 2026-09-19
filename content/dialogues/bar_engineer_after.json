@@ -1,0 +1,33 @@
+{
+  "id": "bar_engineer_after",
+  "lines": [
+    {
+      "speaker": "bar_engineer",
+      "text": "Halo's lit, crate's gone, and the bench trainer is in the corner where she always is.",
+      "conditions": [
+        "flag:choirTrainer"
+      ]
+    },
+    {
+      "speaker": "bar_engineer",
+      "text": "Sit with the trainer. She will not offer twice and she has never offered once before.",
+      "conditions": [
+        "flag:choirTrainer",
+        "!flag:trained:Choir"
+      ],
+      "choices": [
+        {
+          "text": "Sit with her.",
+          "action": "train:Choir"
+        },
+        {
+          "text": "Later."
+        }
+      ]
+    },
+    {
+      "speaker": "bar_engineer",
+      "text": "Everyone in here is for publishing and none of us has a vote. Same as it ever was."
+    }
+  ]
+}

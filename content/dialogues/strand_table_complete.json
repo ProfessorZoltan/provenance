@@ -1,0 +1,18 @@
+{
+  "id": "strand_table_complete",
+  "lines": [
+    {
+      "speaker": "strand_young",
+      "text": "He thought I was a forgery. Somebody wearing a dead founder's face to get into rooms."
+    },
+    {
+      "speaker": "strand_young",
+      "text": "I have spent thirty-three subjective days being told what I become. That is the first time anyone has told me I am a fake, and it was the only one that landed.",
+      "action": "quest:complete:strand_table"
+    },
+    {
+      "speaker": "player",
+      "text": "You are not a fake. You are the original, and that is the part that has to be worth something."
+    }
+  ]
+}

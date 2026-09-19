@@ -1,0 +1,28 @@
+{
+  "id": "founders_halo",
+  "name": "Under the Halo",
+  "location": "founders_bar_2031",
+  "giver": "bar_engineer",
+  "step": 2,
+  "requires": [
+    "flag:choirFavour"
+  ],
+  "description": "Somebody at Meridian has decided the signal halo over the bar is a liability and sent a frame to take it down.",
+  "objectiveEncounter": "founders_2031_halo",
+  "rewards": {
+    "xp": 90,
+    "currency": 60,
+    "items": [
+      "relic_bench_tape"
+    ],
+    "skillPoints": 1,
+    "flags": [
+      "choirTrainer"
+    ]
+  },
+  "dialogue": {
+    "offer": "founders_q2_offer",
+    "inProgress": "founders_q2_progress",
+    "complete": "founders_q2_complete"
+  }
+}

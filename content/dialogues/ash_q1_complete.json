@@ -1,0 +1,19 @@
+{
+  "id": "ash_q1_complete",
+  "lines": [
+    {
+      "speaker": "ash_smith",
+      "text": "Four crates. Ration packs, medical, and one crate of nothing but forms. They were moving paperwork under armed guard."
+    },
+    {
+      "speaker": "player",
+      "text": "Of course they were. The paperwork is the thing that matters. It always was."
+    },
+    {
+      "speaker": "ash_smith",
+      "text": "Take the plate. Cut down off a carrier by somebody who had no torch and plenty of time.",
+      "syncDelta": -5,
+      "action": "quest:complete:ash_convoy"
+    }
+  ]
+}

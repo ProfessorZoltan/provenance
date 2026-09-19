@@ -1,0 +1,26 @@
+{
+  "id": "ash_q1_offer",
+  "lines": [
+    {
+      "speaker": "ash_smith",
+      "text": "Convoy runs the ridge every eight days. Four crates. Nobody has stopped one because nobody has had four people who could stand up at once."
+    },
+    {
+      "speaker": "ash_smith",
+      "text": "You have four people who can stand up at once.",
+      "choices": [
+        {
+          "text": "Then we stop the convoy.",
+          "action": "quest:accept:ash_convoy"
+        },
+        {
+          "text": "Stopping it gets this camp burned.",
+          "syncDelta": 5
+        },
+        {
+          "text": "Not our road."
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import type { ContentDB, DialogueLine, EraId, LocationDef, LocationVariant } from '../types/content';
 import type { CharacterState, GameState, Screen } from '../types/state';
 import type { Action } from './actions';
-import { createBattle, endTurn, enemyTurn, fork, resolveAbility, rewind, useItem } from './battle/battle';
+import { collapse, createBattle, echoAssist, endTurn, enemyTurn, fork, resolveAbility, rewind, useItem } from './battle/battle';
 import { evalAll } from './conditions';
 import { buildScan, conditionContext, rollEncounter } from './encounter';
 import { seedFromString } from './rng';
@@ -105,14 +105,19 @@ export function activeVariant(content: ContentDB, state: GameState, loc: Locatio
 
 /** Which dialogue an NPC opens right now. Quest givers route by quest status. */
 export function npcDialogue(content: ContentDB, state: GameState, npcId: string): string {
-  const quest = Object.values(content.quests).find((q) => q.giver === npcId);
-  if (quest) {
+  // A giver may hold several quests in order; they offer the first that is not finished, so a
+  // faction hub can run a chain through one person.
+  const mine = Object.values(content.quests).filter((q) => q.giver === npcId).sort((a, b) => (a.step ?? 0) - (b.step ?? 0));
+  const ctx = conditionContext(content, state);
+  for (const quest of mine) {
     const status = state.quests[quest.id] ?? 'available';
+    if (status === 'complete') continue;
+    if (status === 'available' && !evalAll(quest.requires, ctx)) continue;
     if (status === 'available') return quest.dialogue.offer;
     if (status === 'active') return quest.dialogue.inProgress;
     if (status === 'readyToTurnIn') return quest.dialogue.complete;
-    if (content.dialogues[`${npcId}_after`]) return `${npcId}_after`;
   }
+  if (mine.length && content.dialogues[`${npcId}_after`]) return `${npcId}_after`;
   return npcId;
 }
 
@@ -157,6 +162,7 @@ export const NPC_NAMES: Record<string, string> = {
   the_steward: 'The Steward', bar_engineer: 'A Founders\' Bar engineer',
   // Act 3.
   the_chair: 'The Fourth Chair', the_chair_itself: 'The Fourth Chair',
+  night_supervisor: 'Night Supervisor', hub_picker: 'The Picker', perimeter_scav: 'Perimeter Scavenger',
   wren: 'Sister Wren', dax: 'Dax Okonkwo', ade: 'Captain Ade', militia: 'Militia Captain', narrator: '', player: 'The Auditor',
 };
 
@@ -210,6 +216,18 @@ function runAction(content: ContentDB, state: GameState, action: string, returnT
       throw new Error(`Unknown quest action ${action}`);
     case 'recruit':
       return reduce(content, state, { type: 'RECRUIT', character: a });
+    case 'train': {
+      // A trunk trainer pays out once, to everyone standing there.
+      if (state.flags.includes(`trained:${a}`)) return state;
+      const party = { ...state.party };
+      for (const id of state.activeParty) {
+        const cs = party[id];
+        if (cs) party[id] = { ...cs, skillPoints: cs.skillPoints + 1 };
+      }
+      let s = addFlags({ ...state, party }, [`trained:${a}`]);
+      s = journal(s, `Trained at the ${a} hub. A skill point for everyone who turned up.`);
+      return s;
+    }
     case 'travel':
       // A way on that is not a road: the stack under the core, and anything like it later.
       return arrive(content, { ...state, dialogue: null }, a);
@@ -530,6 +548,19 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
     case 'BATTLE_FORK':
       if (!state.battle) throw new Error('No battle');
       return { ...state, battle: fork(state.battle, action.actor, action.ability, action.target, content) };
+    case 'BATTLE_COLLAPSE':
+      if (!state.battle) throw new Error('No battle');
+      return { ...state, battle: collapse(state.battle, content) };
+    case 'BATTLE_ECHO': {
+      if (!state.battle) throw new Error('No battle');
+      const def = content.characters[action.character];
+      if (!def) throw new Error('Unknown character');
+      // An Echo steps out of an era the party has actually been to.
+      const era = state.world.visitedEras.includes(def.homeEra) ? def.homeEra
+        : [...state.world.visitedEras].reverse().find((e) => e !== state.era);
+      if (!era) throw new Error('No other era has been visited yet');
+      return { ...state, battle: echoAssist(state.battle, action.character, content, era as EraId) };
+    }
     case 'BATTLE_FORK_DISCARD':
       // The Tempo is already spent: looking is what it bought.
       if (!state.battle) throw new Error('No battle');

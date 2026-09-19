@@ -1,0 +1,33 @@
+{
+  "id": "annex_staffer_after",
+  "lines": [
+    {
+      "speaker": "annex_staffer",
+      "text": "Register's archived, shredder room's a cupboard again, and the clerk is in on Thursdays.",
+      "conditions": [
+        "flag:commonsTrainer"
+      ]
+    },
+    {
+      "speaker": "annex_staffer",
+      "text": "Sit with her. Four years of drafting, and she can teach a person to read a room in about an hour.",
+      "conditions": [
+        "flag:commonsTrainer",
+        "!flag:trained:Commons"
+      ],
+      "choices": [
+        {
+          "text": "Sit with her.",
+          "action": "train:Commons"
+        },
+        {
+          "text": "Later."
+        }
+      ]
+    },
+    {
+      "speaker": "annex_staffer",
+      "text": "Reform office. Nine of us, four years, and the number of tabled amendments is now two."
+    }
+  ]
+}

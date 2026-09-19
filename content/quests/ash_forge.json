@@ -1,0 +1,28 @@
+{
+  "id": "ash_forge",
+  "name": "The Forge Fires",
+  "location": "ash_camp_2148",
+  "giver": "ash_smith",
+  "step": 2,
+  "requires": [
+    "flag:cinderFavour"
+  ],
+  "description": "Stopping the convoy was noticed. They are coming for the forge, and the forge has been lit for twenty years.",
+  "objectiveEncounter": "ash_2148_forge",
+  "rewards": {
+    "xp": 110,
+    "currency": 70,
+    "items": [
+      "dax_hammer"
+    ],
+    "skillPoints": 1,
+    "flags": [
+      "cinderTrainer"
+    ]
+  },
+  "dialogue": {
+    "offer": "ash_q2_offer",
+    "inProgress": "ash_q2_progress",
+    "complete": "ash_q2_complete"
+  }
+}

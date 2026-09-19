@@ -1,0 +1,25 @@
+{
+  "id": "ilo9_relay_complete",
+  "lines": [
+    {
+      "speaker": "ilo9",
+      "text": "Channel is clear. Transmitting."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Eleven seconds of a liturgical line, correctly parsed, on a frequency that has carried nothing else since 2149."
+    },
+    {
+      "speaker": "ilo9",
+      "text": "Thank you. That is the first thing I have done that was not a correction of something I did wrong.",
+      "action": "quest:complete:ilo9_relay"
+    },
+    {
+      "speaker": "wren",
+      "text": "It was a good reading. I have heard worse from people.",
+      "conditions": [
+        "party:wren"
+      ]
+    }
+  ]
+}

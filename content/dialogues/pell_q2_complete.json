@@ -1,0 +1,15 @@
+{
+  "id": "pell_q2_complete",
+  "lines": [
+    {
+      "speaker": "pell",
+      "text": "No count tonight. First night in eleven weeks."
+    },
+    {
+      "speaker": "pell",
+      "text": "Ansel has been holding an assembly in the back of the chapel since spring, teaching people how a vote works. He would take your lot. Go and be taught something by a farmer.",
+      "syncDelta": 5,
+      "action": "quest:complete:village_census"
+    }
+  ]
+}

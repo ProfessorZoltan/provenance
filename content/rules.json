@@ -28,5 +28,14 @@
   "armorFactor": 0.2,
   "markBonus": 0.25,
   "activePartyMax": 4,
-  "benchedXpShare": 0.5
+  "benchedXpShare": 0.5,
+  "echo": {
+    "cost": 4,
+    "entropy": 12,
+    "turns": 1
+  },
+  "collapse": {
+    "cost": 5,
+    "entropy": 25
+  }
 }

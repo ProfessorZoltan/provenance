@@ -1,0 +1,16 @@
+{
+  "id": "quarter_regular_after",
+  "lines": [
+    {
+      "speaker": "quarter_regular",
+      "text": "Whatever that was in the vestibule, the bar has decided not to have seen it.",
+      "conditions": [
+        "flag:strandSettled"
+      ]
+    },
+    {
+      "speaker": "quarter_regular",
+      "text": "Sit. Nobody up here discusses the treaty, which is how you can tell everybody up here wrote part of it."
+    }
+  ]
+}

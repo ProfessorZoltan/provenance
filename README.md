@@ -76,12 +76,13 @@ and removes animation.
 | Piece | Where |
 | --- | --- |
 | Deep Sites: all five, Kell, Port Halden, the Basin, Capitol Hill and Meridian, each across 2031, 2064, 2148 and 2312 | `content/locations/` |
-| Waypoints: twenty, the full set the design doc names | `content/locations/`, `content/shops/` |
+| Waypoints: twenty, the full set the design doc names, each with something on it | `content/locations/`, `content/shops/` |
+| Side quests: fifteen across all four kinds the doc lists, including a two-step chain and a trunk trainer at every faction hub and a personal quest for every optional recruit | `content/quests/` |
 | Party: all eight, the Auditor, Wren, Dax, ILO-9, Mara, Hale, Quiroga and young Strand, five of them by recruitment. Four active, the rest benched at half XP | `content/characters/` |
 | Tech trees: 14 or more nodes each, one condition node, one contradiction pair and per-era nodes | `content/nodes/` |
 | Enemies: thirty-three across four families and four centuries, including Constructs whose shell can be taken off at the seam rather than beaten in | `content/enemies/` |
-| Encounters: fifty-seven, with Scan card, Skip and scripted surprise attacks | `content/encounters/` |
-| Battle: Threads, Slack, Tempo with Rewind and Fork, Entropy with one Echo spawn per fight, Parley, Terms, Settlement and Held Shot | `src/core/battle/battle.ts` |
+| Encounters: sixty-eight, with Scan card, Skip and scripted surprise attacks | `content/encounters/` |
+| Battle: Threads, Slack, all four Tempo abilities (Fork, Rewind, Echo, Collapse), Entropy with one Echo spawn per fight, Parley, Terms, Settlement and Held Shot | `src/core/battle/battle.ts` |
 | Backgrounds: one per location, four parallax layers each, one ambient animation, canvas particles | `src/art/pixel-backgrounds.ts` |
 | Music: four battle pieces and four hub pieces, Tempo-linked layers, Entropy detune | `content/scores/`, `src/audio/engine.ts` |
 | Timeline: twenty-one choices across four eras and eight sites. A later edit at an earlier era erases everything downstream of it at that site | `content/timelineChoices/`, `src/core/timeline.ts` |
@@ -91,7 +92,7 @@ and removes animation.
 | Save: localStorage slot, JSON export and import, last three timeline snapshots | `src/core/save.ts` |
 | Era maps: three regions on one 2600x1100 map per era, with a camera that follows the party, a minimap, roads and encounter zones | `content/maps/`, `src/ui/screens/map.ts` |
 | Prologue: a walkable Allocation Office, the budget-line discovery at the monitor array, and the flight up the valley road. Skippable on a replay | `content/rooms/`, `src/ui/screens/room.ts` |
-| Case log: fifty entries of names, dates, places and clues, written down as they are learned and struck through when the century they came from is rewritten | `content/log/`, `src/ui/screens/log.ts` |
+| Case log: fifty-four entries of names, dates, places and clues, written down as they are learned and struck through when the century they came from is rewritten | `content/log/`, `src/ui/screens/log.ts` |
 | Player manual: in-game screen rendered from the shipped Markdown | `docs/PLAYER_MANUAL.md`, `src/ui/manual.ts` |
 
 ## Architecture
@@ -153,14 +154,14 @@ The design doc left these open; the slice picks a value so the loop is playable.
 
 ## Verified
 
-- `npm test`: 147 tests covering battle determinism, damage type rules, Rewind, Fork, Echo spawn,
+- `npm test`: 156 tests covering battle determinism, damage type rules, Rewind, Fork, Echo spawn,
   surprise attacks, Mara's Terms and Settlement, Hale's Held Shot and Killing Silence, node
   unlocking, timeline propagation across six independent sites, ripple-site state, Ownership-gated
   shop stock, map travel and node gating, save round trip, five full end-to-end runs including the
   Handover, the Tolliver chain, the Basin crew list, the Enabling Act and the Founding, Quiroga's
   Teardown and Open Weights, Strand's Buyout and Hostile Takeover, the four floors of the Stack and
   both forms of the last fight, a check that no unskippable fight turns on damage the party may not
-  have, a check that every quest
+  have, a check that no flag is set by content and read by nothing, a check that every quest
   objective is winnable by a party that walked straight to it, battle narration paging, art-library
   resolution, the prologue from the first query to the door at Kell, the case log's unlock and
   supersede rules, and a 300-battle random-action fuzz that must never hang or throw.

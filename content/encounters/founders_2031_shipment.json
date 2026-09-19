@@ -1,0 +1,34 @@
+{
+  "id": "founders_2031_shipment",
+  "name": "The Wrong Shipment",
+  "era": "2031",
+  "location": "founders_bar_2031",
+  "enemies": [
+    {
+      "enemy": "drone_prototype_2031",
+      "count": 2
+    },
+    {
+      "enemy": "warden_2031",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "A crate the bar was not supposed to see, and two prototypes that were supposed to be inside it.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Drones and a human."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Prototypes, unshielded. The man is not."
+    },
+    {
+      "when": "party:quiroga",
+      "text": "Quiroga: those are mine, and they are not supposed to leave the bench."
+    }
+  ],
+  "music": "battle_2031"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "ilo9_relay_offer",
+  "lines": [
+    {
+      "speaker": "trader_sable",
+      "text": "Your machine has been staring at the relay mast for an hour. It has not blinked, which I appreciate is not a thing it does."
+    },
+    {
+      "speaker": "ilo9",
+      "text": "It is my channel. I have been the only thing on it since the racks came down and I have been saying one line incorrectly the entire time."
+    },
+    {
+      "speaker": "ilo9",
+      "text": "I would like to say it correctly, once, on the channel it was meant for. I am aware of how that sounds.",
+      "choices": [
+        {
+          "text": "Then we clear the roof.",
+          "action": "quest:accept:ilo9_relay"
+        },
+        {
+          "text": "Nobody is listening, ILO.",
+          "syncDelta": -5
+        },
+        {
+          "text": "Another time."
+        }
+      ]
+    }
+  ]
+}

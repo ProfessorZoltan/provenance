@@ -1,0 +1,28 @@
+{
+  "id": "annex_shredder",
+  "name": "The Shredder Room",
+  "location": "senate_annex_2064",
+  "giver": "annex_staffer",
+  "step": 2,
+  "requires": [
+    "flag:registerRead"
+  ],
+  "description": "Four hours booked on the shredder under a name that does not work in this building, the week after somebody read the 2031 register.",
+  "objectiveEncounter": "annex_2064_shredder",
+  "rewards": {
+    "xp": 110,
+    "currency": 80,
+    "items": [
+      "gallery_lens"
+    ],
+    "skillPoints": 1,
+    "flags": [
+      "commonsTrainer"
+    ]
+  },
+  "dialogue": {
+    "offer": "annex_q2_offer",
+    "inProgress": "annex_q2_progress",
+    "complete": "annex_q2_complete"
+  }
+}

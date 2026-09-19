@@ -42,5 +42,6 @@
   "quests": [],
   "encounters": [],
   "links": [],
-  "timeLinks": []
+  "timeLinks": [],
+  "shop": "glass_quarter"
 }

@@ -1,0 +1,26 @@
+{
+  "id": "ash_q2_offer",
+  "lines": [
+    {
+      "speaker": "ash_smith",
+      "text": "They noticed. Of course they noticed. They are coming for the forge and they have sent a frame to do it."
+    },
+    {
+      "speaker": "ash_smith",
+      "text": "Twenty years that fire has been lit. Longer if you count my mother's, and I do.",
+      "choices": [
+        {
+          "text": "It stays lit.",
+          "action": "quest:accept:ash_forge"
+        },
+        {
+          "text": "Move the forge. Fires can be rebuilt.",
+          "syncDelta": 5
+        },
+        {
+          "text": "Not our fire."
+        }
+      ]
+    }
+  ]
+}

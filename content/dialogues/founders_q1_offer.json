@@ -1,0 +1,26 @@
+{
+  "id": "founders_q1_offer",
+  "lines": [
+    {
+      "speaker": "bar_engineer",
+      "text": "There is a crate out the back that came off the campus truck and is not on the campus manifest. Two of the things inside it are now outside it."
+    },
+    {
+      "speaker": "bar_engineer",
+      "text": "Nobody in here wants to call it in, because calling it in means admitting we know what a manifest looks like.",
+      "choices": [
+        {
+          "text": "We'll deal with the crate.",
+          "action": "quest:accept:founders_shipment"
+        },
+        {
+          "text": "Call it in. It is not your crate.",
+          "syncDelta": -5
+        },
+        {
+          "text": "Not our bar."
+        }
+      ]
+    }
+  ]
+}

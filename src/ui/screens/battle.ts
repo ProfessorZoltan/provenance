@@ -8,7 +8,7 @@ import { accentFor, esc, html, prompts, type Ctx, type ScreenHandle } from '../c
 import { currentPage, narrationPending } from '../narration';
 import { menu, type MenuItem } from '../menu';
 
-type Mode = 'menu' | 'target' | 'items' | 'itemTarget' | 'forkPick' | 'forkTarget' | 'inspect';
+type Mode = 'menu' | 'target' | 'items' | 'itemTarget' | 'forkPick' | 'forkTarget' | 'echoPick' | 'inspect';
 
 interface UI {
   encounter: string;
@@ -222,6 +222,37 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
         if (e) ctx.toast(e.message);
       },
     });
+    // Echo and Collapse: the other two Tempo abilities, in the same list so they explain themselves.
+    const otherEras = state.world.visitedEras.filter((e) => e !== state.era);
+    const echoWho = state.activeParty.concat(Object.keys(state.party).filter((id) => !state.activeParty.includes(id)));
+    const canEcho = !b.echoAssistUsed && b.tempo >= rules.echo.cost && otherEras.length > 0 && echoWho.length > 0;
+    const echoReason = b.echoAssistUsed ? 'One Echo per battle, and it has answered.'
+      : !otherEras.length ? 'You have not been to another era yet.'
+      : b.tempo < rules.echo.cost ? `Needs ${rules.echo.cost} Tempo.` : '';
+    items.push({
+      id: 'echo',
+      label: 'Echo',
+      cost: `${rules.echo.cost} Tempo`,
+      hint: `${echoReason} Spend ${rules.echo.cost} Tempo and another era's version of someone steps in for a round. Benched members count. Raises Entropy by ${rules.echo.entropy}.`.trim(),
+      disabled: !canEcho,
+      onSelect: () => setMode('echoPick'),
+    });
+    const canCollapse = !b.collapseUsed && !b.collapsePoint && b.tempo >= rules.collapse.cost;
+    const collapseReason = b.collapseUsed ? 'Already spent this battle.'
+      : b.collapsePoint ? 'The fight is already banked.'
+      : b.tempo < rules.collapse.cost ? `Needs ${rules.collapse.cost} Tempo.` : '';
+    items.push({
+      id: 'collapse',
+      label: b.collapsePoint ? 'Banked' : 'Collapse',
+      cost: b.collapsePoint ? '' : `${rules.collapse.cost} Tempo`,
+      hint: `${collapseReason} Spend ${rules.collapse.cost} Tempo to bank the fight exactly as it stands. If the party is wiped after that, it resumes from here instead of ending. Raises Entropy by ${rules.collapse.entropy}.`.trim(),
+      disabled: !canCollapse,
+      onSelect: () => {
+        store.dispatch({ type: 'BATTLE_COLLAPSE' });
+        const e = store.lastError();
+        if (e) ctx.toast(e.message);
+      },
+    });
     const itemCount = Object.values(state.inventory.items).reduce((s, n) => s + n, 0);
     items.push({ id: 'items', label: 'Items', cost: `1⟋`, hint: itemCount ? `${itemCount} carried` : 'None carried', disabled: !itemCount || actor!.threads < 1, onSelect: () => setMode('items') });
     items.push({ id: 'end', label: 'End turn', shortcut: 'rt', hint: actor!.threads ? `Bank ${Math.min(actor!.threads, rules.slackCap + (b.passives[actor!.id]?.slackCap ?? 0))} Slack` : '', onSelect: () => store.dispatch({ type: 'BATTLE_END_TURN', actor: actor!.id }) });
@@ -260,6 +291,24 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     m = menu(abilityItems(true), 0);
     actions.appendChild(m.el);
     ctx.setPrompts(prompts({ btn: 'dpad', label: 'Choose' }, { btn: 'a', label: 'Preview' }, { btn: 'b', label: 'Back' }));
+  } else if (ui.mode === 'echoPick') {
+    // Anyone in the roster, fielded or benched: it is their other-era self that turns up.
+    const era = state.world.visitedEras.filter((e) => e !== state.era).slice(-1)[0];
+    actions.innerHTML = `<div class="eyebrow">Echo · whose other-era self? (${rules.echo.cost} Tempo, +${rules.echo.entropy} Entropy)</div>
+      <p class="small">They step out of ${esc(era ?? '')} for one round, then they are gone.</p>`;
+    m = menu(Object.keys(state.party).map((id) => ({
+      id,
+      label: content.characters[id].name,
+      hint: state.activeParty.includes(id) ? 'On the field' : 'Benched',
+      onSelect: () => {
+        store.dispatch({ type: 'BATTLE_ECHO', character: id });
+        const e = store.lastError();
+        if (e) ctx.toast(e.message);
+        setMode('menu');
+      },
+    })), 0);
+    actions.appendChild(m.el);
+    ctx.setPrompts(prompts({ btn: 'dpad', label: 'Choose' }, { btn: 'a', label: 'Call' }, { btn: 'b', label: 'Back' }));
   } else if (ui.mode === 'inspect') {
     const e = enemies[ui.targetIdx % enemies.length];
     const def = e.echoOf ? null : content.enemies[e.ref];
@@ -318,7 +367,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
           if (btn === 'y') { setMode('inspect', { targetIdx: 0 }); return; }
           m?.input(btn);
           return;
-        case 'items': case 'forkPick':
+        case 'items': case 'forkPick': case 'echoPick':
           if (btn === 'b') { setMode('menu'); return; }
           m?.input(btn);
           return;

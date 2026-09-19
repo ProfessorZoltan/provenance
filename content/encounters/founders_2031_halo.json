@@ -1,0 +1,34 @@
+{
+  "id": "founders_2031_halo",
+  "name": "Under the Halo",
+  "era": "2031",
+  "location": "founders_bar_2031",
+  "enemies": [
+    {
+      "enemy": "construct_prototype",
+      "count": 1
+    },
+    {
+      "enemy": "drone_prototype_2031",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "Somebody sent a frame to take the halo down, and the bar has decided otherwise.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "A Construct and a Drone."
+    },
+    {
+      "when": "signal>=70",
+      "text": "The frame has a person in it."
+    },
+    {
+      "when": "party:dax",
+      "text": "Dax: for once I am on the side of the people with the hand-built nonsense."
+    }
+  ],
+  "music": "battle_2031"
+}

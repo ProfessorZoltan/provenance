@@ -1,0 +1,30 @@
+{
+  "id": "fens_2148_count",
+  "name": "Four Hundred and One",
+  "era": "2148",
+  "location": "the_fens_2148",
+  "enemies": [
+    {
+      "enemy": "echo_worn_2148",
+      "count": 1
+    },
+    {
+      "enemy": "drone_derelict_2148",
+      "count": 2
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "The outline Hale has been counting for eleven days, standing in black water, carrying the same length of rebar.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "Two Temporal and a Drone."
+    },
+    {
+      "when": "party:hale",
+      "text": "Hale: four hundred and two. I have been wrong about the number all week."
+    }
+  ],
+  "music": "battle_2148"
+}

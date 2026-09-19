@@ -33,7 +33,7 @@ describe('content', () => {
     for (const id of Object.keys(content.characters)) {
       const nodes = Object.values(content.nodes).filter((n) => n.character === id);
       expect(nodes.length, id).toBeGreaterThanOrEqual(14);
-      expect(nodes.filter((n) => n.type === 'condition'), id).toHaveLength(1);
+      expect(nodes.filter((n) => n.type === 'condition').length, id).toBeGreaterThanOrEqual(1);
       const contradictions = nodes.filter((n) => n.type === 'contradiction');
       expect(contradictions, id).toHaveLength(2);
       expect(contradictions[0].excludes).toContain(contradictions[1].id);
@@ -41,6 +41,15 @@ describe('content', () => {
       const eraNodes = nodes.filter((n) => n.type === 'era');
       expect(eraNodes.length, `${id} era nodes`).toBeGreaterThanOrEqual(2);
       for (const n of eraNodes) expect(n.era, n.id).toBeTruthy();
+    }
+  });
+
+  it('ships the two Condition nodes the design doc names by title', () => {
+    const named = Object.values(content.nodes).filter((n) => ['Read the Charter', 'Audited the Auditor'].includes(n.name));
+    expect(named.map((n) => n.name).sort()).toEqual(['Audited the Auditor', 'Read the Charter']);
+    for (const n of named) {
+      expect(n.type, n.name).toBe('condition');
+      expect(n.conditionHint, `${n.name} needs a hint; a condition node is a puzzle, not a trap`).toBeTruthy();
     }
   });
 
@@ -161,6 +170,41 @@ describe('no dead ends', () => {
     }
   });
 
+  it('leaves no flag set by content that nothing ever reads', () => {
+    // A flag with no reader is a promise the content makes and does not keep.
+    const set = new Set<string>();
+    for (const e of Object.values(content.encounters)) for (const f of e.rewardFlags ?? []) set.add(f);
+    for (const q of Object.values(content.quests)) for (const f of q.rewards.flags) set.add(f);
+    for (const c of Object.values(content.timelineChoices)) for (const f of c.flags) set.add(f);
+    for (const d of Object.values(content.dialogues)) for (const l of d.lines) {
+      for (const f of l.setFlags ?? []) set.add(f);
+      for (const ch of l.choices ?? []) for (const f of ch.setFlags ?? []) set.add(f);
+    }
+    const read = new Set<string>();
+    const note = (conds?: string[]) => { for (const c of conds ?? []) read.add(c.replace(/^!/, '').replace(/^flag:/, '')); };
+    for (const d of Object.values(content.dialogues)) for (const l of d.lines) {
+      note(l.conditions);
+      for (const ch of l.choices ?? []) note(ch.conditions);
+    }
+    for (const l of Object.values(content.locations)) {
+      for (const v of l.variants ?? []) note(v.when);
+      for (const a of l.actions ?? []) note(a.requires);
+    }
+    for (const n of Object.values(content.nodes)) note(n.condition ? [n.condition] : []);
+    for (const e of Object.values(content.encounters)) for (const h of e.scanHints) note([h.when]);
+    for (const sh of Object.values(content.shops)) for (const st of sh.stock) note(st.when);
+    for (const q of Object.values(content.quests)) note(q.requires);
+    for (const le of Object.values(content.log)) note(le.when);
+    for (const m of Object.values(content.maps)) for (const nd of m.nodes) note(nd.requires);
+    for (const r of Object.values(content.rooms)) for (const pr of r.props) note(pr.requires);
+    for (const ch of Object.values(content.characters)) note(ch.leavesIf);
+
+    // Two are read by the engine rather than by content: the ending rule and the Act 1 handoff.
+    const inCode = new Set(['youngStrandInParty', 'metParty']);
+    const dead = [...set].filter((f) => !read.has(f) && !inCode.has(f)).sort();
+    expect(dead, `set but never read: ${dead.join(', ')}`).toEqual([]);
+  });
+
   it('gives every recruitable character a way into the party', () => {
     // Someone joins either through a dialogue action or as a timeline choice's party effect.
     const recruits = new Set([
@@ -182,5 +226,48 @@ describe('site-specific presentation', () => {
       (acc, m) => ({ ...acc, [m[1]]: m[2] }), {});
     for (const site of sites) expect(labels[site], `${site} has no way-down label`).toBeTruthy();
     expect(new Set(Object.values(labels)).size, 'each site describes its own descent').toBe(Object.keys(labels).length);
+  });
+});
+
+describe('side quests', () => {
+  it('runs a chain at every faction hub, ending in a trainer', () => {
+    const hubs = Object.values(content.locations).filter((l) => l.type.startsWith('Faction hub'));
+    expect(hubs.length, 'the design doc names four').toBe(4);
+    for (const hub of hubs) {
+      const chain = Object.values(content.quests).filter((q) => q.location === hub.id && (q.step ?? 1) < 9)
+        .sort((a, b) => (a.step ?? 0) - (b.step ?? 0));
+      expect(chain.length, `${hub.id} has no chain`).toBeGreaterThanOrEqual(2);
+      expect(new Set(chain.map((q) => q.giver)).size, `${hub.id}: one giver runs the chain`).toBe(1);
+      // The later step is gated on the earlier one's flag, so they are a chain and not a menu.
+      const gate = chain[1].requires ?? [];
+      const earlier = chain[0].rewards.flags.map((f) => `flag:${f}`);
+      expect(gate.some((g) => earlier.includes(g)), `${chain[1].id} is not gated on ${chain[0].id}`).toBe(true);
+      // Finishing it opens a trainer, who pays out once.
+      const after = content.dialogues[`${chain[0].giver}_after`];
+      expect(after, `${chain[0].giver} has no follow-up dialogue`).toBeDefined();
+      const train = after.lines.flatMap((l) => l.choices ?? []).find((c) => c.action?.startsWith('train:'));
+      expect(train, `${hub.id} opens no trunk trainer`).toBeDefined();
+    }
+  });
+
+  it('gives every optional party member a personal quest, at a waypoint', () => {
+    const optional = Object.keys(content.characters).filter((id) => !['player', 'wren', 'dax'].includes(id));
+    for (const id of optional) {
+      const q = Object.values(content.quests).find((x) => (x.requires ?? []).includes(`party:${id}`));
+      expect(q, `${id} has no personal quest`).toBeDefined();
+      const loc = content.locations[q!.location];
+      expect(loc.kind, `${id}'s quest is at a Deep Site; the doc puts them at waypoints`).toBe('waypoint');
+    }
+  });
+
+  it('covers all four kinds of side quest the design doc lists', () => {
+    const all = Object.values(content.quests);
+    const faction = all.filter((q) => content.locations[q.location].type.startsWith('Faction hub'));
+    const personal = all.filter((q) => (q.requires ?? []).some((r) => r.startsWith('party:')));
+    const ripple = all.filter((q) => content.locations[q.location].type === 'Ripple site');
+    const local = all.filter((q) => !faction.includes(q) && !personal.includes(q) && !ripple.includes(q));
+    for (const [kind, set] of [['faction', faction], ['recruitment', personal], ['ripple', ripple], ['local', local]] as const) {
+      expect(set.length, `no ${kind} quests`).toBeGreaterThan(0);
+    }
   });
 });

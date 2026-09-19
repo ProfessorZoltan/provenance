@@ -1,0 +1,28 @@
+{
+  "id": "ilo9_relay",
+  "name": "The Line It Got Wrong",
+  "location": "the_stacks_2148",
+  "giver": "trader_sable",
+  "step": 9,
+  "requires": [
+    "party:ilo9"
+  ],
+  "description": "ILO-9 held one liturgical line wrong for a century and a half. The relay that fed it still stands on the next roof, and it would like to hear the correct version once.",
+  "objectiveEncounter": "stacks_2148_relay",
+  "rewards": {
+    "xp": 120,
+    "currency": 80,
+    "items": [
+      "core_weave"
+    ],
+    "skillPoints": 1,
+    "flags": [
+      "ilo9Settled"
+    ]
+  },
+  "dialogue": {
+    "offer": "ilo9_relay_offer",
+    "inProgress": "ilo9_relay_progress",
+    "complete": "ilo9_relay_complete"
+  }
+}

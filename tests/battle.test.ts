@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { abilityOptions, createBattle, current, resolveAbility } from '../src/core/battle/battle';
 import { evalFormula } from '../src/core/formula';
 import { autoBattle, content, newGame, reduce, run } from './helpers';
+import type { EraId } from '../src/types/content';
 import type { GameState } from '../src/types/state';
 
 function enemyPhase(s: GameState): boolean {
@@ -391,5 +392,64 @@ describe("Hale's held shot", () => {
     expect(after.hp, 'nothing on the field was asked').toBeLessThan(rack.hp);
     expect(silenced.log.some((l) => /nothing on the field was asked/.test(l.text))).toBe(true);
     void s;
+  });
+});
+
+describe('the other two Tempo abilities', () => {
+  /** A battle with Tempo banked and the party fresh off a turn. */
+  function withTempo(tempo: number, seed = 55): GameState {
+    let s = reduce(newGame(seed), { type: 'START_ENCOUNTER', encounterId: 'kell_2312_perimeter', surprise: false });
+    while (s.battle!.phase === 'enemy') s = reduce(s, { type: 'BATTLE_ENEMY_ACT' });
+    return { ...s, battle: { ...s.battle!, tempo } };
+  }
+
+  it('calls another era of someone in, benched or not, once per battle', () => {
+    let s = withTempo(12);
+    s = { ...s, world: { ...s.world, visitedEras: ['2312', '2148'] as EraId[] } };
+    const before = s.battle!.combatants.length;
+    s = reduce(s, { type: 'BATTLE_ECHO', character: 'dax' });
+    expect(s.battle!.combatants).toHaveLength(before + 1);
+    const ghost = s.battle!.combatants.at(-1)!;
+    expect(ghost.side).toBe('party');
+    expect(ghost.echoOf).toBe('dax');
+    expect(ghost.temporary, 'they are gone after a round').toBe(true);
+    expect(s.battle!.tempo).toBe(12 - content.rules.echo.cost);
+    expect(s.battle!.entropy).toBe(content.rules.echo.entropy);
+    expect(() => reduce(s, { type: 'BATTLE_ECHO', character: 'wren' })).toThrow(/One Echo/);
+  });
+
+  it('will not call an era the party has never been to', () => {
+    const s = { ...withTempo(12), world: { ...withTempo(12).world, visitedEras: ['2312'] as EraId[] } };
+    expect(() => reduce(s, { type: 'BATTLE_ECHO', character: 'dax' })).toThrow();
+  });
+
+  it('banks the fight with Collapse and resumes from it instead of losing', () => {
+    let s = withTempo(12);
+    s = reduce(s, { type: 'BATTLE_COLLAPSE' });
+    expect(s.battle!.collapsePoint, 'the state is banked').not.toBeNull();
+    expect(s.battle!.tempo).toBe(12 - content.rules.collapse.cost);
+    const bankedHp = s.battle!.combatants.filter((c) => c.side === 'party').map((c) => c.hp);
+
+    // Leave the party on one Resolve each and let the enemy actually finish them. A wipe is
+    // detected when a hit lands, so the bank has to be spent there and not anywhere else.
+    s = { ...s, battle: { ...s.battle!, combatants: s.battle!.combatants.map((c) => (c.side === 'party' ? { ...c, hp: 1 } : c)) } };
+    let guard = 60;
+    while (guard-- > 0 && !s.battle!.collapseUsed && s.battle!.phase !== 'lost' && s.battle!.phase !== 'won') {
+      if (s.battle!.phase === 'enemy') { s = reduce(s, { type: 'BATTLE_ENEMY_ACT' }); continue; }
+      s = reduce(s, { type: 'BATTLE_END_TURN', actor: current(s.battle!)!.id });
+    }
+    expect(s.battle!.phase).not.toBe('lost');
+    expect(s.battle!.combatants.filter((c) => c.side === 'party').map((c) => c.hp)).toEqual(bankedHp);
+    expect(s.battle!.combatants.some((c) => c.side === 'party' && !c.down), 'the party is standing again').toBe(true);
+    expect(s.battle!.collapseUsed).toBe(true);
+    expect(s.battle!.collapsePoint, 'and it is spent').toBeNull();
+    expect(s.battle!.log.some((l) => /collapses back/.test(l.text))).toBe(true);
+  });
+
+  it('only banks once, and only with the Tempo for it', () => {
+    let s = withTempo(12);
+    s = reduce(s, { type: 'BATTLE_COLLAPSE' });
+    expect(() => reduce(s, { type: 'BATTLE_COLLAPSE' })).toThrow(/already banked/);
+    expect(() => reduce(withTempo(2), { type: 'BATTLE_COLLAPSE' })).toThrow(/needs 5 Tempo/i);
   });
 });

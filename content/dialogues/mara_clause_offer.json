@@ -1,0 +1,30 @@
+{
+  "id": "mara_clause_offer",
+  "lines": [
+    {
+      "speaker": "fence_moro",
+      "text": "Crew came through with a schedule. Numbers, no names, and eleven stalls gone by Friday."
+    },
+    {
+      "speaker": "mara",
+      "text": "Let me see it. ...That is my article. That is the clause I wrote, cited to do this."
+    },
+    {
+      "speaker": "mara",
+      "text": "I drafted a definition of custody and somebody has used it to move people off a floor. I would like to go and be present while that happens.",
+      "choices": [
+        {
+          "text": "We go with her.",
+          "action": "quest:accept:mara_clause"
+        },
+        {
+          "text": "Every clause gets used like this.",
+          "syncDelta": -5
+        },
+        {
+          "text": "Not our row."
+        }
+      ]
+    }
+  ]
+}

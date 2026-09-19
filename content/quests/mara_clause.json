@@ -1,0 +1,28 @@
+{
+  "id": "mara_clause",
+  "name": "The Clause Nobody Read",
+  "location": "undercity_bazaar_2064",
+  "giver": "fence_moro",
+  "step": 9,
+  "requires": [
+    "party:mara"
+  ],
+  "description": "A concession crew is clearing the bazaar under a schedule that cites the very article Mara spent four years drafting.",
+  "objectiveEncounter": "undercity_2064_eviction",
+  "rewards": {
+    "xp": 120,
+    "currency": 80,
+    "items": [
+      "mara_folio"
+    ],
+    "skillPoints": 1,
+    "flags": [
+      "maraSettled"
+    ]
+  },
+  "dialogue": {
+    "offer": "mara_clause_offer",
+    "inProgress": "mara_clause_progress",
+    "complete": "mara_clause_complete"
+  }
+}

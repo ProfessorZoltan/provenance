@@ -1,0 +1,28 @@
+{
+  "id": "strand_table",
+  "name": "The Table by the Window",
+  "location": "glass_quarter_2064",
+  "giver": "quarter_regular",
+  "step": 9,
+  "requires": [
+    "party:strand_young"
+  ],
+  "description": "In a bar above the waterline, thirty-three years after he walked off his own campus, somebody recognises Callum Strand's face and reaches for a handset.",
+  "objectiveEncounter": "glass_2064_table",
+  "rewards": {
+    "xp": 120,
+    "currency": 80,
+    "items": [
+      "strand_cane"
+    ],
+    "skillPoints": 1,
+    "flags": [
+      "strandSettled"
+    ]
+  },
+  "dialogue": {
+    "offer": "strand_table_offer",
+    "inProgress": "strand_table_progress",
+    "complete": "strand_table_complete"
+  }
+}

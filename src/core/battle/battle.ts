@@ -1,5 +1,5 @@
-import type { AbilityDef, ContentDB, DamageType, EnemyDef, ItemDef, SecondBar } from '../../types/content';
-import type { BattleLogEntry, BattleRewards, BattleState, Combatant, GameState, LogMeta, StatusEffect } from '../../types/state';
+import type { AbilityDef, ContentDB, DamageType, EnemyDef, EraId, ItemDef, SecondBar } from '../../types/content';
+import type { BattleLogEntry, BattleRewards, BattleState, Combatant, GameState, LogMeta, RewindPoint, StatusEffect } from '../../types/state';
 import { evalFormula } from '../formula';
 import { roll, rollInt } from '../rng';
 import { partyLoadouts, partySync } from '../stats';
@@ -55,6 +55,7 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
     encounterId, era: enc.era, seed: state.rng, rng: state.rng, combatants, order,
     turnIndex: -1, round: 1, tempo: Math.min(content.rules.tempoMax, openingTempo), entropy: 0,
     phase: 'player', surprise, log: [], rewindsLeft: rewinds, rewindPoint: null, fork: null,
+    collapsePoint: null, collapseUsed: false, echoAssistUsed: false,
     echoSpawned: false, usedSignal: false, story: enc.story, passives, partySync: sync, pendingRewards: null,
   };
   b = log(b, surprise ? `Surprise attack. ${enc.flavor}` : enc.flavor, surprise ? 'warn' : 'info');
@@ -582,6 +583,57 @@ export function useItem(b: BattleState, actorId: string, item: ItemDef, targetId
 
 // ---------- Tempo abilities ----------
 
+/**
+ * Collapse: bank the battle exactly as it stands. If the party is wiped afterwards, the banked
+ * state is resumed from instead of losing, once. You pay Tempo now against a loss you may never take.
+ */
+export function collapse(b: BattleState, content: ContentDB): BattleState {
+  const { cost, entropy } = content.rules.collapse;
+  if (b.phase !== 'player') throw new Error('Collapse only on your turn');
+  if (b.collapseUsed || b.collapsePoint) throw new Error('The state is already banked');
+  if (b.tempo < cost) throw new Error(`Collapse needs ${cost} Tempo`);
+  const point: RewindPoint = {
+    combatants: b.combatants.map((c) => ({ ...c, statuses: [...c.statuses] })),
+    rng: b.rng, turnIndex: b.turnIndex, round: b.round, tempo: b.tempo - cost,
+    logLength: b.log.length, actorId: current(b)?.id ?? '', description: 'banked',
+  };
+  let nb: BattleState = {
+    ...b, collapsePoint: point, tempo: b.tempo - cost,
+    entropy: clamp(b.entropy + entropy, 0, content.rules.entropyMax), fork: null,
+  };
+  nb = log(nb, 'The fight is banked. If it goes badly from here, it goes badly from here again instead.', 'tempo');
+  return nb;
+}
+
+/**
+ * Echo: another era's version of a party member steps in for one round. They may be benched, and
+ * the era has to be one the party has actually been to.
+ */
+export function echoAssist(b: BattleState, characterId: string, content: ContentDB, era: EraId): BattleState {
+  const { cost, entropy, turns } = content.rules.echo;
+  if (b.phase !== 'player') throw new Error('Echo only on your turn');
+  if (b.echoAssistUsed) throw new Error('One Echo per battle');
+  if (b.tempo < cost) throw new Error(`Echo needs ${cost} Tempo`);
+  const def = content.characters[characterId];
+  if (!def) throw new Error(`Unknown character ${characterId}`);
+  const hp = Math.round(def.baseStats.resolve * 0.7);
+  const ghost: Combatant = {
+    id: `echo:${characterId}:${b.round}`, ref: characterId, name: `${def.shortName}, ${era}`,
+    side: 'party', machine: false, stats: { ...def.baseStats, latency: def.baseStats.latency - 4 },
+    hp, maxHp: hp, shield: 0, maxShield: 0, threads: 0, slack: 0, statuses: [],
+    abilities: [...def.abilities], immunities: [], down: false, perception: 50,
+    echoOf: characterId, temporary: true, expiresAfterRound: b.round + turns,
+  };
+  const order = [...b.order];
+  order.splice(b.turnIndex + 1, 0, ghost.id);
+  let nb: BattleState = {
+    ...b, combatants: [...b.combatants, ghost], order, echoAssistUsed: true,
+    tempo: b.tempo - cost, entropy: clamp(b.entropy + entropy, 0, content.rules.entropyMax), fork: null,
+  };
+  nb = log(nb, `${def.name} steps out of ${era} for one round. ${ghost.name} is not quite the person you know.`, 'tempo');
+  return nb;
+}
+
 export function rewind(b: BattleState, content: ContentDB): BattleState {
   const cost = content.rules.rewind.cost;
   if (b.phase !== 'player') throw new Error('Rewind only on your turn');
@@ -716,6 +768,19 @@ export function enemyTurn(b: BattleState, content: ContentDB): BattleState {
 
 function checkEnd(b: BattleState, content: ContentDB): BattleState {
   if (b.phase === 'won' || b.phase === 'lost') return b;
+  // A banked state is spent here: the party does not fall, the fight resumes from where it was.
+  if (alive(b, 'party').filter((c) => !c.temporary).length === 0 && b.collapsePoint) {
+    const rp = b.collapsePoint;
+    let nb: BattleState = {
+      ...b,
+      combatants: rp.combatants.map((c) => ({ ...c, statuses: [...c.statuses] })),
+      rng: rp.rng + 1, turnIndex: rp.turnIndex, round: rp.round, tempo: rp.tempo,
+      log: b.log.slice(0, rp.logLength),
+      collapsePoint: null, collapseUsed: true, fork: null, phase: 'player',
+    };
+    nb = log(nb, 'The fight collapses back to where you banked it. You have been here before and you know what is coming.', 'tempo');
+    return nb;
+  }
   if (alive(b, 'enemy').length === 0) {
     b = { ...b, phase: 'won', pendingRewards: rewards(b, content) };
     return log(b, 'The field is clear.', 'system');

@@ -1,0 +1,30 @@
+{
+  "id": "camp_2031_bench",
+  "name": "Her Own Bench",
+  "era": "2031",
+  "location": "basin_work_camp_2031",
+  "enemies": [
+    {
+      "enemy": "warden_camp_2031",
+      "count": 1
+    },
+    {
+      "enemy": "drone_survey_2031",
+      "count": 2
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "A survey trailer with four years of somebody's working notes in it, and a crew boss who has been told to burn them.",
+  "scanHints": [
+    {
+      "when": "signal>=40",
+      "text": "One human and two Drones."
+    },
+    {
+      "when": "party:quiroga",
+      "text": "Quiroga: those are my notebooks. Those are four years of my handwriting."
+    }
+  ],
+  "music": "battle_2031"
+}

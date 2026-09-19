@@ -36,7 +36,9 @@
     "particles": "snow"
   },
   "music": "hub_2312",
-  "npcs": [],
+  "npcs": [
+    "perimeter_scav"
+  ],
   "quests": [],
   "encounters": [
     "perimeter_2312_patrol"

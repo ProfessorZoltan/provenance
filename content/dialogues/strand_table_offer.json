@@ -1,0 +1,30 @@
+{
+  "id": "strand_table_offer",
+  "lines": [
+    {
+      "speaker": "quarter_regular",
+      "text": "Your friend has been staring at the founder's portrait over the bar for ten minutes. Everyone stares at it. Nobody stares like that."
+    },
+    {
+      "speaker": "strand_young",
+      "text": "It is a good likeness. They have made the jaw heavier, which they always do."
+    },
+    {
+      "speaker": "strand_young",
+      "text": "The man at the end of the bar has looked at me four times and is now reaching for a handset. I would like to be on the other side of this conversation for once.",
+      "choices": [
+        {
+          "text": "Then we have the conversation.",
+          "action": "quest:accept:strand_table"
+        },
+        {
+          "text": "We leave. You are not a curiosity.",
+          "syncDelta": 5
+        },
+        {
+          "text": "Sit still."
+        }
+      ]
+    }
+  ]
+}

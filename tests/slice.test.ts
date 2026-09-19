@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { deserialize, serialize } from '../src/core/save';
 import { activeVariant, npcDialogue } from '../src/core/reducer';
 import { evalAll } from '../src/core/conditions';
+import { maxHp } from '../src/core/stats';
 import { conditionContext } from '../src/core/encounter';
 import { deriveWorld } from '../src/core/timeline';
 import type { GameState } from '../src/types/state';
@@ -287,12 +288,26 @@ describe('the fourth Deep Site', () => {
 });
 
 describe('quest objectives are beatable', () => {
-  it('lets a party that walked straight there win every quest fight', () => {
+  /** A later step in a chain is reached by a party that has already done the earlier one. */
+  const partyFor = (xp: number, s: GameState): GameState => (xp === 0 ? s : {
+    ...s,
+    party: Object.fromEntries(Object.entries(s.party).map(([id, c]) => {
+      const level = 1 + Math.floor(xp / content.rules.xpPerLevel);
+      return [id, { ...c, xp, level, hp: maxHp(content, content.characters[id], { ...c, xp, level }) }];
+    })),
+  });
+
+  it('lets a party that has done the earlier steps win every quest fight', () => {
     for (const q of Object.values(content.quests)) {
+      // An ungated quest must fall to a party that walked straight there. A later chain step only
+      // has to fall to a party that cleared the earlier one, and a personal quest is gated on a
+      // recruit, which happens well into a run.
+      const personal = (q.requires ?? []).some((r) => r.startsWith('party:'));
+      const xp = personal ? 700 : (q.step ?? 1) > 1 || q.requires?.length ? 300 : 0;
       for (const seed of [4, 41, 97]) {
-        let s = reduce(newGame(seed), { type: 'START_ENCOUNTER', encounterId: q.objectiveEncounter });
+        let s = reduce(partyFor(xp, newGame(seed)), { type: 'START_ENCOUNTER', encounterId: q.objectiveEncounter });
         s = autoBattle(s);
-        expect(s.battle?.phase, `${q.id} at seed ${seed}`).toBe('won');
+        expect(s.battle?.phase, `${q.id} (xp ${xp}) at seed ${seed}`).toBe('won');
       }
     }
   });

@@ -1,0 +1,15 @@
+{
+  "id": "annex_q2_complete",
+  "lines": [
+    {
+      "speaker": "annex_staffer",
+      "text": "Nothing shredded. The register goes to the national archive tonight with a chain of custody on it, which means it cannot quietly stop existing."
+    },
+    {
+      "speaker": "annex_staffer",
+      "text": "Nine of us in this office and one tabled amendment between us. That number went up today. Go and talk to Okafor's old clerk; she will sit with your people.",
+      "syncDelta": 5,
+      "action": "quest:complete:annex_shredder"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "perimeter_scav",
+  "lines": [
+    {
+      "speaker": "perimeter_scav",
+      "text": "Service line. Parts on the ground, nobody allocated to pick them up, and a patrol that has flown the same circuit for eighty years."
+    },
+    {
+      "speaker": "perimeter_scav",
+      "text": "I am not stealing. You cannot steal a thing that is not on any list. I have thought about this a great deal out here."
+    },
+    {
+      "speaker": "perimeter_scav",
+      "text": "There is a plaque at the service gate with four hundred and six names on it. I read it every shift. I have no idea who any of them are.",
+      "conditions": [
+        "flag:crewNamed"
+      ]
+    },
+    {
+      "speaker": "perimeter_scav",
+      "text": "Somebody put the fields on a public register. Half the parts out here have a name on them now and I do not know how I feel about it.",
+      "conditions": [
+        "flag:crewBuried"
+      ]
+    }
+  ]
+}
