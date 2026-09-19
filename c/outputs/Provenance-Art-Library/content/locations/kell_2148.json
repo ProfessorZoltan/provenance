@@ -1,0 +1,25 @@
+{
+  "id": "kell_2148",
+  "name": "Kell Stronghold",
+  "kind": "deepSite",
+  "era": "2148",
+  "site": "kell",
+  "type": "Resistance stronghold",
+  "description": "The monastery with its windows bricked up and its terraces turned to fire steps. Rain on ash. The Quiet is a hundred years old and still going.",
+  "background": {
+    "layers": [
+      { "id": "sky", "drift": 0.1, "art": "kell2148_sky", "ambient": "fog" },
+      { "id": "mid", "drift": 0.3, "art": "kell2148_walls", "ambient": "flicker" },
+      { "id": "near", "drift": 0.6, "art": "kell2148_floor" },
+      { "id": "fore", "drift": 1.0, "art": "kell2148_fore", "ambient": "sway" }
+    ],
+    "particles": "ash"
+  },
+  "music": "hub_2148",
+  "npcs": ["captain_ade", "dax_2148"],
+  "quests": [],
+  "encounters": ["kell_2148_walls", "kell_2148_chapel"],
+  "links": [],
+  "timeLinks": ["2312"],
+  "storyDialogue": "quiet_2148"
+}

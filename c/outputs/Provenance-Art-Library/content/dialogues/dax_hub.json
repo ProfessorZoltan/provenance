@@ -1,0 +1,11 @@
+{
+  "id": "dax_hub",
+  "lines": [
+    { "speaker": "dax", "text": "The Ash Camp crews got their weapons. My crews. I remember it differently now, and I also remember it the old way. Both at once. Wren says that is what Continuity feels like when it slips.", "conditions": ["flag:armedResistance"] },
+    { "speaker": "dax", "text": "We walked away from it. Fine. I have walked away from worse. But that sentry over the square is new, and I am going to wreck it one of these nights.", "conditions": ["flag:letItFall"] },
+    { "speaker": "dax", "text": "Wardens. Humans in armor, taking Board pay to put down other humans. Now you know. The machines only ever did what they were told; tell me again why we should not burn them.", "conditions": ["visited:2148", "!flag:armedResistance", "!flag:letItFall"] },
+    { "speaker": "dax", "text": "Level with me: do you think the thing in the core is alive? Because if you say yes, we are going to have a problem later.", "conditions": ["sync>=40"] },
+    { "speaker": "dax", "text": "Good. You get it. Every model burns, including the good ones. Especially the good ones.", "conditions": ["sync<=-40"] },
+    { "speaker": "dax", "text": "Drones on the perimeter again. Go out and break some if you want practice. Thermal goes straight through their shields, Wreck knocks them off entirely." }
+  ]
+}

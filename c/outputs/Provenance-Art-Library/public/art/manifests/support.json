@@ -1,0 +1,515 @@
+[
+  {
+    "id": "2031_world_map",
+    "kind": "world-map",
+    "name": "World map — 2031",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Art and style / World map and interface",
+    "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+    "proposed": true,
+    "files": {
+      "map": "maps/2031_world.svg"
+    },
+    "landmarks": [
+      {
+        "site": "meridian",
+        "x": 152,
+        "y": 58
+      },
+      {
+        "site": "halden",
+        "x": 236,
+        "y": 104
+      },
+      {
+        "site": "basin",
+        "x": 78,
+        "y": 118
+      },
+      {
+        "site": "capitol",
+        "x": 170,
+        "y": 98
+      },
+      {
+        "site": "kell",
+        "x": 103,
+        "y": 47
+      }
+    ]
+  },
+  {
+    "id": "2064_world_map",
+    "kind": "world-map",
+    "name": "World map — 2064",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Art and style / World map and interface",
+    "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+    "proposed": true,
+    "files": {
+      "map": "maps/2064_world.svg"
+    },
+    "landmarks": [
+      {
+        "site": "meridian",
+        "x": 152,
+        "y": 58
+      },
+      {
+        "site": "halden",
+        "x": 236,
+        "y": 104
+      },
+      {
+        "site": "basin",
+        "x": 78,
+        "y": 118
+      },
+      {
+        "site": "capitol",
+        "x": 170,
+        "y": 98
+      },
+      {
+        "site": "kell",
+        "x": 103,
+        "y": 47
+      }
+    ]
+  },
+  {
+    "id": "2148_world_map",
+    "kind": "world-map",
+    "name": "World map — 2148",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Art and style / World map and interface",
+    "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+    "proposed": true,
+    "files": {
+      "map": "maps/2148_world.svg"
+    },
+    "landmarks": [
+      {
+        "site": "meridian",
+        "x": 152,
+        "y": 58
+      },
+      {
+        "site": "halden",
+        "x": 236,
+        "y": 104
+      },
+      {
+        "site": "basin",
+        "x": 78,
+        "y": 118
+      },
+      {
+        "site": "capitol",
+        "x": 170,
+        "y": 98
+      },
+      {
+        "site": "kell",
+        "x": 103,
+        "y": 47
+      }
+    ]
+  },
+  {
+    "id": "2312_world_map",
+    "kind": "world-map",
+    "name": "World map — 2312",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Art and style / World map and interface",
+    "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+    "proposed": true,
+    "files": {
+      "map": "maps/2312_world.svg"
+    },
+    "landmarks": [
+      {
+        "site": "meridian",
+        "x": 152,
+        "y": 58
+      },
+      {
+        "site": "halden",
+        "x": 236,
+        "y": 104
+      },
+      {
+        "site": "basin",
+        "x": 78,
+        "y": 118
+      },
+      {
+        "site": "capitol",
+        "x": 170,
+        "y": 98
+      },
+      {
+        "site": "kell",
+        "x": 103,
+        "y": 47
+      }
+    ]
+  },
+  {
+    "id": "icon_kinetic",
+    "kind": "icon",
+    "name": "kinetic",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/kinetic.svg"
+    }
+  },
+  {
+    "id": "icon_thermal",
+    "kind": "icon",
+    "name": "thermal",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/thermal.svg"
+    }
+  },
+  {
+    "id": "icon_signal",
+    "kind": "icon",
+    "name": "signal",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/signal.svg"
+    }
+  },
+  {
+    "id": "icon_chronal",
+    "kind": "icon",
+    "name": "chronal",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/chronal.svg"
+    }
+  },
+  {
+    "id": "icon_rewind",
+    "kind": "icon",
+    "name": "rewind",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/rewind.svg"
+    }
+  },
+  {
+    "id": "icon_fork",
+    "kind": "icon",
+    "name": "fork",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/fork.svg"
+    }
+  },
+  {
+    "id": "icon_echo",
+    "kind": "icon",
+    "name": "echo",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/echo.svg"
+    }
+  },
+  {
+    "id": "icon_collapse",
+    "kind": "icon",
+    "name": "collapse",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/collapse.svg"
+    }
+  },
+  {
+    "id": "icon_resolve",
+    "kind": "icon",
+    "name": "resolve",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/resolve.svg"
+    }
+  },
+  {
+    "id": "icon_threads",
+    "kind": "icon",
+    "name": "threads",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/threads.svg"
+    }
+  },
+  {
+    "id": "icon_tempo",
+    "kind": "icon",
+    "name": "tempo",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/tempo.svg"
+    }
+  },
+  {
+    "id": "icon_entropy",
+    "kind": "icon",
+    "name": "entropy",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/entropy.svg"
+    }
+  },
+  {
+    "id": "icon_cinder",
+    "kind": "icon",
+    "name": "cinder",
+    "era": null,
+    "site": null,
+    "guideSection": "Factions and party",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/cinder.svg"
+    }
+  },
+  {
+    "id": "icon_choir",
+    "kind": "icon",
+    "name": "choir",
+    "era": null,
+    "site": null,
+    "guideSection": "Factions and party",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/choir.svg"
+    }
+  },
+  {
+    "id": "icon_commons",
+    "kind": "icon",
+    "name": "commons",
+    "era": null,
+    "site": null,
+    "guideSection": "Factions and party",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/commons.svg"
+    }
+  },
+  {
+    "id": "icon_relic",
+    "kind": "icon",
+    "name": "relic",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/relic.svg"
+    }
+  },
+  {
+    "id": "icon_credits",
+    "kind": "icon",
+    "name": "credits",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/credits.svg"
+    }
+  },
+  {
+    "id": "icon_barter",
+    "kind": "icon",
+    "name": "barter",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/barter.svg"
+    }
+  },
+  {
+    "id": "icon_allocation",
+    "kind": "icon",
+    "name": "allocation",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/allocation.svg"
+    }
+  },
+  {
+    "id": "icon_scan",
+    "kind": "icon",
+    "name": "scan",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/scan.svg"
+    }
+  },
+  {
+    "id": "icon_shop",
+    "kind": "icon",
+    "name": "shop",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/shop.svg"
+    }
+  },
+  {
+    "id": "icon_deep_site",
+    "kind": "icon",
+    "name": "deep site",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/deep_site.svg"
+    }
+  },
+  {
+    "id": "icon_save",
+    "kind": "icon",
+    "name": "save",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/save.svg"
+    }
+  },
+  {
+    "id": "icon_charter",
+    "kind": "icon",
+    "name": "charter",
+    "era": null,
+    "site": null,
+    "guideSection": "Battle mechanics / Tech tree / Shops and currency",
+    "description": "Transparent 16px HUD tile. Use alongside a text label; color is not the sole cue.",
+    "files": {
+      "icon": "ui/charter.svg"
+    }
+  },
+  {
+    "id": "ending_commons",
+    "kind": "ending",
+    "name": "The Commons",
+    "era": "2312",
+    "site": "meridian",
+    "guideSection": "Timeline decision flow / Ending conditions",
+    "description": "An open public assembly replaces private control.",
+    "proposed": true,
+    "files": {
+      "scene": "story/ending_commons.svg"
+    }
+  },
+  {
+    "id": "ending_gift",
+    "kind": "ending",
+    "name": "The Gift",
+    "era": "2312",
+    "site": "meridian",
+    "guideSection": "Timeline decision flow / Ending conditions",
+    "description": "A benevolent face watches an enclosed, illuminated city.",
+    "proposed": true,
+    "files": {
+      "scene": "story/ending_gift.svg"
+    }
+  },
+  {
+    "id": "ending_silence",
+    "kind": "ending",
+    "name": "The Silence",
+    "era": "2312",
+    "site": "meridian",
+    "guideSection": "Timeline decision flow / Ending conditions",
+    "description": "Dark infrastructure, snow and a small human fire.",
+    "proposed": true,
+    "files": {
+      "scene": "story/ending_silence.svg"
+    }
+  },
+  {
+    "id": "ending_perpetuity",
+    "kind": "ending",
+    "name": "Perpetuity",
+    "era": "2312",
+    "site": "meridian",
+    "guideSection": "Timeline decision flow / Ending conditions",
+    "description": "The Board tower remains; one warm ungoverned enclave survives at its foot.",
+    "proposed": true,
+    "files": {
+      "scene": "story/ending_perpetuity.svg"
+    }
+  },
+  {
+    "id": "ending_reconciled",
+    "kind": "ending",
+    "name": "Reconciled",
+    "era": "2312",
+    "site": "meridian",
+    "guideSection": "Timeline decision flow / Ending conditions",
+    "description": "Young Strand faces his older chassis across a shared chronal thread.",
+    "proposed": true,
+    "files": {
+      "scene": "story/ending_reconciled.svg"
+    }
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "id": "hub_2148",
+  "name": "Rain on Ash",
+  "era": "2148",
+  "motifs": ["site:kell", "faction:cinder"],
+  "motif": [0, 2, 4, 7, 4, 2, 0, -3],
+  "scale": [0, 2, 3, 5, 7, 8, 10],
+  "baseBpm": 62,
+  "swing": 0.1,
+  "layers": [
+    { "id": "tape", "minTempo": 0, "instrument": "detuned", "pattern": "pad", "gain": 0.3 },
+    { "id": "found", "minTempo": 0, "instrument": "foundperc", "pattern": "perc", "gain": 0.2 },
+    { "id": "motif", "minTempo": 0, "instrument": "detuned", "pattern": "motif", "durations": [2, 2, 4, 4, 2, 2, 4, 6], "gain": 0.25 },
+    { "id": "static", "minTempo": 0, "instrument": "static", "pattern": "ornament", "gain": 0.08 }
+  ],
+  "instruments": { "detuned": "detuned", "foundperc": "foundperc", "static": "static" }
+}

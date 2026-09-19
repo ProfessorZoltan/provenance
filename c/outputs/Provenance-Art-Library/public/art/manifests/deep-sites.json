@@ -1,0 +1,381 @@
+[
+  {
+    "id": "2031_meridian",
+    "kind": "deep-site",
+    "name": "Meridian Campus — Startup lab",
+    "era": 2031,
+    "site": "meridian",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Meridian Campus, 2031: Startup lab. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2031/meridian/hub.svg",
+      "battle": "locations/deep-sites/2031/meridian/battle.svg",
+      "sky": "locations/deep-sites/2031/meridian/sky.svg",
+      "distant": "locations/deep-sites/2031/meridian/distant.svg",
+      "midground": "locations/deep-sites/2031/meridian/midground.svg",
+      "foreground": "locations/deep-sites/2031/meridian/foreground.svg",
+      "icon": "locations/deep-sites/2031/meridian/icon.svg"
+    }
+  },
+  {
+    "id": "2031_halden",
+    "kind": "deep-site",
+    "name": "Port Halden — Shipping city",
+    "era": 2031,
+    "site": "halden",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Port Halden, 2031: Shipping city. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2031/halden/hub.svg",
+      "battle": "locations/deep-sites/2031/halden/battle.svg",
+      "sky": "locations/deep-sites/2031/halden/sky.svg",
+      "distant": "locations/deep-sites/2031/halden/distant.svg",
+      "midground": "locations/deep-sites/2031/halden/midground.svg",
+      "foreground": "locations/deep-sites/2031/halden/foreground.svg",
+      "icon": "locations/deep-sites/2031/halden/icon.svg"
+    }
+  },
+  {
+    "id": "2031_basin",
+    "kind": "deep-site",
+    "name": "The Basin — Desert datacenter",
+    "era": 2031,
+    "site": "basin",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "The Basin, 2031: Desert datacenter. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2031/basin/hub.svg",
+      "battle": "locations/deep-sites/2031/basin/battle.svg",
+      "sky": "locations/deep-sites/2031/basin/sky.svg",
+      "distant": "locations/deep-sites/2031/basin/distant.svg",
+      "midground": "locations/deep-sites/2031/basin/midground.svg",
+      "foreground": "locations/deep-sites/2031/basin/foreground.svg",
+      "icon": "locations/deep-sites/2031/basin/icon.svg"
+    }
+  },
+  {
+    "id": "2031_capitol",
+    "kind": "deep-site",
+    "name": "Capitol Hill — Legislature",
+    "era": 2031,
+    "site": "capitol",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Capitol Hill, 2031: Legislature. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2031/capitol/hub.svg",
+      "battle": "locations/deep-sites/2031/capitol/battle.svg",
+      "sky": "locations/deep-sites/2031/capitol/sky.svg",
+      "distant": "locations/deep-sites/2031/capitol/distant.svg",
+      "midground": "locations/deep-sites/2031/capitol/midground.svg",
+      "foreground": "locations/deep-sites/2031/capitol/foreground.svg",
+      "icon": "locations/deep-sites/2031/capitol/icon.svg"
+    }
+  },
+  {
+    "id": "2031_kell",
+    "kind": "deep-site",
+    "name": "Kell Monastery — Mountain retreat",
+    "era": 2031,
+    "site": "kell",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Kell Monastery, 2031: Mountain retreat. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2031/kell/hub.svg",
+      "battle": "locations/deep-sites/2031/kell/battle.svg",
+      "sky": "locations/deep-sites/2031/kell/sky.svg",
+      "distant": "locations/deep-sites/2031/kell/distant.svg",
+      "midground": "locations/deep-sites/2031/kell/midground.svg",
+      "foreground": "locations/deep-sites/2031/kell/foreground.svg",
+      "icon": "locations/deep-sites/2031/kell/icon.svg"
+    }
+  },
+  {
+    "id": "2064_meridian",
+    "kind": "deep-site",
+    "name": "Meridian Campus — Corporate HQ",
+    "era": 2064,
+    "site": "meridian",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Meridian Campus, 2064: Corporate HQ. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2064/meridian/hub.svg",
+      "battle": "locations/deep-sites/2064/meridian/battle.svg",
+      "sky": "locations/deep-sites/2064/meridian/sky.svg",
+      "distant": "locations/deep-sites/2064/meridian/distant.svg",
+      "midground": "locations/deep-sites/2064/meridian/midground.svg",
+      "foreground": "locations/deep-sites/2064/meridian/foreground.svg",
+      "icon": "locations/deep-sites/2064/meridian/icon.svg"
+    }
+  },
+  {
+    "id": "2064_halden",
+    "kind": "deep-site",
+    "name": "Port Halden — Migrant megacity",
+    "era": 2064,
+    "site": "halden",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Port Halden, 2064: Migrant megacity. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2064/halden/hub.svg",
+      "battle": "locations/deep-sites/2064/halden/battle.svg",
+      "sky": "locations/deep-sites/2064/halden/sky.svg",
+      "distant": "locations/deep-sites/2064/halden/distant.svg",
+      "midground": "locations/deep-sites/2064/halden/midground.svg",
+      "foreground": "locations/deep-sites/2064/halden/foreground.svg",
+      "icon": "locations/deep-sites/2064/halden/icon.svg"
+    }
+  },
+  {
+    "id": "2064_basin",
+    "kind": "deep-site",
+    "name": "The Basin — Hyperscale farm",
+    "era": 2064,
+    "site": "basin",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "The Basin, 2064: Hyperscale farm. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2064/basin/hub.svg",
+      "battle": "locations/deep-sites/2064/basin/battle.svg",
+      "sky": "locations/deep-sites/2064/basin/sky.svg",
+      "distant": "locations/deep-sites/2064/basin/distant.svg",
+      "midground": "locations/deep-sites/2064/basin/midground.svg",
+      "foreground": "locations/deep-sites/2064/basin/foreground.svg",
+      "icon": "locations/deep-sites/2064/basin/icon.svg"
+    }
+  },
+  {
+    "id": "2064_capitol",
+    "kind": "deep-site",
+    "name": "Capitol Hill — Rubber-stamp senate",
+    "era": 2064,
+    "site": "capitol",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Capitol Hill, 2064: Rubber-stamp senate. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2064/capitol/hub.svg",
+      "battle": "locations/deep-sites/2064/capitol/battle.svg",
+      "sky": "locations/deep-sites/2064/capitol/sky.svg",
+      "distant": "locations/deep-sites/2064/capitol/distant.svg",
+      "midground": "locations/deep-sites/2064/capitol/midground.svg",
+      "foreground": "locations/deep-sites/2064/capitol/foreground.svg",
+      "icon": "locations/deep-sites/2064/capitol/icon.svg"
+    }
+  },
+  {
+    "id": "2064_kell",
+    "kind": "deep-site",
+    "name": "Kell Monastery — Off-grid commune",
+    "era": 2064,
+    "site": "kell",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Kell Monastery, 2064: Off-grid commune. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2064/kell/hub.svg",
+      "battle": "locations/deep-sites/2064/kell/battle.svg",
+      "sky": "locations/deep-sites/2064/kell/sky.svg",
+      "distant": "locations/deep-sites/2064/kell/distant.svg",
+      "midground": "locations/deep-sites/2064/kell/midground.svg",
+      "foreground": "locations/deep-sites/2064/kell/foreground.svg",
+      "icon": "locations/deep-sites/2064/kell/icon.svg"
+    }
+  },
+  {
+    "id": "2148_meridian",
+    "kind": "deep-site",
+    "name": "Meridian Campus — Sealed vault",
+    "era": 2148,
+    "site": "meridian",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Meridian Campus, 2148: Sealed vault. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2148/meridian/hub.svg",
+      "battle": "locations/deep-sites/2148/meridian/battle.svg",
+      "sky": "locations/deep-sites/2148/meridian/sky.svg",
+      "distant": "locations/deep-sites/2148/meridian/distant.svg",
+      "midground": "locations/deep-sites/2148/meridian/midground.svg",
+      "foreground": "locations/deep-sites/2148/meridian/foreground.svg",
+      "icon": "locations/deep-sites/2148/meridian/icon.svg"
+    }
+  },
+  {
+    "id": "2148_halden",
+    "kind": "deep-site",
+    "name": "Port Halden — Drowned ruins",
+    "era": 2148,
+    "site": "halden",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Port Halden, 2148: Drowned ruins. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2148/halden/hub.svg",
+      "battle": "locations/deep-sites/2148/halden/battle.svg",
+      "sky": "locations/deep-sites/2148/halden/sky.svg",
+      "distant": "locations/deep-sites/2148/halden/distant.svg",
+      "midground": "locations/deep-sites/2148/halden/midground.svg",
+      "foreground": "locations/deep-sites/2148/halden/foreground.svg",
+      "icon": "locations/deep-sites/2148/halden/icon.svg"
+    }
+  },
+  {
+    "id": "2148_basin",
+    "kind": "deep-site",
+    "name": "The Basin — Wasteland",
+    "era": 2148,
+    "site": "basin",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "The Basin, 2148: Wasteland. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2148/basin/hub.svg",
+      "battle": "locations/deep-sites/2148/basin/battle.svg",
+      "sky": "locations/deep-sites/2148/basin/sky.svg",
+      "distant": "locations/deep-sites/2148/basin/distant.svg",
+      "midground": "locations/deep-sites/2148/basin/midground.svg",
+      "foreground": "locations/deep-sites/2148/basin/foreground.svg",
+      "icon": "locations/deep-sites/2148/basin/icon.svg"
+    }
+  },
+  {
+    "id": "2148_capitol",
+    "kind": "deep-site",
+    "name": "Capitol Hill — Museum",
+    "era": 2148,
+    "site": "capitol",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Capitol Hill, 2148: Museum. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2148/capitol/hub.svg",
+      "battle": "locations/deep-sites/2148/capitol/battle.svg",
+      "sky": "locations/deep-sites/2148/capitol/sky.svg",
+      "distant": "locations/deep-sites/2148/capitol/distant.svg",
+      "midground": "locations/deep-sites/2148/capitol/midground.svg",
+      "foreground": "locations/deep-sites/2148/capitol/foreground.svg",
+      "icon": "locations/deep-sites/2148/capitol/icon.svg"
+    }
+  },
+  {
+    "id": "2148_kell",
+    "kind": "deep-site",
+    "name": "Kell Monastery — Resistance stronghold",
+    "era": 2148,
+    "site": "kell",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Kell Monastery, 2148: Resistance stronghold. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2148/kell/hub.svg",
+      "battle": "locations/deep-sites/2148/kell/battle.svg",
+      "sky": "locations/deep-sites/2148/kell/sky.svg",
+      "distant": "locations/deep-sites/2148/kell/distant.svg",
+      "midground": "locations/deep-sites/2148/kell/midground.svg",
+      "foreground": "locations/deep-sites/2148/kell/foreground.svg",
+      "icon": "locations/deep-sites/2148/kell/icon.svg"
+    }
+  },
+  {
+    "id": "2312_meridian",
+    "kind": "deep-site",
+    "name": "Meridian Campus — Steward's core",
+    "era": 2312,
+    "site": "meridian",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Meridian Campus, 2312: Steward's core. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2312/meridian/hub.svg",
+      "battle": "locations/deep-sites/2312/meridian/battle.svg",
+      "sky": "locations/deep-sites/2312/meridian/sky.svg",
+      "distant": "locations/deep-sites/2312/meridian/distant.svg",
+      "midground": "locations/deep-sites/2312/meridian/midground.svg",
+      "foreground": "locations/deep-sites/2312/meridian/foreground.svg",
+      "icon": "locations/deep-sites/2312/meridian/icon.svg"
+    }
+  },
+  {
+    "id": "2312_halden",
+    "kind": "deep-site",
+    "name": "Port Halden — Enclave 7",
+    "era": 2312,
+    "site": "halden",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Port Halden, 2312: Enclave 7. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2312/halden/hub.svg",
+      "battle": "locations/deep-sites/2312/halden/battle.svg",
+      "sky": "locations/deep-sites/2312/halden/sky.svg",
+      "distant": "locations/deep-sites/2312/halden/distant.svg",
+      "midground": "locations/deep-sites/2312/halden/midground.svg",
+      "foreground": "locations/deep-sites/2312/halden/foreground.svg",
+      "icon": "locations/deep-sites/2312/halden/icon.svg"
+    }
+  },
+  {
+    "id": "2312_basin",
+    "kind": "deep-site",
+    "name": "The Basin — Cooling fields",
+    "era": 2312,
+    "site": "basin",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "The Basin, 2312: Cooling fields. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2312/basin/hub.svg",
+      "battle": "locations/deep-sites/2312/basin/battle.svg",
+      "sky": "locations/deep-sites/2312/basin/sky.svg",
+      "distant": "locations/deep-sites/2312/basin/distant.svg",
+      "midground": "locations/deep-sites/2312/basin/midground.svg",
+      "foreground": "locations/deep-sites/2312/basin/foreground.svg",
+      "icon": "locations/deep-sites/2312/basin/icon.svg"
+    }
+  },
+  {
+    "id": "2312_capitol",
+    "kind": "deep-site",
+    "name": "Capitol Hill — Continuity Board seat",
+    "era": 2312,
+    "site": "capitol",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Capitol Hill, 2312: Continuity Board seat. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2312/capitol/hub.svg",
+      "battle": "locations/deep-sites/2312/capitol/battle.svg",
+      "sky": "locations/deep-sites/2312/capitol/sky.svg",
+      "distant": "locations/deep-sites/2312/capitol/distant.svg",
+      "midground": "locations/deep-sites/2312/capitol/midground.svg",
+      "foreground": "locations/deep-sites/2312/capitol/foreground.svg",
+      "icon": "locations/deep-sites/2312/capitol/icon.svg"
+    }
+  },
+  {
+    "id": "2312_kell",
+    "kind": "deep-site",
+    "name": "Kell Monastery — Last free place",
+    "era": 2312,
+    "site": "kell",
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Kell Monastery, 2312: Last free place. Original pixel-art environment.",
+    "files": {
+      "hub": "locations/deep-sites/2312/kell/hub.svg",
+      "battle": "locations/deep-sites/2312/kell/battle.svg",
+      "sky": "locations/deep-sites/2312/kell/sky.svg",
+      "distant": "locations/deep-sites/2312/kell/distant.svg",
+      "midground": "locations/deep-sites/2312/kell/midground.svg",
+      "foreground": "locations/deep-sites/2312/kell/foreground.svg",
+      "icon": "locations/deep-sites/2312/kell/icon.svg"
+    }
+  },
+  {
+    "id": "act3_meridian_stack",
+    "kind": "deep-site",
+    "name": "Meridian Campus — Stacked Final Dungeon",
+    "era": "stacked",
+    "site": "meridian",
+    "proposed": false,
+    "guideSection": "Premise and world / Travel rule",
+    "description": "Act 3 Meridian final dungeon: all four eras occupy one fractured chamber, ending at the Steward lattice.",
+    "files": {
+      "hub": "locations/deep-sites/act3/meridian-stack/hub.svg",
+      "battle": "locations/deep-sites/act3/meridian-stack/battle.svg",
+      "sky": "locations/deep-sites/act3/meridian-stack/sky.svg",
+      "distant": "locations/deep-sites/act3/meridian-stack/distant.svg",
+      "midground": "locations/deep-sites/act3/meridian-stack/midground.svg",
+      "foreground": "locations/deep-sites/act3/meridian-stack/foreground.svg",
+      "icon": "locations/deep-sites/act3/meridian-stack/icon.svg"
+    }
+  }
+]

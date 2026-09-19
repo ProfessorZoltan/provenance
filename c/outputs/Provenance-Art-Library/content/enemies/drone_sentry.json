@@ -1,0 +1,17 @@
+{
+  "id": "drone_sentry",
+  "name": "Sentry Drone",
+  "family": "drone",
+  "era": "2312",
+  "machine": true,
+  "stats": { "resolve": 55, "bandwidth": 2, "latency": 8, "signal": 30, "noise": 20, "grit": 22, "sync": 100, "continuity": 100 },
+  "shield": 20,
+  "abilities": ["drone_dart", "drone_burn"],
+  "immunities": [],
+  "perception": 35,
+  "rig": "drone_sentry",
+  "weakness": "thermal",
+  "xp": 30,
+  "drops": [{ "item": "scrap", "chance": 0.6 }],
+  "flavor": "An allocation drone, repurposed to keep the free town counted."
+}

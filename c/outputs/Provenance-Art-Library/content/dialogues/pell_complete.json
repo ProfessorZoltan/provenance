@@ -1,0 +1,7 @@
+{
+  "id": "pell_complete",
+  "lines": [
+    { "speaker": "pell", "text": "I heard it come down from here. The whole village heard it. That was the first thing anyone has done for us in years that was not allocated." },
+    { "speaker": "pell", "text": "Here. The prayer wheel. There is a chip inside that still spins when nobody is looking. Sell it, keep it, I do not mind.", "action": "quest:complete:gate_drone" }
+  ]
+}

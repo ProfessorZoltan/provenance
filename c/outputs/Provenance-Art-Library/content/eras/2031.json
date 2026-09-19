@@ -1,0 +1,12 @@
+{
+  "id": "2031",
+  "name": "The Founding",
+  "subtitle": "Sunlit optimism",
+  "palette": { "bg": "#F6F1E7", "surface": "#FFFFFF", "ink": "#2C2C2A", "accent": "#1D9E75", "accent2": "#EF9F27" },
+  "lineWeight": 1,
+  "font": "Inter",
+  "fontStack": "'Inter', 'Source Sans 3', system-ui, sans-serif",
+  "tuning": { "edo": 12, "root": 220, "drift": 0 },
+  "instrumentSet": ["piano", "pluck", "brush", "warmpad"],
+  "particles": "dust"
+}

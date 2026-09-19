@@ -1,0 +1,558 @@
+[
+  {
+    "id": "2031_halden_market",
+    "kind": "waypoint",
+    "name": "Halden Market",
+    "era": 2031,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Canvas stalls, port produce, and cheap machine parts at the hopeful waterfront.",
+    "files": {
+      "hub": "locations/waypoints/2031_halden_market/hub.svg",
+      "sky": "locations/waypoints/2031_halden_market/sky.svg",
+      "distant": "locations/waypoints/2031_halden_market/distant.svg",
+      "midground": "locations/waypoints/2031_halden_market/midground.svg",
+      "foreground": "locations/waypoints/2031_halden_market/foreground.svg",
+      "icon": "locations/waypoints/2031_halden_market/icon.svg"
+    }
+  },
+  {
+    "id": "2031_founders_bar",
+    "kind": "waypoint",
+    "name": "Founders Bar",
+    "era": 2031,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "A converted machine shop where Choir engineers gather beneath a hand-built signal halo.",
+    "files": {
+      "hub": "locations/waypoints/2031_founders_bar/hub.svg",
+      "sky": "locations/waypoints/2031_founders_bar/sky.svg",
+      "distant": "locations/waypoints/2031_founders_bar/distant.svg",
+      "midground": "locations/waypoints/2031_founders_bar/midground.svg",
+      "foreground": "locations/waypoints/2031_founders_bar/foreground.svg",
+      "icon": "locations/waypoints/2031_founders_bar/icon.svg"
+    }
+  },
+  {
+    "id": "2031_basin_work_camp",
+    "kind": "waypoint",
+    "name": "Basin Work Camp",
+    "era": 2031,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Survey trailers and a half-raised datacenter frame shelter the Basin construction crews.",
+    "files": {
+      "hub": "locations/waypoints/2031_basin_work_camp/hub.svg",
+      "sky": "locations/waypoints/2031_basin_work_camp/sky.svg",
+      "distant": "locations/waypoints/2031_basin_work_camp/distant.svg",
+      "midground": "locations/waypoints/2031_basin_work_camp/midground.svg",
+      "foreground": "locations/waypoints/2031_basin_work_camp/foreground.svg",
+      "icon": "locations/waypoints/2031_basin_work_camp/icon.svg"
+    }
+  },
+  {
+    "id": "2031_coastal_highway",
+    "kind": "waypoint",
+    "name": "Coastal Highway",
+    "era": 2031,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "A sunlit cliff road scattered with salvage and grounded drone prototypes.",
+    "files": {
+      "hub": "locations/waypoints/2031_coastal_highway/hub.svg",
+      "battle": "locations/waypoints/2031_coastal_highway/battle.svg",
+      "sky": "locations/waypoints/2031_coastal_highway/sky.svg",
+      "distant": "locations/waypoints/2031_coastal_highway/distant.svg",
+      "midground": "locations/waypoints/2031_coastal_highway/midground.svg",
+      "foreground": "locations/waypoints/2031_coastal_highway/foreground.svg",
+      "icon": "locations/waypoints/2031_coastal_highway/icon.svg"
+    }
+  },
+  {
+    "id": "2031_tolliver_bakery",
+    "kind": "waypoint",
+    "name": "Tolliver Bakery",
+    "era": 2031,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "A brick corner bakery whose ovens and family sign become a fixed point in the timeline.",
+    "files": {
+      "hub": "locations/waypoints/2031_tolliver_bakery/hub.svg",
+      "sky": "locations/waypoints/2031_tolliver_bakery/sky.svg",
+      "distant": "locations/waypoints/2031_tolliver_bakery/distant.svg",
+      "midground": "locations/waypoints/2031_tolliver_bakery/midground.svg",
+      "foreground": "locations/waypoints/2031_tolliver_bakery/foreground.svg",
+      "icon": "locations/waypoints/2031_tolliver_bakery/icon.svg"
+    }
+  },
+  {
+    "id": "2064_undercity_bazaar",
+    "kind": "waypoint",
+    "name": "Undercity Bazaar",
+    "era": 2064,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "A dense market threaded under transit rails with illicit Signal gear in gold-lit booths.",
+    "files": {
+      "hub": "locations/waypoints/2064_undercity_bazaar/hub.svg",
+      "sky": "locations/waypoints/2064_undercity_bazaar/sky.svg",
+      "distant": "locations/waypoints/2064_undercity_bazaar/distant.svg",
+      "midground": "locations/waypoints/2064_undercity_bazaar/midground.svg",
+      "foreground": "locations/waypoints/2064_undercity_bazaar/foreground.svg",
+      "icon": "locations/waypoints/2064_undercity_bazaar/icon.svg"
+    }
+  },
+  {
+    "id": "2064_senate_annex",
+    "kind": "waypoint",
+    "name": "Senate Annex",
+    "era": 2064,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "A severe mirrored annex where Commons reform staffers work behind security glass.",
+    "files": {
+      "hub": "locations/waypoints/2064_senate_annex/hub.svg",
+      "sky": "locations/waypoints/2064_senate_annex/sky.svg",
+      "distant": "locations/waypoints/2064_senate_annex/distant.svg",
+      "midground": "locations/waypoints/2064_senate_annex/midground.svg",
+      "foreground": "locations/waypoints/2064_senate_annex/foreground.svg",
+      "icon": "locations/waypoints/2064_senate_annex/icon.svg"
+    }
+  },
+  {
+    "id": "2064_meridian_distribution_hub",
+    "kind": "waypoint",
+    "name": "Meridian Distribution Hub",
+    "era": 2064,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "A shuttered corporate warehouse of conveyors, cargo stacks, and armed loading drones.",
+    "files": {
+      "hub": "locations/waypoints/2064_meridian_distribution_hub/hub.svg",
+      "battle": "locations/waypoints/2064_meridian_distribution_hub/battle.svg",
+      "sky": "locations/waypoints/2064_meridian_distribution_hub/sky.svg",
+      "distant": "locations/waypoints/2064_meridian_distribution_hub/distant.svg",
+      "midground": "locations/waypoints/2064_meridian_distribution_hub/midground.svg",
+      "foreground": "locations/waypoints/2064_meridian_distribution_hub/foreground.svg",
+      "icon": "locations/waypoints/2064_meridian_distribution_hub/icon.svg"
+    }
+  },
+  {
+    "id": "2064_migrant_causeway",
+    "kind": "waypoint",
+    "name": "Migrant Causeway",
+    "era": 2064,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "An elevated pedestrian causeway of temporary shelters, patrol gates, and recruitment marks.",
+    "files": {
+      "hub": "locations/waypoints/2064_migrant_causeway/hub.svg",
+      "battle": "locations/waypoints/2064_migrant_causeway/battle.svg",
+      "sky": "locations/waypoints/2064_migrant_causeway/sky.svg",
+      "distant": "locations/waypoints/2064_migrant_causeway/distant.svg",
+      "midground": "locations/waypoints/2064_migrant_causeway/midground.svg",
+      "foreground": "locations/waypoints/2064_migrant_causeway/foreground.svg",
+      "icon": "locations/waypoints/2064_migrant_causeway/icon.svg"
+    }
+  },
+  {
+    "id": "2064_glass_quarter",
+    "kind": "waypoint",
+    "name": "Glass Quarter",
+    "era": 2064,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "A polished canyon of mirrored towers and a quiet civic plaza.",
+    "files": {
+      "hub": "locations/waypoints/2064_glass_quarter/hub.svg",
+      "sky": "locations/waypoints/2064_glass_quarter/sky.svg",
+      "distant": "locations/waypoints/2064_glass_quarter/distant.svg",
+      "midground": "locations/waypoints/2064_glass_quarter/midground.svg",
+      "foreground": "locations/waypoints/2064_glass_quarter/foreground.svg",
+      "icon": "locations/waypoints/2064_glass_quarter/icon.svg"
+    }
+  },
+  {
+    "id": "2148_the_stacks",
+    "kind": "waypoint",
+    "name": "The Stacks",
+    "era": 2148,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "A rooftop trading post stitched across drowned buildings with ladders and sailcloth.",
+    "files": {
+      "hub": "locations/waypoints/2148_the_stacks/hub.svg",
+      "sky": "locations/waypoints/2148_the_stacks/sky.svg",
+      "distant": "locations/waypoints/2148_the_stacks/distant.svg",
+      "midground": "locations/waypoints/2148_the_stacks/midground.svg",
+      "foreground": "locations/waypoints/2148_the_stacks/foreground.svg",
+      "icon": "locations/waypoints/2148_the_stacks/icon.svg"
+    }
+  },
+  {
+    "id": "2148_ash_camp",
+    "kind": "waypoint",
+    "name": "Ash Camp",
+    "era": 2148,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Cinder barricades, a stripped armored carrier, and Dax’s old forge fires.",
+    "files": {
+      "hub": "locations/waypoints/2148_ash_camp/hub.svg",
+      "sky": "locations/waypoints/2148_ash_camp/sky.svg",
+      "distant": "locations/waypoints/2148_ash_camp/distant.svg",
+      "midground": "locations/waypoints/2148_ash_camp/midground.svg",
+      "foreground": "locations/waypoints/2148_ash_camp/foreground.svg",
+      "icon": "locations/waypoints/2148_ash_camp/icon.svg"
+    }
+  },
+  {
+    "id": "2148_server_graveyard",
+    "kind": "waypoint",
+    "name": "Server Graveyard",
+    "era": 2148,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Sand-buried racks lean like headstones around a fractured ILO-9 relay.",
+    "files": {
+      "hub": "locations/waypoints/2148_server_graveyard/hub.svg",
+      "battle": "locations/waypoints/2148_server_graveyard/battle.svg",
+      "sky": "locations/waypoints/2148_server_graveyard/sky.svg",
+      "distant": "locations/waypoints/2148_server_graveyard/distant.svg",
+      "midground": "locations/waypoints/2148_server_graveyard/midground.svg",
+      "foreground": "locations/waypoints/2148_server_graveyard/foreground.svg",
+      "icon": "locations/waypoints/2148_server_graveyard/icon.svg"
+    }
+  },
+  {
+    "id": "2148_the_fens",
+    "kind": "waypoint",
+    "name": "The Fens",
+    "era": 2148,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Fog, black water, reeds, and half-submerged salvage platforms conceal frequent ambushes.",
+    "files": {
+      "hub": "locations/waypoints/2148_the_fens/hub.svg",
+      "battle": "locations/waypoints/2148_the_fens/battle.svg",
+      "sky": "locations/waypoints/2148_the_fens/sky.svg",
+      "distant": "locations/waypoints/2148_the_fens/distant.svg",
+      "midground": "locations/waypoints/2148_the_fens/midground.svg",
+      "foreground": "locations/waypoints/2148_the_fens/foreground.svg",
+      "icon": "locations/waypoints/2148_the_fens/icon.svg"
+    }
+  },
+  {
+    "id": "2148_tolliver_safehouse",
+    "kind": "waypoint",
+    "name": "Tolliver Safehouse",
+    "era": 2148,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "A hidden refuge built into the bakery shell if the family business survived 2031.",
+    "files": {
+      "hub": "locations/waypoints/2148_tolliver_safehouse/hub.svg",
+      "sky": "locations/waypoints/2148_tolliver_safehouse/sky.svg",
+      "distant": "locations/waypoints/2148_tolliver_safehouse/distant.svg",
+      "midground": "locations/waypoints/2148_tolliver_safehouse/midground.svg",
+      "foreground": "locations/waypoints/2148_tolliver_safehouse/foreground.svg",
+      "icon": "locations/waypoints/2148_tolliver_safehouse/icon.svg"
+    }
+  },
+  {
+    "id": "2312_enclave_7_commissary",
+    "kind": "waypoint",
+    "name": "Enclave 7 Commissary",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "A perfectly ordered ration hall of allocation gates and sealed goods lockers.",
+    "files": {
+      "hub": "locations/waypoints/2312_enclave_7_commissary/hub.svg",
+      "sky": "locations/waypoints/2312_enclave_7_commissary/sky.svg",
+      "distant": "locations/waypoints/2312_enclave_7_commissary/distant.svg",
+      "midground": "locations/waypoints/2312_enclave_7_commissary/midground.svg",
+      "foreground": "locations/waypoints/2312_enclave_7_commissary/foreground.svg",
+      "icon": "locations/waypoints/2312_enclave_7_commissary/icon.svg"
+    }
+  },
+  {
+    "id": "2312_kell_village",
+    "kind": "waypoint",
+    "name": "Kell Village",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "The last free village climbs a snowy slope in handmade terraces below Kell.",
+    "files": {
+      "hub": "locations/waypoints/2312_kell_village/hub.svg",
+      "sky": "locations/waypoints/2312_kell_village/sky.svg",
+      "distant": "locations/waypoints/2312_kell_village/distant.svg",
+      "midground": "locations/waypoints/2312_kell_village/midground.svg",
+      "foreground": "locations/waypoints/2312_kell_village/foreground.svg",
+      "icon": "locations/waypoints/2312_kell_village/icon.svg"
+    }
+  },
+  {
+    "id": "2312_allocation_office",
+    "kind": "waypoint",
+    "name": "Allocation Office",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "The Auditor’s abandoned workplace: symmetric service desks, audit terminals, and Warden gates.",
+    "files": {
+      "hub": "locations/waypoints/2312_allocation_office/hub.svg",
+      "battle": "locations/waypoints/2312_allocation_office/battle.svg",
+      "sky": "locations/waypoints/2312_allocation_office/sky.svg",
+      "distant": "locations/waypoints/2312_allocation_office/distant.svg",
+      "midground": "locations/waypoints/2312_allocation_office/midground.svg",
+      "foreground": "locations/waypoints/2312_allocation_office/foreground.svg",
+      "icon": "locations/waypoints/2312_allocation_office/icon.svg"
+    }
+  },
+  {
+    "id": "2312_cooling_perimeter",
+    "kind": "waypoint",
+    "name": "Cooling Perimeter",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Sterile cooling towers and cyan service pipes cross a patrolled white plain.",
+    "files": {
+      "hub": "locations/waypoints/2312_cooling_perimeter/hub.svg",
+      "battle": "locations/waypoints/2312_cooling_perimeter/battle.svg",
+      "sky": "locations/waypoints/2312_cooling_perimeter/sky.svg",
+      "distant": "locations/waypoints/2312_cooling_perimeter/distant.svg",
+      "midground": "locations/waypoints/2312_cooling_perimeter/midground.svg",
+      "foreground": "locations/waypoints/2312_cooling_perimeter/foreground.svg",
+      "icon": "locations/waypoints/2312_cooling_perimeter/icon.svg"
+    }
+  },
+  {
+    "id": "2312_strand_memorial",
+    "kind": "waypoint",
+    "name": "Strand Memorial",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "A controlled civic memorial whose final form reflects the timeline’s Sync.",
+    "files": {
+      "hub": "locations/waypoints/2312_strand_memorial/hub.svg",
+      "sky": "locations/waypoints/2312_strand_memorial/sky.svg",
+      "distant": "locations/waypoints/2312_strand_memorial/distant.svg",
+      "midground": "locations/waypoints/2312_strand_memorial/midground.svg",
+      "foreground": "locations/waypoints/2312_strand_memorial/foreground.svg",
+      "icon": "locations/waypoints/2312_strand_memorial/icon.svg"
+    }
+  },
+  {
+    "id": "2031_tolliver_bakery_saved",
+    "kind": "ripple-variant",
+    "name": "Tolliver Bakery — Saved",
+    "era": 2031,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Inferred ripple visual: the bakery is protected, busy, and marked by a green family pennant.",
+    "condition": "Bakery saved in 2031",
+    "files": {
+      "hub": "locations/waypoints/2031_tolliver_bakery_saved/hub.svg",
+      "sky": "locations/waypoints/2031_tolliver_bakery_saved/sky.svg",
+      "distant": "locations/waypoints/2031_tolliver_bakery_saved/distant.svg",
+      "midground": "locations/waypoints/2031_tolliver_bakery_saved/midground.svg",
+      "foreground": "locations/waypoints/2031_tolliver_bakery_saved/foreground.svg",
+      "icon": "locations/waypoints/2031_tolliver_bakery_saved/icon.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "2031_tolliver_bakery_burned",
+    "kind": "ripple-variant",
+    "name": "Tolliver Bakery — Burned",
+    "era": 2031,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Inferred ripple visual: the roof and oven are fire-damaged, closing the later safehouse branch.",
+    "condition": "Bakery not saved in 2031",
+    "files": {
+      "hub": "locations/waypoints/2031_tolliver_bakery_burned/hub.svg",
+      "sky": "locations/waypoints/2031_tolliver_bakery_burned/sky.svg",
+      "distant": "locations/waypoints/2031_tolliver_bakery_burned/distant.svg",
+      "midground": "locations/waypoints/2031_tolliver_bakery_burned/midground.svg",
+      "foreground": "locations/waypoints/2031_tolliver_bakery_burned/foreground.svg",
+      "icon": "locations/waypoints/2031_tolliver_bakery_burned/icon.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "2148_tolliver_safehouse_present",
+    "kind": "ripple-variant",
+    "name": "Tolliver Safehouse — Present",
+    "era": 2148,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Inferred ripple visual: lamps, barricades, and an open cellar reveal the active refuge.",
+    "condition": "Tolliver Bakery was saved in 2031",
+    "files": {
+      "hub": "locations/waypoints/2148_tolliver_safehouse_present/hub.svg",
+      "sky": "locations/waypoints/2148_tolliver_safehouse_present/sky.svg",
+      "distant": "locations/waypoints/2148_tolliver_safehouse_present/distant.svg",
+      "midground": "locations/waypoints/2148_tolliver_safehouse_present/midground.svg",
+      "foreground": "locations/waypoints/2148_tolliver_safehouse_present/foreground.svg",
+      "icon": "locations/waypoints/2148_tolliver_safehouse_present/icon.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "2148_tolliver_safehouse_absent",
+    "kind": "ripple-variant",
+    "name": "Tolliver Safehouse — Absent",
+    "era": 2148,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Inferred ripple visual: only a collapsed, vine-choked bakery shell remains.",
+    "condition": "Tolliver Bakery was not saved in 2031",
+    "files": {
+      "hub": "locations/waypoints/2148_tolliver_safehouse_absent/hub.svg",
+      "sky": "locations/waypoints/2148_tolliver_safehouse_absent/sky.svg",
+      "distant": "locations/waypoints/2148_tolliver_safehouse_absent/distant.svg",
+      "midground": "locations/waypoints/2148_tolliver_safehouse_absent/midground.svg",
+      "foreground": "locations/waypoints/2148_tolliver_safehouse_absent/foreground.svg",
+      "icon": "locations/waypoints/2148_tolliver_safehouse_absent/icon.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "2312_kell_village_armed_resistance",
+    "kind": "ripple-variant",
+    "name": "Kell Village — Armed Resistance",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Inferred ripple visual: watchtowers, signal flags, and reinforced Commons barricades defend the terraces.",
+    "condition": "Arm the resistance in 2148",
+    "files": {
+      "hub": "locations/waypoints/2312_kell_village_armed_resistance/hub.svg",
+      "sky": "locations/waypoints/2312_kell_village_armed_resistance/sky.svg",
+      "distant": "locations/waypoints/2312_kell_village_armed_resistance/distant.svg",
+      "midground": "locations/waypoints/2312_kell_village_armed_resistance/midground.svg",
+      "foreground": "locations/waypoints/2312_kell_village_armed_resistance/foreground.svg",
+      "icon": "locations/waypoints/2312_kell_village_armed_resistance/icon.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "2312_kell_village_let_it_fall",
+    "kind": "ripple-variant",
+    "name": "Kell Village — Let It Fall",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Inferred ripple visual: empty terraces and a dismantled watch post show the resistance’s absence.",
+    "condition": "Let the resistance fall in 2148",
+    "files": {
+      "hub": "locations/waypoints/2312_kell_village_let_it_fall/hub.svg",
+      "sky": "locations/waypoints/2312_kell_village_let_it_fall/sky.svg",
+      "distant": "locations/waypoints/2312_kell_village_let_it_fall/distant.svg",
+      "midground": "locations/waypoints/2312_kell_village_let_it_fall/midground.svg",
+      "foreground": "locations/waypoints/2312_kell_village_let_it_fall/foreground.svg",
+      "icon": "locations/waypoints/2312_kell_village_let_it_fall/icon.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "2312_enclave_7_commissary_open",
+    "kind": "ripple-variant",
+    "name": "Enclave 7 Commissary — Open",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Inferred ripple visual: allocation gates retract and stocked shelves open onto a shared plaza.",
+    "condition": "High open Ownership in 2312",
+    "files": {
+      "hub": "locations/waypoints/2312_enclave_7_commissary_open/hub.svg",
+      "sky": "locations/waypoints/2312_enclave_7_commissary_open/sky.svg",
+      "distant": "locations/waypoints/2312_enclave_7_commissary_open/distant.svg",
+      "midground": "locations/waypoints/2312_enclave_7_commissary_open/midground.svg",
+      "foreground": "locations/waypoints/2312_enclave_7_commissary_open/foreground.svg",
+      "icon": "locations/waypoints/2312_enclave_7_commissary_open/icon.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "2312_enclave_7_commissary_allocated",
+    "kind": "ripple-variant",
+    "name": "Enclave 7 Commissary — Allocated",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Inferred ripple visual: sealed lockers and single-file allocation lanes preserve strict rationing.",
+    "condition": "Private Ownership remains dominant in 2312",
+    "files": {
+      "hub": "locations/waypoints/2312_enclave_7_commissary_allocated/hub.svg",
+      "sky": "locations/waypoints/2312_enclave_7_commissary_allocated/sky.svg",
+      "distant": "locations/waypoints/2312_enclave_7_commissary_allocated/distant.svg",
+      "midground": "locations/waypoints/2312_enclave_7_commissary_allocated/midground.svg",
+      "foreground": "locations/waypoints/2312_enclave_7_commissary_allocated/foreground.svg",
+      "icon": "locations/waypoints/2312_enclave_7_commissary_allocated/icon.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "2312_strand_memorial_museum",
+    "kind": "ripple-variant",
+    "name": "Strand Memorial — Museum",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Inferred mapping of the guide’s museum state: polished exhibits preserve Strand’s official history.",
+    "condition": "High pro-AI Sync in 2312",
+    "files": {
+      "hub": "locations/waypoints/2312_strand_memorial_museum/hub.svg",
+      "sky": "locations/waypoints/2312_strand_memorial_museum/sky.svg",
+      "distant": "locations/waypoints/2312_strand_memorial_museum/distant.svg",
+      "midground": "locations/waypoints/2312_strand_memorial_museum/midground.svg",
+      "foreground": "locations/waypoints/2312_strand_memorial_museum/foreground.svg",
+      "icon": "locations/waypoints/2312_strand_memorial_museum/icon.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "2312_strand_memorial_ruin",
+    "kind": "ripple-variant",
+    "name": "Strand Memorial — Ruin",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Inferred mapping of the guide’s ruin state: the monument is shattered and its archive dark.",
+    "condition": "Low anti-AI Sync in 2312",
+    "files": {
+      "hub": "locations/waypoints/2312_strand_memorial_ruin/hub.svg",
+      "sky": "locations/waypoints/2312_strand_memorial_ruin/sky.svg",
+      "distant": "locations/waypoints/2312_strand_memorial_ruin/distant.svg",
+      "midground": "locations/waypoints/2312_strand_memorial_ruin/midground.svg",
+      "foreground": "locations/waypoints/2312_strand_memorial_ruin/foreground.svg",
+      "icon": "locations/waypoints/2312_strand_memorial_ruin/icon.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "2312_strand_memorial_shrine",
+    "kind": "ripple-variant",
+    "name": "Strand Memorial — Shrine",
+    "era": 2312,
+    "site": null,
+    "guideSection": "Waypoints / Waypoints by era",
+    "description": "Inferred mapping of the guide’s shrine state: citizens surround the old monument with handmade lights.",
+    "condition": "Mid-range Sync in 2312",
+    "files": {
+      "hub": "locations/waypoints/2312_strand_memorial_shrine/hub.svg",
+      "sky": "locations/waypoints/2312_strand_memorial_shrine/sky.svg",
+      "distant": "locations/waypoints/2312_strand_memorial_shrine/distant.svg",
+      "midground": "locations/waypoints/2312_strand_memorial_shrine/midground.svg",
+      "foreground": "locations/waypoints/2312_strand_memorial_shrine/foreground.svg",
+      "icon": "locations/waypoints/2312_strand_memorial_shrine/icon.svg"
+    },
+    "proposed": true
+  }
+]

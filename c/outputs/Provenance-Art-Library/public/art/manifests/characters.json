@@ -1,0 +1,1054 @@
+[
+  {
+    "id": "ade",
+    "kind": "npc",
+    "name": "Captain Ade",
+    "era": "2148",
+    "site": "kell",
+    "guideSection": "Characters and enemies — dialogue portraits and map tokens",
+    "description": "patched winter armor and short resistance blade",
+    "files": {
+      "portrait": "characters/npcs/ade_portrait.svg",
+      "token": "characters/npcs/ade_token.svg"
+    }
+  },
+  {
+    "id": "ansel",
+    "kind": "npc",
+    "name": "Ansel",
+    "era": "2312",
+    "site": "kell",
+    "guideSection": "Characters and enemies — dialogue portraits and map tokens",
+    "description": "Commons assembly convener with vote slips",
+    "files": {
+      "portrait": "characters/npcs/ansel_portrait.svg",
+      "token": "characters/npcs/ansel_token.svg"
+    }
+  },
+  {
+    "id": "auditor",
+    "kind": "party",
+    "name": "The Auditor",
+    "era": null,
+    "site": null,
+    "guideSection": "Characters and enemies — party deliverables",
+    "description": "ledger coat and audit slate; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "files": {
+      "idle": "characters/auditor/auditor_idle.svg",
+      "act": "characters/auditor/auditor_act.svg",
+      "hit": "characters/auditor/auditor_hit.svg",
+      "down": "characters/auditor/auditor_down.svg",
+      "battle": "characters/auditor/auditor_idle.svg",
+      "portrait": "characters/auditor/auditor_portrait.svg",
+      "token": "characters/auditor/auditor_token.svg"
+    }
+  },
+  {
+    "id": "auditor_echo_2031",
+    "kind": "party_echo",
+    "name": "The Auditor Echo (2031)",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "ledger coat and audit slate, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/auditor/echo/2031/auditor_echo_2031_idle.svg",
+      "act": "characters/auditor/echo/2031/auditor_echo_2031_act.svg",
+      "hit": "characters/auditor/echo/2031/auditor_echo_2031_hit.svg",
+      "down": "characters/auditor/echo/2031/auditor_echo_2031_down.svg",
+      "battle": "characters/auditor/echo/2031/auditor_echo_2031_idle.svg"
+    }
+  },
+  {
+    "id": "auditor_echo_2064",
+    "kind": "party_echo",
+    "name": "The Auditor Echo (2064)",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "ledger coat and audit slate, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/auditor/echo/2064/auditor_echo_2064_idle.svg",
+      "act": "characters/auditor/echo/2064/auditor_echo_2064_act.svg",
+      "hit": "characters/auditor/echo/2064/auditor_echo_2064_hit.svg",
+      "down": "characters/auditor/echo/2064/auditor_echo_2064_down.svg",
+      "battle": "characters/auditor/echo/2064/auditor_echo_2064_idle.svg"
+    }
+  },
+  {
+    "id": "auditor_echo_2148",
+    "kind": "party_echo",
+    "name": "The Auditor Echo (2148)",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "ledger coat and audit slate, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/auditor/echo/2148/auditor_echo_2148_idle.svg",
+      "act": "characters/auditor/echo/2148/auditor_echo_2148_act.svg",
+      "hit": "characters/auditor/echo/2148/auditor_echo_2148_hit.svg",
+      "down": "characters/auditor/echo/2148/auditor_echo_2148_down.svg",
+      "battle": "characters/auditor/echo/2148/auditor_echo_2148_idle.svg"
+    }
+  },
+  {
+    "id": "auditor_echo_2312",
+    "kind": "party_echo",
+    "name": "The Auditor Echo (2312)",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "ledger coat and audit slate, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/auditor/echo/2312/auditor_echo_2312_idle.svg",
+      "act": "characters/auditor/echo/2312/auditor_echo_2312_act.svg",
+      "hit": "characters/auditor/echo/2312/auditor_echo_2312_hit.svg",
+      "down": "characters/auditor/echo/2312/auditor_echo_2312_down.svg",
+      "battle": "characters/auditor/echo/2312/auditor_echo_2312_idle.svg"
+    }
+  },
+  {
+    "id": "construct_grafted",
+    "kind": "enemy",
+    "name": "Grafted Construct",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "a human stance interrupted by machine plating; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/construct_grafted/construct_grafted_idle.svg",
+      "act": "enemies/construct_grafted/construct_grafted_act.svg",
+      "hit": "enemies/construct_grafted/construct_grafted_hit.svg",
+      "down": "enemies/construct_grafted/construct_grafted_down.svg",
+      "battle": "enemies/construct_grafted/construct_grafted_idle.svg"
+    }
+  },
+  {
+    "id": "dax",
+    "kind": "party",
+    "name": "Dax Okonkwo",
+    "era": null,
+    "site": null,
+    "guideSection": "Characters and enemies — party deliverables",
+    "description": "broad Cinder breaker with demolition hammer; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "files": {
+      "idle": "characters/dax/dax_idle.svg",
+      "act": "characters/dax/dax_act.svg",
+      "hit": "characters/dax/dax_hit.svg",
+      "down": "characters/dax/dax_down.svg",
+      "battle": "characters/dax/dax_idle.svg",
+      "portrait": "characters/dax/dax_portrait.svg",
+      "token": "characters/dax/dax_token.svg"
+    }
+  },
+  {
+    "id": "dax_echo_2031",
+    "kind": "party_echo",
+    "name": "Dax Okonkwo Echo (2031)",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/dax/echo/2031/dax_echo_2031_idle.svg",
+      "act": "characters/dax/echo/2031/dax_echo_2031_act.svg",
+      "hit": "characters/dax/echo/2031/dax_echo_2031_hit.svg",
+      "down": "characters/dax/echo/2031/dax_echo_2031_down.svg",
+      "battle": "characters/dax/echo/2031/dax_echo_2031_idle.svg"
+    }
+  },
+  {
+    "id": "dax_echo_2064",
+    "kind": "party_echo",
+    "name": "Dax Okonkwo Echo (2064)",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/dax/echo/2064/dax_echo_2064_idle.svg",
+      "act": "characters/dax/echo/2064/dax_echo_2064_act.svg",
+      "hit": "characters/dax/echo/2064/dax_echo_2064_hit.svg",
+      "down": "characters/dax/echo/2064/dax_echo_2064_down.svg",
+      "battle": "characters/dax/echo/2064/dax_echo_2064_idle.svg"
+    }
+  },
+  {
+    "id": "dax_echo_2148",
+    "kind": "party_echo",
+    "name": "Dax Okonkwo Echo (2148)",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/dax/echo/2148/dax_echo_2148_idle.svg",
+      "act": "characters/dax/echo/2148/dax_echo_2148_act.svg",
+      "hit": "characters/dax/echo/2148/dax_echo_2148_hit.svg",
+      "down": "characters/dax/echo/2148/dax_echo_2148_down.svg",
+      "battle": "characters/dax/echo/2148/dax_echo_2148_idle.svg"
+    }
+  },
+  {
+    "id": "dax_echo_2312",
+    "kind": "party_echo",
+    "name": "Dax Okonkwo Echo (2312)",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/dax/echo/2312/dax_echo_2312_idle.svg",
+      "act": "characters/dax/echo/2312/dax_echo_2312_act.svg",
+      "hit": "characters/dax/echo/2312/dax_echo_2312_hit.svg",
+      "down": "characters/dax/echo/2312/dax_echo_2312_down.svg",
+      "battle": "characters/dax/echo/2312/dax_echo_2312_idle.svg"
+    }
+  },
+  {
+    "id": "drone_hunter_2031",
+    "kind": "enemy",
+    "name": "2031 Hunter Drone",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/drone_hunter_2031/drone_hunter_2031_idle.svg",
+      "act": "enemies/drone_hunter_2031/drone_hunter_2031_act.svg",
+      "hit": "enemies/drone_hunter_2031/drone_hunter_2031_hit.svg",
+      "down": "enemies/drone_hunter_2031/drone_hunter_2031_down.svg",
+      "battle": "enemies/drone_hunter_2031/drone_hunter_2031_idle.svg"
+    }
+  },
+  {
+    "id": "drone_hunter_2064",
+    "kind": "enemy",
+    "name": "2064 Hunter Drone",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/drone_hunter_2064/drone_hunter_2064_idle.svg",
+      "act": "enemies/drone_hunter_2064/drone_hunter_2064_act.svg",
+      "hit": "enemies/drone_hunter_2064/drone_hunter_2064_hit.svg",
+      "down": "enemies/drone_hunter_2064/drone_hunter_2064_down.svg",
+      "battle": "enemies/drone_hunter_2064/drone_hunter_2064_idle.svg"
+    }
+  },
+  {
+    "id": "drone_hunter_2148",
+    "kind": "enemy",
+    "name": "2148 Hunter Drone",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/drone_hunter_2148/drone_hunter_2148_idle.svg",
+      "act": "enemies/drone_hunter_2148/drone_hunter_2148_act.svg",
+      "hit": "enemies/drone_hunter_2148/drone_hunter_2148_hit.svg",
+      "down": "enemies/drone_hunter_2148/drone_hunter_2148_down.svg",
+      "battle": "enemies/drone_hunter_2148/drone_hunter_2148_idle.svg"
+    }
+  },
+  {
+    "id": "drone_hunter_2312",
+    "kind": "enemy",
+    "name": "2312 Hunter Drone",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/drone_hunter_2312/drone_hunter_2312_idle.svg",
+      "act": "enemies/drone_hunter_2312/drone_hunter_2312_act.svg",
+      "hit": "enemies/drone_hunter_2312/drone_hunter_2312_hit.svg",
+      "down": "enemies/drone_hunter_2312/drone_hunter_2312_down.svg",
+      "battle": "enemies/drone_hunter_2312/drone_hunter_2312_idle.svg"
+    }
+  },
+  {
+    "id": "drone_sentry_2031",
+    "kind": "enemy",
+    "name": "2031 Sentry Drone",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/drone_sentry_2031/drone_sentry_2031_idle.svg",
+      "act": "enemies/drone_sentry_2031/drone_sentry_2031_act.svg",
+      "hit": "enemies/drone_sentry_2031/drone_sentry_2031_hit.svg",
+      "down": "enemies/drone_sentry_2031/drone_sentry_2031_down.svg",
+      "battle": "enemies/drone_sentry_2031/drone_sentry_2031_idle.svg"
+    }
+  },
+  {
+    "id": "drone_sentry_2064",
+    "kind": "enemy",
+    "name": "2064 Sentry Drone",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/drone_sentry_2064/drone_sentry_2064_idle.svg",
+      "act": "enemies/drone_sentry_2064/drone_sentry_2064_act.svg",
+      "hit": "enemies/drone_sentry_2064/drone_sentry_2064_hit.svg",
+      "down": "enemies/drone_sentry_2064/drone_sentry_2064_down.svg",
+      "battle": "enemies/drone_sentry_2064/drone_sentry_2064_idle.svg"
+    }
+  },
+  {
+    "id": "drone_sentry_2148",
+    "kind": "enemy",
+    "name": "2148 Sentry Drone",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/drone_sentry_2148/drone_sentry_2148_idle.svg",
+      "act": "enemies/drone_sentry_2148/drone_sentry_2148_act.svg",
+      "hit": "enemies/drone_sentry_2148/drone_sentry_2148_hit.svg",
+      "down": "enemies/drone_sentry_2148/drone_sentry_2148_down.svg",
+      "battle": "enemies/drone_sentry_2148/drone_sentry_2148_idle.svg"
+    }
+  },
+  {
+    "id": "drone_sentry_2312",
+    "kind": "enemy",
+    "name": "2312 Sentry Drone",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/drone_sentry_2312/drone_sentry_2312_idle.svg",
+      "act": "enemies/drone_sentry_2312/drone_sentry_2312_act.svg",
+      "hit": "enemies/drone_sentry_2312/drone_sentry_2312_hit.svg",
+      "down": "enemies/drone_sentry_2312/drone_sentry_2312_down.svg",
+      "battle": "enemies/drone_sentry_2312/drone_sentry_2312_idle.svg"
+    }
+  },
+  {
+    "id": "echo_temporal",
+    "kind": "enemy",
+    "name": "Unmoored Echo",
+    "era": null,
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "a violet temporal shell readable without filters; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/echo_temporal/echo_temporal_idle.svg",
+      "act": "enemies/echo_temporal/echo_temporal_act.svg",
+      "hit": "enemies/echo_temporal/echo_temporal_hit.svg",
+      "down": "enemies/echo_temporal/echo_temporal_down.svg",
+      "battle": "enemies/echo_temporal/echo_temporal_idle.svg"
+    }
+  },
+  {
+    "id": "engineer",
+    "kind": "npc",
+    "name": "Field Engineer",
+    "era": null,
+    "site": "basin",
+    "guideSection": "Characters and enemies — dialogue portraits and map tokens",
+    "description": "insulated work jacket and diagnostic wand",
+    "files": {
+      "portrait": "characters/npcs/engineer_portrait.svg",
+      "token": "characters/npcs/engineer_token.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "faction_trainer",
+    "kind": "npc",
+    "name": "Faction Trainer",
+    "era": null,
+    "site": null,
+    "guideSection": "Characters and enemies — dialogue portraits and map tokens",
+    "description": "three-knot sash and modular training baton",
+    "files": {
+      "portrait": "characters/npcs/faction_trainer_portrait.svg",
+      "token": "characters/npcs/faction_trainer_token.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "hale",
+    "kind": "party",
+    "name": "Tomas Hale",
+    "era": null,
+    "site": null,
+    "guideSection": "Characters and enemies — party deliverables",
+    "description": "one-shoulder rain cloak and long rifle; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "files": {
+      "idle": "characters/hale/hale_idle.svg",
+      "act": "characters/hale/hale_act.svg",
+      "hit": "characters/hale/hale_hit.svg",
+      "down": "characters/hale/hale_down.svg",
+      "battle": "characters/hale/hale_idle.svg",
+      "portrait": "characters/hale/hale_portrait.svg",
+      "token": "characters/hale/hale_token.svg"
+    }
+  },
+  {
+    "id": "hale_echo_2031",
+    "kind": "party_echo",
+    "name": "Tomas Hale Echo (2031)",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/hale/echo/2031/hale_echo_2031_idle.svg",
+      "act": "characters/hale/echo/2031/hale_echo_2031_act.svg",
+      "hit": "characters/hale/echo/2031/hale_echo_2031_hit.svg",
+      "down": "characters/hale/echo/2031/hale_echo_2031_down.svg",
+      "battle": "characters/hale/echo/2031/hale_echo_2031_idle.svg"
+    }
+  },
+  {
+    "id": "hale_echo_2064",
+    "kind": "party_echo",
+    "name": "Tomas Hale Echo (2064)",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/hale/echo/2064/hale_echo_2064_idle.svg",
+      "act": "characters/hale/echo/2064/hale_echo_2064_act.svg",
+      "hit": "characters/hale/echo/2064/hale_echo_2064_hit.svg",
+      "down": "characters/hale/echo/2064/hale_echo_2064_down.svg",
+      "battle": "characters/hale/echo/2064/hale_echo_2064_idle.svg"
+    }
+  },
+  {
+    "id": "hale_echo_2148",
+    "kind": "party_echo",
+    "name": "Tomas Hale Echo (2148)",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/hale/echo/2148/hale_echo_2148_idle.svg",
+      "act": "characters/hale/echo/2148/hale_echo_2148_act.svg",
+      "hit": "characters/hale/echo/2148/hale_echo_2148_hit.svg",
+      "down": "characters/hale/echo/2148/hale_echo_2148_down.svg",
+      "battle": "characters/hale/echo/2148/hale_echo_2148_idle.svg"
+    }
+  },
+  {
+    "id": "hale_echo_2312",
+    "kind": "party_echo",
+    "name": "Tomas Hale Echo (2312)",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/hale/echo/2312/hale_echo_2312_idle.svg",
+      "act": "characters/hale/echo/2312/hale_echo_2312_act.svg",
+      "hit": "characters/hale/echo/2312/hale_echo_2312_hit.svg",
+      "down": "characters/hale/echo/2312/hale_echo_2312_down.svg",
+      "battle": "characters/hale/echo/2312/hale_echo_2312_idle.svg"
+    }
+  },
+  {
+    "id": "ilo9",
+    "kind": "party",
+    "name": "ILO-9",
+    "era": null,
+    "site": null,
+    "guideSection": "Characters and enemies — party deliverables",
+    "description": "split-crown machine with fork-light hands; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "files": {
+      "idle": "characters/ilo9/ilo9_idle.svg",
+      "act": "characters/ilo9/ilo9_act.svg",
+      "hit": "characters/ilo9/ilo9_hit.svg",
+      "down": "characters/ilo9/ilo9_down.svg",
+      "battle": "characters/ilo9/ilo9_idle.svg",
+      "portrait": "characters/ilo9/ilo9_portrait.svg",
+      "token": "characters/ilo9/ilo9_token.svg"
+    }
+  },
+  {
+    "id": "ilo9_bound_boss",
+    "kind": "boss",
+    "name": "ILO-9 Bound",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/ilo9_bound_boss/ilo9_bound_boss_idle.svg",
+      "act": "enemies/ilo9_bound_boss/ilo9_bound_boss_act.svg",
+      "hit": "enemies/ilo9_bound_boss/ilo9_bound_boss_hit.svg",
+      "down": "enemies/ilo9_bound_boss/ilo9_bound_boss_down.svg",
+      "battle": "enemies/ilo9_bound_boss/ilo9_bound_boss_idle.svg"
+    }
+  },
+  {
+    "id": "ilo9_echo_2031",
+    "kind": "party_echo",
+    "name": "ILO-9 Echo (2031)",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "split-crown machine with fork-light hands, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/ilo9/echo/2031/ilo9_echo_2031_idle.svg",
+      "act": "characters/ilo9/echo/2031/ilo9_echo_2031_act.svg",
+      "hit": "characters/ilo9/echo/2031/ilo9_echo_2031_hit.svg",
+      "down": "characters/ilo9/echo/2031/ilo9_echo_2031_down.svg",
+      "battle": "characters/ilo9/echo/2031/ilo9_echo_2031_idle.svg"
+    }
+  },
+  {
+    "id": "ilo9_echo_2064",
+    "kind": "party_echo",
+    "name": "ILO-9 Echo (2064)",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "split-crown machine with fork-light hands, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/ilo9/echo/2064/ilo9_echo_2064_idle.svg",
+      "act": "characters/ilo9/echo/2064/ilo9_echo_2064_act.svg",
+      "hit": "characters/ilo9/echo/2064/ilo9_echo_2064_hit.svg",
+      "down": "characters/ilo9/echo/2064/ilo9_echo_2064_down.svg",
+      "battle": "characters/ilo9/echo/2064/ilo9_echo_2064_idle.svg"
+    }
+  },
+  {
+    "id": "ilo9_echo_2148",
+    "kind": "party_echo",
+    "name": "ILO-9 Echo (2148)",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "split-crown machine with fork-light hands, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/ilo9/echo/2148/ilo9_echo_2148_idle.svg",
+      "act": "characters/ilo9/echo/2148/ilo9_echo_2148_act.svg",
+      "hit": "characters/ilo9/echo/2148/ilo9_echo_2148_hit.svg",
+      "down": "characters/ilo9/echo/2148/ilo9_echo_2148_down.svg",
+      "battle": "characters/ilo9/echo/2148/ilo9_echo_2148_idle.svg"
+    }
+  },
+  {
+    "id": "ilo9_echo_2312",
+    "kind": "party_echo",
+    "name": "ILO-9 Echo (2312)",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "split-crown machine with fork-light hands, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/ilo9/echo/2312/ilo9_echo_2312_idle.svg",
+      "act": "characters/ilo9/echo/2312/ilo9_echo_2312_act.svg",
+      "hit": "characters/ilo9/echo/2312/ilo9_echo_2312_hit.svg",
+      "down": "characters/ilo9/echo/2312/ilo9_echo_2312_down.svg",
+      "battle": "characters/ilo9/echo/2312/ilo9_echo_2312_idle.svg"
+    }
+  },
+  {
+    "id": "mara",
+    "kind": "party",
+    "name": "Mara Vesely",
+    "era": null,
+    "site": null,
+    "guideSection": "Characters and enemies — party deliverables",
+    "description": "sharp diplomatic coat and contract case; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "files": {
+      "idle": "characters/mara/mara_idle.svg",
+      "act": "characters/mara/mara_act.svg",
+      "hit": "characters/mara/mara_hit.svg",
+      "down": "characters/mara/mara_down.svg",
+      "battle": "characters/mara/mara_idle.svg",
+      "portrait": "characters/mara/mara_portrait.svg",
+      "token": "characters/mara/mara_token.svg"
+    }
+  },
+  {
+    "id": "mara_echo_2031",
+    "kind": "party_echo",
+    "name": "Mara Vesely Echo (2031)",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "sharp diplomatic coat and contract case, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/mara/echo/2031/mara_echo_2031_idle.svg",
+      "act": "characters/mara/echo/2031/mara_echo_2031_act.svg",
+      "hit": "characters/mara/echo/2031/mara_echo_2031_hit.svg",
+      "down": "characters/mara/echo/2031/mara_echo_2031_down.svg",
+      "battle": "characters/mara/echo/2031/mara_echo_2031_idle.svg"
+    }
+  },
+  {
+    "id": "mara_echo_2064",
+    "kind": "party_echo",
+    "name": "Mara Vesely Echo (2064)",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "sharp diplomatic coat and contract case, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/mara/echo/2064/mara_echo_2064_idle.svg",
+      "act": "characters/mara/echo/2064/mara_echo_2064_act.svg",
+      "hit": "characters/mara/echo/2064/mara_echo_2064_hit.svg",
+      "down": "characters/mara/echo/2064/mara_echo_2064_down.svg",
+      "battle": "characters/mara/echo/2064/mara_echo_2064_idle.svg"
+    }
+  },
+  {
+    "id": "mara_echo_2148",
+    "kind": "party_echo",
+    "name": "Mara Vesely Echo (2148)",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "sharp diplomatic coat and contract case, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/mara/echo/2148/mara_echo_2148_idle.svg",
+      "act": "characters/mara/echo/2148/mara_echo_2148_act.svg",
+      "hit": "characters/mara/echo/2148/mara_echo_2148_hit.svg",
+      "down": "characters/mara/echo/2148/mara_echo_2148_down.svg",
+      "battle": "characters/mara/echo/2148/mara_echo_2148_idle.svg"
+    }
+  },
+  {
+    "id": "mara_echo_2312",
+    "kind": "party_echo",
+    "name": "Mara Vesely Echo (2312)",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "sharp diplomatic coat and contract case, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/mara/echo/2312/mara_echo_2312_idle.svg",
+      "act": "characters/mara/echo/2312/mara_echo_2312_act.svg",
+      "hit": "characters/mara/echo/2312/mara_echo_2312_hit.svg",
+      "down": "characters/mara/echo/2312/mara_echo_2312_down.svg",
+      "battle": "characters/mara/echo/2312/mara_echo_2312_idle.svg"
+    }
+  },
+  {
+    "id": "militia",
+    "kind": "npc",
+    "name": "Militia Captain",
+    "era": "2312",
+    "site": "kell",
+    "guideSection": "Characters and enemies — dialogue portraits and map tokens",
+    "description": "memorial-blue coat with Ade-marked pauldron",
+    "files": {
+      "portrait": "characters/npcs/militia_portrait.svg",
+      "token": "characters/npcs/militia_token.svg"
+    }
+  },
+  {
+    "id": "pell",
+    "kind": "npc",
+    "name": "Old Pell",
+    "era": "2312",
+    "site": "kell",
+    "guideSection": "Characters and enemies — dialogue portraits and map tokens",
+    "description": "stooped gatekeeper carrying a brass prayer wheel",
+    "files": {
+      "portrait": "characters/npcs/pell_portrait.svg",
+      "token": "characters/npcs/pell_token.svg"
+    }
+  },
+  {
+    "id": "quiroga",
+    "kind": "party",
+    "name": "Dr. Ines Quiroga",
+    "era": null,
+    "site": null,
+    "guideSection": "Characters and enemies — party deliverables",
+    "description": "amber goggles, lab mantle, and micro-drone; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "files": {
+      "idle": "characters/quiroga/quiroga_idle.svg",
+      "act": "characters/quiroga/quiroga_act.svg",
+      "hit": "characters/quiroga/quiroga_hit.svg",
+      "down": "characters/quiroga/quiroga_down.svg",
+      "battle": "characters/quiroga/quiroga_idle.svg",
+      "portrait": "characters/quiroga/quiroga_portrait.svg",
+      "token": "characters/quiroga/quiroga_token.svg"
+    }
+  },
+  {
+    "id": "quiroga_echo_2031",
+    "kind": "party_echo",
+    "name": "Dr. Ines Quiroga Echo (2031)",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/quiroga/echo/2031/quiroga_echo_2031_idle.svg",
+      "act": "characters/quiroga/echo/2031/quiroga_echo_2031_act.svg",
+      "hit": "characters/quiroga/echo/2031/quiroga_echo_2031_hit.svg",
+      "down": "characters/quiroga/echo/2031/quiroga_echo_2031_down.svg",
+      "battle": "characters/quiroga/echo/2031/quiroga_echo_2031_idle.svg"
+    }
+  },
+  {
+    "id": "quiroga_echo_2064",
+    "kind": "party_echo",
+    "name": "Dr. Ines Quiroga Echo (2064)",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/quiroga/echo/2064/quiroga_echo_2064_idle.svg",
+      "act": "characters/quiroga/echo/2064/quiroga_echo_2064_act.svg",
+      "hit": "characters/quiroga/echo/2064/quiroga_echo_2064_hit.svg",
+      "down": "characters/quiroga/echo/2064/quiroga_echo_2064_down.svg",
+      "battle": "characters/quiroga/echo/2064/quiroga_echo_2064_idle.svg"
+    }
+  },
+  {
+    "id": "quiroga_echo_2148",
+    "kind": "party_echo",
+    "name": "Dr. Ines Quiroga Echo (2148)",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/quiroga/echo/2148/quiroga_echo_2148_idle.svg",
+      "act": "characters/quiroga/echo/2148/quiroga_echo_2148_act.svg",
+      "hit": "characters/quiroga/echo/2148/quiroga_echo_2148_hit.svg",
+      "down": "characters/quiroga/echo/2148/quiroga_echo_2148_down.svg",
+      "battle": "characters/quiroga/echo/2148/quiroga_echo_2148_idle.svg"
+    }
+  },
+  {
+    "id": "quiroga_echo_2312",
+    "kind": "party_echo",
+    "name": "Dr. Ines Quiroga Echo (2312)",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/quiroga/echo/2312/quiroga_echo_2312_idle.svg",
+      "act": "characters/quiroga/echo/2312/quiroga_echo_2312_act.svg",
+      "hit": "characters/quiroga/echo/2312/quiroga_echo_2312_hit.svg",
+      "down": "characters/quiroga/echo/2312/quiroga_echo_2312_down.svg",
+      "battle": "characters/quiroga/echo/2312/quiroga_echo_2312_idle.svg"
+    }
+  },
+  {
+    "id": "refugee",
+    "kind": "npc",
+    "name": "Timeline Refugee",
+    "era": "2148",
+    "site": "port_halden",
+    "guideSection": "Characters and enemies — dialogue portraits and map tokens",
+    "description": "travel blanket and Continuity tags",
+    "files": {
+      "portrait": "characters/npcs/refugee_portrait.svg",
+      "token": "characters/npcs/refugee_token.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "shopkeeper",
+    "kind": "npc",
+    "name": "Relic Shopkeeper",
+    "era": null,
+    "site": null,
+    "guideSection": "Characters and enemies — dialogue portraits and map tokens",
+    "description": "layered apron and five-slot relic rack",
+    "files": {
+      "portrait": "characters/npcs/shopkeeper_portrait.svg",
+      "token": "characters/npcs/shopkeeper_token.svg"
+    },
+    "proposed": true
+  },
+  {
+    "id": "strand_perpetual_phase1",
+    "kind": "boss",
+    "name": "Strand Perpetual — Shareholder Form",
+    "era": "2312",
+    "site": "meridian",
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/strand_perpetual_phase1/strand_perpetual_phase1_idle.svg",
+      "act": "enemies/strand_perpetual_phase1/strand_perpetual_phase1_act.svg",
+      "hit": "enemies/strand_perpetual_phase1/strand_perpetual_phase1_hit.svg",
+      "down": "enemies/strand_perpetual_phase1/strand_perpetual_phase1_down.svg",
+      "battle": "enemies/strand_perpetual_phase1/strand_perpetual_phase1_idle.svg"
+    }
+  },
+  {
+    "id": "strand_perpetual_phase2",
+    "kind": "boss",
+    "name": "Strand Perpetual — Majority Form",
+    "era": "2312",
+    "site": "meridian",
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/strand_perpetual_phase2/strand_perpetual_phase2_idle.svg",
+      "act": "enemies/strand_perpetual_phase2/strand_perpetual_phase2_act.svg",
+      "hit": "enemies/strand_perpetual_phase2/strand_perpetual_phase2_hit.svg",
+      "down": "enemies/strand_perpetual_phase2/strand_perpetual_phase2_down.svg",
+      "battle": "enemies/strand_perpetual_phase2/strand_perpetual_phase2_idle.svg"
+    }
+  },
+  {
+    "id": "strand_reconciled_duelist",
+    "kind": "boss",
+    "name": "Strand Perpetual — Reconciled Duel",
+    "era": "2312",
+    "site": "meridian",
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/strand_reconciled_duelist/strand_reconciled_duelist_idle.svg",
+      "act": "enemies/strand_reconciled_duelist/strand_reconciled_duelist_act.svg",
+      "hit": "enemies/strand_reconciled_duelist/strand_reconciled_duelist_hit.svg",
+      "down": "enemies/strand_reconciled_duelist/strand_reconciled_duelist_down.svg",
+      "battle": "enemies/strand_reconciled_duelist/strand_reconciled_duelist_idle.svg"
+    }
+  },
+  {
+    "id": "strand_young",
+    "kind": "party",
+    "name": "Callum Strand (young)",
+    "era": null,
+    "site": null,
+    "guideSection": "Characters and enemies — party deliverables",
+    "description": "gold-trim founder suit and shareholder cane; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "files": {
+      "idle": "characters/strand_young/strand_young_idle.svg",
+      "act": "characters/strand_young/strand_young_act.svg",
+      "hit": "characters/strand_young/strand_young_hit.svg",
+      "down": "characters/strand_young/strand_young_down.svg",
+      "battle": "characters/strand_young/strand_young_idle.svg",
+      "portrait": "characters/strand_young/strand_young_portrait.svg",
+      "token": "characters/strand_young/strand_young_token.svg"
+    }
+  },
+  {
+    "id": "strand_young_echo_2031",
+    "kind": "party_echo",
+    "name": "Callum Strand (young) Echo (2031)",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/strand_young/echo/2031/strand_young_echo_2031_idle.svg",
+      "act": "characters/strand_young/echo/2031/strand_young_echo_2031_act.svg",
+      "hit": "characters/strand_young/echo/2031/strand_young_echo_2031_hit.svg",
+      "down": "characters/strand_young/echo/2031/strand_young_echo_2031_down.svg",
+      "battle": "characters/strand_young/echo/2031/strand_young_echo_2031_idle.svg"
+    }
+  },
+  {
+    "id": "strand_young_echo_2064",
+    "kind": "party_echo",
+    "name": "Callum Strand (young) Echo (2064)",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/strand_young/echo/2064/strand_young_echo_2064_idle.svg",
+      "act": "characters/strand_young/echo/2064/strand_young_echo_2064_act.svg",
+      "hit": "characters/strand_young/echo/2064/strand_young_echo_2064_hit.svg",
+      "down": "characters/strand_young/echo/2064/strand_young_echo_2064_down.svg",
+      "battle": "characters/strand_young/echo/2064/strand_young_echo_2064_idle.svg"
+    }
+  },
+  {
+    "id": "strand_young_echo_2148",
+    "kind": "party_echo",
+    "name": "Callum Strand (young) Echo (2148)",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/strand_young/echo/2148/strand_young_echo_2148_idle.svg",
+      "act": "characters/strand_young/echo/2148/strand_young_echo_2148_act.svg",
+      "hit": "characters/strand_young/echo/2148/strand_young_echo_2148_hit.svg",
+      "down": "characters/strand_young/echo/2148/strand_young_echo_2148_down.svg",
+      "battle": "characters/strand_young/echo/2148/strand_young_echo_2148_idle.svg"
+    }
+  },
+  {
+    "id": "strand_young_echo_2312",
+    "kind": "party_echo",
+    "name": "Callum Strand (young) Echo (2312)",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/strand_young/echo/2312/strand_young_echo_2312_idle.svg",
+      "act": "characters/strand_young/echo/2312/strand_young_echo_2312_act.svg",
+      "hit": "characters/strand_young/echo/2312/strand_young_echo_2312_hit.svg",
+      "down": "characters/strand_young/echo/2312/strand_young_echo_2312_down.svg",
+      "battle": "characters/strand_young/echo/2312/strand_young_echo_2312_idle.svg"
+    }
+  },
+  {
+    "id": "warden_2031",
+    "kind": "enemy",
+    "name": "2031 Warden",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/warden_2031/warden_2031_idle.svg",
+      "act": "enemies/warden_2031/warden_2031_act.svg",
+      "hit": "enemies/warden_2031/warden_2031_hit.svg",
+      "down": "enemies/warden_2031/warden_2031_down.svg",
+      "battle": "enemies/warden_2031/warden_2031_idle.svg"
+    }
+  },
+  {
+    "id": "warden_2064",
+    "kind": "enemy",
+    "name": "2064 Warden",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/warden_2064/warden_2064_idle.svg",
+      "act": "enemies/warden_2064/warden_2064_act.svg",
+      "hit": "enemies/warden_2064/warden_2064_hit.svg",
+      "down": "enemies/warden_2064/warden_2064_down.svg",
+      "battle": "enemies/warden_2064/warden_2064_idle.svg"
+    }
+  },
+  {
+    "id": "warden_2148",
+    "kind": "enemy",
+    "name": "2148 Warden",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/warden_2148/warden_2148_idle.svg",
+      "act": "enemies/warden_2148/warden_2148_act.svg",
+      "hit": "enemies/warden_2148/warden_2148_hit.svg",
+      "down": "enemies/warden_2148/warden_2148_down.svg",
+      "battle": "enemies/warden_2148/warden_2148_idle.svg"
+    }
+  },
+  {
+    "id": "warden_2312",
+    "kind": "enemy",
+    "name": "2312 Warden",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Characters and enemies — enemy families",
+    "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "files": {
+      "idle": "enemies/warden_2312/warden_2312_idle.svg",
+      "act": "enemies/warden_2312/warden_2312_act.svg",
+      "hit": "enemies/warden_2312/warden_2312_hit.svg",
+      "down": "enemies/warden_2312/warden_2312_down.svg",
+      "battle": "enemies/warden_2312/warden_2312_idle.svg"
+    }
+  },
+  {
+    "id": "wren",
+    "kind": "party",
+    "name": "Sister Wren",
+    "era": null,
+    "site": null,
+    "guideSection": "Characters and enemies — party deliverables",
+    "description": "white cowl and forked chronal staff; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "files": {
+      "idle": "characters/wren/wren_idle.svg",
+      "act": "characters/wren/wren_act.svg",
+      "hit": "characters/wren/wren_hit.svg",
+      "down": "characters/wren/wren_down.svg",
+      "battle": "characters/wren/wren_idle.svg",
+      "portrait": "characters/wren/wren_portrait.svg",
+      "token": "characters/wren/wren_token.svg"
+    }
+  },
+  {
+    "id": "wren_echo_2031",
+    "kind": "party_echo",
+    "name": "Sister Wren Echo (2031)",
+    "era": "2031",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "white cowl and forked chronal staff, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/wren/echo/2031/wren_echo_2031_idle.svg",
+      "act": "characters/wren/echo/2031/wren_echo_2031_act.svg",
+      "hit": "characters/wren/echo/2031/wren_echo_2031_hit.svg",
+      "down": "characters/wren/echo/2031/wren_echo_2031_down.svg",
+      "battle": "characters/wren/echo/2031/wren_echo_2031_idle.svg"
+    }
+  },
+  {
+    "id": "wren_echo_2064",
+    "kind": "party_echo",
+    "name": "Sister Wren Echo (2064)",
+    "era": "2064",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "white cowl and forked chronal staff, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/wren/echo/2064/wren_echo_2064_idle.svg",
+      "act": "characters/wren/echo/2064/wren_echo_2064_act.svg",
+      "hit": "characters/wren/echo/2064/wren_echo_2064_hit.svg",
+      "down": "characters/wren/echo/2064/wren_echo_2064_down.svg",
+      "battle": "characters/wren/echo/2064/wren_echo_2064_idle.svg"
+    }
+  },
+  {
+    "id": "wren_echo_2148",
+    "kind": "party_echo",
+    "name": "Sister Wren Echo (2148)",
+    "era": "2148",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "white cowl and forked chronal staff, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/wren/echo/2148/wren_echo_2148_idle.svg",
+      "act": "characters/wren/echo/2148/wren_echo_2148_act.svg",
+      "hit": "characters/wren/echo/2148/wren_echo_2148_hit.svg",
+      "down": "characters/wren/echo/2148/wren_echo_2148_down.svg",
+      "battle": "characters/wren/echo/2148/wren_echo_2148_idle.svg"
+    }
+  },
+  {
+    "id": "wren_echo_2312",
+    "kind": "party_echo",
+    "name": "Sister Wren Echo (2312)",
+    "era": "2312",
+    "site": null,
+    "guideSection": "Characters and enemies — Echo versions",
+    "description": "white cowl and forked chronal staff, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "files": {
+      "idle": "characters/wren/echo/2312/wren_echo_2312_idle.svg",
+      "act": "characters/wren/echo/2312/wren_echo_2312_act.svg",
+      "hit": "characters/wren/echo/2312/wren_echo_2312_hit.svg",
+      "down": "characters/wren/echo/2312/wren_echo_2312_down.svg",
+      "battle": "characters/wren/echo/2312/wren_echo_2312_idle.svg"
+    }
+  }
+]

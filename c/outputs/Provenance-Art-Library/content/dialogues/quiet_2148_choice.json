@@ -1,0 +1,14 @@
+{
+  "id": "quiet_2148_choice",
+  "lines": [
+    {
+      "speaker": "ade",
+      "text": "The armory, or the valley. Choose.",
+      "choices": [
+        { "text": "Arm the resistance. Open the armory.", "timelineChoice": "arm_resistance", "next": "quiet_armed" },
+        { "text": "Let it fall. We are not here to fight your war.", "timelineChoice": "let_it_fall", "next": "quiet_fall" },
+        { "text": "Not yet.", "next": "quiet_defer" }
+      ]
+    }
+  ]
+}

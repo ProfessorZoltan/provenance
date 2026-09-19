@@ -1,0 +1,12 @@
+{
+  "id": "2312",
+  "name": "Now",
+  "subtitle": "Sterile calm",
+  "palette": { "bg": "#142C50", "surface": "#243B60", "ink": "#F8EFD5", "accent": "#4FD1E6", "accent2": "#B8C4CC" },
+  "lineWeight": 0.5,
+  "font": "Space Grotesk",
+  "fontStack": "'Space Grotesk', 'Helvetica Neue', system-ui, sans-serif",
+  "tuning": { "edo": 19, "root": 220, "drift": 0 },
+  "instrumentSet": ["sine", "fm", "granular"],
+  "particles": "snow"
+}

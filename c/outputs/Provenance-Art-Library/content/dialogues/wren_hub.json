@@ -1,0 +1,12 @@
+{
+  "id": "wren_hub",
+  "lines": [
+    { "speaker": "wren", "text": "The stronghold was armed. I can feel it in the stone; the chapel walls are thicker in this version. A hundred and sixty-four names on a wall that did not exist before. You did that.", "conditions": ["flag:armedResistance"] },
+    { "speaker": "wren", "text": "You let it fall. I do not blame you; it fell the first time too. But the village is quieter, and the drones count it twice a night now.", "conditions": ["flag:letItFall"] },
+    { "speaker": "wren", "text": "You have seen the Quiet now. It is worse in person, isn't it? The Board's people were so ordinary.", "conditions": ["visited:2148", "!flag:armedResistance", "!flag:letItFall"] },
+    { "speaker": "wren", "text": "The chapel stairs are open whenever you are ready. Take Dax. It is his century, and he should be there when we decide what happens to it.", "conditions": ["!visited:2148"] },
+    { "speaker": "wren", "text": "You speak of the Steward as if it could be argued with. Perhaps. I have never heard it answer.", "conditions": ["sync>=30"] },
+    { "speaker": "wren", "text": "Dax has you talking like a Cinder. Be careful. Burning the models burns the people who are kept alive by them.", "conditions": ["sync<=-30"] },
+    { "speaker": "wren", "text": "Rest if you need it. The monastery asks nothing of anyone." }
+  ]
+}

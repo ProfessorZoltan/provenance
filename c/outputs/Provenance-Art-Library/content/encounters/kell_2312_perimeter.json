@@ -1,0 +1,18 @@
+{
+  "id": "kell_2312_perimeter",
+  "name": "Perimeter Sweep",
+  "era": "2312",
+  "location": "kell_2312",
+  "enemies": [{ "enemy": "drone_sentry", "count": 2 }],
+  "surprise": "roll",
+  "story": false,
+  "flavor": "Something mechanical is humming past the prayer wheels.",
+  "scanHints": [
+    { "when": "signal>=40", "text": "Two Drones. Allocation pattern." },
+    { "when": "signal>=70", "text": "Sentry Drones, shielded. Thermal burns straight through." },
+    { "when": "noise>=70", "text": "They are circling the east wall; the garden path is clear." },
+    { "when": "sync>=40", "text": "Parley: both sentries could be talked down." },
+    { "when": "sync<=-40", "text": "Overload: bonus Kinetic damage against machines." }
+  ],
+  "music": "battle_2312"
+}

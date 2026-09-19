@@ -1,0 +1,7 @@
+[
+  { "id": "audit", "name": "Audit", "cost": 1, "target": "enemy", "tempoCost": 0, "entropyDelta": 0, "special": "mark", "status": { "id": "marked", "turns": 3, "onTarget": true }, "description": "Mark an enemy: exposes its weakness and stat sheet. Marked enemies take more damage." },
+  { "id": "enforce", "name": "Enforce", "cost": 2, "damageType": "kinetic", "target": "enemy", "formula": "a.grit * 0.9 + 10", "tempoCost": 0, "entropyDelta": 0, "special": "scalesWithMarks", "description": "Heavy kinetic hit. +30% damage for each marked enemy on the field." },
+  { "id": "reconcile", "name": "Reconcile", "cost": 1, "target": "self", "tempoCost": 0, "entropyDelta": 0, "special": "marksToTempo", "description": "Close the books: consume every mark on the field for +4 Tempo each." },
+  { "id": "discrepancy", "name": "Discrepancy", "cost": 2, "damageType": "chronal", "target": "enemy", "formula": "a.signal * 0.7 + 8", "tempoCost": 0, "entropyDelta": 8, "description": "Chronal. Ignores armor and shields, hurts Echoes. Raises Entropy." },
+  { "id": "full_disclosure", "name": "Full Disclosure", "cost": 2, "target": "allEnemies", "tempoCost": 0, "entropyDelta": 0, "special": "mark", "status": { "id": "marked", "turns": 3, "onTarget": true }, "description": "Capstone. Every enemy on the field is marked." }
+]

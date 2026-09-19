@@ -1,0 +1,12 @@
+{
+  "id": "arm_resistance",
+  "era": "2148",
+  "site": "kell",
+  "name": "Arm the resistance",
+  "ownershipDelta": 10,
+  "syncDelta": -20,
+  "flags": ["armedResistance"],
+  "partyEffects": ["tomasHaleAvailable"],
+  "lean": "cinder",
+  "summary": "The stronghold holds another winter. Kell Village in 2312 remembers who died for it."
+}

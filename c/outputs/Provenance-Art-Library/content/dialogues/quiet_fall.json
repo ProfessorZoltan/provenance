@@ -1,0 +1,9 @@
+{
+  "id": "quiet_fall",
+  "lines": [
+    { "speaker": "ade", "text": "Then it falls. I will not beg. When you go back up those stairs, look at what you kept." },
+    { "speaker": "dax", "text": "You are letting my people die on schedule. I will remember that. I am going to remember both versions." },
+    { "speaker": "wren", "text": "Something is wrong. The Wardens are not in the valley. Listen. They are inside the walls." },
+    { "speaker": "narrator", "text": "The Board was waiting.", "action": "battle:kell_2148_ambush" }
+  ]
+}

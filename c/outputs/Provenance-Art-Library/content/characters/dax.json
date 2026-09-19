@@ -1,0 +1,21 @@
+{
+  "id": "dax",
+  "name": "Dax Okonkwo",
+  "shortName": "Dax",
+  "lean": "cinder",
+  "homeEra": "2148",
+  "role": "Breaker, Grit",
+  "signature": "Wreck: destroys shields, cover and terrain",
+  "baseStats": { "resolve": 160, "bandwidth": 3, "latency": 60, "signal": 10, "noise": 20, "grit": 60, "sync": -50, "continuity": 100 },
+  "rig": "dax",
+  "accent": "#993C1D",
+  "trunks": [
+    { "key": "breaker", "name": "Wreck", "flavor": "Pure Kinetic, breaks Drone armor" },
+    { "key": "weaver", "name": "Salvage", "flavor": "Turns wrecked drone parts into throwables" },
+    { "key": "anchor", "name": "Bulwark", "flavor": "Taunts and damage soak" }
+  ],
+  "abilities": ["strike", "wreck", "guard"],
+  "tags": [],
+  "motif": [0, 0, -2, 0, -5, -7],
+  "bio": "Came up through the Ash Camp crews in 2148 and walked out of a fire into 2312 without meaning to. Believes every model should burn, including the good ones. Especially the good ones."
+}

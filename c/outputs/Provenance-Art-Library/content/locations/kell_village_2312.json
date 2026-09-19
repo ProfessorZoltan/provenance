@@ -1,0 +1,81 @@
+{
+  "id": "kell_village_2312",
+  "name": "Kell Village",
+  "kind": "waypoint",
+  "era": "2312",
+  "site": "kell",
+  "type": "Faction hub (Commons)",
+  "description": "The free town below the monastery. Nobody here is allocated anything. They trade, argue and keep the road open.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "kell2312_sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "kell2312_village",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "kell2312_floor"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "kell2312_fore",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "snow"
+  },
+  "music": "hub_2312",
+  "npcs": [
+    "pell",
+    "ansel"
+  ],
+  "quests": [
+    "gate_drone"
+  ],
+  "encounters": [],
+  "shop": "kell_commissary",
+  "variants": [
+    {
+      "when": [
+        "armedResistance"
+      ],
+      "description": "The free town below the monastery. There is a memorial by the gate now: a hundred and sixty-four names from 2148, and a line of hand-forged blades hung above them. The village drills on Sundays.",
+      "npcs": [
+        "pell",
+        "ansel",
+        "militia_captain"
+      ],
+      "shop": "kell_armory",
+      "storyDialogue": "village_armed"
+    },
+    {
+      "when": [
+        "letItFall"
+      ],
+      "description": "The free town below the monastery. Quieter than you remember. A Steward sentry drone hovers over the square, and half the market stalls are shuttered. Nobody meets your eye.",
+      "npcs": [
+        "pell",
+        "ansel_quiet"
+      ],
+      "shop": "kell_commissary_thin",
+      "storyDialogue": "village_fall"
+    }
+  ],
+  "links": [
+    {
+      "to": "kell_2312",
+      "label": "Kell Monastery"
+    }
+  ],
+  "timeLinks": []
+}

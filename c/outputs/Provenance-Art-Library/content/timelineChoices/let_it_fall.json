@@ -1,0 +1,12 @@
+{
+  "id": "let_it_fall",
+  "era": "2148",
+  "site": "kell",
+  "name": "Let it fall",
+  "ownershipDelta": 0,
+  "syncDelta": 0,
+  "flags": ["letItFall"],
+  "partyEffects": ["tomasHaleUnavailable"],
+  "lean": "commons",
+  "summary": "The stronghold falls as it always did. Kell Village in 2312 is quieter, and watched."
+}

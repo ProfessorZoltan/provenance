@@ -1,0 +1,16 @@
+{
+  "id": "map_2148",
+  "era": "2148",
+  "name": "Kell Valley, 2148",
+  "width": 1600,
+  "height": 900,
+  "spawn": { "x": 800, "y": 250 },
+  "nodes": [
+    { "id": "kell_2148", "kind": "location", "location": "kell_2148", "x": 800, "y": 210, "radius": 80, "label": "Kell Stronghold", "icon": "stronghold" }
+  ],
+  "roads": [[800, 290, 720, 400, 600, 520, 430, 600], [800, 290, 960, 400, 1130, 470]],
+  "zones": [
+    { "id": "wall_walk", "label": "The wall walk", "x": 940, "y": 330, "w": 520, "h": 420, "encounters": ["kell_2148_walls"], "chance": 0.45, "stride": 150 },
+    { "id": "folded_chapel", "label": "The folded chapel", "x": 200, "y": 520, "w": 440, "h": 300, "encounters": ["kell_2148_chapel"], "chance": 0.45, "stride": 150 }
+  ]
+}

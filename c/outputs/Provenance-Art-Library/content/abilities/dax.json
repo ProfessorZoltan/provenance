@@ -1,0 +1,7 @@
+[
+  { "id": "wreck", "name": "Wreck", "cost": 2, "damageType": "kinetic", "target": "enemy", "formula": "a.grit * 1.1 + 12", "tempoCost": 0, "entropyDelta": 0, "special": "breakShield", "description": "Pure Kinetic. Shatters a Drone's shield before the hit lands." },
+  { "id": "salvage", "name": "Salvage Throw", "cost": 1, "damageType": "thermal", "target": "enemy", "formula": "a.grit * 0.5 + 10", "tempoCost": 0, "entropyDelta": 0, "description": "Thermal throwable. Ignores Drone shields; weak on Wardens." },
+  { "id": "bulwark", "name": "Bulwark", "cost": 1, "target": "self", "tempoCost": 0, "entropyDelta": 0, "status": { "id": "taunt", "turns": 2 }, "description": "Draw every enemy's fire for two turns and halve the damage." },
+  { "id": "haymaker", "name": "Haymaker", "cost": 3, "damageType": "kinetic", "target": "enemy", "formula": "a.grit * 1.8 + 20", "tempoCost": 0, "entropyDelta": 0, "description": "Three threads, one hit. Worth waiting a turn for." },
+  { "id": "faraday", "name": "Faraday", "cost": 2, "target": "allAllies", "tempoCost": 0, "entropyDelta": 0, "status": { "id": "faraday", "turns": 3 }, "description": "Capstone. Party immune to Signal and Thermal for three turns." }
+]

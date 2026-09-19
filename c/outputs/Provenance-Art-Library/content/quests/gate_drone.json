@@ -1,0 +1,10 @@
+{
+  "id": "gate_drone",
+  "name": "Snow on the Wire",
+  "location": "kell_village_2312",
+  "giver": "pell",
+  "description": "Old Pell says a drone has been circling the village gate every night, lower each time. Clear it before it decides the village needs counting.",
+  "objectiveEncounter": "kell_2312_gate",
+  "rewards": { "xp": 60, "currency": 40, "items": ["relic_prayer_wheel"], "skillPoints": 1, "flags": ["clearedGate"] },
+  "dialogue": { "offer": "pell_offer", "inProgress": "pell_progress", "complete": "pell_complete" }
+}

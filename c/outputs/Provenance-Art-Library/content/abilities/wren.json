@@ -1,0 +1,8 @@
+[
+  { "id": "mend", "name": "Mend", "cost": 1, "target": "ally", "heal": "a.signal * 0.6 + 18", "tempoCost": 0, "entropyDelta": 0, "description": "Restore Resolve to one ally." },
+  { "id": "litany", "name": "Litany", "cost": 1, "target": "allAllies", "tempoCost": 0, "entropyDelta": 0, "status": { "id": "inspired", "turns": 2 }, "description": "Signal buff: the party deals 15% more damage for two turns. Stacks." },
+  { "id": "penance", "name": "Penance", "cost": 2, "target": "allAllies", "heal": "a.resolve * 0.12 + 10", "tempoCost": 0, "entropyDelta": 0, "special": "selfDamage", "description": "Wren gives up 15% of her Resolve to heal everyone else." },
+  { "id": "lapse", "name": "Lapse", "cost": 2, "damageType": "chronal", "target": "enemy", "formula": "a.signal * 0.8 + 6", "tempoCost": 0, "entropyDelta": 6, "description": "Chronal. Ignores armor and shields, hurts Echoes. Raises Entropy." },
+  { "id": "vigil", "name": "Vigil", "cost": 1, "target": "ally", "tempoCost": 0, "entropyDelta": 0, "tempoGain": 4, "status": { "id": "anchored", "turns": 2, "onTarget": true }, "description": "Anchor an ally: they cannot fall below 1 Resolve for two turns. Generates 4 Tempo." },
+  { "id": "fixed_point", "name": "Fixed Point", "cost": 3, "target": "ally", "tempoCost": 0, "entropyDelta": 0, "status": { "id": "fixed", "turns": 4, "onTarget": true }, "description": "Capstone. One party member cannot be taken down for four turns." }
+]

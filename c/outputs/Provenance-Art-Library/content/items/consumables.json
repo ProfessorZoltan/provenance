@@ -1,0 +1,7 @@
+[
+  { "id": "ration", "name": "Ration", "kind": "consumable", "description": "Restores 40 Resolve to one ally.", "effect": { "heal": 40 } },
+  { "id": "stim", "name": "Tempo Stim", "kind": "consumable", "description": "+5 party Tempo, used in battle.", "effect": { "tempo": 5 } },
+  { "id": "anchor_charm", "name": "Anchor Charm", "kind": "consumable", "description": "Revives a downed ally with 30 Resolve.", "effect": { "revive": true, "heal": 30 } },
+  { "id": "militia_kit", "name": "Militia Kit", "kind": "consumable", "description": "Restores 60 Resolve and grants 1 Slack.", "effect": { "heal": 60, "slack": 1 } },
+  { "id": "scrap", "name": "Drone Scrap", "kind": "gear", "description": "Crafting parts. Nobody in Kell buys these. Yet." }
+]

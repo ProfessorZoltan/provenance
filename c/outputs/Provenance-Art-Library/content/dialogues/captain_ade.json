@@ -1,0 +1,8 @@
+{
+  "id": "captain_ade",
+  "lines": [
+    { "speaker": "ade", "text": "The Ash Camp crews came in at dawn with your steel. We hold. Whatever happens to us after, we hold this winter.", "conditions": ["flag:armedResistance"] },
+    { "speaker": "ade", "text": "We fall in a week, and you know it. Go home, Auditor. Look at what you kept.", "conditions": ["flag:letItFall"] },
+    { "speaker": "ade", "text": "Have you decided?", "conditions": ["!flag:armedResistance", "!flag:letItFall"], "next": "quiet_2148_choice" }
+  ]
+}
