@@ -9,9 +9,17 @@ describe('player manual', () => {
     for (const want of ['The world', 'Controls', 'Battles', 'Tempo', 'Entropy', 'Stats', 'Shields']) {
       expect(titles, want).toContain(want);
     }
-    // Every selectable page has prose; headings with none become group labels.
+    // Every selectable page has prose, and nothing selectable is an empty heading.
     for (const p of manualPages) expect(p.html.length, p.title).toBeGreaterThan(0);
-    expect(manualEntries.find((e) => e.title === 'Your party')?.group).toBe(true);
+    expect(manualPages.every((p) => !p.group)).toBe(true);
+    expect(manualEntries.filter((e) => !e.group).length).toBe(manualPages.length);
+  });
+
+  it('documents the systems the game now has', () => {
+    const all = manualPages.map((p) => p.html).join(' ');
+    for (const term of ['Construct', 'benched', 'ILO-9', 'Weapon', 'downstream']) {
+      expect(all, term).toContain(term);
+    }
   });
 
   it('explains the Tempo abilities the player asked about', () => {
