@@ -2,6 +2,8 @@
   "id": "stack_floor_2148",
   "name": "The Vault Corridor",
   "era": "2148",
+  "tier": "key",
+  "scale": 1.1,
   "location": "meridian_stack",
   "enemies": [
     {

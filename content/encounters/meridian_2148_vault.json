@@ -2,6 +2,7 @@
   "id": "meridian_2148_vault",
   "name": "The Last Door",
   "era": "2148",
+  "tier": "hard",
   "location": "meridian_2148",
   "enemies": [
     {

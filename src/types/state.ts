@@ -30,6 +30,8 @@ export interface Combatant {
   perception: number;
   /** Constructs fight on after their shell breaks; bar 2 is the core. */
   bar?: number;
+  /** How much of a fight this encounter is meant to be: scales Resolve, the second bar included. */
+  stand?: number;
   secondBarName?: string;
   /** Art for bar 2, when the core is not the thing you have been hitting. */
   rigOverride?: string;

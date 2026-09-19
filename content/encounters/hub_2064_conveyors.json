@@ -2,6 +2,7 @@
   "id": "hub_2064_conveyors",
   "name": "The Pick List",
   "era": "2064",
+  "tier": "ordinary",
   "location": "meridian_hub_2064",
   "enemies": [
     {

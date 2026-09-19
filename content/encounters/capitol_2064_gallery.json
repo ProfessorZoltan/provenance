@@ -2,6 +2,7 @@
   "id": "capitol_2064_gallery",
   "name": "The Public Gallery",
   "era": "2064",
+  "tier": "ordinary",
   "location": "capitol_2064",
   "enemies": [
     {

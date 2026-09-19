@@ -2,6 +2,8 @@
   "id": "tolliver_2031_arson",
   "name": "The Night Shift",
   "era": "2031",
+  "tier": "hard",
+  "scale": 2.5,
   "location": "tolliver_bakery_2031",
   "enemies": [
     {

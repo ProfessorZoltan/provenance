@@ -29,10 +29,13 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
       down: hp <= 0, perception: 0,
     });
   }
+  // How much of a fight this is meant to be. A Warden on a wall walk and the same Warden guarding
+  // the Board are the same soldier with different orders and different odds of going home.
+  const stand = content.rules.tierScale[enc.tier] * (enc.scale ?? 1);
   for (const group of enc.enemies) {
     const def = content.enemies[group.enemy];
     for (let n = 1; n <= group.count; n++) {
-      combatants.push(enemyCombatant(def, group.count > 1 ? `${def.id}#${n}` : def.id, group.count > 1 ? `${def.name} ${n}` : def.name));
+      combatants.push(enemyCombatant(def, group.count > 1 ? `${def.id}#${n}` : def.id, group.count > 1 ? `${def.name} ${n}` : def.name, stand));
     }
   }
 
@@ -63,11 +66,13 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
   return advance(b);
 }
 
-function enemyCombatant(def: EnemyDef, id: string, name: string): Combatant {
+function enemyCombatant(def: EnemyDef, id: string, name: string, stand = 1): Combatant {
+  const resolve = Math.round(def.stats.resolve * stand);
+  const shield = Math.round(def.shield * stand);
   return {
     id, ref: def.id, name, side: 'enemy', family: def.family, machine: def.machine,
-    stats: { ...def.stats }, hp: def.stats.resolve, maxHp: def.stats.resolve,
-    shield: def.shield, maxShield: def.shield, threads: 0, slack: 0, statuses: [],
+    stats: { ...def.stats, resolve }, hp: resolve, maxHp: resolve, stand,
+    shield, maxShield: shield, threads: 0, slack: 0, statuses: [],
     abilities: [...def.abilities], immunities: [...def.immunities], weakness: def.weakness,
     down: false, perception: def.perception,
     bar: def.secondBar ? 1 : undefined,
@@ -76,6 +81,14 @@ function enemyCombatant(def: EnemyDef, id: string, name: string): Combatant {
 }
 
 // ---------- helpers ----------
+
+/**
+ * Entropy rises at the same scale everything else in an exchange does. Without this, lengthening
+ * battles would make the fracture open in every one of them rather than in the ones you pushed.
+ */
+function addEntropy(b: BattleState, amount: number, content: ContentDB): number {
+  return clamp(b.entropy + Math.round(amount * content.rules.damageScale), 0, content.rules.entropyMax);
+}
 
 export function current(b: BattleState): Combatant | undefined {
   return b.combatants.find((c) => c.id === b.order[b.turnIndex]);
@@ -227,11 +240,13 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
     let hp = Math.max(0, target.hp - dmg);
     const enemyDef = content.enemies[target.ref];
     let broke: SecondBar | null = null;
-    if (hp <= 0 && target.bar === 1 && enemyDef?.secondBar) { broke = enemyDef.secondBar; hp = broke.resolve; }
+    const coreHp = (bar: SecondBar) => Math.round(bar.resolve * (target.stand ?? 1));
+    const coreShield = (bar: SecondBar) => Math.round((bar.shield ?? 0) * (target.stand ?? 1));
+    if (hp <= 0 && target.bar === 1 && enemyDef?.secondBar) { broke = enemyDef.secondBar; hp = coreHp(broke); }
     const down = hp <= 0;
     b = update(b, target.id, (c) => (broke
-      ? { ...c, hp, shield: broke.shield ?? 0, maxShield: broke.shield ?? 0, down: false, bar: 2,
-          name: broke.name, maxHp: broke.resolve, rigOverride: broke.rig,
+      ? { ...c, hp, shield: coreShield(broke), maxShield: coreShield(broke), down: false, bar: 2,
+          name: broke.name, maxHp: coreHp(broke), rigOverride: broke.rig,
           abilities: broke.abilities ?? c.abilities, immunities: broke.immunities ?? c.immunities,
           weakness: broke.weakness, statuses: c.statuses.filter((st) => st.id !== 'marked') }
       : { ...c, hp, down, statuses: down ? [] : c.statuses }));
@@ -290,6 +305,19 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
     dmg *= 1 - (0.5 + (b.passives[target.id]?.guardBonus ?? 0));
     notes.push('guarded');
   }
+  // Everything in an exchange moves at the same scale, so lowering it lengthens fights without
+  // changing which action is the right one. Heals scale with it too, in resolveAbility.
+  dmg *= rules.damageScale;
+  // A fight that goes on gets worse, and only for the side holding the field. Without this a party
+  // that can out-heal what it is taking never has to finish anything, and Echoes it cannot damage
+  // become a place to stand rather than a problem.
+  if (actor.side === 'enemy') {
+    const over = Math.max(0, b.round - rules.pressure.after);
+    if (over > 0) {
+      dmg *= 1 + rules.pressure.perRound * over;
+      if (over === 1) notes.push('pressing');
+    }
+  }
   dmg = Math.max(1, Math.round(dmg));
 
   // Shields absorb everything except thermal and chronal; Wreck shatters them first.
@@ -312,15 +340,17 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   // own Resolve, its own kit and its own weaknesses.
   const enemyDef = content.enemies[target.ref];
   let broke: SecondBar | null = null;
+  const core = (bar: SecondBar) => Math.round(bar.resolve * (target.stand ?? 1));
+  const coreShell = (bar: SecondBar) => Math.round((bar.shield ?? 0) * (target.stand ?? 1));
   if (down && target.bar === 1 && enemyDef?.secondBar) {
     broke = enemyDef.secondBar;
     down = false;
-    hp = broke.resolve;
+    hp = core(broke);
   }
   b = update(b, target.id, (c) => (broke
     ? {
-        ...c, hp, shield: broke.shield ?? 0, maxShield: broke.shield ?? 0, down: false, bar: 2,
-        name: broke.name, maxHp: broke.resolve,
+        ...c, hp, shield: coreShell(broke), maxShield: coreShell(broke), down: false, bar: 2,
+        name: broke.name, maxHp: core(broke),
         abilities: broke.abilities ?? c.abilities,
         immunities: broke.immunities ?? c.immunities,
         weakness: broke.weakness,
@@ -384,7 +414,7 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     if (ability.damageType === 'signal') b = { ...b, usedSignal: true };
   }
   if (ability.entropyDelta) {
-    b = { ...b, entropy: clamp(b.entropy + ability.entropyDelta, 0, rules.entropyMax) };
+    b = { ...b, entropy: addEntropy(b, ability.entropyDelta, content) };
     b = log(b, `Entropy rises to ${b.entropy}.`, 'tempo');
   }
 
@@ -528,7 +558,7 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     }
     if (ability.heal) {
       const a = b.combatants.find((c) => c.id === actorId)!;
-      let amount = evalFormula(ability.heal, { a: a.stats, d: t.stats });
+      let amount = evalFormula(ability.heal, { a: a.stats, d: t.stats }) * content.rules.damageScale;
       amount *= 1 + (b.passives[actorId]?.healBonus ?? 0);
       if (ability.special === 'selfDamage') {
         if (t.id === actorId) continue;
@@ -573,7 +603,7 @@ export function useItem(b: BattleState, actorId: string, item: ItemDef, targetId
   b = update(b, targetId, (c) => ({
     ...c,
     down: e.revive ? false : c.down,
-    hp: Math.min(c.maxHp, (e.revive && c.down ? 0 : c.hp) + (e.heal ?? 0)),
+    hp: Math.min(c.maxHp, (e.revive && c.down ? 0 : c.hp) + Math.round((e.heal ?? 0) * content.rules.damageScale)),
     slack: Math.min(slackCap(b, c, content), c.slack + (e.slack ?? 0)),
   }));
   if (e.tempo) b = { ...b, tempo: Math.min(content.rules.tempoMax, b.tempo + e.tempo) };
@@ -599,7 +629,7 @@ export function collapse(b: BattleState, content: ContentDB): BattleState {
   };
   let nb: BattleState = {
     ...b, collapsePoint: point, tempo: b.tempo - cost,
-    entropy: clamp(b.entropy + entropy, 0, content.rules.entropyMax), fork: null,
+    entropy: addEntropy(b, entropy, content), fork: null,
   };
   nb = log(nb, 'The fight is banked. If it goes badly from here, it goes badly from here again instead.', 'tempo');
   return nb;
@@ -628,7 +658,7 @@ export function echoAssist(b: BattleState, characterId: string, content: Content
   order.splice(b.turnIndex + 1, 0, ghost.id);
   let nb: BattleState = {
     ...b, combatants: [...b.combatants, ghost], order, echoAssistUsed: true,
-    tempo: b.tempo - cost, entropy: clamp(b.entropy + entropy, 0, content.rules.entropyMax), fork: null,
+    tempo: b.tempo - cost, entropy: addEntropy(b, entropy, content), fork: null,
   };
   nb = log(nb, `${def.name} steps out of ${era} for one round. ${ghost.name} is not quite the person you know.`, 'tempo');
   return nb;
@@ -641,7 +671,7 @@ export function rewind(b: BattleState, content: ContentDB): BattleState {
   if (b.tempo < cost) throw new Error(`Rewind needs ${cost} Tempo`);
   if (!b.rewindPoint) throw new Error('Nothing to rewind');
   const rp = b.rewindPoint;
-  const entropy = clamp(b.entropy + content.rules.rewind.entropy, 0, content.rules.entropyMax);
+  const entropy = addEntropy(b, content.rules.rewind.entropy, content);
   let nb: BattleState = {
     ...b,
     combatants: rp.combatants.map((c) => ({ ...c, statuses: [...c.statuses] })),
@@ -669,7 +699,7 @@ export function fork(b: BattleState, actorId: string, abilityId: string, targetI
   let nb: BattleState = {
     ...b,
     tempo: b.tempo - f.cost,
-    entropy: clamp(b.entropy + f.entropy, 0, content.rules.entropyMax),
+    entropy: addEntropy(b, f.entropy, content),
   };
   nb = update(nb, actorId, (c) => ({ ...c, threads: c.threads - f.threadCost }));
   const sim = resolveAbility(nb, actorId, abilityId, targetId, content);
@@ -714,7 +744,9 @@ function maybeSpawnEcho(b: BattleState, content: ContentDB): BattleState {
     stats: { ...src.stats, latency: 10 }, hp: Math.round(src.maxHp * 0.6), maxHp: Math.round(src.maxHp * 0.6),
     shield: 0, maxShield: 0, threads: 0, slack: 0, statuses: [],
     abilities: ['echo_fracture', 'echo_mimic'], immunities: ['kinetic', 'thermal', 'signal'], weakness: 'chronal',
-    down: false, echoOf: src.id, perception: 60,
+    // echoOf names a character, not a combatant: the source may itself be a temporary copy or
+    // another era's ghost, whose combatant id is not in the roster and has no rig to draw.
+    down: false, echoOf: src.echoOf ?? src.ref, perception: 60,
   };
   const order = [...b.order];
   order.splice(b.turnIndex + 1, 0, echo.id);

@@ -2,6 +2,7 @@
   "id": "basin_2148_racks",
   "name": "The Standing Racks",
   "era": "2148",
+  "tier": "hard",
   "location": "basin_2148",
   "enemies": [
     {

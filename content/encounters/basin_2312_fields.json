@@ -2,6 +2,8 @@
   "id": "basin_2312_fields",
   "name": "Between the Towers",
   "era": "2312",
+  "tier": "ordinary",
+  "scale": 0.4,
   "location": "basin_2312",
   "enemies": [
     {

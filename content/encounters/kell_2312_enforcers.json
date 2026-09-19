@@ -2,6 +2,7 @@
   "id": "kell_2312_enforcers",
   "name": "Allocation Detail",
   "era": "2312",
+  "tier": "ordinary",
   "location": "kell_2312",
   "enemies": [
     {

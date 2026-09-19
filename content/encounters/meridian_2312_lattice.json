@@ -2,6 +2,8 @@
   "id": "meridian_2312_lattice",
   "name": "Among the Lattice",
   "era": "2312",
+  "tier": "ordinary",
+  "scale": 0.56,
   "location": "meridian_2312",
   "enemies": [
     {

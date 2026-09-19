@@ -2,6 +2,7 @@
   "id": "stacks_road_2148",
   "name": "Rooftop Patrol",
   "era": "2148",
+  "tier": "ordinary",
   "location": "the_stacks_2148",
   "enemies": [
     {

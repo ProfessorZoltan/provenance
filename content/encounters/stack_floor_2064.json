@@ -2,6 +2,8 @@
   "id": "stack_floor_2064",
   "name": "The Atrium Floor",
   "era": "2064",
+  "tier": "key",
+  "scale": 1.37,
   "location": "meridian_stack",
   "enemies": [
     {

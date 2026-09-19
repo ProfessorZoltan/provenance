@@ -2,6 +2,7 @@
   "id": "capitol_2031_division",
   "name": "The Division Bell",
   "era": "2031",
+  "tier": "hard",
   "location": "capitol_2031",
   "enemies": [
     {

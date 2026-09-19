@@ -2,16 +2,38 @@
   "id": "kell_2148_chapel",
   "name": "The Folded Chapel",
   "era": "2148",
+  "tier": "hard",
   "location": "kell_2148",
-  "enemies": [{ "enemy": "echo_kell", "count": 1 }, { "enemy": "drone_hunter", "count": 1 }],
+  "enemies": [
+    {
+      "enemy": "echo_kell",
+      "count": 1
+    },
+    {
+      "enemy": "drone_hunter",
+      "count": 1
+    }
+  ],
   "surprise": "roll",
   "story": false,
   "flavor": "The chapel air folds wrong, like a page turned twice.",
   "scanHints": [
-    { "when": "signal>=40", "text": "One Drone and something Temporal." },
-    { "when": "signal>=70", "text": "An Echo. Immune to everything but Chronal damage." },
-    { "when": "party:wren", "text": "Wren: there is an Echo here. She can feel where it stood." },
-    { "when": "entropy>=70", "text": "Your own Entropy is high enough that your Echoes may answer it." }
+    {
+      "when": "signal>=40",
+      "text": "One Drone and something Temporal."
+    },
+    {
+      "when": "signal>=70",
+      "text": "An Echo. Immune to everything but Chronal damage."
+    },
+    {
+      "when": "party:wren",
+      "text": "Wren: there is an Echo here. She can feel where it stood."
+    },
+    {
+      "when": "entropy>=70",
+      "text": "Your own Entropy is high enough that your Echoes may answer it."
+    }
   ],
   "music": "battle_2148"
 }

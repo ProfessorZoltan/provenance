@@ -2,6 +2,7 @@
   "id": "meridian_2064_atrium",
   "name": "The Atrium",
   "era": "2064",
+  "tier": "ordinary",
   "location": "meridian_2064",
   "enemies": [
     {

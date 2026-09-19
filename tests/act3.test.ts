@@ -1,16 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { activeVariant } from '../src/core/reducer';
 import { applyChoice, deriveWorld, endingFor } from '../src/core/timeline';
-import { maxHp } from '../src/core/stats';
+import { KEY_LEVEL, partyAt } from './balance';
 import { autoBattle, content, newGame, reduce, run, skipDialogue } from './helpers';
 import type { GameState } from '../src/types/state';
 
 /** An endgame party: the stack is the last thing in the game and is costed like it. */
-function levelled(s: GameState, xp = 900): GameState {
-  const party = Object.fromEntries(Object.entries(s.party).map(([id, c]) => {
-    const level = 1 + Math.floor(xp / content.rules.xpPerLevel);
-    return [id, { ...c, xp, level, skillPoints: 12, hp: maxHp(content, content.characters[id], { ...c, xp, level }) }];
-  }));
+function levelled(s: GameState, level = KEY_LEVEL): GameState {
+  const built = partyAt(level, Object.keys(s.party));
+  const party = Object.fromEntries(Object.entries(s.party).map(([id, c]) => [id, { ...c, ...built.party[id] }]));
   return { ...s, party };
 }
 
@@ -23,7 +21,7 @@ function atTheCore(seed = 404): GameState {
   return skipDialogue(s);
 }
 
-/** Walk the four floors, winning each. */
+/** Walk the four floors, winning each, resting between them the way the Stack's hub allows. */
 function descend(s: GameState): GameState {
   for (const [dialogue, flag] of [['floor_2031', 'floor2031'], ['floor_2064', 'floor2064'],
     ['floor_2148', 'floor2148'], ['floor_2312', 'floor2312']] as const) {
@@ -32,7 +30,7 @@ function descend(s: GameState): GameState {
     expect(s.screen.id, dialogue).toBe('battle');
     s = autoBattle(s);
     if (s.battle?.phase !== 'won') return s;
-    s = run(s, { type: 'BATTLE_FINISH' }, { type: 'SET_SCREEN', screen: { id: 'hub' } });
+    s = run(s, { type: 'BATTLE_FINISH' }, { type: 'SET_SCREEN', screen: { id: 'hub' } }, { type: 'REST' });
     expect(s.flags, flag).toContain(flag);
   }
   return s;
@@ -161,27 +159,23 @@ describe('the endings', () => {
 });
 
 describe('the stack is costed like the end of the game', () => {
-  const run = (enc: string, xp: number) => {
-    let s = newGame(404);
-    const party = Object.fromEntries(Object.entries(s.party).map(([id, c]) => {
-      const level = 1 + Math.floor(xp / content.rules.xpPerLevel);
-      return [id, { ...c, xp, level, skillPoints: 12, hp: maxHp(content, content.characters[id], { ...c, xp, level }) }];
-    }));
-    s = reduce({ ...s, party }, { type: 'START_ENCOUNTER', encounterId: enc });
-    return autoBattle(s, undefined, 800).battle?.phase;
+  const run = (enc: string, level: number) => {
+    let s = levelled(newGame(404), level);
+    s = reduce(s, { type: 'START_ENCOUNTER', encounterId: enc });
+    return autoBattle(s).battle?.phase;
   };
 
-  it('lets an endgame party through every floor, pressing nothing cleverer than Strike', () => {
+  it('lets an endgame party through every floor', () => {
     for (const enc of ['stack_floor_2031', 'stack_floor_2064', 'stack_floor_2148', 'stack_floor_2312']) {
-      expect(run(enc, 900), enc).toBe('won');
+      expect(run(enc, KEY_LEVEL), enc).toBe('won');
     }
   });
 
   it('does not let a party that has barely left Kell walk into the chair and win', () => {
     // The floors are survivable; the chair is not, on a party that skipped the whole middle.
-    expect(run('strand_perpetual', 100)).toBe('lost');
-    expect(run('strand_reconciled', 100)).toBe('lost');
-    expect(run('strand_perpetual', 900), 'and it is beatable once the run has actually happened').toBe('won');
-    expect(run('strand_reconciled', 900)).toBe('won');
+    expect(run('strand_perpetual', 3)).toBe('lost');
+    expect(run('strand_reconciled', 3)).toBe('lost');
+    expect(run('strand_perpetual', KEY_LEVEL), 'and it is beatable once the run has actually happened').toBe('won');
+    expect(run('strand_reconciled', KEY_LEVEL)).toBe('won');
   });
 });

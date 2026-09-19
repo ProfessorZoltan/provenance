@@ -2,6 +2,7 @@
   "id": "stack_floor_2312",
   "name": "The Allocation Floor",
   "era": "2312",
+  "tier": "key",
   "location": "meridian_stack",
   "enemies": [
     {

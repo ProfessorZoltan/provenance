@@ -141,6 +141,8 @@ export interface EncounterDef {
   id: string;
   name: string;
   era: EraId;
+  /** How long this fight should run: ordinary 1-4 rounds, hard 3-8, key 7-20. See tests/balance. */
+  tier: 'ordinary' | 'hard' | 'key';
   location: string;
   enemies: EncounterEnemy[];
   surprise: 'never' | 'roll' | 'always';
@@ -150,6 +152,8 @@ export interface EncounterDef {
   rewardFlags?: string[];
   /** Winning this is the end of the run: the result screen hands off to the epilogue. */
   endsRun?: boolean;
+  /** Extra durability on top of the tier's, for one encounter that needs to sit off the band. */
+  scale?: number;
   music: string;
 }
 
@@ -430,6 +434,12 @@ export interface RulesDef {
   overloadSync: number;
   overloadBonus: number;
   armorFactor: number;
+  /** Every hit and heal is multiplied by this. Lower it and battles run longer. */
+  damageScale: number;
+  /** Enemy Resolve and shields by how much of a fight the encounter is meant to be. */
+  tierScale: Record<'ordinary' | 'hard' | 'key', number>;
+  /** Past `after` rounds, everything the enemy does grows by `perRound`: no fight stands still. */
+  pressure: { after: number; perRound: number };
   markBonus: number;
 }
 

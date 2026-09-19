@@ -2,6 +2,7 @@
   "id": "fens_2148_count",
   "name": "Four Hundred and One",
   "era": "2148",
+  "tier": "hard",
   "location": "the_fens_2148",
   "enemies": [
     {

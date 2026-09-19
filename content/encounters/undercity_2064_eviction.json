@@ -2,6 +2,7 @@
   "id": "undercity_2064_eviction",
   "name": "The Clause Nobody Read",
   "era": "2064",
+  "tier": "hard",
   "location": "undercity_bazaar_2064",
   "enemies": [
     {

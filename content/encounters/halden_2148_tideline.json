@@ -2,6 +2,7 @@
   "id": "halden_2148_tideline",
   "name": "The Tide Line",
   "era": "2148",
+  "tier": "hard",
   "location": "halden_2148",
   "enemies": [
     {

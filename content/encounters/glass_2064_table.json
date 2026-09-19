@@ -2,6 +2,7 @@
   "id": "glass_2064_table",
   "name": "The Table by the Window",
   "era": "2064",
+  "tier": "hard",
   "location": "glass_quarter_2064",
   "enemies": [
     {

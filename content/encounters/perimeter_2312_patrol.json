@@ -2,6 +2,8 @@
   "id": "perimeter_2312_patrol",
   "name": "Service Line",
   "era": "2312",
+  "tier": "ordinary",
+  "scale": 0.7,
   "location": "cooling_perimeter_2312",
   "enemies": [
     {

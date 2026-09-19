@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { abilityOptions, createBattle, current, resolveAbility } from '../src/core/battle/battle';
 import { evalFormula } from '../src/core/formula';
-import { autoBattle, content, newGame, reduce, run } from './helpers';
+import { maxHp } from '../src/core/stats';
+import { autoBattle, content, entropyCost, newGame, reduce, run } from './helpers';
 import type { EraId } from '../src/types/content';
 import type { GameState } from '../src/types/state';
 
@@ -74,7 +75,7 @@ describe('battle', () => {
         expect(tempo).toBeGreaterThanOrEqual(content.rules.rewind.cost);
         const rewound = reduce(s, { type: 'BATTLE_REWIND' });
         expect(rewound.battle!.rewindsLeft).toBe(s.battle!.rewindsLeft - 1);
-        expect(rewound.battle!.entropy).toBe(s.battle!.entropy + content.rules.rewind.entropy);
+        expect(rewound.battle!.entropy).toBe(s.battle!.entropy + entropyCost(content.rules.rewind.entropy));
         expect(rewound.battle!.tempo).toBe(tempo - content.rules.rewind.cost);
         expect(rewound.battle!.turnIndex).toBe(rp.turnIndex);
         expect(rewound.battle!.combatants.filter((c) => c.side === 'party').map((c) => c.hp)).toEqual(before);
@@ -101,7 +102,7 @@ describe('battle', () => {
     const forked = reduce(s, { type: 'BATTLE_FORK', actor: actor.id, ability: 'strike', target: target.id });
     const fb = forked.battle!;
     expect(fb.tempo).toBe(tempo - content.rules.fork.cost);
-    expect(fb.entropy).toBe(b.entropy + content.rules.fork.entropy);
+    expect(fb.entropy).toBe(b.entropy + entropyCost(content.rules.fork.entropy));
     expect(current(fb)!.threads).toBe(threads - content.rules.fork.threadCost);
     expect(fb.fork?.lines.length).toBeGreaterThan(0);
     // The preview is a promise: committing lands on exactly the Resolve it named.
@@ -120,7 +121,7 @@ describe('battle', () => {
 
   it('spawns an Echo of a party member once Entropy crosses the threshold', () => {
     let s = inBattle(5, 'kell_2148_walls');
-    s = { ...s, battle: { ...s.battle!, entropy: content.rules.entropyThreshold - 5 } };
+    s = { ...s, battle: { ...s.battle!, entropy: content.rules.entropyThreshold - 1 } };
     // Give the player Discrepancy (chronal, raises Entropy by 8) directly.
     const b = s.battle!;
     const withChronal = { ...b, combatants: b.combatants.map((c) => (c.id === 'player' ? { ...c, abilities: [...c.abilities, 'discrepancy'] } : c)) };
@@ -195,19 +196,23 @@ describe('battle', () => {
     let s = autoBattle(inBattle(21));
     expect(s.battle!.phase).toBe('won');
     const xpBefore = s.party.player.xp;
+    const levelBefore = s.party.player.level;
     const hpInBattle = s.battle!.combatants.find((c) => c.id === 'player')!.hp;
+    const missing = maxHp(content, content.characters.player, s.party.player) - hpInBattle;
     s = run(s, { type: 'BATTLE_FINISH' });
     expect(s.screen.id).toBe('battleResult');
     expect(s.party.player.xp).toBe(xpBefore + 60);
-    expect(s.party.player.hp).toBe(hpInBattle);
+    expect(s.party.player.level).toBeGreaterThan(levelBefore);
+    // Levelling raises Resolve; the wound it was carrying is the same size afterwards.
+    expect(maxHp(content, content.characters.player, s.party.player) - s.party.player.hp).toBe(missing);
     expect(s.inventory.currency['allocation points']).toBe(60 + 30);
     expect(s.counters.randomFights).toBe(1);
   });
 });
 
 describe('fork preview', () => {
-  function onTurn(threads: number, tempo = 20): GameState {
-    const s = reduce(newGame(3), { type: 'START_ENCOUNTER', encounterId: 'kell_2312_perimeter', surprise: false });
+  function onTurn(threads: number, tempo = 20, encounterId = 'kell_2312_perimeter'): GameState {
+    const s = reduce(newGame(3), { type: 'START_ENCOUNTER', encounterId, surprise: false });
     const b = s.battle!;
     return { ...s, battle: { ...b, phase: 'player' as const, tempo, turnIndex: b.order.indexOf('player'),
       combatants: b.combatants.map((c) => (c.id === 'player' ? { ...c, threads } : c)) } };
@@ -232,7 +237,12 @@ describe('fork preview', () => {
     const text = marked.battle!.fork!.lines.join(' ');
     expect(text).toContain('gains a mark');
     expect(text).toContain('Tempo +');
-    const hit = reduce(s, { type: 'BATTLE_FORK', actor: 'player', ability: 'strike', target: drone.id });
+    // A shielded target shows the shield coming off; an unshielded one shows Resolve.
+    const shielded = reduce(s, { type: 'BATTLE_FORK', actor: 'player', ability: 'strike', target: drone.id });
+    expect(shielded.battle!.fork!.lines.join(' ')).toMatch(/shield \d+ → \d+/);
+    const open = onTurn(3, 20, 'kell_2312_enforcers');
+    const warden = open.battle!.combatants.find((c) => c.side === 'enemy' && c.maxShield === 0)!;
+    const hit = reduce(open, { type: 'BATTLE_FORK', actor: 'player', ability: 'strike', target: warden.id });
     expect(hit.battle!.fork!.lines.join(' ')).toMatch(/takes \d+ damage, Resolve \d+ → \d+/);
   });
 
@@ -414,7 +424,7 @@ describe('the other two Tempo abilities', () => {
     expect(ghost.echoOf).toBe('dax');
     expect(ghost.temporary, 'they are gone after a round').toBe(true);
     expect(s.battle!.tempo).toBe(12 - content.rules.echo.cost);
-    expect(s.battle!.entropy).toBe(content.rules.echo.entropy);
+    expect(s.battle!.entropy).toBe(entropyCost(content.rules.echo.entropy));
     expect(() => reduce(s, { type: 'BATTLE_ECHO', character: 'wren' })).toThrow(/One Echo/);
   });
 

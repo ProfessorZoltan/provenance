@@ -2,6 +2,7 @@
   "id": "kell_2031_terrace",
   "name": "Test Flight",
   "era": "2031",
+  "tier": "ordinary",
   "location": "kell_2031",
   "enemies": [
     {

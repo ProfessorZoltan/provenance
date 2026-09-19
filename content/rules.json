@@ -17,7 +17,7 @@
     "base": 5,
     "noiseBelowPerception": 15
   },
-  "xpPerLevel": 100,
+  "xpPerLevel": 45,
   "statGrowthPerLevel": 0.05,
   "continuityFloor": 10,
   "continuityPerEdit": 15,
@@ -26,6 +26,16 @@
   "overloadSync": -40,
   "overloadBonus": 0.25,
   "armorFactor": 0.2,
+  "damageScale": 0.5,
+  "tierScale": {
+    "ordinary": 1,
+    "hard": 1.4,
+    "key": 4
+  },
+  "pressure": {
+    "after": 10,
+    "perRound": 0.1
+  },
   "markBonus": 0.25,
   "activePartyMax": 4,
   "benchedXpShare": 0.5,

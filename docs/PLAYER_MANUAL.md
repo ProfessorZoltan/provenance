@@ -127,10 +127,10 @@ written under them.
 
 | Ability | Cost | Effect | Entropy |
 | --- | --- | --- | --- |
-| Fork | 2 Tempo and 1 thread | Names the exact damage, the Resolve before and after, shields, status and gauge changes, before you commit. X carries out precisely that outcome; B discards the preview and the Tempo stays spent | +10 |
-| Rewind | 3 Tempo | Undoes the enemy's last turn. They take it again, differently. Once per battle, plus one more for each additional anchor or the right training | +20 |
-| Echo | 4 Tempo | Another era's version of someone steps in for one round and then is gone. Benched members count, and the era has to be one you have been to. Once per battle | +12 |
-| Collapse | 5 Tempo | Banks the fight exactly as it stands. If the party is wiped after that, it resumes from the bank instead of ending. Once per battle | +25 |
+| Fork | 2 Tempo and 1 thread | Names the exact damage, the Resolve before and after, shields, status and gauge changes, before you commit. X carries out precisely that outcome; B discards the preview and the Tempo stays spent | +5 |
+| Rewind | 3 Tempo | Undoes the enemy's last turn. They take it again, differently. Once per battle, plus one more for each additional anchor or the right training | +10 |
+| Echo | 4 Tempo | Another era's version of someone steps in for one round and then is gone. Benched members count, and the era has to be one you have been to. Once per battle | +6 |
+| Collapse | 5 Tempo | Banks the fight exactly as it stands. If the party is wiped after that, it resumes from the bank instead of ending. Once per battle | +13 |
 
 Collapse is the one to think about before a long dungeon. It costs Tempo now against a loss you
 may never take, and the Stack is four fights deep.
@@ -144,6 +144,13 @@ own party members, immune to everything except Chronal damage. The frame around 
 as Entropy climbs, and the music detunes, so you can hear it coming.
 
 Entropy resets between battles. Spend deliberately.
+
+### Pressure
+
+Past the tenth round, everything the enemy does grows by a tenth for every round after that. A
+fight you are winning will not notice. A fight you have settled into, healing as fast as you are
+being hit, will: the longer you stand in it, the harder it gets, until standing in it is no longer
+an option. Bring what the thing in front of you is weak to, and finish.
 
 ### Damage types
 

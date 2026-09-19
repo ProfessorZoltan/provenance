@@ -2,6 +2,7 @@
   "id": "halden_2064_vote",
   "name": "The Floor",
   "era": "2064",
+  "tier": "hard",
   "location": "halden_2064",
   "enemies": [
     {

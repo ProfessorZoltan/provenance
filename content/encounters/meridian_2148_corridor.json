@@ -2,6 +2,7 @@
   "id": "meridian_2148_corridor",
   "name": "The Vault Corridor",
   "era": "2148",
+  "tier": "ordinary",
   "location": "meridian_2148",
   "enemies": [
     {

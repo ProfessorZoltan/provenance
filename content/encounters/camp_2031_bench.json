@@ -2,6 +2,8 @@
   "id": "camp_2031_bench",
   "name": "Her Own Bench",
   "era": "2031",
+  "tier": "hard",
+  "scale": 2.5,
   "location": "basin_work_camp_2031",
   "enemies": [
     {

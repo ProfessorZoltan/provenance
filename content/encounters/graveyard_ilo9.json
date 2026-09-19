@@ -2,6 +2,8 @@
   "id": "graveyard_ilo9",
   "name": "The Bound Thing",
   "era": "2148",
+  "tier": "hard",
+  "scale": 2.5,
   "location": "server_graveyard_2148",
   "enemies": [
     {

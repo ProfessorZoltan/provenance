@@ -2,6 +2,7 @@
   "id": "stacks_2148_relay",
   "name": "The Relay",
   "era": "2148",
+  "tier": "hard",
   "location": "the_stacks_2148",
   "enemies": [
     {

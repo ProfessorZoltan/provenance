@@ -2,6 +2,7 @@
   "id": "capitol_2312_chamber",
   "name": "The Board Chamber",
   "era": "2312",
+  "tier": "key",
   "location": "capitol_2312",
   "enemies": [
     {

@@ -2,6 +2,8 @@
   "id": "founders_2031_shipment",
   "name": "The Wrong Shipment",
   "era": "2031",
+  "tier": "hard",
+  "scale": 5.0,
   "location": "founders_bar_2031",
   "enemies": [
     {

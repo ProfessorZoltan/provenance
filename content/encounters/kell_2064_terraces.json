@@ -2,6 +2,7 @@
   "id": "kell_2064_terraces",
   "name": "Commune Terraces",
   "era": "2064",
+  "tier": "ordinary",
   "location": "kell_2064",
   "enemies": [
     {

@@ -2,6 +2,7 @@
   "id": "meridian_2031_courtyard",
   "name": "The Courtyard",
   "era": "2031",
+  "tier": "ordinary",
   "location": "meridian_2031",
   "enemies": [
     {

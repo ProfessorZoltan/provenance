@@ -2,6 +2,8 @@
   "id": "strand_reconciled",
   "name": "The Duel",
   "era": "2312",
+  "tier": "key",
+  "scale": 1.0,
   "location": "meridian_stack",
   "enemies": [
     {

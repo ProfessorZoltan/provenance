@@ -2,16 +2,38 @@
   "id": "kell_2312_gate",
   "name": "The Gate Drone",
   "era": "2312",
+  "tier": "hard",
+  "scale": 2.5,
   "location": "kell_village_2312",
-  "enemies": [{ "enemy": "drone_hunter", "count": 1 }, { "enemy": "drone_sentry", "count": 1 }],
+  "enemies": [
+    {
+      "enemy": "drone_hunter",
+      "count": 1
+    },
+    {
+      "enemy": "drone_sentry",
+      "count": 1
+    }
+  ],
   "surprise": "never",
   "story": true,
   "flavor": "The gate drone circles lower every night. Tonight it has brought a friend.",
   "scanHints": [
-    { "when": "signal>=40", "text": "Two Drones, one of them is not an allocation model." },
-    { "when": "signal>=70", "text": "A Hunter Drone from the Board era. Weak to Signal; the sentry is weak to Thermal." },
-    { "when": "sync>=40", "text": "Parley: the sentry might listen. The hunter will not." }
+    {
+      "when": "signal>=40",
+      "text": "Two Drones, one of them is not an allocation model."
+    },
+    {
+      "when": "signal>=70",
+      "text": "A Hunter Drone from the Board era. Weak to Signal; the sentry is weak to Thermal."
+    },
+    {
+      "when": "sync>=40",
+      "text": "Parley: the sentry might listen. The hunter will not."
+    }
   ],
-  "rewardFlags": ["clearedGate"],
+  "rewardFlags": [
+    "clearedGate"
+  ],
   "music": "battle_2312"
 }

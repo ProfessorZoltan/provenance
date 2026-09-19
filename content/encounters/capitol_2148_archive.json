@@ -2,6 +2,8 @@
   "id": "capitol_2148_archive",
   "name": "The Closed Archive",
   "era": "2148",
+  "tier": "hard",
+  "scale": 0.6,
   "location": "capitol_2148",
   "enemies": [
     {

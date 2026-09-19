@@ -2,6 +2,7 @@
   "id": "graveyard_echoes",
   "name": "Among the Racks",
   "era": "2148",
+  "tier": "hard",
   "location": "server_graveyard_2148",
   "enemies": [
     {

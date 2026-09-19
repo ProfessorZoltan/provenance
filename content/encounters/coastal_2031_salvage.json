@@ -2,6 +2,7 @@
   "id": "coastal_2031_salvage",
   "name": "Salvage Run",
   "era": "2031",
+  "tier": "ordinary",
   "location": "coastal_highway_2031",
   "enemies": [
     {

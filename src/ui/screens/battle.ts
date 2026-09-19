@@ -77,8 +77,10 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
   const targeted = targets[ui.targetIdx];
 
   const rigFor = (c: Combatant): string => {
-    if (c.side === 'party') return rigSvg(content.characters[c.ref].rig, accentFor(content, state, c.ref), 'currentColor', c.down ? 'down' : 'idle');
-    if (c.echoOf) return rigSvg(content.characters[c.echoOf].rig, accentFor(content, state, c.echoOf), 'currentColor', c.down ? 'down' : 'idle', true, b.era);
+    // Whoever this is a copy of, if anyone: temporaries and Echoes both point back at a character.
+    const who = content.characters[c.echoOf ?? ''] ?? content.characters[c.ref];
+    if (c.side === 'party' && who) return rigSvg(who.rig, accentFor(content, state, who.id), 'currentColor', c.down ? 'down' : 'idle');
+    if (c.echoOf && who) return rigSvg(who.rig, accentFor(content, state, who.id), 'currentColor', c.down ? 'down' : 'idle', true, b.era);
     const def = content.enemies[c.ref];
     const accent = c.family === 'echo' ? 'var(--choir)' : c.family === 'warden' ? 'var(--cinder)' : 'var(--accent)';
     const baseRig = c.rigOverride ?? def?.rig ?? 'auditor';

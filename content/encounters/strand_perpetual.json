@@ -2,6 +2,8 @@
   "id": "strand_perpetual",
   "name": "Strand Perpetual",
   "era": "2312",
+  "tier": "key",
+  "scale": 0.8,
   "location": "meridian_stack",
   "enemies": [
     {

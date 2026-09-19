@@ -2,6 +2,7 @@
   "id": "halden_2031_quay",
   "name": "Quayside",
   "era": "2031",
+  "tier": "ordinary",
   "location": "halden_2031",
   "enemies": [
     {

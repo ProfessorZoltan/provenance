@@ -2,6 +2,8 @@
   "id": "stack_floor_2031",
   "name": "The Courtyard Floor",
   "era": "2031",
+  "tier": "key",
+  "scale": 2.45,
   "location": "meridian_stack",
   "enemies": [
     {

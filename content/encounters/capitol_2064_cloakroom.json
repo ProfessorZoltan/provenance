@@ -2,6 +2,7 @@
   "id": "capitol_2064_cloakroom",
   "name": "The Cloakroom",
   "era": "2064",
+  "tier": "ordinary",
   "location": "capitol_2064",
   "enemies": [
     {

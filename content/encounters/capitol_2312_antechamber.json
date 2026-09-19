@@ -2,6 +2,7 @@
   "id": "capitol_2312_antechamber",
   "name": "The Antechamber",
   "era": "2312",
+  "tier": "ordinary",
   "location": "capitol_2312",
   "enemies": [
     {

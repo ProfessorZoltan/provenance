@@ -2,6 +2,7 @@
   "id": "halden_2031_dockguard",
   "name": "Manifest Check",
   "era": "2031",
+  "tier": "ordinary",
   "location": "halden_market_2031",
   "enemies": [
     {

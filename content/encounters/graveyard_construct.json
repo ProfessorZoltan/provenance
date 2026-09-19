@@ -2,6 +2,7 @@
   "id": "graveyard_construct",
   "name": "Board Salvage Crew",
   "era": "2148",
+  "tier": "ordinary",
   "location": "server_graveyard_2148",
   "enemies": [
     {

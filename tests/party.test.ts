@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createBattle, current, resolveAbility } from '../src/core/battle/battle';
-import { loadout } from '../src/core/stats';
+import { loadout, xpForLevel } from '../src/core/stats';
 import { activeChoices, applyChoice, deriveWorld } from '../src/core/timeline';
 import { content, newGame, reduce, run } from './helpers';
 import type { GameState } from '../src/types/state';
@@ -98,9 +98,10 @@ describe('recruitment and departure', () => {
 
   it('starts a recruit near the party rather than at level one', () => {
     let s = newGame(4);
-    const party = Object.fromEntries(Object.entries(s.party).map(([k, v]) => [k, { ...v, xp: 400 }]));
+    const xp = xpForLevel(5, content.rules.xpPerLevel);
+    const party = Object.fromEntries(Object.entries(s.party).map(([k, v]) => [k, { ...v, xp }]));
     s = reduce({ ...s, party }, { type: 'RECRUIT', character: 'ilo9' });
-    expect(s.party.ilo9.xp).toBe(400);
+    expect(s.party.ilo9.xp).toBe(xp);
     expect(s.party.ilo9.level).toBe(5);
     expect(s.party.ilo9.skillPoints).toBeGreaterThan(1);
   });

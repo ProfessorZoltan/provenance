@@ -19,6 +19,11 @@ export function newRun(seed = 12345, lean: 'cinder' | 'choir' | 'commons' = 'com
   return reduce(initialState(), { type: 'NEW_GAME', seed, lean });
 }
 
+/** What an Entropy price costs once the exchange scale is applied, the way the engine charges it. */
+export function entropyCost(amount: number): number {
+  return Math.round(amount * content.rules.damageScale);
+}
+
 export function run(state: GameState, ...actions: Action[]): GameState {
   return actions.reduce((s, a) => reduce(s, a), state);
 }
@@ -34,20 +39,46 @@ export function skipDialogue(state: GameState, pick = 0, guard = 100): GameState
   return state;
 }
 
-/** Play a battle to the end with a simple policy: each party member strikes the first living enemy. */
-export function autoBattle(state: GameState, policy?: (s: GameState) => Action | null, guard = 400): GameState {
+/**
+ * Play a battle to the end as a competent player would: heal whoever is badly hurt, otherwise
+ * spend the biggest affordable action on something it can actually damage, preferring a weakness.
+ * Not an optimal player — it never Forks, Rewinds or Guards — but it does read the type chart,
+ * which is the bar the balance suite tunes against.
+ */
+export function autoBattle(state: GameState, policy?: (s: GameState) => Action | null, guard = 2000): GameState {
   while (state.battle && state.battle.phase !== 'won' && state.battle.phase !== 'lost' && guard-- > 0) {
     const b = state.battle;
     if (b.phase === 'enemy') { state = reduce(state, { type: 'BATTLE_ENEMY_ACT' }); continue; }
-    const actor = b.combatants.find((c) => c.id === b.order[b.turnIndex])!;
+    const actor = b.combatants.find((c) => c.id === b.order[b.turnIndex]);
+    if (!actor || actor.side !== 'party') { state = reduce(state, { type: 'BATTLE_ENEMY_ACT' }); continue; }
     const custom = policy?.(state);
     if (custom) { state = reduce(state, custom); continue; }
-    const enemy = b.combatants.find((c) => c.side === 'enemy' && !c.down);
-    if (!enemy) break;
-    const chronal = actor.abilities.find((a) => content.abilities[a].damageType === 'chronal');
-    const usable = enemy.family === 'echo' && chronal && actor.threads >= content.abilities[chronal].cost ? chronal : 'strike';
-    if (actor.threads >= content.abilities[usable].cost) state = reduce(state, { type: 'BATTLE_ABILITY', actor: actor.id, ability: usable, target: enemy.id });
-    else state = reduce(state, { type: 'BATTLE_END_TURN', actor: actor.id });
+    const foes = b.combatants.filter((c) => c.side === 'enemy' && !c.down);
+    if (!foes.length) break;
+    const afford = (id: string) => !!content.abilities[id] && actor.threads >= content.abilities[id].cost;
+    const hurt = b.combatants.filter((c) => c.side === 'party' && !c.down)
+      .sort((a, c) => a.hp / a.maxHp - c.hp / c.maxHp)[0];
+    let act: Action | null = null;
+    if (hurt && hurt.hp / hurt.maxHp < 0.45) {
+      const heal = actor.abilities.find((a) => afford(a) && !!content.abilities[a].heal);
+      if (heal) act = { type: 'BATTLE_ABILITY', actor: actor.id, ability: heal, target: hurt.id };
+    }
+    if (!act) {
+      let best: { ability: string; target: string; score: number } | null = null;
+      for (const a of actor.abilities) {
+        const def = content.abilities[a];
+        if (!def?.damageType || !afford(a)) continue;
+        for (const f of foes) {
+          if (f.immunities.includes(def.damageType)) continue;
+          if (def.damageType === 'signal' && !f.machine) continue;
+          const score = def.cost * 10 + (f.weakness === def.damageType ? 25 : 0) - f.hp / 20;
+          if (!best || score > best.score) best = { ability: a, target: f.id, score };
+        }
+      }
+      if (best) act = { type: 'BATTLE_ABILITY', actor: actor.id, ability: best.ability, target: best.target };
+    }
+    if (!act) act = { type: 'BATTLE_END_TURN', actor: actor.id };
+    try { state = reduce(state, act); } catch { state = reduce(state, { type: 'BATTLE_END_TURN', actor: actor.id }); }
   }
   return state;
 }

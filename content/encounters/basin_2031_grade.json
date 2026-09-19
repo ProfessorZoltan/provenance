@@ -2,6 +2,7 @@
   "id": "basin_2031_grade",
   "name": "On the Grade",
   "era": "2031",
+  "tier": "ordinary",
   "location": "basin_2031",
   "enemies": [
     {

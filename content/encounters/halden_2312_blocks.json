@@ -2,6 +2,7 @@
   "id": "halden_2312_blocks",
   "name": "Housing Block Sweep",
   "era": "2312",
+  "tier": "ordinary",
   "location": "halden_2312",
   "enemies": [
     {

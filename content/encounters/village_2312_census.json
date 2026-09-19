@@ -2,6 +2,7 @@
   "id": "village_2312_census",
   "name": "The Census Flight",
   "era": "2312",
+  "tier": "hard",
   "location": "kell_village_2312",
   "enemies": [
     {

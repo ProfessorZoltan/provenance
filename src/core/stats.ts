@@ -13,8 +13,19 @@ export interface Loadout {
 
 const GROWING: (keyof StatBlock)[] = ['resolve', 'grit', 'signal', 'noise'];
 
+/**
+ * Each level costs `xpPerLevel` more experience than the one before it, so the climb flattens.
+ * A linear curve put a completionist past level 150 and made the last act's rewards meaningless.
+ */
 export function levelForXp(xp: number, xpPerLevel: number): number {
-  return 1 + Math.floor(Math.max(0, xp) / xpPerLevel);
+  const n = Math.max(0, xp) / xpPerLevel;
+  return 1 + Math.floor((Math.sqrt(1 + 8 * n) - 1) / 2);
+}
+
+/** Total experience needed to reach a level, the inverse of levelForXp. */
+export function xpForLevel(level: number, xpPerLevel: number): number {
+  const l = Math.max(1, level);
+  return (xpPerLevel * (l - 1) * l) / 2;
 }
 
 /** Base stats scaled by level, plus every owned node's stat deltas, ability grants and passives. */

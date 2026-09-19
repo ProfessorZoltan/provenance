@@ -2,6 +2,7 @@
   "id": "ash_2148_convoy",
   "name": "The Convoy",
   "era": "2148",
+  "tier": "hard",
   "location": "ash_camp_2148",
   "enemies": [
     {

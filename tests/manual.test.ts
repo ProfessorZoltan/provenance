@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { content } from './helpers';
 import { manualEntries, manualPages, manualTitle, parseManual } from '../src/ui/manual';
 
 describe('player manual', () => {
@@ -27,6 +28,12 @@ describe('player manual', () => {
     expect(tempo.html).toContain('Rewind');
     expect(tempo.html).toContain('Fork');
     expect(tempo.html).toContain('2 points for every thread');
+    // The Entropy prices printed here are what the engine actually charges, scale included.
+    const charged = (n: number) => `+${Math.round(n * content.rules.damageScale)}`;
+    expect(tempo.html, 'Fork').toContain(charged(content.rules.fork.entropy));
+    expect(tempo.html, 'Rewind').toContain(charged(content.rules.rewind.entropy));
+    expect(tempo.html, 'Echo').toContain(charged(content.rules.echo.entropy));
+    expect(tempo.html, 'Collapse').toContain(charged(content.rules.collapse.entropy));
   });
 
   it('renders headings, paragraphs, bold, lists and tables', () => {

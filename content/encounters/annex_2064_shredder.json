@@ -2,6 +2,7 @@
   "id": "annex_2064_shredder",
   "name": "The Shredder Room",
   "era": "2064",
+  "tier": "hard",
   "location": "senate_annex_2064",
   "enemies": [
     {

@@ -1,4 +1,4 @@
-import type { ContentDB, EncounterDef } from '../types/content';
+import type { ContentDB, DamageType, EncounterDef } from '../types/content';
 import type { GameState, ScanState } from '../types/state';
 import { evalCondition, type ConditionContext } from './conditions';
 import { roll, rollInt } from './rng';
@@ -36,12 +36,55 @@ export function ambushChance(content: ContentDB, state: GameState, enc: Encounte
   return chance;
 }
 
+/**
+ * Who in the party notices that nothing they carry will touch something out there, and what they
+ * say about it. The check is honest about the type rules: Signal only bites machines, and Overload
+ * takes Signal away entirely, so neither counts as an answer to a Warden.
+ */
+function cannotTouch(content: ContentDB, state: GameState, enc: EncounterDef): string | null {
+  const loads = partyLoadouts(content, state);
+  const overloaded = partySync(state) <= content.rules.overloadSync;
+  const types = new Set<DamageType>();
+  for (const l of Object.values(loads)) {
+    for (const id of l.abilities) {
+      const t = content.abilities[id]?.damageType;
+      if (!t) continue;
+      if (t === 'signal' && overloaded) continue;
+      types.add(t);
+    }
+  }
+  const untouchable = enc.enemies
+    .map((g) => content.enemies[g.enemy])
+    .filter((e): e is NonNullable<typeof e> => !!e)
+    .filter((e) => ![...types].some((t) => !e.immunities.includes(t) && !(t === 'signal' && !e.machine)));
+  if (!untouchable.length) return null;
+  const what = untouchable[0];
+  // What *would* land on it, whether or not anyone in the party can do that yet.
+  const ALL: DamageType[] = ['kinetic', 'thermal', 'signal', 'chronal'];
+  const answers = ALL.filter((t) => !what.immunities.includes(t) && !(t === 'signal' && !what.machine));
+  const need = answers.length === 1 ? answers[0] : what.weakness;
+  const line = (who: string, text: string) => `${who}: ${text}`;
+  if (state.activeParty.includes('wren')) {
+    return line('Wren', `Nothing any of us is carrying will land on that. ${need === 'chronal' ? 'It is standing a little to one side of now; you have to hit it there.' : 'We are not equipped for it.'}`);
+  }
+  if (state.activeParty.includes('ilo9')) {
+    return line('ILO-9', `I have run the party's kit against that thing four hundred times. Every pass returns zero. ${need === 'chronal' ? 'Chronal is the only column with a number in it.' : 'We do not have the answer to it yet.'}`);
+  }
+  if (state.activeParty.includes('dax')) {
+    return line('Dax', `I have hit things like that before. It does not care. ${need === 'chronal' ? 'It is not properly here to be hit.' : 'Leave it.'}`);
+  }
+  return line('The Auditor', `Nothing in this party's kit is rated against that. ${need === 'chronal' ? 'It is a Chronal problem and we have no Chronal.' : 'We are not equipped for it.'}`);
+}
+
 /** Build the Scan card: enemy count and flavor always; everything else depends on the party. */
 export function buildScan(content: ContentDB, state: GameState, encounterId: string, surprise: boolean): ScanState {
   const enc = content.encounters[encounterId];
   const ctx = conditionContext(content, state);
   const count = enc.enemies.reduce((s, e) => s + e.count, 0);
   const hints: string[] = [`${count} ${count === 1 ? 'enemy' : 'enemies'}. ${enc.flavor}`];
+  // The party's own read on whether this is winnable comes before anything a stat gate unlocks.
+  const blind = cannotTouch(content, state, enc);
+  if (blind) hints.push(blind);
   const chance = ambushChance(content, state, enc);
   for (const h of enc.scanHints) {
     if (!evalCondition(h.when, ctx)) continue;

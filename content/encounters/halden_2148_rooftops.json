@@ -2,6 +2,7 @@
   "id": "halden_2148_rooftops",
   "name": "Rooftop Crossing",
   "era": "2148",
+  "tier": "ordinary",
   "location": "the_stacks_2148",
   "enemies": [
     {
