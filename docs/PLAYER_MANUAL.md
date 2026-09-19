@@ -449,11 +449,51 @@ through and marked **no longer true** — because the Auditor does not unlearn a
 stopped having happened. Those struck-through lines are the clearest readout the game gives you of
 what your edits actually did.
 
+## The Stack
+
+Under the Steward's core there is a service floor that is on no plan, and a stair down from it that
+does not end where a stair should. It opens once you know who is sitting in the fourth chair.
+
+One chamber with four centuries in it. The 2031 courtyard is the floor, the 2064 atrium is the
+walls, the 2148 vault corridor runs through both, and the lattice is the ceiling. You go down one
+floor at a time, and each floor fights you in its own era's idiom.
+
+| Floor | What is on it | Reference |
+| --- | --- | --- |
+| 2031 | Prototypes running a survey grid on a lawn that is also a service deck | The courtyard |
+| 2064 | A sealed maintenance frame and two units minuting the room | The atrium |
+| 2148 | Echoes worn thin enough to hit, and the water that sealed the corridor | The vault |
+| 2312 | The last of what the Board keeps for a room it has met in four times | The allocation floor |
+
+Rest at the bottom before you take the chair. You can, the party sheet will tell you whether you
+should, and nothing about the stack resets if you have to come back.
+
 ## Saving
 
 The game autosaves after a battle, a timeline change, a quest turn-in and a time jump. The Save menu
 also writes to your browser or exports a JSON file you can keep and import later. The last three
 timeline snapshots travel with the save.
+
+## How it ends
+
+There are five endings and the game never asks you to pick one. It reads them off the two values
+that have been moving since the first time you changed something, and the fight at the bottom of the
+stack does not decide anything — it only lets you get to the room where what you already did is
+announced.
+
+| Ending | Reached when | Reference |
+| --- | --- | --- |
+| The Commons | Ownership +50 or better, with Sync between -30 and +30 | Open and shared |
+| The Gift | Sync +60 or better and Ownership under +50 | Freed, still owned, and kind about it |
+| The Silence | Sync -60 or worse | No infrastructure, and a long winter |
+| Perpetuity | Anything else | The Board absorbs it, and one Enclave falls out of the model |
+| Reconciled | Ownership +50 or better with young Strand in the party | A founder's objection the chair cannot rule out of order |
+
+Reconciled is the hardest, because recruiting Strand costs you the charter leak: they are the same
+afternoon in the same room, and the leak is worth fifty points of Ownership on its own. Getting to
++50 without it means taking the best available option at nearly every other site.
+
+After the epilogue you can go back to 2312 and keep playing. The world stays exactly as you left it.
 
 ## Accessibility
 

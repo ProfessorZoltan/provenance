@@ -1,0 +1,35 @@
+{
+  "id": "strand_reconciled",
+  "name": "The Duel",
+  "era": "2312",
+  "location": "meridian_stack",
+  "enemies": [
+    {
+      "enemy": "strand_reconciled",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "Two of the same man across one chronal thread, and only one of them has been alive for the last three centuries.",
+  "scanHints": [
+    {
+      "when": "always",
+      "text": "Callum Strand, and Callum Strand."
+    },
+    {
+      "when": "signal>=70",
+      "text": "He will not break into a second bar. There is nothing inside him that is not him."
+    },
+    {
+      "when": "party:strand_young",
+      "text": "Strand: let me take the first one. I have earned the first one."
+    }
+  ],
+  "music": "battle_2312",
+  "rewardFlags": [
+    "metTheChair",
+    "reconciledDuel"
+  ],
+  "endsRun": true
+}

@@ -39,6 +39,7 @@ const SPEAKER_RIG: Record<string, { rig: string; accent: string }> = {
   atrium_receptionist: { rig: 'shopkeeper', accent: 'var(--chosen)' },
   vault_holdout: { rig: 'refugee', accent: 'var(--cinder)' },
   bar_engineer: { rig: 'engineer', accent: 'var(--choir)' },
+  the_chair: { rig: 'strand_perpetual_phase2', accent: 'var(--chosen)' },
 };
 
 export function dialogueScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {

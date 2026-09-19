@@ -1,0 +1,37 @@
+{
+  "id": "stack_floor_2064",
+  "name": "The Atrium Floor",
+  "era": "2064",
+  "location": "meridian_stack",
+  "enemies": [
+    {
+      "enemy": "construct_thermal_2064",
+      "count": 1
+    },
+    {
+      "enemy": "drone_gallery_2064",
+      "count": 2
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "Glass, a ticker, and two units minuting the room while a sealed frame walks the length of it.",
+  "scanHints": [
+    {
+      "when": "always",
+      "text": "Second floor: 2064. Shielded, and one of them has a person in it."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Thermal goes through the shields. Break the frame and Signal stops working on the core."
+    },
+    {
+      "when": "party:mara",
+      "text": "Mara: the frame is under contract. Contracts have terms."
+    }
+  ],
+  "music": "battle_2064",
+  "rewardFlags": [
+    "floor2064"
+  ]
+}

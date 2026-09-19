@@ -1,0 +1,18 @@
+{
+  "id": "floor_2312",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The fourth floor is an allocation office, and it is your allocation office, down to the bench by the lift."
+    },
+    {
+      "speaker": "player",
+      "text": "He has read my file. Of course he has read my file. It is the only thing about me that exists in this building."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Down.",
+      "action": "battle:stack_floor_2312"
+    }
+  ]
+}

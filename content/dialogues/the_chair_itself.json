@@ -1,0 +1,60 @@
+{
+  "id": "the_chair_itself",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The chair is at the bottom of the stack, facing away, and it turns around, which is the worst thing it could have done."
+    },
+    {
+      "speaker": "strand_young",
+      "text": "Oh, that is me. That is genuinely me. I did not expect it to be so obviously me.",
+      "conditions": [
+        "party:strand_young"
+      ]
+    },
+    {
+      "speaker": "the_chair",
+      "text": "Auditor. Eleven years, four commendations, and one query. Sit down; there are four chairs and three of them are held by instruments, and instruments do not sit."
+    },
+    {
+      "speaker": "player",
+      "text": "You have been paid every quarter for two hundred and eighty-one years."
+    },
+    {
+      "speaker": "the_chair",
+      "text": "I have been paid rent. It is my property. I am not being obtuse with you, that is simply the legal position and it has never once been contested, because nobody could find it to contest it."
+    },
+    {
+      "speaker": "the_chair",
+      "text": "You found it. I want to be clear that I think that is admirable. It does not change the position, and the position is the only thing in this room that has ever mattered.",
+      "choices": [
+        {
+          "text": "Then we contest it.",
+          "action": "battle:strand_reconciled",
+          "conditions": [
+            "party:strand_young",
+            "ownership>=50"
+          ]
+        },
+        {
+          "text": "Then we contest it.",
+          "action": "battle:strand_perpetual",
+          "conditions": [
+            "!party:strand_young"
+          ]
+        },
+        {
+          "text": "Then we contest it.",
+          "action": "battle:strand_perpetual",
+          "conditions": [
+            "party:strand_young",
+            "ownership<50"
+          ]
+        },
+        {
+          "text": "Not yet."
+        }
+      ]
+    }
+  ]
+}

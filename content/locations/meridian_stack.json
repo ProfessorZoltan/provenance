@@ -1,0 +1,101 @@
+{
+  "id": "meridian_stack",
+  "name": "The Stack",
+  "kind": "waypoint",
+  "era": "2312",
+  "site": "stack",
+  "type": "All four eras at once",
+  "art": "act3_meridian_stack",
+  "offMap": true,
+  "description": "One chamber with four centuries in it. The lab courtyard is the floor, the atrium is the walls, the vault corridor runs through both, and the lattice is the ceiling. None of them has been removed. They are simply all here.",
+  "background": {
+    "layers": [
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "act3_meridian_stack:sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "act3_meridian_stack:distant",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "act3_meridian_stack:midground"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "act3_meridian_stack:foreground",
+        "ambient": "sway"
+      }
+    ],
+    "particles": "snow"
+  },
+  "music": "hub_2312",
+  "npcs": [],
+  "quests": [],
+  "encounters": [],
+  "links": [
+    {
+      "to": "meridian_2312",
+      "label": "Climb back out"
+    }
+  ],
+  "timeLinks": [],
+  "storyDialogue": "stack_arrive",
+  "actions": [
+    {
+      "label": "Down to the courtyard",
+      "dialogue": "floor_2031",
+      "hint": "2031",
+      "requires": [
+        "!flag:floor2031"
+      ]
+    },
+    {
+      "label": "Down to the atrium",
+      "dialogue": "floor_2064",
+      "hint": "2064",
+      "requires": [
+        "flag:floor2031",
+        "!flag:floor2064"
+      ]
+    },
+    {
+      "label": "Down to the vault corridor",
+      "dialogue": "floor_2148",
+      "hint": "2148",
+      "requires": [
+        "flag:floor2064",
+        "!flag:floor2148"
+      ]
+    },
+    {
+      "label": "Down to the allocation floor",
+      "dialogue": "floor_2312",
+      "hint": "2312",
+      "requires": [
+        "flag:floor2148",
+        "!flag:floor2312"
+      ]
+    },
+    {
+      "label": "The chair",
+      "dialogue": "the_chair_itself",
+      "hint": "The fourth seat",
+      "requires": [
+        "flag:floor2312"
+      ]
+    },
+    {
+      "label": "Climb back out",
+      "dialogue": "stack_leave",
+      "hint": "Back to the core"
+    }
+  ]
+}

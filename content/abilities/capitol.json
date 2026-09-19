@@ -66,5 +66,27 @@
     "tempoCost": 0,
     "entropyDelta": 0,
     "description": "Votes everyone else's shares. The whole side hits harder."
+  },
+  {
+    "id": "perpetual_claim",
+    "name": "Claim in Perpetuity",
+    "cost": 3,
+    "damageType": "chronal",
+    "target": "allEnemies",
+    "formula": "a.signal * 0.32 + 8",
+    "tempoCost": 0,
+    "entropyDelta": 6,
+    "description": "States the position across every century at once. Armor does not apply to a legal fact."
+  },
+  {
+    "id": "foreclose",
+    "name": "Foreclose",
+    "cost": 2,
+    "damageType": "kinetic",
+    "target": "enemy",
+    "formula": "a.grit * 0.95 + 12",
+    "tempoCost": 0,
+    "entropyDelta": 0,
+    "description": "Calls in the whole position against one holder."
   }
 ]

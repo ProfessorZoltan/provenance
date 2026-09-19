@@ -1,0 +1,18 @@
+{
+  "id": "floor_2148",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The third floor is four inches of standing water, and the water is the reason the corridor was sealed."
+    },
+    {
+      "speaker": "narrator",
+      "text": "A great many people are here who came to watch something that had already been decided. None of them has left. All of them are facing the same way."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Down.",
+      "action": "battle:stack_floor_2148"
+    }
+  ]
+}

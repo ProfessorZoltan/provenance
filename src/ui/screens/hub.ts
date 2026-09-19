@@ -1,3 +1,5 @@
+import { evalAll } from '../../core/conditions';
+import { conditionContext } from '../../core/encounter';
 import { activeVariant, npcDialogue, npcName } from '../../core/reducer';
 import { deriveWorld } from '../../core/timeline';
 import type { GameState } from '../../types/state';
@@ -20,6 +22,7 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
   const loc = content.locations[state.location];
   const era = content.eras[loc.era];
   const variant = activeVariant(content, state, loc);
+  const cctx = conditionContext(content, state);
   const npcs = variant?.npcs ?? loc.npcs;
   const shop = variant?.shop ?? loc.shop;
   const derived = deriveWorld(content, state.world, state.party);
@@ -29,6 +32,9 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
   if (sub === 'hub') {
     for (const n of npcs) items.push({ id: `talk:${n}`, label: `Talk to ${npcName(content, n)}`, onSelect: () => store.dispatch({ type: 'START_DIALOGUE', id: npcDialogue(content, state, n), returnTo: { id: 'hub' } }) });
     if (shop) items.push({ id: 'shop', label: content.shops[shop].name, hint: 'Shop', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'shop' } }) });
+    for (const a of (variant?.actions ?? loc.actions ?? []).filter((x) => evalAll(x.requires, cctx))) {
+      items.push({ id: `act:${a.dialogue}`, label: a.label, hint: a.hint, onSelect: () => store.dispatch({ type: 'START_DIALOGUE', id: a.dialogue, returnTo: { id: 'hub' } }) });
+    }
     items.push({ id: 'rest', label: 'Rest', hint: 'Restore Resolve', onSelect: () => { store.dispatch({ type: 'REST' }); ctx.toast('The party rests. Resolve restored.'); } });
     if (loc.kind === 'deepSite' && loc.timeLinks.length) items.push({ id: 'jump', label: DESCEND[loc.site] ?? 'Go down where the eras touch', hint: `Deep Site · ${loc.timeLinks.join(', ')}`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'timeJump' } }) });
     items.push({ id: 'tech', label: 'Tech trees', shortcut: 'y', hint: `${state.activeParty.reduce((s, id) => s + state.party[id].skillPoints, 0)} skill points unspent`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'tech', character: 'player' } }) });

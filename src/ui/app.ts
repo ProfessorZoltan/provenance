@@ -15,6 +15,7 @@ import { advanceNarration, narrationPending, resetNarration, syncNarration } fro
 import { battleScreen } from './screens/battle';
 import { dialogueScreen } from './screens/dialogue';
 import { hubScreen } from './screens/hub';
+import { endingScreen } from './screens/ending';
 import { logScreen } from './screens/log';
 import { roomScreen } from './screens/room';
 import { manualScreen } from './screens/manual';
@@ -30,7 +31,7 @@ const SCREENS: Record<string, ScreenFn> = {
   scan: scanScreen, battle: battleScreen, battleResult: resultScreen, dialogue: dialogueScreen,
   tech: techScreen, party: partyScreen, shop: shopScreen, inventory: inventoryScreen,
   save: saveScreen, gameOver: gameOverScreen, settings: settingsScreen, manual: manualScreen, roster: rosterScreen,
-  log: logScreen, room: roomScreen,
+  log: logScreen, room: roomScreen, ending: endingScreen,
 };
 
 export function createApp(store: Store, content: ContentDB, input: Input, audio: AudioEngine): void {

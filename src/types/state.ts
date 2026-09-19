@@ -31,6 +31,8 @@ export interface Combatant {
   /** Constructs fight on after their shell breaks; bar 2 is the core. */
   bar?: number;
   secondBarName?: string;
+  /** Art for bar 2, when the core is not the thing you have been hitting. */
+  rigOverride?: string;
   /** A short-lived copy: it fights, then dissolves, and the party does not lose when it falls. */
   temporary?: boolean;
   expiresAfterRound?: number;
@@ -173,6 +175,7 @@ export type Screen =
   | { id: 'manual' }
   | { id: 'log' }
   | { id: 'room'; room: string }
+  | { id: 'ending' }
   | { id: 'roster' }
   | { id: 'gameOver' }
   | { id: 'settings' };

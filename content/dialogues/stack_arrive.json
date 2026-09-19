@@ -1,0 +1,28 @@
+{
+  "id": "stack_arrive",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The service floor of the Steward's core opens onto a chamber, and the chamber has four centuries in it at once."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The 2031 courtyard is the floor. The 2064 atrium is the walls. The 2148 vault corridor runs through both at an angle that is not available. The lattice is the ceiling."
+    },
+    {
+      "speaker": "player",
+      "text": "It is not a Deep Site. A Deep Site is a place where the eras touch. This is a place where somebody has been standing in all four of them for two hundred and twenty years and has worn them together."
+    },
+    {
+      "speaker": "wren",
+      "text": "Entropy is not going to behave in here.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "There is a chair at the bottom. Four floors down, and one of them is yours, and you have to walk through the other three to reach it."
+    }
+  ]
+}

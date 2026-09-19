@@ -1,0 +1,52 @@
+{
+  "id": "strand_perpetual",
+  "name": "Strand Perpetual",
+  "family": "construct",
+  "era": "2312",
+  "machine": true,
+  "stats": {
+    "resolve": 380,
+    "bandwidth": 4,
+    "latency": 24,
+    "signal": 78,
+    "noise": 32,
+    "grit": 66,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 120,
+  "secondBar": {
+    "name": "Callum Strand",
+    "resolve": 280,
+    "shield": 0,
+    "abilities": [
+      "foreclose",
+      "perpetual_claim",
+      "acquisition",
+      "point_of_order"
+    ],
+    "immunities": [
+      "signal"
+    ],
+    "weakness": "chronal",
+    "rig": "strand_perpetual_phase2",
+    "flavor": "The chassis opens and there is a man in it, and he has been in it since 2091, and he is not angry with you."
+  },
+  "abilities": [
+    "perpetual_claim",
+    "foreclose",
+    "minutes",
+    "proxy_vote"
+  ],
+  "immunities": [],
+  "perception": 90,
+  "rig": "strand_perpetual_phase1",
+  "xp": 900,
+  "drops": [
+    {
+      "item": "relic_board_seal",
+      "chance": 1.0
+    }
+  ],
+  "flavor": "Founding chair of Meridian, uploaded 2091, shareholder of record. He does not hate anybody. He believes he owns them."
+}

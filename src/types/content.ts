@@ -102,6 +102,9 @@ export interface SecondBar {
   abilities?: string[];
   immunities?: DamageType[];
   weakness?: DamageType;
+  /** Catalog art for the second bar, when the core looks nothing like the shell. */
+  rig?: string;
+  shield?: number;
   flavor: string;
 }
 
@@ -145,6 +148,8 @@ export interface EncounterDef {
   flavor: string;
   scanHints: ScanHint[];
   rewardFlags?: string[];
+  /** Winning this is the end of the run: the result screen hands off to the epilogue. */
+  endsRun?: boolean;
   music: string;
 }
 
@@ -161,6 +166,7 @@ export interface LocationVariant {
   npcs: string[];
   shop?: string;
   storyDialogue?: string;
+  actions?: { label: string; dialogue: string; hint?: string; requires?: string[] }[];
   /** Catalog asset id for this variant's scene, if it differs from the location's. */
   art?: string;
 }
@@ -182,6 +188,10 @@ export interface LocationDef {
   encounters: string[];
   shop?: string;
   variants?: LocationVariant[];
+  /** Extra entries in this location's action list: a way on, a way down, a thing to do. */
+  actions?: { label: string; dialogue: string; hint?: string; requires?: string[] }[];
+  /** Reached only from somewhere else, so it needs no node on the era map. */
+  offMap?: boolean;
   links: { to: string; label: string }[];
   timeLinks: EraId[];
   storyDialogue?: string;
@@ -230,6 +240,16 @@ export interface LogEntryDef {
   source: string;
   when: string[];
   order: number;
+}
+
+/** One of the five endings: chosen by Ownership, Sync and who is standing next to you. */
+export interface EndingDef {
+  id: string;
+  name: string;
+  art: string;
+  summary: string;
+  epilogue: string[];
+  coda: string;
 }
 
 export interface EraDef {
@@ -424,5 +444,6 @@ export interface ContentDB {
   maps: Record<string, MapDef>;
   log: Record<string, LogEntryDef>;
   rooms: Record<string, RoomDef>;
+  endings: Record<string, EndingDef>;
   rules: RulesDef;
 }

@@ -147,6 +147,20 @@ describe('no dead ends', () => {
     }
   });
 
+  it('never makes an unskippable fight turn on damage the party may not have', () => {
+    // Everyone has Strike, and nothing else is guaranteed: Thermal is on no party ability at all,
+    // Signal only bites machines, and Chronal is two nodes deep. A story fight the player cannot
+    // walk away from must therefore contain nothing that shrugs off Kinetic.
+    for (const enc of Object.values(content.encounters)) {
+      if (!enc.story) continue;
+      for (const g of enc.enemies) {
+        const e = content.enemies[g.enemy];
+        expect(e.immunities.includes('kinetic'), `${enc.id} fields ${e.id}, which Kinetic cannot touch`).toBe(false);
+        expect(e.secondBar?.immunities?.includes('kinetic'), `${enc.id}: ${e.id}'s core is Kinetic-immune`).toBeFalsy();
+      }
+    }
+  });
+
   it('gives every recruitable character a way into the party', () => {
     // Someone joins either through a dialogue action or as a timeline choice's party effect.
     const recruits = new Set([

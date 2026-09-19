@@ -1,0 +1,38 @@
+{
+  "id": "strand_perpetual",
+  "name": "Strand Perpetual",
+  "era": "2312",
+  "location": "meridian_stack",
+  "enemies": [
+    {
+      "enemy": "strand_perpetual",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "He stands up. The chassis is a great deal larger than a man and it moves exactly like one.",
+  "scanHints": [
+    {
+      "when": "always",
+      "text": "Callum Strand, in the fourth chair, in the chassis he has been in since 2091."
+    },
+    {
+      "when": "signal>=40",
+      "text": "One target. It has a second bar."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Break the chassis and what is inside is a person, and Signal will stop working."
+    },
+    {
+      "when": "party:strand_young",
+      "text": "Strand: I know exactly what he is going to try, because I would try it."
+    }
+  ],
+  "music": "battle_2312",
+  "rewardFlags": [
+    "metTheChair"
+  ],
+  "endsRun": true
+}

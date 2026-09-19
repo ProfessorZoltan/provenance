@@ -1,0 +1,18 @@
+{
+  "id": "floor_2064",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "The second floor is glass and a ticker, and the ticker is running allocation figures for regions that have not been called regions in a century."
+    },
+    {
+      "speaker": "narrator",
+      "text": "A sealed maintenance frame is walking the length of it, and it has somebody in it, and it has had for a while."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Down.",
+      "action": "battle:stack_floor_2064"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "stack_floor_2148",
+  "name": "The Vault Corridor",
+  "era": "2148",
+  "location": "meridian_stack",
+  "enemies": [
+    {
+      "enemy": "echo_worn_2148",
+      "count": 2
+    },
+    {
+      "enemy": "drone_derelict_2148",
+      "count": 2
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "Four inches of standing water and a great many people who came to watch something that had already been decided.",
+  "scanHints": [
+    {
+      "when": "always",
+      "text": "Third floor: 2148. Two Temporal worn thin enough to hit, and two derelicts."
+    },
+    {
+      "when": "signal>=70",
+      "text": "Chronal hurts the Echoes most, but they are half here, so a plain hit lands."
+    },
+    {
+      "when": "party:wren",
+      "text": "Wren: they are all facing the chair. They have always been facing the chair."
+    }
+  ],
+  "music": "battle_2148",
+  "rewardFlags": [
+    "floor2148"
+  ]
+}

@@ -81,7 +81,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     if (c.echoOf) return rigSvg(content.characters[c.echoOf].rig, accentFor(content, state, c.echoOf), 'currentColor', c.down ? 'down' : 'idle', true, b.era);
     const def = content.enemies[c.ref];
     const accent = c.family === 'echo' ? 'var(--choir)' : c.family === 'warden' ? 'var(--cinder)' : 'var(--accent)';
-    const baseRig = def?.rig ?? 'auditor';
+    const baseRig = c.rigOverride ?? def?.rig ?? 'auditor';
     const eraRig = `${baseRig}_${b.era}`;
     return rigSvg(artAssetUrl(eraRig, 'idle') ? eraRig : baseRig, accent, 'currentColor', c.down ? 'down' : 'idle', c.family === 'echo');
   };

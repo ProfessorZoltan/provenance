@@ -1,0 +1,37 @@
+{
+  "id": "stack_floor_2031",
+  "name": "The Courtyard Floor",
+  "era": "2031",
+  "location": "meridian_stack",
+  "enemies": [
+    {
+      "enemy": "construct_prototype",
+      "count": 1
+    },
+    {
+      "enemy": "drone_survey_2031",
+      "count": 2
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "Test units on a lawn that is also a lobby that is also a corridor. They are running the 2031 pattern and they are running it here.",
+  "scanHints": [
+    {
+      "when": "always",
+      "text": "First floor: 2031. Prototypes, unshielded."
+    },
+    {
+      "when": "party:quiroga",
+      "text": "Quiroga: that is my pattern, in this room, three hundred years out of place."
+    },
+    {
+      "when": "signal>=70",
+      "text": "No shields anywhere. Signal opens all three."
+    }
+  ],
+  "music": "battle_2031",
+  "rewardFlags": [
+    "floor2031"
+  ]
+}

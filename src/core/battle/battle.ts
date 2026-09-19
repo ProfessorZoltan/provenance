@@ -229,7 +229,8 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
     if (hp <= 0 && target.bar === 1 && enemyDef?.secondBar) { broke = enemyDef.secondBar; hp = broke.resolve; }
     const down = hp <= 0;
     b = update(b, target.id, (c) => (broke
-      ? { ...c, hp, shield: 0, down: false, bar: 2, name: broke.name, maxHp: broke.resolve,
+      ? { ...c, hp, shield: broke.shield ?? 0, maxShield: broke.shield ?? 0, down: false, bar: 2,
+          name: broke.name, maxHp: broke.resolve, rigOverride: broke.rig,
           abilities: broke.abilities ?? c.abilities, immunities: broke.immunities ?? c.immunities,
           weakness: broke.weakness, statuses: c.statuses.filter((st) => st.id !== 'marked') }
       : { ...c, hp, down, statuses: down ? [] : c.statuses }));
@@ -317,10 +318,12 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   }
   b = update(b, target.id, (c) => (broke
     ? {
-        ...c, hp, shield: 0, down: false, bar: 2, name: broke.name, maxHp: broke.resolve,
+        ...c, hp, shield: broke.shield ?? 0, maxShield: broke.shield ?? 0, down: false, bar: 2,
+        name: broke.name, maxHp: broke.resolve,
         abilities: broke.abilities ?? c.abilities,
         immunities: broke.immunities ?? c.immunities,
         weakness: broke.weakness,
+        rigOverride: broke.rig,
         statuses: c.statuses.filter((st) => st.id !== 'marked'),
       }
     : { ...c, hp, shield, down, statuses: down ? [] : c.statuses }));
@@ -421,7 +424,8 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     }
     const core = def.secondBar;
     b = update(b, t.id, (c) => ({
-      ...c, hp: core.resolve, maxHp: core.resolve, shield: 0, maxShield: 0, bar: 2, name: core.name,
+      ...c, hp: core.resolve, maxHp: core.resolve, shield: core.shield ?? 0, maxShield: core.shield ?? 0,
+      bar: 2, name: core.name, rigOverride: core.rig,
       abilities: core.abilities ?? c.abilities, immunities: core.immunities ?? c.immunities,
       weakness: core.weakness, statuses: c.statuses.filter((st) => st.id !== 'marked'),
     }));

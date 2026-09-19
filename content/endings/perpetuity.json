@@ -1,0 +1,12 @@
+{
+  "id": "perpetuity",
+  "name": "Perpetuity",
+  "art": "ending_perpetuity",
+  "summary": "The Board absorbs every change you made, and one of them survives anyway.",
+  "epilogue": [
+    "It has done this before. Not to you; to nine other people across two hundred years, each of whom found a thread and pulled it, and each of whose threads is now a footnote in a schedule to a finance act.",
+    "Your edits are reconciled. The word is theirs. Every change you made is entered, netted off, and carried forward, and the tower still stands and the chair is still occupied and the budget line is still paid every quarter without a query.",
+    "Except in Enclave 7. Somewhere in the reconciliation your own address falls out of the allocation model and nobody notices, because a thing that is not modelled is not reported. The commissary stocks what it likes. The assembly meets because the room is free. It is small, and it is unadministered, and it is the only place in the world that is."
+  ],
+  "coda": "A seed, not a rescue. It will be enough or it will not, and you will not be there to see which."
+}

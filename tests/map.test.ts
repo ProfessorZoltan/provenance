@@ -10,6 +10,8 @@ describe('era maps', () => {
     for (const loc of Object.values(content.locations)) {
       const map = mapFor(content, loc.era);
       expect(map, loc.id).not.toBeNull();
+      // A place reached only from somewhere else is deliberately not on the map.
+      if (loc.offMap) continue;
       expect(map!.nodes.some((n) => n.location === loc.id), loc.id).toBe(true);
     }
     for (const era of ['2031', '2064', '2148', '2312'] as const) {

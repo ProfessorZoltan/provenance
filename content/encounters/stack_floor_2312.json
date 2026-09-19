@@ -1,0 +1,37 @@
+{
+  "id": "stack_floor_2312",
+  "name": "The Allocation Floor",
+  "era": "2312",
+  "location": "meridian_stack",
+  "enemies": [
+    {
+      "enemy": "construct_board_2312",
+      "count": 1
+    },
+    {
+      "enemy": "warden_board_2312",
+      "count": 1
+    }
+  ],
+  "surprise": "never",
+  "story": true,
+  "flavor": "The last floor before the chair, and everything the Board keeps for a room it has met in four times.",
+  "scanHints": [
+    {
+      "when": "always",
+      "text": "Fourth floor: 2312. A Construct, a Warden and a machine."
+    },
+    {
+      "when": "signal>=70",
+      "text": "The Warden is Signal-immune, the drone is Thermal-immune, and the frame has a proxy in it."
+    },
+    {
+      "when": "party:hale",
+      "text": "Hale: one shot each, if somebody keeps the frame off me."
+    }
+  ],
+  "music": "battle_2312",
+  "rewardFlags": [
+    "floor2312"
+  ]
+}

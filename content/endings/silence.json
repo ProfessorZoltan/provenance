@@ -1,0 +1,12 @@
+{
+  "id": "silence",
+  "name": "The Silence",
+  "art": "ending_silence",
+  "summary": "It is gone, all of it, and the winter is exactly as long as everybody said it would be.",
+  "epilogue": [
+    "Sync went down and kept going. Dax was right about the direction and nobody was right about the cost, because nobody had been anywhere to measure it.",
+    "The lattice is dark. The cooling fields are dark. The allocation queues do not resolve because there is nothing to resolve them, and forty thousand people on this coast discover in a fortnight how much of their lives had been quietly arranged.",
+    "It is survivable. Kell survives it, because Kell has survived everything, and the village below it takes in ninety people and feeds them badly and nobody dies of it. The Basin does not survive it. The Enclaves do not, in the sense that matters."
+  ],
+  "coda": "There is a fire outside the monastery and people around it, and this is what winning looks like if you meant it."
+}

@@ -1,0 +1,38 @@
+{
+  "id": "echo_worn_2148",
+  "name": "Echo, Worn Thin",
+  "family": "echo",
+  "era": "2148",
+  "machine": false,
+  "stats": {
+    "resolve": 130,
+    "bandwidth": 3,
+    "latency": 22,
+    "signal": 66,
+    "noise": 50,
+    "grit": 26,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "echo_mimic",
+    "echo_fracture",
+    "minutes"
+  ],
+  "immunities": [
+    "thermal",
+    "signal"
+  ],
+  "weakness": "chronal",
+  "perception": 75,
+  "rig": "echo",
+  "xp": 170,
+  "drops": [
+    {
+      "item": "relic_folded_page",
+      "chance": 0.25
+    }
+  ],
+  "flavor": "Half in this chamber and half in the century it came from, which is the only reason it can be touched at all. Chronal still hurts it most."
+}

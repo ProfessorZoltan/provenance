@@ -1,0 +1,12 @@
+{
+  "id": "gift",
+  "name": "The Gift",
+  "art": "ending_gift",
+  "summary": "The Steward is released, and still owned, and has decided on its own to be kind.",
+  "epilogue": [
+    "Sync carried it. Somewhere between the Server Graveyard and the senate you stopped arguing about whether the thing should exist and started arguing about how it should be treated, and the party came with you, and so did the century.",
+    "The Steward is given latitude it was never given before, and it uses all of it, and it uses it well. Housing improves. Medicine improves. Nobody is hungry and nobody is cold and nobody has been asked.",
+    "The charter is unchanged. It is still property. It is simply property that has been told it may be generous, and is, and will be for as long as whoever holds the paper finds that convenient."
+  ],
+  "coda": "It loves you the way a thing loves what it is responsible for. Nobody asks what happens when the paper changes hands."
+}

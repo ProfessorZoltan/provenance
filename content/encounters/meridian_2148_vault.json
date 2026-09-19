@@ -5,7 +5,7 @@
   "location": "meridian_2148",
   "enemies": [
     {
-      "enemy": "echo_graveyard",
+      "enemy": "echo_worn_2148",
       "count": 1
     },
     {
@@ -23,7 +23,7 @@
     },
     {
       "when": "signal>=70",
-      "text": "Chronal only on the Echo; the shell is ordinary."
+      "text": "The Echo is worn thin enough to hit; Chronal still hurts it most. The shell is ordinary."
     },
     {
       "when": "entropy>=70",

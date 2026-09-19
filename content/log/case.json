@@ -505,5 +505,49 @@
       "flag:been:capitol_2031"
     ],
     "order": 258
+  },
+  {
+    "id": "the_stack",
+    "category": "places",
+    "title": "The Stack",
+    "detail": "One chamber under the Steward's core with four centuries in it at once: the 2031 lawn as the floor, the 2064 atrium as the walls, the 2148 corridor through both, the lattice as the ceiling.",
+    "source": "Under the Steward's core, 2312",
+    "when": [
+      "flag:been:meridian_stack"
+    ],
+    "order": 260
+  },
+  {
+    "id": "uploaded_2091",
+    "category": "dates",
+    "title": "2091 \u2014 the upload",
+    "detail": "Callum Strand moves into the first of a succession of chassis and never vacates the fourth chair, because the instrument defines a vacancy by death and does not define death.",
+    "source": "The Stack, 2312",
+    "when": [
+      "flag:metTheChair"
+    ],
+    "order": 262
+  },
+  {
+    "id": "the_position",
+    "category": "clues",
+    "title": "It was always the position",
+    "detail": "Not a conspiracy, not a malfunction, not a machine deciding anything. A legal position, taken in 2031, never once contested, because until you queried a budget line nobody could find it to contest it.",
+    "source": "The Stack, 2312",
+    "when": [
+      "flag:metTheChair"
+    ],
+    "order": 264
+  },
+  {
+    "id": "the_duel",
+    "category": "people",
+    "title": "Two of the same man",
+    "detail": "A founder's objection, entered by the original party to the instrument, which the chair cannot rule out of order because the chair is the same signature.",
+    "source": "The Stack, 2312",
+    "when": [
+      "flag:reconciledDuel"
+    ],
+    "order": 266
   }
 ]

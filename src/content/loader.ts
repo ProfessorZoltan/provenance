@@ -6,7 +6,7 @@ const files = import.meta.glob('../../content/**/*.json', { eager: true, import:
 
 const FOLDERS = [
   'characters', 'nodes', 'abilities', 'enemies', 'encounters', 'locations', 'eras',
-  'scores', 'dialogues', 'timelineChoices', 'quests', 'shops', 'items', 'maps', 'log', 'rooms',
+  'scores', 'dialogues', 'timelineChoices', 'quests', 'shops', 'items', 'maps', 'log', 'rooms', 'endings',
 ] as const;
 
 type Folder = (typeof FOLDERS)[number];
@@ -102,6 +102,8 @@ function validate(c: ContentDB): void {
     for (const z of m.zones) for (const e of z.encounters) need(!!c.encounters[e], `map ${m.id}: zone ${z.id} unknown encounter ${e}`);
   }
   for (const l of Object.values(c.locations)) {
+    // A place reached only from somewhere else needs no node of its own on the era map.
+    if (l.offMap) continue;
     need(Object.values(c.maps).some((m) => m.era === l.era && m.nodes.some((n) => n.location === l.id)), `location ${l.id}: no map node in ${l.era}`);
   }
   for (const r of Object.values(c.rooms)) {
@@ -116,6 +118,13 @@ function validate(c: ContentDB): void {
       }
       need(p.x >= 0 && p.y >= 0 && p.x + p.w <= r.width && p.y + p.h <= r.height, `room ${r.id}: prop ${p.id} is outside the room`);
     }
+  }
+  for (const l of Object.values(c.locations)) {
+    for (const a of l.actions ?? []) need(!!c.dialogues[a.dialogue], `location ${l.id}: action ${a.label} has unknown dialogue ${a.dialogue}`);
+  }
+  for (const e of Object.values(c.endings)) {
+    need(e.epilogue.length > 0, `ending ${e.id}: needs an epilogue`);
+    need(!!e.coda, `ending ${e.id}: needs a coda`);
   }
   const CATEGORIES = ['people', 'places', 'dates', 'clues'];
   for (const e of Object.values(c.log)) {

@@ -60,6 +60,16 @@
       "npcs": [
         "the_steward",
         "quiroga_2312"
+      ],
+      "actions": [
+        {
+          "label": "Down the service floor, into the stack",
+          "dialogue": "stack_enter",
+          "hint": "All four eras",
+          "requires": [
+            "flag:knowsStrand"
+          ]
+        }
       ]
     },
     {
@@ -70,6 +80,26 @@
       "description": "A lattice the size of a cathedral, rebuilt twice from partial weights because the originals burned in 2031. It is worse at everything and nobody remembers it being otherwise.",
       "npcs": [
         "the_steward"
+      ],
+      "actions": [
+        {
+          "label": "Down the service floor, into the stack",
+          "dialogue": "stack_enter",
+          "hint": "All four eras",
+          "requires": [
+            "flag:knowsStrand"
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "label": "Down the service floor, into the stack",
+      "dialogue": "stack_enter",
+      "hint": "All four eras",
+      "requires": [
+        "flag:knowsStrand"
       ]
     }
   ]

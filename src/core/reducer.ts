@@ -155,6 +155,8 @@ export const NPC_NAMES: Record<string, string> = {
   strand_young: 'Callum Strand', strand_young_2031: 'Callum Strand', strand_choice: 'Callum Strand',
   atrium_receptionist: 'Atrium Receptionist', vault_holdout: 'The Holdout',
   the_steward: 'The Steward', bar_engineer: 'A Founders\' Bar engineer',
+  // Act 3.
+  the_chair: 'The Fourth Chair', the_chair_itself: 'The Fourth Chair',
   wren: 'Sister Wren', dax: 'Dax Okonkwo', ade: 'Captain Ade', militia: 'Militia Captain', narrator: '', player: 'The Auditor',
 };
 
@@ -208,6 +210,9 @@ function runAction(content: ContentDB, state: GameState, action: string, returnT
       throw new Error(`Unknown quest action ${action}`);
     case 'recruit':
       return reduce(content, state, { type: 'RECRUIT', character: a });
+    case 'travel':
+      // A way on that is not a road: the stack under the core, and anything like it later.
+      return arrive(content, { ...state, dialogue: null }, a);
     case 'prologue':
       // Leaving the office puts the Auditor on the 2312 map, alone, four hours short of Kell.
       if (a === 'flee') {
@@ -533,8 +538,15 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       if (!state.battle) throw new Error('No battle');
       return { ...state, battle: enemyTurn(state.battle, content) };
     case 'BATTLE_FINISH': {
-      const s = finishBattle(content, state);
-      return s.screen.id === 'battleResult' ? s : s;
+      let s = finishBattle(content, state);
+      // Winning the last fight of the run hands off to the epilogue instead of the result screen.
+      const enc = state.battle ? content.encounters[state.battle.encounterId] : undefined;
+      if (enc?.endsRun && state.battle?.phase === 'won') {
+        s = addFlags(s, ['runFinished']);
+        s = journal(s, `The Board is done. ${deriveWorld(content, s.world, s.party).ending}.`);
+        return { ...s, battle: null, screen: { id: 'ending' } };
+      }
+      return s;
     }
     case 'GAME_OVER_RETURN': {
       // Wren drags everyone back to the Deep Site at a quarter Resolve. Nothing else is lost.

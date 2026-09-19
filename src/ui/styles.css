@@ -517,3 +517,18 @@ section.tech > div:first-child { overflow-y: auto; min-height: 0; }
 .room .prop.near rect, .room .prop.near circle { filter: drop-shadow(0 0 6px var(--accent)); }
 .room .hud { position: absolute; top: 18px; left: 18px; max-width: 380px; }
 @media (prefers-reduced-motion: reduce) { .room .prop rect, .room .prop circle, .room .prop line { transition: none; } }
+
+/* The epilogue: one image, one column of prose, and what the run came to. */
+.ending { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 20px; height: 100%; min-height: 0; }
+.ending > * { min-height: 0; }
+.ending-art { display: grid; place-items: center; overflow: hidden; background: var(--panel); border: 1px solid var(--ink-soft); padding: 14px; }
+.ending-art img { image-rendering: pixelated; width: 100%; height: auto; max-height: 100%; object-fit: contain; }
+.ending-body { display: flex; flex-direction: column; min-height: 0; overflow: hidden; padding: 24px 28px 0; }
+.ending-scroll { overflow-y: auto; min-height: 0; flex: 1; }
+.ending-actions { border-top: 1px solid var(--ink-soft); margin-top: 12px; padding: 10px 0 14px; }
+.ending-body h1 { font-size: 34px; margin: 6px 0 12px; }
+.ending-body .lead { font-size: 17px; opacity: 0.95; }
+.ending-body p { margin: 0 0 12px; }
+.ending-body .coda { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--ink-soft); font-style: italic; }
+.ending-body table { margin-top: 18px; }
+@media (max-width: 900px) { .ending { grid-template-columns: 1fr; } .ending-art { max-height: 30vh; } }

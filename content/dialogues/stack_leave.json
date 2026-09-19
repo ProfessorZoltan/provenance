@@ -1,0 +1,10 @@
+{
+  "id": "stack_leave",
+  "lines": [
+    {
+      "speaker": "narrator",
+      "text": "Back up the stair, through whichever century the stair is in today.",
+      "action": "travel:meridian_2312"
+    }
+  ]
+}

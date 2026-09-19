@@ -1,0 +1,38 @@
+{
+  "id": "strand_reconciled",
+  "name": "Strand, Reconciled",
+  "family": "warden",
+  "era": "2312",
+  "machine": false,
+  "stats": {
+    "resolve": 640,
+    "bandwidth": 4,
+    "latency": 22,
+    "signal": 74,
+    "noise": 36,
+    "grit": 78,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "foreclose",
+    "perpetual_claim",
+    "acquisition",
+    "gavel"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "weakness": "chronal",
+  "perception": 90,
+  "rig": "strand_reconciled_duelist",
+  "xp": 900,
+  "drops": [
+    {
+      "item": "relic_board_seal",
+      "chance": 1.0
+    }
+  ],
+  "flavor": "Not a chassis. A man, arguing with the only person in three centuries who has ever been able to tell him he is wrong."
+}
