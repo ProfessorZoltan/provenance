@@ -33,7 +33,6 @@ await cp(p('..', 'dist'), `${stage}/dist`, { recursive: true });
 for (const doc of ['ART_GUIDE.md', 'GAME_DESIGN_v0.1.md']) {
   await rm(`${stage}/dist/art/${doc}`, { force: true });
 }
-await cp(p('..', 'docs', 'PLAYER_MANUAL.md'), `${stage}/PLAYER_MANUAL.md`);
 
 if (!existsSync(p('..', 'build', 'icon.ico'))) {
   await run(process.execPath, [p('make-icon.mjs')]);
@@ -58,6 +57,10 @@ const [app] = await packager({
     OriginalFilename: 'Provenance.exe',
   },
 });
+
+// The manual sits beside the executable, not inside the asar, so README.txt and the installer's
+// finish page can both point a player at a file they can actually open.
+await cp(p('..', 'docs', 'PLAYER_MANUAL.md'), `${app}/PLAYER_MANUAL.md`);
 
 // A README the player sees before they run an unsigned executable.
 await writeFile(`${app}/README.txt`, `Provenance ${pkg.version} — Windows ${ARCH}
@@ -87,6 +90,9 @@ const { listPackage } = await import('@electron/asar');
 const inside = listPackage(asar, { isPack: false });
 for (const need of ['/main.cjs', '/dist/index.html', '/dist/fonts/fonts.css', '/package.json']) {
   if (!inside.includes(need)) throw new Error(`${need} is missing from app.asar`);
+}
+for (const beside of ['PLAYER_MANUAL.md', 'README.txt', 'Provenance.exe']) {
+  if (!existsSync(`${app}/${beside}`)) throw new Error(`${beside} is missing from the app folder`);
 }
 const exe = await stat(`${app}/Provenance.exe`);
 if (exe.size < 50 * 1024 * 1024) throw new Error('Provenance.exe looks truncated');
