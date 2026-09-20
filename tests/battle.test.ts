@@ -463,3 +463,43 @@ describe('the other two Tempo abilities', () => {
     expect(() => reduce(withTempo(2), { type: 'BATTLE_COLLAPSE' })).toThrow(/needs 5 Tempo/i);
   });
 });
+
+describe('a fight nobody can answer', () => {
+  it('is already lost when the party walks in with nobody standing', () => {
+    // Reported from a real run: a solo Auditor at zero Resolve time-jumped into a surprise
+    // ambush. Nothing could act, nothing could die, and the enemy cycled its turn forever.
+    let s = newGame(31);
+    s = { ...s, activeParty: ['player'], party: { ...s.party, player: { ...s.party.player, hp: 0 } } };
+    s = reduce(s, { type: 'START_ENCOUNTER', encounterId: 'kell_2148_ambush', surprise: true });
+    expect(s.battle?.phase, 'the fight should resolve at once, not spin').toBe('lost');
+    s = reduce(s, { type: 'BATTLE_FINISH' });
+    expect(s.screen.id).toBe('gameOver');
+  });
+
+  it('never leaves a won fight with the whole party at zero', () => {
+    let s = newGame(32);
+    s = reduce(s, { type: 'START_ENCOUNTER', encounterId: 'kell_2312_perimeter', surprise: false });
+    // Win it with everyone flat on the floor.
+    const b = s.battle!;
+    s = { ...s, battle: { ...b, phase: 'won', pendingRewards: { xp: 0, currency: 0, items: [], flags: [], levelUps: [] },
+      combatants: b.combatants.map((c) => (c.side === 'party' ? { ...c, hp: 0, down: true } : { ...c, hp: 0, down: true })) } };
+    s = reduce(s, { type: 'BATTLE_FINISH' });
+    for (const id of s.activeParty) {
+      expect(s.party[id].hp, `${id} should be standing, barely`).toBeGreaterThan(0);
+    }
+  });
+
+  it('still records a loss as a loss, without reviving anyone', () => {
+    let s = newGame(33);
+    s = reduce(s, { type: 'START_ENCOUNTER', encounterId: 'kell_2312_perimeter', surprise: false });
+    const b = s.battle!;
+    s = { ...s, battle: { ...b, phase: 'lost',
+      combatants: b.combatants.map((c) => (c.side === 'party' ? { ...c, hp: 0, down: true } : c)) } };
+    s = reduce(s, { type: 'BATTLE_FINISH' });
+    expect(s.screen.id).toBe('gameOver');
+    expect(s.party.player.hp).toBe(0);
+    // And the way back out of a loss puts the party on its feet.
+    s = reduce(s, { type: 'GAME_OVER_RETURN' });
+    expect(s.party.player.hp).toBeGreaterThan(0);
+  });
+});

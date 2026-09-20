@@ -27,7 +27,10 @@
       "y": 760,
       "radius": 80,
       "label": "Kell Village",
-      "icon": "village"
+      "icon": "village",
+      "requires": [
+        "!flag:fleeing"
+      ]
     },
     {
       "id": "halden_2312",
@@ -37,7 +40,10 @@
       "y": 470,
       "radius": 80,
       "label": "Enclave 7",
-      "icon": "enclave"
+      "icon": "enclave",
+      "requires": [
+        "!flag:fleeing"
+      ]
     },
     {
       "id": "enclave7_commissary_2312",
@@ -47,7 +53,10 @@
       "y": 760,
       "radius": 70,
       "label": "Commissary",
-      "icon": "market"
+      "icon": "market",
+      "requires": [
+        "!flag:fleeing"
+      ]
     },
     {
       "id": "strand_memorial_2312",
@@ -57,7 +66,10 @@
       "y": 790,
       "radius": 70,
       "label": "Strand Memorial",
-      "icon": "gate"
+      "icon": "gate",
+      "requires": [
+        "!flag:fleeing"
+      ]
     },
     {
       "id": "basin_2312",
@@ -67,7 +79,10 @@
       "y": 380,
       "radius": 84,
       "label": "Cooling Fields",
-      "icon": "basin"
+      "icon": "basin",
+      "requires": [
+        "!flag:fleeing"
+      ]
     },
     {
       "id": "cooling_perimeter_2312",
@@ -77,7 +92,10 @@
       "y": 760,
       "radius": 74,
       "label": "Cooling Perimeter",
-      "icon": "camp"
+      "icon": "camp",
+      "requires": [
+        "!flag:fleeing"
+      ]
     },
     {
       "id": "village_gate",
@@ -123,7 +141,10 @@
       "y": 250,
       "radius": 82,
       "label": "The Continuity Board",
-      "icon": "capitol"
+      "icon": "capitol",
+      "requires": [
+        "!flag:fleeing"
+      ]
     },
     {
       "id": "meridian_2312",
@@ -133,7 +154,10 @@
       "y": 230,
       "radius": 84,
       "label": "The Steward's Core",
-      "icon": "core"
+      "icon": "core",
+      "requires": [
+        "!flag:fleeing"
+      ]
     }
   ],
   "roads": [

@@ -294,7 +294,7 @@ body[data-reduced-motion='true'] *, body[data-reduced-motion='true'] *::before, 
 .battle { grid-template-columns: minmax(0, 1fr) 270px; grid-template-rows: minmax(340px, 1fr) auto; gap: 12px; }
 .battle .stage { grid-column: 1 / -1; grid-row: 1; min-height: 340px; border: 4px double #c3d1ed; background: #101b3280; overflow: hidden; }
 .battle .stage::before { content: 'KELL  /  FIELD'; position: absolute; top: 12px; left: 16px; color: #f8efd5; font-size: 11px; letter-spacing: 2px; }
-.battle .enemies { inset: 48px auto 16px 5%; width: 50%; transform: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: center; justify-items: center; gap: 12px; }
+.battle .enemies { inset: 48px auto 16px 5%; width: 50%; transform: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: center; justify-items: center; gap: 12px; overflow-y: auto; }
 .battle .enemy { width: min(160px, 100%); color: #fff1d5; text-shadow: 1px 2px #101426; }
 .battle .enemy .rig { width: 90px; height: 110px; }
 .battle .enemy > .rig { transform: scaleX(-1); }
@@ -532,3 +532,24 @@ section.tech > div:first-child { overflow-y: auto; min-height: 0; }
 .ending-body .coda { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--ink-soft); font-style: italic; }
 .ending-body table { margin-top: 18px; }
 @media (max-width: 900px) { .ending { grid-template-columns: 1fr; } .ending-art { max-height: 30vh; } }
+
+/* Short windows, not narrow ones. A 1440x900 window at 125% Windows scaling is 1152x720 CSS
+   pixels: wide enough to miss every width query above, short enough to clip a second row of
+   enemies against the bottom of the stage. */
+@media (max-height: 820px) {
+  .battle { grid-template-rows: minmax(260px, 1fr) auto; }
+  .battle .stage { min-height: 260px; }
+  .battle .enemies { inset: 36px auto 10px 5%; gap: 8px; align-content: start; }
+  .battle .enemy .rig { width: 72px; height: 88px; }
+  .battle .enemy .nm { font-size: 11px; margin-top: 2px; }
+  .battle .actor { width: 72px; }
+  .battle .actionmenu { max-height: 200px; }
+  .battle .side { max-height: 96px; }
+}
+@media (max-height: 700px) {
+  .battle .stage { min-height: 200px; }
+  .battle .enemies { inset: 30px auto 8px 4%; }
+  .battle .enemy .rig { width: 58px; height: 72px; }
+  .battle .enemy .st { font-size: 9px; }
+  .battle .actionmenu { max-height: 160px; }
+}

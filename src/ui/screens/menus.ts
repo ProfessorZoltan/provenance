@@ -1,9 +1,10 @@
 import { hasLocalSave, loadFromLocal, saveToLocal, serialize, deserialize } from '../../core/save';
 import { seedFromString } from '../../core/rng';
+import type { ContentDB } from '../../types/content';
 import type { GameState } from '../../types/state';
 import { glyph } from '../../input/prompts';
 import { esc, html, prompts, type Ctx, type ScreenHandle } from '../common';
-import { menu } from '../menu';
+import { menu, type MenuItem } from '../menu';
 
 const mem: Record<string, number> = {};
 
@@ -128,9 +129,27 @@ export function settingsScreen(root: HTMLElement, ctx: Ctx, state: GameState): S
   };
 }
 
+/** The desktop build hands the page real file dialogs; on the web there are none. */
+interface DesktopFiles {
+  saveFile(json: string, suggestedName: string): Promise<string | null>;
+  loadFile(): Promise<string | null>;
+  savesPath(): Promise<string>;
+}
+function desktop(): DesktopFiles | null {
+  return (window as unknown as { provenanceDesktop?: DesktopFiles }).provenanceDesktop ?? null;
+}
+
+/** A name a player can read at a glance: where they were and when they saved. */
+function saveName(content: ContentDB, state: GameState): string {
+  const place = content.locations[state.location]?.name ?? 'Provenance';
+  const when = new Date().toISOString().slice(0, 16).replace('T', ' ').replace(':', '');
+  return `${place.replaceAll(/[^A-Za-z0-9 ]/g, '')} ${state.era} ${when}.json`;
+}
+
 export function saveScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {
   const back = () => ctx.store.dispatch({ type: 'SET_SCREEN', screen: state.back });
   const snaps = state.world.snapshots;
+  const files = desktop();
   html(root, `<section class="center"><div class="card panel">
     <div class="eyebrow">Save and load</div>
     <div id="m"></div>
@@ -139,11 +158,31 @@ export function saveScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scree
       ${snaps.length ? snaps.map((sn) => `<div>${esc(sn.label)} · ${sn.history.length} edit${sn.history.length === 1 ? '' : 's'} in history</div>`).join('') : '<div>No timeline edits yet.</div>'}
     </div>
   </div></section>`);
-  const m = menu([
-    { id: 'save', label: 'Save to this browser', hint: 'One slot, localStorage', onSelect: () => ctx.toast(saveToLocal(state) ? 'Saved.' : 'Could not save: storage blocked.') },
-    { id: 'load', label: 'Load from this browser', disabled: !hasLocalSave(), onSelect: () => { const s = loadFromLocal(); if (s) { ctx.store.dispatch({ type: 'LOAD_STATE', state: s }); ctx.toast('Loaded.'); } } },
+  // On the desktop these are real files in a real folder; in a browser tab there is only the one
+  // slot the browser will keep, plus a download.
+  const fileItems: MenuItem[] = files ? [
+    { id: 'saveas', label: 'Save to a file', hint: 'Choose where it goes', onSelect: () => {
+      void files.saveFile(serialize(state), saveName(ctx.content, state))
+        .then((name) => ctx.toast(name ? `Saved as ${name}.` : 'Save cancelled.'))
+        .catch((e: Error) => ctx.toast(`Could not save: ${e.message}`));
+    } },
+    { id: 'loadfile', label: 'Load from a file', hint: 'Any save you have kept', onSelect: () => {
+      void files.loadFile()
+        .then((text) => {
+          if (!text) return;
+          ctx.store.dispatch({ type: 'LOAD_STATE', state: deserialize(text) });
+          ctx.toast('Loaded.');
+        })
+        .catch((e: Error) => ctx.toast(`Could not load: ${e.message}`));
+    } },
+  ] : [
     { id: 'export', label: 'Export save file', hint: 'Downloads a JSON file', onSelect: () => exportSave(ctx, state) },
     { id: 'import', label: 'Import save file', onSelect: () => importSave(ctx) },
+  ];
+  const m = menu([
+    { id: 'save', label: files ? 'Quick save' : 'Save to this browser', hint: files ? 'One slot, kept with the game' : 'One slot, localStorage', onSelect: () => ctx.toast(saveToLocal(state) ? 'Saved.' : 'Could not save: storage blocked.') },
+    { id: 'load', label: files ? 'Quick load' : 'Load from this browser', disabled: !hasLocalSave(), onSelect: () => { const s = loadFromLocal(); if (s) { ctx.store.dispatch({ type: 'LOAD_STATE', state: s }); ctx.toast('Loaded.'); } } },
+    ...fileItems,
     { id: 'back', label: 'Back', shortcut: 'b', onSelect: back },
   ], mem.save ?? 0, (i) => { mem.save = i; });
   root.querySelector('#m')!.appendChild(m.el);

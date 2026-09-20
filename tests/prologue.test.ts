@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { learn, logSuperseded } from '../src/core/reducer';
+import { learn, logSuperseded, mapFor } from '../src/core/reducer';
+import { evalAll } from '../src/core/conditions';
+import { conditionContext } from '../src/core/encounter';
 import { applyChoice } from '../src/core/timeline';
 import { autoBattle, content, newGame, newRun, reduce, run, skipDialogue } from './helpers';
 import type { GameState } from '../src/types/state';
@@ -153,5 +155,26 @@ describe('dialogue actions that open another conversation', () => {
       run = autoBattle(run);
       expect(run.battle?.phase, `seed ${seed}`).toBe('won');
     }
+  });
+});
+
+describe('the road out of the office', () => {
+  it('offers only Kell while the Auditor is still running', () => {
+    // Reported from a real run: walking into Kell Village first, where everyone greets you as
+    // someone who has come down from the monastery you have not been to yet.
+    let s = reduce(newRun(77), { type: 'PROLOGUE_SKIP' });
+    s = { ...s, flags: [...s.flags.filter((f) => f !== 'fleeing'), 'fleeing'] };
+    const open = (st: GameState) => mapFor(content, st.era)!.nodes
+      .filter((n) => evalAll(n.requires, conditionContext(content, st)))
+      .map((n) => n.id);
+    const fleeing = open(s);
+    expect(fleeing, 'the monastery is the one place to go').toContain('kell_2312');
+    for (const elsewhere of ['kell_village_2312', 'halden_2312', 'capitol_2312', 'meridian_2312', 'strand_memorial_2312']) {
+      expect(fleeing, `${elsewhere} should wait`).not.toContain(elsewhere);
+    }
+    // Arriving at Kell clears the flight and the coast opens up.
+    const arrived = { ...s, flags: s.flags.filter((f) => f !== 'fleeing') };
+    expect(open(arrived)).toContain('kell_village_2312');
+    expect(open(arrived).length).toBeGreaterThan(fleeing.length);
   });
 });

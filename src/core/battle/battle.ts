@@ -63,7 +63,10 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
   };
   b = log(b, surprise ? `Surprise attack. ${enc.flavor}` : enc.flavor, surprise ? 'warn' : 'info');
   if (surprise) b = log(b, 'The party starts with no Slack and the enemy acts first.', 'warn');
-  return advance(b);
+  // A fight can be over before anyone acts: walk in with nobody standing and it is already lost.
+  // Without this the enemy cycles its turns forever against a party that can never answer.
+  b = checkEnd(b, content);
+  return b.phase === 'won' || b.phase === 'lost' ? b : advance(b);
 }
 
 function enemyCombatant(def: EnemyDef, id: string, name: string, stand = 1): Combatant {
@@ -793,7 +796,9 @@ export function enemyTurn(b: BattleState, content: ContentDB): BattleState {
     const me = current(b);
     if (me && me.id === actor.id) b = endTurn(b, me.id, content);
   }
-  return b;
+  // An enemy with no legal target breaks out of its turn without resolving an ability, so the
+  // end condition has to be re-checked here rather than only after something lands.
+  return checkEnd(b, content);
 }
 
 // ---------- end of battle ----------

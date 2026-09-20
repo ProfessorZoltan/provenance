@@ -319,11 +319,14 @@ function startEncounter(content: ContentDB, state: GameState, encounterId: strin
 function finishBattle(content: ContentDB, state: GameState): GameState {
   const b = state.battle;
   if (!b) return state;
-  // Persist Resolve back onto the party.
+  // Persist Resolve back onto the party. Anyone who went down gets up on one point: leaving them
+  // at zero means the next fight starts with them already down, and a party that is entirely down
+  // cannot act, cannot lose and cannot leave.
   let party = { ...state.party };
+  const won = b.phase === 'won';
   for (const c of b.combatants) {
     if (c.side !== 'party' || !party[c.id]) continue;
-    party[c.id] = { ...party[c.id], hp: c.hp };
+    party[c.id] = { ...party[c.id], hp: won ? Math.max(1, c.hp) : c.hp };
   }
   state = { ...state, party, rng: b.rng };
 

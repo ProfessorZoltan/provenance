@@ -29,6 +29,7 @@ await rm(out, { recursive: true, force: true });
 await mkdir(stage, { recursive: true });
 await writeFile(`${stage}/package.json`, `${JSON.stringify(shell, null, 2)}\n`);
 await cp(p('..', 'electron', 'main.cjs'), `${stage}/main.cjs`);
+await cp(p('..', 'electron', 'preload.cjs'), `${stage}/preload.cjs`);
 await cp(p('..', 'dist'), `${stage}/dist`, { recursive: true });
 // The art folder carries the design docs for the web catalog; a release does not need them.
 for (const doc of ['ART_GUIDE.md', 'GAME_DESIGN_v0.1.md']) {
@@ -73,8 +74,8 @@ Run Provenance.exe. Nothing to install; the folder is the game.
   Arrow keys / WASD  move        Enter select      Esc back
   A controller works as soon as you press a button on it.
 
-Saves live in your Windows user profile, under
-  %APPDATA%\\Provenance
+Save files live in your Windows user profile, under
+  %APPDATA%\\Provenance\\saves
 and survive replacing this folder with a newer one. "Export save file" on the
 save screen writes a JSON copy anywhere you like.
 
@@ -90,7 +91,7 @@ const asar = `${app}/resources/app.asar`;
 const { listPackage } = await import('@electron/asar');
 // asar lists with the host's separator, so this comparison has to be made on one of them.
 const inside = listPackage(asar, { isPack: false }).map((entry) => entry.replaceAll('\\', '/'));
-for (const need of ['/main.cjs', '/dist/index.html', '/dist/fonts/fonts.css', '/package.json']) {
+for (const need of ['/main.cjs', '/preload.cjs', '/dist/index.html', '/dist/fonts/fonts.css', '/package.json']) {
   if (!inside.includes(need)) throw new Error(`${need} is missing from app.asar`);
 }
 for (const beside of ['PLAYER_MANUAL.md', 'README.txt', 'Provenance.exe']) {

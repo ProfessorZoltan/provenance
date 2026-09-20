@@ -1,6 +1,7 @@
 // The desktop shell. It opens one window on the built game and otherwise stays out of the way:
 // no Node in the page, no remote content, no menu bar over a game that draws its own prompts.
-const { app, BrowserWindow, Menu, globalShortcut, shell } = require('electron');
+const { app, BrowserWindow, Menu, dialog, globalShortcut, ipcMain, shell } = require('electron');
+const fs = require('node:fs/promises');
 const path = require('node:path');
 
 // Packaged, main.cjs sits beside dist/; run straight from the repo it sits in electron/.
@@ -23,6 +24,7 @@ function createWindow() {
     show: false,
     autoHideMenuBar: true,
     webPreferences: {
+      preload: path.join(__dirname, 'preload.cjs'),
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: true,
@@ -67,6 +69,47 @@ function createWindow() {
   return win;
 }
 
+/** Saves live beside the rest of the app's data, so uninstalling the game leaves them alone. */
+function savesDir() {
+  return path.join(app.getPath('userData'), 'saves');
+}
+
+/**
+ * Save files, through the real Windows dialogs. The page hands over text and gets back a name;
+ * it never learns a path and never touches the disk itself.
+ */
+function wireSaveFiles() {
+  ipcMain.handle('save:folder', () => savesDir());
+
+  ipcMain.handle('save:write', async (event, json, suggestedName) => {
+    const dir = savesDir();
+    await fs.mkdir(dir, { recursive: true });
+    const win = BrowserWindow.fromWebContents(event.sender);
+    const { canceled, filePath } = await dialog.showSaveDialog(win, {
+      title: 'Save Provenance',
+      defaultPath: path.join(dir, suggestedName),
+      filters: [{ name: 'Provenance save', extensions: ['json'] }],
+    });
+    if (canceled || !filePath) return null;
+    await fs.writeFile(filePath, json, 'utf8');
+    return path.basename(filePath);
+  });
+
+  ipcMain.handle('save:read', async (event) => {
+    const dir = savesDir();
+    await fs.mkdir(dir, { recursive: true });
+    const win = BrowserWindow.fromWebContents(event.sender);
+    const { canceled, filePaths } = await dialog.showOpenDialog(win, {
+      title: 'Load Provenance',
+      defaultPath: dir,
+      properties: ['openFile'],
+      filters: [{ name: 'Provenance save', extensions: ['json'] }],
+    });
+    if (canceled || !filePaths.length) return null;
+    return fs.readFile(filePaths[0], 'utf8');
+  });
+}
+
 // One instance: a second launch focuses the window that is already open rather than
 // starting a second game against the same save.
 if (!app.requestSingleInstanceLock()) {
@@ -83,6 +126,7 @@ if (!app.requestSingleInstanceLock()) {
   });
 
   app.whenReady().then(() => {
+    wireSaveFiles();
     createWindow();
     app.on('activate', () => {
       if (BrowserWindow.getAllWindows().length === 0) createWindow();
