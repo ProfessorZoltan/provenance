@@ -33,6 +33,20 @@
       ]
     },
     {
+      "id": "kell_memorial_2312",
+      "kind": "location",
+      "location": "kell_memorial_2312",
+      "x": 520,
+      "y": 600,
+      "radius": 64,
+      "label": "The Winter Stone",
+      "icon": "gate",
+      "requires": [
+        "flag:armedResistance",
+        "!flag:fleeing"
+      ]
+    },
+    {
       "id": "halden_2312",
       "kind": "location",
       "location": "halden_2312",

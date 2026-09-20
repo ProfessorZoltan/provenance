@@ -43,6 +43,7 @@ const SPEAKER_RIG: Record<string, { rig: string; accent: string }> = {
   night_supervisor: { rig: 'faction_trainer', accent: 'var(--chosen)' },
   hub_picker: { rig: 'shopkeeper', accent: 'var(--commons)' },
   perimeter_scav: { rig: 'refugee', accent: 'var(--commons)' },
+  stonekeeper: { rig: 'faction_trainer', accent: 'var(--commons)' },
 };
 
 export function dialogueScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {

@@ -126,6 +126,7 @@ export function npcName(content: ContentDB, npcId: string): string {
 }
 
 export const NPC_NAMES: Record<string, string> = {
+  stonekeeper: 'The Stonekeeper',
   // Dialogue ids used as NPCs on a location, and the speaker ids used inside lines.
   wren_hub: 'Sister Wren', dax_hub: 'Dax Okonkwo', dax_2148: 'Dax Okonkwo', captain_ade: 'Captain Ade',
   wren_2031: 'Sister Wren', dax_2031: 'Dax Okonkwo', wren_tempo_lesson: 'Sister Wren',

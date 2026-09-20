@@ -1,0 +1,49 @@
+{
+  "id": "stonekeeper",
+  "lines": [
+    {
+      "speaker": "stonekeeper",
+      "text": "Mind the verge, it goes soft this time of year. You are the one from the monastery. I can tell because you are reading the names and not the plaque.",
+      "conditions": []
+    },
+    {
+      "speaker": "stonekeeper",
+      "text": "Four hands cut these. The first was Ade's, in the week after, and she only got eleven down before her own went on it. The rest of us have been keeping up since.",
+      "conditions": []
+    },
+    {
+      "speaker": "player",
+      "text": "How many.",
+      "conditions": []
+    },
+    {
+      "speaker": "stonekeeper",
+      "text": "Two hundred and six. They came down from the Ash Camp with steel nobody could account for, and they held the wall for a winter, and the Board took the valley in the spring anyway.",
+      "conditions": ["!flag:charterLeaked"],
+      "choices": [
+        { "text": "Then it was for nothing." },
+        { "text": "A winter is not nothing." },
+        { "text": "Who gave them the steel?" }
+      ]
+    },
+    {
+      "speaker": "stonekeeper",
+      "text": "Two hundred and six. They held the wall for a winter, and it was the winter the charter got out, and there are people who will tell you those two facts are unrelated. I am not one of them.",
+      "conditions": ["flag:charterLeaked"],
+      "choices": [
+        { "text": "They bought the time." },
+        { "text": "Who gave them the steel?" }
+      ]
+    },
+    {
+      "speaker": "stonekeeper",
+      "text": "Nobody knows. The story is an auditor, which is the kind of thing people say when the truth has no shape they can hold. An auditor. With a ledger, presumably, and a very sharp pencil.",
+      "conditions": []
+    },
+    {
+      "speaker": "stonekeeper",
+      "text": "You have gone a colour. Sit down on the stone, it does not mind. Everyone who reads the whole thing sits down eventually.",
+      "conditions": []
+    }
+  ]
+}

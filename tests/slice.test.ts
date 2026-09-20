@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { deserialize, serialize } from '../src/core/save';
-import { activeVariant, npcDialogue } from '../src/core/reducer';
+import { activeVariant, mapFor, npcDialogue } from '../src/core/reducer';
 import { evalAll } from '../src/core/conditions';
 import { maxHp, xpForLevel } from '../src/core/stats';
 import { conditionContext } from '../src/core/encounter';
-import { deriveWorld } from '../src/core/timeline';
+import { applyChoice, deriveWorld } from '../src/core/timeline';
 import { ERA_LEVEL } from './balance';
 import type { GameState } from '../src/types/state';
 import { autoBattle, content, newGame, reduce, run, skipDialogue } from './helpers';
@@ -314,6 +314,41 @@ describe('quest objectives are beatable', () => {
         s = autoBattle(s);
         expect(s.battle?.phase, `${q.id} (L${level}) at seed ${seed}`).toBe('won');
       }
+    }
+  });
+});
+
+describe('a place that only exists in one timeline', () => {
+  it('puts the Winter Stone on the 2312 map only once the crews were armed, and lets you in', () => {
+    // It used to be painted on the map as a label with nothing behind it: no radius, no prompt,
+    // nothing to enter. A ripple the player can see has to be a ripple the player can walk into.
+    const stone = mapFor(content, '2312')!.nodes.find((n) => n.id === 'kell_memorial_2312')!;
+    expect(stone, 'the stone should be a real node').toBeTruthy();
+    expect(stone.kind).toBe('location');
+    expect(stone.location).toBe('kell_memorial_2312');
+    expect(stone.radius).toBeGreaterThan(40);
+
+    const base = newGame(84);
+    const without = conditionContext(content, base);
+    expect(evalAll(stone.requires, without), 'hidden until the crews are armed').toBe(false);
+
+    const armed = { ...base, world: applyChoice(content, base.world, 'arm_resistance', 1) };
+    expect(evalAll(stone.requires, conditionContext(content, armed)), 'on the map once they are').toBe(true);
+
+    // And travelling there lands somewhere with someone in it.
+    const there = reduce(armed, { type: 'TRAVEL', location: 'kell_memorial_2312' });
+    expect(there.location).toBe('kell_memorial_2312');
+    const loc = content.locations.kell_memorial_2312;
+    expect(loc.npcs.length, 'a memorial with nobody at it is still scenery').toBeGreaterThan(0);
+    for (const npc of loc.npcs) expect(npcDialogue(content, there, npc)).toBeTruthy();
+  });
+
+  it('reads differently depending on what the run came to', () => {
+    const loc = content.locations.kell_memorial_2312;
+    const whens = (loc.variants ?? []).map((v) => v.when.join(','));
+    expect(whens.length, 'the stone should answer the ledger').toBeGreaterThan(1);
+    for (const v of loc.variants ?? []) {
+      expect(v.description).not.toBe(loc.description);
     }
   });
 });

@@ -58,7 +58,6 @@ function worldSvg(map: MapDef, era: EraDef, flags: string[], nodes: { n: MapNode
       ${(ICONS[n.icon ?? ''] ?? ICONS.village)(era)}
       <text class="node-label" y="${n.radius - 4}">${esc(n.label)}</text>
     </g>`).join('')}
-    ${flags.includes('armedResistance') && era.id === '2312' ? `<g transform="translate(520 600)"><rect x="-30" y="-6" width="60" height="14" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="0.5"/><text y="-12" font-size="12" text-anchor="middle" fill="${era.palette.ink}">Memorial</text></g>` : ''}
     ${flags.includes('letItFall') && era.id === '2312' ? `<g class="amb-pulse" transform="translate(430 560)"><polygon points="-14,0 0,-5 14,0 0,5" fill="${era.palette.ink}"/><circle r="2.5" fill="${era.palette.accent}"/></g>` : ''}
     <g class="token" id="token"></g>
   </svg>`;
