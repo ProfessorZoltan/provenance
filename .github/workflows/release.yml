@@ -37,11 +37,15 @@ jobs:
         run: npm run build && node scripts/pack-win.mjs --${{ inputs.arch || 'x64' }}
 
       # windows-latest ships NSIS, but pin it down rather than trusting the image.
+      # The braces matter: ProgramFiles(x86) has parentheses PowerShell would otherwise stop at.
       - name: Installer
         run: |
-          $nsis = "$env:ProgramFiles(x86)\NSIS"
-          if (-not (Test-Path "$nsis\makensis.exe")) { choco install nsis -y --no-progress }
-          $env:PATH = "$env:PATH;C:\Program Files (x86)\NSIS"
+          $nsis = "${env:ProgramFiles(x86)}\NSIS"
+          if (-not (Test-Path "$nsis\makensis.exe")) {
+            choco install nsis -y --no-progress
+          }
+          $env:PATH = "$env:PATH;$nsis"
+          makensis /VERSION
           node scripts/make-installer.mjs --${{ inputs.arch || 'x64' }}
         shell: pwsh
 
