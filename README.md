@@ -28,9 +28,17 @@ requested from a third party.
 ## Windows build
 
 ```bash
-npm run pack:win   # builds, then packages build/win/Provenance-<version>-win32-x64.zip
-npm run dev:desktop  # run the desktop shell against the current build
+npm run pack:win      # build, package, and wrap in an installer
+npm run installer:win # just the installer, from an existing packaged folder
+npm run dev:desktop   # run the desktop shell against the current build
 ```
+
+Two artefacts land in `build/win`:
+
+| File | What it is | Where it installs |
+| --- | --- | --- |
+| `Provenance-<version>-win32-x64-setup.exe` | NSIS installer | `%LOCALAPPDATA%\Programs\Provenance`, per user, no admin prompt |
+| `Provenance-<version>-win32-x64.zip` | The same build, portable | Wherever it is unzipped |
 
 `electron/main.cjs` is the whole shell: one window on `dist/index.html`, no menu bar, no Node in
 the page, F11 for fullscreen. `scripts/pack-win.mjs` stages only the shell and `dist/` — no source,
@@ -38,9 +46,15 @@ no tests, no `node_modules` — packages it with `@electron/packager`, checks th
 inside `app.asar`, and zips it. `scripts/make-icon.mjs` draws the `.ico` from the game's own pixel
 art, so the icon is the same Auditor the roster shows.
 
-The result is portable: unzip anywhere and run `Provenance.exe`. It is not code-signed, so
-SmartScreen warns on first run. Saves live in `%APPDATA%\Provenance` and survive replacing the
-folder. Pass `--ia32` or `--arm64` to `scripts/pack-win.mjs` for the other Windows architectures.
+The installer adds a Start Menu entry, an optional desktop shortcut and an uninstaller in Add or
+remove programs, and refuses to overwrite a copy of the game that is still running. Neither build
+is code-signed, so SmartScreen warns on first run. Saves live in `%APPDATA%\Provenance`: they
+survive replacing the portable folder, and uninstalling deliberately leaves them alone. Pass
+`--ia32` or `--arm64` to both scripts for the other Windows architectures.
+
+Building the installer needs `makensis` on `PATH` (`apt install nsis`, or it ships with the
+GitHub `windows-latest` image). `.github/workflows/release.yml` builds both artefacts on a real
+Windows runner and attaches them to a draft release when a `v*` tag is pushed.
 
 New players should start with the [player manual](docs/PLAYER_MANUAL.md): lore, controls, the
 Threads and Tempo systems, each character's starting abilities, and what Shield, Signal and Sync do.

@@ -16,8 +16,9 @@
     "art:export": "node scripts/art-export.mjs",
     "fonts": "node scripts/fetch-fonts.mjs",
     "icon": "node scripts/make-icon.mjs",
-    "pack:win": "npm run build && node scripts/pack-win.mjs",
-    "dev:desktop": "npm run build && electron electron/main.cjs"
+    "pack:win": "npm run build && node scripts/pack-win.mjs && node scripts/make-installer.mjs",
+    "dev:desktop": "npm run build && electron electron/main.cjs",
+    "installer:win": "node scripts/make-installer.mjs"
   },
   "dependencies": {
     "tone": "^15.1.22"

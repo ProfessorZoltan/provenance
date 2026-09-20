@@ -36,21 +36,37 @@ jobs:
       - name: Package
         run: npm run build && node scripts/pack-win.mjs --${{ inputs.arch || 'x64' }}
 
+      # windows-latest ships NSIS, but pin it down rather than trusting the image.
+      - name: Installer
+        run: |
+          $nsis = "$env:ProgramFiles(x86)\NSIS"
+          if (-not (Test-Path "$nsis\makensis.exe")) { choco install nsis -y --no-progress }
+          $env:PATH = "$env:PATH;C:\Program Files (x86)\NSIS"
+          node scripts/make-installer.mjs --${{ inputs.arch || 'x64' }}
+        shell: pwsh
+
       - uses: actions/upload-artifact@v4
         with:
           name: provenance-windows-${{ inputs.arch || 'x64' }}
-          path: build/win/*.zip
+          path: |
+            build/win/*.zip
+            build/win/*-setup.exe
           if-no-files-found: error
 
       - name: Attach to the release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: build/win/*.zip
+          files: |
+            build/win/*.zip
+            build/win/*-setup.exe
           draft: true
           generate_release_notes: true
           body: |
-            Unzip anywhere and run `Provenance.exe`. Nothing to install.
+            **`Provenance-<version>-win32-x64-setup.exe`** installs per user — no
+            administrator rights, Start Menu entry, and an uninstaller in Add or
+            remove programs. **`Provenance-<version>-win32-x64.zip`** is the same
+            game as a portable folder: unzip anywhere and run `Provenance.exe`.
 
             This build is not code-signed, so Windows SmartScreen warns on first
             run: **More info** then **Run anyway**. Saves live in `%APPDATA%\Provenance`
