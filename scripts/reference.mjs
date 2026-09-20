@@ -20,6 +20,7 @@ const timeline = byId(load('timelineChoices'));
 const log = JSON.parse(readFileSync(`${root}content/log/case.json`, 'utf8'));
 const rooms = byId(load('rooms'));
 const eras = byId(load('eras'));
+const characters = byId(load('characters'));
 
 // ---------- where a conversation can be reached ----------
 
@@ -141,7 +142,7 @@ function systemicNote(flag) {
     const place = at.length ? ` at ${at.join(' / ')}` : '';
     return named ? `examine **${named}**${place}` : `open the conversation **${arg}**${place}`;
   }
-  if (flag.startsWith('recruited:')) return `recruit **${arg}**`;
+  if (flag.startsWith('recruited:')) return `recruit **${characters[arg]?.name ?? arg}**`;
   if (flag.startsWith('trained:')) return `have the trainer at **${arg}** pay out`;
   if (flag.startsWith('lean:')) return `start the run on the **${arg}** stance`;
   if (flag.startsWith('surpriseCancelled:')) return `have a high-Noise member cancel an ambush at ${arg}`;

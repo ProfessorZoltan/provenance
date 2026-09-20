@@ -105,7 +105,7 @@
     "detail": "Keeper of Kell and the party's chronal anchor. Rewinding a fight is only possible because she is standing in it.",
     "source": "Kell Monastery, 2312",
     "when": [
-      "party:wren"
+      "flag:recruited:wren"
     ],
     "order": 70
   },
@@ -116,7 +116,7 @@
     "detail": "Ash Camp born, 2148. A Cinder absolutist who does not belong to this century and has stopped pretending otherwise.",
     "source": "Kell Monastery, 2312",
     "when": [
-      "party:dax"
+      "flag:recruited:dax"
     ],
     "order": 80
   },
@@ -149,7 +149,7 @@
     "detail": "A liturgical model buried in the Server Graveyard when the racks came down, still running on trickle power. It got one line wrong for a hundred and sixty years.",
     "source": "Server Graveyard, 2148",
     "when": [
-      "party:ilo9"
+      "flag:recruited:ilo9"
     ],
     "order": 110
   },
@@ -369,7 +369,7 @@
     "detail": "A reform staffer who spent four years drafting amendments nobody read. She can talk almost anything into a contract.",
     "source": "Port Halden, 2064",
     "when": [
-      "party:mara"
+      "flag:recruited:mara"
     ],
     "order": 160
   },
@@ -468,7 +468,7 @@
     "detail": "Ash Camp's best shot and the only one of that crew who came back from the Basin. Eleven days on a ridge counting what comes out of the sand.",
     "source": "The Basin, 2148",
     "when": [
-      "party:hale"
+      "flag:recruited:hale"
     ],
     "order": 220
   },

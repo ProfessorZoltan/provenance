@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { createBattle, current, resolveAbility } from '../src/core/battle/battle';
 import { loadout, xpForLevel } from '../src/core/stats';
 import { activeChoices, applyChoice, deriveWorld } from '../src/core/timeline';
+import { learn, logSuperseded } from '../src/core/reducer';
 import { content, newGame, reduce, run } from './helpers';
 import type { GameState } from '../src/types/state';
 
@@ -185,5 +186,30 @@ describe('era nodes', () => {
     s = reduce(s, { type: 'UNLOCK_NODE', character: 'player', node: 'p_era_2148' });
     expect(s.party.player.nodes).toContain('p_era_2148');
     expect(() => reduce(s, { type: 'UNLOCK_NODE', character: 'player', node: 'p_era_2031' })).toThrow();
+  });
+});
+
+describe('the case log entry for a companion', () => {
+  it('is written on recruitment and survives being benched', () => {
+    let s = recruited();
+    s = learn(content, s);
+    expect(s.log, 'joining writes the entry').toContain('ilo9');
+
+    // Four recruits and only three open seats: somebody has to sit out.
+    s = reduce(s, { type: 'SET_ACTIVE_PARTY', members: ['player'] });
+    expect(s.activeParty).not.toContain('ilo9');
+
+    s = learn(content, s);
+    expect(s.log, 'benching does not unwrite what the Auditor already knows').toContain('ilo9');
+    expect(logSuperseded(content, s), 'nor strike it through').not.toContain('ilo9');
+  });
+
+  it('is written for every companion the game can recruit', () => {
+    for (const id of ['wren', 'dax', 'ilo9', 'mara', 'hale']) {
+      const entry = content.log[id];
+      expect(entry, `${id} has a case-log entry`).toBeDefined();
+      expect(entry.when, `${id}'s entry keys off recruitment, not the active party`)
+        .toEqual([`flag:recruited:${id}`]);
+    }
   });
 });
