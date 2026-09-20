@@ -56,6 +56,10 @@ Building the installer needs `makensis` on `PATH` (`apt install nsis`, or it shi
 GitHub `windows-latest` image). `.github/workflows/release.yml` builds both artefacts on a real
 Windows runner and attaches them to a draft release when a `v*` tag is pushed.
 
+`npm run reference` regenerates [the case log and timeline reference](docs/CASE_LOG_AND_TIMELINE.md)
+from `content/`: every clue, every log entry, every timeline edit, and what a player has to do to
+reach each one. It is generated rather than written, so it cannot drift from the game.
+
 New players should start with the [player manual](docs/PLAYER_MANUAL.md): lore, controls, the
 Threads and Tempo systems, each character's starting abilities, and what Shield, Signal and Sync do.
 The same document is readable in-game from the title menu, any location's action list, or Settings.
