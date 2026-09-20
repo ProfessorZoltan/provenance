@@ -34,6 +34,25 @@ made at that site in later eras. Editing 2031 last throws away your 2148.
 | **Put the list back** | workcamp | 2031 | -5 | +0 | — | Basin Work Camp: choose "Put it back. You have a job and they have wages." |
 | **File the second column** | workcamp | 2031 | +10 | +0 | — | Basin Work Camp: choose "File it. Put every name in the record." |
 
+## Who joins you
+
+The Auditor plus 3 of the other 7 on the field at once;
+the rest wait on the bench and still draw a reduced share of the experience. Recruiting is
+what writes a companion into the case log, so a run that never asks is a run with holes in
+its file. 4 of them can walk away again, and Sync takes two of them in opposite
+directions: ILO-9 goes if it falls to -60, Hale goes if it climbs to +60.
+
+| Who | Where they join | What the player must do | What the same choice also does | What makes them leave | Where the game does it |
+| --- | --- | --- | --- | --- | --- |
+| **Callum Strand** `strand_young` | Meridian Campus | choose "Come with us. See it. Then decide what you sign." | the timeline edit **Bring Strand with you** | travel to **The Steward's Core** and Ownership <= -50 | `strand_choice` |
+| **Dax Okonkwo** `dax` | Kell Monastery, 2312 | Nothing: the prologue hands them over on arrival at Kell. | — | Nothing. Once they are with you they stay. | `joinAtKell` in src/core/reducer.ts |
+| **Dr. Ines Quiroga** `quiroga` | Meridian Campus | choose "Come with us instead. There is more of this than one Thursday." | — | the lowest Continuity in the party <= 10 | `quiroga_choice` |
+| **ILO-9** `ilo9` | Server Graveyard | choose "Cut it loose." | the timeline edit **Free ILO-9** | party Sync <= -60 | `ilo9_bound_dlg` |
+| **Mara Vesely** `mara` | Port Halden | choose "We change what already happened. Come and see.", which is only offered once you choose **"Amend article nine. Name who governance can be ceded to."** (Amend the treaty) at Port Halden | +5 party Sync | Nothing. Once they are with you they stay. | `mara_vesely` |
+| **Sister Wren** `wren` | Kell Monastery, 2312 | Nothing: the prologue hands them over on arrival at Kell. | — | Nothing. Once they are with you they stay. | `joinAtKell` in src/core/reducer.ts |
+| **The Auditor** `player` | The Allocation Office, 2312 | Nothing: the Auditor is who the player is, and the only member who can never be benched. | — | Nothing. The Auditor cannot be benched, and the roster refuses to drop the last member. | `initialState` in src/core/reducer.ts |
+| **Tomas Hale** `hale` | The Basin | choose "Come with us. You know the ground.", which is only offered once you choose **"Arm the resistance. Open the armory."** (Arm the resistance) at Kell Stronghold | sets `basinWatched` | party Sync >= 60 | `hale_ridge` |
+
 ## The case log
 
 54 entries. An entry appears the moment every condition in its row holds, and

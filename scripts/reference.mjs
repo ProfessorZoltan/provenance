@@ -19,6 +19,7 @@ const quests = byId(load('quests'));
 const timeline = byId(load('timelineChoices'));
 const log = JSON.parse(readFileSync(`${root}content/log/case.json`, 'utf8'));
 const rooms = byId(load('rooms'));
+const rules = JSON.parse(readFileSync(`${root}content/rules.json`, 'utf8'));
 const eras = byId(load('eras'));
 const characters = byId(load('characters'));
 
@@ -182,7 +183,7 @@ function explain(cond) {
   if (note) return note;
   const from = setters[flag];
   if (!from?.length) return `the flag \`${flag}\` (nothing in the content sets this)`;
-  return from.map((s) => {
+  return [...new Set(from.map((s) => {
     if (s.kind === 'fight') return `win **${s.name}** at ${s.place}`;
     if (s.kind === 'quest') return `finish the quest **${s.name}** at ${s.place}`;
     if (s.kind === 'edit') return `choose **"${s.choice}"** (${timeline[s.edit]?.name}) at ${s.place ?? s.dialogue}`;
@@ -194,7 +195,7 @@ function explain(cond) {
     if (npcOf[s.dialogue]) return `talk to **${npcOf[s.dialogue]}**${at}`;
     if (storyOf.has(s.dialogue)) return `arrive${at} and hear the scene out`;
     return `hear out the conversation${at}`;
-  }).join(', or ');
+  }))].join(', or ');
 }
 
 // ---------- the document ----------
@@ -230,6 +231,95 @@ for (const t of Object.values(timeline).sort((a, b) => a.site.localeCompare(b.si
     : '(not offered by any conversation)';
   const party = (t.partyEffects ?? []).length ? t.partyEffects.join(', ') : '—';
   out.push(`| **${esc(t.name)}** | ${t.site} | ${t.era} | ${t.ownershipDelta >= 0 ? '+' : ''}${t.ownershipDelta} | ${t.syncDelta >= 0 ? '+' : ''}${t.syncDelta} | ${esc(party)} | ${esc(how)} |`);
+}
+
+
+// ---------- who joins, and what it takes ----------
+
+const reducerSrc = readFileSync(`${root}src/core/reducer.ts`, 'utf8');
+/** The two the engine hands you itself, at the end of the prologue. */
+const engineRecruits = [...reducerSrc.matchAll(/type: 'RECRUIT', character: '(\w+)'/g)].map((m) => m[1]);
+
+/** Every conversation that can hand the player a character, and what it asks of them first. */
+const joins = {};
+const joinAdd = (id, how) => ((joins[id] ??= []).push(how));
+for (const d of Object.values(dialogues)) {
+  const at = where(d.id);
+  const place = at.length ? at.join(' / ') : null;
+  for (const line of d.lines ?? []) {
+    const gate = (line.conditions ?? []);
+    if (line.action?.startsWith('recruit:')) {
+      joinAdd(line.action.slice('recruit:'.length), { dialogue: d.id, place, gate, text: null });
+    }
+    for (const c of line.choices ?? []) {
+      if (!c.action?.startsWith('recruit:')) continue;
+      joinAdd(c.action.slice('recruit:'.length), {
+        dialogue: d.id, place, text: c.text, gate: [...gate, ...(c.conditions ?? [])],
+        edit: c.timelineChoice, sets: c.setFlags ?? [], sync: c.syncDelta,
+      });
+    }
+  }
+}
+for (const t of Object.values(timeline)) {
+  for (const eff of t.partyEffects ?? []) {
+    if (!eff.startsWith('recruit:')) continue;
+    for (const o of offers[t.id] ?? []) {
+      joinAdd(eff.slice('recruit:'.length), {
+        dialogue: o.dialogue, place: o.place.length ? o.place.join(' / ') : null,
+        text: o.text, gate: [], edit: t.id,
+      });
+    }
+  }
+}
+
+out.push('\n## Who joins you\n');
+out.push(`The Auditor plus ${rules.activePartyMax - 1} of the other ${Object.keys(characters).length - 1} on the field at once;`);
+out.push('the rest wait on the bench and still draw a reduced share of the experience. Recruiting is');
+out.push('what writes a companion into the case log, so a run that never asks is a run with holes in');
+out.push(`its file. ${Object.values(characters).filter((c) => (c.leavesIf ?? []).length).length} of them can walk away again, and Sync takes two of them in opposite`);
+out.push('directions: ILO-9 goes if it falls to -60, Hale goes if it climbs to +60.\n');
+out.push('| Who | Where they join | What the player must do | What the same choice also does | What makes them leave | Where the game does it |');
+out.push('| --- | --- | --- | --- | --- | --- |');
+
+const selfRef = (id) => (c) => c.replace(/^!/, '') !== `party:${id}` && c.replace(/^!/, '') !== `flag:recruited:${id}`;
+for (const c of Object.values(characters).sort((a, b) => a.name.localeCompare(b.name))) {
+  const how = joins[c.id] ?? [];
+  let place, must, also;
+  if (c.id === 'player') {
+    place = 'The Allocation Office, 2312';
+    must = 'Nothing: the Auditor is who the player is, and the only member who can never be benched.';
+    also = '—';
+  } else if (!how.length && engineRecruits.includes(c.id)) {
+    place = 'Kell Monastery, 2312';
+    must = 'Nothing: the prologue hands them over on arrival at Kell.';
+    also = '—';
+  } else if (!how.length) {
+    place = '—';
+    must = '**Nothing in the content recruits them.**';
+    also = '—';
+  } else {
+    place = [...new Set(how.map((h) => h.place ?? h.dialogue))].join(' / ');
+    must = how.map((h) => {
+      const ask = h.text ? `choose "${h.text}"` : 'hear the scene out';
+      const gate = h.gate.filter(selfRef(c.id)).map(explain);
+      return gate.length ? `${ask}, which is only offered once you ${gate.join(' and ')}` : ask;
+    }).join('; ');
+    const extra = [...new Set(how.flatMap((h) => [
+      ...(h.edit ? [`the timeline edit **${timeline[h.edit]?.name ?? h.edit}**`] : []),
+      ...(h.sets ?? []).map((f) => `sets \`${f}\``),
+      ...(h.sync ? [`${h.sync > 0 ? '+' : ''}${h.sync} party Sync`] : []),
+    ]))];
+    also = extra.length ? extra.join(', ') : '—';
+  }
+  const leaves = c.id === 'player'
+    ? 'Nothing. The Auditor cannot be benched, and the roster refuses to drop the last member.'
+    : (c.leavesIf ?? []).length
+      ? c.leavesIf.map(explain).join(' and ')
+      : 'Nothing. Once they are with you they stay.';
+  const src = c.id === 'player' || (!how.length && engineRecruits.includes(c.id))
+    ? (c.id === 'player' ? '`initialState` in src/core/reducer.ts' : '`joinAtKell` in src/core/reducer.ts')
+    : [...new Set(how.map((h) => `\`${h.dialogue}\``))].join(', ');
+  out.push(`| **${esc(c.name)}** \`${c.id}\` | ${esc(place)} | ${esc(must)} | ${esc(also)} | ${esc(leaves)} | ${esc(src)} |`);
 }
 
 out.push('\n## The case log\n');
