@@ -34,7 +34,7 @@
       "text": "It carried. I have been in this building eleven years and today is the first time anything I wrote survived a reading.",
       "conditions": [
         "flag:treatyAmended",
-        "!party:mara"
+        "!flag:recruited:mara"
       ]
     },
     {
@@ -42,7 +42,7 @@
       "text": "And now I would like to know who you actually are, and I would like to come with you when you tell me.",
       "conditions": [
         "flag:treatyAmended",
-        "!party:mara"
+        "!flag:recruited:mara"
       ],
       "choices": [
         {
@@ -60,7 +60,7 @@
       "speaker": "mara_vesely",
       "text": "Two hundred and forty-eight years downstream and my clause is still in force. Every so often I would like a moment to sit with that.",
       "conditions": [
-        "party:mara"
+        "flag:recruited:mara"
       ]
     },
     {

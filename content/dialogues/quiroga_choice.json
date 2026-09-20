@@ -22,7 +22,10 @@
         {
           "text": "Come with us instead. There is more of this than one Thursday.",
           "action": "recruit:quiroga",
-          "next": "quiroga_joins"
+          "next": "quiroga_joins",
+          "conditions": [
+            "!flag:recruited:quiroga"
+          ]
         },
         {
           "text": "Nothing yet."

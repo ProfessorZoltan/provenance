@@ -30,7 +30,7 @@
       "speaker": "ash_smith",
       "text": "Hale's out at the Basin on a ridge. Tell him the forge is still lit, he'll know what it means.",
       "conditions": [
-        "!party:hale",
+        "!flag:recruited:hale",
         "flag:armedResistance"
       ]
     }

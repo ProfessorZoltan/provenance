@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { createBattle, current, resolveAbility } from '../src/core/battle/battle';
 import { loadout, xpForLevel } from '../src/core/stats';
 import { activeChoices, applyChoice, deriveWorld } from '../src/core/timeline';
+import { evalAll } from '../src/core/conditions';
+import { conditionContext } from '../src/core/encounter';
 import { learn, logSuperseded } from '../src/core/reducer';
 import { content, newGame, reduce, run } from './helpers';
 import type { GameState } from '../src/types/state';
@@ -210,6 +212,75 @@ describe('the case log entry for a companion', () => {
       expect(entry, `${id} has a case-log entry`).toBeDefined();
       expect(entry.when, `${id}'s entry keys off recruitment, not the active party`)
         .toEqual([`flag:recruited:${id}`]);
+    }
+  });
+});
+
+describe('a companion on the bench', () => {
+  /** The lines and choices a conversation would actually show in this state. */
+  function visible(s: GameState, id: string) {
+    const ctx = conditionContext(content, s);
+    const lines = content.dialogues[id].lines.filter((l) => evalAll(l.conditions, ctx));
+    return {
+      lines,
+      choices: lines.flatMap((l) => (l.choices ?? []).filter((c) => evalAll(c.conditions, ctx)).map((c) => c.text)),
+    };
+  }
+
+  const bench = (s: GameState, id: string) =>
+    reduce(s, { type: 'SET_ACTIVE_PARTY', members: s.activeParty.filter((a) => a !== id) });
+
+  /** Each offer sits behind a story flag; without it the scene is silent and proves nothing. */
+  const ready = (flags: string[]) => {
+    const s = newGame(19);
+    return {
+      ...s,
+      flags: [...s.flags, ...flags],
+      party: Object.fromEntries(Object.entries(s.party).map(([k, c]) => [k, { ...c, sync: 40 }])),
+    };
+  };
+
+  const scenes: Array<[string, string, string, string[]]> = [
+    ['hale', 'hale_ridge', 'Come with us. You know the ground.', ['armedResistance']],
+    ['mara', 'mara_vesely', 'We change what already happened. Come and see.', ['treatyAmended']],
+    ['quiroga', 'quiroga_lab', 'Come with us instead. There is more of this than one Thursday.', ['metQuiroga']],
+    ['strand_young', 'strand_young_2031', 'Come with us. See it. Then decide what you sign.', []],
+  ];
+
+  for (const [id, dialogue, offer, flags] of scenes) {
+    it(`does not re-offer ${id} to a party that already has them`, () => {
+      const before = ready(flags);
+      const reach = (s: GameState) => {
+        const here = visible(s, dialogue);
+        const onward = here.lines.map((l) => l.next).filter((n): n is string => !!n);
+        return [...here.choices, ...onward.flatMap((n) => visible(s, n).choices)];
+      };
+      // The scene has to be live in the first place, or this proves nothing.
+      expect(reach(before), `${dialogue} never offers ${id} at all`).toContain(offer);
+
+      const joined = reduce(before, { type: 'RECRUIT', character: id });
+      const benched = bench(joined, id);
+      expect(benched.activeParty).not.toContain(id);
+
+      expect(reach(benched), `${dialogue} still offers to recruit a benched ${id}`).not.toContain(offer);
+      expect(visible(benched, dialogue).lines.length, `${dialogue} has nothing to say`).toBeGreaterThan(0);
+    });
+  }
+
+  it('keeps the Meridian timeline edits reachable after Quiroga joins', () => {
+    // Her second-visit line was the only door to quiroga_choice, and recruiting her shut it:
+    // leak_charter (+50 Ownership) and burn_lab became unreachable for the rest of the run.
+    const joined = reduce(ready(['metQuiroga']), { type: 'RECRUIT', character: 'quiroga' });
+    for (const s of [joined, bench(joined, 'quiroga')]) {
+      const ctx = conditionContext(content, s);
+      const onward = content.dialogues.quiroga_lab.lines
+        .filter((l) => evalAll(l.conditions, ctx)).map((l) => l.next).filter(Boolean);
+      expect(onward, 'Thursday is still decidable').toContain('quiroga_choice');
+      const offered = visible(s, 'quiroga_choice').choices;
+      expect(offered).toContain('Put the charter in front of the press before the vote.');
+      expect(offered).toContain('Burn the room. The weights are on tape and the tape is in there.');
+      expect(offered, 'but she is already with you').not.toContain(
+        'Come with us instead. There is more of this than one Thursday.');
     }
   });
 });

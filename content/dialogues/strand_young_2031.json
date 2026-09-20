@@ -5,28 +5,28 @@
       "speaker": "strand_young",
       "text": "You have been on my campus for eleven minutes and you have not looked at a single thing you would look at if you worked here.",
       "conditions": [
-        "!party:strand_young"
+        "!flag:recruited:strand_young"
       ]
     },
     {
       "speaker": "strand_young",
       "text": "Callum Strand. I am twenty-nine and this is mine, which people find either impressive or obscene depending on what they wanted from the afternoon.",
       "conditions": [
-        "!party:strand_young"
+        "!flag:recruited:strand_young"
       ]
     },
     {
       "speaker": "player",
       "text": "You sign a charter this Thursday with a clause about perpetuity in it.",
       "conditions": [
-        "!party:strand_young"
+        "!flag:recruited:strand_young"
       ]
     },
     {
       "speaker": "strand_young",
       "text": "I sign a charter this Thursday. Nobody outside four people knows that. So either you are one of four people, or you are something considerably more interesting.",
       "conditions": [
-        "!party:strand_young"
+        "!flag:recruited:strand_young"
       ],
       "setFlags": [
         "metStrand"
@@ -36,7 +36,7 @@
       "speaker": "strand_young",
       "text": "Here is what I think, and I am aware of how it sounds. I think you have been somewhere I have not, and I think you are about to tell me it went badly, and I think you want to stop me.",
       "conditions": [
-        "!party:strand_young"
+        "!flag:recruited:strand_young"
       ],
       "next": "strand_choice"
     },
@@ -44,7 +44,7 @@
       "speaker": "strand_young",
       "text": "I am still waiting to be told what I do that is so unforgivable. Nobody will say it plainly. That is how I know it is large.",
       "conditions": [
-        "party:strand_young",
+        "flag:recruited:strand_young",
         "!flag:been:capitol_2312"
       ]
     },
@@ -52,7 +52,7 @@
       "speaker": "strand_young",
       "text": "A seat with my name on it, occupied, three centuries out. I have read my own register entry. I would like a moment and then I would like to keep going.",
       "conditions": [
-        "party:strand_young",
+        "flag:recruited:strand_young",
         "flag:been:capitol_2312"
       ]
     }
