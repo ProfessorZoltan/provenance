@@ -1,0 +1,57 @@
+# Builds the Windows release on a real Windows runner and attaches it to a GitHub Release.
+# Tag a version to publish one:  git tag v0.1.0 && git push origin v0.1.0
+name: Windows release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      arch:
+        description: Windows architecture
+        type: choice
+        default: x64
+        options: [x64, arm64, ia32]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # The Vite 8 devtools peer range breaks npm's resolver, hence --legacy-peer-deps.
+      - run: npm ci --legacy-peer-deps
+
+      - name: Typecheck and test
+        run: npm run typecheck && npm test
+
+      - name: Package
+        run: npm run build && node scripts/pack-win.mjs --${{ inputs.arch || 'x64' }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: provenance-windows-${{ inputs.arch || 'x64' }}
+          path: build/win/*.zip
+          if-no-files-found: error
+
+      - name: Attach to the release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/win/*.zip
+          draft: true
+          generate_release_notes: true
+          body: |
+            Unzip anywhere and run `Provenance.exe`. Nothing to install.
+
+            This build is not code-signed, so Windows SmartScreen warns on first
+            run: **More info** then **Run anyway**. Saves live in `%APPDATA%\Provenance`
+            and survive replacing the folder with a newer one.
