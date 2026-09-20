@@ -209,8 +209,7 @@
       "w": 240,
       "h": 200,
       "encounters": [
-        "kell_2148_walls",
-        "kell_2148_ambush"
+        "kell_2148_walls"
       ],
       "chance": 0.4,
       "stride": 165
@@ -293,8 +292,7 @@
       "w": 340,
       "h": 200,
       "encounters": [
-        "meridian_2148_corridor",
-        "meridian_2148_vault"
+        "meridian_2148_corridor"
       ],
       "chance": 0.4,
       "stride": 165

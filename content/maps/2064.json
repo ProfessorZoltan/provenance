@@ -234,8 +234,7 @@
       "w": 300,
       "h": 220,
       "encounters": [
-        "halden_2064_terrace",
-        "halden_2064_vote"
+        "halden_2064_terrace"
       ],
       "chance": 0.4,
       "stride": 170

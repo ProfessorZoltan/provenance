@@ -16,6 +16,13 @@
     },
     {
       "speaker": "clerk_of_the_house",
+      "text": "You got into the lobby. There is no division list in there, because there was no division. Forty members and not one of them asked for one, and now there is a record of you asking.",
+      "conditions": [
+        "flag:sawTheDivision"
+      ]
+    },
+    {
+      "speaker": "clerk_of_the_house",
       "text": "You have read it. Nobody reads them. Go on then, what does it do.",
       "conditions": [
         "!flag:actNamed",

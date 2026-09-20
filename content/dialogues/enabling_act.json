@@ -29,6 +29,13 @@
           "next": "act_witnessed"
         },
         {
+          "text": "Call a division. Make them walk through the lobbies.",
+          "conditions": [
+            "!flag:sawTheDivision"
+          ],
+          "action": "battle:capitol_2031_division"
+        },
+        {
           "text": "Nothing. It is not my House."
         }
       ]

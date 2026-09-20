@@ -170,6 +170,42 @@ describe('no dead ends', () => {
     }
   });
 
+  it('gives every story and key fight a deliberate trigger', () => {
+    // A story beat the player can only meet by wandering until the dice offer it is not a beat,
+    // it is weather. Every one of them must be startable on purpose: a dialogue that hands the
+    // player the decision, or a quest they took on. Four of these had no trigger at all.
+    const fromDialogue = new Set(Object.values(content.dialogues).flatMap((d) => d.lines.flatMap(
+      (l) => [l.action, ...(l.choices ?? []).map((c) => c.action)])).filter(
+      (a): a is string => !!a && a.startsWith('battle:')).map((a) => a.slice('battle:'.length)));
+    const fromQuest = new Set(Object.values(content.quests).map((q) => q.objectiveEncounter));
+    // A map node of kind "encounter" is a labelled marker the player walks onto on purpose.
+    const fromMarker = new Set(Object.values(content.maps).flatMap((m) => m.nodes)
+      .filter((n) => n.kind === 'encounter').map((n) => n.encounter!));
+
+    for (const enc of Object.values(content.encounters)) {
+      if (!enc.story && enc.tier !== 'key') continue;
+      expect(fromDialogue.has(enc.id) || fromQuest.has(enc.id) || fromMarker.has(enc.id),
+        `${enc.id} ("${enc.name}") cannot be started on purpose`).toBe(true);
+    }
+  });
+
+  it('keeps story and key fights out of the wilds pools', () => {
+    // A zone rolls uniformly over its list, so leaving a story fight in one makes it compete with
+    // filler for the same roll, lets the scan screen skip it with no penalty, and offers it again
+    // after it has already been won.
+    for (const map of Object.values(content.maps)) {
+      for (const zone of map.zones) {
+        for (const id of zone.encounters) {
+          const enc = content.encounters[id];
+          expect(enc, `${map.id}/${zone.id} lists an encounter that does not exist: ${id}`).toBeDefined();
+          expect(enc.story || enc.tier === 'key',
+            `${map.id}/${zone.id} leaves the story fight ${id} to a random roll`).toBeFalsy();
+        }
+        expect(zone.encounters.length, `${map.id}/${zone.id} has nothing to roll`).toBeGreaterThan(0);
+      }
+    }
+  });
+
   it('leaves no flag set by content that nothing ever reads', () => {
     // A flag with no reader is a promise the content makes and does not keep.
     const set = new Set<string>();

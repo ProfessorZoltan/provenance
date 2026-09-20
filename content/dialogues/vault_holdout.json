@@ -15,6 +15,22 @@
     },
     {
       "speaker": "vault_holdout",
+      "text": "The wheel is at the end on the left. It has not moved since his century. Something in there has been keeping it company and it has noticed the water changing, so do not go down there expecting paper.",
+      "conditions": [
+        "!flag:openedTheVault"
+      ],
+      "choices": [
+        {
+          "text": "Open it.",
+          "action": "battle:meridian_2148_vault"
+        },
+        {
+          "text": "Not yet. He has earned eleven quiet years."
+        }
+      ]
+    },
+    {
+      "speaker": "vault_holdout",
       "text": "Well. It is open. I have been down there and it is nine pages and five signatures and I do not understand why anybody died for it.",
       "conditions": [
         "flag:openedTheVault"

@@ -16,6 +16,11 @@
     {
       "speaker": "narrator",
       "text": "Somewhere downstream, something that has never been surprised in two hundred and eighty years makes a note."
+    },
+    {
+      "speaker": "narrator",
+      "text": "It does not make the note quietly. There are three of them on the floor before the gallery has finished clearing, and none of them is here about the treaty.",
+      "action": "battle:halden_2064_vote"
     }
   ]
 }

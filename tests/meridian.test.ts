@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { current, resolveAbility } from '../src/core/battle/battle';
+import { evalCondition } from '../src/core/conditions';
+import { conditionContext } from '../src/core/encounter';
 import { activeVariant } from '../src/core/reducer';
 import { activeChoices, applyChoice, deriveWorld, endingFor } from '../src/core/timeline';
+import { ERA_LEVEL, TYPICAL, partyAt } from './balance';
 import { autoBattle, content, newGame, reduce, run, skipDialogue } from './helpers';
 import type { GameState } from '../src/types/state';
 
@@ -170,5 +173,66 @@ describe('screens that name a character', () => {
     expect(opened.screen).toEqual({ id: 'tech', character: 'quiroga' });
     expect(content.characters.quiroga, 'the character exists in content, just not in the party').toBeDefined();
     expect(opened.party.quiroga).toBeUndefined();
+  });
+});
+
+describe('the four fights that had no way in', () => {
+  /** Open a conversation and take the choice whose text starts with `want`, wherever it appears. */
+  function takeChoice(s: GameState, dialogue: string, want: string, guard = 40): GameState {
+    s = reduce(s, { type: 'START_DIALOGUE', id: dialogue, returnTo: { id: 'hub' } });
+    while (s.dialogue && guard-- > 0) {
+      const line = content.dialogues[s.dialogue.id].lines[s.dialogue.index];
+      const visible = (line.choices ?? []).filter((c) => !c.conditions
+        || c.conditions.every((cond) => evalCondition(cond, conditionContext(content, s))));
+      const i = visible.findIndex((c) => c.text.startsWith(want));
+      if (i >= 0) return reduce(s, { type: 'DIALOGUE_CHOOSE', index: i });
+      s = visible.length
+        ? reduce(s, { type: 'DIALOGUE_CHOOSE', index: visible.length - 1 })
+        : reduce(s, { type: 'DIALOGUE_ADVANCE' });
+      if (s.screen.id === 'battle') break;
+    }
+    return s;
+  }
+
+  const cases: Array<[string, string, string, string]> = [
+    ['The Last Door', 'vault_holdout', 'Open it.', 'meridian_2148_vault'],
+    ['The Board Chamber', 'board_secretary', 'Go into the chamber.', 'capitol_2312_chamber'],
+    ['The Division Bell', 'enabling_act', 'Call a division.', 'capitol_2031_division'],
+  ];
+
+  for (const [name, dialogue, choice, encounter] of cases) {
+    it(`starts ${name} from the conversation that talks about it`, () => {
+      const s = takeChoice(newGame(31), dialogue, choice);
+      expect(s.screen.id, `${dialogue} did not start a fight`).toBe('battle');
+      expect(s.battle?.encounterId).toBe(encounter);
+    });
+  }
+
+  it('sends the concession after you for putting the buyers on the record', () => {
+    let s = newGame(31);
+    s = skipDialogue(s, 0);
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'handover_exposed', returnTo: { id: 'hub' } });
+    s = skipDialogue(s);
+    expect(s.screen.id).toBe('battle');
+    expect(s.battle?.encounterId).toBe('halden_2064_vote');
+    expect(s.battle?.surprise, 'the ambush is not a fair fight').toBe(true);
+  });
+
+  it('pays out the flag each one exists to set, and only offers it once', () => {
+    // A party that turned up at 2148 the way the balance suite models it.
+    let s = takeChoice(partyAt(ERA_LEVEL['2148'], TYPICAL, 31), 'vault_holdout', 'Open it.');
+    s = autoBattle(s);
+    expect(s.battle?.phase).toBe('won');
+    s = reduce(s, { type: 'BATTLE_FINISH' });
+    expect(s.flags).toContain('openedTheVault');
+
+    // The wheel has been turned; the holdout does not offer it again.
+    s = reduce(s, { type: 'START_DIALOGUE', id: 'vault_holdout', returnTo: { id: 'hub' } });
+    const ctx = conditionContext(content, s);
+    const offered = content.dialogues.vault_holdout.lines.some((l) =>
+      (l.choices ?? []).some((c) => c.text === 'Open it.'
+        && (c.conditions ?? []).every((cond) => evalCondition(cond, ctx))
+        && (l.conditions ?? []).every((cond) => evalCondition(cond, ctx))));
+    expect(offered).toBe(false);
   });
 });
