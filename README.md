@@ -21,8 +21,26 @@ npm run preview    # serve dist/
 npm test           # Vitest reducer suite
 ```
 
-The build uses relative asset paths, so `dist/` needs no server. Fonts load from Google Fonts
-when online and fall back to system fonts offline.
+The build uses relative asset paths, so `dist/` needs no server. The four era typefaces are
+vendored into `public/fonts` by `npm run fonts`, so the type is right offline and nothing is
+requested from a third party.
+
+## Windows build
+
+```bash
+npm run pack:win   # builds, then packages build/win/Provenance-<version>-win32-x64.zip
+npm run dev:desktop  # run the desktop shell against the current build
+```
+
+`electron/main.cjs` is the whole shell: one window on `dist/index.html`, no menu bar, no Node in
+the page, F11 for fullscreen. `scripts/pack-win.mjs` stages only the shell and `dist/` — no source,
+no tests, no `node_modules` — packages it with `@electron/packager`, checks the payload really is
+inside `app.asar`, and zips it. `scripts/make-icon.mjs` draws the `.ico` from the game's own pixel
+art, so the icon is the same Auditor the roster shows.
+
+The result is portable: unzip anywhere and run `Provenance.exe`. It is not code-signed, so
+SmartScreen warns on first run. Saves live in `%APPDATA%\Provenance` and survive replacing the
+folder. Pass `--ia32` or `--arm64` to `scripts/pack-win.mjs` for the other Windows architectures.
 
 New players should start with the [player manual](docs/PLAYER_MANUAL.md): lore, controls, the
 Threads and Tempo systems, each character's starting abilities, and what Shield, Signal and Sync do.

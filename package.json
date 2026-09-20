@@ -13,12 +13,18 @@
     "typecheck": "tsc --noEmit",
     "art:build": "node scripts/build-art.mjs",
     "art:check": "node scripts/check-art.mjs",
-    "art:export": "node scripts/art-export.mjs"
+    "art:export": "node scripts/art-export.mjs",
+    "fonts": "node scripts/fetch-fonts.mjs",
+    "icon": "node scripts/make-icon.mjs",
+    "pack:win": "npm run build && node scripts/pack-win.mjs",
+    "dev:desktop": "npm run build && electron electron/main.cjs"
   },
   "dependencies": {
     "tone": "^15.1.22"
   },
   "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "^44.4.3",
     "typescript": "5.9.2",
     "vite": "7.1.7",
     "vitest": "3.2.4"

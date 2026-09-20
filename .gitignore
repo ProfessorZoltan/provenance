@@ -4,3 +4,6 @@ dist/
 *.log
 .DS_Store
 art-directory.html
+
+# Desktop packaging output: the app, the icon and the release zip.
+build/

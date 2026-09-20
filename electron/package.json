@@ -1,0 +1,9 @@
+{
+  "name": "provenance",
+  "productName": "Provenance",
+  "version": "0.1.0",
+  "description": "An RPG about who owns the future.",
+  "main": "main.cjs",
+  "author": "Provenance",
+  "license": "UNLICENSED"
+}
