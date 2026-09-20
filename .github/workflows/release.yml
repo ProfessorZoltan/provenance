@@ -45,7 +45,7 @@ jobs:
             choco install nsis -y --no-progress
           }
           $env:PATH = "$env:PATH;$nsis"
-          makensis /VERSION
+          makensis /VERSION | Select-Object -First 1
           node scripts/make-installer.mjs --${{ inputs.arch || 'x64' }}
         shell: pwsh
 

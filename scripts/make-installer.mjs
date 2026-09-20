@@ -4,6 +4,7 @@ import { stat, mkdir, readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import { basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const run = promisify(execFile);
@@ -25,18 +26,20 @@ await mkdir(p('..', 'build', 'win'), { recursive: true });
 // makensis wants Windows separators in the paths it bakes into the script.
 const win = (s) => s.replaceAll('/', '\\');
 
-console.log(`Compressing ${appDir.split('/').pop()} with LZMA — this takes a few minutes.`);
+console.log(`Compressing ${basename(appDir)} with LZMA — this takes a few minutes.`);
+// The Windows build of makensis takes /SWITCH; the POSIX port takes -SWITCH.
+const o = process.platform === 'win32' ? '/' : '-';
 const { stdout } = await run('makensis', [
-  '-V2',
-  `-DAPP_DIR=${win(appDir)}`,
-  `-DOUT_FILE=${win(out)}`,
-  `-DVERSION=${version}`,
-  `-DARCH=${ARCH}`,
-  `-DICON=${win(icon)}`,
+  `${o}V2`,
+  `${o}DAPP_DIR=${win(appDir)}`,
+  `${o}DOUT_FILE=${win(out)}`,
+  `${o}DVERSION=${version}`,
+  `${o}DARCH=${ARCH}`,
+  `${o}DICON=${win(icon)}`,
   p('..', 'electron', 'installer.nsi'),
 ], { maxBuffer: 1 << 28 });
 if (stdout.trim()) console.log(stdout.trim());
 
 const { size } = await stat(out);
 if (size < 20 * 1024 * 1024) throw new Error('the installer is too small to contain the game');
-console.log(`${out.split('/').pop()} — ${(size / 1024 / 1024).toFixed(1)} MB`);
+console.log(`${basename(out)} — ${(size / 1024 / 1024).toFixed(1)} MB`);

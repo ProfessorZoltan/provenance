@@ -4,6 +4,7 @@ import { cp, mkdir, rm, readFile, writeFile, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import { basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { packager } from '@electron/packager';
 
@@ -87,7 +88,8 @@ under Player manual.
 // The blank-window failure mode is quiet and only shows up on Windows, so check the payload here.
 const asar = `${app}/resources/app.asar`;
 const { listPackage } = await import('@electron/asar');
-const inside = listPackage(asar, { isPack: false });
+// asar lists with the host's separator, so this comparison has to be made on one of them.
+const inside = listPackage(asar, { isPack: false }).map((entry) => entry.replaceAll('\\', '/'));
 for (const need of ['/main.cjs', '/dist/index.html', '/dist/fonts/fonts.css', '/package.json']) {
   if (!inside.includes(need)) throw new Error(`${need} is missing from app.asar`);
 }
@@ -99,7 +101,12 @@ if (exe.size < 50 * 1024 * 1024) throw new Error('Provenance.exe looks truncated
 console.log(`app.asar: ${inside.length} entries, Provenance.exe ${(exe.size / 1024 / 1024).toFixed(0)} MB`);
 
 const name = `Provenance-${pkg.version}-win32-${ARCH}`;
-await run('zip', ['-qry', `${out}/${name}.zip`, app.split('/').pop()], { cwd: out, maxBuffer: 1 << 28 });
+const folder = basename(app);
+// Windows runners have no `zip`; their bundled bsdtar writes zip archives with -a. POSIX has zip.
+const archive = process.platform === 'win32'
+  ? ['tar', ['-a', '-c', '-f', `${name}.zip`, folder]]
+  : ['zip', ['-qry', `${name}.zip`, folder]];
+await run(archive[0], archive[1], { cwd: out, maxBuffer: 1 << 28 });
 const zip = await stat(`${out}/${name}.zip`);
-console.log(`${app.replace(root, '')}`);
+console.log(app.replace(root, ''));
 console.log(`${name}.zip — ${(zip.size / 1024 / 1024).toFixed(1)} MB`);
