@@ -1,3 +1,4 @@
+import { STATUS_INFO, statusClause, statusLabel, statusSentence, turnsText } from './statuses';
 import type { AbilityDef, ContentDB, DamageType, EnemyDef, EraId, ItemDef, SecondBar } from '../../types/content';
 import type { BattleLogEntry, BattleRewards, BattleState, Combatant, GameState, LogMeta, RewindPoint, StatusEffect } from '../../types/state';
 import { evalFormula } from '../formula';
@@ -166,9 +167,12 @@ export function validTargets(b: BattleState, actorId: string, ability: AbilityDe
 
 // ---------- turn flow ----------
 
-function tickStatuses(c: Combatant): Combatant {
+/** Count every status down one, and say out loud which ones have run out. */
+function tickStatuses(b: BattleState, c: Combatant): { b: BattleState; c: Combatant } {
   const statuses = c.statuses.map((s) => ({ ...s, turns: s.turns - 1 })).filter((s) => s.turns > 0);
-  return { ...c, statuses };
+  const gone = [...new Set(c.statuses.map((s) => s.id))].filter((id) => !statuses.some((s) => s.id === id));
+  for (const id of gone) b = log(b, `${statusLabel(id)} on ${c.name} wears off.`, 'system', { target: c.name });
+  return { b, c: { ...c, statuses } };
 }
 
 function beginTurn(b: BattleState): BattleState {
@@ -179,13 +183,18 @@ function beginTurn(b: BattleState): BattleState {
     b = log(b, `${actor.name} runs out of time and dissolves.`, 'tempo', { actor: actor.name });
     return advance(b);
   }
-  let c = tickStatuses(actor);
+  const ticked = tickStatuses(b, actor);
+  b = ticked.b;
+  let c = ticked.c;
   let threads = c.stats.bandwidth + (c.side === 'party' ? c.slack : 0);
-  if (hasStatus(c, 'fear')) threads = Math.max(1, threads - 1);
+  const feared = hasStatus(c, 'fear');
+  if (feared) threads = Math.max(1, threads - 1);
   c = { ...c, threads, slack: 0 };
   b = update(b, c.id, () => c);
   b = { ...b, phase: c.side === 'party' ? 'player' : 'enemy', fork: null };
-  if (c.side === 'party') b = log(b, `${c.name}'s turn: ${threads} threads.`, 'system');
+  if (c.side === 'party') {
+    b = log(b, `${c.name}'s turn: ${threads} threads${feared ? ' (one short, from Fear)' : ''}.`, 'system');
+  }
   return b;
 }
 
@@ -378,12 +387,16 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
 }
 
 function applyStatus(b: BattleState, target: Combatant, status: StatusEffect, content: ContentDB, actorId: string): BattleState {
-  if (status.id === 'fear' && target.family === 'drone') return b;
+  if (status.id === 'fear' && target.family === 'drone') {
+    return log(b, `${target.name} is a drone. Fear is not something it has.`, 'warn', { target: target.name });
+  }
   let turns = status.turns;
   if (status.id === 'marked') turns += b.passives[actorId]?.markDuration ?? 0;
   if (status.id === 'bound') turns += b.passives[actorId]?.boundTurns ?? 0;
-  void content;
-  return update(b, target.id, (c) => ({ ...c, statuses: [...c.statuses, { ...status, turns }] }));
+  b = update(b, target.id, (c) => ({ ...c, statuses: [...c.statuses, { ...status, turns }] }));
+  const info = STATUS_INFO[status.id];
+  const kind = info?.polarity === 'good' ? 'tempo' : 'warn';
+  return log(b, `${target.name} — ${statusSentence(status.id, turns, content.rules)}`, kind, { target: target.name });
 }
 
 // ---------- abilities ----------
@@ -508,7 +521,7 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     }
     b = update(b, t.id, (c) => ({ ...c, statuses: c.statuses.filter((st) => !GOOD.includes(st.id)) }));
     b = update(b, actorId, (c) => ({ ...c, statuses: [...c.statuses, ...taken] }));
-    b = log(b, `${actor.name} acquires ${taken.map((st) => STATUS_NAMES[st.id] ?? st.id).join(' and ')} from ${t.name}.`, 'tempo', { actor: actor.name, target: t.name, ability: ability.name });
+    b = log(b, `${actor.name} acquires ${taken.map((st) => statusLabel(st.id)).join(' and ')} from ${t.name}.`, 'tempo', { actor: actor.name, target: t.name, ability: ability.name });
     return afterAction(b, content);
   }
 
@@ -717,7 +730,11 @@ export function fork(b: BattleState, actorId: string, abilityId: string, targetI
     if (after.shield !== before.shield) parts.push(`shield ${before.shield} → ${after.shield}`);
     if (after.down && !before.down) parts.push(after.parleyed ? 'is talked down' : 'goes down');
     const gained = after.statuses.filter((st) => !before.statuses.some((o) => o.id === st.id));
-    if (gained.length) parts.push(`gains ${gained.map((st) => STATUS_NAMES[st.id] ?? st.id).join(', ')}`);
+    // The preview exists to answer "what exactly does this do", so spell the status out here too.
+    if (gained.length) {
+      parts.push(`gains ${gained.map((st) =>
+        `${statusLabel(st.id)} (${statusClause(st.id, content.rules)}) ${turnsText(st.turns)}`).join(', ')}`);
+    }
     if (hp === 0 && after.shield === before.shield && !parts.length) continue;
     if (parts.length) lines.push(`${after.name} ${parts.join(', ')}.`);
   }
@@ -730,11 +747,6 @@ export function fork(b: BattleState, actorId: string, abilityId: string, targetI
   nb = log(nb, `Fork: previewing ${content.abilities[abilityId].name}. Entropy rises to ${nb.entropy}.`, 'tempo', { ability: 'Fork' });
   return { ...nb, fork: { abilityId, targetId: targetId ?? '', lines } };
 }
-
-const STATUS_NAMES: Record<string, string> = {
-  guard: 'Guard', taunt: 'Bulwark', marked: 'a mark', inspired: 'Litany', anchored: 'an anchor',
-  fixed: 'Fixed Point', faraday: 'Faraday', fear: 'Fear', locked: 'Target Lock', bound: 'Terms', held: 'Held',
-};
 
 function maybeSpawnEcho(b: BattleState, content: ContentDB): BattleState {
   if (b.echoSpawned || b.entropy < content.rules.entropyThreshold) return b;

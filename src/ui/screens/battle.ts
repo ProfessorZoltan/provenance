@@ -1,7 +1,8 @@
 import { artAssetUrl } from '../../art/library';
 import { rigSvg } from '../../art/rigs';
 import { abilityOptions, current, hasStatus, validTargets } from '../../core/battle/battle';
-import type { AbilityDef } from '../../types/content';
+import type { AbilityDef, RulesDef } from '../../types/content';
+import { statusChips } from '../../core/battle/statuses';
 import type { BattleState, Combatant, GameState } from '../../types/state';
 import type { Button } from '../../input/input';
 import { accentFor, esc, html, prompts, type Ctx, type ScreenHandle } from '../common';
@@ -33,16 +34,43 @@ function reset(b: BattleState): void {
   ui.logScroll = 0;
 }
 
-const STATUS_LABEL: Record<string, string> = {
-  guard: 'Guard', taunt: 'Bulwark', marked: 'Marked', inspired: 'Litany', anchored: 'Anchored', fixed: 'Fixed Point', held: 'Held Shot',
-  faraday: 'Faraday', fear: 'Fear', locked: 'Locked', bound: 'Bound',
-};
-
-function statusText(c: Combatant): string {
-  const counts = new Map<string, number>();
-  for (const s of c.statuses) counts.set(s.id, (counts.get(s.id) ?? 0) + 1);
-  return [...counts.entries()].map(([id, n]) => `${STATUS_LABEL[id] ?? id}${n > 1 ? ` ×${n}` : ''}`).join(' · ');
+/** A row of chips: what is running, how long it has left, and what it is doing. */
+function statusChipsHtml(c: Combatant, rules: RulesDef): string {
+  const chips = statusChips(c, rules);
+  if (!chips.length) return '';
+  return `<div class="statuses">${chips.map((s) => `<span class="chip ${s.polarity}" title="${esc(`${s.label}: ${s.effect}`)}"><span class="chip-name">${esc(s.label)}${s.count > 1 ? ` ×${s.count}` : ''}</span><span class="chip-turns">${s.turns >= 9 ? '∞' : s.turns}</span></span>`).join('')}</div>`;
 }
+
+// Resolve changes are easy to miss when the whole screen redraws, so whoever moved glows for a
+// moment: red for damage, green for healing. Kept outside the render and cleared on a timer.
+const FLASH_MS = 1600;
+const lastHp = new Map<string, number>();
+const flash = new Map<string, 'hurt' | 'healed'>();
+const flashUntil = new Map<string, number>();
+let flashKey = '';
+let flashTimer: ReturnType<typeof setTimeout> | null = null;
+
+/** Compare this frame's Resolve against the last one and remember who moved, and which way. */
+function noteResolveChanges(b: BattleState, key: string, redraw: () => void): void {
+  if (flashKey !== key) { flashKey = key; lastHp.clear(); flash.clear(); flashUntil.clear(); }
+  const now = Date.now();
+  for (const c of b.combatants) {
+    const was = lastHp.get(c.id);
+    lastHp.set(c.id, c.hp);
+    if (was === undefined || was === c.hp) continue;
+    flash.set(c.id, c.hp < was ? 'hurt' : 'healed');
+    flashUntil.set(c.id, now + FLASH_MS);
+  }
+  let soonest = Infinity;
+  for (const [id, until] of flashUntil) {
+    if (until <= now) { flash.delete(id); flashUntil.delete(id); } else soonest = Math.min(soonest, until);
+  }
+  // One timer for the whole field: when the last glow is due to end, draw once more without it.
+  if (flashTimer) { clearTimeout(flashTimer); flashTimer = null; }
+  if (soonest < Infinity) flashTimer = setTimeout(() => { flashTimer = null; redraw(); }, soonest - now + 30);
+}
+
+const flashClass = (id: string): string => flash.get(id) ?? '';
 
 function tempoRing(tempo: number, max: number): string {
   const r = 40, c = 2 * Math.PI * r;
@@ -93,6 +121,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
 
   const page = currentPage();
   const narrating = narrationPending();
+  noteResolveChanges(b, ui.encounter, rerender);
 
   html(root, `<section class="battle">
     <div class="stage"><div class="field-label">${esc(content.locations[state.location].name)} / ${esc(b.era)}</div>
@@ -107,16 +136,17 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
         return `${head ? `<div class="eyebrow">${esc(head)}</div>` : ''}<p class="${line.kind}">${esc(line.text)}</p>`;
       }).join('')}<div class="narration-more"><span class="glyph" data-btn="a"><span class="pad">A</span><span class="key">Enter</span></span> Continue</div></div></div>` : ''}
       <div class="frame ${entropyClass}"></div>
-      <div class="enemies">${enemies.map((e) => `<div class="enemy ${e.down ? 'down' : ''} ${targeted?.id === e.id ? 'targeted' : ''} ${actor?.id === e.id ? 'acting' : ''}" data-id="${e.id}">
+      <div class="enemies">${enemies.map((e) => `<div class="enemy ${e.down ? 'down' : ''} ${targeted?.id === e.id ? 'targeted' : ''} ${actor?.id === e.id ? 'acting' : ''} ${flashClass(e.id)}" data-id="${e.id}">
         <div class="rig">${rigFor(e)}</div>
-        <div class="nm"><span>${esc(e.name)}</span>${hasStatus(e, 'marked') ? '<span class="marker">MARKED</span>' : ''}</div>
+        <div class="nm"><span>${esc(e.name)}</span></div>
         ${e.bar ? `<div class="bar hp"><i style="width:${e.bar === 2 ? 0 : Math.round((e.hp / e.maxHp) * 100)}%"></i></div>
         <div class="bar core ${e.bar === 2 ? 'on' : ''}" style="margin-top:2px"><i style="width:${e.bar === 2 ? Math.round((e.hp / e.maxHp) * 100) : 100}%"></i></div>`
         : `<div class="bar hp"><i style="width:${Math.round((e.hp / e.maxHp) * 100)}%"></i></div>`}
         ${e.maxShield ? `<div class="bar shield" style="margin-top:2px"><i style="width:${Math.round((e.shield / e.maxShield) * 100)}%"></i></div>` : ''}
-        <div class="st">${hasStatus(e, 'marked') || b.combatants.some((c) => c.side === 'party' && c.ref === 'player' && (b.passives.player?.markDuration ?? 0) > 0) ? `${e.hp}/${e.maxHp}${e.maxShield ? ` · shield ${e.shield}` : ''} · weak: ${e.weakness ?? 'none'}` : e.parleyed ? 'talked down' : e.down ? 'down' : statusText(e) || '&nbsp;'}</div>
+        ${e.down ? '' : statusChipsHtml(e, rules)}
+        <div class="st">${hasStatus(e, 'marked') || b.combatants.some((c) => c.side === 'party' && c.ref === 'player' && (b.passives.player?.markDuration ?? 0) > 0) ? `${e.hp}/${e.maxHp}${e.maxShield ? ` · shield ${e.shield}` : ''} · weak: ${e.weakness ?? 'none'}` : e.parleyed ? 'talked down' : e.down ? 'down' : '&nbsp;'}</div>
       </div>`).join('')}</div>
-      <div class="actorsrow">${party.map((p) => `<div class="actor ${p.down ? 'down' : ''} ${actor?.id === p.id ? 'active' : ''} ${targeted?.id === p.id ? 'targeted' : ''}">${rigFor(p)}</div>`).join('')}</div>
+      <div class="actorsrow">${party.map((p) => `<div class="actor ${p.down ? 'down' : ''} ${actor?.id === p.id ? 'active' : ''} ${targeted?.id === p.id ? 'targeted' : ''} ${flashClass(p.id)}">${rigFor(p)}</div>`).join('')}</div>
     </div>
     <div class="telemetry"><div class="gauges panel">
       ${tempoRing(b.tempo, rules.tempoMax)}
@@ -132,11 +162,12 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     </div><div class="bottom">
       ${party.map((p) => {
         const cap = rules.slackCap + (b.passives[p.id]?.slackCap ?? 0);
-        return `<div class="card panel ${actor?.id === p.id ? 'active' : ''} ${p.down ? 'down' : ''} ${targeted?.id === p.id ? 'targeted' : ''}">
+        return `<div class="card panel ${actor?.id === p.id ? 'active' : ''} ${p.down ? 'down' : ''} ${targeted?.id === p.id ? 'targeted' : ''} ${flashClass(p.id)}">
           <div style="display:flex;justify-content:space-between"><b>${esc(p.name)}</b><span class="small">${p.hp}/${p.maxHp}</span></div>
           <div class="bar hp" style="margin:4px 0"><i style="width:${Math.round((p.hp / p.maxHp) * 100)}%"></i></div>
           <div class="threads" title="Threads and Slack">${Array.from({ length: p.stats.bandwidth + cap }, (_, i) => `<i class="${i < p.threads ? 'on' : i >= p.stats.bandwidth && i - p.stats.bandwidth < p.slack ? 'slack' : ''}"></i>`).join('')}</div>
-          <div class="st">${p.down ? 'Down' : `${p.threads} threads${p.slack ? ` · ${p.slack} Slack` : ''}${statusText(p) ? ' · ' + statusText(p) : ''}`}</div>
+          <div class="st">${p.down ? 'Down' : `${p.threads} threads${p.slack ? ` · ${p.slack} Slack` : ''}`}</div>
+          ${p.down ? '' : statusChipsHtml(p, rules)}
         </div>`;
       }).join('')}
       <div class="card panel actionmenu" id="actions"></div>

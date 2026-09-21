@@ -18,6 +18,9 @@
   --pad-b: #e0413e;
   --pad-x: #3f8fdb;
   --pad-y: #f2c230;
+  /* What a Resolve change looks like, and which way a status cuts. */
+  --hurt: #e0413e;
+  --healed: #1d9e75;
 }
 body[data-era='2148'] { --radius: 0; --tracking: 0.02em; }
 body[data-era='2312'] { --tracking: 0.1em; }
@@ -152,6 +155,50 @@ body[data-device='gamepad'] .glyph[data-btn='start'], body[data-device='gamepad'
 .battle .card.targeted { border-color: var(--commons); box-shadow: inset 0 0 0 2px var(--commons); }
 @keyframes bob { from { transform: translate(-50%, 0); } to { transform: translate(-50%, 5px); } }
 .battle .actor.hit { animation: hitflash 300ms; }
+
+/* ---- what is running on whom, and for how long ---- */
+.battle .statuses { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; justify-content: center; }
+.battle .card .statuses { justify-content: flex-start; }
+.battle .chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; letter-spacing: 0.04em; line-height: 1;
+  padding: 3px 4px 3px 5px; border-radius: var(--radius);
+  border: var(--line) solid currentColor; white-space: nowrap; cursor: help;
+}
+.battle .chip.good { color: var(--commons); }
+.battle .chip.bad { color: var(--cinder); }
+.battle .chip-turns {
+  font-variant-numeric: tabular-nums; font-weight: 600;
+  background: color-mix(in srgb, currentColor 18%, transparent);
+  padding: 1px 4px; border-radius: var(--radius); min-width: 12px; text-align: center;
+}
+
+/* ---- a Resolve change is worth seeing even when the whole screen redraws ---- */
+.battle .enemy.hurt .rig, .battle .actor.hurt { animation: pulse-hurt 800ms ease-out 2; }
+.battle .enemy.healed .rig, .battle .actor.healed { animation: pulse-healed 800ms ease-out 2; }
+.battle .card.hurt { animation: card-hurt 800ms ease-out 2; }
+.battle .card.healed { animation: card-healed 800ms ease-out 2; }
+@keyframes pulse-hurt {
+  0%, 100% { filter: none; }
+  25% { filter: drop-shadow(0 0 14px var(--hurt)) drop-shadow(0 0 5px var(--hurt)); }
+}
+@keyframes pulse-healed {
+  0%, 100% { filter: none; }
+  25% { filter: drop-shadow(0 0 14px var(--healed)) drop-shadow(0 0 5px var(--healed)); }
+}
+@keyframes card-hurt {
+  0%, 100% { box-shadow: none; border-color: var(--ink-soft); }
+  25% { box-shadow: 0 0 14px var(--hurt), inset 0 0 0 2px var(--hurt); border-color: var(--hurt); }
+}
+@keyframes card-healed {
+  0%, 100% { box-shadow: none; border-color: var(--ink-soft); }
+  25% { box-shadow: 0 0 14px var(--healed), inset 0 0 0 2px var(--healed); border-color: var(--healed); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .battle .enemy.hurt .rig, .battle .actor.hurt, .battle .card.hurt { animation: none; box-shadow: 0 0 0 2px var(--hurt); }
+  .battle .enemy.healed .rig, .battle .actor.healed, .battle .card.healed { animation: none; box-shadow: 0 0 0 2px var(--healed); }
+}
+
 @keyframes hitflash { 0% { filter: brightness(2) saturate(0); } 100% { filter: none; } }
 .battle .gauges { grid-column: 2; grid-row: 1; display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: center; }
 .battle .tempo-ring { width: 96px; height: 96px; }

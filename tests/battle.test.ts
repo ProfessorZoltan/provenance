@@ -235,7 +235,7 @@ describe('fork preview', () => {
     const drone = s.battle!.combatants.find((c) => c.side === 'enemy')!;
     const marked = reduce(s, { type: 'BATTLE_FORK', actor: 'player', ability: 'audit', target: drone.id });
     const text = marked.battle!.fork!.lines.join(' ');
-    expect(text).toContain('gains a mark');
+    expect(text).toContain('gains Marked (takes 25% more damage');
     expect(text).toContain('Tempo +');
     // A shielded target shows the shield coming off; an unshielded one shows Resolve.
     const shielded = reduce(s, { type: 'BATTLE_FORK', actor: 'player', ability: 'strike', target: drone.id });
