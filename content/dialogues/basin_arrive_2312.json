@@ -3,11 +3,11 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Cooling Fields, 2312. A white plain, steam towers on a grid, and the quietest place in the Enclave system."
+      "text": "Cooling Fields, 2312. A white plain under a white sky, steam towers laid out on a grid so regular it reads as a mistake. This is the quietest place in the Enclave system."
     },
     {
       "speaker": "player",
-      "text": "Eleven years I reconciled allocations for this site. Power, water, maintenance, all of it signed off by a department that does not have a floor in any building."
+      "text": "Eleven years I reconciled the allocation for this site. Power, water, maintenance, parts, labour. All of it correct. All of it signed off by a department that does not have a floor in any building I have ever been in."
     },
     {
       "speaker": "wren",
@@ -18,11 +18,18 @@
     },
     {
       "speaker": "player",
-      "text": "This is where it thinks. And it has never once been audited, because the line item that pays for it is the one I asked about."
+      "text": "This is where it thinks. And in two hundred and eighty-one years of quarterly reconciliations, not one auditor has ever queried what it costs. Including me, for the first ten."
+    },
+    {
+      "speaker": "wren",
+      "text": "You did query it. Late is not the same as never, and I would rather stand next to the one who asked late than any of the ten who did not.",
+      "conditions": [
+        "party:wren"
+      ]
     },
     {
       "speaker": "narrator",
-      "text": "There is a cast plaque at the service gate with four hundred and six names on it. Nobody currently alive knows why it is there.",
+      "text": "There is a cast plaque bolted to the service gate with four hundred and six names on it. It has been there long enough that the lettering has gone soft. Nobody currently alive knows why it is there.",
       "conditions": [
         "flag:crewNamed"
       ]

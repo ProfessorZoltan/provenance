@@ -6,7 +6,7 @@
   "site": "basin",
   "type": "Wasteland",
   "art": "2148_basin",
-  "description": "Sand to the horizon with racks standing out of it like fenceposts, and a heat shimmer that has been there since the cooling failed. Something is still drawing power down there.",
+  "description": "Sand to the horizon with the tops of racks standing out of it like fenceposts, under a heat shimmer that has not lifted since the cooling failed a century ago. Something down there is still drawing power, steadily, and has been for longer than anyone alive. The salvage out here is the best in the era, and so is the chance of not coming back.",
   "background": {
     "layers": [
       {
@@ -55,7 +55,7 @@
       "when": [
         "armedResistance"
       ],
-      "description": "Sand to the horizon, racks standing out of it, and a man on the north ridge who has been up there eleven days because somebody in Kell finally handed out rifles.",
+      "description": "Sand to the horizon, racks standing out of it, and a man prone on the north ridge with a rifle and a notebook. He has been up there eleven days counting what comes out of the sand, and he is only up there because somebody in Kell finally handed out steel.",
       "npcs": [
         "hale_ridge"
       ]
@@ -64,7 +64,7 @@
       "when": [
         "letItFall"
       ],
-      "description": "Sand to the horizon and nobody on the ridge. The Ash Camp crews went south the year the stronghold fell, and the Basin belongs to the heat now.",
+      "description": "Sand to the horizon, and nobody at all on the north ridge. The Ash Camp crews went south the year the stronghold fell and never sent anyone back. The Basin belongs to the heat now, and to whatever is still drawing power under it.",
       "npcs": []
     }
   ]

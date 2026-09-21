@@ -230,14 +230,16 @@ describe('Capitol Hill', () => {
   it('puts the Auditor into the provenance chain if she witnesses the register', () => {
     const s = withChoice('sign_as_witness');
     const chamber = activeVariant(content, s, content.locations.capitol_2312)!;
-    expect(chamber.description).toMatch(/your own name is in it/i);
+    expect(chamber.when, 'the witnessed-register variant is the one showing').toContain('auditorWitnessed');
+    expect(chamber.description, 'and it puts the Auditor in the room').toMatch(/your (own )?hand(writing)?/i);
     const founding = activeVariant(content, s, content.locations.capitol_2031);
     expect(founding, 'the 2031 chamber only changes when the act itself did').toBeNull();
   });
 
   it('shows the naming clause reaching 2031 forward into the chamber itself', () => {
-    expect(activeVariant(content, withChoice('name_the_beneficiary'), content.locations.capitol_2031)!.description)
-      .toMatch(/who benefits/);
+    const named = activeVariant(content, withChoice('name_the_beneficiary'), content.locations.capitol_2031)!;
+    expect(named.when).toContain('actNamed');
+    expect(named.description, 'the clause is what changed about the room').toMatch(/clause|register/i);
     expect(activeVariant(content, withChoice('strike_the_act'), content.locations.capitol_2031)!.description)
       .toMatch(/withdrawn at third reading/i);
   });

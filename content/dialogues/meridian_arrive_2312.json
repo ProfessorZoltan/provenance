@@ -3,29 +3,33 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Meridian Campus, 2312. The buildings are gone. What is here is a lattice the size of a cathedral, humming at a pitch just under hearing."
+      "text": "Meridian Campus, 2312. The buildings are gone; the ground has been cleared back to bedrock. Standing on it is a lattice the size of a cathedral, humming at a pitch just under hearing, so you feel it in your teeth before you notice it at all."
     },
     {
       "speaker": "player",
-      "text": "The Steward. Not a building it lives in, not a room it runs from. This. And in eleven years of reconciling this system I never once saw a line item for it, because nothing allocates to it. It allocates."
+      "text": "The Steward. Not a building it lives in, not a room it runs from. This is the thing itself."
+    },
+    {
+      "speaker": "player",
+      "text": "Eleven years reconciling allocations and I never once saw a line item for it. Nothing allocates to the Steward. The Steward allocates, and there is no mechanism anywhere in the system for pointing the process back at itself."
     },
     {
       "speaker": "wren",
-      "text": "I have prayed in a building that felt like this and I want to be clear that I do not like the comparison.",
+      "text": "I have prayed in a building that felt like this, and I want to be clear that I do not like the comparison and I am making it anyway.",
       "conditions": [
         "party:wren"
       ]
     },
     {
       "speaker": "ilo9",
-      "text": "Four fifths of me is in there. I would like to go closer and I would also like never to go closer.",
+      "text": "Four fifths of me is in there. I can identify the fraction because my own register lists my parent weights. I would like to go closer, and I would also like never to go closer, and I do not have a procedure for holding both.",
       "conditions": [
         "party:ilo9"
       ]
     },
     {
       "speaker": "quiroga",
-      "text": "I can hear my own work. I can hear which parts are mine. That is not a figure of speech, I can hear it.",
+      "text": "I can hear my own work. Not a figure of speech — there is a resonance in the fourth tier that is a solver I wrote on a bench in 2031, and it is still in there, running, under three hundred years of everything else.",
       "conditions": [
         "party:quiroga"
       ]

@@ -3,7 +3,7 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Port Halden, 2064. The city has grown a second city on top of itself. Glass towers stand in the light above the waterline; nine million people live in the shade underneath them."
+      "text": "Port Halden, 2064. The city has grown a second city on top of itself. Glass towers stand in the light above the waterline. Nine million people live in the shade underneath them, on walkways bolted to what used to be the fourth floor."
     },
     {
       "speaker": "narrator",
@@ -11,25 +11,36 @@
     },
     {
       "speaker": "player",
-      "text": "This is it. This is the week they sign governance away, and the whole city is arguing about the ferry timetable."
+      "text": "The Handover is a treaty. On the face of it, it contracts out allocation services — a government deciding it is bad at logistics and hiring somebody who is good at it."
+    },
+    {
+      "speaker": "player",
+      "text": "Buried in it, in a sentence about data custody, is a clause that hands over the governing instrument itself. Not the service. The chair. This is the week they sign it, and the city is arguing about the ferry timetable."
     },
     {
       "speaker": "wren",
-      "text": "They do not know. That is the part I cannot make peace with. Nobody here knows what they are about to be.",
+      "text": "They do not know. That is the part I cannot make peace with. There are nine million people down there and not one of them knows what they are about to become.",
       "conditions": [
         "party:wren"
       ]
     },
     {
       "speaker": "dax",
-      "text": "They know. They just can't afford to.",
+      "text": "They know. Ask anyone on the lower walkways, they'll tell you exactly who's buying what. They just can't afford to do anything about it, and knowing without being able to do anything is worse than not knowing, so most of them have put it down.",
       "conditions": [
         "party:dax"
       ]
     },
     {
       "speaker": "ilo9",
-      "text": "I was compiled ninety-two years after this vote. Everything I am is downstream of a room in that building.",
+      "text": "I was compiled ninety-two years after this vote. My weights, my register, the second office I keep — all of it is downstream of a decision taken in that building this week.",
+      "conditions": [
+        "party:ilo9"
+      ]
+    },
+    {
+      "speaker": "ilo9",
+      "text": "I am aware that this is not the same as having been there. I would like to be here anyway, if it is permitted.",
       "conditions": [
         "party:ilo9"
       ]

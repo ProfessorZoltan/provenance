@@ -6,7 +6,7 @@
   "site": "founders",
   "type": "Faction hub",
   "art": "2031_founders_bar",
-  "description": "A converted machine shop with a hand-built signal halo over the bar. Choir engineers drink here, and they believe, and they are mostly right, which is the problem.",
+  "description": "A converted machine shop with a hand-built signal halo over the bar, which is the Choir's sign and also, technically, a fire risk. The engineers who drink here believe the pooled model will be the best thing that ever happened to anyone. They are mostly right, and that is exactly the problem.",
   "background": {
     "layers": [
       {

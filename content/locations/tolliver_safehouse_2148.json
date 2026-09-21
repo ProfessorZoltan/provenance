@@ -6,7 +6,7 @@
   "site": "tolliver",
   "type": "Ripple site",
   "art": "2148_tolliver_safehouse",
-  "description": "A collapsed brick corner on the tide line, vines through the roof. Somebody baked here once. Nobody has since.",
+  "description": "A collapsed brick corner on the tide line with vines through the roof and a scorch line under them. Somebody baked here once, six days a week, at four in the morning. Nobody has since.",
   "background": {
     "layers": [
       {
@@ -47,7 +47,7 @@
         "tolliverSaved"
       ],
       "art": "2148_tolliver_safehouse_present",
-      "description": "The Tolliver Safehouse. Lamps in the cellar, a barricade across the alley, and four generations of one family who never had to sell the freehold. Everyone on this coast knows the green pennant means a bed.",
+      "description": "The Tolliver Safehouse: lamps in the cellar, a barricade across the alley, and four generations of one family who never had to sell the freehold. Everyone on this coast knows that a green pennant means a door that opens at night and nobody asking whose side you are on.",
       "npcs": [
         "safehouse_keeper"
       ],
@@ -58,7 +58,7 @@
         "tolliverSold"
       ],
       "art": "2148_tolliver_safehouse_absent",
-      "description": "A collapsed brick corner and a scorch line under the vines, a hundred and seventeen years old. You were standing in it when it was still warm.",
+      "description": "A collapsed brick corner and a scorch line under the vines, a hundred and seventeen years old. You were standing in this doorway when the brick was still warm.",
       "npcs": []
     }
   ]

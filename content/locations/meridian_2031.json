@@ -6,7 +6,7 @@
   "site": "meridian",
   "type": "Startup lab",
   "art": "2031_meridian",
-  "description": "A courtyard, four low buildings and eighty people. Five companies are pooling their models in the room at the end, and the vote on whether to publish the weights is this week.",
+  "description": "A courtyard, four low buildings and about eighty people, with test units walking a survey pattern on the lawn. Five companies are pooling five models into one in the room at the end of the path, under a private charter, and the vote on whether to publish the combined weights is this Thursday. Everything downstream is downstream of that vote.",
   "background": {
     "layers": [
       {
@@ -57,7 +57,7 @@
         "labBurned"
       ],
       "art": "2031_meridian",
-      "description": "What the fire left of a courtyard and four low buildings. The pooled models were on-site and on tape, and the tape was in the room that burned.",
+      "description": "What the fire left of a courtyard and four low buildings. The pooled weights were on-site and on tape, and the tape was in the room that burned. It gets rebuilt in nine years from partial copies, worse at everything, and nobody who uses it will remember it was ever better.",
       "npcs": []
     },
     {
@@ -65,7 +65,7 @@
         "charterLeaked"
       ],
       "art": "2031_meridian",
-      "description": "A courtyard with press on it. The charter is public, the vote is being re-run in front of people who were not invited, and nobody in the end room is enjoying it.",
+      "description": "A courtyard with press standing on it. The charter is public, the vote is being re-run in front of people who were never invited, and nobody in the end room is enjoying themselves. The pooling happens anyway — but under a document everybody has now read.",
       "npcs": [
         "quiroga_lab",
         "strand_young_2031"

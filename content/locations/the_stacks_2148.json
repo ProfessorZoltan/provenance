@@ -6,7 +6,7 @@
   "site": "stacks",
   "type": "Settlement",
   "art": "2148_the_stacks",
-  "description": "A trading post on the rooftops above the drowned city. Nothing is bought with money here; everything is weighed.",
+  "description": "A trading post on the rooftops above the drowned city, run by the grandchildren of people who walked the causeway north. Nothing is bought with money here — everything is weighed, including the things you would rather not put on a scale.",
   "background": {
     "layers": [
       {
@@ -49,7 +49,7 @@
       "when": [
         "causewayWarned"
       ],
-      "description": "A trading post on the rooftops above the drowned city, and a swimming line strung between two chimneys with a queue of children on it. Nothing is bought with money here; everything is weighed.",
+      "description": "A trading post on the rooftops, busier than it has any right to be, with a swimming line strung between two chimneys and a queue of children on it. Somebody told the causeway generation the roofs would hold, and they believed it enough to stay.",
       "npcs": [
         "trader_sable",
         "stacks_swimmer"
@@ -60,7 +60,7 @@
       "when": [
         "causewayTruth"
       ],
-      "description": "A trading post on the rooftops, thinner than it should be. The causeway generation stopped coming north a decade before the water did, and their grandchildren are not here.",
+      "description": "A trading post on the rooftops, thinner than it should be. Told the truth about how long it would take, the causeway generation stopped coming north a decade before the water did. Their grandchildren are not here, because there are no grandchildren.",
       "npcs": [
         "trader_sable"
       ],

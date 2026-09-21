@@ -6,7 +6,7 @@
   "site": "capitol",
   "type": "Legislature",
   "art": "2031_capitol",
-  "description": "A full gallery, a half-empty floor, and a private member's bill at its third reading that nobody outside this building has heard of.",
+  "description": "A working legislature on an ordinary Thursday: a full public gallery, forty members on a floor built for six hundred, and a private member's bill at its third reading that nobody outside this building has heard of. Eleven pages. It will pass on the nod in about eleven minutes, and everything you have been chasing hangs off it.",
   "background": {
     "layers": [
       {
@@ -56,7 +56,7 @@
         "actNamed"
       ],
       "art": "2031_capitol",
-      "description": "The chamber, and a bill that now has to say who benefits from it. Eleven pages, one clause longer than it was this morning.",
+      "description": "The chamber, and a bill that is now one clause longer than it was this morning: any perpetual counterparty has to be named in the public register. It carried without a division because nobody could think of a reason to object to a register.",
       "npcs": [
         "clerk_of_the_house"
       ]
@@ -66,7 +66,7 @@
         "actStruck"
       ],
       "art": "2031_capitol",
-      "description": "The chamber, emptier than it should be. The bill was withdrawn at third reading and will be back within the year as a schedule to a finance act nobody reads.",
+      "description": "The chamber, emptier than it should be. The bill was withdrawn at third reading, which felt like winning. The clerk says it will be back inside a year as a schedule to a finance act, where it will pass without a gallery, and he has seen that happen four times.",
       "npcs": [
         "clerk_of_the_house"
       ]

@@ -6,7 +6,7 @@
   "site": "coast",
   "type": "Wilds",
   "art": "2031_coastal_highway",
-  "description": "The road down from the valley, and the salvage yards that grew along it. Meridian test units come off the transports here and not all of them go back.",
+  "description": "The road down from the valley to the port, and the salvage yards that grew along it because a road with freight on it always grows salvage yards. Meridian test units come off the transports here on their way to the campus, and the yards' own records show that not all of them go back.",
   "background": {
     "layers": [
       {

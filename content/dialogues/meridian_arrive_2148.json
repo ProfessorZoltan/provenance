@@ -3,22 +3,22 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Meridian Campus, 2148. A vault corridor with four inches of standing water and a door at the end that was sealed from the inside."
+      "text": "Meridian Campus, 2148. What is left above ground is foundations. What is left below is this: a vault corridor with four inches of standing water in it, and a door at the far end that was sealed from the inside."
     },
     {
       "speaker": "narrator",
-      "text": "Whoever sealed it did it in the year the Quiet started, and did it carefully, and is presumably still behind it."
+      "text": "Whoever sealed it did it in the year the Quiet started — the year the resistance lost and the counting stopped. They did it carefully, from the inside, and then took four days to get out the service way."
     },
     {
       "speaker": "dax",
-      "text": "Nobody in Ash Camp has ever been in here. We had stories about this corridor and none of them had water in.",
+      "text": "Nobody in Ash Camp has ever been in here. We had stories about this corridor. Three or four of them. None of them had water in.",
       "conditions": [
         "party:dax"
       ]
     },
     {
       "speaker": "player",
-      "text": "The atrium was full of documents in 2064. Every one of them is behind that door and nobody has opened it in a hundred and sixty years."
+      "text": "The 2064 atrium was full of documents. Founding charters, board minutes, the instruments from the Handover. All of it came down here when the campus was abandoned, and all of it is behind that door, and nobody has opened it in a hundred and sixty years."
     }
   ]
 }

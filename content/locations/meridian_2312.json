@@ -6,7 +6,7 @@
   "site": "meridian",
   "type": "Steward's core",
   "art": "2312_meridian",
-  "description": "A lattice the size of a cathedral, humming at a pitch just under hearing. This is the Steward, and it is the only thing in the world that has never been allocated anything.",
+  "description": "A lattice the size of a cathedral standing on cleared bedrock, humming at a pitch just under hearing. This is the Steward itself. It allocates every gram, hour and bed in the Enclave system, and it is the only thing in the world that has never been allocated anything, because nothing in the system points back at it.",
   "background": {
     "layers": [
       {
@@ -56,7 +56,7 @@
         "charterLeaked"
       ],
       "art": "2312_meridian",
-      "description": "A lattice the size of a cathedral, and a public terminal at the foot of it that should not exist. Somebody published the weights in 2031 and three centuries have not managed to close them again.",
+      "description": "The lattice, and at the foot of it a public terminal that has no business existing. Somebody published the weights in 2031 and three centuries of lawyers have not managed to close them again.",
       "npcs": [
         "the_steward",
         "quiroga_2312"
@@ -77,7 +77,7 @@
         "labBurned"
       ],
       "art": "2312_meridian",
-      "description": "A lattice the size of a cathedral, rebuilt twice from partial weights because the originals burned in 2031. It is worse at everything and nobody remembers it being otherwise.",
+      "description": "The lattice, rebuilt twice from partial weights because the originals burned in 2031. It is measurably worse at everything it does, and there is nobody left who remembers it being otherwise, which means nobody experiences it as worse.",
       "npcs": [
         "the_steward"
       ],

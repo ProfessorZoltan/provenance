@@ -3,29 +3,47 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "The Basin, 2064. Blue aisles to the vanishing point, forty-one degrees, and a sound you feel in your sternum rather than hear."
+      "text": "The Basin, 2064. The frame has become a building, and the building has become aisles: blue-lit racks running to a vanishing point in both directions. Forty-one degrees. The noise is not a noise you hear so much as one you feel behind the sternum."
     },
     {
       "speaker": "player",
-      "text": "This is it. Not the senate, not the campus. Whatever is going to be the Steward is running in this room right now, and it is about six months old."
+      "text": "This is it. Not the senate, not the campus, not the charter. Everything those rooms decided runs on hardware, and the hardware is in here, and right now it is about six months old."
+    },
+    {
+      "speaker": "player",
+      "text": "In three hundred years the thing running in these racks will decide who eats, where they sleep and what work they are suited to. Today it is a procurement line with a maintenance contract."
     },
     {
       "speaker": "ilo9",
-      "text": "I would like it recorded that I can feel the shape of this. It is the room I am a copy of a copy of.",
+      "text": "I would like it recorded that I can feel the shape of this room. I was compiled from weights that were trained here. I am, by my own register, a copy of a copy of something in this aisle.",
+      "conditions": [
+        "party:ilo9"
+      ]
+    },
+    {
+      "speaker": "ilo9",
+      "text": "That is not a claim about feeling. I am reporting a match. I would not want it written down as more than it is.",
       "conditions": [
         "party:ilo9"
       ]
     },
     {
       "speaker": "mara",
-      "text": "Article nine assigns custody of exactly this. I have been arguing about this building for four years and I have never seen it.",
+      "text": "Article nine of the Handover treaty is one sentence about data custody, and it runs to a hundred and forty words, and this is what it assigns. Not the service. Not the contract. This.",
+      "conditions": [
+        "party:mara"
+      ]
+    },
+    {
+      "speaker": "mara",
+      "text": "I have argued about this building in committee for four years. I have written nine amendments to the clause that hands it over. Until today I had never once been inside it.",
       "conditions": [
         "party:mara"
       ]
     },
     {
       "speaker": "narrator",
-      "text": "Nothing in here is guarded. It does not need to be. Everyone who could reach it has already been paid."
+      "text": "Nothing in here is guarded. There are no doors between you and the racks. It does not need guarding, because every person who could reach it has already been paid for the version of the future where they do not."
     }
   ]
 }

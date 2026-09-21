@@ -5,7 +5,7 @@
   "era": "2312",
   "site": "kell",
   "type": "The last free place",
-  "description": "Snow on the terraces, a chapel with no cameras in it, and under the chapel floor, a place where time is layered.",
+  "description": "The last place in the valley that does not report to anyone: snow on the terraces, a chapel with no cameras in it, and Sister Wren, who keeps both. Under the chapel floor the eras touch, and the stairs down are the only reason any of this is possible.",
   "art": "2312_kell",
   "background": {
     "layers": [
@@ -61,7 +61,7 @@
       "when": [
         "fleeing"
       ],
-      "description": "Snow on the terraces, a chapel with no cameras in it, and under the chapel floor, a place where time is layered.",
+      "description": "Four hours up the valley road with a revoked access card and nowhere else to be. A low stone building with a light on in it, and a woman in the doorway who has clearly been expecting somebody for a while and is not fussy about who.",
       "npcs": [
         "wren_hub",
         "dax_hub"

@@ -3,15 +3,19 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Four hours up the valley road. The monastery is a low building with a light on, which at this hour in this century is close to a miracle."
+      "text": "Four hours up the valley road on foot, past the last of the perimeter lighting. The monastery is a low stone building with a light on in it, which at this hour in this century is close to a miracle."
     },
     {
       "speaker": "narrator",
-      "text": "A woman in a habit is standing in the doorway as though she has been expecting somebody for some time and is not fussy about who."
+      "text": "A woman in a habit is standing in the doorway with her arms folded, as though she has been expecting somebody for some time and is not fussy about who."
     },
     {
       "speaker": "wren",
-      "text": "You walked up. Nobody walks up. Come inside before you are a silhouette on a road."
+      "text": "You walked up. Nobody walks up. The road is four hours and there has not been a reason to be on it since the ferry stopped."
+    },
+    {
+      "speaker": "wren",
+      "text": "Come inside before you are a silhouette on a road."
     },
     {
       "speaker": "player",
@@ -19,7 +23,11 @@
     },
     {
       "speaker": "wren",
-      "text": "Only that you are the sort of trouble that arrives on foot at four in the morning. Come in. There is a man inside who is going to be extremely rude to you, and he is worth listening to anyway.",
+      "text": "I know you are the sort of trouble that arrives on foot at four in the morning, which narrows it considerably. I will learn the rest inside."
+    },
+    {
+      "speaker": "wren",
+      "text": "There is a man in the kitchen who is going to be extremely rude to you within about a minute of meeting you. He is worth listening to anyway. Most rude people are not. He is.",
       "action": "prologue:arrive"
     }
   ]

@@ -6,34 +6,63 @@
   "site": "kell",
   "type": "Ripple site",
   "art": "2312_kell_village",
-  "description": "A slab of valley granite set into the verge where the perimeter road bends, with names cut into it in four different hands. It is here because the Ash Camp crews came down to Kell in 2148 carrying steel you put in their hands.",
+  "description": "A slab of valley granite set into the verge where the perimeter road bends, with names cut into it in four different hands. It is here because in 2148 the Ash Camp crews came down to Kell carrying steel you put in their hands, and a hundred and sixty-four of them did not go back up.",
   "background": {
     "layers": [
-      { "id": "sky", "drift": 0.1, "art": "kell2312_sky", "ambient": "pulse" },
-      { "id": "mid", "drift": 0.3, "art": "kell2312_village", "ambient": "breathe" },
-      { "id": "near", "drift": 0.6, "art": "kell2312_floor" },
-      { "id": "fore", "drift": 1.0, "art": "kell2312_fore", "ambient": "sway" }
+      {
+        "id": "sky",
+        "drift": 0.1,
+        "art": "kell2312_sky",
+        "ambient": "pulse"
+      },
+      {
+        "id": "mid",
+        "drift": 0.3,
+        "art": "kell2312_village",
+        "ambient": "breathe"
+      },
+      {
+        "id": "near",
+        "drift": 0.6,
+        "art": "kell2312_floor"
+      },
+      {
+        "id": "fore",
+        "drift": 1.0,
+        "art": "kell2312_fore",
+        "ambient": "sway"
+      }
     ],
     "particles": "snow"
   },
   "music": "hub_2312",
-  "npcs": ["stonekeeper"],
+  "npcs": [
+    "stonekeeper"
+  ],
   "quests": [],
   "encounters": [],
   "links": [],
   "timeLinks": [],
   "variants": [
     {
-      "when": ["ownership>=50"],
+      "when": [
+        "ownership>=50"
+      ],
       "art": "2312_kell_village",
-      "description": "A slab of valley granite at the bend in the perimeter road, names cut into it in four hands, and a fifth hand still cutting. Somebody has been adding to it: not the dead now, but the year, and what was open by the end of it.",
-      "npcs": ["stonekeeper"]
+      "description": "The Winter Stone at the bend in the perimeter road: names in four hands, and a fifth hand still cutting. What is being added now is not the dead. It is the year, and what was held, and who was standing there — because somebody upstream made the records public and the keeper can finally check a name before she cuts it.",
+      "npcs": [
+        "stonekeeper"
+      ]
     },
     {
-      "when": ["sync<=-60"],
+      "when": [
+        "sync<=-60"
+      ],
       "art": "2312_kell_village",
-      "description": "A slab of valley granite at the bend in the perimeter road. The names are cut deep and there are a great many of them, and nothing has been added under the last one. The winter they held for is the winter everything else stopped.",
-      "npcs": ["stonekeeper"]
+      "description": "The Winter Stone at the bend in the perimeter road. The names are cut deep and there are a great many of them, and nothing at all has been added under the last one. The winter they held for is the winter that came, and then kept coming.",
+      "npcs": [
+        "stonekeeper"
+      ]
     }
   ]
 }

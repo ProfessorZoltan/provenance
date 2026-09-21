@@ -6,7 +6,7 @@
   "site": "basin",
   "type": "Cooling fields",
   "art": "2312_basin",
-  "description": "White plain, steam towers on a grid, and the quietest place in the Enclave system. Everything the Steward thinks, it thinks here, and the allocation for this site has never once been queried.",
+  "description": "The Steward's cooling fields: a white plain, steam towers on a grid, and the quietest place in the Enclave system. Everything the Steward thinks, it thinks here. It draws more power than the Enclave does, and in two hundred and eighty-one years of quarterly reconciliations the allocation for this site has never once been queried.",
   "background": {
     "layers": [
       {
@@ -55,7 +55,7 @@
       "when": [
         "crewNamed"
       ],
-      "description": "White plain, steam towers, and a cast plaque at the service gate with four hundred and six names on it. Somebody in 2031 made the payroll a public document and it has been one ever since.",
+      "description": "The cooling fields, and bolted to the service gate a cast plaque with four hundred and six names on it. Somebody in 2031 filed the Basin payroll as a public document and it has stayed one ever since, which is why the men who poured this ground have names and not a number.",
       "npcs": [
         "field_auditor"
       ]

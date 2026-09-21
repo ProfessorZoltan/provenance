@@ -3,26 +3,30 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Capitol Hill, 2312. The building is gone. What is here is a room, four chairs and a table, and the allocation system has no entry for any of it."
+      "text": "Capitol Hill, 2312. The building is gone; the hill is a lawn. What is here is one room, single storey, unmarked, with four chairs and a table in it."
     },
     {
       "speaker": "player",
-      "text": "The Continuity Board. I have reconciled this Enclave for eleven years and I have never seen this line item, because there isn't one. It isn't paid for. It owns the thing that does the paying."
+      "text": "The Continuity Board. Eleven years reconciling this Enclave and I never saw a line item for this room, because there isn't one. It is not paid for out of anything."
+    },
+    {
+      "speaker": "player",
+      "text": "It is the other way round. This room owns the thing that does the paying."
     },
     {
       "speaker": "wren",
-      "text": "Four chairs. Not four hundred. Four.",
+      "text": "Four chairs. Not four hundred, not forty. Four.",
       "conditions": [
         "party:wren"
       ]
     },
     {
       "speaker": "narrator",
-      "text": "The Board sits above the Steward. It has met four times in two hundred years, and it is not in session now, which is the only reason you are still standing."
+      "text": "The Board sits above the Steward and the Steward has no mechanism to allocate anything to it, which is the design rather than an oversight. It has met four times in two hundred years. It is not in session now, which is the only reason you are still standing here."
     },
     {
       "speaker": "narrator",
-      "text": "There is a register on the table that runs back to 2031, and your own name is on the first page in your own handwriting.",
+      "text": "There is a register on the table, bound, running back to 2031. It is open at the first page, and your own name is on it, in your own handwriting.",
       "conditions": [
         "flag:auditorWitnessed"
       ]

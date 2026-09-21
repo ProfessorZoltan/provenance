@@ -6,7 +6,7 @@
   "site": "capitol",
   "type": "Continuity Board seat",
   "art": "2312_capitol",
-  "description": "Four chairs and a table, in a room the allocation system has no entry for. The Board sits above the Steward. It has met four times in two hundred years and it is not in session now.",
+  "description": "The building is gone. What is here is one unmarked room with four chairs and a table, and the allocation system has no entry for any of it — not the room, not the lighting, not the chairs. The Continuity Board sits above the Steward and owns the thing that does the paying. It has met four times in two hundred years, and it is not in session now.",
   "background": {
     "layers": [
       {
@@ -56,7 +56,7 @@
         "auditorWitnessed"
       ],
       "art": "2312_capitol",
-      "description": "Four chairs and a table, and a register on it that runs back to 2031. Your own name is in it, in your own hand, on the first page.",
+      "description": "Four chairs, a table, and on the table a bound register running back to 2031. It is open at the first page. The sponsor's signature is a name nobody in three centuries has been able to place, and the witness signature under it is in your handwriting.",
       "npcs": [
         "board_secretary"
       ]
@@ -66,7 +66,7 @@
         "boardAlerted"
       ],
       "art": "2312_capitol",
-      "description": "Four chairs and a table, and a great deal of enforcement in a room that has never needed any. Somebody told it its history was being edited.",
+      "description": "Four chairs and a table, and a great deal of enforcement in a room that has never needed any, standing about with nothing allocated to them and nowhere to report. Something very old was told its history was being edited, and this is what it does about it.",
       "npcs": [
         "board_secretary"
       ]

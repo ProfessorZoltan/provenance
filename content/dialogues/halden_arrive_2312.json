@@ -3,15 +3,19 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Enclave 7. Housing block, allocation office, a bench you ate lunch on for eleven years, and a quarterly budget line older than the Steward."
+      "text": "Enclave 7, 2312. Housing block, allocation office, a bench you ate lunch on for eleven years. Forty thousand people on the shelf of ground above what used to be Port Halden."
     },
     {
       "speaker": "player",
-      "text": "I filed from that third window. Four days after I asked who Continuity Holdings were, my own access card stopped working."
+      "text": "I filed from that third window. Every quarter for eleven years, and every quarter it closed."
+    },
+    {
+      "speaker": "player",
+      "text": "Four days after I asked who Continuity Holdings were, my card stopped working on that door. Nobody came to explain. Nobody had to. The access list is allocation, and allocation is not a person you can argue with."
     },
     {
       "speaker": "narrator",
-      "text": "Nothing here is ruined. Nothing here is even unpleasant. It is simply all decided, and it was decided somewhere you have now been standing.",
+      "text": "Nothing here is ruined. Nothing here is even unpleasant. It is simply all decided, and you have now been standing in the rooms where the deciding was done.",
       "conditions": [
         "visited:2064"
       ]
@@ -24,8 +28,15 @@
       ]
     },
     {
+      "speaker": "wren",
+      "text": "I do not mean that unkindly. I mean I have been here an hour and I have not seen one thing anybody chose.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
       "speaker": "narrator",
-      "text": "Two Wardens at the block entrance are logging faces, and one of them is taking longer over yours than the other.",
+      "text": "Two Wardens at the block entrance are logging faces as people pass. One of them is taking noticeably longer over yours than the other.",
       "conditions": [
         "flag:boardAlerted"
       ]

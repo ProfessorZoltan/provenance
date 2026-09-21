@@ -6,7 +6,7 @@
   "site": "tolliver",
   "type": "Ripple site",
   "art": "2031_tolliver_bakery",
-  "description": "A brick corner bakery on the last block the port has not bought. The ovens have been lit at four in the morning for sixty years, and the block around it is being cleared.",
+  "description": "A brick corner bakery on the last block the port has not bought. The ovens have been lit at four in the morning for sixty years. The block around it is being cleared, the family has an offer on the table, and what they do about it decides whether there is a door open at night on this corner in 2148.",
   "background": {
     "layers": [
       {
@@ -51,7 +51,7 @@
         "tolliverSaved"
       ],
       "art": "2031_tolliver_bakery_saved",
-      "description": "The bakery, and the block around it, in the family's name. There is a green pennant over the door and a queue out of it at five in the morning.",
+      "description": "The bakery, and the block around it, in the family's name and not for sale. There is a green pennant over the door and a queue out of it at five in the morning, and both of those will still mean something in a hundred and seventeen years.",
       "npcs": [
         "mattie_tolliver"
       ]
@@ -61,7 +61,7 @@
         "tolliverSold"
       ],
       "art": "2031_tolliver_bakery_burned",
-      "description": "What the fire left. The oven still stands because an oven is mostly brick, and somebody has boarded the window from the inside.",
+      "description": "What the fire left. The oven still stands because an oven is mostly brick. Somebody has boarded the window from the inside, which means somebody was in there when it went up.",
       "npcs": [
         "mattie_tolliver"
       ]

@@ -3,22 +3,29 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Meridian Campus, 2064. A glass atrium with a ticker running the length of it, and four buildings behind it that nobody who works here has ever been inside."
+      "text": "Meridian Campus, 2064. A glass atrium with a ticker running the full length of it, planted with things that need more light than this climate gives them. Behind it, four buildings."
     },
     {
       "speaker": "player",
-      "text": "Thirty-three years and it has grown a lobby. The lab is still back there. It is just nobody's job to go in any more."
+      "text": "Thirty-three years and it has grown a lobby. The lab is still back there — same four buildings, two hundred metres. It is simply nobody's job to go into them any more."
     },
     {
       "speaker": "mara",
-      "text": "This is the counterparty. The actual one, with a floor and a receptionist. Article nine assigns custody to this address.",
+      "text": "This is the counterparty. The actual one, with a floor and a receptionist and a coffee machine. When article nine says custody is assigned, this is the address it is assigned to.",
+      "conditions": [
+        "party:mara"
+      ]
+    },
+    {
+      "speaker": "mara",
+      "text": "I have spent four years writing amendments about an entity I had never seen. I had started to think of it as a legal fiction. It has a car park.",
       "conditions": [
         "party:mara"
       ]
     },
     {
       "speaker": "narrator",
-      "text": "The ticker is running allocation figures for regions that have not been called regions since before you were born."
+      "text": "The ticker is running allocation figures for regions that have not been called regions since before you were born. Nobody in the atrium is looking at it."
     }
   ]
 }

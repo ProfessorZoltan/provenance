@@ -5,7 +5,7 @@
   "era": "2312",
   "site": "kell",
   "type": "Faction hub (Commons)",
-  "description": "The free town below the monastery. Nobody here is allocated anything. They trade, argue and keep the road open.",
+  "description": "The free town below the monastery, and the one settlement on this coast the Steward has never resolved: it shows in the records as a maintenance liability with an unusual headcount. Nobody here is allocated anything. They trade, they argue, they mend their own roofs badly, and they keep the valley road open.",
   "art": "2312_kell_village",
   "background": {
     "layers": [
@@ -50,7 +50,7 @@
       "when": [
         "armedResistance"
       ],
-      "description": "The free town below the monastery. There is a memorial by the gate now: a hundred and sixty-four names from 2148, and a line of hand-forged blades hung above them. The village drills on Sundays.",
+      "description": "The free town below the monastery, with a memorial by the gate: a hundred and sixty-four names from 2148 and a line of hand-forged blades hung above them. They drill on Sundays, which is either a tradition or a warning depending on who you ask.",
       "npcs": [
         "pell",
         "ansel",
@@ -64,7 +64,7 @@
       "when": [
         "letItFall"
       ],
-      "description": "The free town below the monastery. Quieter than you remember. A Steward sentry drone hovers over the square, and half the market stalls are shuttered. Nobody meets your eye.",
+      "description": "The free town below the monastery, and quieter than you remember it. A Steward sentry drone holds station over the square. Half the market stalls are shuttered and nobody meets your eye, and it is not you they are avoiding.",
       "npcs": [
         "pell",
         "ansel_quiet"

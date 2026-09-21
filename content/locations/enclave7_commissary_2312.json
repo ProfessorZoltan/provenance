@@ -6,7 +6,7 @@
   "site": "commissary",
   "type": "Settlement",
   "art": "2312_enclave_7_commissary",
-  "description": "Allocated goods only. The shelves hold exactly what the Steward has decided Enclave 7 requires this quarter, and not one item more.",
+  "description": "Allocated goods only. The shelves hold precisely what the Steward has decided Enclave 7 requires this quarter: not less, which would be cruelty, and not one item more, which would be waste. Nobody here has ever gone hungry. Nobody here has ever chosen dinner.",
   "background": {
     "layers": [
       {
@@ -50,7 +50,7 @@
         "ownership>=20"
       ],
       "art": "2312_enclave_7_commissary_open",
-      "description": "The commissary, and half the shelves are stocked by people rather than by allocation. Somebody, somewhere back there, opened something up.",
+      "description": "The commissary, and half the shelves are now stocked by people rather than by allocation — surplus, trade, things somebody grew. It is untidy and it is louder than it used to be. Somewhere upstream, somebody opened something up.",
       "npcs": [
         "clerk_novi"
       ],
@@ -61,7 +61,7 @@
         "ownership<=-70"
       ],
       "art": "2312_enclave_7_commissary_allocated",
-      "description": "The commissary. Two shelves, both of them rations, and a queue that does not talk.",
+      "description": "The commissary. Two shelves, both rations, and a queue that does not talk. The allocation is correct, in the sense that everyone in it will eat.",
       "npcs": [
         "clerk_novi"
       ],

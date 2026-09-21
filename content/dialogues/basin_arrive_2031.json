@@ -3,22 +3,40 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "The Basin, 2031. Four hundred hectares of graded sand, a frame going up in the middle of it, and a pour schedule that does not stop for dark."
+      "text": "The Basin, 2031. Four hundred hectares of graded sand under a sky with nothing in it. In the middle there is a frame going up, eleven storeys of it so far, and the concrete pour runs through the night under work lamps because the schedule does not stop for dark."
     },
     {
       "speaker": "player",
-      "text": "Meridian's filings say this is a logistics facility. Logistics facilities do not need four hundred megawatts."
+      "text": "In my century this site draws four hundred megawatts. Meridian's filings call it a logistics facility. A logistics facility is a warehouse with a car park. You do not cool a warehouse with a river."
+    },
+    {
+      "speaker": "player",
+      "text": "So whatever they are building here, they wrote down something else. That is not a crime yet. It is the kind of thing that becomes one about forty years downstream."
     },
     {
       "speaker": "dax",
-      "text": "It's a hole in the ground with money going into it. Everything I hate started as one of these.",
+      "text": "It's a hole in the ground with money going into it. That's it. That's the whole thing.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Everything my lot ever had taken off us started as one of these. Somebody grades the sand, somebody pours it, and in thirty years there's a fence round it and you need permission to walk past.",
       "conditions": [
         "party:dax"
       ]
     },
     {
       "speaker": "wren",
-      "text": "Eight hundred people are building it and not one of them has been told what it is. That is the part worth writing down.",
+      "text": "Eight hundred people are putting it up, and I have asked four of them what it is for. Not one of them could tell me. They are not being secretive. They genuinely have not been told.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "Write that down before anything else. The people building the thing did not know what it was. Three hundred years from now that will matter more than the concrete.",
       "conditions": [
         "party:wren"
       ]

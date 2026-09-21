@@ -3,29 +3,44 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Port Halden, 2031. Six in the morning and the quay has been awake for three hours. Cranes, gulls, diesel, and a line of containers going somewhere nobody on this dock has ever been."
+      "text": "Port Halden, 2031. Six in the morning, and the quay has been awake for three hours. Cranes, gulls, diesel, and a line of containers on the apron waiting for a ship that will take them somewhere nobody on this dock has ever been."
     },
     {
       "speaker": "player",
-      "text": "Four crates a week. Same consignor, same hill address, eighty years before anybody called it the Steward."
+      "text": "Four crates a week leave berth nine for a post box in the hills. Same consignor, same address, same signature for eleven years. That address is Meridian, eighty years before anybody thinks to call any of this the Steward."
+    },
+    {
+      "speaker": "player",
+      "text": "Freight is the part nobody bothers to falsify. A senate record can be drafted. A manifest has to match what is actually in the box, or the box does not go on the ship."
     },
     {
       "speaker": "wren",
-      "text": "You are looking for the first payment. This is where a thing gets a price and stops being an idea.",
+      "text": "So you are looking for the first payment.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "I am looking for the first payment."
+    },
+    {
+      "speaker": "wren",
+      "text": "Then this is the right place to stand. A thing stops being an idea on the morning somebody puts a price on it and somebody else agrees to pay.",
       "conditions": [
         "party:wren"
       ]
     },
     {
       "speaker": "dax",
-      "text": "It's a port. Somebody loaded it, somebody signed for it, and somebody got paid. That's all a beginning ever is.",
+      "text": "It's a port. Somebody loaded it, somebody signed for it, somebody got paid. That's all a beginning is. People want beginnings to be a speech.",
       "conditions": [
         "party:dax"
       ]
     },
     {
       "speaker": "narrator",
-      "text": "The foreman is watching you from the weighbridge and has decided you are not from the union."
+      "text": "The foreman is watching you from the weighbridge. He has already worked out that you are not from the union, and has not yet decided whether that makes you worth the time."
     }
   ]
 }

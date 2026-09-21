@@ -3,25 +3,36 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "The Basin, 2148. Sand to the horizon with racks standing out of it like fenceposts, and a heat shimmer over a machine that never stopped drawing power."
+      "text": "The Basin, 2148. Sand to the horizon, and standing out of it at intervals, the tops of racks, like fenceposts in a field nobody farms. The heat shimmer has been here since the cooling failed a century ago."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Something underneath is still drawing power. You can hear it in the ground if you crouch: the same note, steady, for longer than anyone alive."
     },
     {
       "speaker": "dax",
-      "text": "Ash Camp's two ridges that way. I learned to shoot on this ground and I have not come back to it since.",
+      "text": "Ash Camp's two ridges that way. I learned to shoot on this ground, off a rock about six hundred metres north, when I was nine.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Haven't been back. Wasn't a decision. You just stop going somewhere and then it's been twenty years.",
       "conditions": [
         "party:dax"
       ]
     },
     {
       "speaker": "narrator",
-      "text": "There is a man on the north ridge. He has been there long enough that the sand has drifted against him, and he does not appear to have noticed you.",
+      "text": "There is a man on the north ridge, prone, with a rifle and a notebook. Sand has drifted up against his left side. He has been there long enough for that to happen, and he does not appear to have noticed you at all.",
       "conditions": [
         "flag:armedResistance"
       ]
     },
     {
       "speaker": "narrator",
-      "text": "The ridges are empty. Whoever used to watch this place went south the year the stronghold fell.",
+      "text": "The ridges are empty. Whoever used to watch this place went south the year the stronghold fell, and nobody replaced them, because there was nobody left to do the replacing.",
       "conditions": [
         "flag:letItFall"
       ]

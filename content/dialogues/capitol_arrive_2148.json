@@ -3,11 +3,11 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Capitol Hill, 2148. Fallen columns, no roof, and a museum built in the ruin of the chamber by people who were paid to build it."
+      "text": "Capitol Hill, 2148. The roof is gone and four of the columns are down across what used to be the floor. Built into the ruin, carefully, is a museum: glass cases, floor lighting, printed cards. Somebody was paid to put it here."
     },
     {
       "speaker": "narrator",
-      "text": "Every exhibit is accurate. There is a case for the Handover, a case for the Founding, and a nineteen-month gap between them with a card in it that says RECORDS INCOMPLETE."
+      "text": "Every exhibit is accurate. There is a case for the Founding in 2031 and a case for the Handover in 2064, and between them a nineteen-month gap with a single card in it. RECORDS INCOMPLETE."
     },
     {
       "speaker": "dax",
@@ -17,8 +17,15 @@
       ]
     },
     {
+      "speaker": "dax",
+      "text": "She got in trouble for saying it. Not much trouble. Just enough that she only said it the once, to me, years later.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
       "speaker": "player",
-      "text": "It isn't lying. That is the horrible part. Every word in here is true and the shape of it is a lie."
+      "text": "It is not lying, though. That is the part that is hard to explain. Every word on every card in here is true. The lie is the shape, and you cannot put a shape behind glass."
     }
   ]
 }

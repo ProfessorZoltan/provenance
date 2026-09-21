@@ -3,11 +3,11 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Kell, 2064. The retreat has terraces now, and solar sails, and a water system somebody clever built out of scrap."
+      "text": "Kell, 2064. The six timber buildings are still here, and around them: terraces cut into the slope, solar sails on the ridge, and a water system built out of salvage by somebody who clearly enjoyed the problem."
     },
     {
       "speaker": "narrator",
-      "text": "About forty people live here. None of them appear in a census, which in this century is the entire point."
+      "text": "About forty people live here. None of them appear in any census, which in this century is not an oversight. It is the entire point of the place."
     },
     {
       "speaker": "wren",
@@ -18,14 +18,14 @@
     },
     {
       "speaker": "wren",
-      "text": "Two centuries and four hundred metres from where I was standing this morning. I am not equal to it.",
+      "text": "Those are the same trees. Not the same kind of tree — the same trees, from the cuttings that were in the ground when I left the chapel this morning. Two centuries, and four hundred metres, and I am not equal to it.",
       "conditions": [
         "party:wren"
       ]
     },
     {
       "speaker": "dax",
-      "text": "Off-grid, unregistered and upslope of everything. My lot didn't invent that. We inherited it.",
+      "text": "Off-grid, unregistered, and upslope of everything so you see them coming. My lot didn't invent any of that. We inherited it off people like this and then we told ourselves we'd thought of it.",
       "conditions": [
         "party:dax"
       ]

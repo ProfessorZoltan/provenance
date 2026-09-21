@@ -6,7 +6,7 @@
   "site": "market",
   "type": "Settlement",
   "art": "2031_halden_market",
-  "description": "Everything that falls off a crate ends up on this street. It is the cheapest place in any century, and half of it will be rare in a hundred years.",
+  "description": "A street where everything that falls off a crate ends up. It is the cheapest place to buy anything in any century, the stallholders will haggle on principle, and roughly half of what is on these tables will be museum-rare in a hundred years.",
   "background": {
     "layers": [
       {

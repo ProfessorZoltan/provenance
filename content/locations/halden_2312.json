@@ -6,7 +6,7 @@
   "site": "halden",
   "type": "Enclave 7",
   "art": "2312_halden",
-  "description": "Your Enclave. Housing block, allocation office, the bench you ate lunch on for eleven years. Everything is exactly where you left it, which is the problem.",
+  "description": "Your Enclave: housing block, allocation office, the bench you ate lunch on for eleven years. Forty thousand people on the shelf of reclaimed ground above a drowned city that once held nine million. Everything is exactly where you left it, which is the problem.",
   "background": {
     "layers": [
       {
@@ -56,7 +56,7 @@
         "buyersExposed"
       ],
       "art": "2312_halden",
-      "description": "Your Enclave, and a great deal more enforcement than it used to carry. Exposing the buyers in 2064 put this address on a list.",
+      "description": "Your Enclave, carrying more enforcement than it has needed in its entire history. Putting the Handover's buyers on the public record in 2064 told something very old that its history was being edited, and this address is now on a list nobody will show you.",
       "npcs": [
         "supervisor_aldana"
       ]

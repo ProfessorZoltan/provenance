@@ -3,26 +3,37 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Port Halden, 2148. The sea took the first two storeys and stopped there, politely, as though it had been allocated exactly that much."
+      "text": "Port Halden, 2148. The sea took the first two storeys and then stopped, level, as though it had been allocated exactly that much and no more."
     },
     {
       "speaker": "narrator",
-      "text": "What is left is roof gardens, rope bridges, and the noise water makes in a stairwell that goes down forever."
+      "text": "What is left is roof gardens, rope bridges between chimney stacks, and the noise water makes in a stairwell that goes down further than anyone has been."
     },
     {
       "speaker": "dax",
-      "text": "I came through here as a kid. There were more roofs then.",
+      "text": "Came through here as a kid, with a crew, going south. There were more roofs then. People used to live four or five to a block up here.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Not now. Look at the lines. Half of them aren't tied to anything at the far end.",
       "conditions": [
         "party:dax"
       ]
     },
     {
       "speaker": "player",
-      "text": "Nine million people. The Enclave census for this whole coast in my century is forty thousand."
+      "text": "Nine million people lived in this city in 2064. The Enclave census for this entire coast in my century is forty thousand."
+    },
+    {
+      "speaker": "player",
+      "text": "The archive does not say where the rest went. It does not say they died, either. It simply stops counting them, quarter by quarter, until the number is small enough to be correct."
     },
     {
       "speaker": "wren",
-      "text": "Then we are standing in the difference.",
+      "text": "Then we are standing in the difference. Eight and a half million people, and this is the room they are in.",
       "conditions": [
         "party:wren"
       ]

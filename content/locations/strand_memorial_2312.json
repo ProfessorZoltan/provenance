@@ -6,7 +6,7 @@
   "site": "strand",
   "type": "Ripple site",
   "art": "2312_strand_memorial",
-  "description": "A civic memorial to the founder of Meridian, allocated one hundred square metres and a docent. What it is for changes with who is standing in front of it.",
+  "description": "A civic memorial to the founder of Meridian: one hundred square metres, a docent, and an allocation that renews without review. What it actually is changes depending on who is standing in front of it and what you did three centuries upstream.",
   "background": {
     "layers": [
       {
@@ -49,7 +49,7 @@
         "sync>=40"
       ],
       "art": "2312_strand_memorial_shrine",
-      "description": "Not a memorial any more. People have brought things: handwriting, wire flowers, a prayer wheel, a child's drawing of a machine with a face. The allocation office has stopped removing them.",
+      "description": "Not a memorial any more. People have been bringing things: handwriting, wire flowers, a prayer wheel, a child's drawing of a machine with a face on it. The allocation office stopped removing them at some point and did not announce that it had.",
       "npcs": [
         "memorial_docent"
       ]
@@ -59,7 +59,7 @@
         "sync<=-40"
       ],
       "art": "2312_strand_memorial_ruin",
-      "description": "The monument is down and the archive behind it is dark. Nobody has been allocated to clear it, which tells you what the Steward thinks it is worth.",
+      "description": "The monument is down and the archive behind it is dark. Nobody has been allocated to clear the site, and allocation is how this century says what a thing is worth.",
       "npcs": [
         "memorial_docent"
       ]
@@ -67,7 +67,7 @@
     {
       "when": [],
       "art": "2312_strand_memorial_museum",
-      "description": "A museum, and a careful one. Founding documents behind glass, a timeline with no gaps in it, and a plaque naming Callum Strand a steward of the public interest.",
+      "description": "A museum, and a careful one: founding documents behind glass, a timeline with no visible gaps in it, and a plaque naming Callum Strand a steward of the public interest. The nineteen months the 2148 curator could not fill are not marked here at all.",
       "npcs": [
         "memorial_docent"
       ]

@@ -3,26 +3,34 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Capitol Hill, 2031. A full public gallery, a floor with forty members on it out of six hundred, and a private member's bill at its third reading."
+      "text": "Capitol Hill, 2031. The public gallery is full. The floor is not: forty members out of six hundred, most of them reading something else. On the order paper is a private member's bill at its third reading."
     },
     {
       "speaker": "player",
-      "text": "The Enabling Bill. Eleven pages. It creates a legal category: perpetual administrative counterparty."
+      "text": "The Enabling Bill. Eleven pages. Nobody outside this building has heard of it and nobody inside it has read past the long title."
+    },
+    {
+      "speaker": "player",
+      "text": "What it does is create a legal category. Perpetual administrative counterparty. A thing that can be a party to a contract with no end date attached to it."
     },
     {
       "speaker": "wren",
-      "text": "That means nothing to me and I can tell from your face that it should.",
+      "text": "That means nothing to me, and I can tell from your face that it should.",
       "conditions": [
         "party:wren"
       ]
     },
     {
       "speaker": "player",
-      "text": "It means a thing can have an owner forever. Not a company, not a person, not a term of years. Forever. Everything I have been chasing hangs off this room, this afternoon."
+      "text": "It means a thing can be owned forever. Not for ninety-nine years, not for the life of a person, not until somebody dies or a company folds. Forever, by whoever is holding the paper."
+    },
+    {
+      "speaker": "player",
+      "text": "Every question I have been chasing for three centuries hangs off this room, this afternoon, and it will be over in about eleven minutes."
     },
     {
       "speaker": "mara",
-      "text": "Eleven pages and a third reading on a Thursday. This is exactly how it is always done and I have never once been able to prove it.",
+      "text": "Eleven pages, third reading, Thursday afternoon, on the nod. That is not carelessness, that is the method. I have watched it done nine times and I have never once been able to prove it was done on purpose.",
       "conditions": [
         "party:mara"
       ]

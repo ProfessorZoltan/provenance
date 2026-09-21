@@ -6,7 +6,7 @@
   "site": "graveyard",
   "type": "Ruin",
   "art": "2148_server_graveyard",
-  "description": "Racks the length of a street, tipped into the mud when the Quiet began. Something down there still has power, and it has been singing the same four seconds for a hundred and sixty years.",
+  "description": "Racks the length of a street, tipped into the mud the year the Quiet began and left where they fell. Something down at the far end still has trickle power, and it has been singing the same four seconds of a hymn for a hundred and sixty years, because it mis-parsed one line and nobody ever came to correct it.",
   "background": {
     "layers": [
       {
@@ -53,7 +53,7 @@
         "freedIlo9"
       ],
       "art": "2148_server_graveyard",
-      "description": "Racks the length of a street, and one empty cradle at the end of them with its restraints cut. The singing has stopped, because the thing that was singing is walking with you.",
+      "description": "Racks the length of a street, and at the end of them an empty cradle with its restraints cut through. The singing has stopped, because the thing that was singing is walking with you and has moved on to other work.",
       "npcs": [
         "ilo9_hub"
       ]
@@ -63,7 +63,7 @@
         "brokeIlo9"
       ],
       "art": "2148_server_graveyard",
-      "description": "Racks the length of a street, and at the end of them a cradle with something broken in it. The Quiet is quieter than it was.",
+      "description": "Racks the length of a street, and at the end of them a cradle with something broken in it that used to be a librarian. The Quiet is quieter than it was.",
       "npcs": []
     }
   ]
