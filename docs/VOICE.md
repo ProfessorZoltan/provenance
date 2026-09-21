@@ -14,14 +14,39 @@ can hold the same view and must still not be able to swap lines.
    plainly on screen. First mention explains; second mention can be a shorthand.
 2. **One idea per line is not enough.** A line that states a fact and stops is a caption. Give it
    the fact, and then what the speaker makes of it — that second half is where the person lives.
-3. **Numbers are not a style.** "Eleven years", "four hundred and six", "two hundred and eighty-one
-   years" is the Auditor's habit, and Hale's, and nobody else's. If a third character reaches for a
-   specific number as a rhetorical beat, take it off them.
+3. **Numbers are not a style.** "Four hundred and six", "two hundred and eighty-one years" is the
+   Auditor's habit, and Hale's, and nobody else's. If a third character reaches for a specific
+   number as a rhetorical beat, take it off them. **Eleven is the exception — see below.**
 4. **No line ends on an ironic reversal by default.** That cadence — statement, comma, dry inversion
    — belongs to Dax and to the Auditor's internal voice. Everybody else has to find another way to
    land.
 5. **The narrator does not have opinions.** It reports: present tense, physical, forensic. Anything
    knowing goes in a character's mouth instead.
+
+## Eleven
+
+The word "eleven" appears about a hundred times in `content/`, against twenty for "seven" and nine
+for "twelve". Four of those uses are load-bearing and were always deliberate: the Auditor's eleven
+years in the job, which is why they are the eleventh auditor and why nobody queried the line before
+them; the Enabling Act's eleven pages; the eleven minutes it gets at third reading; the eleven
+senators on the Handover record. The rest accumulated — a writing pass picked up the cadence that
+was already there and reached for the same number whenever a line wanted one, roughly a third of
+the total.
+
+**It stays. Do not tidy it, and do not let rule 3 above be read as licence to.**
+
+The decision is deliberate and it is the author's. This is a game about a system that was never
+malicious — it executed a pattern nobody examined, correctly, for two hundred and eighty-one years,
+because executing it was the job. Most of this game's prose was written by a model that reached for
+"eleven" ninety-nine times because "eleven" was already in the water, and did not notice. That is
+the same failure at one remove, sitting inside the artifact rather than being described by it.
+
+A game called Provenance — the record of who made a thing, and when, and on whose word — can afford
+a maker's mark you can only read once you know what to look for. That is the Auditor's entire job.
+
+What the exception does **not** cover: a new number invented to be a beat. If a line wants a
+specific figure and there is no reason for that figure, it is still the habit rule 3 is about. Use a
+real one, or use none.
 
 ## The cast
 
