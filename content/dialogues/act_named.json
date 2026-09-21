@@ -3,19 +3,23 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "A naming clause, moved from the chair, accepted without division because nobody on that floor can see a reason to object to a register."
+      "text": "A naming clause, moved from the chair, accepted without a division because nobody on that floor could think of a reason to object to a register."
     },
     {
       "speaker": "clerk_of_the_house",
-      "text": "Any perpetual counterparty must be named in the public register. That is all it says. It will hold up for three hundred years because it is boring."
+      "text": "Any perpetual counterparty must be named in the public register. That is the whole clause. Twenty-one words."
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "It will hold up for three hundred years precisely because it is boring. Nobody repeals a register. There is never a morning when repealing a register is the most urgent thing on the paper."
     },
     {
       "speaker": "player",
-      "text": "In my century there is a budget line that has been paid to a name for two hundred and eighty-one years, and the only reason the name is there at all is this afternoon."
+      "text": "In my century there is a budget line that has been paid to a name for two hundred and eighty-one years. The name is on it. The only reason the name is on it is this afternoon, and this clause, and the fact that nobody could be bothered to divide on it."
     },
     {
       "speaker": "mara",
-      "text": "One clause. On a Thursday. You have just done in eleven minutes what I could not do in four years.",
+      "text": "One clause. On a Thursday. You have done in eleven minutes what I could not do in four years, and I would like a moment to decide how I feel about that.",
       "conditions": [
         "party:mara"
       ]

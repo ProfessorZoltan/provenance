@@ -3,15 +3,23 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Withdrawn at third reading, to a small noise of approval from four people who wanted to go home."
+      "text": "Withdrawn at third reading, to a small noise of approval from four members who wanted to go home."
     },
     {
       "speaker": "clerk_of_the_house",
-      "text": "Eight months. It will come back as a schedule to a finance act, unamended and undebated, and this time there will be no gallery and no third reading and no me."
+      "text": "Eight months. Maybe ten."
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "It comes back as a schedule to a finance act. Same eleven pages, no long title, no gallery, no third reading, and no me, because clerks do not attend schedules. That is not a guess. I have watched it happen four times with four different bills."
     },
     {
       "speaker": "narrator",
-      "text": "It passes in the spring, in a schedule, with no naming clause. Everything after that happens in the dark rather than in daylight, which changes nothing about what happens and everything about whether it can be found."
+      "text": "It passes in the spring, inside a schedule, unamended and undebated — and without the naming clause, because nobody is in the room to move one."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Everything after that happens in the dark rather than in daylight. It changes nothing about what happens. It changes everything about whether anyone can ever find it."
     }
   ]
 }

@@ -3,27 +3,39 @@
   "lines": [
     {
       "speaker": "wren",
-      "text": "Threads first. Bandwidth is how many you get a turn; most actions cost one, heavy ones two or three. Keep one back and it banks as Slack, up to two, and next turn you act with more than you were given."
+      "text": "Threads first, because everything else is built on them. Bandwidth is how many threads you get at the start of your turn. Most actions cost one. The heavy ones cost two or three."
     },
     {
       "speaker": "wren",
-      "text": "Tempo is the party gauge. Two points for every thread any of us spends, forty at the top. It is the only thing in this century that gets easier the harder we work."
+      "text": "Keep one back and it banks as Slack, up to two — so a quiet turn is not a wasted turn. Next turn you act with more than you were given."
     },
     {
       "speaker": "wren",
-      "text": "Three Tempo buys a Rewind. The last thing an enemy did to us comes undone and they take their turn again, differently. I can do it once a battle; a second anchor, or the right training, buys another."
+      "text": "Tempo is the gauge between us. Every thread any of us spends puts two points in it, and it holds forty. It belongs to the party, not to me, whatever Dax tells you."
     },
     {
       "speaker": "wren",
-      "text": "Two Tempo and one thread buys a Fork. You see precisely what an action would do, down to the number, and then decide whether to do it. It is not a guess. It is the same future, read twice."
+      "text": "It is the only thing in this century that gets easier the harder we work, so do not hoard it. A full gauge you never spend is a fight you fought the ordinary way."
     },
     {
       "speaker": "wren",
-      "text": "And every time we pull, Entropy rises. Twenty for a Rewind, ten for a Fork, more for anything Chronal. Above seventy an Echo of one of us steps out of a version of the fight we did not have, and only Chronal damage will touch it."
+      "text": "Three Tempo buys a Rewind. The last thing an enemy did to us comes undone, and they take that turn again and do something else with it. I can manage one a battle. A second anchor, or the right training, buys another."
     },
     {
       "speaker": "wren",
-      "text": "That is the whole bargain, Auditor. Time will give you the turn back. It just wants to be paid in versions of yourself."
+      "text": "Two Tempo and one thread buys a Fork. You see precisely what an action would do — the number, the shield, who goes down — and then you decide whether to do it. It is not an estimate. It is the same future, read twice."
+    },
+    {
+      "speaker": "wren",
+      "text": "And every time we pull, Entropy rises. Twenty for a Rewind. Ten for a Fork. More for anything Chronal."
+    },
+    {
+      "speaker": "wren",
+      "text": "Past seventy it answers back. An Echo of one of us steps out of a version of the fight we did not have — your face, my voice, standing on the wrong side — and nothing but Chronal damage will touch it."
+    },
+    {
+      "speaker": "wren",
+      "text": "That is the whole bargain, Auditor. Time will give you the turn back. It simply wants to be paid in versions of yourself."
     }
   ]
 }

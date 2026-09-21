@@ -3,22 +3,26 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "The counterparty field resolves to a name and nothing else."
+      "text": "The counterparty field resolves. It returns a name, and then it returns nothing else at all."
     },
     {
       "speaker": "player",
-      "text": "Continuity Holdings. No address. No department. No staff record. No floor in any building in any Enclave.",
+      "text": "Continuity Holdings. No registered address. No department code. No staff record, no contact, no floor in any building in any Enclave on this coast.",
       "setFlags": [
         "foundHoldings"
       ]
     },
     {
+      "speaker": "player",
+      "text": "Every counterparty has an address. That is not a convention, it is a field validation — the system will not accept a payment instruction without one. This one has been accepted two hundred and eighty times."
+    },
+    {
       "speaker": "narrator",
-      "text": "You file the standard query. It comes back accepted, and then it comes back nothing."
+      "text": "You file the standard resolution query, the one every auditor files forty times a quarter. It comes back accepted. Then it comes back nothing."
     },
     {
       "speaker": "player",
-      "text": "Four times I have asked this shell a question it would not answer. All four were tonight."
+      "text": "Four times tonight I have asked this shell a question it would not answer. In eleven years before tonight, none."
     }
   ]
 }

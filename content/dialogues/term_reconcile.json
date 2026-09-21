@@ -3,22 +3,30 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "It runs in four seconds, the way it always does, and it does not close."
-    },
-    {
-      "speaker": "player",
-      "text": "Off by a constant. Not a rounding drift, not a rate change. The same figure, every quarter, as far back as the shell will index."
+      "text": "It runs in four seconds, the way it always does. Allocations against draws, department by department, and at the bottom a single figure that should be zero."
     },
     {
       "speaker": "narrator",
-      "text": "There is one line it cannot allocate to a department: 88-231-C. Quarterly. Outbound.",
+      "text": "It is not zero. It is the same distance from zero it was last quarter."
+    },
+    {
+      "speaker": "player",
+      "text": "Off by a constant. That is the part that is wrong. A rounding drift wanders. A rate change steps once and then stops. A constant means something is being paid on purpose, on a schedule, at a fixed amount."
+    },
+    {
+      "speaker": "player",
+      "text": "It goes back as far as the shell will index and it does not move."
+    },
+    {
+      "speaker": "narrator",
+      "text": "There is one line the shell cannot allocate to a department. 88-231-C. Quarterly. Outbound.",
       "setFlags": [
         "foundDiscrepancy"
       ]
     },
     {
       "speaker": "player",
-      "text": "Outbound. The Enclave pays somebody."
+      "text": "Outbound. Not a cost, not a transfer, not an internal charge. The Enclave is paying somebody."
     }
   ]
 }

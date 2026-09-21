@@ -3,19 +3,29 @@
   "lines": [
     {
       "speaker": "ilse",
-      "text": "Then I will sign it. God help me, I will sign it."
+      "text": "Then I'll sign it. God help me, I'll sign it, and I'll tell the others I got us through the winter, which will be true."
     },
     {
       "speaker": "vance",
-      "text": "A sensible house. Meridian will have the surveyors up by Thursday."
+      "text": "A sensible house. Meridian will have surveyors up by Thursday and the wall staked out before the first frost."
     },
     {
       "speaker": "wren",
-      "text": "My order will be a tenant of Meridian for three centuries and never once write that down. I did not know."
+      "text": "My order will be a tenant of Meridian for three hundred years and never once write that down in the charter. I grew up on that charter. I did not know.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "I am not angry with her. She has forty people and a well and no food. I would like to be angry with somebody and there is nobody in this yard to be angry with.",
+      "conditions": [
+        "party:wren"
+      ]
     },
     {
       "speaker": "narrator",
-      "text": "Vance closes her case. Behind her, something tall unfolds itself off the transport and starts up the path.",
+      "text": "Vance closes her case without hurrying. Behind her, on the transport, something tall unfolds itself in sections and starts up the path.",
       "action": "battle:kell_2031_frame"
     }
   ]

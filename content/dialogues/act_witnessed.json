@@ -3,19 +3,27 @@
   "lines": [
     {
       "speaker": "clerk_of_the_house",
-      "text": "Two signatures, then. Sponsor and witness. Print underneath. You will want to use a name you do not mind keeping."
+      "text": "Two signatures, then. Sponsor and witness, one under the other, and print underneath in block capitals because the register is read by people who never met you."
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "Use a name you do not mind keeping. A witness signature is the one mark in this building that cannot be withdrawn, amended or explained afterwards."
     },
     {
       "speaker": "narrator",
-      "text": "You write it. It is the first entry in a register that will still be open in 2312, and it is in your handwriting."
+      "text": "You write it. It is the first entry in a register that will still be open, on a table, in a room with four chairs, in 2312 — and it is in your handwriting."
     },
     {
       "speaker": "player",
-      "text": "Provenance is the record of who owned a thing and when. I have just put myself in the chain of the instrument I was auditing."
+      "text": "Provenance is the record of who owned a thing, and when, and on whose word. It is the first thing you learn and the last thing anybody checks."
+    },
+    {
+      "speaker": "player",
+      "text": "I have just put myself in the chain of the instrument I was auditing."
     },
     {
       "speaker": "wren",
-      "text": "That was not a small thing to do and you did it very quickly.",
+      "text": "That was not a small thing to do, and you did it very quickly.",
       "conditions": [
         "party:wren"
       ]

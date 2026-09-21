@@ -3,22 +3,30 @@
   "lines": [
     {
       "speaker": "player",
-      "text": "Right. If it is paying somebody, there is an instrument that says so."
+      "text": "Right. If it is paying somebody, there is an instrument that says it has to. Nothing in this system moves without one."
     },
     {
       "speaker": "narrator",
-      "text": "The Steward's governing charter opens. It is not a statute. It has parties, a term, and a schedule of consideration, which is what a contract has."
+      "text": "The Steward's governing charter opens. It is not a statute — there is no enacting formula, no sponsoring department, no commencement date."
+    },
+    {
+      "speaker": "narrator",
+      "text": "It has parties. It has a term. It has a schedule of consideration. Those are the things a contract has."
     },
     {
       "speaker": "player",
-      "text": "There is a beneficiary clause and the record cannot resolve who it names. It has never been able to. It has simply never been asked.",
+      "text": "The Steward is not a public body operating under law. It is a private instrument operating under an agreement, and the difference is the whole of my century."
+    },
+    {
+      "speaker": "player",
+      "text": "And there is a beneficiary clause, and the record cannot resolve who it names. Not will not — cannot. The name has never been indexed, because in two hundred and eighty-one years nobody has asked it to be.",
       "setFlags": [
         "readCharter"
       ]
     },
     {
       "speaker": "narrator",
-      "text": "Somewhere below this floor a fan changes pitch. Your session ends without a prompt.",
+      "text": "Somewhere below this floor, a fan changes pitch. Your session ends without a prompt.",
       "next": "prologue_flagged"
     }
   ]

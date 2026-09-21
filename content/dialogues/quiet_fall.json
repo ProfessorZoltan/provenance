@@ -1,9 +1,50 @@
 {
   "id": "quiet_fall",
   "lines": [
-    { "speaker": "ade", "text": "Then it falls. I will not beg. When you go back up those stairs, look at what you kept." },
-    { "speaker": "dax", "text": "You are letting my people die on schedule. I will remember that. I am going to remember both versions." },
-    { "speaker": "wren", "text": "Something is wrong. The Wardens are not in the valley. Listen. They are inside the walls." },
-    { "speaker": "narrator", "text": "The Board was waiting.", "action": "battle:kell_2148_ambush" }
+    {
+      "speaker": "ade",
+      "text": "Then it falls."
+    },
+    {
+      "speaker": "ade",
+      "text": "I will not beg you. I have got three hundred people on this rock who will find out in the spring, and I would rather be the one who knew all winter."
+    },
+    {
+      "speaker": "ade",
+      "text": "When you go back up those stairs, look at what you kept."
+    },
+    {
+      "speaker": "dax",
+      "text": "You're letting my people die on schedule. Forty years before I'm born, on schedule, because that's how it already went.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "I'll remember that. Both versions. That's the thing nobody warned me about — I'll remember both.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "Something is wrong. Listen — not to the valley. The Wardens are not in the valley.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "They are inside the walls.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "The Board was waiting. Not for the armoury; for the decision. Somebody down there knew which way it would go before you did.",
+      "action": "battle:kell_2148_ambush"
+    }
   ]
 }

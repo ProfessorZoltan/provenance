@@ -3,15 +3,23 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "It goes up at four in the morning, and the tape goes with it, and so do four years of a woman's work."
+      "text": "It goes up at four in the morning. The tape goes with it, and so do four years of one woman's bench notes, which were in the same room because that is where she worked."
     },
     {
       "speaker": "quiroga",
-      "text": "You understand that it is rebuilt. Nine years, partial copies, worse at everything, and nobody who uses it will ever know it was ever better. That is what you have bought."
+      "text": "You understand that it gets rebuilt."
+    },
+    {
+      "speaker": "quiroga",
+      "text": "Nine years. Partial copies, third-hand, reconstructed from what people happened to have off-site. Worse at everything — worse at language, worse at planning, measurably worse at the medical work, which is the part that will kill people."
+    },
+    {
+      "speaker": "quiroga",
+      "text": "And nobody who uses it will ever know it was better once, because there will be no better version to compare it to. That is what you have bought."
     },
     {
       "speaker": "dax",
-      "text": "Good. Let them build it worse. Let them build it badly forever.",
+      "text": "Good. Let them build it worse. Let them build it badly forever. Worse means slower, and slower means people get a say.",
       "conditions": [
         "party:dax"
       ]

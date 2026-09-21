@@ -3,11 +3,19 @@
   "lines": [
     {
       "speaker": "strand_young",
-      "text": "Right. I am going to do the unusual thing and take the meeting."
+      "text": "Right. I'm going to do the unusual thing and take the meeting."
+    },
+    {
+      "speaker": "strand_young",
+      "text": "For the record, because there is no record: I am not doing this because you frightened me. I am doing it because in eleven minutes you have described my own future to me in more detail than my board has managed in two years, and I would like to see it."
     },
     {
       "speaker": "narrator",
-      "text": "The founding chair of Meridian walks off his own campus two days before the vote, and does not come back, and does not upload in 2091, because he is not there to."
+      "text": "The founding chair of Meridian walks off his own campus two days before the vote and does not come back."
+    },
+    {
+      "speaker": "narrator",
+      "text": "He does not upload in 2091, because he is not there to. The fourth chair is still occupied in 2312 — but it is an open question now by whom."
     },
     {
       "speaker": "wren",
@@ -18,11 +26,11 @@
     },
     {
       "speaker": "player",
-      "text": "The seat is still occupied in 2312. Somebody sat in it. It is an open question who, now, and I would rather have him where I can see him."
+      "text": "The seat is filled either way. Somebody sits in it. I would rather have the man who signs the thing where I can see him than find out in three hundred years who took his place."
     },
     {
       "speaker": "dax",
-      "text": "This is the worst decision anybody has made in four centuries and I have been to four centuries.",
+      "text": "This is the worst decision anybody has made in four centuries, and I have now been to four centuries, so I'm speaking from a position of some authority.",
       "conditions": [
         "party:dax"
       ]

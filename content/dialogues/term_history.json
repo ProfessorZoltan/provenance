@@ -3,22 +3,30 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "The index goes back further than the Enclave system does. Further than the Steward does."
+      "text": "The index opens and keeps opening. It runs back past the founding of the Enclave system. It runs back past the Steward."
     },
     {
       "speaker": "player",
-      "text": "Two hundred and eighty-one years. Every quarter. Never late, never queried, never once flagged by an auditor, and I am the eleventh auditor to sit at this desk.",
+      "text": "Two hundred and eighty-one years. Every quarter. Never late, never short, never queried, never once flagged by an auditor.",
       "setFlags": [
         "foundTheLine"
       ]
     },
     {
+      "speaker": "player",
+      "text": "I am the eleventh auditor to sit at this desk. Ten people did this job before me and every one of them signed this line off, which I am not going to pretend I did not do myself for ten years."
+    },
+    {
       "speaker": "narrator",
-      "text": "A budget line older than the thing that administers it."
+      "text": "A budget line older than the thing that administers it. The payments start forty years before there is anything here to pay for."
     },
     {
       "speaker": "player",
-      "text": "Systems do not have owners. That is the first line of the training. Systems do not have owners, and this one is paying rent."
+      "text": "Systems do not have owners. That is the first line of the training, it is on the certificate, I have recited it to junior staff."
+    },
+    {
+      "speaker": "player",
+      "text": "Systems do not have owners, and this one is paying rent."
     }
   ]
 }
