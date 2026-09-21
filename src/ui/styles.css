@@ -45,7 +45,11 @@ p { margin: 0; line-height: 1.5; }
 #bg .era-fade { position: absolute; inset: 0; background: var(--bg); opacity: 0; pointer-events: none; transition: opacity 700ms ease; }
 #bg .era-fade.on { opacity: 1; }
 
-#screen { position: absolute; inset: 0 0 56px 0; display: grid; padding: 24px; overflow: hidden; z-index: 1; }
+/* One row, exactly the height of the box, so a screen asking for height:100% gets a definite
+   number to resolve against. Left as the default `auto`, the row is content-sized, an SVG that
+   wants 100% falls back to its viewBox aspect ratio, and the row grows past the clip. */
+#screen { position: absolute; inset: 0 0 56px 0; display: grid; grid-template-rows: minmax(0, 1fr); padding: 24px; overflow: hidden; z-index: 1; }
+#screen > * { min-height: 0; min-width: 0; }
 #prompts {
   position: absolute; left: 0; right: 0; bottom: 0; height: 56px; z-index: 2; display: flex; align-items: center; gap: 22px; padding: 0 24px;
   background: var(--panel); border-top: var(--line) solid var(--ink-soft); font-size: 14px; backdrop-filter: blur(6px);
@@ -108,8 +112,10 @@ body[data-device='gamepad'] .glyph[data-btn='start'], body[data-device='gamepad'
 .hub .place { grid-column: 1; }
 .hub .place h2 { font-size: 26px; }
 .hub .place .era { font-size: 13px; opacity: 0.7; margin-bottom: 10px; }
-.hub .actions { grid-column: 1; align-self: start; }
-.hub .party { grid-column: 3; grid-row: 1 / span 2; align-self: start; display: flex; flex-direction: column; gap: 12px; }
+/* The list can be longer than a short window. Bound it to the row and let it scroll, so the
+   focused item is always reachable instead of sitting under the clip. */
+.hub .actions { grid-column: 1; align-self: start; max-height: 100%; overflow-y: auto; }
+.hub .party { grid-column: 3; grid-row: 1 / span 2; align-self: start; max-height: 100%; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
 .hub .journal { grid-column: 2; grid-row: 2; align-self: end; max-width: 520px; font-size: 13px; opacity: 0.8; }
 .member { display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: center; }
 .member .portrait { width: 54px; height: 54px; }

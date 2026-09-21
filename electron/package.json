@@ -1,7 +1,7 @@
 {
   "name": "provenance",
   "productName": "Provenance",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "An RPG about who owns the future.",
   "main": "main.cjs",
   "author": "Provenance",
