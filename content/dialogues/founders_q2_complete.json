@@ -3,11 +3,11 @@
   "lines": [
     {
       "speaker": "bar_engineer",
-      "text": "Halo's still up. Half this bar works at Meridian and tonight none of them are going to admit it."
+      "text": "Halo's still up. Half this bar works at Meridian and tonight not one of them will admit it, and tomorrow they'll all go back in."
     },
     {
       "speaker": "bar_engineer",
-      "text": "There is a woman here who taught four of us to read a weights file. She will sit with your lot if you ask. That is not nothing; she does not sit with people.",
+      "text": "There's a woman in the corner who taught four of us to read a weights file properly. She'll sit with your lot if you ask her, and that's not nothing — she doesn't sit with people.",
       "syncDelta": 5,
       "action": "quest:complete:founders_halo"
     }

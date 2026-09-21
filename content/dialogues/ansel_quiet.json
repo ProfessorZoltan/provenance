@@ -1,7 +1,14 @@
 {
   "id": "ansel_quiet",
   "lines": [
-    { "speaker": "ansel", "text": "Ansel. We used to have an assembly. We still meet, but the drone counts who attends, so fewer people come.", "syncDelta": 3 },
-    { "speaker": "ansel", "text": "You look at that sentry like it is new. It has been there as long as I can remember. Which is to say, since whatever you did." }
+    {
+      "speaker": "ansel",
+      "text": "Ansel. We used to have an assembly here. We still meet, if you can call it meeting.",
+      "syncDelta": 3
+    },
+    {
+      "speaker": "ansel",
+      "text": "The drone counts who attends. It does not stop anybody — it does not have to. It counts, and people work out for themselves that being counted is a thing they would rather not be, and by the spring you are down to four. You look at that sentry like it is new. It has been there as long as I can remember, which is to say since whatever it is you did."
+    }
   ]
 }

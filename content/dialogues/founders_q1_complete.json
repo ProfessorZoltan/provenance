@@ -3,11 +3,11 @@
   "lines": [
     {
       "speaker": "bar_engineer",
-      "text": "Serial numbers off the bench, not off a line. Somebody is walking prototypes out of Meridian in ones and twos."
+      "text": "Serial numbers are off a bench, not off a line. Hand-numbered in pencil and then overwritten. Somebody's been walking prototypes out of Meridian in ones and twos for a while."
     },
     {
       "speaker": "bar_engineer",
-      "text": "Take the halo rig. It is the second one I built and the first one that works.",
+      "text": "Take the halo rig. Second one I built, first one that works, and if you tell anyone I gave it away I'll deny it to your face.",
       "syncDelta": 5,
       "action": "quest:complete:founders_shipment"
     }

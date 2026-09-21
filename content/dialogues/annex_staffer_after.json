@@ -3,14 +3,14 @@
   "lines": [
     {
       "speaker": "annex_staffer",
-      "text": "Register's archived, shredder room's a cupboard again, and the clerk is in on Thursdays.",
+      "text": "Register's archived, shredder room is a cupboard again, and the clerk is in on Thursdays.",
       "conditions": [
         "flag:commonsTrainer"
       ]
     },
     {
       "speaker": "annex_staffer",
-      "text": "Sit with her. Four years of drafting, and she can teach a person to read a room in about an hour.",
+      "text": "Sit with her. Four years of drafting behind her, and she can teach a person to read a room in about an hour. It took me two years and I am still not sure I can.",
       "conditions": [
         "flag:commonsTrainer",
         "!flag:trained:Commons"

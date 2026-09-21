@@ -3,11 +3,15 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "There is a service floor under the lattice. It is on no plan, it has never been allocated a maintenance window, and the stair down from it does not end where a stair should."
+      "text": "There is a service floor under the lattice. It appears on no plan, it has never been allocated a maintenance window, and no part of the system has a record of anyone going down to it."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The stair leading down from it does not end where a stair should."
     },
     {
       "speaker": "player",
-      "text": "Four chairs. Three instruments and a man. If he has been sitting up there since 2091, he has been sitting somewhere, and somewhere is underneath us.",
+      "text": "Four chairs up there. Three instruments and a man. And if he has held that seat since 2091, he has been holding it from somewhere — a seat is a place, and the place is under our feet.",
       "action": "travel:meridian_stack"
     }
   ]

@@ -3,22 +3,26 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Fourth floor, the desk by the third window. Your card is dead, the terminal is dark, and the drawer is not locked because nobody has ever locked a drawer in this building."
+      "text": "Fourth floor, the desk by the third window. Your card is dead and the terminal is dark. The drawer is not locked, because nobody in the history of this building has ever locked a drawer."
     },
     {
       "speaker": "player",
-      "text": "My own file. Eleven years, four commendations, and a note from the fourth year saying I ask too many questions about counterparties."
+      "text": "My own file. Eleven years, four commendations, two certifications, and the note from the fourth year: asks too many questions about counterparties."
     },
     {
       "speaker": "player",
-      "text": "And an addendum, dated the day I ran, in a hand I do not recognise: QUERY ORIGINATED WITH SUBJECT. NO PRIOR REQUEST ON RECORD.",
+      "text": "And an addendum underneath it, dated the day I ran, in a hand I do not recognise. QUERY ORIGINATED WITH SUBJECT. NO PRIOR REQUEST ON RECORD.",
       "setFlags": [
         "auditedTheAuditor"
       ]
     },
     {
       "speaker": "player",
-      "text": "Nobody asked me to look. That is what it means. For two hundred and eighty-one years nobody asked, and then I did, on my own, on a Tuesday."
+      "text": "They checked. Somebody sat down and checked whether I had been put up to it."
+    },
+    {
+      "speaker": "player",
+      "text": "Nobody asked me to look. That is what the addendum says and that is what frightened them. Two hundred and eighty-one years and nobody asked, and then I did, on my own, on a Tuesday, because the number was the wrong shape."
     }
   ]
 }

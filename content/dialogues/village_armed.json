@@ -1,8 +1,17 @@
 {
   "id": "village_armed",
   "lines": [
-    { "speaker": "narrator", "text": "Kell Village is not the village you left. There is a memorial by the gate, a wall of names from a winter in 2148, and a line of hand-forged blades hung above it. The market is louder. Nobody looks at the sky." },
-    { "speaker": "dax", "text": "They remember it. They remember us. I am not sure I like being a legend, Sister." },
-    { "speaker": "wren", "text": "You are not a legend. You are a wall of names that a town chose to keep. That is better." }
+    {
+      "speaker": "narrator",
+      "text": "Kell Village is not the village you left. By the gate there is a wall that was not there this morning: a hundred and sixty-four names from a winter in 2148, cut in four different hands, with a line of hand-forged blades hung above them. The market runs further down the lane than it did. Nobody is looking at the sky."
+    },
+    {
+      "speaker": "dax",
+      "text": "They remember it. They remember us — there's a forge mark up there that's near enough my great-grandmother's. I'm not sure I like being a legend, Sister. Legends are what you get instead of people."
+    },
+    {
+      "speaker": "wren",
+      "text": "You are not a legend. You are a wall of names a town chose to keep, and argued about keeping, and could have melted down for metal it needs, and did not. That is better than a legend. A legend is what happens when nobody can check."
+    }
   ]
 }

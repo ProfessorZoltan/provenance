@@ -3,15 +3,15 @@
   "lines": [
     {
       "speaker": "annex_staffer",
-      "text": "Four names in both columns. Declared an interest in a perpetual counterparty in 2031, signed the Handover instruments in 2064, and the interest was declared correctly every single year in between."
+      "text": "Four names in both columns. They declared an interest in a perpetual counterparty in 2031, they signed the Handover instruments in 2064, and in every year between they declared it again, correctly, on the form, on time."
     },
     {
       "speaker": "player",
-      "text": "It was never hidden. That is what I keep running into. None of this was ever hidden, it was just filed."
+      "text": "It was never hidden. That is what I keep walking into. None of this was concealed from anyone — it was filed, and filing a thing is how you make it disappear without ever lying about it."
     },
     {
       "speaker": "annex_staffer",
-      "text": "Take the gallery pass. Seat forty-one, third reading. Issued to somebody who did not come.",
+      "text": "Take the gallery pass. Seat forty-one, third reading. Issued to somebody who did not come, which is most of them.",
       "action": "quest:complete:annex_registry"
     }
   ]

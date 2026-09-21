@@ -1,7 +1,14 @@
 {
   "id": "dax_2148",
   "lines": [
-    { "speaker": "dax", "text": "This is my century. Every change you make here pulls at me; Wren calls it Continuity. I call it being in two places. Do not spend me lightly." },
-    { "speaker": "dax", "text": "The chapel is folded. Something in there is wearing a face I know. If we go in, only Chronal damage will touch it. Wren's Lapse, your Discrepancy. My fists are useless against a ghost.", "syncDelta": -2 }
+    {
+      "speaker": "dax",
+      "text": "This is my century. Every change you make down here pulls at something in me. Wren calls it Continuity and says it like a diagnosis. I call it being in two places. Don't spend me lightly."
+    },
+    {
+      "speaker": "dax",
+      "text": "And the chapel's folded. Something in there is wearing a face I know — properly wearing it, out of a version of this that didn't happen. Only Chronal touches it: Wren's Lapse, your Discrepancy. My fists are worth nothing against a ghost and I have tested that.",
+      "syncDelta": -2
+    }
   ]
 }

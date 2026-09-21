@@ -7,7 +7,7 @@
     },
     {
       "speaker": "pell",
-      "text": "Ansel has been holding an assembly in the back of the chapel since spring, teaching people how a vote works. He would take your lot. Go and be taught something by a farmer.",
+      "text": "Ansel's been holding an assembly in the back of the chapel since spring — teaching people what a quorum is and what to do when somebody talks too long. He'd take your lot. Go and be taught something by a farmer, it won't kill you.",
       "syncDelta": 5,
       "action": "quest:complete:village_census"
     }

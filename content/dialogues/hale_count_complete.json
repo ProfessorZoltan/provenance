@@ -3,18 +3,18 @@
   "lines": [
     {
       "speaker": "hale",
-      "text": "Four hundred and six. Not four hundred and one. I was five short for eleven days because five of them never came out of the sand at all."
+      "text": "Four hundred and six. Not four hundred and one. I was five short for eleven days, because five of them never came out of the sand at all."
     },
     {
       "speaker": "player",
-      "text": "Four hundred and six is the payroll. That is the Basin crew list, and I have read the other copy.",
+      "text": "Four hundred and six is the payroll figure. That is the Basin crew list, and I have read the other copy of it, eight hundred years upstream, on a clerk's desk.",
       "conditions": [
         "flag:crewListFound"
       ]
     },
     {
       "speaker": "hale",
-      "text": "Then they have names. That is all I wanted and I am not going to be able to explain why.",
+      "text": "Then they've got names. That's all I wanted. I'm not going to be able to explain why and I'd rather not be asked.",
       "action": "quest:complete:hale_count"
     }
   ]

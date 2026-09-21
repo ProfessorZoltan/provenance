@@ -3,19 +3,19 @@
   "lines": [
     {
       "speaker": "site_engineer",
-      "text": "Hard hat or off the grade, and I don't care which. We pour at six and the schedule is the schedule."
+      "text": "Hard hat or off the grade, and I genuinely don't mind which. We pour at six, the schedule is the schedule, and the schedule has never once moved for anybody."
     },
     {
       "speaker": "site_engineer",
-      "text": "Four hundred megawatts, they want. I've built three of these and I've never seen a spec ask for that much cooling for a logistics shed."
+      "text": "Four hundred megawatts of cooling, they've specced. I've built three of these. I have never seen a spec ask for that much cooling for a logistics shed, and I've said so, in writing, twice."
     },
     {
       "speaker": "site_engineer",
-      "text": "Ask the camp clerk about the payroll if you want something to lose sleep over. I stopped asking in week nine."
+      "text": "Ask the camp clerk about the payroll if you want something to lose sleep over. I stopped asking in week nine and I sleep fine now, which I'm aware is not the same as being right."
     },
     {
       "speaker": "site_engineer",
-      "text": "You lot keep looking at the frame like you know what goes in it. If you do, don't tell me at work.",
+      "text": "You lot keep looking at that frame like you know what goes in it. If you do, don't tell me at work. Tell me after, when I've finished the pour.",
       "conditions": [
         "visited:2064"
       ]

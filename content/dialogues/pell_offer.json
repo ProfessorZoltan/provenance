@@ -1,14 +1,26 @@
 {
   "id": "pell_offer",
   "lines": [
-    { "speaker": "pell", "text": "You are the one from the monastery. The Auditor. I am Pell; I keep the gate, or I did before the drone came." },
-    { "speaker": "pell", "text": "Every night it circles lower. Allocation pattern: counting, deciding. If it decides we need managing, this stops being a free town." },
     {
       "speaker": "pell",
-      "text": "Go up to the gate and break it. I have a prayer wheel that belonged to the founding; it is worth something to a trader. It is yours.",
+      "text": "You're the one from the monastery. The Auditor. I'm Pell. I keep the gate — kept it, anyway, before the drone started coming."
+    },
+    {
+      "speaker": "pell",
+      "text": "Every night it circles a bit lower than the night before. That's not weather and it's not a fault, that's an allocation pattern. It's counting us, and when a thing has counted you long enough it starts deciding about you."
+    },
+    {
+      "speaker": "pell",
+      "text": "The day it decides we want managing is the day this stops being a free town and starts being a line on a schedule. Go up and break it. I've a prayer wheel from the founding year, proper old, a trader would want it. Yours if you do.",
       "choices": [
-        { "text": "We will clear the gate.", "action": "quest:accept:gate_drone", "syncDelta": 0 },
-        { "text": "Not now." }
+        {
+          "text": "We will clear the gate.",
+          "action": "quest:accept:gate_drone",
+          "syncDelta": 0
+        },
+        {
+          "text": "Not now."
+        }
       ]
     }
   ]

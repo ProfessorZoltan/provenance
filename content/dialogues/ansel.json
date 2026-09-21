@@ -1,9 +1,31 @@
 {
   "id": "ansel",
   "lines": [
-    { "speaker": "ansel", "text": "Ansel, Commons assembly. We run this town by argument. It is slower than an algorithm and it is ours." },
-    { "speaker": "ansel", "text": "The assembly voted to keep the blades on the memorial wall instead of melting them down. Somebody has to remember that people fought for this.", "conditions": ["flag:armedResistance"], "syncDelta": -3 },
-    { "speaker": "ansel", "text": "You sound like you have made your peace with the Steward. Some of us have. The rest of us keep the assembly meeting anyway.", "conditions": ["sync>=30"] },
-    { "speaker": "ansel", "text": "Every era has its own money and none of it travels. Relics are the exception: old things, made things. Any shop pays for them. Carry five at most.", "conditions": ["!flag:armedResistance"] }
+    {
+      "speaker": "ansel",
+      "text": "Ansel. Commons assembly. We run this town by argument — nine of us, a lamp, and whoever else turns up. It is slower than an algorithm and every bit of it is ours."
+    },
+    {
+      "speaker": "ansel",
+      "text": "The assembly voted to keep the blades on the memorial wall rather than melt them down for the metal, which we badly need. Forty minutes of argument about it. Somebody has to remember that people fought for this, and a thing you can put your hand on remembers better than a thing you write down.",
+      "conditions": [
+        "flag:armedResistance"
+      ],
+      "syncDelta": -3
+    },
+    {
+      "speaker": "ansel",
+      "text": "You sound like somebody who has made their peace with the Steward. Some of us have, and I do not think less of them for it: it feeds them, it houses them, it has never once been cruel. The rest of us keep the assembly meeting anyway — not because it is better, but because it is a habit rather than a service.",
+      "conditions": [
+        "sync>=30"
+      ]
+    },
+    {
+      "speaker": "ansel",
+      "text": "Practical matter, since you are travelling. Every era has its own money and none of it travels. Relics are the exception: old things, made things, anything with a hand in it. Any shop in any century will take one. Carry five at most — they are heavy and they attract questions.",
+      "conditions": [
+        "!flag:armedResistance"
+      ]
+    }
   ]
 }

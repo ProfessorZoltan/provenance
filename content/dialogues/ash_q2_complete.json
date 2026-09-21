@@ -7,7 +7,7 @@
     },
     {
       "speaker": "ash_smith",
-      "text": "Take the hammer; it was Okonkwo's grandmother's. And there is a man here who teaches people to hit things that are harder than the thing they are hitting with. He will sit with you now.",
+      "text": "Take the hammer — it was Okonkwo's grandmother's, and if he wants it back he can come and say so himself. And there's a man here who teaches people to hit a thing harder than the thing they're hitting with. He'll sit with you now. He would not have last week.",
       "syncDelta": -5,
       "action": "quest:complete:ash_forge"
     }

@@ -3,22 +3,22 @@
   "lines": [
     {
       "speaker": "bar_engineer",
-      "text": "Halo's hand-built. Draws a picture of the room's signal on the ceiling. It does nothing useful and it is the best thing anyone in here has made."
+      "text": "Halo's hand-built. Sixty quid of salvage and a month of evenings. It reads the room's signal environment and draws it on the ceiling in light, which is useless — completely useless — and it is the best thing anybody in this bar has ever made."
     },
     {
       "speaker": "bar_engineer",
-      "text": "Half this bar works at Meridian and the other half wishes it did. Ask either half what they are building and you will get a different answer and both of them mean it."
+      "text": "Half this room works at Meridian and the other half wishes it did. Ask either half what they're building up there and you'll get a different answer, and both of them will mean it, and neither of them is lying to you."
     },
     {
       "speaker": "bar_engineer",
-      "text": "There is a vote Thursday about publishing the weights. Everyone in here is for it and none of us has a vote, which is the whole of engineering in one sentence.",
+      "text": "There's a vote Thursday on publishing the weights. Everyone in here is for it. None of us has a vote. That's the whole of engineering in one sentence and you can put it on my headstone.",
       "conditions": [
         "!flag:charterLeaked"
       ]
     },
     {
       "speaker": "bar_engineer",
-      "text": "It is in the papers. All nine pages. This bar has not been this loud since it was a machine shop.",
+      "text": "It's in the papers. All nine pages, clause on six and everything. This bar hasn't been this loud since it was still a machine shop and somebody dropped a lathe.",
       "conditions": [
         "flag:charterLeaked"
       ]

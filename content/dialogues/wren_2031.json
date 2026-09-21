@@ -3,7 +3,7 @@
   "lines": [
     {
       "speaker": "wren",
-      "text": "I have knelt on that stone every morning for thirty years and it is not there yet. It is in the quarry. I find that harder than the drowned streets.",
+      "text": "I have knelt on that stone every morning for thirty years, and it is not there. It is in the quarry two valleys over, still in the ground. I walked through a drowned city this week and found it easier than this, because a city is somebody else's and that stone is mine.",
       "conditions": [
         "!flag:retreatEndowed",
         "!flag:retreatCommon"
@@ -11,7 +11,7 @@
     },
     {
       "speaker": "wren",
-      "text": "We bought the wall and the wall bought us. I am going to be very careful about what I say to Ilse from here.",
+      "text": "We bought the wall, and the wall bought us. Three centuries of my order standing on ground we were lent, and the charter I was raised on does not mention it once. I am going to be careful what I say to Ilse from here, because none of it is her fault and all of it will sound as though it is.",
       "conditions": [
         "flag:retreatEndowed"
       ],
@@ -19,7 +19,7 @@
     },
     {
       "speaker": "wren",
-      "text": "Poor and open. That is the order I joined. Thank you, Auditor.",
+      "text": "Poor and open. That is the order I joined, in those words, and I have just watched it be chosen rather than inherited. Thank you, Auditor. I am aware you did not technically do anything. I would like to thank you regardless.",
       "conditions": [
         "flag:retreatCommon"
       ],

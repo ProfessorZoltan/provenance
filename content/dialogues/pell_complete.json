@@ -1,7 +1,14 @@
 {
   "id": "pell_complete",
   "lines": [
-    { "speaker": "pell", "text": "I heard it come down from here. The whole village heard it. That was the first thing anyone has done for us in years that was not allocated." },
-    { "speaker": "pell", "text": "Here. The prayer wheel. There is a chip inside that still spins when nobody is looking. Sell it, keep it, I do not mind.", "action": "quest:complete:gate_drone" }
+    {
+      "speaker": "pell",
+      "text": "I heard it come down from here. Whole village heard it. Somebody in the lane actually cheered, and I haven't heard that in eleven years."
+    },
+    {
+      "speaker": "pell",
+      "text": "Here. The prayer wheel. There's a chip inside that still turns over when nobody's looking at it and I've never worked out why. Sell it, keep it, I don't mind which. That's the first thing done for this village in my lifetime that wasn't allocated to somebody.",
+      "action": "quest:complete:gate_drone"
+    }
   ]
 }

@@ -3,14 +3,14 @@
   "lines": [
     {
       "speaker": "fens_salvager",
-      "text": "Your shooter got his number. Went quiet about it, which out here is how people say thank you.",
+      "text": "Your shooter got his number. Went very quiet about it, which out here is how people say thank you.",
       "conditions": [
         "flag:haleSettled"
       ]
     },
     {
       "speaker": "fens_salvager",
-      "text": "Platforms are firm, reeds aren't, and the difference is about a metre."
+      "text": "Platforms are firm. Reeds are not. The difference is about a metre."
     }
   ]
 }

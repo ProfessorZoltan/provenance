@@ -3,15 +3,19 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "The service door lets out onto the allocation yard, and the allocation yard lets out onto the road, and the road goes two ways."
+      "text": "The service door lets out onto the allocation yard. The yard lets out onto the road, and the road goes two ways."
     },
     {
       "speaker": "player",
-      "text": "East is the Basin and the cooling fields, and there is nothing out there but the thing I have just annoyed. West is the valley."
+      "text": "East is the Basin and the cooling fields, and there is nothing out there but four hundred megawatts of the thing I have just annoyed."
+    },
+    {
+      "speaker": "player",
+      "text": "West is the valley. Four hours on foot to a monastery that does not report to anyone, which until about nine minutes ago was a piece of trivia."
     },
     {
       "speaker": "narrator",
-      "text": "Kell Monastery is north-west, up the valley, about four hours on foot. Walk. Running is what they are paid to notice."
+      "text": "Walk. Do not run. Running is the thing they are actually paid to notice — a person moving fast through an allocated space at midnight resolves as an exception, and a person walking resolves as nothing at all."
     },
     {
       "speaker": "narrator",

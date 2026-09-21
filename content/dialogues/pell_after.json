@@ -3,14 +3,14 @@
   "lines": [
     {
       "speaker": "pell",
-      "text": "Gate's clear, count's stopped, and Ansel is in the chapel most evenings.",
+      "text": "Gate's clear, count's stopped, and Ansel's in the chapel most evenings now people will come out after dark again.",
       "conditions": [
         "flag:villageTrainer"
       ]
     },
     {
       "speaker": "pell",
-      "text": "Go and sit in the assembly. It is nine people and a lamp and it is the only place in this century anyone asks what you think.",
+      "text": "Go and sit in the assembly. Nine people and a lamp. It's the only room in this century where somebody asks you what you think and then waits for the answer.",
       "conditions": [
         "flag:villageTrainer",
         "!flag:trained:Commons Assembly"
@@ -27,7 +27,7 @@
     },
     {
       "speaker": "pell",
-      "text": "Snow's holding off. That is the whole of the news."
+      "text": "Snow's holding off. That's the whole of the news."
     }
   ]
 }

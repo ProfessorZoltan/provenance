@@ -3,11 +3,15 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Two of them on the valley road, one machine and one man, and neither is in a hurry, because where exactly would you be going."
+      "text": "Two of them on the valley road ahead. One machine, one man. Neither is hurrying, because there is nowhere on this road that is not also the road."
     },
     {
       "speaker": "player",
-      "text": "I have a flagged file, no access card and an audit shell I cannot open. What I have is the number, and they cannot flag a number out of my head."
+      "text": "Flagged file, dead card, and an audit shell I cannot open. That is the whole of what they have taken."
+    },
+    {
+      "speaker": "player",
+      "text": "What I have is the number. 88-231-C. And there is no procedure in this system for flagging a number out of somebody's head."
     }
   ]
 }

@@ -3,15 +3,15 @@
   "lines": [
     {
       "speaker": "plant_supervisor",
-      "text": "Twelve hour shifts, suit on, forty-one degrees in the hot aisle. You get used to the noise before you get used to the heat."
+      "text": "Twelve-hour shifts, suit on, forty-one degrees in the hot aisle. You get used to the noise about a month before you get used to the heat."
     },
     {
       "speaker": "plant_supervisor",
-      "text": "What's it doing? Allocation modelling, they say. Housing, work, medicine. Somebody has to decide who gets what and people are terrible at it."
+      "text": "What's it doing? Allocation modelling. Housing, work, medicine — who gets what, and when, and how much. Somebody has to decide that and people are genuinely terrible at it. I've seen people do it."
     },
     {
       "speaker": "plant_supervisor",
-      "text": "It's better at it than we are. I've seen the outputs. That's not the part that bothers me.",
+      "text": "And it is better at it than we are. Measurably. I've read the outputs, I've checked them against the old human ones, and it is not close. That is not the part that bothers me.",
       "choices": [
         {
           "text": "What's the part that bothers you?",
@@ -28,7 +28,7 @@
     },
     {
       "speaker": "plant_supervisor",
-      "text": "The clause went through with a name in it. Whoever did that, my shift lead has been reading the custody schedule out loud in the canteen all week.",
+      "text": "The clause went through with a name in it. Whoever managed that — my shift lead has been reading the custody schedule out loud in the canteen all week, doing the voices. First time anything from that senate has been funny.",
       "conditions": [
         "flag:treatyAmended"
       ]

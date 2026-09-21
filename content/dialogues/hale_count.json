@@ -3,18 +3,18 @@
   "lines": [
     {
       "speaker": "hale",
-      "text": "Four hundred and one shapes out of that sand in eleven days, and every one of them is the same man carrying the same length of rebar."
+      "text": "Four hundred and one out of that sand in eleven days. Every one the same outline. Same man, same length of rebar, same stop at the same forty metres."
     },
     {
       "speaker": "wren",
-      "text": "It is not a man. It is a great many men, standing in the same place.",
+      "text": "It is not one man. It is a great many men, standing in the same place, doing the same thing at the same moment — and the ground has kept the moment rather than the men.",
       "conditions": [
         "party:wren"
       ]
     },
     {
       "speaker": "hale",
-      "text": "Then somebody buried a crew out there, and the ground has been trying to give them back ever since. I'd want to know whose crew before I went down."
+      "text": "Then somebody buried a crew out there. And the ground's been trying to give them back ever since. I'd want to know whose crew before I went down."
     }
   ]
 }

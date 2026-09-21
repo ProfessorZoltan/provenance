@@ -3,14 +3,14 @@
   "lines": [
     {
       "speaker": "ash_smith",
-      "text": "Forge is lit, convoy is a story, and the Overload trainer is by the carrier.",
+      "text": "Forge is lit, the convoy's a story people tell now, and the Overload trainer's by the carrier where he always is.",
       "conditions": [
         "flag:cinderTrainer"
       ]
     },
     {
       "speaker": "ash_smith",
-      "text": "Go and sit with him. He does not explain twice and he barely explains once.",
+      "text": "Go and sit with him. He doesn't explain twice. He barely explains once, so bring somebody who writes things down.",
       "conditions": [
         "flag:cinderTrainer",
         "!flag:trained:Cinder"
@@ -27,7 +27,7 @@
     },
     {
       "speaker": "ash_smith",
-      "text": "Forge has been lit twenty years. Longer than that if you count my mother's, and I do."
+      "text": "Forge has been lit twenty years. Longer, if you count my mother's, and I do count my mother's."
     }
   ]
 }

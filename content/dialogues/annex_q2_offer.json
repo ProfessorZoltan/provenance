@@ -3,11 +3,11 @@
   "lines": [
     {
       "speaker": "annex_staffer",
-      "text": "Four hours on the shredder, booked under a name that has never worked in this building, starting in forty minutes."
+      "text": "Four hours booked on the shredder, under a name that has never worked in this building, starting in forty minutes."
     },
     {
       "speaker": "annex_staffer",
-      "text": "The week after somebody reads the 2031 register for the first time in thirty years. I am not a suspicious person and I am suspicious.",
+      "text": "The week after somebody reads the 2031 paper register for the first time in thirty years. I am not a suspicious person. I once filled in a form about a broken kettle. And I am suspicious.",
       "choices": [
         {
           "text": "Then nothing gets shredded.",

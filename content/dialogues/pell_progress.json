@@ -1,6 +1,9 @@
 {
   "id": "pell_progress",
   "lines": [
-    { "speaker": "pell", "text": "It is up at the gate now. Lower than ever. Go on." }
+    {
+      "speaker": "pell",
+      "text": "It's up at the gate now. Lower than I've seen it. Go on, before it's finished its round."
+    }
   ]
 }

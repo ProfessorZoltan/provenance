@@ -3,15 +3,19 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "It goes to the labour board on a Thursday afternoon, in a folder, with four hundred and six names in alphabetical order."
+      "text": "It goes to the labour board on a Thursday afternoon, in a folder, with four hundred and six names in alphabetical order and a covering note of one paragraph."
     },
     {
       "speaker": "narrator",
-      "text": "Nothing happens. The board notes it, files it, and publishes it, because publishing is what the board does with things it has decided not to act on."
+      "text": "Nothing happens. The board notes it, files it, and publishes it — because publishing is what a board does with a thing it has decided not to act on, and the publishing is automatic and the acting is not."
     },
     {
       "speaker": "player",
-      "text": "Published. That's the whole point. It's in the record now and the record is the only thing that survives two hundred and eighty years."
+      "text": "Published. That is the whole point and it is the only point. Nobody will read it this year or for two hundred years."
+    },
+    {
+      "speaker": "player",
+      "text": "But it is in the record now, and the record is the only thing on this site that survives to my century."
     }
   ]
 }

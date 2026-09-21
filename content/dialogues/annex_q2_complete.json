@@ -3,11 +3,11 @@
   "lines": [
     {
       "speaker": "annex_staffer",
-      "text": "Nothing shredded. The register goes to the national archive tonight with a chain of custody on it, which means it cannot quietly stop existing."
+      "text": "Nothing shredded. And the register goes to the national archive tonight with a chain of custody attached, which is the important half: once a document has a custody chain it cannot quietly stop existing, it can only be visibly destroyed, and nobody wants to be the name on that form."
     },
     {
       "speaker": "annex_staffer",
-      "text": "Nine of us in this office and one tabled amendment between us. That number went up today. Go and talk to Okafor's old clerk; she will sit with your people.",
+      "text": "Nine of us in this office and one tabled amendment between us. That number went up today. Go and talk to Okafor's old clerk — she will sit with your people, and she is better at this than all nine of us together.",
       "syncDelta": 5,
       "action": "quest:complete:annex_shredder"
     }

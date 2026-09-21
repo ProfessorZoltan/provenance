@@ -3,11 +3,11 @@
   "lines": [
     {
       "speaker": "bar_engineer",
-      "text": "They have sent a frame for the halo. An actual frame, for a thing made of scrap that draws a picture on a ceiling."
+      "text": "They've sent a frame. For the halo. An actual enforcement frame, for a thing made of scrap that draws a picture on a ceiling."
     },
     {
       "speaker": "bar_engineer",
-      "text": "It is not about the halo. It is about whether a room full of engineers gets to build something nobody has approved.",
+      "text": "And it isn't about the halo. It's about whether a room full of engineers gets to build something nobody approved first. That's always been the whole question, and they've sent it round in a box with legs.",
       "choices": [
         {
           "text": "Then it stays up.",

@@ -3,11 +3,11 @@
   "lines": [
     {
       "speaker": "bar_engineer",
-      "text": "There is a crate out the back that came off the campus truck and is not on the campus manifest. Two of the things inside it are now outside it."
+      "text": "There's a crate out the back that came off the campus truck and isn't on the campus manifest. I checked — I check, it's a habit, I used to do goods-in."
     },
     {
       "speaker": "bar_engineer",
-      "text": "Nobody in here wants to call it in, because calling it in means admitting we know what a manifest looks like.",
+      "text": "Two of the things that were inside it are now outside it. Nobody in here wants to call it in, because calling it in means admitting out loud that we all know what a manifest looks like and we have all been reading them.",
       "choices": [
         {
           "text": "We'll deal with the crate.",
