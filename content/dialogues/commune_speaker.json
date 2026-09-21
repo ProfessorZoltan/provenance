@@ -3,29 +3,29 @@
   "lines": [
     {
       "speaker": "commune_speaker",
-      "text": "We don't do names up here and we don't do headcounts. You can eat, you can sleep, and if you're counting anybody you can leave."
+      "text": "We don't do names up here and we don't do headcounts. You can eat, you can sleep, you can stay the winter. If you're counting anybody, you can leave, and I'll not be rude about it."
     },
     {
       "speaker": "commune_speaker",
-      "text": "Forty of us. Was eleven when I came up. People walk out of Halden with nothing and they get to the third terrace before they stop flinching."
+      "text": "Forty of us. Was eleven when I came up. People walk out of Halden with nothing and they get as far as the third terrace before they stop flinching at movement, and that's usually about four days."
     },
     {
       "speaker": "commune_speaker",
-      "text": "There's an old woman in the founding charter who kept this place common instead of endowed. Whoever she was, she's the reason there's a gate here and nobody's on it.",
+      "text": "There's an old woman in the founding charter who kept this place common instead of endowed. Turned down money, when they had nothing. Whoever she was, she's the reason there's a gate here with nobody standing on it.",
       "conditions": [
         "flag:retreatCommon"
       ]
     },
     {
       "speaker": "commune_speaker",
-      "text": "Endowed land, this. There's a trust and a wall and a list of who's entitled. We're on the list. Plenty aren't.",
+      "text": "Endowed land, this. There's a trust, and a wall, and a list of who's entitled to be inside it. We're on the list. Plenty of people aren't, and they can see the wall from where they're standing.",
       "conditions": [
         "flag:retreatEndowed"
       ]
     },
     {
       "speaker": "commune_speaker",
-      "text": "The vote's this week down there. Won't change anything up here. That's rather the point of up here.",
+      "text": "There's a vote this week, down there. Won't change anything up here. That's rather the point of up here, and if it ever stops being true we'll have a problem I don't know how to solve.",
       "conditions": [
         "!flag:treatyAmended",
         "!flag:voteSabotaged",
@@ -34,7 +34,7 @@
     },
     {
       "speaker": "commune_speaker",
-      "text": "Word came up that somebody got a clause into the Handover. Forty people cheered at a treaty. I've never seen that before.",
+      "text": "Word came up that somebody got a clause into the Handover. Forty people cheered at a treaty amendment. I have been up this mountain nineteen years and I have never seen that happen.",
       "conditions": [
         "flag:treatyAmended"
       ]

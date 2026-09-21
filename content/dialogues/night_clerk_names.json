@@ -3,7 +3,7 @@
   "lines": [
     {
       "speaker": "night_clerk",
-      "text": "Four of them signed for a counterparty rather than a company. A counterparty is what you sign for when the thing you represent is not a person and not a firm."
+      "text": "Four of them signed for a counterparty rather than for a company. A counterparty is what you sign for when the thing you are representing is neither a person nor a firm — it is the category you use when there is no category."
     },
     {
       "speaker": "player",
@@ -11,11 +11,11 @@
     },
     {
       "speaker": "night_clerk",
-      "text": "That is the name, yes. And the register entry cites an enabling act from 2031 that I have never been able to find a debate for."
+      "text": "That is the name, yes. And the register entry cites an enabling act from 2031 as its authority, and in nine years I have never once been able to find a debate for it. No division, no committee stage, nothing."
     },
     {
       "speaker": "player",
-      "text": "There wasn't much of one. I was there.",
+      "text": "There wasn't much of one. Forty members, eleven minutes, carried on the nod. I was standing in the gallery.",
       "conditions": [
         "flag:actNamed"
       ]

@@ -3,14 +3,14 @@
   "lines": [
     {
       "speaker": "dock_foreman",
-      "text": "You're not union, you're not customs, and you're not lost, because lost people look at the water. So what are you.",
+      "text": "You're not union, you're not customs, and you're not lost, because lost people look at the water. So what are you, and make it quick, I've a ship at eight.",
       "conditions": [
         "!flag:haldenManifest"
       ]
     },
     {
       "speaker": "dock_foreman",
-      "text": "Berth nine. Four a week, every week, crated in-house so we never see what's inside. Consignor's a shell with a post box and the post box is up in the hills.",
+      "text": "Berth nine. Four a week, every week, crated in-house so nobody on this dock ever sees what's inside one. Consignor's a shell with a post box, and the post box is up in the hills where there's nothing but a campus.",
       "conditions": [
         "!flag:haldenManifest"
       ],
@@ -37,14 +37,14 @@
     },
     {
       "speaker": "dock_foreman",
-      "text": "Continuity Holdings. Same signature for eleven years and I've never met a soul from there. Pay's on time, though. Pay's always on time.",
+      "text": "Continuity Holdings. Same signature for eleven years and I have never once met a soul from there — no rep, no inspection, no complaint. Pay's on time, though. Pay's always on time, and that's rarer than you'd think.",
       "conditions": [
         "flag:haldenManifest"
       ]
     },
     {
       "speaker": "dock_foreman",
-      "text": "You lot from the future, then? No, don't answer. Everyone on this dock is from somewhere they don't want to discuss.",
+      "text": "You lot from the future, then? No. Don't answer that. Everyone on this dock is from somewhere they'd rather not discuss and it's worked out fine so far.",
       "conditions": [
         "flag:haldenManifest",
         "visited:2312"

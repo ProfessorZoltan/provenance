@@ -3,19 +3,19 @@
   "lines": [
     {
       "speaker": "atrium_receptionist",
-      "text": "Visitors sign in. Everyone signs in. The founder signs in and he owns the pen."
+      "text": "Visitors sign in. Everyone signs in. The founder signs in, and he owns the pen, and the desk, and the building."
     },
     {
       "speaker": "atrium_receptionist",
-      "text": "The old lab? Back buildings. Nobody has an access reason for those any more; there is a form and nobody has filled it in since I started."
+      "text": "The old lab? Back buildings, two hundred metres, straight past the planting. Nobody has an access reason for those any more. There is a form for it. Nobody has filled it in since I started, and I started six years ago."
     },
     {
       "speaker": "atrium_receptionist",
-      "text": "The ticker is allocation figures. I do not know what they mean and neither does anybody on this floor. It is calming, though."
+      "text": "The ticker is allocation figures. I do not know what they mean and neither does anybody on this floor, including the people whose job I assume it is. It is calming, though. I watch it at lunch."
     },
     {
       "speaker": "atrium_receptionist",
-      "text": "There is a hold on the building today. Something about the senate. Nobody has told me what and I have stopped asking.",
+      "text": "There's a hold on the building today. Something about the senate. Nobody has told me what, and I asked twice on the first day, and I have stopped.",
       "conditions": [
         "flag:treatyAmended"
       ]

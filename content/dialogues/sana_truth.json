@@ -3,15 +3,15 @@
   "lines": [
     {
       "speaker": "recruiter_sana",
-      "text": "Eighty-four years. Say that again."
+      "text": "Eighty-four years. Say that again, slowly, and don't soften it."
     },
     {
       "speaker": "recruiter_sana",
-      "text": "Then there's no list. You can't recruit people to a year, you can only tell them the date and watch them go home and sit down with it."
+      "text": "Then there's no list. There can't be. You can't recruit people to a year — you can only tell them the date and watch them go home and sit down with it, and I've got about three hundred names in this book."
     },
     {
       "speaker": "wren",
-      "text": "You told her the truth. It was the truth. I am only saying that both of those can be so.",
+      "text": "You told her the truth. It was the truth. I am only saying that both of those can be so at once, and that you will be carrying the second one for a while.",
       "conditions": [
         "party:wren"
       ]

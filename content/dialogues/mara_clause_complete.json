@@ -3,16 +3,16 @@
   "lines": [
     {
       "speaker": "mara",
-      "text": "The schedule is void. Not because I argued it, because I read it, and it cites a subsection that was struck at committee and never reinstated."
+      "text": "The schedule is void. Not because I argued it — I did not argue anything. Because I read it, and it cites a subsection that was struck at committee in 2061 and never reinstated."
     },
     {
       "speaker": "mara",
-      "text": "Four years of drafting and the useful skill turned out to be reading. Nobody reads them. That is the whole profession.",
+      "text": "Four years of drafting, and the useful skill turned out to be reading. Nobody reads them. That is the entire profession and the entire vulnerability, and I have just used it for something.",
       "action": "quest:complete:mara_clause"
     },
     {
       "speaker": "fence_moro",
-      "text": "Eleven stalls. You can have anything on mine you like and I will be insulted if you pay."
+      "text": "Eleven stalls. Take anything off mine you like and I'll be insulted if you pay for it."
     }
   ]
 }

@@ -3,33 +3,33 @@
   "lines": [
     {
       "speaker": "survivor_ives",
-      "text": "Mind the third bridge, it's rope over rope now. We lost a man to it in spring and we still call it the good one."
+      "text": "Mind the third bridge. It's rope over rope now, has been since spring, when we lost a man off it. We still call it the good one."
     },
     {
       "speaker": "survivor_ives",
-      "text": "Forty-one of us on these roofs. My grandmother said nine million once and I told her to stop lying to children."
+      "text": "Forty-one of us on these roofs. My grandmother used to say nine million lived down there, and I told her to stop lying to children, and then I got old enough to find the census."
     },
     {
       "speaker": "survivor_ives",
-      "text": "There's a thing in the stairwells. Comes up with the tide, looks like someone you knew, and it isn't. Don't answer it."
+      "text": "There's a thing in the stairwells. Comes up with the tide. Looks like someone you knew, and sounds like them, and it is not them. Don't answer it. That's not superstition, that's a rule with names attached."
     },
     {
       "speaker": "survivor_ives",
-      "text": "You went down there, then. Nobody's done that in my lifetime and come back up talking.",
+      "text": "You went down there, then. Nobody's done that in my lifetime and come back up talking, and I'd like it noted that I'm not asking what you saw.",
       "conditions": [
         "flag:tidelineCleared"
       ]
     },
     {
       "speaker": "survivor_ives",
-      "text": "Water's lower this year. Two steps lower. Nobody can tell me why and I've stopped asking the kind of question that has no answer.",
+      "text": "Water's lower this year. Two steps lower on the east stair. Nobody can tell me why and I've stopped asking the kind of question that hasn't got an answer, but I've noticed, and I've told people to notice.",
       "conditions": [
         "ownership>=30"
       ]
     },
     {
       "speaker": "survivor_ives",
-      "text": "Heard your century's got walls and rations and a machine doing the counting. Ours has got weather. I'll keep the weather.",
+      "text": "Heard your century's got walls and rations and a machine doing the counting. Ours has got weather and forty-one people who know each other's names. I'll keep the weather.",
       "conditions": [
         "visited:2312"
       ]

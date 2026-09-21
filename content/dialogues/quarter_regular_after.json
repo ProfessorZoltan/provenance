@@ -3,14 +3,14 @@
   "lines": [
     {
       "speaker": "quarter_regular",
-      "text": "Whatever that was in the vestibule, the bar has decided not to have seen it.",
+      "text": "Whatever that was in the vestibule, the bar has collectively decided not to have seen it, and I'd suggest you join us.",
       "conditions": [
         "flag:strandSettled"
       ]
     },
     {
       "speaker": "quarter_regular",
-      "text": "Sit. Nobody up here discusses the treaty, which is how you can tell everybody up here wrote part of it."
+      "text": "Sit down. Nobody up here discusses the treaty, which is precisely how you can tell that everybody up here wrote part of it."
     }
   ]
 }

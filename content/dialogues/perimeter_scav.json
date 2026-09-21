@@ -3,22 +3,22 @@
   "lines": [
     {
       "speaker": "perimeter_scav",
-      "text": "Service line. Parts on the ground, nobody allocated to pick them up, and a patrol that has flown the same circuit for eighty years."
+      "text": "Service line. Parts on the ground the whole length of it, nobody allocated to pick them up, and a patrol that has flown the same circuit for eighty years without once changing the turn."
     },
     {
       "speaker": "perimeter_scav",
-      "text": "I am not stealing. You cannot steal a thing that is not on any list. I have thought about this a great deal out here."
+      "text": "I am not stealing. You cannot steal a thing that is not on any list — there is no owner, there is no entry, there is nobody to have taken it from. I have had a great deal of time out here to think about that and it still holds."
     },
     {
       "speaker": "perimeter_scav",
-      "text": "There is a plaque at the service gate with four hundred and six names on it. I read it every shift. I have no idea who any of them are.",
+      "text": "There is a plaque at the service gate with four hundred and six names on it. I read it every shift, start to finish. I have no idea who any of them are and I read it anyway.",
       "conditions": [
         "flag:crewNamed"
       ]
     },
     {
       "speaker": "perimeter_scav",
-      "text": "Somebody put the fields on a public register. Half the parts out here have a name on them now and I do not know how I feel about it.",
+      "text": "Somebody put the cooling fields on a public register. Half the parts out here have a name attached to them now, and an owner, and I have not decided how I feel about that.",
       "conditions": [
         "flag:crewBuried"
       ]

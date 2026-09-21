@@ -3,21 +3,21 @@
   "lines": [
     {
       "speaker": "camp_clerk",
-      "text": "Notebooks are out of the trailer and off this site. Your engineer carried the crate herself and would not let anybody help.",
+      "text": "Notebooks are out of the trailer and off this site. Your engineer carried the crate herself, both arms, three hundred metres, and would not let anybody take one end of it.",
       "conditions": [
         "flag:quirogaSettled"
       ]
     },
     {
       "speaker": "camp_clerk",
-      "text": "Four hundred and six names with the labour board, published, and me looking for work by Monday. Worth it, probably.",
+      "text": "Four hundred and six names with the labour board, published, and me looking for work by Monday. Worth it, probably. Ask me again in March.",
       "conditions": [
         "flag:crewNamed"
       ]
     },
     {
       "speaker": "camp_clerk",
-      "text": "Back in his jacket and neither of us has mentioned it since. I have two children and a rotation that ends in March.",
+      "text": "Back in his jacket, and neither of us has mentioned it since. I've two children and a rotation that ends in March. That's the whole of my reasoning and I've stopped dressing it up.",
       "conditions": [
         "flag:crewBuried"
       ]

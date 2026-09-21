@@ -3,16 +3,16 @@
   "lines": [
     {
       "speaker": "quiroga",
-      "text": "All of it. Every derivation, in order, including the four I was wrong about, which are the useful ones."
+      "text": "All of it. Every derivation, in order, including the four I was wrong about — which are the useful ones, because a wrong derivation tells you what somebody was thinking and a right one only tells you what they concluded."
     },
     {
       "speaker": "quiroga",
-      "text": "They did not burn these because they are dangerous. They burned them because storage costs money and nobody signed for the crate. That is somehow worse.",
+      "text": "And they were not burning these because they are dangerous. They were burning them because storage costs money and nobody had signed for the crate. That is somehow very much worse.",
       "action": "quest:complete:quiroga_bench"
     },
     {
       "speaker": "camp_clerk",
-      "text": "Take the slate too. It was in the crate and it is not on any manifest, so as far as this camp is concerned it does not exist."
+      "text": "Take the slate as well. It was in the crate, it is not on any manifest, and as far as this camp's records are concerned it does not exist."
     }
   ]
 }

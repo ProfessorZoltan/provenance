@@ -3,7 +3,7 @@
   "lines": [
     {
       "speaker": "ilse",
-      "text": "Meridian wants to endow us. Buildings, a wall, a stipend, and a seat on our own board for one of theirs. I have been staring at it for two days.",
+      "text": "Meridian wants to endow us. Buildings, a wall, a stipend for twenty years, and a seat on our own board for one of theirs. I have been staring at the paper for two days and I have not turned it over once.",
       "conditions": [
         "!flag:retreatEndowed",
         "!flag:retreatCommon"
@@ -11,21 +11,21 @@
     },
     {
       "speaker": "ilse",
-      "text": "We took their money. There will be a wall by spring and a name on the gate that is not ours. I will not pretend that costs nothing.",
+      "text": "We took their money. There will be a wall by spring and a name on the gate that is not ours, and I will not stand here and pretend that costs nothing.",
       "conditions": [
         "flag:retreatEndowed"
       ]
     },
     {
       "speaker": "ilse",
-      "text": "We refused. We will be cold for twenty years and we will own every cold inch of it.",
+      "text": "We refused. We will be cold for twenty years and we will own every cold inch of it, and in the spring I expect I shall be told so by somebody.",
       "conditions": [
         "flag:retreatCommon"
       ]
     },
     {
       "speaker": "ilse",
-      "text": "If you have an opinion, say it. I would rather be argued with than agreed with.",
+      "text": "If you have an opinion, say it plainly. I have had two days of people agreeing with me and it has been no use at all. I would rather be argued with.",
       "conditions": [
         "!flag:retreatEndowed",
         "!flag:retreatCommon"

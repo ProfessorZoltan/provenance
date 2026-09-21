@@ -3,7 +3,7 @@
   "lines": [
     {
       "speaker": "trader_sable",
-      "text": "Your machine used the relay. Half the roofs heard it and nobody knows what it was. Good for trade, oddly.",
+      "text": "Your machine used the relay. Half the roofs heard it and not one of them knows what it was, and three people have asked me. Good for trade, oddly.",
       "conditions": [
         "flag:ilo9Settled"
       ]

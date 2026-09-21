@@ -7,7 +7,7 @@
     },
     {
       "speaker": "mattie_tolliver",
-      "text": "That's the second time this family's been told to move and the first time anybody stood in the alley for it."
+      "text": "That's the second time this family's been told to move. It's the first time anybody stood in the alley for it, and I'd like you to know I've noticed which of those is rarer."
     },
     {
       "speaker": "mattie_tolliver",
@@ -16,7 +16,7 @@
     },
     {
       "speaker": "mattie_tolliver",
-      "text": "The port's solicitor is here at nine with a cheque and a deed of sale. I've got until nine to decide what this corner is for.",
+      "text": "The port's solicitor is here at nine with a cheque and a deed of sale. Which gives me until nine to decide what this corner is for.",
       "choices": [
         {
           "text": "Put the block in the family's name. Don't sell.",

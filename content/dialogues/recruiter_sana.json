@@ -3,15 +3,15 @@
   "lines": [
     {
       "speaker": "recruiter_sana",
-      "text": "Four kilometres of concrete and a patrol every twenty minutes. Don't run. Running is what they're paid to notice."
+      "text": "Four kilometres of concrete, one patrol every twenty minutes, and nowhere to stand that isn't the road. Don't run. Running's what they're paid to notice — walking, they've got no line on the form for."
     },
     {
       "speaker": "recruiter_sana",
-      "text": "I walk this road picking people up. Not for the militia, whatever the patrol writes down. For a list of who's still standing when the water comes."
+      "text": "I walk this road picking people up. Not for the militia, whatever the patrol writes down about me. For a list. Who's still standing, who's got a trade, who can carry somebody who can't."
     },
     {
       "speaker": "recruiter_sana",
-      "text": "You've been to the other side of that, haven't you. Don't tell me if it's bad. Tell me if there's anyone left.",
+      "text": "You've been on the other side of that, haven't you. It's in how you're looking at the causeway rather than down it. Don't tell me if it's bad. Just tell me if there's anyone left.",
       "conditions": [
         "visited:2148"
       ],
@@ -33,14 +33,14 @@
     },
     {
       "speaker": "recruiter_sana",
-      "text": "I've a swimming line up between two chimneys and eleven children on it. You gave me that. I'd like to know it was worth the rope.",
+      "text": "There's a swimming line up between two chimneys now, and eleven children on it most afternoons. You gave me that. I'd like to know it was worth the rope, and I think you're the only one who can tell me.",
       "conditions": [
         "flag:causewayWarned"
       ]
     },
     {
       "speaker": "recruiter_sana",
-      "text": "I stopped walking the road. You can't recruit people to a year. I tell them the date now and they go home and sit with it.",
+      "text": "I stopped walking the road. You can't recruit people to a year — you can recruit them to a week, or to a boat, but not to eighty-four years. I tell them the date now. They go home and sit with it.",
       "conditions": [
         "flag:causewayTruth"
       ]

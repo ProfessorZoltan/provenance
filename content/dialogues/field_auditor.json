@@ -3,32 +3,32 @@
   "lines": [
     {
       "speaker": "field_auditor",
-      "text": "You are not allocated to this site. Neither am I, in the sense that matters. I have been here nine years on a work order nobody has renewed."
+      "text": "You are not allocated to this site. Neither am I, in the sense that matters — I have been out here nine years on a work order that nobody has renewed and nobody has cancelled, and I have stopped drawing attention to the distinction."
     },
     {
       "speaker": "field_auditor",
-      "text": "Eleven years you reconciled this address. I processed your queries. All four of them.",
+      "text": "Eleven years you reconciled this address. I processed your queries. All four of them, and I remember all four, because four queries in eleven years is not a lot and the fourth one was different.",
       "conditions": [
         "!flag:boardAlerted"
       ]
     },
     {
       "speaker": "field_auditor",
-      "text": "Your file came through here last month with an enforcement flag on it and no originating department. I have never seen a flag with no department.",
+      "text": "Your file came through here last month with an enforcement flag on it and no originating department. I have worked in allocation for nineteen years. I have never seen a flag with no department. The field is mandatory.",
       "conditions": [
         "flag:boardAlerted"
       ]
     },
     {
       "speaker": "field_auditor",
-      "text": "There is a plaque at the service gate with four hundred and six names on it. Cast, not printed, which means somebody paid for it out of a budget. I have looked for that budget for nine years.",
+      "text": "There is a plaque at the service gate with four hundred and six names on it. Cast, not printed — which means metal, which means a foundry, which means somebody paid for it out of a budget. I have been looking for that budget for nine years.",
       "conditions": [
         "flag:crewNamed"
       ]
     },
     {
       "speaker": "field_auditor",
-      "text": "Whatever you are doing, do it somewhere the towers cannot hear you. Everything it thinks, it thinks here, and it is not deaf."
+      "text": "Whatever you are doing, do it somewhere the towers cannot hear you. Everything it thinks, it thinks here, and it is not deaf, and I would rather not have this conversation twice."
     }
   ]
 }

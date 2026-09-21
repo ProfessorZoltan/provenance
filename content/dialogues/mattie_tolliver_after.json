@@ -3,21 +3,21 @@
   "lines": [
     {
       "speaker": "mattie_tolliver",
-      "text": "Somebody stood in my alley at four in the morning with a drum of accelerant coming the other way. I have not decided what to do with that yet.",
+      "text": "Somebody stood in my alley at four in the morning with a drum of accelerant coming the other way. I have not decided what to do with that yet and I have had a week.",
       "conditions": [
         "flag:tolliverDefended"
       ]
     },
     {
       "speaker": "mattie_tolliver",
-      "text": "Green pennant's up. Means the door's open at night, if anyone's walking. My grandmother's rule, not mine.",
+      "text": "Green pennant's up. Means the door's open at night, if anyone's walking. My grandmother's rule, not mine, and I've kept it because rules you inherit are cheaper than rules you argue for.",
       "conditions": [
         "flag:tolliverSaved"
       ]
     },
     {
       "speaker": "mattie_tolliver",
-      "text": "Boarded it from the inside. Don't know why. You board a thing up when you think you're coming back to it.",
+      "text": "Boarded it from the inside. Don't know why I did that. You board a thing up when you think you're coming back to it.",
       "conditions": [
         "flag:tolliverSold"
       ]

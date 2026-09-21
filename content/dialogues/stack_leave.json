@@ -3,7 +3,7 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Back up the stair, through whichever century the stair is in today.",
+      "text": "Back up the stair, through whichever century the stair happens to be in today.",
       "action": "travel:meridian_2312"
     }
   ]

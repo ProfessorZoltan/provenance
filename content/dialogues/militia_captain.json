@@ -1,7 +1,14 @@
 {
   "id": "militia_captain",
   "lines": [
-    { "speaker": "militia", "text": "Kell Militia. We drill on the memorial ground, under the names. Captain Ade's name is first. She held the winter of 2148 and eleven more after it." },
-    { "speaker": "militia", "text": "Old steel on the armory wall if you want it. Ash Camp forge marks. The kind of thing the Board would pay to see melted down.", "syncDelta": -3 }
+    {
+      "speaker": "militia",
+      "text": "Kell Militia. We drill on the memorial ground, under the names, Sundays and whenever somebody's rattled. Captain Ade's name is first on that wall. She held the winter of 2148 and eleven more after it."
+    },
+    {
+      "speaker": "militia",
+      "text": "Old steel on the armoury wall if you want it. Ash Camp forge marks, hand-beaten, every one different. Exactly the kind of thing the Board would have paid good money to see melted down, which is most of why we keep it.",
+      "syncDelta": -3
+    }
   ]
 }

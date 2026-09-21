@@ -3,15 +3,15 @@
   "lines": [
     {
       "speaker": "quarter_regular",
-      "text": "Your friend has been staring at the founder's portrait over the bar for ten minutes. Everyone stares at it. Nobody stares like that."
+      "text": "Your friend's been staring at the founder's portrait over the bar for ten minutes. Everybody stares at it, it's a terrible portrait. Nobody stares at it like that."
     },
     {
       "speaker": "strand_young",
-      "text": "It is a good likeness. They have made the jaw heavier, which they always do."
+      "text": "It is a good likeness. They have made the jaw heavier, which they always do — it happens to everyone who gets painted after they stop being able to object."
     },
     {
       "speaker": "strand_young",
-      "text": "The man at the end of the bar has looked at me four times and is now reaching for a handset. I would like to be on the other side of this conversation for once.",
+      "text": "And the man at the end of the bar has looked at me four times and is now reaching for a handset. I have spent my whole life being the one who makes that call. I would quite like to be on the other side of it for once.",
       "choices": [
         {
           "text": "Then we have the conversation.",

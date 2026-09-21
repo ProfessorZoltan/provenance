@@ -3,19 +3,19 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "The amendment is read at forty past the hour to a chamber that is mostly empty and entirely bought. It carries by three votes, because three people were bored."
+      "text": "The amendment is read at forty past the hour to a chamber that is mostly empty and entirely bought. It carries by three votes, because three people were bored and voting is the quickest way out of a chamber."
     },
     {
       "speaker": "mara_vesely",
-      "text": "A cession must name its beneficiary. Twelve words. Nobody in here understands what they have just made impossible."
+      "text": "A cession must name its beneficiary. Twelve words. Not one person in this room understands what they have just made impossible, and I am not going to be the one who explains it to them."
     },
     {
       "speaker": "player",
-      "text": "In my century the Steward's charter has an owner clause nobody can find the origin of. That was it. That was you."
+      "text": "In my century the Steward's charter has an owner clause that nobody has ever been able to source. That was it. That was this. That was you, at twenty to eleven, on a Thursday."
     },
     {
       "speaker": "dax",
-      "text": "Twelve words. Two hundred years. I'm going to need a minute with that.",
+      "text": "Twelve words. Two hundred and forty-eight years. I'm going to need a minute with that and I'd rather have it outside.",
       "conditions": [
         "party:dax"
       ]

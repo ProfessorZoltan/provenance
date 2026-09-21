@@ -1,8 +1,28 @@
 {
   "id": "captain_ade",
   "lines": [
-    { "speaker": "ade", "text": "The Ash Camp crews came in at dawn with your steel. We hold. Whatever happens to us after, we hold this winter.", "conditions": ["flag:armedResistance"] },
-    { "speaker": "ade", "text": "We fall in a week, and you know it. Go home, Auditor. Look at what you kept.", "conditions": ["flag:letItFall"] },
-    { "speaker": "ade", "text": "Have you decided?", "conditions": ["!flag:armedResistance", "!flag:letItFall"], "next": "quiet_2148_choice" }
+    {
+      "speaker": "ade",
+      "text": "The Ash Camp crews came in at dawn with your steel. Forty of them, down an open road, in daylight, which I would have called suicide on Tuesday. We hold. Whatever happens to us after, we hold this winter.",
+      "conditions": [
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "ade",
+      "text": "We fall in a week and you know we fall in a week. Go home, Auditor. Go up those stairs and look at what you kept.",
+      "conditions": [
+        "flag:letItFall"
+      ]
+    },
+    {
+      "speaker": "ade",
+      "text": "Have you decided?",
+      "conditions": [
+        "!flag:armedResistance",
+        "!flag:letItFall"
+      ],
+      "next": "quiet_2148_choice"
+    }
   ]
 }

@@ -3,20 +3,20 @@
   "lines": [
     {
       "speaker": "camp_clerk",
-      "text": "He had it folded in his jacket. Four hundred and six names and a second column that is not wages at all. It's a headcount for something that was never going to be paid."
+      "text": "He had it folded in his jacket. Four hundred and six names, and a second column that is not wages at all — it's a headcount for something that was never going to be paid."
     },
     {
       "speaker": "player",
-      "text": "It's a purchase order. The second column is what the crews cost as a line item, filed against an asset that hasn't been built yet."
+      "text": "It is a purchase order. The second column is what the crews cost as a line item, filed against an asset that has not been built yet. They are not on the payroll because they are on the balance sheet."
     },
     {
       "speaker": "camp_clerk",
-      "text": "Take the list. I've got a copy, and a copy is worth more than an original when somebody's coming for the original.",
+      "text": "Take the list. I've a copy, and a copy is worth a great deal more than an original when somebody is coming for the original.",
       "action": "quest:complete:basin_crew"
     },
     {
       "speaker": "camp_clerk",
-      "text": "Now. I can file it with the labour board this afternoon, with every name on it, and be looking for work by Monday. Or I can put it back in his jacket and neither of us mentions it again.",
+      "text": "Now. I can file it with the labour board this afternoon, with every name on it, and be looking for work by Monday. Or I can put it back in his jacket and neither of us ever mentions it again. I'd rather you said which.",
       "choices": [
         {
           "text": "File it. Put every name in the record.",

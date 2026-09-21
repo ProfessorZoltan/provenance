@@ -3,25 +3,25 @@
   "lines": [
     {
       "speaker": "clerk_novi",
-      "text": "Allocated goods only. If it is not on the quarterly schedule it does not exist, and I would ask you not to describe it to me."
+      "text": "Allocated goods only. If it is not on the quarterly schedule it does not exist, and I would ask you not to describe it to me, because then I have heard of it."
     },
     {
       "speaker": "clerk_novi",
-      "text": "Two shelves. Both rations. The schedule came down eleven percent and no explanation is owed to a commissary clerk.",
+      "text": "Two shelves. Both rations. The schedule came down eleven percent this quarter and no explanation is owed to a commissary clerk, and I have checked whether one is owed, twice.",
       "conditions": [
         "ownership<=-20"
       ]
     },
     {
       "speaker": "clerk_novi",
-      "text": "Half of this came in from outside the schedule and I have stopped filing the discrepancy. There is a clause somewhere that says people may hold things. I have read it nine times.",
+      "text": "Half of this came in from outside the schedule and I have stopped filing the discrepancy. There is a clause somewhere in the charter that says people may hold things. I have read it nine times and it says what I think it says.",
       "conditions": [
         "ownership>=20"
       ]
     },
     {
       "speaker": "clerk_novi",
-      "text": "You are the auditor who asked the question. No, I will not report it. I would quite like to know the answer.",
+      "text": "You are the auditor who asked the question. No, I am not going to report it. I would quite like to know the answer, and I have wanted to know it for rather longer than you have.",
       "conditions": [
         "flag:buyersExposed"
       ]

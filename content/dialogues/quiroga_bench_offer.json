@@ -3,15 +3,15 @@
   "lines": [
     {
       "speaker": "camp_clerk",
-      "text": "There is a trailer on the north side with a crate of notebooks in it that came down from the campus and never went back."
+      "text": "There's a trailer on the north side with a crate of notebooks in it. Came down from the campus on a truck and never went back up."
     },
     {
       "speaker": "camp_clerk",
-      "text": "Foreman has a work order to burn them Friday. I asked why and was told it was a work order, which is not an answer, which is why I am telling you."
+      "text": "Foreman has a work order to burn them Friday. I asked why. I was told that it was a work order, which is not an answer to why, which is exactly why I am telling you about it."
     },
     {
       "speaker": "quiroga",
-      "text": "That is four years of my handwriting. They took the bench notes when they took the vote.",
+      "text": "That is four years of my handwriting. Every derivation, in order. They took the bench notes when they took the vote and I never found out where they went.",
       "choices": [
         {
           "text": "They are not burning those.",

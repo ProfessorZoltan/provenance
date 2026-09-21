@@ -3,7 +3,7 @@
   "lines": [
     {
       "speaker": "vance",
-      "text": "Five firms are pooling their models this year. Ours is the one with a conscience, which is why I am up a mountain offering a monastery a stipend instead of buying the valley outright.",
+      "text": "Five firms are pooling their models this year. Ours is the one with a conscience, which is precisely why I am four hours up a mountain offering a monastery a stipend, instead of down there buying the valley outright, which is what any of the other four would have done by Tuesday.",
       "conditions": [
         "!flag:retreatEndowed",
         "!flag:retreatCommon"
@@ -11,7 +11,7 @@
     },
     {
       "speaker": "vance",
-      "text": "You people are not on my manifest and I have stopped caring. Talk to Kell. She is the one stalling.",
+      "text": "You people are not on my manifest, you have no business on this terrace, and I have stopped caring on both counts. Talk to Kell. She is the one stalling, and she is stalling well.",
       "conditions": [
         "!flag:retreatEndowed",
         "!flag:retreatCommon"
@@ -19,7 +19,7 @@
     },
     {
       "speaker": "vance",
-      "text": "A pleasure doing business with a house that understands risk.",
+      "text": "A pleasure doing business with a house that understands risk. Most of them do not; most of them think risk is the weather.",
       "conditions": [
         "flag:retreatEndowed"
       ]

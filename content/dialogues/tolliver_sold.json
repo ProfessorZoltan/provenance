@@ -3,15 +3,15 @@
   "lines": [
     {
       "speaker": "mattie_tolliver",
-      "text": "It's a good price and I've got two children. You'd take it. Don't stand there and tell me you wouldn't take it."
+      "text": "It's a good price and I've two children and a lease on the flour. You'd take it. Don't stand in my shop at four in the morning and tell me you wouldn't take it."
     },
     {
       "speaker": "narrator",
-      "text": "The Tollivers are paid, properly and legally, and they are fine. The corner burns in the spring regardless, because the claim was always the point."
+      "text": "The Tollivers are paid, properly and legally, and they are fine. They stay fine. The corner burns in the spring regardless, because the fire was never about the building — the claim was always the point, and a claim is cheaper to settle than a freehold."
     },
     {
       "speaker": "dax",
-      "text": "Nobody did anything wrong. That's the bit that gets me. Every single person in that transaction behaved reasonably.",
+      "text": "Nobody did anything wrong. That's the bit that gets me. Every single person in that transaction behaved reasonably and the corner still burnt.",
       "conditions": [
         "party:dax"
       ]
