@@ -170,6 +170,24 @@ describe('no dead ends', () => {
     }
   });
 
+  it('never hides world knowledge behind who happens to be on the field', () => {
+    // `party:x` is a roster decision made on another screen. A flag set behind one is a case-log
+    // entry, a shop, or a quest that a player silently loses by benching somebody.
+    for (const d of Object.values(content.dialogues)) {
+      const check = (what: string, conds: string[] | undefined, flags: string[] | undefined) => {
+        if (!flags?.length) return;
+        const gate = (conds ?? []).find((c) => c.replace(/^!/, '').startsWith('party:'));
+        expect(gate, `${d.id}: ${what} sets ${flags.join(', ')} only when ${gate} holds`).toBeUndefined();
+      };
+      for (const [i, l] of d.lines.entries()) {
+        check(`line ${i}`, l.conditions, l.setFlags);
+        for (const [j, c] of (l.choices ?? []).entries()) {
+          check(`line ${i} choice ${j}`, [...(l.conditions ?? []), ...(c.conditions ?? [])], c.setFlags);
+        }
+      }
+    }
+  });
+
   it('never leaves a person with nothing at all to say', () => {
     // Every line in a scene can be gated, and then a run that sets the wrong flag walks up to
     // somebody and gets silence. Sabotaging the Handover used to do exactly that to Vesely.
@@ -239,6 +257,49 @@ describe('no dead ends', () => {
         }
         expect(zone.encounters.length, `${map.id}/${zone.id} has nothing to roll`).toBeGreaterThan(0);
       }
+    }
+  });
+
+  it('never reads a flag that nothing in the game can set', () => {
+    // The mirror of the test below. A gate on a flag with no setter is a line, a shop or a quest
+    // that simply never appears, and deleting the setter by accident is silent in every other way.
+    const set = new Set<string>();
+    for (const e of Object.values(content.encounters)) for (const f of e.rewardFlags ?? []) set.add(f);
+    for (const q of Object.values(content.quests)) for (const f of q.rewards.flags) set.add(f);
+    for (const c of Object.values(content.timelineChoices)) for (const f of [...c.flags, ...c.partyEffects]) set.add(f);
+    for (const d of Object.values(content.dialogues)) for (const l of d.lines) {
+      for (const f of l.setFlags ?? []) set.add(f);
+      for (const ch of l.choices ?? []) for (const f of ch.setFlags ?? []) set.add(f);
+    }
+    // Flags the engine keeps itself rather than content declaring them.
+    const engine = (f: string) => /^(been|seen|recruited|left|trained|lean|surpriseCancelled):/.test(f)
+      || ['prologue', 'fleeing', 'metParty', 'started'].includes(f);
+
+    const read = new Map<string, string>();
+    const note = (where: string, conds?: string[]) => {
+      for (const c of conds ?? []) {
+        const f = c.replace(/^!/, '');
+        if (!f.startsWith('flag:')) continue;
+        const name = f.slice('flag:'.length);
+        if (!read.has(name)) read.set(name, where);
+      }
+    };
+    for (const d of Object.values(content.dialogues)) for (const l of d.lines) {
+      note(d.id, l.conditions);
+      for (const ch of l.choices ?? []) note(d.id, ch.conditions);
+    }
+    for (const l of Object.values(content.locations)) {
+      for (const v of l.variants ?? []) note(l.id, v.when);
+      for (const a of l.actions ?? []) note(l.id, a.requires);
+    }
+    for (const le of Object.values(content.log)) note(`log:${le.id}`, le.when);
+    for (const m of Object.values(content.maps)) for (const nd of m.nodes) note(`map:${m.id}`, nd.requires);
+    for (const q of Object.values(content.quests)) note(`quest:${q.id}`, q.requires);
+    for (const r of Object.values(content.rooms)) for (const pr of r.props) note(`room:${r.id}`, pr.requires);
+
+    for (const [flag, where] of read) {
+      if (engine(flag)) continue;
+      expect(set.has(flag), `${where} waits on the flag "${flag}", which nothing sets`).toBe(true);
     }
   });
 

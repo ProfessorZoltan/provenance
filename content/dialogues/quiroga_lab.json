@@ -3,7 +3,7 @@
   "lines": [
     {
       "speaker": "quiroga",
-      "text": "If you are from Strand's office you can tell him the answer is the same answer, and if you are not, you are trespassing, so it does not matter who you are.",
+      "text": "If you're from Strand's office you can tell him the answer is the same answer it was on Tuesday. If you're not from Strand's office you're trespassing, in which case it doesn't much matter who you are.",
       "conditions": [
         "!flag:metQuiroga"
       ]
@@ -34,7 +34,15 @@
     },
     {
       "speaker": "quiroga",
-      "text": "Seven to two, and I am one of the two, and you knew it before Thursday. Right. I am going to stop asking who you are and start asking what you want.",
+      "text": "Seven to two, and I am one of the two, and you knew the number two days before it was counted. Right.",
+      "conditions": [
+        "!flag:recruited:quiroga",
+        "flag:metQuiroga"
+      ]
+    },
+    {
+      "speaker": "quiroga",
+      "text": "I'm going to stop asking who you are. It's not that I don't care — it's that I have forty hours before that vote and exactly one useful person has walked through that door in four years. Ask me what you came to ask.",
       "conditions": [
         "!flag:recruited:quiroga",
         "flag:metQuiroga"
@@ -43,7 +51,7 @@
     },
     {
       "speaker": "quiroga",
-      "text": "It is published. Somebody put nine pages and five signatures in front of the press on the morning of the vote and the room could not hold. Whatever else happens to me, that happened.",
+      "text": "It's published. Somebody put nine pages and five signatures in front of four outlets on the morning of the vote and the room could not hold, and the pooling happened anyway, and it happened under a document every single person in the building had read.",
       "conditions": [
         "flag:recruited:quiroga",
         "flag:charterLeaked"
@@ -51,7 +59,15 @@
     },
     {
       "speaker": "quiroga",
-      "text": "I keep expecting to feel further away from my own century. Ask me again in a few days.",
+      "text": "Whatever else happens to me — and I have a fair idea what happens to me — that happened.",
+      "conditions": [
+        "flag:recruited:quiroga",
+        "flag:charterLeaked"
+      ]
+    },
+    {
+      "speaker": "quiroga",
+      "text": "I keep expecting to feel further away from my own century. Displaced, homesick, something. I don't. I feel like I have finally got to the part of the argument that was always going on without me. Ask me again in a few days.",
       "conditions": [
         "flag:recruited:quiroga",
         "!flag:charterLeaked"
@@ -59,7 +75,7 @@
     },
     {
       "speaker": "quiroga",
-      "text": "And Thursday is still Thursday. Whatever else you have me doing, that room and that vote are where we left them, so say the word and we go back to it.",
+      "text": "And Thursday is still Thursday. Whatever else you have me doing, that room and that vote are where we left them. Say the word and we go back.",
       "conditions": [
         "flag:recruited:quiroga"
       ],

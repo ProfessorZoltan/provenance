@@ -1,19 +1,69 @@
 {
   "id": "quiet_2148",
   "lines": [
-    { "speaker": "narrator", "text": "Kell Stronghold, 2148. The chapel is a magazine, the terraces are fire steps, and the rain is grey with ash from the valleys. A woman in patched armor watches you climb out of the crypt without surprise." },
-    { "speaker": "ade", "text": "Captain Ade. Wren told me a long time ago that people would come up those stairs one day. She was younger. So was I." },
-    { "speaker": "dax", "text": "Ade. You are not supposed to know me yet. I was a kid in the Ash Camp when this wall fell." },
-    { "speaker": "ade", "text": "It has not fallen. Not yet. We have food for a month and rifles for a week. The Board's Wardens are in the valley: human enforcers, well paid, no drones. They are waiting for us to starve." },
-    { "speaker": "ade", "text": "The old armory is under the north terrace. Sealed since the founding. Wren's order has the key; you came up through the door it opens. Give it to us and we hold the winter. Or do not, and let Kell fall the way your history says it did." },
-    { "speaker": "wren", "text": "Auditor. Whatever we do here, the village above us in 2312 will be built on it." },
+    {
+      "speaker": "narrator",
+      "text": "Kell Stronghold, 2148. The chapel is a magazine, the terraces have been cut into fire steps, and the rain coming off the ridge is grey with ash from the valleys."
+    },
+    {
+      "speaker": "narrator",
+      "text": "A woman in patched armour watches you climb out of the crypt and does not appear surprised by any part of it."
+    },
     {
       "speaker": "ade",
-      "text": "Well?",
+      "text": "Captain Ade. Wren told me a long time ago that people would come up those stairs one day. She was younger then. So was I, and I have got considerably less patient in between."
+    },
+    {
+      "speaker": "dax",
+      "text": "Ade. You're not supposed to know me yet. I was a kid in the Ash Camp when this wall came down.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "ade",
+      "text": "It has not come down. Note the tense.",
+      "conditions": [
+        "party:dax"
+      ]
+    },
+    {
+      "speaker": "ade",
+      "text": "Here is the position, and I will give it to you the way I give it to my own people. We have food for a month and ammunition for a week. The Board's Wardens are in the valley — human enforcers, well paid, no drones, because drones are expensive and we are not worth the expense."
+    },
+    {
+      "speaker": "ade",
+      "text": "They are not going to storm this wall. They are going to sit down there and wait for the month to run out. That is their entire plan and it is an extremely good one."
+    },
+    {
+      "speaker": "ade",
+      "text": "There is an old armoury under the north terrace, sealed since the founding. Wren's order holds the key — you came up through the door it opens, you are standing on it. Give it to us and we hold the winter."
+    },
+    {
+      "speaker": "wren",
+      "text": "Auditor. Whatever we do on this wall, the village above us in 2312 is built on top of it. Both ways.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "ade",
+      "text": "Or don't, and Kell falls the way your history says it did, and I would rather hear that to my face than find it out in the spring. Well?",
       "choices": [
-        { "text": "Arm the resistance. Open the armory.", "timelineChoice": "arm_resistance", "next": "quiet_armed" },
-        { "text": "Let it fall. We are not here to fight your war.", "timelineChoice": "let_it_fall", "next": "quiet_fall" },
-        { "text": "Not yet. We need to look around first.", "next": "quiet_defer" }
+        {
+          "text": "Arm the resistance. Open the armory.",
+          "timelineChoice": "arm_resistance",
+          "next": "quiet_armed"
+        },
+        {
+          "text": "Let it fall. We are not here to fight your war.",
+          "timelineChoice": "let_it_fall",
+          "next": "quiet_fall"
+        },
+        {
+          "text": "Not yet. We need to look around first.",
+          "next": "quiet_defer"
+        }
       ]
     }
   ]

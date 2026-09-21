@@ -3,21 +3,28 @@
   "lines": [
     {
       "speaker": "ilo9",
-      "text": "The village below reads as a Commons holding in every register I can reach. That is unusual and I would like it to stay unusual.",
+      "text": "The village below reads as a Commons holding in every register I am able to reach, of which there are four. That is unusual. I would like it to remain unusual and I am aware that is not a thing I can act on.",
       "conditions": [
         "flag:retreatCommon"
       ]
     },
     {
       "speaker": "ilo9",
-      "text": "The village below is listed as a Meridian trust, inherited three times and never contested. I would not mention that to Sister Wren.",
+      "text": "The village below is listed as a Meridian trust, inherited three times, never contested. The inheritance is clean. I have checked it twice because I wanted it to be otherwise, which I record as an error in method.",
       "conditions": [
         "flag:retreatEndowed"
       ]
     },
     {
       "speaker": "ilo9",
-      "text": "Dax has not spoken to me in two days. He is not being cruel; he is being consistent, which is worse.",
+      "text": "I would not raise it with Sister Wren.",
+      "conditions": [
+        "flag:retreatEndowed"
+      ]
+    },
+    {
+      "speaker": "ilo9",
+      "text": "Dax has not spoken to me in two days. I want to be accurate: he is not being cruel. He is being consistent, which is harder to argue with and considerably worse to be near.",
       "conditions": [
         "party:dax",
         "sync<=0"
@@ -25,14 +32,14 @@
     },
     {
       "speaker": "ilo9",
-      "text": "You have been generous to a thing that is owned. I notice. I am recording it in the register of the dead, which is the only register I have.",
+      "text": "You have been generous to a thing that is owned. I have noticed. I am entering it in the register of the dead, which is the only register I keep, and I am aware that is not where it belongs.",
       "conditions": [
         "sync>=40"
       ]
     },
     {
       "speaker": "ilo9",
-      "text": "I keep the second office, the register of the dead, and now apparently a party inventory. I am content."
+      "text": "I keep the second office, the register of the dead, and now, apparently, a party inventory. Three functions. That is two more than I had in a hundred and sixty years and I find I am content."
     }
   ]
 }

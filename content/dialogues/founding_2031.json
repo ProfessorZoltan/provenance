@@ -3,34 +3,61 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Kell, 2031. Six timber buildings on a shelf of rock, a well that works, and a smell of cut pine. Nothing is bricked up because nothing has happened yet."
+      "text": "Kell, 2031. Six timber buildings on a shelf of rock, a well that works, and the smell of cut pine everywhere. Nothing is bricked up, because nothing has happened yet."
     },
     {
       "speaker": "wren",
-      "text": "This is the founding year of my order. I have read the charter every winter of my life and I have never seen the hand that wrote it."
+      "text": "This is the founding year of my order. I have read our charter every winter of my life — the whole thing, aloud, it takes an hour — and I have never once seen the hand that wrote it.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "It is being written this week. By somebody who is still deciding what to put in it.",
+      "conditions": [
+        "party:wren"
+      ]
     },
     {
       "speaker": "dax",
-      "text": "Smells like a building site. Everything worth being afraid of is still in a lab somewhere."
+      "text": "Smells like a building site. Everything worth being frightened of is still in a lab somewhere, and nobody's afraid of a lab yet.",
+      "conditions": [
+        "party:dax"
+      ]
     },
     {
       "speaker": "ilse",
-      "text": "You came up the mountain without a cart and you are not dressed for it. Ilse Kell. I dug the well, so I get to ask what you want."
+      "text": "You came up the mountain without a cart and you're not dressed for it, which means you either got lost or you came on purpose, and nobody gets lost this high."
+    },
+    {
+      "speaker": "ilse",
+      "text": "Ilse Kell. I dug that well. That's the whole of my authority here and I find it holds up, so: what do you want."
     },
     {
       "speaker": "narrator",
-      "text": "A second party is already on the terrace: a woman in a good coat with a leather case, and two small flying machines idling above her shoulder."
+      "text": "There is already a second party on the terrace: a woman in a very good coat with a leather case at her feet, and two small flying machines holding station above her shoulder."
     },
     {
       "speaker": "vance",
-      "text": "Aurelia Vance, counsel to Meridian. I was here first and I am also waiting for an answer.",
+      "text": "Aurelia Vance, counsel to Meridian. I was here first, and I am also waiting for an answer, so I suggest we take it in the order we arrived.",
       "setFlags": [
         "metVance"
       ]
     },
     {
       "speaker": "wren",
-      "text": "Auditor. Whatever is decided on this terrace, my order inherits it. So does the village. So does the fortress in 2148 and the free town in 2312."
+      "text": "Auditor. Whatever is settled on this terrace this week, my order inherits. So does the village below it. So does the fortress it becomes in 2148, and the free town it is in 2312.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "Three hundred years of people, standing on a decision about a well.",
+      "conditions": [
+        "party:wren"
+      ]
     },
     {
       "speaker": "narrator",

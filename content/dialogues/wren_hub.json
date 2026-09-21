@@ -3,21 +3,35 @@
   "lines": [
     {
       "speaker": "wren",
-      "text": "The stronghold was armed. I can feel it in the stone; the chapel walls are thicker in this version. A hundred and sixty-four names on a wall that did not exist before. You did that.",
+      "text": "The stronghold was armed. I can feel it in the stone — the chapel walls are thicker in this version, a foot thicker, and I have known those walls my whole life.",
       "conditions": [
         "flag:armedResistance"
       ]
     },
     {
       "speaker": "wren",
-      "text": "You let it fall. I do not blame you; it fell the first time too. But the village is quieter, and the drones count it twice a night now.",
+      "text": "There is a wall below with a hundred and sixty-four names on it that did not exist this morning, and a stonekeeper who has been cutting them for forty years, and neither of them was there when you and I sat down. You did that.",
+      "conditions": [
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "You let it fall. I do not blame you for it; it fell the first time too, and the first time nobody had the option.",
       "conditions": [
         "flag:letItFall"
       ]
     },
     {
       "speaker": "wren",
-      "text": "You have seen the Quiet now. It is worse in person, isn't it? The Board's people were so ordinary.",
+      "text": "But the village is quieter than it was, and there is a sentry over the square, and they count us twice a night now instead of once. I notice these things because I have lived here for thirty years and I have nothing else to do with my attention.",
+      "conditions": [
+        "flag:letItFall"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "You have seen the Quiet now. It is worse in person than in the telling, and not for the reason people expect. Everyone imagines machines.",
       "conditions": [
         "visited:2148",
         "!flag:armedResistance",
@@ -26,28 +40,44 @@
     },
     {
       "speaker": "wren",
-      "text": "The chapel stairs are open whenever you are ready. Take Dax. It is his century, and he should be there when we decide what happens to it.",
+      "text": "The Board's people were so ordinary. That is the part that stays with you. They were paid, and they went home afterwards, and they were not cruel about it.",
+      "conditions": [
+        "visited:2148",
+        "!flag:armedResistance",
+        "!flag:letItFall"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "The chapel stairs are open whenever you are ready. Take Dax with you when you go — it is his century down there, and he should be standing in the room when we decide what happens to it.",
       "conditions": [
         "!visited:2148"
       ]
     },
     {
       "speaker": "wren",
-      "text": "You speak of the Steward as if it could be argued with. Perhaps. I have never heard it answer.",
+      "text": "You speak of the Steward as though it could be argued with. Perhaps it can. I have prayed in front of it and I have listened very carefully afterwards, and I have never once heard it answer, and I am aware that is also true of the thing I usually pray to.",
       "conditions": [
         "sync>=30"
       ]
     },
     {
       "speaker": "wren",
-      "text": "Dax has you talking like a Cinder. Be careful. Burning the models burns the people who are kept alive by them.",
+      "text": "Dax has you talking like a Cinder. I am not going to tell you he is wrong, because on most of it he is not.",
       "conditions": [
         "sync<=-30"
       ]
     },
     {
       "speaker": "wren",
-      "text": "Rest if you need it. The monastery asks nothing of anyone.",
+      "text": "But burning a model burns the people the model is holding up, and they will not be in the room when it is burned, and they will not be asked. Be careful about who is not in the room.",
+      "conditions": [
+        "sync<=-30"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "Rest if you need it. The monastery asks nothing of anyone; that is more or less the entire rule.",
       "choices": [
         {
           "text": "Go over the gauges again.",

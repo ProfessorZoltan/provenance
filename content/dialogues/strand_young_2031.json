@@ -3,28 +3,28 @@
   "lines": [
     {
       "speaker": "strand_young",
-      "text": "You have been on my campus for eleven minutes and you have not looked at a single thing you would look at if you worked here.",
+      "text": "You've been on my campus eleven minutes and you have not looked at one single thing you'd look at if you worked here. Not the benches, not the units on the lawn, not the whiteboard. You looked at the end room and then you looked at the exits.",
       "conditions": [
         "!flag:recruited:strand_young"
       ]
     },
     {
       "speaker": "strand_young",
-      "text": "Callum Strand. I am twenty-nine and this is mine, which people find either impressive or obscene depending on what they wanted from the afternoon.",
+      "text": "Callum Strand. I'm twenty-nine, this is mine, and people find that either impressive or obscene depending entirely on what they wanted out of the afternoon before they arrived.",
       "conditions": [
         "!flag:recruited:strand_young"
       ]
     },
     {
       "speaker": "player",
-      "text": "You sign a charter this Thursday with a clause about perpetuity in it.",
+      "text": "You sign a charter this Thursday. Nine pages, five signatures, and a clause on page six about perpetuity.",
       "conditions": [
         "!flag:recruited:strand_young"
       ]
     },
     {
       "speaker": "strand_young",
-      "text": "I sign a charter this Thursday. Nobody outside four people knows that. So either you are one of four people, or you are something considerably more interesting.",
+      "text": "I sign a charter this Thursday. Four people in the world know that. I can name all four, and none of them is you.",
       "conditions": [
         "!flag:recruited:strand_young"
       ],
@@ -34,7 +34,14 @@
     },
     {
       "speaker": "strand_young",
-      "text": "Here is what I think, and I am aware of how it sounds. I think you have been somewhere I have not, and I think you are about to tell me it went badly, and I think you want to stop me.",
+      "text": "So either you're a fifth person I don't know about, which is a problem I can solve by lunchtime, or you're something considerably more interesting, which is not a problem at all.",
+      "conditions": [
+        "!flag:recruited:strand_young"
+      ]
+    },
+    {
+      "speaker": "strand_young",
+      "text": "Here's what I think, and I'm aware how it sounds. I think you've been somewhere I haven't. I think you're going to tell me it went badly. And I think you want to stop me, which means you think I'm the one doing it, and that is the first genuinely new idea anyone has had about me in two years.",
       "conditions": [
         "!flag:recruited:strand_young"
       ],
@@ -42,7 +49,7 @@
     },
     {
       "speaker": "strand_young",
-      "text": "I am still waiting to be told what I do that is so unforgivable. Nobody will say it plainly. That is how I know it is large.",
+      "text": "I'm still waiting to be told what it is I do that's so unforgivable. Nobody will say it plainly. Wren won't, Dax looks at the wall, and you change the subject beautifully.",
       "conditions": [
         "flag:recruited:strand_young",
         "!flag:been:capitol_2312"
@@ -50,7 +57,23 @@
     },
     {
       "speaker": "strand_young",
-      "text": "A seat with my name on it, occupied, three centuries out. I have read my own register entry. I would like a moment and then I would like to keep going.",
+      "text": "That's how I know it's large. Small things people tell you straight away.",
+      "conditions": [
+        "flag:recruited:strand_young",
+        "!flag:been:capitol_2312"
+      ]
+    },
+    {
+      "speaker": "strand_young",
+      "text": "A seat with my name on it. Occupied. Three centuries out. I have read my own register entry in my own hand, and the signature has not changed once in all that time, which means I never learned anything worth changing it for.",
+      "conditions": [
+        "flag:recruited:strand_young",
+        "flag:been:capitol_2312"
+      ]
+    },
+    {
+      "speaker": "strand_young",
+      "text": "I would like a moment. And then I would like to keep going, because a moment is all I have got and I would rather spend the rest of it usefully.",
       "conditions": [
         "flag:recruited:strand_young",
         "flag:been:capitol_2312"

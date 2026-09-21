@@ -1,11 +1,83 @@
 {
   "id": "dax_hub",
   "lines": [
-    { "speaker": "dax", "text": "The Ash Camp crews got their weapons. My crews. I remember it differently now, and I also remember it the old way. Both at once. Wren says that is what Continuity feels like when it slips.", "conditions": ["flag:armedResistance"] },
-    { "speaker": "dax", "text": "We walked away from it. Fine. I have walked away from worse. But that sentry over the square is new, and I am going to wreck it one of these nights.", "conditions": ["flag:letItFall"] },
-    { "speaker": "dax", "text": "Wardens. Humans in armor, taking Board pay to put down other humans. Now you know. The machines only ever did what they were told; tell me again why we should not burn them.", "conditions": ["visited:2148", "!flag:armedResistance", "!flag:letItFall"] },
-    { "speaker": "dax", "text": "Level with me: do you think the thing in the core is alive? Because if you say yes, we are going to have a problem later.", "conditions": ["sync>=40"] },
-    { "speaker": "dax", "text": "Good. You get it. Every model burns, including the good ones. Especially the good ones.", "conditions": ["sync<=-40"] },
-    { "speaker": "dax", "text": "Drones on the perimeter again. Go out and break some if you want practice. Thermal goes straight through their shields, Wreck knocks them off entirely." }
+    {
+      "speaker": "dax",
+      "text": "Ash Camp got their weapons. My crews. Except they weren't my crews, they were forty years before me, and I was a kid hearing about it.",
+      "conditions": [
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Here's the thing. I remember it both ways. I remember the wall coming down and I remember it holding, both, at once, right now, sitting here. Wren says that's what Continuity feels like when it slips. Wren says a lot of things calmly.",
+      "conditions": [
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "We walked away from it. Fine. I've walked away from worse and I'll do it again.",
+      "conditions": [
+        "flag:letItFall"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "That sentry over the square is new, though. That wasn't there. I'm going to wreck it one of these nights and I'm telling you now so you can't say you were surprised.",
+      "conditions": [
+        "flag:letItFall"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Wardens. Humans. In armour, taking Board pay, to put down other humans. That's what did it. Not drones — drones cost money and we weren't worth the money.",
+      "conditions": [
+        "visited:2148",
+        "!flag:armedResistance",
+        "!flag:letItFall"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "So now you've seen it. Tell me again why the machines are the part we're being careful with.",
+      "conditions": [
+        "visited:2148",
+        "!flag:armedResistance",
+        "!flag:letItFall"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Level with me. Do you think the thing in that core is alive.",
+      "conditions": [
+        "sync>=40"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Don't answer fast. Because if it's yes, you and me have got a problem coming, and I'd rather have it now over a fire than later over a decision.",
+      "conditions": [
+        "sync>=40"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Good. You get it. Every model burns. Including the good ones.",
+      "conditions": [
+        "sync<=-40"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Especially the good ones. The bad ones fall over on their own.",
+      "conditions": [
+        "sync<=-40"
+      ]
+    },
+    {
+      "speaker": "dax",
+      "text": "Drones on the perimeter again. Go break some if you want the practice. Thermal goes straight through the shields, and Wreck takes the shield off entirely, so pick one and commit."
+    }
   ]
 }

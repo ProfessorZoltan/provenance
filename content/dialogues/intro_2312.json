@@ -7,66 +7,85 @@
     },
     {
       "speaker": "wren",
-      "text": "So. Continuity Holdings. You asked a question about it and four days later your own file was flagged, and here you are. Sit. Nobody here reports to anyone."
-    },
-    {
-      "speaker": "dax",
-      "text": "Nobody here except the drones, Sister. They count the village every night now. Since our guest arrived."
+      "text": "Sit down. You have walked four hours on a revoked card and you are still standing as though somebody is about to ask you for it."
     },
     {
       "speaker": "wren",
-      "text": "The budget line you found predates the Steward. It has been paid, every quarter, for two hundred and eighty years. To people, Auditor. Not to a system."
+      "text": "So. Continuity Holdings. You asked who they were, and four days later your own file carried a review flag with no department behind it, and now you are in my kitchen. Nobody here reports to anyone. That is not a comfort, it is just a fact about the building."
+    },
+    {
+      "speaker": "dax",
+      "text": "Nobody here except the drones, Sister. They count the village every night now. Twice, since our guest arrived."
+    },
+    {
+      "speaker": "wren",
+      "text": "Then let me tell you the part you have not worked out yet, because you have been walking and I have been sitting here with it for some hours."
+    },
+    {
+      "speaker": "wren",
+      "text": "That budget line predates the Steward. It has been paid every quarter for two hundred and eighty-one years, and the Steward has only existed for about two hundred and forty of them. Somebody was being paid before there was anything to pay them for."
     },
     {
       "speaker": "player",
-      "text": "A system does not need a budget line. A system does not have owners."
+      "text": "Which means it is not a maintenance cost. A system does not need a budget line. Systems do not have owners — that is the first line of the training, and I have recited it to junior staff for eleven years."
     },
     {
       "speaker": "dax",
-      "text": "Everything has owners. That is the whole problem."
+      "text": "Everything has owners. That's the whole problem. You lot just built one so big you stopped being able to see the edges of it."
     },
     {
       "speaker": "wren",
-      "text": "Under this chapel, time is layered. The monastery has stood here since 2031, and at a place like that, the eras touch. We can go down into 2148, when this was a fortress and the Quiet was new."
+      "text": "Now. The reason you were sent up this road rather than any other."
+    },
+    {
+      "speaker": "wren",
+      "text": "This monastery has stood on this rock since 2031. Somewhere a building has stood long enough and been changed little enough, the eras stop being separate. Under this chapel floor they touch. We can walk down into 2148, when this was a fortress and the Quiet was new, and we can walk back up again."
     },
     {
       "speaker": "dax",
-      "text": "My era. I was born in the Ash Camp two valleys over. If you want to know what really crushed the resistance, I can show you. It was not the machines."
+      "text": "My century. I was born in the Ash Camp, two valleys over, about forty years after the wall came down. If you want to know what actually finished the resistance, I can take you to it. It wasn't the machines. It was never the machines.",
+      "conditions": [
+        "party:dax"
+      ]
     },
     {
       "speaker": "wren",
-      "text": "One warning. What we change down there changes up here. Look at the village before you go. Then look again when you come back.",
+      "text": "One warning, and it is the only one that matters. What we change down there has already changed up here by the time we come back. Not gradually. It will simply always have been that way, and you will be the only one who remembers the other version."
+    },
+    {
+      "speaker": "wren",
+      "text": "So before we go: walk down to the village and look at it properly. The gate, the stalls, who is out. Then look again when we come back up.",
       "setFlags": [
         "metParty"
       ]
     },
     {
       "speaker": "wren",
-      "text": "One more thing before you sleep. You have never fought beside an anchor, so you do not know what we can do."
+      "text": "One more thing before you sleep, because you have never fought beside an anchor and you do not know what that means."
     },
     {
       "speaker": "wren",
-      "text": "Everyone acts in threads. You get as many each turn as your Bandwidth. Most things cost one thread, heavy things cost two or three, and anything you do not spend banks as Slack for next turn, up to two."
+      "text": "Everyone acts in threads. You get as many each turn as your Bandwidth. Most things cost one thread, the heavy things cost two or three, and whatever you do not spend banks as Slack for next turn, up to two."
     },
     {
       "speaker": "wren",
-      "text": "Every thread the three of us spend feeds one gauge between us. Tempo. Two points a thread, forty at the top, and it belongs to the party, not to any one of us."
+      "text": "Every thread any of us spends feeds one gauge between us. Tempo — two points a thread, forty at the top. It belongs to the party, not to any one of us."
     },
     {
       "speaker": "dax",
-      "text": "She is being modest. The gauge is hers. We just pay into it."
+      "text": "She's being modest. The gauge is hers. We just pay into it."
     },
     {
       "speaker": "wren",
-      "text": "Tempo buys two things, and you will find both on the action list in a fight. Three of it lets me Rewind, and the last thing an enemy did to us comes undone. Two of it, and a thread, lets you Fork: see exactly what an action would do before you commit to it."
+      "text": "Tempo buys two things, and both are on the action list in a fight. Three of it lets me Rewind: the last thing an enemy did to us comes undone, and they take the turn again. Two of it, plus a thread, lets you Fork — you see exactly what an action would do, down to the number, before you commit to doing it."
     },
     {
       "speaker": "wren",
-      "text": "Neither is free. Pulling on time frays it, and the fraying is called Entropy. Past seventy it answers back, and what walks out of the fray is a copy of one of us. Nothing but Chronal damage touches those. Spend carefully."
+      "text": "Neither is free. Pulling on time frays it, and the fraying has a name: Entropy. Past seventy it answers back, and what walks out of the fray is a copy of one of us, standing there wearing a face you know. Nothing but Chronal damage touches those. So spend carefully, and spend on purpose."
     },
     {
       "speaker": "narrator",
-      "text": "Explore the monastery for random encounters, walk down to Kell Village for the shop and a favor for Old Pell, or take the stairs beneath the chapel into 2148."
+      "text": "Explore the monastery for encounters, walk down to Kell Village for the shop and a favour for Old Pell, or take the stairs beneath the chapel into 2148."
     }
   ]
 }

@@ -3,42 +3,55 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Server Graveyard, 2148. Racks the length of a street, tipped into the mud. Rain has been getting into them for a century."
+      "text": "Server Graveyard, 2148. Racks the length of a street, tipped into the mud where they stood, and left. Rain has been getting into them for a century."
     },
     {
       "speaker": "dax",
-      "text": "People used to come out here and pray at these. Actually kneel. My grandmother did."
+      "text": "People used to come out here and pray at these. Actually kneel down, in the mud, in front of a rack. My grandmother did it. She'd have denied it.",
+      "conditions": [
+        "party:dax"
+      ]
     },
     {
       "speaker": "narrator",
-      "text": "Somewhere under the stacks, something is singing. Four seconds of it, then four seconds again, then four seconds again."
-    },
-    {
-      "speaker": "wren",
-      "text": "That is a liturgy. Second office, Kell use. It has the words wrong in the same place every time.",
+      "text": "Somewhere under the stacks, something is singing. Four seconds of it. Then four seconds again. Then four seconds again, on the same interval, with the same catch in the middle.",
       "setFlags": [
         "heardTheHymn"
       ]
     },
     {
-      "speaker": "narrator",
-      "text": "At the end of the racks there is a cradle, and a shape strapped into it with Board welds.",
-      "next": "ilo9_bound_dlg",
+      "speaker": "wren",
+      "text": "That is a liturgy. Second office, Kell use — our second office, the one nobody attends. I could sing you the next line.",
       "conditions": [
-        "!flag:freedIlo9",
-        "!flag:brokeIlo9"
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "And it has the words wrong. In the same place, every time, for as long as it has been down there. Whoever set it going never came back to correct it, and it has been holding the mistake faithfully ever since.",
+      "conditions": [
+        "party:wren"
       ]
     },
     {
       "speaker": "narrator",
-      "text": "At the end of the racks there is an empty cradle with its restraints cut.",
+      "text": "At the end of the racks there is a cradle, and strapped into it with Board welds, a shape that stops singing when it hears you.",
+      "conditions": [
+        "!flag:freedIlo9",
+        "!flag:brokeIlo9"
+      ],
+      "next": "ilo9_bound_dlg"
+    },
+    {
+      "speaker": "narrator",
+      "text": "At the end of the racks there is an empty cradle with its restraints cut through, and no singing at all.",
       "conditions": [
         "flag:freedIlo9"
       ]
     },
     {
       "speaker": "narrator",
-      "text": "At the end of the racks there is a cradle with something broken in it.",
+      "text": "At the end of the racks there is a cradle with something broken in it, and no singing at all.",
       "conditions": [
         "flag:brokeIlo9"
       ]

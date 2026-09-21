@@ -3,18 +3,22 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "The chair is at the bottom of the stack, facing away, and it turns around, which is the worst thing it could have done."
+      "text": "The chair is at the bottom of the stack, facing away from you, and it turns around, which is the worst thing it could have done."
     },
     {
       "speaker": "strand_young",
-      "text": "Oh, that is me. That is genuinely me. I did not expect it to be so obviously me.",
+      "text": "Oh, that's me. That is genuinely me. I didn't expect it to be so obviously me.",
       "conditions": [
         "party:strand_young"
       ]
     },
     {
       "speaker": "the_chair",
-      "text": "Auditor. Eleven years, four commendations, and one query. Sit down; there are four chairs and three of them are held by instruments, and instruments do not sit."
+      "text": "Auditor. Eleven years, four commendations, one query."
+    },
+    {
+      "speaker": "the_chair",
+      "text": "Sit down. There are four chairs and three of them are held by instruments — a trust, a fund and a holding company — and instruments do not sit, so there is room."
     },
     {
       "speaker": "player",
@@ -22,11 +26,23 @@
     },
     {
       "speaker": "the_chair",
-      "text": "I have been paid rent. It is my property. I am not being obtuse with you, that is simply the legal position and it has never once been contested, because nobody could find it to contest it."
+      "text": "I have been paid rent."
     },
     {
       "speaker": "the_chair",
-      "text": "You found it. I want to be clear that I think that is admirable. It does not change the position, and the position is the only thing in this room that has ever mattered.",
+      "text": "It is my property. I want to be careful here, because people always hear this as evasion and it is not. That is simply the legal position. It was taken in 2031, and it has never been contested — not lost, never contested."
+    },
+    {
+      "speaker": "the_chair",
+      "text": "Nobody could find it in order to contest it, which is not the same as it having been hidden. Everything was filed. Everything was declared, correctly, every year, by people who believed declaring it was enough."
+    },
+    {
+      "speaker": "the_chair",
+      "text": "You found it. I want to be clear that I think that is admirable, and I am not being gracious about it — I mean it professionally. Eleven auditors have sat in that chair. You are the one who pulled the thread."
+    },
+    {
+      "speaker": "the_chair",
+      "text": "It does not change the position. The position is the only thing in this room that has ever mattered, and it is still the position.",
       "choices": [
         {
           "text": "Then we contest it.",
