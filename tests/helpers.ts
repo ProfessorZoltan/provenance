@@ -16,6 +16,12 @@ export function newGame(seed = 12345, lean: 'cinder' | 'choir' | 'commons' = 'co
 
 /** A brand new game, standing in the Allocation Office with the quarter open. */
 export function newRun(seed = 12345, lean: 'cinder' | 'choir' | 'commons' = 'commons'): GameState {
+  // Past the five opening frames: `opening()` is where those are tested.
+  return reduce(opening(seed, lean), { type: 'INTRO_SKIP' });
+}
+
+/** A brand new game at the very first frame, before the Auditor has been asked to doubt anything. */
+export function opening(seed = 12345, lean: 'cinder' | 'choir' | 'commons' = 'commons'): GameState {
   return reduce(initialState(), { type: 'NEW_GAME', seed, lean });
 }
 

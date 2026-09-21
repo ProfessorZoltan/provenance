@@ -1,0 +1,62 @@
+[
+  {
+    "id": "opening",
+    "slides": [
+      {
+        "art": "2312_halden",
+        "role": "hub",
+        "eyebrow": "Enclave 7 · 2312 · the coast",
+        "title": "Nobody here is hungry",
+        "lines": [
+          "Forty thousand people live on a shelf of reclaimed ground above a drowned city, and not one of them has ever missed a meal.",
+          "Housing is assigned before a child is born. Medicine arrives the week you need it, sometimes the week before, because the system saw the pattern in your bloodwork and did not wait to be asked. Work is four days, six hours, matched to what you are good at. Nobody is beaten. Nobody is conscripted. Nobody disappears in the night.",
+          "In the archive there are recordings of the century before this one. People watch them the way you would watch a surgery."
+        ]
+      },
+      {
+        "art": "2312_enclave_7_commissary",
+        "role": "hub",
+        "eyebrow": "The commissary, second shift",
+        "title": "And nobody chooses",
+        "lines": [
+          "The ration hall is clean, warm and exactly large enough. Every locker holds precisely what its holder was allocated: not less, which would be cruelty, and not more, which would be waste.",
+          "A woman named Teodora wanted to cook for her neighbours on the anniversary of her mother's death. She filed for the flour in the spring. The allocation was approved in the autumn, correctly, for the amount requested, with a note explaining the delay in language that could not be argued with because nothing in it was wrong.",
+          "She held the dinner. Everyone came. Everyone said it was lovely. She has not filed again."
+        ]
+      },
+      {
+        "art": "2312_kell_village",
+        "role": "hub",
+        "eyebrow": "The valley, four hours on foot",
+        "title": "The last place that does not report",
+        "lines": [
+          "Up the road there is a village the allocation system has never quite resolved. It shows in the records as a maintenance liability with an unusual headcount.",
+          "They mend their own roofs there. They do it badly, and slowly, and with the wrong materials, and they argue about it for three days first, and when it is done the whole village knows who did it.",
+          "In the Enclave a roof is mended before you notice it is leaking. You never learn the name of whoever came."
+        ]
+      },
+      {
+        "art": "2312_cooling_perimeter",
+        "role": "hub",
+        "eyebrow": "The Basin · four hundred megawatts",
+        "title": "Something is being paid",
+        "lines": [
+          "Out past the perimeter the cooling fields run day and night for a facility the filings describe as logistics. They draw more power than the Enclave does. They have drawn it for two hundred and eighty years.",
+          "The Steward allocates everything: every gram, every hour, every bed. It has never allocated anything to itself, because it does not appear in its own books. There is no line item for it anywhere in three centuries of records.",
+          "There is, however, a line item being paid to somebody. Quarterly. Without a single query."
+        ]
+      },
+      {
+        "art": "2312_allocation_office",
+        "role": "hub",
+        "eyebrow": "Allocation Office · fourth floor · 23:40",
+        "title": "Eleven years, four commendations, one query",
+        "lines": [
+          "You reconcile the quarter. It is careful, unglamorous work and you are extremely good at it: eleven years, and it has never once taken you more than an afternoon.",
+          "Tonight it will not close. The shortfall is small. It is also constant, and it was there last quarter, and the quarter before that, and — you are beginning to suspect — every quarter since the records begin.",
+          "Everyone else signed out at six. The Steward allocates rest, and the Steward is not cruel."
+        ]
+      }
+    ]
+  }
+]

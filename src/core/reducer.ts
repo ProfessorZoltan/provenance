@@ -267,6 +267,15 @@ function dialogueNext(content: ContentDB, state: GameState): GameState {
   return { ...state, dialogue: null, screen: dlg.returnTo };
 }
 
+/** Where the intro hands over: the office at twenty-three forty, with the quarter open. */
+function openPrologue(content: ContentDB, state: GameState): GameState {
+  const room = content.rooms.allocation_office;
+  const s: GameState = { ...state, screen: { id: 'room', room: room.id } };
+  return room.storyDialogue
+    ? startDialogue(content, s, room.storyDialogue, { id: 'room', room: room.id })
+    : s;
+}
+
 /** The end of the prologue: Wren and Dax are met, and the game proper starts at Kell. */
 function joinAtKell(content: ContentDB, state: GameState): GameState {
   let s: GameState = {
@@ -428,11 +437,17 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       };
       s = addFlags(s, [`lean:${action.lean}`, 'prologue']);
       s = journal(s, 'Allocation Office, Enclave 7. The quarter will not close.');
-      const room = content.rooms.allocation_office;
-      return room.storyDialogue
-        ? startDialogue(content, s, room.storyDialogue, { id: 'room', room: room.id })
-        : s;
+      // Five held frames of what the Enclave is like before the Auditor is asked to doubt it.
+      return content.intro.opening?.slides.length ? { ...s, screen: { id: 'intro', slide: 0 } } : openPrologue(content, s);
     }
+    case 'INTRO_ADVANCE': {
+      if (state.screen.id !== 'intro') return state;
+      const slides = content.intro.opening?.slides ?? [];
+      const next = state.screen.slide + 1;
+      return next < slides.length ? { ...state, screen: { id: 'intro', slide: next } } : openPrologue(content, state);
+    }
+    case 'INTRO_SKIP':
+      return state.screen.id === 'intro' ? openPrologue(content, state) : state;
     case 'PROLOGUE_SKIP': {
       // The New Game screen offers this on a replay, and the tests use it to get to the game.
       if (!state.flags.includes('prologue')) return state;

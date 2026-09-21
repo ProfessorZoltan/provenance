@@ -166,6 +166,7 @@ export interface DialogueState {
 
 export type Screen =
   | { id: 'title' }
+  | { id: 'intro'; slide: number }
   | { id: 'newGame' }
   | { id: 'hub' }
   | { id: 'map' }

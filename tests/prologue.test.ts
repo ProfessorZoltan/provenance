@@ -3,7 +3,7 @@ import { learn, logSuperseded, mapFor } from '../src/core/reducer';
 import { evalAll } from '../src/core/conditions';
 import { conditionContext } from '../src/core/encounter';
 import { applyChoice } from '../src/core/timeline';
-import { autoBattle, content, newGame, newRun, reduce, run, skipDialogue } from './helpers';
+import { autoBattle, content, newGame, newRun, opening, reduce, run, skipDialogue } from './helpers';
 import type { GameState } from '../src/types/state';
 
 /** Walk the whole terminal chain: reconcile, trace, history, charter. */
@@ -14,6 +14,41 @@ function workTheLedger(s: GameState): GameState {
   }
   return s;
 }
+
+describe('the opening', () => {
+  it('shows what the Enclave is like before it asks anyone to doubt it', () => {
+    const s = opening(77);
+    expect(s.screen).toEqual({ id: 'intro', slide: 0 });
+    expect(content.intro.opening.slides.length, 'more than one frame, or it is a splash').toBeGreaterThan(2);
+  });
+
+  it('walks the frames one at a time and hands over to the office', () => {
+    let s = opening(77);
+    const slides = content.intro.opening.slides.length;
+    for (let i = 1; i < slides; i++) {
+      s = reduce(s, { type: 'INTRO_ADVANCE' });
+      expect(s.screen).toEqual({ id: 'intro', slide: i });
+    }
+    s = reduce(s, { type: 'INTRO_ADVANCE' });
+    expect(s.screen.id, 'the last frame opens the prologue').toBe('dialogue');
+    expect(s.dialogue?.id).toBe('prologue_open');
+  });
+
+  it('can be skipped outright, landing in the same place', () => {
+    const skipped = reduce(opening(77), { type: 'INTRO_SKIP' });
+    expect(skipped.screen.id).toBe('dialogue');
+    expect(skipped.dialogue?.id).toBe('prologue_open');
+    expect(skipped.location).toBe('allocation_office_2312');
+  });
+
+  it('shows the Enclave working before it shows what that costs', () => {
+    const [good, ...rest] = content.intro.opening.slides;
+    const all = content.intro.opening.slides.map((x) => x.lines.join(' ')).join(' ');
+    expect(good.lines.join(' ')).toMatch(/not one of them has ever missed a meal/);
+    expect(rest.length).toBeGreaterThan(2);
+    expect(all, 'and it ends on the query the game is about').toMatch(/without a single query/i);
+  });
+});
 
 describe('the prologue', () => {
   it('starts alone in the Allocation Office with the quarter open', () => {

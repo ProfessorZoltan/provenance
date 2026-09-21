@@ -443,6 +443,20 @@ export interface RulesDef {
   markBonus: number;
 }
 
+/** One held frame of the opening: a scene, a heading, and what the player reads over it. */
+export interface IntroSlide {
+  art: string;
+  role?: string;
+  eyebrow: string;
+  title: string;
+  lines: string[];
+}
+
+export interface IntroDef {
+  id: string;
+  slides: IntroSlide[];
+}
+
 export interface ContentDB {
   characters: Record<string, CharacterDef>;
   nodes: Record<string, NodeDef>;
@@ -461,5 +475,6 @@ export interface ContentDB {
   log: Record<string, LogEntryDef>;
   rooms: Record<string, RoomDef>;
   endings: Record<string, EndingDef>;
+  intro: Record<string, IntroDef>;
   rules: RulesDef;
 }

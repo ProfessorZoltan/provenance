@@ -6,7 +6,7 @@ const files = import.meta.glob('../../content/**/*.json', { eager: true, import:
 
 const FOLDERS = [
   'characters', 'nodes', 'abilities', 'enemies', 'encounters', 'locations', 'eras',
-  'scores', 'dialogues', 'timelineChoices', 'quests', 'shops', 'items', 'maps', 'log', 'rooms', 'endings',
+  'scores', 'dialogues', 'timelineChoices', 'quests', 'shops', 'items', 'maps', 'log', 'rooms', 'endings', 'intro',
 ] as const;
 
 type Folder = (typeof FOLDERS)[number];

@@ -600,3 +600,29 @@ section.tech > div:first-child { overflow-y: auto; min-height: 0; }
   .battle .enemy .st { font-size: 9px; }
   .battle .actionmenu { max-height: 160px; }
 }
+
+/* ---- the five frames before the prologue ---- */
+.intro { position: absolute; inset: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; background: var(--bg); }
+.intro-art { position: relative; overflow: hidden; background: #0c1020; }
+.intro-art .scene-art { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.intro-art::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 45%, var(--bg) 100%);
+}
+.intro-body { padding: 0 6vw 28px; display: grid; gap: 14px; justify-items: center; }
+.intro-box { max-width: 74ch; padding: 22px 26px; margin-top: -60px; position: relative; }
+.intro-box h2 { margin: 6px 0 12px; font-size: clamp(20px, 2.6vw, 30px); line-height: 1.15; letter-spacing: 0.01em; }
+.intro-box p { margin: 0 0 10px; line-height: 1.6; font-size: 15px; color: color-mix(in srgb, var(--ink) 88%, transparent); }
+.intro-box p:last-child { margin-bottom: 0; }
+.intro-dots { display: flex; gap: 8px; }
+.intro-dots i {
+  width: 22px; height: 3px; background: color-mix(in srgb, var(--ink) 18%, transparent);
+  transition: background 300ms;
+}
+.intro-dots i.past { background: color-mix(in srgb, var(--ink) 40%, transparent); }
+.intro-dots i.on { background: var(--accent); }
+@media (max-height: 780px) {
+  .intro-box { padding: 16px 20px; margin-top: -40px; }
+  .intro-box p { font-size: 14px; line-height: 1.5; margin-bottom: 8px; }
+  .intro-box h2 { margin: 4px 0 8px; }
+}

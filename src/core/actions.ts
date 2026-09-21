@@ -39,4 +39,6 @@ export type Action =
   | { type: 'TIMELINE_CHOICE'; choice: string }
   | { type: 'SET_SETTINGS'; settings: Partial<Settings> }
   | { type: 'GAME_OVER_RETURN' }
-  | { type: 'PROLOGUE_SKIP' };
+  | { type: 'PROLOGUE_SKIP' }
+  | { type: 'INTRO_ADVANCE' }
+  | { type: 'INTRO_SKIP' };
