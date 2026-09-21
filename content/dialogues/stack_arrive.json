@@ -7,22 +7,30 @@
     },
     {
       "speaker": "narrator",
-      "text": "The 2031 courtyard is the floor. The 2064 atrium is the walls. The 2148 vault corridor runs through both at an angle that is not available. The lattice is the ceiling."
+      "text": "The 2031 lab courtyard is the floor. The 2064 atrium is the walls. The 2148 vault corridor runs through both of them at an angle that is not available. The lattice is the ceiling."
+    },
+    {
+      "speaker": "narrator",
+      "text": "Nothing has been removed to make room for anything else. They are simply all here, at the same time, and your eyes keep trying to choose one."
     },
     {
       "speaker": "player",
-      "text": "It is not a Deep Site. A Deep Site is a place where the eras touch. This is a place where somebody has been standing in all four of them for two hundred and twenty years and has worn them together."
+      "text": "This is not a Deep Site. A Deep Site is a place old enough that the eras touch, and you can step through, and it costs you something to do it."
+    },
+    {
+      "speaker": "player",
+      "text": "This is a place where somebody has been standing in all four of them, continuously, for two hundred and twenty years. He has not travelled through time. He has simply refused to leave any of it, and the eras have worn together around him like a path across a lawn."
     },
     {
       "speaker": "wren",
-      "text": "Entropy is not going to behave in here.",
+      "text": "Entropy is not going to behave in here. Whatever the gauge tells you, be ready for it to be wrong in his favour.",
       "conditions": [
         "party:wren"
       ]
     },
     {
       "speaker": "narrator",
-      "text": "There is a chair at the bottom. Four floors down, and one of them is yours, and you have to walk through the other three to reach it."
+      "text": "There is a chair at the bottom. Four floors down. One of those floors is yours, and you have to walk through the other three to reach it."
     }
   ]
 }

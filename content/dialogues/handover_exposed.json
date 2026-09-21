@@ -7,19 +7,23 @@
     },
     {
       "speaker": "narrator",
-      "text": "The reading is suspended. It will be suspended for eleven years, and in the eleventh year it will pass anyway, with everyone watching."
+      "text": "None of it was hidden. Every interest was declared, correctly, every year, by people who believed that declaring it was the whole of the obligation. It simply had never been read in one place before."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The reading is suspended. It will stay suspended for eleven years, and in the eleventh year it will pass anyway, with everybody watching, which is a different kind of loss."
     },
     {
       "speaker": "player",
-      "text": "Continuity Holdings. Printed, filed, and in a public record that exists in my century too."
+      "text": "Continuity Holdings. Printed, filed, and sitting in a public record that still exists in my century, where I will be able to find it in two hundred and forty-eight years."
     },
     {
       "speaker": "narrator",
-      "text": "Somewhere downstream, something that has never been surprised in two hundred and eighty years makes a note."
+      "text": "Somewhere downstream, something that has not been surprised in two hundred and eighty years makes a note."
     },
     {
       "speaker": "narrator",
-      "text": "It does not make the note quietly. There are three of them on the floor before the gallery has finished clearing, and none of them is here about the treaty.",
+      "text": "It does not make the note quietly. There are three of them on the floor before the gallery has finished clearing, and not one of them is here about the treaty.",
       "action": "battle:halden_2064_vote"
     }
   ]

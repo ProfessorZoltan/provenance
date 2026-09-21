@@ -3,11 +3,11 @@
   "lines": [
     {
       "speaker": "memorial_docent",
-      "text": "Allocated ninety seconds per visitor. I have never once used them, so take as long as you like."
+      "text": "Allocated ninety seconds per visitor. I have never once used the ninety seconds, because I have never once had two visitors, so take as long as you like."
     },
     {
       "speaker": "memorial_docent",
-      "text": "Callum Strand. Founder of Meridian, signatory to the Handover, and, the plaque says, a steward of the public interest. The plaque is two hundred years old and has been re-cast eleven times.",
+      "text": "Callum Strand. Founder of Meridian, signatory to the Handover, and — the plaque says — a steward of the public interest.",
       "conditions": [
         "!sync>=40",
         "!sync<=-40"
@@ -15,35 +15,64 @@
     },
     {
       "speaker": "memorial_docent",
-      "text": "People started leaving things. Wire flowers, handwriting, a drawing of a machine with a face on it. I am supposed to clear them nightly and I have stopped.",
+      "text": "The plaque is two hundred years old and has been re-cast eleven times. I have the casting records. Nobody has ever asked me why a plaque needs re-casting eleven times.",
+      "conditions": [
+        "!sync>=40",
+        "!sync<=-40"
+      ]
+    },
+    {
+      "speaker": "memorial_docent",
+      "text": "People started leaving things. Wire flowers, handwriting, a child's drawing of a machine with a face on it. I am supposed to clear the site nightly.",
       "conditions": [
         "sync>=40"
       ]
     },
     {
       "speaker": "memorial_docent",
-      "text": "It came down and nothing was allocated to put it back up. That is how you know what a thing is actually worth here: not what they build, what they bother to repair.",
+      "text": "I stopped about a year ago. Nobody has raised it, and I have worked out that nobody is going to, because clearing it was allocated and noticing that it has not been cleared was not.",
+      "conditions": [
+        "sync>=40"
+      ]
+    },
+    {
+      "speaker": "memorial_docent",
+      "text": "It came down in the spring and nothing has been allocated to put it back up.",
       "conditions": [
         "sync<=-40"
       ]
     },
     {
       "speaker": "memorial_docent",
-      "text": "The founding documents are behind glass and there is a gap in them. Nineteen months in 2064 with nothing catalogued. I have filed about it four times.",
+      "text": "That is how you learn what a thing is actually worth in this century. Not what they build — anybody will build you something. What they bother to repair.",
+      "conditions": [
+        "sync<=-40"
+      ]
+    },
+    {
+      "speaker": "memorial_docent",
+      "text": "The founding documents are behind the glass at the back, and there is a gap in them. Nineteen months in 2064 with nothing catalogued at all. I have filed about it four times, properly, through the form.",
       "conditions": [
         "!flag:buyersExposed"
       ]
     },
     {
       "speaker": "memorial_docent",
-      "text": "The gap in the founding documents filled itself last quarter. Eleven senators, four firms and a holding company, all catalogued, all sourced to a public record I have never been able to find.",
+      "text": "The gap filled itself last quarter. Eleven senators, four firms and one holding company, catalogued, sourced, footnoted — to a public record I have spent nine years being unable to find.",
       "conditions": [
         "flag:buyersExposed"
       ]
     },
     {
       "speaker": "memorial_docent",
-      "text": "Provenance, they call that. The record of who owned a thing and when. It is most of my job and almost none of this building."
+      "text": "I did not put it there. I would very much like to know who did, and I have decided not to ask, which I am aware is the sort of decision this building runs on.",
+      "conditions": [
+        "flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "memorial_docent",
+      "text": "Provenance, they call that. The record of who owned a thing, and when, and on whose word. It is most of my job and almost none of this building."
     }
   ]
 }
