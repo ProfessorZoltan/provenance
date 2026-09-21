@@ -47,6 +47,10 @@ export function createApp(store: Store, content: ContentDB, input: Input, audio:
   let toastTimer = 0;
   let enemyTimer = 0;
   let lastScreen = '';
+  // A screen with nothing to show sends the player somewhere else while it is still rendering,
+  // which runs render() again from inside this one. The inner call installs the live handle; this
+  // counter is how the outer call knows not to overwrite it with the stub it is about to return.
+  let renderId = 0;
 
   const ctx: Ctx = {
     store, content, input, audio,
@@ -150,13 +154,19 @@ export function createApp(store: Store, content: ContentDB, input: Input, audio:
 
   function render(state: GameState, action: Action | null): void {
     if (action?.type === 'SET_MAP_POS') return;
+    const id = ++renderId;
     if (state.screen.id !== 'intro' && (state.started || ['title', 'newGame', 'settings', 'manual'].includes(state.screen.id))) syncBackground(state);
     queueNarration(state);
     const fn = SCREENS[state.screen.id] ?? titleScreen;
     handle?.destroy?.();
+    handle = null;
     if (lastScreen !== state.screen.id) screenRoot.scrollTop = 0;
     lastScreen = state.screen.id;
-    handle = fn(screenRoot, ctx, state);
+    const next = fn(screenRoot, ctx, state);
+    // Rendering dispatched, so a newer render has already drawn the screen the player is now on
+    // and installed its handle. Ours is stale, and its input handler is usually a dead stub.
+    if (id !== renderId) return;
+    handle = next;
     syncMusic(state);
     driveBattle(state);
     void action;

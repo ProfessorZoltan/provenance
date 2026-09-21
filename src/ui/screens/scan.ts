@@ -25,11 +25,22 @@ export function scanScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scree
   return { input(btn) { if (btn === 'a') fight(); else if (btn === 'b') skip(); } };
 }
 
+// A fight ends in a wall of narration the player dismisses with A, and the momentum of that
+// carries straight through the rewards. They are on screen for one press either way, so the
+// screen ignores input for a moment after it appears rather than being read at 100ms.
+const SPOILS_GRACE_MS = 500;
+let spoilsKey = '';
+let spoilsShownAt = 0;
+
 export function resultScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {
   const b = state.battle;
   const r = b?.pendingRewards;
   const enc = b ? ctx.content.encounters[b.encounterId] : null;
-  const go = () => ctx.store.dispatch({ type: 'SET_SCREEN', screen: { id: state.battleReturn } });
+  // Keyed on the fight, so a re-render (a device change, say) does not restart the grace period.
+  const key = b ? `${b.encounterId}:${b.seed}` : '';
+  if (spoilsKey !== key) { spoilsKey = key; spoilsShownAt = performance.now(); }
+  const settled = () => performance.now() - spoilsShownAt >= SPOILS_GRACE_MS;
+  const go = () => { if (settled()) ctx.store.dispatch({ type: 'SET_SCREEN', screen: { id: state.battleReturn } }); };
   const cur = b?.era === '2148' ? 'barter tokens' : 'allocation points';
   const flagText: Record<string, string> = {
     survivedSurprise: 'Held the line under a surprise attack.',

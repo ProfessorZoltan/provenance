@@ -7,7 +7,7 @@ const css = readFileSync(fileURLToPath(new URL('../src/ui/styles.css', import.me
 
 /** The declarations inside one selector's block, as written. */
 function rule(selector: string): string {
-  const i = css.indexOf(`${selector} {`);
+  const i = css.indexOf(selector.includes('{') ? selector : `${selector} {`);
   expect(i, `no rule for "${selector}"`).toBeGreaterThan(-1);
   return css.slice(i, css.indexOf('}', i));
 }
@@ -37,4 +37,21 @@ describe('lists that can outgrow a short window', () => {
       expect(r, `${selector} must scroll what does not fit`).toMatch(/overflow-y:\s*auto/);
     });
   }
+});
+
+describe('the battle action list', () => {
+  it('is sized from the window rather than a fixed guess', () => {
+    // A fixed cap meant a short window showed two actions out of nine. The clamp scales with the
+    // viewport, and the stage above it has its own min-height, so neither starves the other.
+    const r = rule('.battle .actionmenu { display: flex');
+    expect(r).toMatch(/max-height:\s*clamp\(/);
+    expect(r).toMatch(/\d+vh/);
+  });
+
+  it('claws short-window room back from the chrome, not from the list', () => {
+    // The two height queries used to cap .actionmenu outright; they tighten padding instead.
+    const short = css.slice(css.indexOf('@media (max-height: 820px)'));
+    expect(short, 'no fixed pixel cap belongs in a height query')
+      .not.toMatch(/\.battle \.actionmenu \{ max-height: \d+px; \}/);
+  });
 });
