@@ -55,3 +55,32 @@ describe('the battle action list', () => {
       .not.toMatch(/\.battle \.actionmenu \{ max-height: \d+px; \}/);
   });
 });
+
+describe('the bag', () => {
+  // The hub button says "Items and timeline". With a real inventory the item list pushed Relics,
+  // Purse and Timeline hundreds of pixels below the panel, and up/down drives the list rather than
+  // the panel, so there was no way at all to reach what the button promised.
+  it('scrolls the item list and keeps the summary underneath it', () => {
+    expect(rule('.bagpanel')).toMatch(/display:\s*flex/);
+    expect(rule('.baglist'), 'the list takes the slack and scrolls').toMatch(/flex:\s*1 1 auto;\s*overflow-y:\s*auto/);
+    expect(rule('.bagfoot'), 'the summary keeps its own height').toMatch(/flex:\s*0 0 auto/);
+  });
+
+  it('stacks an item description under its name rather than beside it', () => {
+    // 48% of a 300px column wraps a hint to four lines next to a label that will not wrap.
+    expect(rule('.baglist .menu li .hint')).toMatch(/max-width:\s*none/);
+    expect(rule('.baglist .menu li .lbl')).toMatch(/white-space:\s*normal/);
+  });
+});
+
+describe('what the hub button promises', () => {
+  it('names the two things the screen it opens actually shows', async () => {
+    const hub = readFileSync(fileURLToPath(new URL('../src/ui/screens/hub.ts', import.meta.url)), 'utf8');
+    const bag = readFileSync(fileURLToPath(new URL('../src/ui/screens/shop.ts', import.meta.url)), 'utf8');
+    const label = /label: '([^']*)', onSelect: \(\) => store\.dispatch\(\{ type: 'SET_SCREEN', screen: \{ id: 'inventory' \} \}\)/.exec(hub);
+    expect(label, 'the hub still has an inventory button').not.toBeNull();
+    for (const word of label![1].toLowerCase().split(/\W+/).filter((w) => w.length > 3 && w !== 'and')) {
+      expect(bag.toLowerCase(), `the button says "${word}" so the screen has to show one`).toContain(word);
+    }
+  });
+});

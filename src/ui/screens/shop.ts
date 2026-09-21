@@ -86,15 +86,17 @@ export function inventoryScreen(root: HTMLElement, ctx: Ctx, state: GameState): 
           <div class="small" style="margin-top:6px">${esc(def.signature)}</div></div></div></div>`;
       }).join('')}</div>
     </div>
-    <div class="panel">
+    <div class="panel bagpanel">
       <div class="eyebrow">Items · use on ${esc(content.characters[target].shortName)}</div>
-      <div id="m"></div>
-      <div class="eyebrow" style="margin-top:14px">Relics (${state.inventory.relics.length}/${content.rules.relicCap})</div>
-      <div class="small">${state.inventory.relics.map((r) => esc(content.items[r].name)).join(', ') || 'None.'}</div>
-      <div class="eyebrow" style="margin-top:14px">Purse</div>
-      <div class="small">${Object.entries(state.inventory.currency).filter(([, v]) => v > 0).map(([k, v]) => `${v} ${esc(k)}`).join(' · ') || 'Empty.'}</div>
-      <div class="eyebrow" style="margin-top:14px">Timeline</div>
-      <div class="small">${state.world.history.length ? state.world.history.map((h) => esc(content.timelineChoices[h.choiceId].name)).join(' → ') : 'Unedited.'}</div>
+      <div id="m" class="baglist"></div>
+      <div class="bagfoot">
+        <div class="eyebrow">Relics (${state.inventory.relics.length}/${content.rules.relicCap})</div>
+        <div class="small">${state.inventory.relics.map((r) => esc(content.items[r].name)).join(', ') || 'None.'}</div>
+        <div class="eyebrow" style="margin-top:12px">Purse</div>
+        <div class="small">${Object.entries(state.inventory.currency).filter(([, v]) => v > 0).map(([k, v]) => `${v} ${esc(k)}`).join(' \u00b7 ') || 'Empty.'}</div>
+        <div class="eyebrow" style="margin-top:12px">Timeline</div>
+        <div class="small">${state.world.history.length ? state.world.history.map((h) => esc(content.timelineChoices[h.choiceId].name)).join(' \u2192 ') : 'Unedited.'}</div>
+      </div>
     </div>
   </section>`);
   const m = menu(items, mem.inv, (i) => { mem.inv = i; });

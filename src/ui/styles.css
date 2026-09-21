@@ -492,6 +492,21 @@ body[data-reduced-motion='true'] .battle .narration-box { animation: none; }
 /* Long columns scroll instead of being clipped. */
 .two { height: 100%; min-height: 0; }
 .two > * { min-height: 0; overflow-y: auto; }
+/* The bag: a long item list used to push Relics, Purse and Timeline off the bottom, and up/down
+   drives the list rather than the panel, so there was no way to reach them. The list scrolls in
+   its own box now and the summary underneath stays put -- which is what the hub button promises. */
+.bagpanel { display: flex; flex-direction: column; overflow: hidden; }
+.bagpanel > .eyebrow { flex: 0 0 auto; }
+.baglist { flex: 1 1 auto; overflow-y: auto; min-height: 60px; }
+/* In a 300px column a right-aligned hint wraps to four lines beside a label that will not wrap,
+   and the two collide. Stack them instead: name and count on one line, description under it. */
+.baglist .menu li { flex-wrap: wrap; align-items: flex-start; gap: 3px 10px; }
+.baglist .menu li .lbl { flex: 1 1 100%; white-space: normal; justify-content: space-between; }
+.baglist .menu li .hint { flex: 1 1 100%; max-width: none; text-align: left; opacity: 0.7; }
+.bagfoot {
+  flex: 0 0 auto; max-height: 48%; overflow-y: auto;
+  margin-top: 12px; padding-top: 10px; border-top: var(--line) solid var(--ink-soft);
+}
 .battle { grid-template-rows: minmax(0, 1fr) auto; }
 .battle .stage { min-height: min(320px, 38vh); }
 .battle .bottom { min-height: 0; max-height: 52vh; overflow-y: auto; }
