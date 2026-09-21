@@ -3,21 +3,21 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "The corridor door. Shut, as doors are, and your card still opens it.",
+      "text": "The corridor door. Shut, as doors here are, and your card still opens it.",
       "conditions": [
         "!flag:foundDiscrepancy"
       ]
     },
     {
       "speaker": "player",
-      "text": "The quarter is not closed. I am not walking out on an open quarter; I have never once done that.",
+      "text": "The quarter is not closed. I have never walked out on an open quarter in eleven years and I am not going to start tonight, which I am aware is a strange thing to be proud of.",
       "conditions": [
         "!flag:readCharter"
       ]
     },
     {
       "speaker": "narrator",
-      "text": "The door, and behind it a corridor lit end to end. The card reader is dark. The door is not locked; it simply no longer belongs to you.",
+      "text": "The door, and behind it a corridor lit end to end. The card reader is dark. The door is not locked — it has simply stopped being yours, which in this century is the same thing and takes less paperwork.",
       "conditions": [
         "flag:fileFlagged"
       ],

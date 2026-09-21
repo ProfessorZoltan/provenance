@@ -3,15 +3,19 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Housing blocks in a grid, lit to the level the Steward has decided a night needs."
+      "text": "Housing blocks laid out in a grid below, lit to exactly the level the Steward has decided a night requires. Past them, the dark where the coast drops away to the water."
     },
     {
       "speaker": "player",
-      "text": "Forty thousand people on this whole coast. The archive says nine million lived here once. I have never been able to make that number feel like anything."
+      "text": "Forty thousand people on this entire coast. The archive says nine million lived here once, before the water came up, and it does not say where they went — it simply counts fewer of them each quarter until the number stops moving."
+    },
+    {
+      "speaker": "player",
+      "text": "I have read that figure a hundred times and I have never once been able to make it feel like anything."
     },
     {
       "speaker": "narrator",
-      "text": "The corridor lights are on now, all of them, and there is a shape at the far end of the glass that is not on this side of it.",
+      "text": "The corridor lights are on now. All of them, the whole length. And there is a shape at the far end of the glass that is not on this side of it.",
       "conditions": [
         "flag:fileFlagged"
       ]

@@ -3,19 +3,30 @@
   "lines": [
     {
       "speaker": "vault_holdout",
-      "text": "Do not touch the last door. I have been not touching it for eleven years and I would like that to continue."
+      "text": "Don't touch the last door. I've been not touching it for eleven years and I'd like to keep the run going."
     },
     {
       "speaker": "vault_holdout",
-      "text": "My grandfather sealed it. From the inside, then out through the service side, which took him four days. There are documents behind there that people were killed for in his century."
+      "text": "My grandfather sealed it. Not a crew — him, on his own, from the inside, in the year the Quiet started. Then he took four days getting back out through the service side in the dark."
     },
     {
       "speaker": "vault_holdout",
-      "text": "You are going to open it. Everyone who comes down here is going to open it. I just like to be on record as having said."
+      "text": "He never said what was in there. He said there were documents behind it that people had been killed for in his century, and then he'd change the subject, and he changed the subject about it for forty years."
     },
     {
       "speaker": "vault_holdout",
-      "text": "The wheel is at the end on the left. It has not moved since his century. Something in there has been keeping it company and it has noticed the water changing, so do not go down there expecting paper.",
+      "text": "You're going to open it. Everyone who comes down here is going to open it. I've met four of you. I just like to be on record as having said."
+    },
+    {
+      "speaker": "vault_holdout",
+      "text": "Wheel's at the end on the left. Hasn't moved since his century, so it'll be stiff, and it'll be loud, and you'll get about one go at quiet.",
+      "conditions": [
+        "!flag:openedTheVault"
+      ]
+    },
+    {
+      "speaker": "vault_holdout",
+      "text": "And something's been down there keeping it company all this time. It's noticed the water changing. Don't go in expecting paper.",
       "conditions": [
         "!flag:openedTheVault"
       ],
@@ -31,14 +42,21 @@
     },
     {
       "speaker": "vault_holdout",
-      "text": "Well. It is open. I have been down there and it is nine pages and five signatures and I do not understand why anybody died for it.",
+      "text": "Well. It's open. I went down after you. First time in my life I've been through that door and my grandfather spent four days on the other side of it.",
+      "conditions": [
+        "flag:openedTheVault"
+      ]
+    },
+    {
+      "speaker": "vault_holdout",
+      "text": "Nine pages. Five signatures. That's it. That's what he sealed himself in for. I've been standing here eleven years guarding nine pages and I don't understand why anybody died for it.",
       "conditions": [
         "flag:openedTheVault"
       ]
     },
     {
       "speaker": "player",
-      "text": "Because it is the only copy that says who agreed to it.",
+      "text": "Because it is the only copy that says who agreed to it. Everything downstream of that room has been argued about for three centuries. That is the document that ends the argument.",
       "conditions": [
         "flag:openedTheVault"
       ]

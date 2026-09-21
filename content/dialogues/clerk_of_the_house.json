@@ -3,11 +3,11 @@
   "lines": [
     {
       "speaker": "clerk_of_the_house",
-      "text": "Gallery is full, floor is closed, and if you are press you are late by about four hours."
+      "text": "Gallery's full, floor is closed, and if you're press you're late by about four hours, which — and I say this kindly — is roughly when press usually arrives."
     },
     {
       "speaker": "clerk_of_the_house",
-      "text": "Third reading of a private member's bill. It will pass on the nod, because forty members and none of them briefed against it.",
+      "text": "Third reading of a private member's bill. It'll pass on the nod. Forty members on the floor, none of them briefed against it, and a private member's bill at third reading with nobody briefed against it has never once failed in my time here, which is thirty-one years.",
       "conditions": [
         "!flag:actNamed",
         "!flag:actStruck",
@@ -16,14 +16,21 @@
     },
     {
       "speaker": "clerk_of_the_house",
-      "text": "You got into the lobby. There is no division list in there, because there was no division. Forty members and not one of them asked for one, and now there is a record of you asking.",
+      "text": "You got into the lobby. Good for you. There's no division list in there — not misfiled, not lost. There was no division, because nobody asked for one, and a division only happens if somebody asks.",
       "conditions": [
         "flag:sawTheDivision"
       ]
     },
     {
       "speaker": "clerk_of_the_house",
-      "text": "You have read it. Nobody reads them. Go on then, what does it do.",
+      "text": "So now there's a record. Not of the vote. Of you asking. That's the first entry in that book in nine years.",
+      "conditions": [
+        "flag:sawTheDivision"
+      ]
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "You've read it. Nobody reads them. That's not cynicism, that's the workload — eleven pages times forty bills a week. Go on then. What does it do.",
       "conditions": [
         "!flag:actNamed",
         "!flag:actStruck",
@@ -33,21 +40,42 @@
     },
     {
       "speaker": "clerk_of_the_house",
-      "text": "Carried, with the naming clause. Eleven pages and one of them is now about who benefits. That is the most anyone has got out of this House in my time.",
+      "text": "Carried, with the naming clause. Eleven pages, and one of them is now about who benefits, which nobody will notice for about three hundred years.",
       "conditions": [
         "flag:actNamed"
       ]
     },
     {
       "speaker": "clerk_of_the_house",
-      "text": "Withdrawn. And it will be back as a schedule to a finance act inside a year, which is the same bill with nobody watching. I have seen it four times.",
+      "text": "I've been a clerk here for thirty-one years and that is the most anyone has ever got out of this House while I was standing in it. I'd like that written down somewhere, and there's nowhere to write it, so I'm telling you.",
+      "conditions": [
+        "flag:actNamed"
+      ]
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "Withdrawn at third reading. Which feels like something. I'll tell you what happens now, because I've watched it four times: it comes back inside a year as a schedule to a finance act.",
       "conditions": [
         "flag:actStruck"
       ]
     },
     {
       "speaker": "clerk_of_the_house",
-      "text": "You witnessed the register. Odd thing to want. It is a signature that outlives the signatory and most people find that unpleasant.",
+      "text": "Same bill. Same words. No gallery, no third reading, and nobody in the country reads a schedule to a finance act. You've bought them eleven months and cost them an audience.",
+      "conditions": [
+        "flag:actStruck"
+      ]
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "You witnessed the register. Odd thing to want, and I'd have talked you out of it if you'd asked, which you didn't.",
+      "conditions": [
+        "flag:auditorWitnessed"
+      ]
+    },
+    {
+      "speaker": "clerk_of_the_house",
+      "text": "A witness signature outlives the signatory, you see. It's the one mark in this building that can't be withdrawn, amended or explained. Most people find that unpleasant once it's done. You look like you knew.",
       "conditions": [
         "flag:auditorWitnessed"
       ]

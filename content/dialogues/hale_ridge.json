@@ -3,14 +3,22 @@
   "lines": [
     {
       "speaker": "hale",
-      "text": "Don't. There's a rack down there that wakes up when something moves fast, and you've got about four seconds of being interesting before it decides.",
+      "text": "Don't. Rack down there wakes on movement. You get about four seconds of being interesting before it decides what you are.",
       "conditions": [
         "!flag:recruited:hale"
       ]
     },
     {
       "speaker": "hale",
-      "text": "Tomas Hale. Ash Camp. Eleven days up here counting what comes out of that sand, and I've got four hundred and one and no idea why they all look the same.",
+      "text": "Tomas Hale. Ash Camp. Eleven days on this ridge.",
+      "conditions": [
+        "!flag:recruited:hale",
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "hale",
+      "text": "Counting what comes out of that sand. Four hundred and one so far. Same outline every time. Same length of rebar, same gait, same stop at the same forty metres. Don't know why. Stopped expecting to.",
       "conditions": [
         "!flag:recruited:hale",
         "flag:armedResistance"
@@ -26,7 +34,7 @@
     },
     {
       "speaker": "hale",
-      "text": "Not for want of the Basin trying. Kell sent rifles down in the spring. First time in my life anybody sent anything.",
+      "text": "Not for want of the Basin trying.",
       "conditions": [
         "!flag:recruited:hale",
         "party:dax",
@@ -35,7 +43,24 @@
     },
     {
       "speaker": "hale",
-      "text": "You're going down there, then. You've got the look. I've watched eleven parties go down there and none of them had the look, which is why they're still down there.",
+      "text": "Kell sent rifles down in the spring. Crates of them, down the actual road, in daylight. First time in my life anybody sent us anything that wasn't a message about why they couldn't.",
+      "conditions": [
+        "!flag:recruited:hale",
+        "party:dax",
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "hale",
+      "text": "You're going down there, then. You've got the look.",
+      "conditions": [
+        "!flag:recruited:hale",
+        "flag:armedResistance"
+      ]
+    },
+    {
+      "speaker": "hale",
+      "text": "I've watched eleven parties go down. None of them had it. That's why they're still down there.",
       "conditions": [
         "!flag:recruited:hale",
         "flag:armedResistance"
@@ -70,7 +95,7 @@
     },
     {
       "speaker": "hale",
-      "text": "Four hundred and one, and every one of them the same outline. I've stopped counting and started listening instead.",
+      "text": "Four hundred and one. Every one the same outline. Stopped counting. Started listening instead. There's a rhythm to it and I'd rather there wasn't.",
       "conditions": [
         "flag:recruited:hale"
       ]

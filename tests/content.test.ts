@@ -170,6 +170,42 @@ describe('no dead ends', () => {
     }
   });
 
+  it('never leaves a person with nothing at all to say', () => {
+    // Every line in a scene can be gated, and then a run that sets the wrong flag walks up to
+    // somebody and gets silence. Sabotaging the Handover used to do exactly that to Vesely.
+    const entry = new Set(Object.values(content.locations).flatMap(
+      (l) => [...(l.npcs ?? []), ...(l.variants ?? []).flatMap((v) => v.npcs ?? [])]));
+
+    /** Only flag conditions are simulated; anything else is assumed satisfiable. */
+    const visible = (conds: string[] | undefined, have: Set<string>): boolean =>
+      (conds ?? []).every((raw) => {
+        const negated = raw.startsWith('!');
+        const c = negated ? raw.slice(1) : raw;
+        if (!c.startsWith('flag:')) return negated;
+        return have.has(c.slice('flag:'.length)) !== negated;
+      });
+
+    for (const id of entry) {
+      const d = content.dialogues[id];
+      if (!d) continue;
+      const flags = [...new Set(d.lines.flatMap((l) => (l.conditions ?? [])
+        .map((c) => c.replace(/^!/, ''))
+        .filter((c) => c.startsWith('flag:'))
+        .map((c) => c.slice('flag:'.length))))];
+
+      // No flags at all, then each flag alone, then each pair: the states a run actually reaches.
+      const states: Array<Set<string>> = [new Set()];
+      for (let i = 0; i < flags.length; i++) {
+        states.push(new Set([flags[i]]));
+        for (let j = i + 1; j < flags.length; j++) states.push(new Set([flags[i], flags[j]]));
+      }
+      for (const have of states) {
+        expect(d.lines.some((l) => visible(l.conditions, have)),
+          `${id} has nothing to say once ${[...have].join(' + ') || 'nothing'} is set`).toBe(true);
+      }
+    }
+  });
+
   it('gives every story and key fight a deliberate trigger', () => {
     // A story beat the player can only meet by wandering until the dice offer it is not a beat,
     // it is weather. Every one of them must be startable on purpose: a dialogue that hands the

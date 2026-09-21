@@ -3,14 +3,22 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "ACCESS REVOKED \u2014 ALLOCATION AUDITOR, ENCLAVE 7 \u2014 REVIEW FLAG APPLIED \u2014 ORIGINATING DEPARTMENT: \u2014"
+      "text": "The audit shell closes itself. What replaces it is one line of text, in the system's plainest face."
+    },
+    {
+      "speaker": "narrator",
+      "text": "ACCESS REVOKED — ALLOCATION AUDITOR, ENCLAVE 7 — REVIEW FLAG APPLIED — ORIGINATING DEPARTMENT: —"
     },
     {
       "speaker": "player",
-      "text": "There is no originating department. A flag has to come from somewhere. Every flag in eleven years came from somewhere.",
+      "text": "There is no originating department. That field is not optional. A flag is raised by somebody and the system records who, every time, without exception.",
       "setFlags": [
         "fileFlagged"
       ]
+    },
+    {
+      "speaker": "player",
+      "text": "Eleven years of flags and every single one of them came from somewhere. This one came from the same place the budget line goes."
     },
     {
       "speaker": "narrator",
@@ -18,11 +26,11 @@
     },
     {
       "speaker": "player",
-      "text": "Kell. The monastery in the valley. It is the last place in this Enclave system that does not report to anyone."
+      "text": "Kell. The monastery up the valley. Four hours on foot and the last place in this Enclave system that does not report to anyone."
     },
     {
       "speaker": "narrator",
-      "text": "Go. The door is the only way out and it is about to be the only way in."
+      "text": "Go. The door is the only way out, and in about ninety seconds it is going to be the only way in."
     }
   ]
 }

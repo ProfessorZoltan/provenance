@@ -3,15 +3,19 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "A bench against the wall by the lift. You have eaten lunch on it most working days for eleven years."
+      "text": "A bench against the wall by the lift, bolted down, upholstered in the standard grey. You have eaten lunch on it most working days for eleven years."
     },
     {
       "speaker": "player",
-      "text": "If I close this quarter and go home, I eat lunch here tomorrow. That is genuinely the choice, and I am genuinely thinking about it."
+      "text": "If I close this quarter and go home, I eat lunch here again tomorrow, and the day after, and it is a decent bench and it is a decent life and nobody I know has ever gone without anything."
+    },
+    {
+      "speaker": "player",
+      "text": "That is genuinely the choice on the table, and I am genuinely thinking about it."
     },
     {
       "speaker": "narrator",
-      "text": "You already ran the reconciliation. That is the part that cannot be un-run.",
+      "text": "You have already run the reconciliation. Whatever you decide about the bench, that is the part that cannot be un-run.",
       "conditions": [
         "flag:foundDiscrepancy"
       ]

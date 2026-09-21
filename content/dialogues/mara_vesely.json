@@ -70,6 +70,20 @@
         "flag:buyersExposed",
         "!flag:treatyAmended"
       ]
+    },
+    {
+      "speaker": "mara_vesely",
+      "text": "The session collapsed, so there was no reading, so there was no amendment, so there was nothing to lose a vote on. People keep telling me that as though it is a comfort.",
+      "conditions": [
+        "flag:voteSabotaged"
+      ]
+    },
+    {
+      "speaker": "mara_vesely",
+      "text": "It goes through by executive order in six months. Unamended, unread, and with my post abolished in the same instrument, which I will admit is a detail I did not see coming. Four years, and the last thing I drafted was a handover note.",
+      "conditions": [
+        "flag:voteSabotaged"
+      ]
     }
   ]
 }

@@ -3,7 +3,7 @@
   "lines": [
     {
       "speaker": "delegate_okafor",
-      "text": "Visitors' gallery is closed, the floor is closed, and the vote is in ninety minutes. So whatever this is, be quick and be interesting.",
+      "text": "Visitors' gallery is closed. The floor is closed. The vote is in ninety minutes. So: be quick, be interesting, or be somewhere else.",
       "conditions": [
         "!flag:treatyAmended",
         "!flag:voteSabotaged",
@@ -12,7 +12,16 @@
     },
     {
       "speaker": "delegate_okafor",
-      "text": "The Handover is a procurement treaty. That is all. We are contracting allocation services to a consortium because we are very bad at allocation and they are very good at it.",
+      "text": "The Handover is a procurement treaty. Three parts. One: we are bad at allocation and people are going hungry in a city with food in it. Two: there is a consortium that is demonstrably good at it. Three: we contract the service to them for thirty years with review clauses at ten.",
+      "conditions": [
+        "!flag:treatyAmended",
+        "!flag:voteSabotaged",
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "delegate_okafor",
+      "text": "That is the treaty. That is the whole treaty. I have read it more carefully than anyone in this building, including the people who drafted it.",
       "conditions": [
         "!flag:treatyAmended",
         "!flag:voteSabotaged",
@@ -21,7 +30,16 @@
     },
     {
       "speaker": "player",
-      "text": "Article nine assigns the governing instrument itself. You are not hiring them. You are selling them the chair.",
+      "text": "Then read article nine again. It is one sentence, a hundred and forty words, and it is filed under data custody. It does not assign the service. It assigns the governing instrument itself.",
+      "conditions": [
+        "!flag:treatyAmended",
+        "!flag:voteSabotaged",
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "player",
+      "text": "You are not hiring them. You are selling them the chair, and you are doing it in a clause about where the files live.",
       "conditions": [
         "!flag:treatyAmended",
         "!flag:voteSabotaged",
@@ -30,7 +48,7 @@
     },
     {
       "speaker": "delegate_okafor",
-      "text": "Vesely has been saying that for four years and nobody has read past the summary yet. Talk to her. She has ninety minutes too.",
+      "text": "...Vesely has been saying that for four years.",
       "conditions": [
         "!flag:treatyAmended",
         "!flag:voteSabotaged",
@@ -39,21 +57,44 @@
     },
     {
       "speaker": "delegate_okafor",
-      "text": "The amendment carried. Forty-one to thirty-eight and a clause that names who governance can be ceded to. It changes less than you think and more than they wanted.",
+      "text": "Nobody has read past the executive summary, myself included, and I have just heard myself say that out loud. She's in the annex. She has ninety minutes too. Go.",
+      "conditions": [
+        "!flag:treatyAmended",
+        "!flag:voteSabotaged",
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "delegate_okafor",
+      "text": "The amendment carried. Forty-one to thirty-eight, on a Thursday, with a clause that says a cession has to name who it is ceded to. It changes less than you think and a great deal more than they wanted.",
       "conditions": [
         "flag:treatyAmended"
       ]
     },
     {
       "speaker": "delegate_okafor",
-      "text": "The session collapsed, the treaty went through by order six months later, and there is nobody left in this building who would have argued with it. I hope that was worth whatever you wanted.",
+      "text": "The session collapsed. The treaty went through by executive order six months later, unamended and unread, and there is nobody left in this building who would have argued with it because the ones who would have argued were the ones who got blamed.",
       "conditions": [
         "flag:voteSabotaged"
       ]
     },
     {
       "speaker": "delegate_okafor",
-      "text": "Eleven senators, four firms and one holding company, all on the record. The vote is delayed a decade. Somebody very old and very quiet is now looking for you.",
+      "text": "I hope that was worth whatever it was you wanted.",
+      "conditions": [
+        "flag:voteSabotaged"
+      ]
+    },
+    {
+      "speaker": "delegate_okafor",
+      "text": "Eleven senators, four firms and one holding company, all of it on the public record and all of it, I should say, correctly declared every year by people who genuinely believed declaring it was enough.",
+      "conditions": [
+        "flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "delegate_okafor",
+      "text": "The vote is delayed a decade. And something very old and very quiet has started looking for the person who did it.",
       "conditions": [
         "flag:buyersExposed"
       ]

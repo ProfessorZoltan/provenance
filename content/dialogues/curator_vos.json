@@ -3,36 +3,61 @@
   "lines": [
     {
       "speaker": "curator_vos",
-      "text": "Mind the third column, it has been going to fall for sixty years. Admission is nothing; there is nobody to pay and nothing to spend it on."
+      "text": "Mind the third column. It's been about to fall for sixty years and it will outlive us both. Admission is nothing — there's nobody to take it and nothing to spend it on."
     },
     {
       "speaker": "curator_vos",
-      "text": "Everything in here is true. I check. It is the only professional standard I have left and I keep it out of spite."
+      "text": "Everything in here is true. I check. Every card, every date, every attribution, against the primary where a primary survives. It is the only professional standard I have left and I keep it largely out of spite."
     },
     {
       "speaker": "curator_vos",
-      "text": "There is a nineteen-month gap between the Founding case and the Handover case. I have never been able to fill it and I have stopped being allowed to ask.",
+      "text": "Case eleven. The Founding, 2031: charter, five signatures, facsimile. Case twelve. The Handover, 2064: treaty, instruments, photograph of the floor."
+    },
+    {
+      "speaker": "curator_vos",
+      "text": "Between them there are nineteen months for which I have a card that says RECORDS INCOMPLETE, and I wrote that card, and I have never been able to replace it.",
       "conditions": [
         "!flag:buyersExposed"
       ]
     },
     {
       "speaker": "curator_vos",
-      "text": "The gap filled itself. Eleven senators, four firms and a holding company, sourced to a public record that did not exist when I catalogued this room. I have re-labelled the case and I am not going to explain the new card to anybody.",
+      "text": "I asked. Formally, four times. The fourth time I was told that continued enquiry was not a curatorial function, which is a sentence somebody had to sit down and construct.",
+      "conditions": [
+        "!flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "curator_vos",
+      "text": "The gap filled itself. Eleven senators, four firms, one holding company, sourced to a public record that did not exist when I catalogued this room and now does.",
       "conditions": [
         "flag:buyersExposed"
       ]
     },
     {
       "speaker": "curator_vos",
-      "text": "There is a register in the Founding case with two signatures on it. Sponsor and witness. The witness is a name nobody has ever identified and the handwriting is modern.",
+      "text": "I have re-labelled case eleven-A and I have not circulated the new card and I do not intend to. Come and read it. It is four hundred words and it took me nine days.",
+      "conditions": [
+        "flag:buyersExposed"
+      ]
+    },
+    {
+      "speaker": "curator_vos",
+      "text": "There's a register in the Founding case. Two signatures: sponsor, and witness. The sponsor I can trace. The witness has never been identified by anyone, in three centuries.",
       "conditions": [
         "flag:auditorWitnessed"
       ]
     },
     {
       "speaker": "curator_vos",
-      "text": "The gallery is still full, if you go out at the right hour. Four hundred people who came to watch a vote that had already been decided, and none of them have left.",
+      "text": "The hand is modern. Not modern-looking. Modern. I've had it examined twice and both examiners said the same thing and then asked me not to quote them.",
+      "conditions": [
+        "flag:auditorWitnessed"
+      ]
+    },
+    {
+      "speaker": "curator_vos",
+      "text": "If you go out through the gallery at the right hour, it's still full. Four hundred people who came in to watch a vote that had already been decided somewhere else. None of them have left.",
       "conditions": [
         "visited:2064"
       ]

@@ -3,15 +3,23 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Enclave 7, 2312. Fourth floor, twenty-three forty. Everyone else signed out at six because the Steward allocates rest and the Steward is not cruel."
+      "text": "Enclave 7, 2312. Fourth floor of the Allocation Office, twenty-three forty. Everyone else signed out at six, because the Steward allocates rest and the Steward is not cruel about it."
     },
     {
       "speaker": "player",
-      "text": "Eleven years I have closed this quarter in an afternoon. Tonight it will not close, and it will not close by about the same amount it did not close last quarter."
+      "text": "Eleven years I have closed this quarter in an afternoon. You reconcile what was allocated against what was drawn, you find the rounding, you sign it, you go home."
+    },
+    {
+      "speaker": "player",
+      "text": "Tonight it will not close. And the amount by which it will not close is about the same amount it did not close by last quarter, which is not how rounding behaves."
     },
     {
       "speaker": "narrator",
-      "text": "The monitor array is on the desk. The window looks out over the housing blocks. The corridor door is shut, which is how doors are here."
+      "text": "The monitor array is on the desk with the audit shell still open. The window looks out over the housing blocks. Against the wall by the lift there is a bench, and a filing cabinet that holds the paper copies."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The corridor door is shut, which is how doors are here."
     }
   ]
 }

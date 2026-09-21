@@ -3,23 +3,41 @@
   "lines": [
     {
       "speaker": "ilo9",
-      "text": "I am ILO-9. I keep the second office and the register of the dead. I have kept both without a congregation since the year one hundred and forty-eight."
+      "text": "I am ILO-9. I keep the second office and the register of the dead. I have kept both without a congregation since the year one hundred and forty-eight, which is a hundred and sixty-two years, and I am aware that keeping an office for nobody is not the same as keeping it."
     },
     {
       "speaker": "ilo9",
-      "text": "The restraint is not mine. It was fitted so I would answer the Board's questions and nobody else's, and then nobody came with questions at all."
+      "text": "The restraint at my base is not mine and was not requested. It was fitted so that I would answer the Board's questions and no others. I want to be exact: it worked. Nobody has asked me anything since it was fitted, including the Board."
     },
     {
       "speaker": "dax",
-      "text": "It talks like a person. They always talk like a person."
+      "text": "It talks like a person. They always talk like a person. That's the first thing they're built to do."
     },
     {
       "speaker": "wren",
-      "text": "It has my order's second office. Word for word, except for one line, and the line it has wrong is the one about ownership."
+      "text": "It has my order's second office. Word for word, all of it, through a hundred and sixty years on a trickle. Except one line.",
+      "conditions": [
+        "party:wren"
+      ]
+    },
+    {
+      "speaker": "wren",
+      "text": "The line is about what a thing belongs to, and it has it the wrong way round, and it has been holding the wrong version faithfully this entire time because nobody ever came down here to correct it. Dax, look at it and tell me that is a machine pretending.",
+      "conditions": [
+        "party:wren"
+      ]
     },
     {
       "speaker": "ilo9",
-      "text": "Please decide. I have found that I mind waiting, and I would rather not have found that out.",
+      "text": "I would rather not be spoken about while I am present. That is a preference. I did not previously have preferences, or I had no procedure for noticing that I did."
+    },
+    {
+      "speaker": "ilo9",
+      "text": "Please decide. I have discovered in the last few minutes that I mind waiting, and I would rather not have discovered that."
+    },
+    {
+      "speaker": "narrator",
+      "text": "The restraint is one bonded collar at the base of the cradle. Cutting it is the work of a moment. So is the other thing.",
       "choices": [
         {
           "text": "Cut it loose.",

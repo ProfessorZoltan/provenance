@@ -3,11 +3,15 @@
   "lines": [
     {
       "speaker": "narrator",
-      "text": "Paper, because the Enclave keeps one physical copy of everything it cannot afford to have edited."
+      "text": "A four-drawer cabinet of actual paper, because the Enclave keeps one physical copy of everything it cannot afford to have quietly edited. Personnel, procurement, incident reports."
     },
     {
       "speaker": "player",
-      "text": "My own personnel file is in here. Eleven years, four commendations, and a note from the fourth year saying I ask too many questions about counterparties."
+      "text": "My own file is in here. Eleven years, four commendations, two training certifications, and one note added in the fourth year."
+    },
+    {
+      "speaker": "player",
+      "text": "Asks too many questions about counterparties. That is the whole note. No recommendation, no follow-up, no signature I can place."
     },
     {
       "speaker": "narrator",
