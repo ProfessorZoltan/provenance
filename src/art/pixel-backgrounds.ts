@@ -1,13 +1,14 @@
 import { librarySvg } from './library';
 import type { EraDef } from '../types/content';
 
-// A 320 x 180 tile scene shared by the hub and battlefield. No raster filtering.
+// A 16:9 scene shared by the hub and battlefield. Scenes are illustrated since art revision 02
+// (Deep Sites 640 x 360, Waypoints 480 x 270) and scale smoothly; only sprites stay on the pixel grid.
 // The asset id comes from the location JSON, so a new place is content, not code.
 export function sceneAssetId(loc: { id: string; art?: string }, variant?: { art?: string } | null): string {
   return variant?.art ?? loc.art ?? loc.id;
 }
 export function sceneSvg(id: string, role: string): string | undefined {
-  return librarySvg(id, role, '0 0 320 180', 'scene-art');
+  return librarySvg(id, role, '0 0 320 180', 'scene-art', false);
 }
 export function pixelBackground(id: string, era: EraDef, flags: string[]): string {
   // New JSON content can name any catalog asset directly: "2031_meridian:sky".

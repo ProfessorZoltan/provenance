@@ -9,7 +9,8 @@ for(const e of c.entries){
  for(const file of Object.values(e.files)){
   if(typeof file!=='string'||file.includes('..')||path.isAbsolute(file))throw Error('Invalid asset path');
   const svg=fs.readFileSync(path.join(root,file),'utf8');
-  if(!svg.includes('shape-rendering="crispEdges"')||!svg.includes('viewBox='))throw Error('Missing pixel grid '+file);
+  const pixel=['party','party_echo','enemy','boss','npc','icon','ending'].includes(e.kind);
+  if(!svg.includes('viewBox=')||(pixel&&!svg.includes('shape-rendering="crispEdges"')))throw Error('Missing pixel grid '+file);
   if(/<script|<foreignObject|var\(--|(?:href|src)=["']https?:/i.test(svg))throw Error('Nonportable SVG '+file);
   files.add(file);
  }

@@ -417,7 +417,7 @@ body[data-reduced-motion='true'] *, body[data-reduced-motion='true'] *::before, 
 }
 /* Library enemies are authored facing the party; no mirroring is needed. */
 .battle .enemy > .rig { transform: none; }
-.scene-art { image-rendering: pixelated; }
+.scene-art { image-rendering: auto; }
 /* Authored party Echo poses retain left-facing source geometry. */
 .battle .enemy > .rig:has(.party-echo) { transform: scaleX(-1); }
 /* Tech tree and shop chrome on the same solid command-window treatment as panels. */

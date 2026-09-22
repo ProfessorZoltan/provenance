@@ -676,7 +676,7 @@
   {
     "id": "strand_perpetual_phase1",
     "kind": "boss",
-    "name": "Strand Perpetual — Shareholder Form",
+    "name": "Strand Perpetual — Shareholder Throne",
     "era": "2312",
     "site": "meridian",
     "files": {
@@ -690,7 +690,7 @@
   {
     "id": "strand_perpetual_phase2",
     "kind": "boss",
-    "name": "Strand Perpetual — Majority Form",
+    "name": "Strand Perpetual — Majority Lattice",
     "era": "2312",
     "site": "meridian",
     "files": {

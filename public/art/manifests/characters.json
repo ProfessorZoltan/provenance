@@ -6,7 +6,17 @@
     "era": "2148",
     "site": "kell",
     "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-    "description": "patched winter armor and short resistance blade",
+    "description": "powerful Black woman with close-cropped hair, scarred face, patched winter armor, and short blade",
+    "dimensions": {
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "portrait": "characters/npcs/ade_portrait.svg",
       "token": "characters/npcs/ade_token.svg"
@@ -19,7 +29,17 @@
     "era": "2312",
     "site": "kell",
     "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-    "description": "Commons assembly convener with vote slips",
+    "description": "lean, middle-aged Commons convener with silver temple braids and a fan of vote slips",
+    "dimensions": {
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "portrait": "characters/npcs/ansel_portrait.svg",
       "token": "characters/npcs/ansel_token.svg"
@@ -32,7 +52,21 @@
     "era": null,
     "site": null,
     "guideSection": "Characters and enemies — party deliverables",
-    "description": "ledger coat and audit slate; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "description": "asymmetrical field coat, shoulder scanner, and bright audit slate; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      },
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "idle": "characters/auditor/auditor_idle.svg",
       "act": "characters/auditor/auditor_act.svg",
@@ -50,7 +84,13 @@
     "era": "2031",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "ledger coat and audit slate, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2031 pixel duplicate of The Auditor, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/auditor/echo/2031/auditor_echo_2031_idle.svg",
       "act": "characters/auditor/echo/2031/auditor_echo_2031_act.svg",
@@ -66,7 +106,13 @@
     "era": "2064",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "ledger coat and audit slate, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2064 pixel duplicate of The Auditor, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/auditor/echo/2064/auditor_echo_2064_idle.svg",
       "act": "characters/auditor/echo/2064/auditor_echo_2064_act.svg",
@@ -82,7 +128,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "ledger coat and audit slate, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2148 pixel duplicate of The Auditor, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/auditor/echo/2148/auditor_echo_2148_idle.svg",
       "act": "characters/auditor/echo/2148/auditor_echo_2148_act.svg",
@@ -98,7 +150,13 @@
     "era": "2312",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "ledger coat and audit slate, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2312 pixel duplicate of The Auditor, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/auditor/echo/2312/auditor_echo_2312_idle.svg",
       "act": "characters/auditor/echo/2312/auditor_echo_2312_act.svg",
@@ -114,7 +172,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "a human stance interrupted by machine plating; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "human left half and sensor-lit machine right half; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/construct_grafted/construct_grafted_idle.svg",
       "act": "enemies/construct_grafted/construct_grafted_act.svg",
@@ -130,7 +194,21 @@
     "era": null,
     "site": null,
     "guideSection": "Characters and enemies — party deliverables",
-    "description": "broad Cinder breaker with demolition hammer; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "description": "broad dark-skinned demolition worker with reinforced arms and a huge hammer; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      },
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "idle": "characters/dax/dax_idle.svg",
       "act": "characters/dax/dax_act.svg",
@@ -148,7 +226,13 @@
     "era": "2031",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2031 pixel duplicate of Dax Okonkwo, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/dax/echo/2031/dax_echo_2031_idle.svg",
       "act": "characters/dax/echo/2031/dax_echo_2031_act.svg",
@@ -164,7 +248,13 @@
     "era": "2064",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2064 pixel duplicate of Dax Okonkwo, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/dax/echo/2064/dax_echo_2064_idle.svg",
       "act": "characters/dax/echo/2064/dax_echo_2064_act.svg",
@@ -180,7 +270,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2148 pixel duplicate of Dax Okonkwo, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/dax/echo/2148/dax_echo_2148_idle.svg",
       "act": "characters/dax/echo/2148/dax_echo_2148_act.svg",
@@ -196,7 +292,13 @@
     "era": "2312",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2312 pixel duplicate of Dax Okonkwo, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/dax/echo/2312/dax_echo_2312_idle.svg",
       "act": "characters/dax/echo/2312/dax_echo_2312_act.svg",
@@ -212,7 +314,13 @@
     "era": "2031",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "swept-wing pursuit drone with a forward gun and hooked legs; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/drone_hunter_2031/drone_hunter_2031_idle.svg",
       "act": "enemies/drone_hunter_2031/drone_hunter_2031_act.svg",
@@ -228,7 +336,13 @@
     "era": "2064",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "swept-wing pursuit drone with a forward gun and hooked legs; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/drone_hunter_2064/drone_hunter_2064_idle.svg",
       "act": "enemies/drone_hunter_2064/drone_hunter_2064_act.svg",
@@ -244,7 +358,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "swept-wing pursuit drone with a forward gun and hooked legs; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/drone_hunter_2148/drone_hunter_2148_idle.svg",
       "act": "enemies/drone_hunter_2148/drone_hunter_2148_act.svg",
@@ -260,7 +380,13 @@
     "era": "2312",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "swept-wing pursuit drone with a forward gun and hooked legs; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/drone_hunter_2312/drone_hunter_2312_idle.svg",
       "act": "enemies/drone_hunter_2312/drone_hunter_2312_act.svg",
@@ -276,7 +402,13 @@
     "era": "2031",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "four-rotor survey drone with a circular eye and hanging talons; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/drone_sentry_2031/drone_sentry_2031_idle.svg",
       "act": "enemies/drone_sentry_2031/drone_sentry_2031_act.svg",
@@ -292,7 +424,13 @@
     "era": "2064",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "four-rotor survey drone with a circular eye and hanging talons; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/drone_sentry_2064/drone_sentry_2064_idle.svg",
       "act": "enemies/drone_sentry_2064/drone_sentry_2064_act.svg",
@@ -308,7 +446,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "four-rotor survey drone with a circular eye and hanging talons; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/drone_sentry_2148/drone_sentry_2148_idle.svg",
       "act": "enemies/drone_sentry_2148/drone_sentry_2148_act.svg",
@@ -324,7 +468,13 @@
     "era": "2312",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "four-rotor survey drone with a circular eye and hanging talons; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/drone_sentry_2312/drone_sentry_2312_idle.svg",
       "act": "enemies/drone_sentry_2312/drone_sentry_2312_act.svg",
@@ -340,7 +490,13 @@
     "era": null,
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "a violet temporal shell readable without filters; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "fragmented humanoid made from displaced rectangular pixels; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/echo_temporal/echo_temporal_idle.svg",
       "act": "enemies/echo_temporal/echo_temporal_act.svg",
@@ -356,7 +512,17 @@
     "era": null,
     "site": "basin",
     "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-    "description": "insulated work jacket and diagnostic wand",
+    "description": "compact mechanic with high bun, insulated jacket, respirator, and oversized wrench",
+    "dimensions": {
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "portrait": "characters/npcs/engineer_portrait.svg",
       "token": "characters/npcs/engineer_token.svg"
@@ -370,7 +536,17 @@
     "era": null,
     "site": null,
     "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-    "description": "three-knot sash and modular training baton",
+    "description": "athletic veteran with shaved sides, three-knot sash, prosthetic forearm, and training baton",
+    "dimensions": {
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "portrait": "characters/npcs/faction_trainer_portrait.svg",
       "token": "characters/npcs/faction_trainer_token.svg"
@@ -384,7 +560,21 @@
     "era": null,
     "site": null,
     "guideSection": "Characters and enemies — party deliverables",
-    "description": "one-shoulder rain cloak and long rifle; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "description": "crouched marksman under a shaggy rain cloak with a long scoped rifle; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      },
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "idle": "characters/hale/hale_idle.svg",
       "act": "characters/hale/hale_act.svg",
@@ -402,7 +592,13 @@
     "era": "2031",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2031 pixel duplicate of Tomas Hale, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/hale/echo/2031/hale_echo_2031_idle.svg",
       "act": "characters/hale/echo/2031/hale_echo_2031_act.svg",
@@ -418,7 +614,13 @@
     "era": "2064",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2064 pixel duplicate of Tomas Hale, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/hale/echo/2064/hale_echo_2064_idle.svg",
       "act": "characters/hale/echo/2064/hale_echo_2064_act.svg",
@@ -434,7 +636,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2148 pixel duplicate of Tomas Hale, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/hale/echo/2148/hale_echo_2148_idle.svg",
       "act": "characters/hale/echo/2148/hale_echo_2148_act.svg",
@@ -450,7 +658,13 @@
     "era": "2312",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2312 pixel duplicate of Tomas Hale, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/hale/echo/2312/hale_echo_2312_idle.svg",
       "act": "characters/hale/echo/2312/hale_echo_2312_act.svg",
@@ -466,7 +680,21 @@
     "era": null,
     "site": null,
     "guideSection": "Characters and enemies — party deliverables",
-    "description": "split-crown machine with fork-light hands; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "description": "nonhuman modular droid with a split crown, floating hands, and fork-lit core; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      },
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "idle": "characters/ilo9/ilo9_idle.svg",
       "act": "characters/ilo9/ilo9_act.svg",
@@ -484,7 +712,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "ILO-9 split crown and fork core trapped in a bar cage; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/ilo9_bound_boss/ilo9_bound_boss_idle.svg",
       "act": "enemies/ilo9_bound_boss/ilo9_bound_boss_act.svg",
@@ -500,7 +734,13 @@
     "era": "2031",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "split-crown machine with fork-light hands, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2031 pixel duplicate of ILO-9, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/ilo9/echo/2031/ilo9_echo_2031_idle.svg",
       "act": "characters/ilo9/echo/2031/ilo9_echo_2031_act.svg",
@@ -516,7 +756,13 @@
     "era": "2064",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "split-crown machine with fork-light hands, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2064 pixel duplicate of ILO-9, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/ilo9/echo/2064/ilo9_echo_2064_idle.svg",
       "act": "characters/ilo9/echo/2064/ilo9_echo_2064_act.svg",
@@ -532,7 +778,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "split-crown machine with fork-light hands, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2148 pixel duplicate of ILO-9, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/ilo9/echo/2148/ilo9_echo_2148_idle.svg",
       "act": "characters/ilo9/echo/2148/ilo9_echo_2148_act.svg",
@@ -548,7 +800,13 @@
     "era": "2312",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "split-crown machine with fork-light hands, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2312 pixel duplicate of ILO-9, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/ilo9/echo/2312/ilo9_echo_2312_idle.svg",
       "act": "characters/ilo9/echo/2312/ilo9_echo_2312_act.svg",
@@ -564,7 +822,21 @@
     "era": null,
     "site": null,
     "guideSection": "Characters and enemies — party deliverables",
-    "description": "sharp diplomatic coat and contract case; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "description": "burgundy-haired negotiator in a tailored diplomatic coat with an open contract case; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      },
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "idle": "characters/mara/mara_idle.svg",
       "act": "characters/mara/mara_act.svg",
@@ -582,7 +854,13 @@
     "era": "2031",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "sharp diplomatic coat and contract case, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2031 pixel duplicate of Mara Vesely, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/mara/echo/2031/mara_echo_2031_idle.svg",
       "act": "characters/mara/echo/2031/mara_echo_2031_act.svg",
@@ -598,7 +876,13 @@
     "era": "2064",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "sharp diplomatic coat and contract case, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2064 pixel duplicate of Mara Vesely, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/mara/echo/2064/mara_echo_2064_idle.svg",
       "act": "characters/mara/echo/2064/mara_echo_2064_act.svg",
@@ -614,7 +898,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "sharp diplomatic coat and contract case, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2148 pixel duplicate of Mara Vesely, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/mara/echo/2148/mara_echo_2148_idle.svg",
       "act": "characters/mara/echo/2148/mara_echo_2148_act.svg",
@@ -630,7 +920,13 @@
     "era": "2312",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "sharp diplomatic coat and contract case, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2312 pixel duplicate of Mara Vesely, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/mara/echo/2312/mara_echo_2312_idle.svg",
       "act": "characters/mara/echo/2312/mara_echo_2312_act.svg",
@@ -646,7 +942,17 @@
     "era": "2312",
     "site": "kell",
     "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-    "description": "memorial-blue coat with Ade-marked pauldron",
+    "description": "young wiry captain with red side braid, memorial-blue coat, Ade pauldron, and spear",
+    "dimensions": {
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "portrait": "characters/npcs/militia_portrait.svg",
       "token": "characters/npcs/militia_token.svg"
@@ -659,7 +965,17 @@
     "era": "2312",
     "site": "kell",
     "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-    "description": "stooped gatekeeper carrying a brass prayer wheel",
+    "description": "small, stooped elder with a long white beard, gate shawl, and brass prayer wheel",
+    "dimensions": {
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "portrait": "characters/npcs/pell_portrait.svg",
       "token": "characters/npcs/pell_token.svg"
@@ -672,7 +988,21 @@
     "era": null,
     "site": null,
     "guideSection": "Characters and enemies — party deliverables",
-    "description": "amber goggles, lab mantle, and micro-drone; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "description": "older engineer with dark curls, amber goggles, lab coat, tool belt, and mini-drone; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      },
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "idle": "characters/quiroga/quiroga_idle.svg",
       "act": "characters/quiroga/quiroga_act.svg",
@@ -690,7 +1020,13 @@
     "era": "2031",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2031 pixel duplicate of Dr. Ines Quiroga, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/quiroga/echo/2031/quiroga_echo_2031_idle.svg",
       "act": "characters/quiroga/echo/2031/quiroga_echo_2031_act.svg",
@@ -706,7 +1042,13 @@
     "era": "2064",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2064 pixel duplicate of Dr. Ines Quiroga, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/quiroga/echo/2064/quiroga_echo_2064_idle.svg",
       "act": "characters/quiroga/echo/2064/quiroga_echo_2064_act.svg",
@@ -722,7 +1064,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2148 pixel duplicate of Dr. Ines Quiroga, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/quiroga/echo/2148/quiroga_echo_2148_idle.svg",
       "act": "characters/quiroga/echo/2148/quiroga_echo_2148_act.svg",
@@ -738,7 +1086,13 @@
     "era": "2312",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2312 pixel duplicate of Dr. Ines Quiroga, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/quiroga/echo/2312/quiroga_echo_2312_idle.svg",
       "act": "characters/quiroga/echo/2312/quiroga_echo_2312_act.svg",
@@ -754,7 +1108,17 @@
     "era": "2148",
     "site": "port_halden",
     "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-    "description": "travel blanket and Continuity tags",
+    "description": "gaunt traveler with wind-torn curls, oversized blanket, Continuity tags, and bundled keepsakes",
+    "dimensions": {
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "portrait": "characters/npcs/refugee_portrait.svg",
       "token": "characters/npcs/refugee_token.svg"
@@ -768,7 +1132,17 @@
     "era": null,
     "site": null,
     "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-    "description": "layered apron and five-slot relic rack",
+    "description": "round, smiling merchant with a shaved head, layered apron, loupe, and five-slot relic rack",
+    "dimensions": {
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "portrait": "characters/npcs/shopkeeper_portrait.svg",
       "token": "characters/npcs/shopkeeper_token.svg"
@@ -778,11 +1152,17 @@
   {
     "id": "strand_perpetual_phase1",
     "kind": "boss",
-    "name": "Strand Perpetual — Shareholder Form",
+    "name": "Strand Perpetual — Shareholder Throne",
     "era": "2312",
     "site": "meridian",
     "guideSection": "Characters and enemies — enemy families",
-    "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "crowned executive fused into a cable-fed throne; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/strand_perpetual_phase1/strand_perpetual_phase1_idle.svg",
       "act": "enemies/strand_perpetual_phase1/strand_perpetual_phase1_act.svg",
@@ -794,11 +1174,17 @@
   {
     "id": "strand_perpetual_phase2",
     "kind": "boss",
-    "name": "Strand Perpetual — Majority Form",
+    "name": "Strand Perpetual — Majority Lattice",
     "era": "2312",
     "site": "meridian",
     "guideSection": "Characters and enemies — enemy families",
-    "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "expanded lattice chassis with linked ownership nodes; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/strand_perpetual_phase2/strand_perpetual_phase2_idle.svg",
       "act": "enemies/strand_perpetual_phase2/strand_perpetual_phase2_act.svg",
@@ -814,7 +1200,13 @@
     "era": "2312",
     "site": "meridian",
     "guideSection": "Characters and enemies — enemy families",
-    "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "narrow aged duelist with cane blade and shield; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/strand_reconciled_duelist/strand_reconciled_duelist_idle.svg",
       "act": "enemies/strand_reconciled_duelist/strand_reconciled_duelist_act.svg",
@@ -830,7 +1222,21 @@
     "era": null,
     "site": null,
     "guideSection": "Characters and enemies — party deliverables",
-    "description": "gold-trim founder suit and shareholder cane; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "description": "slick blond founder in executive armor with a shareholder cane and compact shield; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      },
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "idle": "characters/strand_young/strand_young_idle.svg",
       "act": "characters/strand_young/strand_young_act.svg",
@@ -848,7 +1254,13 @@
     "era": "2031",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2031 pixel duplicate of Callum Strand (young), with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/strand_young/echo/2031/strand_young_echo_2031_idle.svg",
       "act": "characters/strand_young/echo/2031/strand_young_echo_2031_act.svg",
@@ -864,7 +1276,13 @@
     "era": "2064",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2064 pixel duplicate of Callum Strand (young), with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/strand_young/echo/2064/strand_young_echo_2064_idle.svg",
       "act": "characters/strand_young/echo/2064/strand_young_echo_2064_act.svg",
@@ -880,7 +1298,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2148 pixel duplicate of Callum Strand (young), with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/strand_young/echo/2148/strand_young_echo_2148_idle.svg",
       "act": "characters/strand_young/echo/2148/strand_young_echo_2148_act.svg",
@@ -896,7 +1320,13 @@
     "era": "2312",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2312 pixel duplicate of Callum Strand (young), with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/strand_young/echo/2312/strand_young_echo_2312_idle.svg",
       "act": "characters/strand_young/echo/2312/strand_young_echo_2312_act.svg",
@@ -912,7 +1342,13 @@
     "era": "2031",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "2031 armor has a distinct pixel body plan, helmet, and weapon; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/warden_2031/warden_2031_idle.svg",
       "act": "enemies/warden_2031/warden_2031_act.svg",
@@ -928,7 +1364,13 @@
     "era": "2064",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "2064 armor has a distinct pixel body plan, helmet, and weapon; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/warden_2064/warden_2064_idle.svg",
       "act": "enemies/warden_2064/warden_2064_act.svg",
@@ -944,7 +1386,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "2148 armor has a distinct pixel body plan, helmet, and weapon; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/warden_2148/warden_2148_idle.svg",
       "act": "enemies/warden_2148/warden_2148_act.svg",
@@ -960,7 +1408,13 @@
     "era": "2312",
     "site": null,
     "guideSection": "Characters and enemies — enemy families",
-    "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+    "description": "2312 armor has a distinct pixel body plan, helmet, and weapon; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "enemies/warden_2312/warden_2312_idle.svg",
       "act": "enemies/warden_2312/warden_2312_act.svg",
@@ -976,7 +1430,21 @@
     "era": null,
     "site": null,
     "guideSection": "Characters and enemies — party deliverables",
-    "description": "white cowl and forked chronal staff; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+    "description": "mature healer in layered ivory robes with a forked chronal staff; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      },
+      "portrait": {
+        "width": 32,
+        "height": 32
+      },
+      "token": {
+        "width": 16,
+        "height": 24
+      }
+    },
     "files": {
       "idle": "characters/wren/wren_idle.svg",
       "act": "characters/wren/wren_act.svg",
@@ -994,7 +1462,13 @@
     "era": "2031",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "white cowl and forked chronal staff, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2031 pixel duplicate of Sister Wren, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/wren/echo/2031/wren_echo_2031_idle.svg",
       "act": "characters/wren/echo/2031/wren_echo_2031_act.svg",
@@ -1010,7 +1484,13 @@
     "era": "2064",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "white cowl and forked chronal staff, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2064 pixel duplicate of Sister Wren, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/wren/echo/2064/wren_echo_2064_idle.svg",
       "act": "characters/wren/echo/2064/wren_echo_2064_act.svg",
@@ -1026,7 +1506,13 @@
     "era": "2148",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "white cowl and forked chronal staff, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2148 pixel duplicate of Sister Wren, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/wren/echo/2148/wren_echo_2148_idle.svg",
       "act": "characters/wren/echo/2148/wren_echo_2148_act.svg",
@@ -1042,7 +1528,13 @@
     "era": "2312",
     "site": null,
     "guideSection": "Characters and enemies — Echo versions",
-    "description": "white cowl and forked chronal staff, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+    "description": "A broken 2312 pixel duplicate of Sister Wren, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+    "dimensions": {
+      "battle": {
+        "width": 32,
+        "height": 48
+      }
+    },
     "files": {
       "idle": "characters/wren/echo/2312/wren_echo_2312_idle.svg",
       "act": "characters/wren/echo/2312/wren_echo_2312_act.svg",

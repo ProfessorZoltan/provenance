@@ -54,9 +54,9 @@ const RIG_IDS: Record<string, string> = {
 };
 export function rigSvg(rig: string, accent: string, _ink = 'currentColor', pose: Pose = 'idle', echo = false, era?: string): string {
   const echoId = echo && era ? `${RIG_IDS[rig] ?? rig}_echo_${era}` : undefined;
-  const echoArt = echoId ? librarySvg(echoId, pose, '0 0 32 40', 'rig party-echo') : undefined;
+  const echoArt = echoId ? librarySvg(echoId, pose, '0 0 32 48', 'rig party-echo') : undefined;
   if (echoArt) return echoArt;
-  const art = librarySvg(RIG_IDS[rig] ?? rig, pose, '0 0 32 40', `rig ${echo ? 'echo-rig' : ''}`);
+  const art = librarySvg(RIG_IDS[rig] ?? rig, pose, '0 0 32 48', `rig ${echo ? 'echo-rig' : ''}`);
   if (art) return art;
   return `<svg viewBox="0 0 18 22" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" class="rig ${echo ? 'echo-rig' : ''}"><g class="rig-${pose}">${pixels(rig, accent)}</g></svg>`;
 }
@@ -66,5 +66,5 @@ export function portraitSvg(rig: string, accent: string, _ink = 'currentColor'):
   return `<svg viewBox="3 1 12 12" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" class="portrait-svg">${pixels(rig, accent)}</svg>`;
 }
 export function tokenSvg(rig: string, accent: string, _ink = 'currentColor'): string {
-  return librarySvg(RIG_IDS[rig] ?? rig, 'token', '0 0 16 20', 'map-sprite') ?? rigSvg(rig, accent);
+  return librarySvg(RIG_IDS[rig] ?? rig, 'token', '0 0 16 24', 'map-sprite') ?? rigSvg(rig, accent);
 }
