@@ -3,7 +3,7 @@
   "name": "Service Line",
   "era": "2312",
   "tier": "ordinary",
-  "scale": 0.7,
+  "scale": 0.55,
   "location": "cooling_perimeter_2312",
   "enemies": [
     {

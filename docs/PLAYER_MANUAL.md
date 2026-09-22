@@ -94,6 +94,18 @@ Time travel is different. It happens only at a Deep Site, and only to eras when 
 existed. Both sites reach all four centuries, so you can jump from either and arrive at the same
 place in another era.
 
+### Resting
+
+Resolve carries from one fight into the next. Nobody is topped up for winning. There are two ways
+back.
+
+| | Where | Costs | Gives |
+| --- | --- | --- | --- |
+| Rest | Any Deep Site, and waypoints with a bed to let: the village, the bar, the safehouse, the camps and the commissary | The era's currency: 3 per level of the strongest member fielded | Everyone on the field back to full |
+| Make camp | Anywhere | Nothing, but only twice per era. Jumping to another era refills the count | Half of everyone's Resolve |
+
+The Stack has no beds. Whatever you carry down it, you carry down it.
+
 | Era | Kell | Port Halden | The Basin | Capitol Hill | Meridian | Reference |
 | --- | --- | --- | --- | --- | --- | --- |
 | 2031 | The retreat being founded | Shipping city and its market | A datacenter under construction | A legislature, third reading | A startup lab, two days before the vote | The Founding |
@@ -112,13 +124,40 @@ Battles are turn based. Everyone acts in **threads**.
 Every event in a fight is reported in a box in the middle of the field naming who did what to whom.
 Nothing else moves until you dismiss it with A. The full history stays in the side log.
 
+### Relay
+
+Three stand on the field. Anyone else in the roster waits on the bench, and can be called in
+mid-fight. Relay costs one thread: the member acting falls back, and the one called takes their place
+in the order with whatever threads were left. Whoever fell back keeps the Resolve they left with and
+can be relayed in again later. The Auditor is the case, and never leaves the field.
+
+### Items
+
+Items are free. Using one costs no thread and does not end the turn; the only limit is one a turn
+per member. That is the reason to carry them: what they do, nothing else on the field does.
+
+| Item | Does |
+| --- | --- |
+| Ration | Restores Resolve to one ally |
+| Militia Kit | Restores more, and grants a Slack |
+| Anchor Charm | Revives a downed ally |
+| Tempo Stim | +5 Tempo |
+| Splice | Clears Target Lock and Bound by terms from one ally. Nothing else can |
+| Steady | Clears Fear from one ally. Nothing else can |
+| Chronal Dampener | Lowers Entropy by 20, which is the difference between an Echo answering and not |
+| Faraday Foil | The whole party takes no Signal or Thermal damage for two turns |
+
+The bag holds six consumables in total. A seventh will not fit at the counter, and a seventh found
+in the field is left there. Gear and relics have their own room.
+
 ### Tempo
 
-Tempo is a single gauge shared by the whole party, not by any one character.
+Tempo is a single gauge shared by the whole party, not by any one character. Spending threads earns
+none of it. Pressure does.
 
 | | |
 | --- | --- |
-| Fills | 2 points for every thread any party member spends |
+| Fills | 3 points every time an enemy lands a hit on the party; 3 for every hit on a weakness; 2 for every enemy Marked |
 | Maximum | 40 |
 | Also raised by | Some abilities, such as Wren's Vigil, and the Tempo Stim item |
 
@@ -128,7 +167,7 @@ written under them.
 | Ability | Cost | Effect | Entropy |
 | --- | --- | --- | --- |
 | Fork | 2 Tempo and 1 thread | Names the exact damage, the Resolve before and after, shields, status and gauge changes, before you commit. X carries out precisely that outcome; B discards the preview and the Tempo stays spent | +5 |
-| Rewind | 3 Tempo | Undoes the enemy's last turn. They take it again, differently. Once per battle, plus one more for each additional anchor or the right training | +10 |
+| Rewind | 3 Tempo | Undoes the enemy's last turn. They take it again, differently. One every fight, whoever is standing, plus one more for each anchor or the right training. It does not carry over: use it | +10 |
 | Echo | 4 Tempo | Another era's version of someone steps in for one round and then is gone. Benched members count, and the era has to be one you have been to. Once per battle | +6 |
 | Collapse | 5 Tempo | Banks the fight exactly as it stands. If the party is wiped after that, it resumes from the bank instead of ending. Once per battle | +13 |
 
@@ -209,8 +248,11 @@ A faction trainer pays out once. Bring the party you want trained.
 
 ## Your party
 
-Four can take the field at once. The Auditor always goes. Anyone benched still earns experience, at
-half rate, so nobody falls behind for sitting out. Press X anywhere outside a fight for the roster.
+Three can take the field at once. The Auditor always goes. A new recruit walks with you from the
+moment they say yes: when the field is full, whoever joined most recently steps back to the bench
+to make the room. Anyone benched still earns experience, at half rate, so nobody falls behind for
+sitting out, and anyone Relayed onto the field during a fight earns the full share. Press X anywhere
+outside a fight for the roster.
 
 ### The Auditor
 
@@ -488,8 +530,8 @@ floor at a time, and each floor fights you in its own era's idiom.
 | 2148 | Echoes worn thin enough to hit, and the water that sealed the corridor | The vault |
 | 2312 | The last of what the Board keeps for a room it has met in four times | The allocation floor |
 
-Rest at the bottom before you take the chair. You can, the party sheet will tell you whether you
-should, and nothing about the stack resets if you have to come back.
+There are no beds in the stack. Make camp at the bottom before you take the chair if you have a
+camp left, and nothing about the stack resets if you have to come back.
 
 ## Saving
 

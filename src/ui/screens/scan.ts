@@ -55,6 +55,7 @@ export function resultScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
       <li>${r.xp} XP to each party member</li>
       <li>${r.currency} ${cur}</li>
       ${r.items.map((i) => `<li>Found: ${esc(ctx.content.items[i]?.name ?? i)}</li>`).join('')}
+      ${(r.leftBehind ?? []).map((i) => `<li class="small">Left behind, no room in the bag: ${esc(ctx.content.items[i]?.name ?? i)}</li>`).join('')}
       ${r.levelUps.map((l) => `<li><b>${esc(l)}</b>: +1 skill point</li>`).join('')}
       ${r.flags.filter((f) => flagText[f]).map((f) => `<li class="small">${flagText[f]}</li>`).join('')}
     </ul>` : ''}

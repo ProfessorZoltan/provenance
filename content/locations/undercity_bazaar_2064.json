@@ -43,5 +43,6 @@
   "encounters": [],
   "links": [],
   "timeLinks": [],
-  "shop": "undercity_bazaar"
+  "shop": "undercity_bazaar",
+  "lodging": true
 }

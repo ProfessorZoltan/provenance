@@ -50,7 +50,7 @@
         "ownership>=20"
       ],
       "art": "2312_enclave_7_commissary_open",
-      "description": "The commissary, and half the shelves are now stocked by people rather than by allocation — surplus, trade, things somebody grew. It is untidy and it is louder than it used to be. Somewhere upstream, somebody opened something up.",
+      "description": "The commissary, and half the shelves are now stocked by people rather than by allocation \u2014 surplus, trade, things somebody grew. It is untidy and it is louder than it used to be. Somewhere upstream, somebody opened something up.",
       "npcs": [
         "clerk_novi"
       ],
@@ -67,5 +67,6 @@
       ],
       "shop": "enclave7_commissary"
     }
-  ]
+  ],
+  "lodging": true
 }

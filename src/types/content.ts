@@ -196,6 +196,8 @@ export interface LocationDef {
   actions?: { label: string; dialogue: string; hint?: string; requires?: string[] }[];
   /** Reached only from somewhere else, so it needs no node on the era map. */
   offMap?: boolean;
+  /** Somewhere the party can pay for a proper night's rest. Deep Sites always can. */
+  lodging?: boolean;
   links: { to: string; label: string }[];
   timeLinks: EraId[];
   storyDialogue?: string;
@@ -366,7 +368,15 @@ export interface ItemDef {
   kind: 'consumable' | 'relic' | 'gear';
   description: string;
   relicValue?: number;
-  effect?: { heal?: number; tempo?: number; revive?: boolean; slack?: number };
+  effect?: {
+    heal?: number; tempo?: number; revive?: boolean; slack?: number;
+    /** Statuses the item strips from its target. */
+    cure?: string[];
+    /** Entropy change, usually negative. */
+    entropy?: number;
+    /** A status the item grants, to one ally or to the whole party. */
+    status?: { id: string; turns: number; target: 'ally' | 'party' };
+  };
   /** Gear only: where it goes, what it changes, and who may carry it. */
   slot?: EquipSlot;
   stats?: Partial<StatBlock>;
@@ -416,9 +426,21 @@ export interface RulesDef {
   slackCap: number;
   tempoMax: number;
   tempoPerThread: number;
+  /** Tempo the party earns when one of them is hit, when they strike a weakness, and per enemy Marked. */
+  tempoOnHit: number;
+  tempoOnWeakness: number;
+  tempoOnMark: number;
   entropyThreshold: number;
   entropyMax: number;
-  rewind: { cost: number; entropy: number };
+  rewind: { cost: number; entropy: number; base: number };
+  /** Relay: swap a benched member onto the field mid-fight, for a thread. */
+  relay: { threadCost: number };
+  /** A paid full rest costs this much of the era's currency per level of the highest active member. */
+  rest: { perLevel: number };
+  /** Making camp in the field: how many times per era, and how much of max Resolve it gives back. */
+  camp: { perEra: number; heal: number };
+  /** Consumables are free actions, this many a turn, and the bag holds this many in total. */
+  items: { perTurn: number; bagCap: number };
   fork: { cost: number; entropy: number; threadCost: number };
   echo: { cost: number; entropy: number; turns: number };
   collapse: { cost: number; entropy: number };

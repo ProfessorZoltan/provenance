@@ -1,7 +1,7 @@
 import type { ContentDB, DialogueLine, EraId, LocationDef, LocationVariant } from '../types/content';
 import type { CharacterState, GameState, Screen } from '../types/state';
 import type { Action } from './actions';
-import { collapse, createBattle, echoAssist, endTurn, enemyTurn, fork, resolveAbility, rewind, useItem } from './battle/battle';
+import { collapse, createBattle, echoAssist, endTurn, enemyTurn, fork, partyCombatant, relay, resolveAbility, rewind, useItem } from './battle/battle';
 import { evalAll } from './conditions';
 import { buildScan, conditionContext, rollEncounter } from './encounter';
 import { seedFromString } from './rng';
@@ -45,6 +45,7 @@ export function initialState(): GameState {
     battleReturn: 'hub',
     settings: { reducedMotion: false, musicVolume: 0.7, sfxVolume: 0.8 },
     counters: { storyFights: 0, randomFights: 0, surprisesCancelled: 0, turns: 0 },
+    camps: 2,
   };
 }
 
@@ -296,6 +297,45 @@ export function mapFor(content: ContentDB, era: EraId) {
   return Object.values(content.maps).find((m) => m.era === era) ?? null;
 }
 
+/** How many consumables the bag is holding. Gear and relics have their own rules. */
+export function bagCount(content: ContentDB, items: Record<string, number>): number {
+  return Object.entries(items).reduce((s, [id, n]) => s + (content.items[id]?.kind === 'consumable' ? n : 0), 0);
+}
+
+/**
+ * Put found or granted items in the bag, up to its cap for consumables and the relic cap for
+ * relics. Whatever there was no room for comes back so the player can be told.
+ */
+function stow(content: ContentDB, inv: GameState['inventory'], found: string[]): { inv: GameState['inventory']; leftBehind: string[] } {
+  const items = { ...inv.items };
+  let relics = [...inv.relics];
+  const leftBehind: string[] = [];
+  for (const it of found) {
+    const def = content.items[it];
+    if (!def) continue;
+    if (def.kind === 'relic') {
+      if (relics.length < content.rules.relicCap) relics = [...relics, it]; else leftBehind.push(it);
+    } else if (def.kind === 'consumable' && bagCount(content, items) >= content.rules.items.bagCap) {
+      leftBehind.push(it);
+    } else {
+      items[it] = (items[it] ?? 0) + 1;
+    }
+  }
+  return { inv: { ...inv, items, relics }, leftBehind };
+}
+
+/** Whether the party can pay for a proper rest here: every Deep Site, and anywhere with a bed to let. */
+export function hasLodging(content: ContentDB, state: GameState): boolean {
+  const loc = content.locations[state.location];
+  return !!loc && (loc.kind === 'deepSite' || !!loc.lodging);
+}
+
+/** What a full rest costs here: the era's currency, by the level of the strongest member fielded. */
+export function restCost(content: ContentDB, state: GameState): number {
+  const level = Math.max(1, ...state.activeParty.map((id) => state.party[id]?.level ?? 1));
+  return content.rules.rest.perLevel * level;
+}
+
 function arrive(content: ContentDB, state: GameState, locationId: string): GameState {
   const loc = content.locations[locationId];
   if (!loc) throw new Error(`Unknown location ${locationId}`);
@@ -334,10 +374,12 @@ function finishBattle(content: ContentDB, state: GameState): GameState {
   // cannot act, cannot lose and cannot leave.
   let party = { ...state.party };
   const won = b.phase === 'won';
-  for (const c of b.combatants) {
+  for (const c of [...b.combatants, ...(b.reserve ?? [])]) {
     if (c.side !== 'party' || !party[c.id]) continue;
     party[c.id] = { ...party[c.id], hp: won ? Math.max(1, c.hp) : c.hp };
   }
+  // Anyone who stood on the field this fight, however briefly, earned the full share.
+  const fought = new Set([...b.combatants, ...(b.reserve ?? [])].filter((c) => c.side === 'party' && !c.temporary).map((c) => c.id));
   state = { ...state, party, rng: b.rng };
 
   if (b.phase === 'lost') {
@@ -352,7 +394,7 @@ function finishBattle(content: ContentDB, state: GameState): GameState {
     for (const id of Object.keys(party)) {
       const cs = party[id];
       if (!cs) continue;
-      const gain = state.activeParty.includes(id) ? r.xp : Math.round(r.xp * share);
+      const gain = fought.has(id) || state.activeParty.includes(id) ? r.xp : Math.round(r.xp * share);
       const xp = cs.xp + gain;
       const level = levelForXp(xp, content.rules.xpPerLevel);
       let next = { ...cs, xp };
@@ -366,17 +408,11 @@ function finishBattle(content: ContentDB, state: GameState): GameState {
       party[id] = next;
     }
     const cur = currencyFor(b.era);
-    const items = { ...state.inventory.items };
-    let relics = [...state.inventory.relics];
-    for (const it of r.items) {
-      const def = content.items[it];
-      if (def?.kind === 'relic') { if (relics.length < content.rules.relicCap) relics = [...relics, it]; }
-      else items[it] = (items[it] ?? 0) + 1;
-    }
+    const stowed = stow(content, state.inventory, r.items);
     state = {
       ...state,
       party,
-      inventory: { ...state.inventory, items, relics, currency: { ...state.inventory.currency, [cur]: (state.inventory.currency[cur] ?? 0) + r.currency } },
+      inventory: { ...stowed.inv, currency: { ...state.inventory.currency, [cur]: (state.inventory.currency[cur] ?? 0) + r.currency } },
       counters: { ...state.counters, storyFights: state.counters.storyFights + (b.story ? 1 : 0), randomFights: state.counters.randomFights + (b.story ? 0 : 1), turns: state.counters.turns + b.round },
     };
     state = addFlags(state, r.flags);
@@ -386,7 +422,7 @@ function finishBattle(content: ContentDB, state: GameState): GameState {
       const q = content.quests[qid];
       if (q && status === 'active' && q.objectiveEncounter === b.encounterId) state = { ...state, quests: { ...state.quests, [qid]: 'readyToTurnIn' } };
     }
-    state = { ...state, battle: { ...b, pendingRewards: { ...r, levelUps } } };
+    state = { ...state, battle: { ...b, pendingRewards: { ...r, items: r.items.filter((it) => !stowed.leftBehind.includes(it)), leftBehind: stowed.leftBehind, levelUps } } };
   }
   void enc;
   return { ...state, screen: { id: 'battleResult' } };
@@ -432,6 +468,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
         party: { player: newCharacter(content, 'player', sync, 0) },
         activeParty: ['player'],
         location: 'allocation_office_2312',
+        camps: content.rules.camp.perEra,
         map: { x: content.rooms.allocation_office.spawn.x, y: content.rooms.allocation_office.spawn.y },
         screen: { id: 'room', room: 'allocation_office' },
       };
@@ -456,7 +493,11 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
     case 'LOAD_STATE': {
       const base = initialState();
       const s: GameState = { ...base, ...action.state, map: action.state.map ?? base.map, back: { id: 'hub' }, battleReturn: action.state.battleReturn ?? 'hub' };
-      const live = s.battle && s.battle.phase !== 'won' && s.battle.phase !== 'lost' ? s.battle : null;
+      const live = s.battle && s.battle.phase !== 'won' && s.battle.phase !== 'lost' ? { ...s.battle, reserve: s.battle.reserve ?? [] } : null;
+      // A save from when four could take the field keeps its first three; the rest go to the bench.
+      const max = content.rules.activePartyMax;
+      if (s.activeParty.length > max) s.activeParty = [...s.activeParty.filter((id) => id === 'player'), ...s.activeParty.filter((id) => id !== 'player')].slice(0, max);
+      if (typeof s.camps !== 'number') s.camps = content.rules.camp.perEra;
       return { ...s, battle: live, scan: null, screen: live ? { id: 'battle' } : s.dialogue ? { id: 'dialogue' } : { id: 'hub' } };
     }
     case 'SET_SCREEN': {
@@ -518,7 +559,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       if (!loc.timeLinks.includes(action.era)) throw new Error(`${loc.name} does not reach ${action.era}`);
       const target = Object.values(content.locations).find((l) => l.kind === 'deepSite' && l.site === loc.site && l.era === action.era);
       if (!target) throw new Error(`No ${loc.site} in ${action.era}`);
-      state = { ...state, world: markVisited(state.world, action.era) };
+      state = { ...state, world: markVisited(state.world, action.era), camps: content.rules.camp.perEra };
       state = journal(state, `Jumped to ${action.era} at ${target.name}.`);
       return arrive(content, state, target.id);
     }
@@ -557,6 +598,17 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       const b = useItem(state.battle, action.actor, def, action.target, content);
       const items = { ...state.inventory.items, [action.item]: state.inventory.items[action.item] - 1 };
       return { ...state, battle: b, inventory: { ...state.inventory, items } };
+    }
+    case 'BATTLE_RELAY': {
+      const b = state.battle;
+      if (!b) throw new Error('No battle');
+      if (!state.party[action.incoming]) throw new Error('Nobody by that name');
+      // Someone Relayed out earlier comes back as they left; anyone else comes in as they are.
+      const waiting = b.reserve.find((c) => c.id === action.incoming);
+      const made = partyCombatant(content, state, action.incoming);
+      if (!made) throw new Error('Nobody by that name');
+      const incoming = waiting ? { ...waiting, itemUsed: false } : made.combatant;
+      return { ...state, battle: relay(b, action.actor, incoming, b.passives[action.incoming] ?? made.passives, content) };
     }
     case 'BATTLE_END_TURN':
       if (!state.battle) throw new Error('No battle');
@@ -610,12 +662,31 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       return arrive(content, { ...state, party, battle: null }, site);
     }
     case 'REST': {
+      // A proper rest is a bed somewhere, and beds are paid for: by the era's money, by the level
+      // of whoever is asking. Nothing else in the game restores everyone at once.
+      if (!hasLodging(content, state)) throw new Error('Nowhere to rest properly here. Make camp, or find a bed.');
+      const cur = currencyFor(state.era);
+      const cost = restCost(content, state);
+      const have = state.inventory.currency[cur] ?? 0;
+      if (have < cost) throw new Error(`A night here costs ${cost} ${cur}; you have ${have}.`);
       const party = { ...state.party };
       for (const id of state.activeParty) {
         const cs = party[id];
         if (cs) party[id] = { ...cs, hp: maxHp(content, content.characters[id], cs) };
       }
-      return { ...state, party };
+      return { ...state, party, inventory: { ...state.inventory, currency: { ...state.inventory.currency, [cur]: have - cost } } };
+    }
+    case 'CAMP': {
+      // A half rest in the field, so many times an era. The count refills when the party jumps.
+      if (state.camps <= 0) throw new Error('No camps left in this era. Find a bed, or jump.');
+      const party = { ...state.party };
+      for (const id of state.activeParty) {
+        const cs = party[id];
+        if (!cs) continue;
+        const cap = maxHp(content, content.characters[id], cs);
+        party[id] = { ...cs, hp: Math.min(cap, Math.max(1, cs.hp) + Math.round(cap * content.rules.camp.heal)) };
+      }
+      return { ...state, party, camps: state.camps - 1 };
     }
 
     case 'SET_ACTIVE_PARTY': {
@@ -666,9 +737,19 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       if (state.party[action.character]) return state;
       const cs = newCharacter(content, action.character, def.baseStats.sync, state.world.history.length, recruitXp(content, state));
       let next: GameState = { ...state, party: { ...state.party, [action.character]: cs } };
-      if (next.activeParty.length < content.rules.activePartyMax) next = { ...next, activeParty: [...next.activeParty, action.character] };
+      // A recruit walks with you from the moment they say yes. When the field is full, whoever
+      // joined most recently steps back to the bench to make the room; the Auditor never does.
+      let benched: string | null = null;
+      if (next.activeParty.length < content.rules.activePartyMax) {
+        next = { ...next, activeParty: [...next.activeParty, action.character] };
+      } else {
+        const others = next.activeParty.filter((id) => id !== 'player');
+        benched = others.length ? others[others.length - 1] : null;
+        if (benched) next = { ...next, activeParty: [...next.activeParty.filter((id) => id !== benched), action.character] };
+      }
       next = addFlags(next, [`recruited:${action.character}`]);
       next = journal(next, `${def.name} joined the party. ${def.joinLine ?? ''}`.trim());
+      if (benched) next = journal(next, `${content.characters[benched].shortName} steps back to the bench to make room.`);
       return settleDepartures(content, next);
     }
     case 'UNLOCK_NODE': {
@@ -697,6 +778,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
         if (inv.relics.length >= content.rules.relicCap) throw new Error('Relic carry space is full');
         inv.relics = [...inv.relics, action.item];
       } else {
+        if (def.kind === 'consumable' && bagCount(content, inv.items) >= content.rules.items.bagCap) throw new Error(`The bag holds ${content.rules.items.bagCap}. Use something first.`);
         inv.items = { ...inv.items, [action.item]: (inv.items[action.item] ?? 0) + 1 };
       }
       return { ...state, inventory: inv };
@@ -718,6 +800,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       const def = content.items[action.item];
       const count = state.inventory.items[action.item] ?? 0;
       if (!def?.effect || count <= 0) throw new Error('Cannot use that');
+      if (!def.effect.heal && !def.effect.revive) throw new Error(`${def.name} only does anything in a fight`);
       const cs = state.party[action.target];
       if (!cs) throw new Error('No such ally');
       const cap = maxHp(content, content.characters[cs.id], cs);
@@ -747,12 +830,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
         party[id] = { ...cs, xp, level, skillPoints: cs.skillPoints + (active ? q.rewards.skillPoints : 0) + (level - cs.level) };
       }
       const cur = currencyFor(content.locations[q.location].era);
-      const inv = { ...state.inventory, currency: { ...state.inventory.currency, [cur]: (state.inventory.currency[cur] ?? 0) + q.rewards.currency } };
-      for (const it of q.rewards.items) {
-        const def = content.items[it];
-        if (def.kind === 'relic') { if (inv.relics.length < content.rules.relicCap) inv.relics = [...inv.relics, it]; }
-        else inv.items = { ...inv.items, [it]: (inv.items[it] ?? 0) + 1 };
-      }
+      const inv = stow(content, { ...state.inventory, currency: { ...state.inventory.currency, [cur]: (state.inventory.currency[cur] ?? 0) + q.rewards.currency } }, q.rewards.items).inv;
       state = addFlags(state, q.rewards.flags);
       state = journal(state, `Quest complete: ${q.name}.`);
       return { ...state, party, inventory: inv, quests: { ...state.quests, [q.id]: 'complete' } };

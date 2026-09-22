@@ -34,6 +34,14 @@
     {
       "item": "board_weave",
       "chance": 0.2
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
     }
   ],
   "flavor": "Allocated to a room that has met four times in two hundred years."

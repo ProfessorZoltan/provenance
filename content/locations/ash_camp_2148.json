@@ -43,5 +43,6 @@
   "encounters": [],
   "shop": "ash_camp",
   "links": [],
-  "timeLinks": []
+  "timeLinks": [],
+  "lodging": true
 }

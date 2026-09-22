@@ -38,6 +38,14 @@
     {
       "item": "relic_hymn_fragment",
       "chance": 1
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
     }
   ],
   "flavor": "It is still asking you to stop. The restraint the Board welded on is what is swinging at you."

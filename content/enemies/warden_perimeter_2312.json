@@ -34,6 +34,10 @@
     {
       "item": "relic_basin_core",
       "chance": 0.15
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
     }
   ],
   "flavor": "Allocated to the fields, and allocated very well. This is the Steward taking something seriously."

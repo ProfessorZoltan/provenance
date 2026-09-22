@@ -38,6 +38,14 @@
     {
       "item": "core_weave",
       "chance": 0.18
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
+    },
+    {
+      "item": "faraday_foil",
+      "chance": 0.12
     }
   ],
   "flavor": "Flies the cooling fields on a patrol pattern that has not been revised in eighty years."

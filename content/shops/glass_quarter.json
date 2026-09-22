@@ -13,6 +13,14 @@
       "price": 26
     },
     {
+      "item": "splice",
+      "price": 12
+    },
+    {
+      "item": "faraday_foil",
+      "price": 24
+    },
+    {
       "item": "glass_optics",
       "price": 80
     },

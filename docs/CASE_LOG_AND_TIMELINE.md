@@ -36,8 +36,9 @@ made at that site in later eras. Editing 2031 last throws away your 2148.
 
 ## Who joins you
 
-The Auditor plus 3 of the other 7 on the field at once;
-the rest wait on the bench and still draw a reduced share of the experience. Recruiting is
+The Auditor plus 2 of the other 7 on the field at once;
+the rest wait on the bench, can be Relayed in mid-fight for a thread, and still draw a reduced
+share of the experience while they sit. Recruiting is
 what writes a companion into the case log, so a run that never asks is a run with holes in
 its file. 4 of them can walk away again, and Sync takes two of them in opposite
 directions: ILO-9 goes if it falls to -60, Hale goes if it climbs to +60.

@@ -38,6 +38,10 @@
     {
       "item": "relic_enabling_act",
       "chance": 0.16
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
     }
   ],
   "flavor": "Keeps order in a chamber where order is the only thing anyone agrees on."

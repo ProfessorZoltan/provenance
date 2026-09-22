@@ -1,12 +1,16 @@
 {
   "slackCap": 2,
   "tempoMax": 40,
-  "tempoPerThread": 2,
+  "tempoPerThread": 0,
+  "tempoOnHit": 3,
+  "tempoOnWeakness": 3,
+  "tempoOnMark": 2,
   "entropyThreshold": 70,
   "entropyMax": 100,
   "rewind": {
     "cost": 3,
-    "entropy": 20
+    "entropy": 20,
+    "base": 1
   },
   "fork": {
     "cost": 2,
@@ -37,7 +41,7 @@
     "perRound": 0.1
   },
   "markBonus": 0.25,
-  "activePartyMax": 4,
+  "activePartyMax": 3,
   "benchedXpShare": 0.5,
   "echo": {
     "cost": 4,
@@ -47,5 +51,19 @@
   "collapse": {
     "cost": 5,
     "entropy": 25
+  },
+  "relay": {
+    "threadCost": 1
+  },
+  "rest": {
+    "perLevel": 3
+  },
+  "camp": {
+    "perEra": 2,
+    "heal": 0.5
+  },
+  "items": {
+    "perTurn": 1,
+    "bagCap": 6
   }
 }

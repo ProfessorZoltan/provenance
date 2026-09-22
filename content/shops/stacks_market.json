@@ -13,6 +13,18 @@
       "price": 18
     },
     {
+      "item": "splice",
+      "price": 12
+    },
+    {
+      "item": "dampener",
+      "price": 20
+    },
+    {
+      "item": "faraday_foil",
+      "price": 24
+    },
+    {
       "item": "anchor_charm",
       "price": 45
     },

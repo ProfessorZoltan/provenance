@@ -1,15 +1,16 @@
 import { artAssetUrl } from '../../art/library';
 import { rigSvg } from '../../art/rigs';
-import { abilityOptions, current, hasStatus, validTargets } from '../../core/battle/battle';
+import { abilityOptions, current, hasStatus, itemNeedsTarget, validTargets } from '../../core/battle/battle';
 import type { AbilityDef, RulesDef } from '../../types/content';
 import { statusChips } from '../../core/battle/statuses';
+import { loadout } from '../../core/stats';
 import type { BattleState, Combatant, GameState } from '../../types/state';
 import type { Button } from '../../input/input';
 import { accentFor, esc, html, prompts, type Ctx, type ScreenHandle } from '../common';
 import { currentPage, narrationPending } from '../narration';
 import { menu, type MenuItem } from '../menu';
 
-type Mode = 'menu' | 'target' | 'items' | 'itemTarget' | 'forkPick' | 'forkTarget' | 'echoPick' | 'inspect';
+type Mode = 'menu' | 'target' | 'items' | 'itemTarget' | 'forkPick' | 'forkTarget' | 'echoPick' | 'relayPick' | 'inspect';
 
 interface UI {
   encounter: string;
@@ -286,8 +287,14 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
         if (e) ctx.toast(e.message);
       },
     });
-    const itemCount = Object.values(state.inventory.items).reduce((s, n) => s + n, 0);
-    items.push({ id: 'items', label: 'Items', cost: `1⟋`, hint: itemCount ? `${itemCount} carried` : 'None carried', disabled: !itemCount || actor!.threads < 1, onSelect: () => setMode('items') });
+    const itemCount = Object.entries(state.inventory.items).reduce((s, [id, n]) => s + (content.items[id]?.kind === 'consumable' ? n : 0), 0);
+    items.push({ id: 'items', label: 'Items', cost: 'free', hint: actor!.itemUsed ? 'One item a turn, and this turn\'s is used.' : itemCount ? `${itemCount} carried. No thread: one a turn, on top of everything else.` : 'None carried', disabled: !itemCount || !!actor!.itemUsed, onSelect: () => setMode('items') });
+    // Relay: whoever is benched can take this member's place and the rest of their turn.
+    const benched = Object.keys(state.party).filter((id) => !b.combatants.some((c) => c.id === id) && (b.reserve.find((c) => c.id === id)?.hp ?? state.party[id].hp) > 0);
+    const relayReason = actor!.id === 'player' ? 'The Auditor is the case, and stays.'
+      : !benched.length ? 'Nobody on the bench who can stand.'
+      : actor!.threads < rules.relay.threadCost ? `Needs ${rules.relay.threadCost} thread.` : '';
+    items.push({ id: 'relay', label: 'Relay', cost: `${rules.relay.threadCost}⟋`, hint: `${relayReason} Fall back and a benched member takes the field in your place with the threads you have left.`.trim(), disabled: !!relayReason, onSelect: () => setMode('relayPick') });
     items.push({ id: 'end', label: 'End turn', shortcut: 'rt', hint: actor!.threads ? `Bank ${Math.min(actor!.threads, rules.slackCap + (b.passives[actor!.id]?.slackCap ?? 0))} Slack` : '', onSelect: () => store.dispatch({ type: 'BATTLE_END_TURN', actor: actor!.id }) });
     actions.innerHTML = `<div class="eyebrow">${esc(actor!.name)} · ${actor!.threads} threads · ${b.tempo} Tempo</div>`;
     const desc = document.createElement('div');
@@ -310,9 +317,15 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
   } else if (ui.mode === 'items') {
     const items: MenuItem[] = Object.entries(state.inventory.items).filter(([, n]) => n > 0).map(([id, n]) => {
       const def = content.items[id];
-      return { id, label: def.name, cost: `×${n}`, hint: def.description, onSelect: () => setMode('itemTarget', { item: id, targetIdx: 0 }) };
-    });
-    actions.innerHTML = `<div class="eyebrow">Items · 1 thread</div>`;
+      return { id, label: def.name, cost: `×${n}`, hint: def.description, onSelect: () => {
+        if (itemNeedsTarget(def)) { setMode('itemTarget', { item: id, targetIdx: 0 }); return; }
+        setMode('menu');
+        store.dispatch({ type: 'BATTLE_ITEM', actor: actor!.id, item: id, target: actor!.id });
+        const err = store.lastError();
+        if (err) { ctx.toast(err.message); setMode('items'); }
+      } };
+    }).filter((it) => content.items[it.id]?.kind === 'consumable');
+    actions.innerHTML = `<div class="eyebrow">Items · free, one a turn</div>`;
     m = menu(items, 0);
     actions.appendChild(m.el);
     ctx.setPrompts(prompts({ btn: 'dpad', label: 'Choose' }, { btn: 'a', label: 'Select' }, { btn: 'b', label: 'Back' }));
@@ -342,6 +355,29 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     })), 0);
     actions.appendChild(m.el);
     ctx.setPrompts(prompts({ btn: 'dpad', label: 'Choose' }, { btn: 'a', label: 'Call' }, { btn: 'b', label: 'Back' }));
+  } else if (ui.mode === 'relayPick') {
+    const benched = Object.keys(state.party).filter((id) => !b.combatants.some((c) => c.id === id));
+    actions.innerHTML = `<div class="eyebrow">Relay · who takes ${esc(actor!.name)}'s place? (${rules.relay.threadCost} thread)</div>
+      <p class="small">They arrive with ${actor!.threads - rules.relay.threadCost} thread${actor!.threads - rules.relay.threadCost === 1 ? '' : 's'} and finish this turn. ${esc(actor!.name)} keeps the Resolve they leave with.</p>`;
+    m = menu(benched.map((id) => {
+      const waiting = b.reserve.find((c) => c.id === id);
+      const hp = waiting ? waiting.hp : state.party[id].hp;
+      const cap = waiting ? waiting.maxHp : loadout(content, content.characters[id], state.party[id]).stats.resolve;
+      return {
+        id,
+        label: content.characters[id].name,
+        hint: hp > 0 ? `${hp}/${cap} Resolve${waiting ? ' · fell back earlier' : ''}` : 'Down. Cannot take the field.',
+        disabled: hp <= 0,
+        onSelect: () => {
+          store.dispatch({ type: 'BATTLE_RELAY', actor: actor!.id, incoming: id });
+          const e = store.lastError();
+          if (e) ctx.toast(e.message);
+          setMode('menu');
+        },
+      };
+    }), 0);
+    actions.appendChild(m.el);
+    ctx.setPrompts(prompts({ btn: 'dpad', label: 'Choose' }, { btn: 'a', label: 'Relay' }, { btn: 'b', label: 'Back' }));
   } else if (ui.mode === 'inspect') {
     const e = enemies[ui.targetIdx % enemies.length];
     const def = e.echoOf ? null : content.enemies[e.ref];
@@ -400,7 +436,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
           if (btn === 'y') { setMode('inspect', { targetIdx: 0 }); return; }
           m?.input(btn);
           return;
-        case 'items': case 'forkPick': case 'echoPick':
+        case 'items': case 'forkPick': case 'echoPick': case 'relayPick':
           if (btn === 'b') { setMode('menu'); return; }
           m?.input(btn);
           return;

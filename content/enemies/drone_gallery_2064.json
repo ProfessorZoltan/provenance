@@ -32,6 +32,18 @@
     {
       "item": "gallery_lens",
       "chance": 0.2
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
+    },
+    {
+      "item": "faraday_foil",
+      "chance": 0.12
     }
   ],
   "flavor": "Minutes the chamber. It has never once been asked to stop minuting it."

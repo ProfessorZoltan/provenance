@@ -28,6 +28,10 @@
     {
       "item": "scrap",
       "chance": 0.85
+    },
+    {
+      "item": "faraday_foil",
+      "chance": 0.12
     }
   ],
   "flavor": "It has been running one instruction for a century, and the instruction is hurt whatever moves."

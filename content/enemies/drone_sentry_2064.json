@@ -32,6 +32,10 @@
     {
       "item": "glass_optics",
       "chance": 0.18
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
     }
   ],
   "flavor": "Crowd management, leased by the hour. The causeway concession pays for two hundred of these."

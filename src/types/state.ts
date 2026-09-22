@@ -38,6 +38,8 @@ export interface Combatant {
   /** A short-lived copy: it fights, then dissolves, and the party does not lose when it falls. */
   temporary?: boolean;
   expiresAfterRound?: number;
+  /** Items are free, but one a turn: set once this combatant has used theirs. */
+  itemUsed?: boolean;
 }
 
 export interface LogMeta {
@@ -67,6 +69,7 @@ export interface RewindPoint {
   logLength: number;
   actorId: string;
   description: string;
+  reserve?: Combatant[];
 }
 
 export interface BattleState {
@@ -75,6 +78,8 @@ export interface BattleState {
   seed: number;
   rng: number;
   combatants: Combatant[];
+  /** Party members Relayed off the field this fight, keeping the Resolve they left with. */
+  reserve: Combatant[];
   order: string[];
   turnIndex: number;
   round: number;
@@ -103,6 +108,8 @@ export interface BattleRewards {
   xp: number;
   currency: number;
   items: string[];
+  /** Drops the bag had no room for. */
+  leftBehind?: string[];
   flags: string[];
   levelUps: string[];
 }
@@ -220,4 +227,6 @@ export interface GameState {
   battleReturn: 'map' | 'hub';
   settings: Settings;
   counters: { storyFights: number; randomFights: number; surprisesCancelled: number; turns: number };
+  /** Field camps left in this era: a half rest, and only so many before a proper bed is needed. */
+  camps: number;
 }

@@ -43,5 +43,6 @@
   "encounters": [],
   "shop": "founders_bar",
   "links": [],
-  "timeLinks": []
+  "timeLinks": [],
+  "lodging": true
 }

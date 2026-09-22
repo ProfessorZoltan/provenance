@@ -21,7 +21,7 @@ function fuzzBattle(seed: number, enc: string, surprise: boolean): { s: GameStat
     let action: Action;
     if (roll < 0.08 && b.rewindPoint && b.rewindsLeft > 0 && b.tempo >= 3) action = { type: 'BATTLE_REWIND' };
     else if (roll < 0.14) action = { type: 'BATTLE_END_TURN', actor: actor.id };
-    else if (roll < 0.22 && actor.threads >= 1) {
+    else if (roll < 0.22 && !actor.itemUsed) {
       const items = Object.entries(s.inventory.items).filter(([, n]) => n > 0);
       const pick = items[Math.floor(rnd() * items.length)];
       const item = pick ? pick[0] : null;

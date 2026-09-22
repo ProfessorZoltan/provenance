@@ -3,7 +3,7 @@ import type { AbilityDef, ContentDB, DamageType, EnemyDef, EraId, ItemDef, Secon
 import type { BattleLogEntry, BattleRewards, BattleState, Combatant, GameState, LogMeta, RewindPoint, StatusEffect } from '../../types/state';
 import { evalFormula } from '../formula';
 import { roll, rollInt } from '../rng';
-import { partyLoadouts, partySync } from '../stats';
+import { loadout, partySync } from '../stats';
 import { clamp } from '../timeline';
 
 // ---------- construction ----------
@@ -11,24 +11,14 @@ import { clamp } from '../timeline';
 export function createBattle(content: ContentDB, state: GameState, encounterId: string, surprise: boolean): BattleState {
   const enc = content.encounters[encounterId];
   if (!enc) throw new Error(`Unknown encounter ${encounterId}`);
-  const loads = partyLoadouts(content, state);
   const passives: Record<string, Record<string, number>> = {};
   const combatants: Combatant[] = [];
 
   for (const id of state.activeParty) {
-    const def = content.characters[id];
-    const cs = state.party[id];
-    const l = loads[id];
-    if (!def || !cs || !l) continue;
-    passives[id] = l.passives;
-    const maxHp = l.stats.resolve;
-    const hp = Math.min(maxHp, cs.hp);
-    combatants.push({
-      id, ref: id, name: def.shortName, side: 'party', machine: false,
-      stats: { ...l.stats }, hp, maxHp, shield: 0, maxShield: 0,
-      threads: 0, slack: 0, statuses: [], abilities: [...l.abilities], immunities: [],
-      down: hp <= 0, perception: 0,
-    });
+    const made = partyCombatant(content, state, id);
+    if (!made) continue;
+    passives[id] = made.passives;
+    combatants.push(made.combatant);
   }
   // How much of a fight this is meant to be. A Warden on a wall walk and the same Warden guarding
   // the Board are the same soldier with different orders and different odds of going home.
@@ -41,7 +31,9 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
   }
 
   const sync = partySync(state);
-  let rewinds = 0;
+  // One Rewind every fight, whoever is on the field: a charge that cannot be saved up is a charge
+  // that gets used. Anchors and the nodes that grant more add to it.
+  let rewinds = content.rules.rewind.base;
   let openingTempo = 0;
   for (const id of state.activeParty) {
     const def = content.characters[id];
@@ -56,7 +48,7 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
     .map((c) => c.id);
 
   let b: BattleState = {
-    encounterId, era: enc.era, seed: state.rng, rng: state.rng, combatants, order,
+    encounterId, era: enc.era, seed: state.rng, rng: state.rng, combatants, reserve: [], order,
     turnIndex: -1, round: 1, tempo: Math.min(content.rules.tempoMax, openingTempo), entropy: 0,
     phase: 'player', surprise, log: [], rewindsLeft: rewinds, rewindPoint: null, fork: null,
     collapsePoint: null, collapseUsed: false, echoAssistUsed: false,
@@ -68,6 +60,25 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
   // Without this the enemy cycles its turns forever against a party that can never answer.
   b = checkEnd(b, content);
   return b.phase === 'won' || b.phase === 'lost' ? b : advance(b);
+}
+
+/** A party member as they would take the field right now: stats, kit and the Resolve they carry. */
+export function partyCombatant(content: ContentDB, state: GameState, id: string): { combatant: Combatant; passives: Record<string, number> } | null {
+  const def = content.characters[id];
+  const cs = state.party[id];
+  if (!def || !cs) return null;
+  const l = loadout(content, def, cs);
+  const maxHp = l.stats.resolve;
+  const hp = Math.min(maxHp, cs.hp);
+  return {
+    passives: l.passives,
+    combatant: {
+      id, ref: id, name: def.shortName, side: 'party', machine: false,
+      stats: { ...l.stats }, hp, maxHp, shield: 0, maxShield: 0,
+      threads: 0, slack: 0, statuses: [], abilities: [...l.abilities], immunities: [],
+      down: hp <= 0, perception: 0,
+    },
+  };
 }
 
 function enemyCombatant(def: EnemyDef, id: string, name: string, stand = 1): Combatant {
@@ -189,7 +200,7 @@ function beginTurn(b: BattleState): BattleState {
   let threads = c.stats.bandwidth + (c.side === 'party' ? c.slack : 0);
   const feared = hasStatus(c, 'fear');
   if (feared) threads = Math.max(1, threads - 1);
-  c = { ...c, threads, slack: 0 };
+  c = { ...c, threads, slack: 0, itemUsed: false };
   b = update(b, c.id, () => c);
   b = { ...b, phase: c.side === 'party' ? 'player' : 'enemy', fork: null };
   if (c.side === 'party') {
@@ -307,7 +318,15 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
     dmg *= 1 + rules.overloadBonus;
     notes.push('Overload');
   }
-  if (target.weakness === type) { dmg *= 1.5; notes.push('weakness'); }
+  if (target.weakness === type) {
+    dmg *= 1.5;
+    notes.push('weakness');
+    // Reading the type chart is what earns Tempo, not spending threads.
+    if (actor.side === 'party' && rules.tempoOnWeakness > 0) {
+      b = { ...b, tempo: Math.min(rules.tempoMax, b.tempo + rules.tempoOnWeakness) };
+      notes.push(`+${rules.tempoOnWeakness} Tempo`);
+    }
+  }
   if (type === 'thermal' && target.family === 'warden') { dmg *= 0.5; notes.push('resisted'); }
 
   if (type !== 'chronal') dmg -= target.stats.grit * rules.armorFactor;
@@ -371,6 +390,12 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
       }
     : { ...c, hp, shield, down, statuses: down ? [] : c.statuses }));
 
+  // Taking a hit is the other thing that earns it: pressure on the party is what pays for the
+  // undo, so the fights that need a Rewind are the ones that can afford one.
+  if (target.side === 'party' && actor.side === 'enemy' && dmg > 0 && rules.tempoOnHit > 0) {
+    b = { ...b, tempo: Math.min(rules.tempoMax, b.tempo + rules.tempoOnHit) };
+    notes.push(`+${rules.tempoOnHit} Tempo`);
+  }
   if (hasStatus(target, 'marked') && (p.lifestealMarked ?? 0) > 0 && dmg > 0) {
     const heal = Math.round(dmg * (p.lifestealMarked ?? 0));
     b = update(b, actor.id, (c) => ({ ...c, hp: Math.min(c.maxHp, c.hp + heal) }));
@@ -425,7 +450,7 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
   b = update(b, actorId, (c) => ({ ...c, threads: c.threads - ability.cost }));
   if (actor.side === 'party') {
     let gain = ability.cost * rules.tempoPerThread + (ability.tempoGain ?? 0);
-    if (ability.special === 'mark') gain += (b.passives[actorId]?.tempoOnMark ?? 0) * chosen.length;
+    if (ability.special === 'mark') gain += (rules.tempoOnMark + (b.passives[actorId]?.tempoOnMark ?? 0)) * chosen.length;
     b = { ...b, tempo: Math.min(rules.tempoMax, b.tempo + gain) };
     if (ability.damageType === 'signal') b = { ...b, usedSignal: true };
   }
@@ -607,24 +632,80 @@ function afterAction(b: BattleState, content: ContentDB): BattleState {
   return b;
 }
 
+/** True for an item that does something to one ally in particular, so the player has to pick one. */
+export function itemNeedsTarget(item: ItemDef): boolean {
+  const e = item.effect;
+  if (!e) return false;
+  return !!e.heal || !!e.revive || !!e.slack || !!e.cure?.length || e.status?.target === 'ally';
+}
+
+/**
+ * Items are free: they cost no thread, and the only limit is one a turn. What they do that
+ * abilities cannot is the reason to carry them: a cure nothing else offers, Entropy going down,
+ * a shield against a whole damage type.
+ */
 export function useItem(b: BattleState, actorId: string, item: ItemDef, targetId: string, content: ContentDB): BattleState {
   const actor = current(b);
-  if (!actor || actor.id !== actorId || actor.threads < 1) throw new Error('Cannot use item now');
+  if (!actor || actor.id !== actorId || b.phase !== 'player') throw new Error('Cannot use item now');
+  if (actor.itemUsed) throw new Error('One item a turn');
   const target = b.combatants.find((c) => c.id === targetId && c.side === 'party');
   if (!target || !item.effect) throw new Error('Invalid item target');
   if (target.down && !item.effect.revive) throw new Error(`${target.name} is down`);
-  b = { ...b, fork: null };
-  b = update(b, actorId, (c) => ({ ...c, threads: c.threads - 1 }));
   const e = item.effect;
+  const cured = e.cure ? target.statuses.filter((s) => e.cure!.includes(s.id)) : [];
+  if (e.cure && !cured.length && !e.heal && !e.revive) throw new Error(`${target.name} has nothing ${item.name} would clear`);
+  b = { ...b, fork: null };
+  b = update(b, actorId, (c) => ({ ...c, itemUsed: true }));
   b = update(b, targetId, (c) => ({
     ...c,
     down: e.revive ? false : c.down,
     hp: Math.min(c.maxHp, (e.revive && c.down ? 0 : c.hp) + Math.round((e.heal ?? 0) * content.rules.damageScale)),
     slack: Math.min(slackCap(b, c, content), c.slack + (e.slack ?? 0)),
+    statuses: e.cure ? c.statuses.filter((s) => !e.cure!.includes(s.id)) : c.statuses,
   }));
   if (e.tempo) b = { ...b, tempo: Math.min(content.rules.tempoMax, b.tempo + e.tempo) };
-  b = log(b, `${actor.name} uses ${item.name} on ${target.name}.`, 'heal', { actor: actor.name, target: target.name, ability: item.name });
+  const notes: string[] = [];
+  if (cured.length) notes.push(`${[...new Set(cured.map((s) => statusLabel(s.id)))].join(' and ')} cleared`);
+  if (e.entropy) {
+    const before = b.entropy;
+    b = { ...b, entropy: clamp(b.entropy + e.entropy, 0, content.rules.entropyMax) };
+    notes.push(`Entropy ${before} → ${b.entropy}`);
+  }
+  b = log(b, `${actor.name} uses ${item.name}${itemNeedsTarget(item) ? ` on ${target.name}` : ''}${notes.length ? ` (${notes.join(', ')})` : ''}.`, 'heal', { actor: actor.name, target: target.name, ability: item.name });
+  if (e.status) {
+    const who = e.status.target === 'party' ? alive(b, 'party') : [b.combatants.find((c) => c.id === targetId)!];
+    for (const c of who) b = applyStatus(b, c, { id: e.status.id, turns: e.status.turns }, content, actorId);
+  }
   return afterAction(b, content);
+}
+
+/**
+ * Relay: a benched member takes the field in the acting member's place, for a thread, and
+ * inherits the rest of the turn. The one leaving keeps the Resolve they left with and can come
+ * back the same way. The Auditor is the case, and stays.
+ */
+export function relay(b: BattleState, actorId: string, incoming: Combatant, passives: Record<string, number>, content: ContentDB): BattleState {
+  const cost = content.rules.relay.threadCost;
+  const actor = current(b);
+  if (!actor || actor.id !== actorId || b.phase !== 'player') throw new Error('Relay only on your turn');
+  if (actor.side !== 'party' || actor.temporary) throw new Error('Only a party member can relay out');
+  if (actor.id === 'player') throw new Error('The Auditor cannot leave the field');
+  if (actor.threads < cost) throw new Error(`Relay needs ${cost} thread${cost === 1 ? '' : 's'}`);
+  if (b.combatants.some((c) => c.id === incoming.id)) throw new Error(`${incoming.name} is already on the field`);
+  if (incoming.hp <= 0 || incoming.down) throw new Error(`${incoming.name} is in no state to fight`);
+  const fresh: Combatant = { ...incoming, threads: actor.threads - cost, slack: 0, statuses: [], itemUsed: actor.itemUsed, down: false };
+  const outgoing: Combatant = { ...actor, threads: 0, slack: 0, statuses: [], itemUsed: false };
+  const reserve = [...(b.reserve ?? []).filter((c) => c.id !== incoming.id), outgoing];
+  let nb: BattleState = {
+    ...b,
+    combatants: b.combatants.map((c) => (c.id === actorId ? fresh : c)),
+    order: b.order.map((id) => (id === actorId ? fresh.id : id)),
+    reserve,
+    passives: { ...b.passives, [fresh.id]: passives },
+    fork: null,
+  };
+  nb = log(nb, `${actor.name} falls back and ${fresh.name} takes the field with ${fresh.threads} thread${fresh.threads === 1 ? '' : 's'}.`, 'system', { actor: actor.name, target: fresh.name, ability: 'Relay' });
+  return afterAction(nb, content);
 }
 
 // ---------- Tempo abilities ----------
@@ -640,6 +721,7 @@ export function collapse(b: BattleState, content: ContentDB): BattleState {
   if (b.tempo < cost) throw new Error(`Collapse needs ${cost} Tempo`);
   const point: RewindPoint = {
     combatants: b.combatants.map((c) => ({ ...c, statuses: [...c.statuses] })),
+    reserve: [...b.reserve],
     rng: b.rng, turnIndex: b.turnIndex, round: b.round, tempo: b.tempo - cost,
     logLength: b.log.length, actorId: current(b)?.id ?? '', description: 'banked',
   };
@@ -691,6 +773,7 @@ export function rewind(b: BattleState, content: ContentDB): BattleState {
   let nb: BattleState = {
     ...b,
     combatants: rp.combatants.map((c) => ({ ...c, statuses: [...c.statuses] })),
+    reserve: rp.reserve ?? b.reserve,
     rng: rp.rng + 1,
     turnIndex: rp.turnIndex,
     round: rp.round,
@@ -776,6 +859,7 @@ export function enemyTurn(b: BattleState, content: ContentDB): BattleState {
   if (!actor || actor.side !== 'enemy' || b.phase !== 'enemy') throw new Error('Not an enemy turn');
   const rewindPoint = {
     combatants: b.combatants.map((c) => ({ ...c, statuses: [...c.statuses] })),
+    reserve: [...b.reserve],
     rng: b.rng, turnIndex: b.turnIndex, round: b.round, tempo: b.tempo, logLength: b.log.length,
     actorId: actor.id, description: `${actor.name}'s turn`,
   };
@@ -823,6 +907,7 @@ function checkEnd(b: BattleState, content: ContentDB): BattleState {
     let nb: BattleState = {
       ...b,
       combatants: rp.combatants.map((c) => ({ ...c, statuses: [...c.statuses] })),
+      reserve: rp.reserve ?? b.reserve,
       rng: rp.rng + 1, turnIndex: rp.turnIndex, round: rp.round, tempo: rp.tempo,
       log: b.log.slice(0, rp.logLength),
       collapsePoint: null, collapseUsed: true, fork: null, phase: 'player',
@@ -864,5 +949,5 @@ function rewards(b: BattleState, content: ContentDB): BattleRewards {
   const flags = [...(enc?.rewardFlags ?? [])];
   if (sawWarden && !b.usedSignal) flags.push('killedWardenWithoutSignal');
   if (b.echoSpawned) flags.push('facedOwnEcho');
-  return { xp, currency: Math.round(xp * 0.5), items, flags, levelUps: [] };
+  return { xp, currency: Math.round(xp * 0.5), items, leftBehind: [], flags, levelUps: [] };
 }

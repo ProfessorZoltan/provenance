@@ -36,6 +36,14 @@
     {
       "item": "relic_gallery_pass",
       "chance": 0.18
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
+    },
+    {
+      "item": "dampener",
+      "chance": 0.25
     }
   ],
   "flavor": "Four hundred people who sat in a public gallery to watch a vote that had already happened.",

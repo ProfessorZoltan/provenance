@@ -16,6 +16,10 @@
       ]
     },
     {
+      "item": "steady",
+      "price": 12
+    },
+    {
       "item": "anchor_charm",
       "price": 65,
       "when": [

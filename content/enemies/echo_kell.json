@@ -4,14 +4,39 @@
   "family": "echo",
   "era": "2148",
   "machine": false,
-  "stats": { "resolve": 90, "bandwidth": 2, "latency": 10, "signal": 50, "noise": 40, "grit": 35, "sync": 0, "continuity": 40 },
+  "stats": {
+    "resolve": 90,
+    "bandwidth": 2,
+    "latency": 10,
+    "signal": 50,
+    "noise": 40,
+    "grit": 35,
+    "sync": 0,
+    "continuity": 40
+  },
   "shield": 0,
-  "abilities": ["echo_fracture", "echo_mimic"],
-  "immunities": ["kinetic", "thermal", "signal"],
+  "abilities": [
+    "echo_fracture",
+    "echo_mimic"
+  ],
+  "immunities": [
+    "kinetic",
+    "thermal",
+    "signal"
+  ],
   "perception": 60,
   "rig": "echo",
   "weakness": "chronal",
   "xp": 100,
-  "drops": [{ "item": "relic_folded_page", "chance": 0.4 }],
+  "drops": [
+    {
+      "item": "relic_folded_page",
+      "chance": 0.4
+    },
+    {
+      "item": "dampener",
+      "chance": 0.25
+    }
+  ],
   "flavor": "A version of someone who stood here, in a version of here that no longer holds."
 }

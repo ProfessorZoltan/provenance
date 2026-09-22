@@ -43,5 +43,6 @@
   "encounters": [],
   "links": [],
   "timeLinks": [],
-  "shop": "halden_market"
+  "shop": "halden_market",
+  "lodging": true
 }

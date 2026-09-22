@@ -34,6 +34,10 @@
     {
       "item": "gallery_lens",
       "chance": 0.15
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
     }
   ],
   "flavor": "Private contract, public building, and no confusion in his own mind about which pays."

@@ -4,14 +4,44 @@
   "family": "drone",
   "era": "2148",
   "machine": true,
-  "stats": { "resolve": 75, "bandwidth": 2, "latency": 4, "signal": 40, "noise": 45, "grit": 30, "sync": 100, "continuity": 100 },
+  "stats": {
+    "resolve": 75,
+    "bandwidth": 2,
+    "latency": 4,
+    "signal": 40,
+    "noise": 45,
+    "grit": 30,
+    "sync": 100,
+    "continuity": 100
+  },
   "shield": 25,
-  "abilities": ["drone_dart", "drone_burn", "drone_lock"],
+  "abilities": [
+    "drone_dart",
+    "drone_burn",
+    "drone_lock"
+  ],
   "immunities": [],
   "perception": 55,
   "rig": "drone_hunter",
   "weakness": "signal",
   "xp": 45,
-  "drops": [{ "item": "scrap", "chance": 0.7 }, { "item": "relic_hunter_lens", "chance": 0.15 }],
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.7
+    },
+    {
+      "item": "relic_hunter_lens",
+      "chance": 0.15
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
+    },
+    {
+      "item": "faraday_foil",
+      "chance": 0.12
+    }
+  ],
   "flavor": "A Board-era kill drone. It does not count; it culls."
 }

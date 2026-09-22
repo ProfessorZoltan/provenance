@@ -29,6 +29,10 @@
     {
       "item": "ration",
       "chance": 0.5
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
     }
   ],
   "flavor": "Human. Paid. The resistance was not crushed by machines."

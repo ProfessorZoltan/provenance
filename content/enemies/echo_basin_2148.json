@@ -31,6 +31,10 @@
     {
       "item": "relic_folded_page",
       "chance": 0.22
+    },
+    {
+      "item": "dampener",
+      "chance": 0.25
     }
   ],
   "flavor": "Forty men in one outline, all of them carrying the same length of rebar.",

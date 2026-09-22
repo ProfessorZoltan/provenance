@@ -47,6 +47,10 @@
     {
       "item": "relic_graft_seal",
       "chance": 0.25
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
     }
   ],
   "flavor": "Drone geometry grafted onto a Warden rig. The Board stopped distinguishing between its tools."

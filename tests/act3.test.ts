@@ -30,7 +30,9 @@ function descend(s: GameState): GameState {
     expect(s.screen.id, dialogue).toBe('battle');
     s = autoBattle(s);
     if (s.battle?.phase !== 'won') return s;
-    s = run(s, { type: 'BATTLE_FINISH' }, { type: 'SET_SCREEN', screen: { id: 'hub' } }, { type: 'REST' });
+    s = run(s, { type: 'BATTLE_FINISH' }, { type: 'SET_SCREEN', screen: { id: 'hub' } });
+    // The stack has no beds: the party makes camp while it can, and carries the rest.
+    if (s.camps > 0) s = reduce(s, { type: 'CAMP' });
     expect(s.flags, flag).toContain(flag);
   }
   return s;

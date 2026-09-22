@@ -114,7 +114,7 @@ describe('how long a fight runs', () => {
   it('measures every tier against a party that could plausibly be standing there', () => {
     for (const era of Object.keys(ERA_LEVEL)) expect(ERA_LEVEL[era]).toBeLessThanOrEqual(KEY_LEVEL);
     const p = partyAt(KEY_LEVEL, ['player', 'wren', 'dax', 'ilo9']);
-    expect(p.activeParty).toHaveLength(4);
+    expect(p.activeParty).toHaveLength(content.rules.activePartyMax);
     expect(p.party.player.level).toBe(KEY_LEVEL);
     expect(p.party.player.nodes.length).toBeGreaterThan(8);
   });

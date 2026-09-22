@@ -33,6 +33,14 @@
     {
       "item": "relic_handover_pen",
       "chance": 0.14
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
+    },
+    {
+      "item": "faraday_foil",
+      "chance": 0.12
     }
   ],
   "flavor": "It is not security. It is due diligence with rotors."

@@ -31,6 +31,10 @@
     {
       "item": "basin_coil",
       "chance": 0.2
+    },
+    {
+      "item": "faraday_foil",
+      "chance": 0.12
     }
   ],
   "flavor": "Runs the blue aisles at head height, and has right of way over everything including you."

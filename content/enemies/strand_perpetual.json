@@ -46,6 +46,10 @@
     {
       "item": "relic_board_seal",
       "chance": 1.0
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
     }
   ],
   "flavor": "Founding chair of Meridian, uploaded 2091, shareholder of record. He does not hate anybody. He believes he owns them."

@@ -33,6 +33,14 @@
     {
       "item": "ash_blade",
       "chance": 0.12
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
+    },
+    {
+      "item": "faraday_foil",
+      "chance": 0.12
     }
   ],
   "flavor": "Eighty years of sand over a rack that never stopped drawing power. Kinetic just moves the dune."

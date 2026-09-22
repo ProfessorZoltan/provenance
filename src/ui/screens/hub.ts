@@ -1,6 +1,6 @@
 import { evalAll } from '../../core/conditions';
 import { conditionContext } from '../../core/encounter';
-import { activeVariant, npcDialogue, npcName } from '../../core/reducer';
+import { activeVariant, currencyFor, hasLodging, npcDialogue, npcName, restCost } from '../../core/reducer';
 import { deriveWorld } from '../../core/timeline';
 import type { GameState } from '../../types/state';
 import { esc, html, partyStrip, prompts, type Ctx, type ScreenHandle } from '../common';
@@ -35,7 +35,22 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
     for (const a of (variant?.actions ?? loc.actions ?? []).filter((x) => evalAll(x.requires, cctx))) {
       items.push({ id: `act:${a.dialogue}`, label: a.label, hint: a.hint, onSelect: () => store.dispatch({ type: 'START_DIALOGUE', id: a.dialogue, returnTo: { id: 'hub' } }) });
     }
-    items.push({ id: 'rest', label: 'Rest', hint: 'Restore Resolve', onSelect: () => { store.dispatch({ type: 'REST' }); ctx.toast('The party rests. Resolve restored.'); } });
+    // A bed costs money and gives everything back; camp is free, half as good, and runs out.
+    const cur = currencyFor(state.era);
+    const cost = restCost(content, state);
+    const purse = state.inventory.currency[cur] ?? 0;
+    if (hasLodging(content, state)) {
+      items.push({ id: 'rest', label: 'Rest', hint: `A night here: ${cost} ${cur} (you have ${purse}). Restores everyone fully.`, disabled: purse < cost, onSelect: () => {
+        store.dispatch({ type: 'REST' });
+        const err = store.lastError();
+        if (err) ctx.toast(err.message); else ctx.toast(`The party rests. ${cost} ${cur} spent. Resolve restored.`);
+      } });
+    }
+    items.push({ id: 'camp', label: 'Make camp', hint: `${state.camps} of ${content.rules.camp.perEra} left this era. Restores half of everyone's Resolve.`, disabled: state.camps <= 0, onSelect: () => {
+      store.dispatch({ type: 'CAMP' });
+      const err = store.lastError();
+      if (err) ctx.toast(err.message); else ctx.toast(`The party makes camp. ${state.camps - 1} left this era.`);
+    } });
     if (loc.kind === 'deepSite' && loc.timeLinks.length) items.push({ id: 'jump', label: DESCEND[loc.site] ?? 'Go down where the eras touch', hint: `Deep Site · ${loc.timeLinks.join(', ')}`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'timeJump' } }) });
     items.push({ id: 'tech', label: 'Tech trees', shortcut: 'y', hint: `${state.activeParty.reduce((s, id) => s + state.party[id].skillPoints, 0)} skill points unspent`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'tech', character: 'player' } }) });
     items.push({ id: 'roster', label: 'Roster and gear', shortcut: 'x', hint: `${state.activeParty.length} of ${content.rules.activePartyMax} active`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'roster' } }) });

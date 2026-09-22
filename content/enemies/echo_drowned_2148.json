@@ -37,6 +37,14 @@
     {
       "item": "relic_tide_bell",
       "chance": 0.2
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
+    },
+    {
+      "item": "dampener",
+      "chance": 0.25
     }
   ],
   "flavor": "Half a million people left this city in eleven years. Some of the leaving is still happening here."

@@ -274,7 +274,8 @@ for (const t of Object.values(timeline)) {
 
 out.push('\n## Who joins you\n');
 out.push(`The Auditor plus ${rules.activePartyMax - 1} of the other ${Object.keys(characters).length - 1} on the field at once;`);
-out.push('the rest wait on the bench and still draw a reduced share of the experience. Recruiting is');
+out.push('the rest wait on the bench, can be Relayed in mid-fight for a thread, and still draw a reduced');
+out.push('share of the experience while they sit. Recruiting is');
 out.push('what writes a companion into the case log, so a run that never asks is a run with holes in');
 out.push(`its file. ${Object.values(characters).filter((c) => (c.leavesIf ?? []).length).length} of them can walk away again, and Sync takes two of them in opposite`);
 out.push('directions: ILO-9 goes if it falls to -60, Hale goes if it climbs to +60.\n');

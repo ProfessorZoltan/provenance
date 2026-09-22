@@ -25,7 +25,9 @@ export type Action =
   | { type: 'BATTLE_ECHO'; character: string }
   | { type: 'BATTLE_ENEMY_ACT' }
   | { type: 'BATTLE_FINISH' }
+  | { type: 'BATTLE_RELAY'; actor: string; incoming: string }
   | { type: 'REST' }
+  | { type: 'CAMP' }
   | { type: 'UNLOCK_NODE'; character: string; node: string }
   | { type: 'SET_ACTIVE_PARTY'; members: string[] }
   | { type: 'EQUIP'; character: string; item: string }
