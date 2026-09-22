@@ -1,5 +1,6 @@
 import type { GameState } from '../src/types/state';
-import { levelForXp, maxHp, xpForLevel } from '../src/core/stats';
+import { levelForXp, maxHp, maxNerve, xpForLevel } from '../src/core/stats';
+import { abilityOptions } from '../src/core/battle/battle';
 import { autoBattle, content, newGame, reduce } from './helpers';
 
 /** Where a party is expected to be, in levels, when it first meets each era's fights. */
@@ -42,7 +43,7 @@ export function partyAt(level: number, members: string[], seed = 5): GameState {
     if (!did) break;
   }
   const healed = { ...s.party };
-  for (const id of Object.keys(healed)) healed[id] = { ...healed[id], hp: maxHp(content, content.characters[id], healed[id]) };
+  for (const id of Object.keys(healed)) healed[id] = { ...healed[id], hp: maxHp(content, content.characters[id], healed[id]), nerve: maxNerve(content, healed[id]) };
   return { ...s, party: healed };
 }
 
@@ -59,7 +60,8 @@ export function playSustain(state: GameState): GameState {
     const b = s.battle!;
     const actor = b.combatants.find((c) => c.id === b.order[b.turnIndex]);
     if (!actor || actor.side !== 'party') return null;
-    const afford = (id: string) => !!content.abilities[id] && actor.threads >= content.abilities[id].cost;
+    const options = abilityOptions(b, actor.id, content);
+    const afford = (id: string) => !!options.find((o) => o.ability.id === id)?.usable;
     const mine = b.combatants.filter((c) => c.side === 'party' && !c.down);
     // Heal early and often, but not on every scratch: a person still wants the fight to end.
     const hurt = mine.filter((c) => c.hp < c.maxHp * 0.7).sort((a, c) => a.hp / a.maxHp - c.hp / c.maxHp)[0];

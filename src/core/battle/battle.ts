@@ -3,8 +3,8 @@ import type { AbilityDef, ContentDB, DamageType, EnemyDef, EraId, ItemDef, Secon
 import type { BattleLogEntry, BattleRewards, BattleState, Combatant, GameState, LogMeta, RewindPoint, StatusEffect } from '../../types/state';
 import { evalFormula } from '../formula';
 import { rngFloat, roll, rollInt, seedFromString } from '../rng';
-import { loadout, partySync } from '../stats';
-import { clamp } from '../timeline';
+import { loadout, maxNerve, nerveCost, nerveOf, partySync } from '../stats';
+import { clamp, deriveWorld } from '../timeline';
 
 // ---------- construction ----------
 
@@ -49,17 +49,18 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
 
   let b: BattleState = {
     encounterId, era: enc.era, seed: state.rng, rng: state.rng, combatants, reserve: [], order,
-    turnIndex: -1, round: 1, tempo: Math.min(content.rules.tempoMax, openingTempo), entropy: 0,
+    turnIndex: -1, round: 1, tempo: Math.min(content.rules.tempoMax, openingTempo), entropy: clamp(state.entropy ?? 0, 0, content.rules.entropyMax),
     phase: 'player', surprise, log: [], rewindsLeft: rewinds, rewindPoint: null, fork: null,
     collapsePoint: null, collapseUsed: false, echoAssistUsed: false,
-    echoSpawned: false, usedSignal: false, story: enc.story, passives, partySync: sync, pendingRewards: null,
+    echoSpawned: false, usedSignal: false, fractures: [], story: enc.story, passives, partySync: sync, pendingRewards: null,
   };
   b = log(b, surprise ? `Surprise attack. ${enc.flavor}` : enc.flavor, surprise ? 'warn' : 'info');
+  if (b.entropy > 0) b = log(b, `Entropy comes in at ${b.entropy}${entropyTier(b, content) ? ` (${entropyTier(b, content)})` : ''}.`, 'tempo');
   if (surprise) b = log(b, 'The party starts with no Slack and the enemy acts first.', 'warn');
   // A fight can be over before anyone acts: walk in with nobody standing and it is already lost.
   // Without this the enemy cycles its turns forever against a party that can never answer.
   b = checkEnd(b, content);
-  return b.phase === 'won' || b.phase === 'lost' ? b : advance(b);
+  return b.phase === 'won' || b.phase === 'lost' ? b : advance(b, content);
 }
 
 /** A party member as they would take the field right now: stats, kit and the Resolve they carry. */
@@ -68,7 +69,10 @@ export function partyCombatant(content: ContentDB, state: GameState, id: string)
   const cs = state.party[id];
   if (!def || !cs) return null;
   const l = loadout(content, def, cs);
-  const maxHp = l.stats.resolve;
+  // A person who has been edited out of their own century has less of themselves to stand on.
+  const continuity = deriveWorld(content, state.world, state.party).continuity[id] ?? 100;
+  const floor = content.rules.continuityCombat.resolveFloor;
+  const maxHp = Math.max(1, Math.round(l.stats.resolve * (floor + (1 - floor) * continuity / 100)));
   const hp = Math.min(maxHp, cs.hp);
   return {
     passives: l.passives,
@@ -77,6 +81,7 @@ export function partyCombatant(content: ContentDB, state: GameState, id: string)
       stats: { ...l.stats }, hp, maxHp, shield: 0, maxShield: 0,
       threads: 0, slack: 0, statuses: [], abilities: [...l.abilities], immunities: [],
       down: hp <= 0, perception: 0,
+      nerve: nerveOf(content, cs), maxNerve: maxNerve(content, cs), continuity,
     },
   };
 }
@@ -89,7 +94,7 @@ function enemyCombatant(def: EnemyDef, id: string, name: string, stand = 1): Com
     stats: { ...def.stats, resolve }, hp: resolve, maxHp: resolve, stand,
     shield, maxShield: shield, threads: 0, slack: 0, statuses: [],
     abilities: [...def.abilities], immunities: [...def.immunities], weakness: def.weakness,
-    down: false, perception: def.perception,
+    down: false, perception: def.perception, nerve: 0, maxNerve: 0, continuity: 100,
     bar: def.secondBar ? 1 : undefined,
     secondBarName: def.secondBar?.name,
   };
@@ -103,6 +108,41 @@ function enemyCombatant(def: EnemyDef, id: string, name: string, stand = 1): Com
  */
 function addEntropy(b: BattleState, amount: number, content: ContentDB): number {
   return clamp(b.entropy + Math.round(amount * content.rules.damageScale), 0, content.rules.entropyMax);
+}
+
+/** Entropy in real points, for the creep and the enemy's pull: things that are not an exchange. */
+function bumpEntropy(b: BattleState, amount: number, content: ContentDB): BattleState {
+  return { ...b, entropy: clamp(b.entropy + amount, 0, content.rules.entropyMax) };
+}
+
+/** The tier the fight is in, in a word, or nothing while Entropy is still quiet. */
+export function entropyTier(b: BattleState, content: ContentDB): string {
+  const t = content.rules.entropyTiers;
+  if (b.entropy >= t.slip.at) return 'slipping';
+  if (b.entropy >= content.rules.entropyThreshold) return 'echoing';
+  if (b.entropy >= t.fray.at) return 'fraying';
+  return '';
+}
+
+/** Tempo comes faster once time is fraying: the temptation to keep pulling. */
+export function tempoScale(b: BattleState, content: ContentDB): number {
+  return b.entropy >= content.rules.entropyTiers.fray.at ? content.rules.entropyTiers.fray.tempoMultiplier : 1;
+}
+
+/**
+ * Entropy at its ceiling breaks over someone: a piece of their Continuity goes for good, applied
+ * when the fight ends, and the gauge falls back to where the fracture closed.
+ */
+function settleEntropy(b: BattleState, content: ContentDB): BattleState {
+  const brk = content.rules.entropyTiers.break;
+  if (b.entropy < brk.at) return b;
+  const who = alive(b, 'party').filter((c) => !c.temporary);
+  if (!who.length) return b;
+  const [r, rng] = roll(b.rng);
+  const victim = who[Math.floor(r * who.length) % who.length];
+  b = { ...b, rng, fractures: [...b.fractures, victim.id], entropy: content.rules.entropyFlow.afterBreak };
+  b = update(b, victim.id, (c) => ({ ...c, continuity: Math.max(content.rules.continuityFloor, c.continuity - brk.continuityLoss) }));
+  return log(b, `Entropy breaks over ${victim.name}. A piece of their Continuity tears away: ${brk.continuityLoss} gone for good. The gauge falls back to ${b.entropy}.`, 'warn', { target: victim.name });
 }
 
 export function current(b: BattleState): Combatant | undefined {
@@ -157,6 +197,10 @@ export function abilityOptions(b: BattleState, actorId: string, content: Content
     const ability = content.abilities[id];
     if (have < ability.cost) return { ability, usable: false, reason: `Needs ${ability.cost} threads` };
     if (ability.special === 'unleash' && !hasStatus(actor, 'charging')) return { ability, usable: false, reason: 'Needs a wind-up first' };
+    if (actor.side === 'party') {
+      const nerve = nerveCost(content, ability);
+      if (nerve > actor.nerve) return { ability, usable: false, reason: `Needs ${nerve} Nerve (${actor.nerve} left)` };
+    }
     if (ability.damageType === 'signal' && b.partySync <= content.rules.overloadSync) {
       return { ability, usable: false, reason: 'Overload disables Signal abilities' };
     }
@@ -193,13 +237,13 @@ function tickStatuses(b: BattleState, c: Combatant): { b: BattleState; c: Combat
   return { b, c: { ...c, statuses } };
 }
 
-function beginTurn(b: BattleState): BattleState {
+function beginTurn(b: BattleState, content: ContentDB): BattleState {
   const actor = current(b);
   if (!actor) return b;
   if (actor.temporary && actor.expiresAfterRound !== undefined && b.round > actor.expiresAfterRound) {
     b = update(b, actor.id, (c) => ({ ...c, down: true, hp: 0, statuses: [] }));
     b = log(b, `${actor.name} runs out of time and dissolves.`, 'tempo', { actor: actor.name });
-    return advance(b);
+    return advance(b, content);
   }
   const ticked = tickStatuses(b, actor);
   b = ticked.b;
@@ -210,14 +254,75 @@ function beginTurn(b: BattleState): BattleState {
   c = { ...c, threads, slack: 0, itemUsed: false };
   b = update(b, c.id, () => c);
   b = { ...b, phase: c.side === 'party' ? 'player' : 'enemy', fork: null };
+  if (c.side === 'party' && !c.temporary) {
+    // Someone thinned by edits to their own century is not always entirely here.
+    const cc = b.combatants.find((x) => x.id === c.id)!;
+    const cr = content.rules.continuityCombat;
+    if (cc.continuity < cr.flickerBelow) {
+      const [r, rng] = roll(b.rng);
+      b = { ...b, rng };
+      if (r < (cr.flickerBelow - cc.continuity) / 100) {
+        b = log(b, `${c.name} flickers. For a moment they are not here, and the turn goes by without them.`, 'warn', { actor: c.name });
+        b = update(b, c.id, (x) => ({ ...x, threads: 0 }));
+        return advance(b, content);
+      }
+    }
+    // Past the slipping line, a turn can belong to a version of you that took a different swing.
+    const slip = content.rules.entropyTiers.slip;
+    if (b.entropy >= slip.at) {
+      const [r, rng] = roll(b.rng);
+      b = { ...b, rng };
+      if (r < slip.chance) return slipTurn(b, c.id, content);
+    }
+  }
   if (c.side === 'party') {
     b = log(b, `${c.name}'s turn: ${threads} threads${feared ? ' (one short, from Fear)' : ''}.`, 'system');
   }
   return b;
 }
 
+/**
+ * A slipped turn: the member strikes whoever the other version of them was facing, which is
+ * anyone on the field but themselves. Control comes back next turn.
+ */
+function slipTurn(b: BattleState, actorId: string, content: ContentDB): BattleState {
+  const actor = b.combatants.find((c) => c.id === actorId)!;
+  const strikeId = actor.abilities.find((a) => a === 'strike') ?? actor.abilities.find((a) => content.abilities[a]?.damageType && content.abilities[a].target === 'enemy');
+  const ability = strikeId ? content.abilities[strikeId] : undefined;
+  const others = b.combatants.filter((c) => !c.down && c.id !== actorId);
+  b = log(b, `${actor.name} slips. Another version of them is standing here, and it is not sure whose side it is on.`, 'warn', { actor: actor.name });
+  if (ability && others.length) {
+    const [r, rng] = roll(b.rng);
+    b = { ...b, rng };
+    const target = others[Math.floor(r * others.length) % others.length];
+    const hit = resolveDamage(b, actor, target, ability, content);
+    b = log(hit.b, hit.note, hit.immune ? 'warn' : 'hit', hit.meta);
+    b = checkEnd(b, content);
+    if (b.phase === 'won' || b.phase === 'lost') return b;
+  }
+  b = update(b, actorId, (c) => ({ ...c, threads: 0 }));
+  return advance(b, content);
+}
+
 /** Move to the next living combatant, wrapping rounds. */
-function advance(b: BattleState): BattleState {
+/** Every round that passes pulls a little on time, whoever is winning. */
+function creep(b: BattleState, content: ContentDB): BattleState {
+  const per = content.rules.entropyFlow.perRound;
+  if (per <= 0 || b.entropy >= content.rules.entropyMax) return b;
+  const before = entropyTier(b, content);
+  b = bumpEntropy(b, per, content);
+  const after = entropyTier(b, content);
+  if (after && after !== before) b = log(b, `Entropy creeps to ${b.entropy}: ${TIER_TEXT[after]}`, 'warn');
+  return settleEntropy(b, content);
+}
+
+const TIER_TEXT: Record<string, string> = {
+  fraying: 'time is fraying. Chronal hits harder on both sides, and Tempo comes twice as fast.',
+  echoing: 'an Echo can answer from here.',
+  slipping: 'turns can slip. Someone may not be entirely themselves.',
+};
+
+function advance(b: BattleState, content: ContentDB): BattleState {
   if (b.phase === 'won' || b.phase === 'lost') return b;
   const n = b.order.length;
   for (let step = 0; step < n; step++) {
@@ -225,8 +330,9 @@ function advance(b: BattleState): BattleState {
     let round = b.round;
     if (idx >= n) { idx = 0; round += 1; }
     b = { ...b, turnIndex: idx, round };
+    if (idx === 0 && step === 0 && round > 1) b = creep(b, content);
     const c = current(b);
-    if (c && !c.down) return beginTurn(b);
+    if (c && !c.down) return beginTurn(b, content);
   }
   return b;
 }
@@ -238,7 +344,7 @@ export function endTurn(b: BattleState, actorId: string, content: ContentDB): Ba
   b = update(b, actorId, (c) => ({ ...c, threads: 0, slack }));
   if (slack > 0 && actor.side === 'party') b = log(b, `${actor.name} carries ${slack} Slack forward.`, 'system');
   b = { ...b, fork: null };
-  return advance(b);
+  return advance(b, content);
 }
 
 // ---------- damage ----------
@@ -325,13 +431,22 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
     dmg *= 1 + rules.overloadBonus;
     notes.push('Overload');
   }
+  if (type === 'chronal') {
+    // Fraying time cuts deeper for everyone; a person with less of their own timeline cuts deepest.
+    if (b.entropy >= rules.entropyTiers.fray.at) { dmg *= 1 + rules.entropyTiers.fray.chronalBonus; notes.push('fraying'); }
+    if (actor.side === 'party' && actor.continuity < 100) {
+      dmg *= 1 + ((100 - actor.continuity) / 100) * rules.continuityCombat.chronalBonus;
+      notes.push('thin');
+    }
+  }
   if (target.weakness === type) {
     dmg *= 1.5;
     notes.push('weakness');
     // Reading the type chart is what earns Tempo, not spending threads.
     if (actor.side === 'party' && rules.tempoOnWeakness > 0) {
-      b = { ...b, tempo: Math.min(rules.tempoMax, b.tempo + rules.tempoOnWeakness) };
-      notes.push(`+${rules.tempoOnWeakness} Tempo`);
+      const gain = rules.tempoOnWeakness * tempoScale(b, content);
+      b = { ...b, tempo: Math.min(rules.tempoMax, b.tempo + gain) };
+      notes.push(`+${gain} Tempo`);
     }
   }
   if (type === 'thermal' && target.family === 'warden') { dmg *= 0.5; notes.push('resisted'); }
@@ -410,8 +525,9 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   // Taking a hit is the other thing that earns it: pressure on the party is what pays for the
   // undo, so the fights that need a Rewind are the ones that can afford one.
   if (target.side === 'party' && actor.side === 'enemy' && dmg > 0 && rules.tempoOnHit > 0) {
-    b = { ...b, tempo: Math.min(rules.tempoMax, b.tempo + rules.tempoOnHit) };
-    notes.push(`+${rules.tempoOnHit} Tempo`);
+    const gain = rules.tempoOnHit * tempoScale(b, content);
+    b = { ...b, tempo: Math.min(rules.tempoMax, b.tempo + gain) };
+    notes.push(`+${gain} Tempo`);
   }
   if (hasStatus(target, 'marked') && (p.lifestealMarked ?? 0) > 0 && dmg > 0) {
     const heal = Math.round(dmg * (p.lifestealMarked ?? 0));
@@ -468,12 +584,19 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
 
   const rules = content.rules;
   b = { ...b, fork: null };
-  b = update(b, actorId, (c) => ({ ...c, threads: c.threads - ability.cost }));
+  const nerve = actor.side === 'party' ? nerveCost(content, ability) : 0;
+  b = update(b, actorId, (c) => ({ ...c, threads: c.threads - ability.cost, nerve: Math.max(0, c.nerve - nerve) }));
   if (actor.side === 'party') {
     let gain = ability.cost * rules.tempoPerThread + (ability.tempoGain ?? 0);
     if (ability.special === 'mark') gain += (rules.tempoOnMark + (b.passives[actorId]?.tempoOnMark ?? 0)) * chosen.length;
+    gain *= tempoScale(b, content);
     b = { ...b, tempo: Math.min(rules.tempoMax, b.tempo + gain) };
     if (ability.damageType === 'signal') b = { ...b, usedSignal: true };
+    if (nerve > 0) b = log(b, `${actor.name} spends ${nerve} Nerve (${b.combatants.find((c) => c.id === actorId)!.nerve} left).`, 'system', { actor: actor.name });
+  } else if (ability.damageType === 'chronal' && !ability.entropyDelta && rules.entropyFlow.enemyChronal > 0) {
+    // The enemy pulling on time frays it for everyone.
+    b = bumpEntropy(b, rules.entropyFlow.enemyChronal, content);
+    b = log(b, `${actor.name} pulls on time. Entropy rises to ${b.entropy}.`, 'warn', { actor: actor.name });
   }
   if (ability.entropyDelta) {
     b = { ...b, entropy: addEntropy(b, ability.entropyDelta, content) };
@@ -591,6 +714,7 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
       id: `copy:${actorId}:${b.round}:${live}`, ref: actor.ref, name: `${spec.name} ${live + 1}`,
       side: actor.side, machine: actor.machine, stats: { ...actor.stats, latency: actor.stats.latency + 2 },
       hp, maxHp: hp, shield: 0, maxShield: 0, threads: 0, slack: 0, statuses: [],
+      nerve: actor.nerve, maxNerve: actor.maxNerve, continuity: actor.continuity,
       abilities: [...spec.abilities], immunities: [], down: false, perception: actor.perception,
       temporary: true, expiresAfterRound: b.round + spec.turns,
     };
@@ -655,6 +779,7 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
 }
 
 function afterAction(b: BattleState, content: ContentDB): BattleState {
+  b = settleEntropy(b, content);
   b = maybeSpawnEcho(b, content);
   b = checkEnd(b, content);
   if (b.phase === 'won' || b.phase === 'lost') return b;
@@ -667,7 +792,7 @@ function afterAction(b: BattleState, content: ContentDB): BattleState {
 export function itemNeedsTarget(item: ItemDef): boolean {
   const e = item.effect;
   if (!e) return false;
-  return !!e.heal || !!e.revive || !!e.slack || !!e.cure?.length || e.status?.target === 'ally';
+  return !!e.heal || !!e.revive || !!e.slack || !!e.nerve || !!e.cure?.length || e.status?.target === 'ally';
 }
 
 /**
@@ -696,6 +821,10 @@ export function useItem(b: BattleState, actorId: string, item: ItemDef, targetId
   }));
   if (e.tempo) b = { ...b, tempo: Math.min(content.rules.tempoMax, b.tempo + e.tempo) };
   const notes: string[] = [];
+  if (e.nerve) {
+    b = update(b, targetId, (c) => ({ ...c, nerve: Math.min(c.maxNerve, c.nerve + e.nerve!) }));
+    notes.push(`Nerve ${b.combatants.find((c) => c.id === targetId)!.nerve}/${target.maxNerve}`);
+  }
   if (cured.length) notes.push(`${[...new Set(cured.map((s) => statusLabel(s.id)))].join(' and ')} cleared`);
   if (e.entropy) {
     const before = b.entropy;
@@ -781,6 +910,7 @@ export function echoAssist(b: BattleState, characterId: string, content: Content
     side: 'party', machine: false, stats: { ...def.baseStats, latency: def.baseStats.latency - 4 },
     hp, maxHp: hp, shield: 0, maxShield: 0, threads: 0, slack: 0, statuses: [],
     abilities: [...def.abilities], immunities: [], down: false, perception: 50,
+    nerve: 99, maxNerve: 99, continuity: 100,
     echoOf: characterId, temporary: true, expiresAfterRound: b.round + turns,
   };
   const order = [...b.order];
@@ -871,7 +1001,7 @@ function maybeSpawnEcho(b: BattleState, content: ContentDB): BattleState {
   const echo: Combatant = {
     id: `echo:${src.id}`, ref: 'echo', name: `Echo of ${src.name}`, side: 'enemy', family: 'echo', machine: false,
     stats: { ...src.stats, latency: 10 }, hp: Math.round(src.maxHp * 0.6), maxHp: Math.round(src.maxHp * 0.6),
-    shield: 0, maxShield: 0, threads: 0, slack: 0, statuses: [],
+    shield: 0, maxShield: 0, threads: 0, slack: 0, statuses: [], nerve: 0, maxNerve: 0, continuity: 100,
     abilities: ['echo_fracture', 'echo_mimic'], immunities: ['kinetic', 'thermal', 'signal'], weakness: 'chronal',
     // echoOf names a character, not a combatant: the source may itself be a temporary copy or
     // another era's ghost, whose combatant id is not in the roster and has no rig to draw.

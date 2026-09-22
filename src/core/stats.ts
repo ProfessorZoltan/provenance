@@ -66,6 +66,32 @@ export function maxHp(content: ContentDB, def: CharacterDef, cs: CharacterState)
   return loadout(content, def, cs).stats.resolve;
 }
 
+/** The support budget a character carries between beds. */
+export function maxNerve(content: ContentDB, cs: CharacterState): number {
+  return content.rules.nerve.base + content.rules.nerve.perLevel * cs.level;
+}
+
+/** Nerve on hand: a save from before Nerve existed carries a full pool. */
+export function nerveOf(content: ContentDB, cs: CharacterState): number {
+  const cap = maxNerve(content, cs);
+  return Math.max(0, Math.min(cap, cs.nerve ?? cap));
+}
+
+const BAD_STATUSES = new Set(['marked', 'bound', 'fear', 'locked']);
+
+/**
+ * What an ability costs in Nerve. Damage is free; mending, lifting an ally and laying something on
+ * an enemy are not. An ability can name its own price instead.
+ */
+export function nerveCost(content: ContentDB, ability: AbilityDef): number {
+  if (ability.nerve !== undefined) return ability.nerve;
+  const c = content.rules.nerve.costs;
+  if (ability.heal) return c.heal;
+  if (ability.status) return BAD_STATUSES.has(ability.status.id) ? c.debuff : c.buff;
+  if (ability.special && ['spawnAlly', 'buyout', 'openWeights', 'settlement', 'marksToTempo'].includes(ability.special)) return c.special;
+  return 0;
+}
+
 export function partyLoadouts(content: ContentDB, state: GameState): Record<string, Loadout> {
   const out: Record<string, Loadout> = {};
   for (const id of state.activeParty) {

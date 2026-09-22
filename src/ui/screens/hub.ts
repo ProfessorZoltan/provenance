@@ -2,6 +2,7 @@ import { evalAll } from '../../core/conditions';
 import { conditionContext } from '../../core/encounter';
 import { activeVariant, currencyFor, hasLodging, npcDialogue, npcName, restCost } from '../../core/reducer';
 import { deriveWorld } from '../../core/timeline';
+import type { RulesDef } from '../../types/content';
 import type { GameState } from '../../types/state';
 import { esc, html, partyStrip, prompts, type Ctx, type ScreenHandle } from '../common';
 import { menu, type MenuItem } from '../menu';
@@ -16,6 +17,14 @@ const DESCEND: Record<string, string> = {
   capitol: 'Go down into the division lobby',
   meridian: 'Go down through the server floor',
 };
+
+/** Where carried Entropy stands, in the word the fight will use for it. */
+function entropyWord(entropy: number, rules: RulesDef): string {
+  if (entropy >= rules.entropyTiers.slip.at) return 'slipping';
+  if (entropy >= rules.entropyThreshold) return 'echoing';
+  if (entropy >= rules.entropyTiers.fray.at) return 'fraying';
+  return '';
+}
 
 export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): ScreenHandle {
   const { content, store } = ctx;
@@ -79,6 +88,7 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
       <p class="small">${esc(variant?.description ?? loc.description)}</p>
       ${loc.kind === 'deepSite' && sub === 'timeJump' ? `<p class="small" style="margin-top:8px">Time travel happens only here, and only to eras when this site existed. Whatever you change below, look at the village when you come back.</p>` : ''}
       ${flagsShown.includes('armedResistance') && loc.id === 'kell_2312' ? `<p class="small" style="margin-top:8px">The chapel walls are thicker in this version of 2312.</p>` : ''}
+      <div class="entropy-line ${entropyWord(state.entropy, content.rules)}">Entropy ${state.entropy} / ${content.rules.entropyMax}${entropyWord(state.entropy, content.rules) ? ` · ${entropyWord(state.entropy, content.rules)}` : ''}. It follows you from fight to fight. A bed lets ${content.rules.entropyFlow.restDecay} out, a camp ${content.rules.entropyFlow.campDecay}.</div>
     </div>
     <div class="actions panel"><div class="eyebrow">${heading}</div><div id="m"></div></div>
     <div class="party">${partyStrip(ctx, state)}</div>

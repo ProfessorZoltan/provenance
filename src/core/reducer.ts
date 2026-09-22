@@ -5,7 +5,7 @@ import { collapse, createBattle, echoAssist, endTurn, enemyTurn, fork, partyComb
 import { evalAll } from './conditions';
 import { buildScan, conditionContext, rollEncounter } from './encounter';
 import { seedFromString } from './rng';
-import { levelForXp, loadout, maxHp } from './stats';
+import { levelForXp, loadout, maxHp, maxNerve } from './stats';
 import { unlockNode } from './tech';
 import { applyChoice, choicesOverwrittenBy, clamp, deriveWorld, markVisited } from './timeline';
 
@@ -46,6 +46,7 @@ export function initialState(): GameState {
     settings: { reducedMotion: false, musicVolume: 0.7, sfxVolume: 0.8 },
     counters: { storyFights: 0, randomFights: 0, surprisesCancelled: 0, turns: 0 },
     camps: 2,
+    entropy: 0,
   };
 }
 
@@ -53,9 +54,10 @@ function newCharacter(content: ContentDB, id: string, sync: number, recruitedAt:
   const level = levelForXp(xp, content.rules.xpPerLevel);
   const cs: CharacterState = {
     id, xp, level, skillPoints: 1 + level, nodes: [], sync, hp: 0, recruitedAt,
-    equipment: { weapon: null, gear: null },
+    equipment: { weapon: null, gear: null }, frayed: 0,
   };
   cs.hp = maxHp(content, content.characters[id], cs);
+  cs.nerve = maxNerve(content, cs);
   return cs;
 }
 
@@ -341,7 +343,9 @@ function arrive(content: ContentDB, state: GameState, locationId: string): GameS
   if (!loc) throw new Error(`Unknown location ${locationId}`);
   const node = mapFor(content, loc.era)?.nodes.find((n) => n.location === locationId);
   const map = node ? { x: node.x, y: node.y + node.radius + 24 } : state.map;
+  const fresh = loc.refillCamps && state.location !== locationId;
   state = { ...state, location: locationId, era: loc.era, screen: { id: 'hub' }, scan: null, map, back: { id: 'hub' } };
+  if (fresh) state = { ...state, camps: content.rules.camp.perEra };
   // Having stood somewhere is a condition in its own right; the case log leans on it.
   state = addFlags(state, [`been:${locationId}`]);
   const variant = activeVariant(content, state, loc);
@@ -375,9 +379,16 @@ function finishBattle(content: ContentDB, state: GameState): GameState {
   let party = { ...state.party };
   const won = b.phase === 'won';
   for (const c of [...b.combatants, ...(b.reserve ?? [])]) {
-    if (c.side !== 'party' || !party[c.id]) continue;
-    party[c.id] = { ...party[c.id], hp: won ? Math.max(1, c.hp) : c.hp };
+    if (c.side !== 'party' || !party[c.id] || c.temporary) continue;
+    party[c.id] = { ...party[c.id], hp: won ? Math.max(1, c.hp) : c.hp, nerve: c.nerve };
   }
+  // Entropy leaves the fight with you, and what it broke stays broken.
+  for (const id of b.fractures ?? []) {
+    if (!party[id]) continue;
+    party[id] = { ...party[id], frayed: (party[id].frayed ?? 0) + content.rules.entropyTiers.break.continuityLoss };
+    state = journal(state, `Entropy broke over ${content.characters[id]?.shortName ?? id}. Their Continuity is ${content.rules.entropyTiers.break.continuityLoss} lower for good.`);
+  }
+  state = { ...state, entropy: b.entropy };
   // Anyone who stood on the field this fight, however briefly, earned the full share.
   const fought = new Set([...b.combatants, ...(b.reserve ?? [])].filter((c) => c.side === 'party' && !c.temporary).map((c) => c.id));
   state = { ...state, party, rng: b.rng };
@@ -493,7 +504,8 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
     case 'LOAD_STATE': {
       const base = initialState();
       const s: GameState = { ...base, ...action.state, map: action.state.map ?? base.map, back: { id: 'hub' }, battleReturn: action.state.battleReturn ?? 'hub' };
-      const live = s.battle && s.battle.phase !== 'won' && s.battle.phase !== 'lost' ? { ...s.battle, reserve: s.battle.reserve ?? [] } : null;
+      const live = s.battle && s.battle.phase !== 'won' && s.battle.phase !== 'lost' ? { ...s.battle, reserve: s.battle.reserve ?? [], fractures: s.battle.fractures ?? [] } : null;
+      if (typeof s.entropy !== 'number') s.entropy = 0;
       // A save from when four could take the field keeps its first three; the rest go to the bench.
       const max = content.rules.activePartyMax;
       if (s.activeParty.length > max) s.activeParty = [...s.activeParty.filter((id) => id === 'player'), ...s.activeParty.filter((id) => id !== 'player')].slice(0, max);
@@ -672,9 +684,10 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       const party = { ...state.party };
       for (const id of state.activeParty) {
         const cs = party[id];
-        if (cs) party[id] = { ...cs, hp: maxHp(content, content.characters[id], cs) };
+        if (cs) party[id] = { ...cs, hp: maxHp(content, content.characters[id], cs), nerve: maxNerve(content, cs) };
       }
-      return { ...state, party, inventory: { ...state.inventory, currency: { ...state.inventory.currency, [cur]: have - cost } } };
+      const entropy = Math.max(0, state.entropy - content.rules.entropyFlow.restDecay);
+      return { ...state, party, entropy, inventory: { ...state.inventory, currency: { ...state.inventory.currency, [cur]: have - cost } } };
     }
     case 'CAMP': {
       // A half rest in the field, so many times an era. The count refills when the party jumps.
@@ -684,9 +697,15 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
         const cs = party[id];
         if (!cs) continue;
         const cap = maxHp(content, content.characters[id], cs);
-        party[id] = { ...cs, hp: Math.min(cap, Math.max(1, cs.hp) + Math.round(cap * content.rules.camp.heal)) };
+        const nerveCap = maxNerve(content, cs);
+        party[id] = {
+          ...cs,
+          hp: Math.min(cap, Math.max(1, cs.hp) + Math.round(cap * content.rules.camp.heal)),
+          nerve: Math.min(nerveCap, (cs.nerve ?? nerveCap) + Math.round(nerveCap * content.rules.nerve.campShare)),
+        };
       }
-      return { ...state, party, camps: state.camps - 1 };
+      const entropy = Math.max(0, state.entropy - content.rules.entropyFlow.campDecay);
+      return { ...state, party, camps: state.camps - 1, entropy };
     }
 
     case 'SET_ACTIVE_PARTY': {
@@ -800,13 +819,15 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       const def = content.items[action.item];
       const count = state.inventory.items[action.item] ?? 0;
       if (!def?.effect || count <= 0) throw new Error('Cannot use that');
-      if (!def.effect.heal && !def.effect.revive) throw new Error(`${def.name} only does anything in a fight`);
+      if (!def.effect.heal && !def.effect.revive && !def.effect.nerve) throw new Error(`${def.name} only does anything in a fight`);
       const cs = state.party[action.target];
       if (!cs) throw new Error('No such ally');
       const cap = maxHp(content, content.characters[cs.id], cs);
       if (cs.hp <= 0 && !def.effect.revive) throw new Error(`${content.characters[cs.id].shortName} is down`);
       const hp = Math.min(cap, cs.hp + (def.effect.heal ?? 0));
-      return { ...state, party: { ...state.party, [cs.id]: { ...cs, hp } }, inventory: { ...state.inventory, items: { ...state.inventory.items, [action.item]: count - 1 } } };
+      const nerveCap = maxNerve(content, cs);
+      const nerve = Math.min(nerveCap, (cs.nerve ?? nerveCap) + (def.effect.nerve ?? 0));
+      return { ...state, party: { ...state.party, [cs.id]: { ...cs, hp, nerve } }, inventory: { ...state.inventory, items: { ...state.inventory.items, [action.item]: count - 1 } } };
     }
 
     case 'QUEST_ACCEPT': {

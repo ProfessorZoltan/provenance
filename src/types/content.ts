@@ -91,6 +91,8 @@ export interface AbilityDef {
   requiresMachine?: boolean;
   /** Enemy only: how much party Tempo the hit takes away. */
   tempoDrain?: number;
+  /** Party only: the Nerve this costs. Left out, the cost follows the ability's shape (see nerveCost). */
+  nerve?: number;
   /** For abilities that put a short-lived copy of the caster on the field. */
   spawn?: { name: string; hpFactor: number; turns: number; abilities: string[] };
   description: string;
@@ -212,6 +214,8 @@ export interface LocationDef {
   offMap?: boolean;
   /** Somewhere the party can pay for a proper night's rest. Deep Sites always can. */
   lodging?: boolean;
+  /** Arriving here is a fresh stretch of ground: the era's camps are handed out again. */
+  refillCamps?: boolean;
   links: { to: string; label: string }[];
   timeLinks: EraId[];
   storyDialogue?: string;
@@ -388,6 +392,8 @@ export interface ItemDef {
     cure?: string[];
     /** Entropy change, usually negative. */
     entropy?: number;
+    /** Nerve restored to one ally. */
+    nerve?: number;
     /** A status the item grants, to one ally or to the whole party. */
     status?: { id: string; turns: number; target: 'ally' | 'party' };
   };
@@ -455,6 +461,21 @@ export interface RulesDef {
   camp: { perEra: number; heal: number };
   /** Consumables are free actions, this many a turn, and the bag holds this many in total. */
   items: { perTurn: number; bagCap: number };
+  /**
+   * Nerve: what heals, buffs and debuffs cost, per character, refilled only by a bed, half by a
+   * camp, and by tonics. The shape of an ability sets its cost unless the ability names one.
+   */
+  nerve: { base: number; perLevel: number; costs: { heal: number; buff: number; debuff: number; special: number }; campShare: number };
+  /** Entropy is carried between fights. It creeps each round, jumps when the enemy pulls on time, and only beds and camps let it out. */
+  entropyFlow: { perRound: number; enemyChronal: number; restDecay: number; campDecay: number; afterBreak: number };
+  /** What Entropy does on the way up: a temptation, then the Echo, then lost turns, then a tear. */
+  entropyTiers: {
+    fray: { at: number; chronalBonus: number; tempoMultiplier: number };
+    slip: { at: number; chance: number };
+    break: { at: number; continuityLoss: number };
+  };
+  /** Continuity on the field: the Resolve ceiling it sets, when a member starts to flicker, and what a thin one does to Chronal. */
+  continuityCombat: { resolveFloor: number; flickerBelow: number; chronalBonus: number };
   fork: { cost: number; entropy: number; threadCost: number };
   echo: { cost: number; entropy: number; turns: number };
   collapse: { cost: number; entropy: number };

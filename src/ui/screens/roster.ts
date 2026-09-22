@@ -1,5 +1,5 @@
 import { portraitSvg } from '../../art/rigs';
-import { equippedItems, loadout } from '../../core/stats';
+import { equippedItems, loadout, maxNerve, nerveOf } from '../../core/stats';
 import { deriveWorld } from '../../core/timeline';
 import type { EquipSlot, ItemDef } from '../../types/content';
 import type { GameState } from '../../types/state';
@@ -77,6 +77,7 @@ export function rosterScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
         ${statLine('resolve', 'Resolve')}${statLine('bandwidth', 'Bandwidth')}
         ${statLine('latency', 'Latency')}${statLine('signal', 'Signal')}
         ${statLine('noise', 'Noise')}${statLine('grit', 'Grit')}
+        <b>Nerve</b><span>${nerveOf(content, cs)} / ${maxNerve(content, cs)}</span>
         <b>Sync</b><span>${cs.sync > 0 ? '+' : ''}${cs.sync}</span>
         <b>Continuity</b><span>${derived.continuity[id] ?? 100}</span>
       </div>

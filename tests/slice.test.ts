@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { deserialize, serialize } from '../src/core/save';
 import { activeVariant, mapFor, npcDialogue } from '../src/core/reducer';
 import { evalAll } from '../src/core/conditions';
-import { maxHp, xpForLevel } from '../src/core/stats';
+import { maxHp, maxNerve, xpForLevel } from '../src/core/stats';
 import { conditionContext } from '../src/core/encounter';
 import { applyChoice, deriveWorld } from '../src/core/timeline';
 import { ERA_LEVEL } from './balance';
@@ -14,7 +14,7 @@ const levelled = (level: number, s: GameState): GameState => (level <= 1 ? s : {
   ...s,
   party: Object.fromEntries(Object.entries(s.party).map(([id, c]) => {
     const xp = xpForLevel(level, content.rules.xpPerLevel);
-    return [id, { ...c, xp, level, hp: maxHp(content, content.characters[id], { ...c, xp, level }) }];
+    return [id, { ...c, xp, level, hp: maxHp(content, content.characters[id], { ...c, xp, level }), nerve: maxNerve(content, { ...c, xp, level }) }];
   })),
 });
 
@@ -166,6 +166,8 @@ describe('a ripple end to end', () => {
     expect(s.quests.tolliver_fire).toBe('active');
     expect(npcDialogue(content, s, 'mattie_tolliver')).toBe('tolliver_progress');
 
+    // The arson is a hard fight in 2031: a party that has walked this far is at that era's level.
+    s = levelled(ERA_LEVEL['2031'], s);
     s = reduce(s, { type: 'START_ENCOUNTER', encounterId: 'tolliver_2031_arson' });
     s = autoBattle(s);
     expect(s.battle?.phase).toBe('won');

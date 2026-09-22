@@ -59,7 +59,7 @@ export function resultScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
       ${r.levelUps.map((l) => `<li><b>${esc(l)}</b>: +1 skill point</li>`).join('')}
       ${r.flags.filter((f) => flagText[f]).map((f) => `<li class="small">${flagText[f]}</li>`).join('')}
     </ul>` : ''}
-    <p class="small">Entropy peaked at ${b?.entropy ?? 0}. Rewinds left unused: ${b?.rewindsLeft ?? 0}.</p>
+    <p class="small">Entropy leaves the fight at ${b?.entropy ?? 0}, and comes into the next one there. Rewinds left unused: ${b?.rewindsLeft ?? 0}.</p>
   </div></section>`);
   root.querySelector('.card')!.addEventListener('click', go);
   ctx.setPrompts(prompts({ btn: 'a', label: 'Continue' }));

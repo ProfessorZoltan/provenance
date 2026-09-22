@@ -6,7 +6,7 @@ import type { GameState } from '../types/state';
 import type { Store } from '../core/store';
 import type { Input } from '../input/input';
 import { portraitSvg } from '../art/rigs';
-import { loadout } from '../core/stats';
+import { loadout, maxNerve, nerveOf } from '../core/stats';
 import { deriveWorld } from '../core/timeline';
 
 export interface Ctx {
@@ -66,7 +66,7 @@ export function partyStrip(ctx: Ctx, state: GameState): string {
       <div>
         <div class="name"><b>${esc(def.shortName)}</b><span>Lv ${cs.level}${cs.skillPoints ? ` · ${cs.skillPoints} SP` : ''}</span></div>
         <div class="bar hp"><i style="width:${pct}%"></i></div>
-        <div class="hp-lbl">${cs.hp}/${l.stats.resolve} Resolve · Continuity ${derived.continuity[id]}</div>
+        <div class="hp-lbl">${cs.hp}/${l.stats.resolve} Resolve · <span class="${nerveOf(content, cs) === 0 ? 'out' : ''}">Nerve ${nerveOf(content, cs)}/${maxNerve(content, cs)}</span> · Continuity ${derived.continuity[id]}</div>
       </div>
     </div>`;
   }).join('');

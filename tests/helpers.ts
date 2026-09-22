@@ -1,6 +1,6 @@
 import { getContent } from '../src/content/loader';
 import type { Action } from '../src/core/actions';
-import { validTargets } from '../src/core/battle/battle';
+import { abilityOptions, validTargets } from '../src/core/battle/battle';
 import { createReducer, initialState } from '../src/core/reducer';
 import type { GameState } from '../src/types/state';
 
@@ -62,7 +62,8 @@ export function autoBattle(state: GameState, policy?: (s: GameState) => Action |
     if (custom) { state = reduce(state, custom); continue; }
     const foes = b.combatants.filter((c) => c.side === 'enemy' && !c.down);
     if (!foes.length) break;
-    const afford = (id: string) => !!content.abilities[id] && actor.threads >= content.abilities[id].cost;
+    const options = abilityOptions(b, actor.id, content);
+    const afford = (id: string) => !!options.find((o) => o.ability.id === id)?.usable;
     const hurt = b.combatants.filter((c) => c.side === 'party' && !c.down)
       .sort((a, c) => a.hp / a.maxHp - c.hp / c.maxHp)[0];
     let act: Action | null = null;

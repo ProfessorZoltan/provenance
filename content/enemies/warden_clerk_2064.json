@@ -34,6 +34,10 @@
     {
       "item": "steady",
       "chance": 0.2
+    },
+    {
+      "item": "tonic",
+      "chance": 0.3
     }
   ],
   "flavor": "Sits at the back, amends the record, and nobody on their side stays hurt for long.",

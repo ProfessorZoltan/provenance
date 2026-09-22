@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { activeVariant } from '../src/core/reducer';
 import { applyChoice, deriveWorld, endingFor } from '../src/core/timeline';
+import { maxHp } from '../src/core/stats';
 import { KEY_LEVEL, partyAt } from './balance';
 import { autoBattle, content, newGame, reduce, run, skipDialogue } from './helpers';
 import type { GameState } from '../src/types/state';
@@ -31,8 +32,12 @@ function descend(s: GameState): GameState {
     s = autoBattle(s);
     if (s.battle?.phase !== 'won') return s;
     s = run(s, { type: 'BATTLE_FINISH' }, { type: 'SET_SCREEN', screen: { id: 'hub' } });
-    // The stack has no beds: the party makes camp while it can, and carries the rest.
-    if (s.camps > 0) s = reduce(s, { type: 'CAMP' });
+    // The stack has no beds. The roster is the resource: the Auditor takes the two freshest down
+    // the next floor, and the party only makes camp when even they are hurt or out of Nerve.
+    const frac = (id: string) => s.party[id].hp / maxHp(content, content.characters[id], s.party[id]);
+    const bench = Object.keys(s.party).filter((id) => id !== 'player').sort((a, b) => frac(b) - frac(a));
+    s = reduce(s, { type: 'SET_ACTIVE_PARTY', members: ['player', ...bench.slice(0, content.rules.activePartyMax - 1)] });
+    if (s.camps > 0 && (s.entropy >= 60 || s.activeParty.some((id) => frac(id) < 0.55 || (s.party[id].nerve ?? 99) < 8))) s = reduce(s, { type: 'CAMP' });
     expect(s.flags, flag).toContain(flag);
   }
   return s;

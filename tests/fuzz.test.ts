@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { current, validTargets } from '../src/core/battle/battle';
+import { abilityOptions, current, validTargets } from '../src/core/battle/battle';
 import { rngFloat, nextRng } from '../src/core/rng';
 import { content, newGame, reduce } from './helpers';
 import type { Action } from '../src/core/actions';
@@ -30,7 +30,7 @@ function fuzzBattle(seed: number, enc: string, surprise: boolean): { s: GameStat
       if (!item || !allies.length) action = { type: 'BATTLE_END_TURN', actor: actor.id };
       else action = { type: 'BATTLE_ITEM', actor: actor.id, item, target: allies[Math.floor(rnd() * allies.length)].id };
     } else {
-      const abilities = actor.abilities.filter((a) => content.abilities[a].cost <= actor.threads);
+      const abilities = abilityOptions(b, actor.id, content).filter((o) => o.usable && actor.abilities.includes(o.ability.id)).map((o) => o.ability.id);
       if (!abilities.length) { action = { type: 'BATTLE_END_TURN', actor: actor.id }; }
       else {
         const ab = content.abilities[abilities[Math.floor(rnd() * abilities.length)]];

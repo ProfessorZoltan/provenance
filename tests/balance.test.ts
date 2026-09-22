@@ -92,7 +92,9 @@ describe('how long a fight runs', () => {
       const begin = reduce(start, { type: 'START_ENCOUNTER', encounterId: e.id, surprise: false });
       const plain = playBattle(begin).battle!.round;
       const sustain = playSustain(begin).battle!.round;
-      expect(sustain, `${e.id}: plain ${plain}r, sustain ${sustain}r`).toBeGreaterThan(plain);
+      // Nerve bounds how long a party can top itself up, so a sustain party no longer stalls a
+      // fight indefinitely. It still may not make one shorter: healing is a cost, not a shortcut.
+      expect(sustain, `${e.id}: plain ${plain}r, sustain ${sustain}r`).toBeGreaterThanOrEqual(plain);
     }
   });
 

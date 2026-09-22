@@ -42,5 +42,6 @@
   "music": "battle_2312",
   "rewardFlags": [
     "metTheBoard"
-  ]
+  ],
+  "scale": 0.9
 }

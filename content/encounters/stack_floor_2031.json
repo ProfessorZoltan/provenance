@@ -13,10 +13,6 @@
     {
       "enemy": "drone_survey_2031",
       "count": 2
-    },
-    {
-      "enemy": "warden_clerk_2031",
-      "count": 1
     }
   ],
   "surprise": "never",

@@ -28,7 +28,8 @@ export function continuityFor(content: ContentDB, world: WorldState, cs: Charact
   if (!def) return 100;
   const edits = world.history.filter((h) => h.era === def.homeEra && h.order >= cs.recruitedAt).length;
   const { continuityPerEdit, continuityFloor } = content.rules;
-  return Math.max(continuityFloor, 100 - continuityPerEdit * edits);
+  // Edits to a home era thin it; Entropy breaking over someone tears a piece off for good.
+  return Math.max(continuityFloor, 100 - continuityPerEdit * edits - (cs.frayed ?? 0));
 }
 
 export function endingFor(ownership: number, sync: number, flags: string[]): string {

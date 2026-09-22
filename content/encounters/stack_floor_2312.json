@@ -12,10 +12,6 @@
     {
       "enemy": "warden_board_2312",
       "count": 1
-    },
-    {
-      "enemy": "warden_clerk_2312",
-      "count": 1
     }
   ],
   "surprise": "never",

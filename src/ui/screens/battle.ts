@@ -1,6 +1,7 @@
 import { artAssetUrl } from '../../art/library';
 import { rigSvg } from '../../art/rigs';
 import { abilityOptions, current, enemyIntent, hasStatus, itemNeedsTarget, validTargets } from '../../core/battle/battle';
+import { nerveCost } from '../../core/stats';
 import type { Targeting } from '../../types/content';
 import type { AbilityDef, RulesDef } from '../../types/content';
 import { statusChips } from '../../core/battle/statuses';
@@ -22,6 +23,15 @@ interface UI {
   menuIdx: number;
   logScroll: number;
   lastActor: string;
+}
+
+/** Where Entropy stands and what the next line up does, for the gauge panel. */
+function entropyLine(b: BattleState, rules: RulesDef): string {
+  const t = rules.entropyTiers;
+  if (b.entropy >= t.slip.at) return `Slipping: turns can be lost. At ${t.break.at} it breaks over someone`;
+  if (b.entropy >= rules.entropyThreshold) return `${b.echoSpawned ? 'An Echo has answered' : 'Echoes answer'}. Slipping at ${t.slip.at}`;
+  if (b.entropy >= t.fray.at) return `Fraying: Chronal +${Math.round(t.fray.chronalBonus * 100)}%, Tempo ×${t.fray.tempoMultiplier}. Echoes at ${rules.entropyThreshold}`;
+  return `Fraying at ${t.fray.at}, Echoes at ${rules.entropyThreshold}`;
 }
 
 /** Each personality in the player's terms, for the Inspect panel. */
@@ -178,7 +188,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
       <div>
         <div class="small">Round ${b.round} · ${b.surprise ? 'Surprise attack' : content.encounters[b.encounterId].name}</div>
         <div class="entropy ${b.entropy >= rules.entropyThreshold ? 'high' : ''}" style="margin-top:8px">Entropy ${b.entropy} / ${rules.entropyMax}<div class="bar" style="margin-top:3px"><i style="width:${b.entropy}%"></i></div></div>
-        <div class="small" style="margin-top:6px">Rewinds ${b.rewindsLeft} · ${b.echoSpawned ? 'An Echo has answered' : b.entropy >= rules.entropyThreshold ? 'Echoes answer above ' + rules.entropyThreshold : 'Echoes answer above ' + rules.entropyThreshold}</div>
+        <div class="small" style="margin-top:6px">Rewinds ${b.rewindsLeft} · ${entropyLine(b, rules)}</div>
       </div>
     </div>
     <div class="side">
@@ -191,7 +201,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
           <div style="display:flex;justify-content:space-between"><b>${esc(p.name)}</b><span class="small">${p.hp}/${p.maxHp}</span></div>
           <div class="bar hp" style="margin:4px 0"><i style="width:${Math.round((p.hp / p.maxHp) * 100)}%"></i></div>
           <div class="threads" title="Threads and Slack">${Array.from({ length: p.stats.bandwidth + cap }, (_, i) => `<i class="${i < p.threads ? 'on' : i >= p.stats.bandwidth && i - p.stats.bandwidth < p.slack ? 'slack' : ''}"></i>`).join('')}</div>
-          <div class="st">${p.down ? 'Down' : `${p.threads} threads${p.slack ? ` · ${p.slack} Slack` : ''}`}</div>
+          <div class="st">${p.down ? 'Down' : `${p.threads} threads${p.slack ? ` · ${p.slack} Slack` : ''}`}${p.temporary ? '' : ` · <span class="nerve ${p.nerve === 0 ? 'out' : ''}" title="Nerve: what heals, buffs and debuffs cost. Refilled by a bed.">Nerve ${p.nerve}/${p.maxNerve}</span>`}${p.continuity < 100 ? ` · <span class="cont ${p.continuity < rules.continuityCombat.flickerBelow ? 'thin' : ''}" title="Continuity: how much of their own timeline is still theirs.">Continuity ${p.continuity}</span>` : ''}</div>
           ${p.down ? '' : statusChipsHtml(p, rules)}
         </div>`;
       }).join('')}
@@ -209,7 +219,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     return abilityOptions(b, actor.id, content).map((o) => ({
       id: o.ability.id,
       label: o.ability.name,
-      cost: `${o.ability.cost}⟋${o.ability.damageType ? ' ' + o.ability.damageType : ''}`,
+      cost: `${o.ability.cost}⟋${o.ability.damageType ? ' ' + o.ability.damageType : ''}${nerveCost(content, o.ability) ? ` · ${nerveCost(content, o.ability)} Nerve` : ''}`,
       hint: o.usable ? o.ability.description : `${o.reason}. ${o.ability.description}`,
       disabled: !o.usable || (forFork && actor.threads < o.ability.cost + rules.fork.threadCost),
       onSelect: () => beginAbility(o.ability, forFork),

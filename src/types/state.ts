@@ -44,6 +44,11 @@ export interface Combatant {
   lastHitBy?: string;
   /** Who this combatant last went for, for enemies that spread their attention. */
   lastTarget?: string;
+  /** Party only: the support budget carried into this fight, and its ceiling. Enemies have none. */
+  nerve: number;
+  maxNerve: number;
+  /** Party only: how much of this person's own timeline is still theirs. Enemies stand at 100. */
+  continuity: number;
 }
 
 export interface LogMeta {
@@ -102,6 +107,8 @@ export interface BattleState {
   echoAssistUsed: boolean;
   echoSpawned: boolean;
   usedSignal: boolean;
+  /** Party members whose Continuity tore when Entropy broke this fight. Applied when it ends. */
+  fractures: string[];
   story: boolean;
   passives: Record<string, Record<string, number>>;
   partySync: number;
@@ -128,6 +135,10 @@ export interface CharacterState {
   hp: number;
   recruitedAt: number;
   equipment: { weapon: string | null; gear: string | null };
+  /** Support budget between beds. Missing on older saves, which means full. */
+  nerve?: number;
+  /** Continuity torn away for good by Entropy breaking. */
+  frayed?: number;
 }
 
 export interface HistoryEntry {
@@ -233,4 +244,6 @@ export interface GameState {
   counters: { storyFights: number; randomFights: number; surprisesCancelled: number; turns: number };
   /** Field camps left in this era: a half rest, and only so many before a proper bed is needed. */
   camps: number;
+  /** Entropy carried from fight to fight. Beds and camps let it out; nothing else does. */
+  entropy: number;
 }

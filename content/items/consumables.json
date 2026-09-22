@@ -3,6 +3,7 @@
   { "id": "stim", "name": "Tempo Stim", "kind": "consumable", "description": "+5 party Tempo, used in battle.", "effect": { "tempo": 5 } },
   { "id": "anchor_charm", "name": "Anchor Charm", "kind": "consumable", "description": "Revives a downed ally with 30 Resolve.", "effect": { "revive": true, "heal": 30 } },
   { "id": "militia_kit", "name": "Militia Kit", "kind": "consumable", "description": "Restores 60 Resolve and grants 1 Slack.", "effect": { "heal": 60, "slack": 1 } },
+  { "id": "tonic", "name": "Nerve Tonic", "kind": "consumable", "description": "Bitter, hot, and it works. Restores 6 Nerve to one ally, in a fight or out of it.", "effect": { "nerve": 6 } },
   { "id": "splice", "name": "Splice", "kind": "consumable", "description": "A patch cable and a habit. Clears Target Lock and Bound by terms from one ally. Nothing else in the field can.", "effect": { "cure": ["locked", "bound"] } },
   { "id": "steady", "name": "Steady", "kind": "consumable", "description": "A flask of something warm and a hand on the shoulder. Clears Fear from one ally. Nothing else in the field can.", "effect": { "cure": ["fear"] } },
   { "id": "dampener", "name": "Chronal Dampener", "kind": "consumable", "description": "A Founders-era coil that hums the wrong way. Lowers Entropy by 20 in a fight, and keeps an Echo from answering.", "effect": { "entropy": -20 } },

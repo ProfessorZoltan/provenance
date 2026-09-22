@@ -3,7 +3,7 @@
   "name": "Strand Perpetual",
   "era": "2312",
   "tier": "key",
-  "scale": 0.8,
+  "scale": 0.65,
   "location": "meridian_stack",
   "enemies": [
     {

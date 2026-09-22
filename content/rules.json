@@ -65,5 +65,43 @@
   "items": {
     "perTurn": 1,
     "bagCap": 6
+  },
+  "nerve": {
+    "base": 10,
+    "perLevel": 1,
+    "costs": {
+      "heal": 4,
+      "buff": 3,
+      "debuff": 2,
+      "special": 3
+    },
+    "campShare": 1.0
+  },
+  "entropyFlow": {
+    "perRound": 1,
+    "enemyChronal": 2,
+    "restDecay": 50,
+    "campDecay": 25,
+    "afterBreak": 60
+  },
+  "entropyTiers": {
+    "fray": {
+      "at": 40,
+      "chronalBonus": 0.25,
+      "tempoMultiplier": 2
+    },
+    "slip": {
+      "at": 90,
+      "chance": 0.35
+    },
+    "break": {
+      "at": 100,
+      "continuityLoss": 15
+    }
+  },
+  "continuityCombat": {
+    "resolveFloor": 0.6,
+    "flickerBelow": 50,
+    "chronalBonus": 0.5
   }
 }

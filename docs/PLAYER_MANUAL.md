@@ -101,10 +101,11 @@ back.
 
 | | Where | Costs | Gives |
 | --- | --- | --- | --- |
-| Rest | Any Deep Site, and waypoints with a bed to let: the village, the bar, the safehouse, the camps and the commissary | The era's currency: 3 per level of the strongest member fielded | Everyone on the field back to full |
-| Make camp | Anywhere | Nothing, but only twice per era. Jumping to another era refills the count | Half of everyone's Resolve |
+| Rest | Any Deep Site, and waypoints with a bed to let: the village, the bar, the safehouse, the camps and the commissary | The era's currency: 3 per level of the strongest member fielded | Everyone on the field back to full Resolve and full Nerve, and 50 Entropy let out |
+| Make camp | Anywhere | Nothing, but only twice per era. Jumping to another era refills the count, and so does entering the Stack | Half of everyone's Resolve, full Nerve, and 25 Entropy let out |
 
-The Stack has no beds. Whatever you carry down it, you carry down it.
+The Stack has no beds, and four fights. Whatever you carry down it, you carry down it: rotate the
+bench between floors, and camp when the ones going down are hurt.
 
 | Era | Kell | Port Halden | The Basin | Capitol Hill | Meridian | Reference |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -174,13 +175,48 @@ written under them.
 Collapse is the one to think about before a long dungeon. It costs Tempo now against a loss you
 may never take, and the Stack is four fights deep.
 
+### Nerve
+
+Hitting things is free. Mending, lifting an ally and laying something on an enemy are not: each
+costs **Nerve**, a pool every member carries between beds. It does not come back for winning a
+fight. A bed refills it, a camp refills it, and a Nerve Tonic gives six back, in a fight or out of
+one. Each ability's row shows what it costs.
+
+| Ability shape | Nerve |
+| --- | --- |
+| Mend, Checksum, anything that restores Resolve | 4 |
+| Litany, Guard, Vigil, Bulwark, anything laid on your own side | 3 |
+| Audit, Terms, anything laid on the enemy | 2 |
+| Blueprint, Buyout, Open Weights, Settlement, Reconcile | 3 |
+| Strike, Wreck, Enforce, Discrepancy, every plain hit | 0 |
+
+The pool is 10 plus one per level. Sister Wren's is the one that runs out, because Sister Wren is
+the one who mends. Bring tonics, or bring someone else who can.
+
 ### Entropy
 
-Pulling on time frays it. Every Tempo ability and every Chronal attack raises party Entropy.
+Pulling on time frays it, and it does not heal between fights. Entropy leaves a fight where it
+stands and comes into the next one there. It creeps up one point every round on its own, every Tempo
+ability and every Chronal attack raises it, and an enemy pulling on time raises it too. A bed lets
+50 out. A camp lets 25 out. A Chronal Dampener takes 20 off in a fight. Nothing else touches it.
 
-Above **70**, an Echo steps out of a version of the fight you did not have: a copy of one of your
-own party members, immune to everything except Chronal damage. The frame around the battle fractures
-as Entropy climbs, and the music detunes, so you can hear it coming.
+| Entropy | What happens |
+| --- | --- |
+| 40, fraying | Chronal damage is 25% higher for everyone, and Tempo comes twice as fast. This is the temptation |
+| 70, echoing | An Echo steps out of a version of the fight you did not have: a copy of one of your own, immune to everything except Chronal. Once a fight |
+| 90, slipping | Any party member's turn may be taken by another version of them, who swings at whoever is nearest, on either side |
+| 100, breaking | It breaks over someone. A piece of their Continuity tears away for good, and the gauge falls back to 60 |
+
+The frame around the battle fractures as Entropy climbs, and the music detunes, so you can hear it
+coming. The hub tells you where it stands before you walk into anything.
+
+### Continuity on the field
+
+Continuity is how much of a person's own timeline is still theirs. Edits to their home century thin
+it, and Entropy breaking over them tears it. On the field it does three things. It sets the Resolve
+they can bring: at 100 all of it, at the floor a little over half. Below 50 they flicker, and some
+turns go by without them. And the thinner they are, the deeper their Chronal cuts, because there is
+less of a fixed self in the way.
 
 Entropy resets between battles. Spend deliberately.
 
@@ -559,8 +595,10 @@ floor at a time, and each floor fights you in its own era's idiom.
 | 2148 | Echoes worn thin enough to hit, and the water that sealed the corridor | The vault |
 | 2312 | The last of what the Board keeps for a room it has met in four times | The allocation floor |
 
-There are no beds in the stack. Make camp at the bottom before you take the chair if you have a
-camp left, and nothing about the stack resets if you have to come back.
+There are no beds in the stack, and entering it hands out a fresh pair of camps. The roster is the
+resource: send the two freshest down each floor, camp when even they are hurt, and make camp at the
+bottom before you take the chair if you have one left. Nothing about the stack resets if you have to
+come back.
 
 ## Saving
 

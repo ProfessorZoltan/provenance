@@ -522,6 +522,10 @@ body[data-reduced-motion='true'] .battle .narration-box { animation: none; }
 .battle .telemetry .log { flex: 1 1 0; min-height: 0; overflow-y: auto; }
 /* An intent that does not fit on one line wraps rather than losing its target to an ellipsis. */
 .battle .enemy .intent { white-space: normal; line-height: 1.25; }
+.battle .card .nerve.out, .battle .card .cont.thin, .hp-lbl .out { color: var(--hurt); font-weight: 700; }
+.hub .place .entropy-line { margin-top: 8px; font-size: 12px; }
+.hub .place .entropy-line.fraying { color: var(--choir); }
+.hub .place .entropy-line.echoing, .hub .place .entropy-line.slipping { color: var(--cinder); }
 .scroll-hint { font-size: 11px; opacity: 0.6; text-align: center; padding: 2px 0 0; }
 /* The focused tech node reads at a glance. */
 .tech .node.focused { outline: 4px solid #f4cb76; outline-offset: 0; box-shadow: 0 0 0 2px #0b1128 inset; }

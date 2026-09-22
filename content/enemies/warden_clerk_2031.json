@@ -34,6 +34,10 @@
     {
       "item": "steady",
       "chance": 0.2
+    },
+    {
+      "item": "tonic",
+      "chance": 0.3
     }
   ],
   "flavor": "Keeps the roster and the first-aid tin. Fix him first or fix nobody.",
