@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40" width="32" height="40" shape-rendering="crispEdges" role="img" aria-labelledby="title desc">
+<title id="title">Unmoored Echo down</title><desc id="desc">Original rectangular pixel art generated for Provenance.</desc>
+<g id="legs"><rect x="2" y="34" width="10" height="3" fill="#170E24"/></g><g id="torso"><rect x="10" y="29" width="12" height="7" fill="#170E24"/><rect x="11" y="30" width="10" height="5" fill="#534AB7"/></g><g id="arm-l"><rect x="4" y="31" width="8" height="3" fill="#170E24"/></g><g id="arm-r"><rect x="20" y="35" width="10" height="2" fill="#170E24"/></g><g id="head"><rect x="21" y="29" width="8" height="6" fill="#170E24"/><rect x="22" y="30" width="6" height="4" fill="#A787D4"/></g><g id="weapon"><rect x="2" y="38" width="23" height="1" fill="#4FD1E6"/></g>
+</svg>

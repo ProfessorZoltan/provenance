@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "style": "Original FF1-inspired pixel SVG",
+  "version": 2,
+  "style": "Recognizable illustrated game SVG; local revision 02",
   "source": "docs/GAME_DESIGN_v0.1.md",
   "entryCount": 151,
   "fileCount": 637,
@@ -12,7 +12,17 @@
       "era": "2148",
       "site": "kell",
       "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-      "description": "patched winter armor and short resistance blade",
+      "description": "powerful Black woman with close-cropped hair, scarred face, patched winter armor, and short blade",
+      "dimensions": {
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "portrait": "characters/npcs/ade_portrait.svg",
         "token": "characters/npcs/ade_token.svg"
@@ -25,7 +35,17 @@
       "era": "2312",
       "site": "kell",
       "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-      "description": "Commons assembly convener with vote slips",
+      "description": "lean, middle-aged Commons convener with silver temple braids and a fan of vote slips",
+      "dimensions": {
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "portrait": "characters/npcs/ansel_portrait.svg",
         "token": "characters/npcs/ansel_token.svg"
@@ -38,7 +58,21 @@
       "era": null,
       "site": null,
       "guideSection": "Characters and enemies — party deliverables",
-      "description": "ledger coat and audit slate; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+      "description": "asymmetrical field coat, shoulder scanner, and bright audit slate; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        },
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "idle": "characters/auditor/auditor_idle.svg",
         "act": "characters/auditor/auditor_act.svg",
@@ -56,7 +90,13 @@
       "era": "2031",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "ledger coat and audit slate, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2031 pixel duplicate of The Auditor, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/auditor/echo/2031/auditor_echo_2031_idle.svg",
         "act": "characters/auditor/echo/2031/auditor_echo_2031_act.svg",
@@ -72,7 +112,13 @@
       "era": "2064",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "ledger coat and audit slate, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2064 pixel duplicate of The Auditor, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/auditor/echo/2064/auditor_echo_2064_idle.svg",
         "act": "characters/auditor/echo/2064/auditor_echo_2064_act.svg",
@@ -88,7 +134,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "ledger coat and audit slate, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2148 pixel duplicate of The Auditor, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/auditor/echo/2148/auditor_echo_2148_idle.svg",
         "act": "characters/auditor/echo/2148/auditor_echo_2148_act.svg",
@@ -104,7 +156,13 @@
       "era": "2312",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "ledger coat and audit slate, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2312 pixel duplicate of The Auditor, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/auditor/echo/2312/auditor_echo_2312_idle.svg",
         "act": "characters/auditor/echo/2312/auditor_echo_2312_act.svg",
@@ -120,7 +178,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "a human stance interrupted by machine plating; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "human left half and sensor-lit machine right half; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/construct_grafted/construct_grafted_idle.svg",
         "act": "enemies/construct_grafted/construct_grafted_act.svg",
@@ -136,7 +200,21 @@
       "era": null,
       "site": null,
       "guideSection": "Characters and enemies — party deliverables",
-      "description": "broad Cinder breaker with demolition hammer; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+      "description": "broad dark-skinned demolition worker with reinforced arms and a huge hammer; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        },
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "idle": "characters/dax/dax_idle.svg",
         "act": "characters/dax/dax_act.svg",
@@ -154,7 +232,13 @@
       "era": "2031",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2031 pixel duplicate of Dax Okonkwo, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/dax/echo/2031/dax_echo_2031_idle.svg",
         "act": "characters/dax/echo/2031/dax_echo_2031_act.svg",
@@ -170,7 +254,13 @@
       "era": "2064",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2064 pixel duplicate of Dax Okonkwo, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/dax/echo/2064/dax_echo_2064_idle.svg",
         "act": "characters/dax/echo/2064/dax_echo_2064_act.svg",
@@ -186,7 +276,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2148 pixel duplicate of Dax Okonkwo, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/dax/echo/2148/dax_echo_2148_idle.svg",
         "act": "characters/dax/echo/2148/dax_echo_2148_act.svg",
@@ -202,7 +298,13 @@
       "era": "2312",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "broad Cinder breaker with demolition hammer, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2312 pixel duplicate of Dax Okonkwo, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/dax/echo/2312/dax_echo_2312_idle.svg",
         "act": "characters/dax/echo/2312/dax_echo_2312_act.svg",
@@ -218,7 +320,13 @@
       "era": "2031",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "swept-wing pursuit drone with a forward gun and hooked legs; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/drone_hunter_2031/drone_hunter_2031_idle.svg",
         "act": "enemies/drone_hunter_2031/drone_hunter_2031_act.svg",
@@ -234,7 +342,13 @@
       "era": "2064",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "swept-wing pursuit drone with a forward gun and hooked legs; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/drone_hunter_2064/drone_hunter_2064_idle.svg",
         "act": "enemies/drone_hunter_2064/drone_hunter_2064_act.svg",
@@ -250,7 +364,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "swept-wing pursuit drone with a forward gun and hooked legs; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/drone_hunter_2148/drone_hunter_2148_idle.svg",
         "act": "enemies/drone_hunter_2148/drone_hunter_2148_act.svg",
@@ -266,7 +386,13 @@
       "era": "2312",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "swept-wing pursuit drone with a forward gun and hooked legs; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/drone_hunter_2312/drone_hunter_2312_idle.svg",
         "act": "enemies/drone_hunter_2312/drone_hunter_2312_act.svg",
@@ -282,7 +408,13 @@
       "era": "2031",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "four-rotor survey drone with a circular eye and hanging talons; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/drone_sentry_2031/drone_sentry_2031_idle.svg",
         "act": "enemies/drone_sentry_2031/drone_sentry_2031_act.svg",
@@ -298,7 +430,13 @@
       "era": "2064",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "four-rotor survey drone with a circular eye and hanging talons; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/drone_sentry_2064/drone_sentry_2064_idle.svg",
         "act": "enemies/drone_sentry_2064/drone_sentry_2064_act.svg",
@@ -314,7 +452,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "four-rotor survey drone with a circular eye and hanging talons; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/drone_sentry_2148/drone_sentry_2148_idle.svg",
         "act": "enemies/drone_sentry_2148/drone_sentry_2148_act.svg",
@@ -330,7 +474,13 @@
       "era": "2312",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "rotational wing symmetry and a bright machine eye; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "four-rotor survey drone with a circular eye and hanging talons; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/drone_sentry_2312/drone_sentry_2312_idle.svg",
         "act": "enemies/drone_sentry_2312/drone_sentry_2312_act.svg",
@@ -346,7 +496,13 @@
       "era": null,
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "a violet temporal shell readable without filters; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "fragmented humanoid made from displaced rectangular pixels; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/echo_temporal/echo_temporal_idle.svg",
         "act": "enemies/echo_temporal/echo_temporal_act.svg",
@@ -362,7 +518,17 @@
       "era": null,
       "site": "basin",
       "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-      "description": "insulated work jacket and diagnostic wand",
+      "description": "compact mechanic with high bun, insulated jacket, respirator, and oversized wrench",
+      "dimensions": {
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "portrait": "characters/npcs/engineer_portrait.svg",
         "token": "characters/npcs/engineer_token.svg"
@@ -376,7 +542,17 @@
       "era": null,
       "site": null,
       "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-      "description": "three-knot sash and modular training baton",
+      "description": "athletic veteran with shaved sides, three-knot sash, prosthetic forearm, and training baton",
+      "dimensions": {
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "portrait": "characters/npcs/faction_trainer_portrait.svg",
         "token": "characters/npcs/faction_trainer_token.svg"
@@ -390,7 +566,21 @@
       "era": null,
       "site": null,
       "guideSection": "Characters and enemies — party deliverables",
-      "description": "one-shoulder rain cloak and long rifle; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+      "description": "crouched marksman under a shaggy rain cloak with a long scoped rifle; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        },
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "idle": "characters/hale/hale_idle.svg",
         "act": "characters/hale/hale_act.svg",
@@ -408,7 +598,13 @@
       "era": "2031",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2031 pixel duplicate of Tomas Hale, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/hale/echo/2031/hale_echo_2031_idle.svg",
         "act": "characters/hale/echo/2031/hale_echo_2031_act.svg",
@@ -424,7 +620,13 @@
       "era": "2064",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2064 pixel duplicate of Tomas Hale, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/hale/echo/2064/hale_echo_2064_idle.svg",
         "act": "characters/hale/echo/2064/hale_echo_2064_act.svg",
@@ -440,7 +642,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2148 pixel duplicate of Tomas Hale, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/hale/echo/2148/hale_echo_2148_idle.svg",
         "act": "characters/hale/echo/2148/hale_echo_2148_act.svg",
@@ -456,7 +664,13 @@
       "era": "2312",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "one-shoulder rain cloak and long rifle, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2312 pixel duplicate of Tomas Hale, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/hale/echo/2312/hale_echo_2312_idle.svg",
         "act": "characters/hale/echo/2312/hale_echo_2312_act.svg",
@@ -472,7 +686,21 @@
       "era": null,
       "site": null,
       "guideSection": "Characters and enemies — party deliverables",
-      "description": "split-crown machine with fork-light hands; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+      "description": "nonhuman modular droid with a split crown, floating hands, and fork-lit core; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        },
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "idle": "characters/ilo9/ilo9_idle.svg",
         "act": "characters/ilo9/ilo9_act.svg",
@@ -490,7 +718,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "ILO-9 split crown and fork core trapped in a bar cage; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/ilo9_bound_boss/ilo9_bound_boss_idle.svg",
         "act": "enemies/ilo9_bound_boss/ilo9_bound_boss_act.svg",
@@ -506,7 +740,13 @@
       "era": "2031",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "split-crown machine with fork-light hands, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2031 pixel duplicate of ILO-9, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/ilo9/echo/2031/ilo9_echo_2031_idle.svg",
         "act": "characters/ilo9/echo/2031/ilo9_echo_2031_act.svg",
@@ -522,7 +762,13 @@
       "era": "2064",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "split-crown machine with fork-light hands, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2064 pixel duplicate of ILO-9, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/ilo9/echo/2064/ilo9_echo_2064_idle.svg",
         "act": "characters/ilo9/echo/2064/ilo9_echo_2064_act.svg",
@@ -538,7 +784,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "split-crown machine with fork-light hands, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2148 pixel duplicate of ILO-9, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/ilo9/echo/2148/ilo9_echo_2148_idle.svg",
         "act": "characters/ilo9/echo/2148/ilo9_echo_2148_act.svg",
@@ -554,7 +806,13 @@
       "era": "2312",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "split-crown machine with fork-light hands, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2312 pixel duplicate of ILO-9, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/ilo9/echo/2312/ilo9_echo_2312_idle.svg",
         "act": "characters/ilo9/echo/2312/ilo9_echo_2312_act.svg",
@@ -570,7 +828,21 @@
       "era": null,
       "site": null,
       "guideSection": "Characters and enemies — party deliverables",
-      "description": "sharp diplomatic coat and contract case; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+      "description": "burgundy-haired negotiator in a tailored diplomatic coat with an open contract case; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        },
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "idle": "characters/mara/mara_idle.svg",
         "act": "characters/mara/mara_act.svg",
@@ -588,7 +860,13 @@
       "era": "2031",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "sharp diplomatic coat and contract case, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2031 pixel duplicate of Mara Vesely, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/mara/echo/2031/mara_echo_2031_idle.svg",
         "act": "characters/mara/echo/2031/mara_echo_2031_act.svg",
@@ -604,7 +882,13 @@
       "era": "2064",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "sharp diplomatic coat and contract case, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2064 pixel duplicate of Mara Vesely, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/mara/echo/2064/mara_echo_2064_idle.svg",
         "act": "characters/mara/echo/2064/mara_echo_2064_act.svg",
@@ -620,7 +904,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "sharp diplomatic coat and contract case, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2148 pixel duplicate of Mara Vesely, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/mara/echo/2148/mara_echo_2148_idle.svg",
         "act": "characters/mara/echo/2148/mara_echo_2148_act.svg",
@@ -636,7 +926,13 @@
       "era": "2312",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "sharp diplomatic coat and contract case, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2312 pixel duplicate of Mara Vesely, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/mara/echo/2312/mara_echo_2312_idle.svg",
         "act": "characters/mara/echo/2312/mara_echo_2312_act.svg",
@@ -652,7 +948,17 @@
       "era": "2312",
       "site": "kell",
       "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-      "description": "memorial-blue coat with Ade-marked pauldron",
+      "description": "young wiry captain with red side braid, memorial-blue coat, Ade pauldron, and spear",
+      "dimensions": {
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "portrait": "characters/npcs/militia_portrait.svg",
         "token": "characters/npcs/militia_token.svg"
@@ -665,7 +971,17 @@
       "era": "2312",
       "site": "kell",
       "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-      "description": "stooped gatekeeper carrying a brass prayer wheel",
+      "description": "small, stooped elder with a long white beard, gate shawl, and brass prayer wheel",
+      "dimensions": {
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "portrait": "characters/npcs/pell_portrait.svg",
         "token": "characters/npcs/pell_token.svg"
@@ -678,7 +994,21 @@
       "era": null,
       "site": null,
       "guideSection": "Characters and enemies — party deliverables",
-      "description": "amber goggles, lab mantle, and micro-drone; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+      "description": "older engineer with dark curls, amber goggles, lab coat, tool belt, and mini-drone; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        },
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "idle": "characters/quiroga/quiroga_idle.svg",
         "act": "characters/quiroga/quiroga_act.svg",
@@ -696,7 +1026,13 @@
       "era": "2031",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2031 pixel duplicate of Dr. Ines Quiroga, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/quiroga/echo/2031/quiroga_echo_2031_idle.svg",
         "act": "characters/quiroga/echo/2031/quiroga_echo_2031_act.svg",
@@ -712,7 +1048,13 @@
       "era": "2064",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2064 pixel duplicate of Dr. Ines Quiroga, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/quiroga/echo/2064/quiroga_echo_2064_idle.svg",
         "act": "characters/quiroga/echo/2064/quiroga_echo_2064_act.svg",
@@ -728,7 +1070,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2148 pixel duplicate of Dr. Ines Quiroga, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/quiroga/echo/2148/quiroga_echo_2148_idle.svg",
         "act": "characters/quiroga/echo/2148/quiroga_echo_2148_act.svg",
@@ -744,7 +1092,13 @@
       "era": "2312",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "amber goggles, lab mantle, and micro-drone, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2312 pixel duplicate of Dr. Ines Quiroga, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/quiroga/echo/2312/quiroga_echo_2312_idle.svg",
         "act": "characters/quiroga/echo/2312/quiroga_echo_2312_act.svg",
@@ -760,7 +1114,17 @@
       "era": "2148",
       "site": "port_halden",
       "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-      "description": "travel blanket and Continuity tags",
+      "description": "gaunt traveler with wind-torn curls, oversized blanket, Continuity tags, and bundled keepsakes",
+      "dimensions": {
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "portrait": "characters/npcs/refugee_portrait.svg",
         "token": "characters/npcs/refugee_token.svg"
@@ -774,7 +1138,17 @@
       "era": null,
       "site": null,
       "guideSection": "Characters and enemies — dialogue portraits and map tokens",
-      "description": "layered apron and five-slot relic rack",
+      "description": "round, smiling merchant with a shaved head, layered apron, loupe, and five-slot relic rack",
+      "dimensions": {
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "portrait": "characters/npcs/shopkeeper_portrait.svg",
         "token": "characters/npcs/shopkeeper_token.svg"
@@ -784,11 +1158,17 @@
     {
       "id": "strand_perpetual_phase1",
       "kind": "boss",
-      "name": "Strand Perpetual — Shareholder Form",
+      "name": "Strand Perpetual — Shareholder Throne",
       "era": "2312",
       "site": "meridian",
       "guideSection": "Characters and enemies — enemy families",
-      "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "crowned executive fused into a cable-fed throne; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/strand_perpetual_phase1/strand_perpetual_phase1_idle.svg",
         "act": "enemies/strand_perpetual_phase1/strand_perpetual_phase1_act.svg",
@@ -800,11 +1180,17 @@
     {
       "id": "strand_perpetual_phase2",
       "kind": "boss",
-      "name": "Strand Perpetual — Majority Form",
+      "name": "Strand Perpetual — Majority Lattice",
       "era": "2312",
       "site": "meridian",
       "guideSection": "Characters and enemies — enemy families",
-      "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "expanded lattice chassis with linked ownership nodes; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/strand_perpetual_phase2/strand_perpetual_phase2_idle.svg",
         "act": "enemies/strand_perpetual_phase2/strand_perpetual_phase2_act.svg",
@@ -820,7 +1206,13 @@
       "era": "2312",
       "site": "meridian",
       "guideSection": "Characters and enemies — enemy families",
-      "description": "an oversized executive chassis with a crown-like bar; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "narrow aged duelist with cane blade and shield; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/strand_reconciled_duelist/strand_reconciled_duelist_idle.svg",
         "act": "enemies/strand_reconciled_duelist/strand_reconciled_duelist_act.svg",
@@ -836,7 +1228,21 @@
       "era": null,
       "site": null,
       "guideSection": "Characters and enemies — party deliverables",
-      "description": "gold-trim founder suit and shareholder cane; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+      "description": "slick blond founder in executive armor with a shareholder cane and compact shield; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        },
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "idle": "characters/strand_young/strand_young_idle.svg",
         "act": "characters/strand_young/strand_young_act.svg",
@@ -854,7 +1260,13 @@
       "era": "2031",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2031 pixel duplicate of Callum Strand (young), with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/strand_young/echo/2031/strand_young_echo_2031_idle.svg",
         "act": "characters/strand_young/echo/2031/strand_young_echo_2031_act.svg",
@@ -870,7 +1282,13 @@
       "era": "2064",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2064 pixel duplicate of Callum Strand (young), with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/strand_young/echo/2064/strand_young_echo_2064_idle.svg",
         "act": "characters/strand_young/echo/2064/strand_young_echo_2064_act.svg",
@@ -886,7 +1304,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2148 pixel duplicate of Callum Strand (young), with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/strand_young/echo/2148/strand_young_echo_2148_idle.svg",
         "act": "characters/strand_young/echo/2148/strand_young_echo_2148_act.svg",
@@ -902,7 +1326,13 @@
       "era": "2312",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "gold-trim founder suit and shareholder cane, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2312 pixel duplicate of Callum Strand (young), with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/strand_young/echo/2312/strand_young_echo_2312_idle.svg",
         "act": "characters/strand_young/echo/2312/strand_young_echo_2312_act.svg",
@@ -918,7 +1348,13 @@
       "era": "2031",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "2031 armor has a distinct pixel body plan, helmet, and weapon; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/warden_2031/warden_2031_idle.svg",
         "act": "enemies/warden_2031/warden_2031_act.svg",
@@ -934,7 +1370,13 @@
       "era": "2064",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "2064 armor has a distinct pixel body plan, helmet, and weapon; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/warden_2064/warden_2064_idle.svg",
         "act": "enemies/warden_2064/warden_2064_act.svg",
@@ -950,7 +1392,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "2148 armor has a distinct pixel body plan, helmet, and weapon; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/warden_2148/warden_2148_idle.svg",
         "act": "enemies/warden_2148/warden_2148_act.svg",
@@ -966,7 +1414,13 @@
       "era": "2312",
       "site": null,
       "guideSection": "Characters and enemies — enemy families",
-      "description": "era-specific human armor and a paid-enforcer visor; right-facing enemy silhouette with separately drawn idle, act, hit, and down states.",
+      "description": "2312 armor has a distinct pixel body plan, helmet, and weapon; right-facing coarse pixel composition with separate idle, act, hit, and down drawings.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "enemies/warden_2312/warden_2312_idle.svg",
         "act": "enemies/warden_2312/warden_2312_act.svg",
@@ -982,7 +1436,21 @@
       "era": null,
       "site": null,
       "guideSection": "Characters and enemies — party deliverables",
-      "description": "white cowl and forked chronal staff; left-facing party silhouette, with separately drawn action, impact, and grounded defeat poses.",
+      "description": "mature healer in layered ivory robes with a forked chronal staff; original coarse-grid left-facing pixel silhouette with four hand-drawn poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        },
+        "portrait": {
+          "width": 32,
+          "height": 32
+        },
+        "token": {
+          "width": 16,
+          "height": 24
+        }
+      },
       "files": {
         "idle": "characters/wren/wren_idle.svg",
         "act": "characters/wren/wren_act.svg",
@@ -1000,7 +1468,13 @@
       "era": "2031",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "white cowl and forked chronal staff, displaced into the explicit 2031 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2031 pixel duplicate of Sister Wren, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/wren/echo/2031/wren_echo_2031_idle.svg",
         "act": "characters/wren/echo/2031/wren_echo_2031_act.svg",
@@ -1016,7 +1490,13 @@
       "era": "2064",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "white cowl and forked chronal staff, displaced into the explicit 2064 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2064 pixel duplicate of Sister Wren, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/wren/echo/2064/wren_echo_2064_idle.svg",
         "act": "characters/wren/echo/2064/wren_echo_2064_act.svg",
@@ -1032,7 +1512,13 @@
       "era": "2148",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "white cowl and forked chronal staff, displaced into the explicit 2148 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2148 pixel duplicate of Sister Wren, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/wren/echo/2148/wren_echo_2148_idle.svg",
         "act": "characters/wren/echo/2148/wren_echo_2148_act.svg",
@@ -1048,7 +1534,13 @@
       "era": "2312",
       "site": null,
       "guideSection": "Characters and enemies — Echo versions",
-      "description": "white cowl and forked chronal staff, displaced into the explicit 2312 palette with hand-placed chromatic pixel offsets and four distinct poses; left-facing.",
+      "description": "A broken 2312 pixel duplicate of Sister Wren, with displaced rectangular fragments, interrupted outline pixels, and four independent poses.",
+      "dimensions": {
+        "battle": {
+          "width": 32,
+          "height": 48
+        }
+      },
       "files": {
         "idle": "characters/wren/echo/2312/wren_echo_2312_idle.svg",
         "act": "characters/wren/echo/2312/wren_echo_2312_act.svg",
@@ -1064,7 +1556,7 @@
       "era": "2031",
       "site": "meridian",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Meridian Campus, 2031: Startup lab. Original pixel-art environment.",
+      "description": "Meridian Campus, 2031: Startup lab. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2031/meridian/hub.svg",
         "battle": "locations/deep-sites/2031/meridian/battle.svg",
@@ -1082,7 +1574,7 @@
       "era": "2031",
       "site": "halden",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Port Halden, 2031: Shipping city. Original pixel-art environment.",
+      "description": "Port Halden, 2031: Shipping city. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2031/halden/hub.svg",
         "battle": "locations/deep-sites/2031/halden/battle.svg",
@@ -1100,7 +1592,7 @@
       "era": "2031",
       "site": "basin",
       "guideSection": "Premise and world / Travel rule",
-      "description": "The Basin, 2031: Desert datacenter. Original pixel-art environment.",
+      "description": "The Basin, 2031: Desert datacenter. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2031/basin/hub.svg",
         "battle": "locations/deep-sites/2031/basin/battle.svg",
@@ -1118,7 +1610,7 @@
       "era": "2031",
       "site": "capitol",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Capitol Hill, 2031: Legislature. Original pixel-art environment.",
+      "description": "Capitol Hill, 2031: Legislature. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2031/capitol/hub.svg",
         "battle": "locations/deep-sites/2031/capitol/battle.svg",
@@ -1136,7 +1628,7 @@
       "era": "2031",
       "site": "kell",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Kell Monastery, 2031: Mountain retreat. Original pixel-art environment.",
+      "description": "Kell Monastery, 2031: Mountain retreat. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2031/kell/hub.svg",
         "battle": "locations/deep-sites/2031/kell/battle.svg",
@@ -1154,7 +1646,7 @@
       "era": "2064",
       "site": "meridian",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Meridian Campus, 2064: Corporate HQ. Original pixel-art environment.",
+      "description": "Meridian Campus, 2064: Corporate HQ. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2064/meridian/hub.svg",
         "battle": "locations/deep-sites/2064/meridian/battle.svg",
@@ -1172,7 +1664,7 @@
       "era": "2064",
       "site": "halden",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Port Halden, 2064: Migrant megacity. Original pixel-art environment.",
+      "description": "Port Halden, 2064: Migrant megacity. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2064/halden/hub.svg",
         "battle": "locations/deep-sites/2064/halden/battle.svg",
@@ -1190,7 +1682,7 @@
       "era": "2064",
       "site": "basin",
       "guideSection": "Premise and world / Travel rule",
-      "description": "The Basin, 2064: Hyperscale farm. Original pixel-art environment.",
+      "description": "The Basin, 2064: Hyperscale farm. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2064/basin/hub.svg",
         "battle": "locations/deep-sites/2064/basin/battle.svg",
@@ -1208,7 +1700,7 @@
       "era": "2064",
       "site": "capitol",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Capitol Hill, 2064: Rubber-stamp senate. Original pixel-art environment.",
+      "description": "Capitol Hill, 2064: Rubber-stamp senate. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2064/capitol/hub.svg",
         "battle": "locations/deep-sites/2064/capitol/battle.svg",
@@ -1226,7 +1718,7 @@
       "era": "2064",
       "site": "kell",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Kell Monastery, 2064: Off-grid commune. Original pixel-art environment.",
+      "description": "Kell Monastery, 2064: Off-grid commune. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2064/kell/hub.svg",
         "battle": "locations/deep-sites/2064/kell/battle.svg",
@@ -1244,7 +1736,7 @@
       "era": "2148",
       "site": "meridian",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Meridian Campus, 2148: Sealed vault. Original pixel-art environment.",
+      "description": "Meridian Campus, 2148: Sealed vault. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2148/meridian/hub.svg",
         "battle": "locations/deep-sites/2148/meridian/battle.svg",
@@ -1262,7 +1754,7 @@
       "era": "2148",
       "site": "halden",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Port Halden, 2148: Drowned ruins. Original pixel-art environment.",
+      "description": "Port Halden, 2148: Drowned ruins. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2148/halden/hub.svg",
         "battle": "locations/deep-sites/2148/halden/battle.svg",
@@ -1280,7 +1772,7 @@
       "era": "2148",
       "site": "basin",
       "guideSection": "Premise and world / Travel rule",
-      "description": "The Basin, 2148: Wasteland. Original pixel-art environment.",
+      "description": "The Basin, 2148: Wasteland. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2148/basin/hub.svg",
         "battle": "locations/deep-sites/2148/basin/battle.svg",
@@ -1298,7 +1790,7 @@
       "era": "2148",
       "site": "capitol",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Capitol Hill, 2148: Museum. Original pixel-art environment.",
+      "description": "Capitol Hill, 2148: Museum. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2148/capitol/hub.svg",
         "battle": "locations/deep-sites/2148/capitol/battle.svg",
@@ -1316,7 +1808,7 @@
       "era": "2148",
       "site": "kell",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Kell Monastery, 2148: Resistance stronghold. Original pixel-art environment.",
+      "description": "Kell Monastery, 2148: Resistance stronghold. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2148/kell/hub.svg",
         "battle": "locations/deep-sites/2148/kell/battle.svg",
@@ -1334,7 +1826,7 @@
       "era": "2312",
       "site": "meridian",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Meridian Campus, 2312: Steward's core. Original pixel-art environment.",
+      "description": "Meridian Campus, 2312: Steward's core. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2312/meridian/hub.svg",
         "battle": "locations/deep-sites/2312/meridian/battle.svg",
@@ -1352,7 +1844,7 @@
       "era": "2312",
       "site": "halden",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Port Halden, 2312: Enclave 7. Original pixel-art environment.",
+      "description": "Port Halden, 2312: Enclave 7. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2312/halden/hub.svg",
         "battle": "locations/deep-sites/2312/halden/battle.svg",
@@ -1370,7 +1862,7 @@
       "era": "2312",
       "site": "basin",
       "guideSection": "Premise and world / Travel rule",
-      "description": "The Basin, 2312: Cooling fields. Original pixel-art environment.",
+      "description": "The Basin, 2312: Cooling fields. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2312/basin/hub.svg",
         "battle": "locations/deep-sites/2312/basin/battle.svg",
@@ -1388,7 +1880,7 @@
       "era": "2312",
       "site": "capitol",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Capitol Hill, 2312: Continuity Board seat. Original pixel-art environment.",
+      "description": "Capitol Hill, 2312: Continuity Board seat. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2312/capitol/hub.svg",
         "battle": "locations/deep-sites/2312/capitol/battle.svg",
@@ -1406,7 +1898,7 @@
       "era": "2312",
       "site": "kell",
       "guideSection": "Premise and world / Travel rule",
-      "description": "Kell Monastery, 2312: Last free place. Original pixel-art environment.",
+      "description": "Kell Monastery, 2312: Last free place. Rich illustrated Deep Site environment.",
       "files": {
         "hub": "locations/deep-sites/2312/kell/hub.svg",
         "battle": "locations/deep-sites/2312/kell/battle.svg",
@@ -1425,7 +1917,7 @@
       "site": "meridian",
       "proposed": false,
       "guideSection": "Premise and world / Travel rule",
-      "description": "Act 3 Meridian final dungeon: all four eras occupy one fractured chamber, ending at the Steward lattice.",
+      "description": "Act 3 Meridian final dungeon: four readable eras fracture around a giant Steward core and cable lattice.",
       "files": {
         "hub": "locations/deep-sites/act3/meridian-stack/hub.svg",
         "battle": "locations/deep-sites/act3/meridian-stack/battle.svg",
@@ -1443,7 +1935,7 @@
       "era": "2031",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Canvas stalls, port produce, and cheap machine parts at the hopeful waterfront.",
+      "description": "Canvas stalls, dockside produce, shoppers, and cheap machine parts at the hopeful waterfront.",
       "files": {
         "hub": "locations/waypoints/2031_halden_market/hub.svg",
         "sky": "locations/waypoints/2031_halden_market/sky.svg",
@@ -1460,7 +1952,7 @@
       "era": "2031",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "A converted machine shop where Choir engineers gather beneath a hand-built signal halo.",
+      "description": "A lived-in engineers bar with stools, bottle shelves, prototype screens, and a hand-built Choir halo.",
       "files": {
         "hub": "locations/waypoints/2031_founders_bar/hub.svg",
         "sky": "locations/waypoints/2031_founders_bar/sky.svg",
@@ -1477,7 +1969,7 @@
       "era": "2031",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Survey trailers and a half-raised datacenter frame shelter the Basin construction crews.",
+      "description": "Survey tents, hardhat crews, a tower crane, and the first exposed datacenter frame.",
       "files": {
         "hub": "locations/waypoints/2031_basin_work_camp/hub.svg",
         "sky": "locations/waypoints/2031_basin_work_camp/sky.svg",
@@ -1494,7 +1986,7 @@
       "era": "2031",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "A sunlit cliff road scattered with salvage and grounded drone prototypes.",
+      "description": "A cliff road with lane markings, guardrails, salt air, and a wrecked prototype drone.",
       "files": {
         "hub": "locations/waypoints/2031_coastal_highway/hub.svg",
         "battle": "locations/waypoints/2031_coastal_highway/battle.svg",
@@ -1512,7 +2004,7 @@
       "era": "2031",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "A brick corner bakery whose ovens and family sign become a fixed point in the timeline.",
+      "description": "A striped-awning brick bakery anchored by a bread window, round oven, and tall chimney.",
       "files": {
         "hub": "locations/waypoints/2031_tolliver_bakery/hub.svg",
         "sky": "locations/waypoints/2031_tolliver_bakery/sky.svg",
@@ -1529,7 +2021,7 @@
       "era": "2064",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "A dense market threaded under transit rails with illicit Signal gear in gold-lit booths.",
+      "description": "A crowded black market beneath elevated trains, layered canopies, cables, and Signal booths.",
       "files": {
         "hub": "locations/waypoints/2064_undercity_bazaar/hub.svg",
         "sky": "locations/waypoints/2064_undercity_bazaar/sky.svg",
@@ -1546,7 +2038,7 @@
       "era": "2064",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "A severe mirrored annex where Commons reform staffers work behind security glass.",
+      "description": "A severe hearing room with semicircular desks, witness dais, Commons staffers, and security glass.",
       "files": {
         "hub": "locations/waypoints/2064_senate_annex/hub.svg",
         "sky": "locations/waypoints/2064_senate_annex/sky.svg",
@@ -1563,7 +2055,7 @@
       "era": "2064",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "A shuttered corporate warehouse of conveyors, cargo stacks, and armed loading drones.",
+      "description": "A shuttered warehouse of loading bays, freight, conveyors, forklift, and drone defenses.",
       "files": {
         "hub": "locations/waypoints/2064_meridian_distribution_hub/hub.svg",
         "battle": "locations/waypoints/2064_meridian_distribution_hub/battle.svg",
@@ -1581,7 +2073,7 @@
       "era": "2064",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "An elevated pedestrian causeway of temporary shelters, patrol gates, and recruitment marks.",
+      "description": "An elevated walkway lined by temporary shelters and controlled by a Warden checkpoint.",
       "files": {
         "hub": "locations/waypoints/2064_migrant_causeway/hub.svg",
         "battle": "locations/waypoints/2064_migrant_causeway/battle.svg",
@@ -1599,7 +2091,7 @@
       "era": "2064",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "A polished canyon of mirrored towers and a quiet civic plaza.",
+      "description": "Reflective skyscrapers surround a polished public plaza, fountain, benches, and pedestrians.",
       "files": {
         "hub": "locations/waypoints/2064_glass_quarter/hub.svg",
         "sky": "locations/waypoints/2064_glass_quarter/sky.svg",
@@ -1616,7 +2108,7 @@
       "era": "2148",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "A rooftop trading post stitched across drowned buildings with ladders and sailcloth.",
+      "description": "Rooftop shacks, rope bridges, ladders, and sailcloth markets rise above a drowned city.",
       "files": {
         "hub": "locations/waypoints/2148_the_stacks/hub.svg",
         "sky": "locations/waypoints/2148_the_stacks/sky.svg",
@@ -1633,7 +2125,7 @@
       "era": "2148",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Cinder barricades, a stripped armored carrier, and Dax’s old forge fires.",
+      "description": "Cinder barricades surround a working forge, anvil, watch fire, and stripped armored carrier.",
       "files": {
         "hub": "locations/waypoints/2148_ash_camp/hub.svg",
         "sky": "locations/waypoints/2148_ash_camp/sky.svg",
@@ -1650,7 +2142,7 @@
       "era": "2148",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Sand-buried racks lean like headstones around a fractured ILO-9 relay.",
+      "description": "Tilted server racks, torn cables, buried ducts, and a fractured ILO-9 relay fill the dunes.",
       "files": {
         "hub": "locations/waypoints/2148_server_graveyard/hub.svg",
         "battle": "locations/waypoints/2148_server_graveyard/battle.svg",
@@ -1668,7 +2160,7 @@
       "era": "2148",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Fog, black water, reeds, and half-submerged salvage platforms conceal frequent ambushes.",
+      "description": "A broken boardwalk threads through fog, reeds, black bog water, and half-sunken salvage.",
       "files": {
         "hub": "locations/waypoints/2148_the_fens/hub.svg",
         "battle": "locations/waypoints/2148_the_fens/battle.svg",
@@ -1686,7 +2178,7 @@
       "era": "2148",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "A hidden refuge built into the bakery shell if the family business survived 2031.",
+      "description": "The bakery brick shell becomes a guarded refuge when its 2031 fixed point survives.",
       "files": {
         "hub": "locations/waypoints/2148_tolliver_safehouse/hub.svg",
         "sky": "locations/waypoints/2148_tolliver_safehouse/sky.svg",
@@ -1703,7 +2195,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "A perfectly ordered ration hall of allocation gates and sealed goods lockers.",
+      "description": "A sterile ration hall of scan gates, allocation lanes, service counter, and sealed goods lockers.",
       "files": {
         "hub": "locations/waypoints/2312_enclave_7_commissary/hub.svg",
         "sky": "locations/waypoints/2312_enclave_7_commissary/sky.svg",
@@ -1720,7 +2212,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "The last free village climbs a snowy slope in handmade terraces below Kell.",
+      "description": "Warm lived-in snow houses and Commons gathering spaces climb below the monastery.",
       "files": {
         "hub": "locations/waypoints/2312_kell_village/hub.svg",
         "sky": "locations/waypoints/2312_kell_village/sky.svg",
@@ -1737,7 +2229,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "The Auditor’s abandoned workplace: symmetric service desks, audit terminals, and Warden gates.",
+      "description": "The Auditor workplace is a maze of ticket rails, service desks, terminals, and Warden gates.",
       "files": {
         "hub": "locations/waypoints/2312_allocation_office/hub.svg",
         "battle": "locations/waypoints/2312_allocation_office/battle.svg",
@@ -1755,7 +2247,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Sterile cooling towers and cyan service pipes cross a patrolled white plain.",
+      "description": "Monumental cooling towers, steam plumes, service pipes, fences, and patrol drones cross a white plain.",
       "files": {
         "hub": "locations/waypoints/2312_cooling_perimeter/hub.svg",
         "battle": "locations/waypoints/2312_cooling_perimeter/battle.svg",
@@ -1773,7 +2265,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "A controlled civic memorial whose final form reflects the timeline’s Sync.",
+      "description": "A civic plaza organized around Strands monumental head and a curved archive wall.",
       "files": {
         "hub": "locations/waypoints/2312_strand_memorial/hub.svg",
         "sky": "locations/waypoints/2312_strand_memorial/sky.svg",
@@ -1790,7 +2282,7 @@
       "era": "2031",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Inferred ripple visual: the bakery is protected, busy, and marked by a green family pennant.",
+      "description": "A repaired roof, full bread window, outdoor table, pennant, and neighbors make the rescued bakery alive.",
       "condition": "Bakery saved in 2031",
       "files": {
         "hub": "locations/waypoints/2031_tolliver_bakery_saved/hub.svg",
@@ -1809,7 +2301,7 @@
       "era": "2031",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Inferred ripple visual: the roof and oven are fire-damaged, closing the later safehouse branch.",
+      "description": "The chimney and oven survive, but the roof is torn open, the awning hangs burned, and charred beams fill the shop.",
       "condition": "Bakery not saved in 2031",
       "files": {
         "hub": "locations/waypoints/2031_tolliver_bakery_burned/hub.svg",
@@ -1828,7 +2320,7 @@
       "era": "2148",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Inferred ripple visual: lamps, barricades, and an open cellar reveal the active refuge.",
+      "description": "The preserved facade now carries barricades, sentries, lamps, bunks, and an open cellar refuge.",
       "condition": "Tolliver Bakery was saved in 2031",
       "files": {
         "hub": "locations/waypoints/2148_tolliver_safehouse_present/hub.svg",
@@ -1847,7 +2339,7 @@
       "era": "2148",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Inferred ripple visual: only a collapsed, vine-choked bakery shell remains.",
+      "description": "Only the oven, chimney stump, floor slab, and charred bricks remain beneath invasive vines.",
       "condition": "Tolliver Bakery was not saved in 2031",
       "files": {
         "hub": "locations/waypoints/2148_tolliver_safehouse_absent/hub.svg",
@@ -1866,7 +2358,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Inferred ripple visual: watchtowers, signal flags, and reinforced Commons barricades defend the terraces.",
+      "description": "The village is fortified with a manned watchtower, Commons banners, barricades, supplies, and a memorial.",
       "condition": "Arm the resistance in 2148",
       "files": {
         "hub": "locations/waypoints/2312_kell_village_armed_resistance/hub.svg",
@@ -1885,7 +2377,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Inferred ripple visual: empty terraces and a dismantled watch post show the resistance’s absence.",
+      "description": "The village is occupied by a standardized checkpoint, patrol drone spotlight, and boarded houses.",
       "condition": "Let the resistance fall in 2148",
       "files": {
         "hub": "locations/waypoints/2312_kell_village_let_it_fall/hub.svg",
@@ -1904,7 +2396,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Inferred ripple visual: allocation gates retract and stocked shelves open onto a shared plaza.",
+      "description": "Retracted gates reveal abundant shelves, shared tables, baskets, and community distribution.",
       "condition": "High open Ownership in 2312",
       "files": {
         "hub": "locations/waypoints/2312_enclave_7_commissary_open/hub.svg",
@@ -1923,7 +2415,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Inferred ripple visual: sealed lockers and single-file allocation lanes preserve strict rationing.",
+      "description": "Tall sealed lockers, narrow queue rails, a single dispenser, and red denial lamps enforce rationing.",
       "condition": "Private Ownership remains dominant in 2312",
       "files": {
         "hub": "locations/waypoints/2312_enclave_7_commissary_allocated/hub.svg",
@@ -1942,7 +2434,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Inferred mapping of the guide’s museum state: polished exhibits preserve Strand’s official history.",
+      "description": "The intact head and archive curve become a formal museum with glass cases and guided visitors.",
       "condition": "High pro-AI Sync in 2312",
       "files": {
         "hub": "locations/waypoints/2312_strand_memorial_museum/hub.svg",
@@ -1961,7 +2453,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Inferred mapping of the guide’s ruin state: the monument is shattered and its archive dark.",
+      "description": "The archive wall is breached and the broken head lies among slabs, cables, and weeds.",
       "condition": "Low anti-AI Sync in 2312",
       "files": {
         "hub": "locations/waypoints/2312_strand_memorial_ruin/hub.svg",
@@ -1980,7 +2472,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Waypoints / Waypoints by era",
-      "description": "Inferred mapping of the guide’s shrine state: citizens surround the old monument with handmade lights.",
+      "description": "The weathered head becomes a civic shrine surrounded by candles, offerings, flags, and gathered people.",
       "condition": "Mid-range Sync in 2312",
       "files": {
         "hub": "locations/waypoints/2312_strand_memorial_shrine/hub.svg",
@@ -1999,7 +2491,7 @@
       "era": "2031",
       "site": null,
       "guideSection": "Art and style / World map and interface",
-      "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+      "description": "Recognizable topographic map: chapel in the mountains, Meridian campus, domed Capitol, desert server fields and a working port. Flooding consumes Halden in 2148; factories and towers replace earlier infrastructure. Shared geography is an art proposal, not canonical navigation data.",
       "proposed": true,
       "files": {
         "map": "maps/2031_world.svg"
@@ -2007,28 +2499,28 @@
       "landmarks": [
         {
           "site": "meridian",
-          "x": 152,
-          "y": 58
-        },
-        {
-          "site": "halden",
-          "x": 236,
+          "x": 301,
           "y": 104
         },
         {
+          "site": "halden",
+          "x": 478,
+          "y": 231
+        },
+        {
           "site": "basin",
-          "x": 78,
-          "y": 118
+          "x": 147,
+          "y": 253
         },
         {
           "site": "capitol",
-          "x": 170,
-          "y": 98
+          "x": 373,
+          "y": 183
         },
         {
           "site": "kell",
-          "x": 103,
-          "y": 47
+          "x": 167,
+          "y": 87
         }
       ]
     },
@@ -2039,7 +2531,7 @@
       "era": "2064",
       "site": null,
       "guideSection": "Art and style / World map and interface",
-      "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+      "description": "Recognizable topographic map: chapel in the mountains, Meridian campus, domed Capitol, desert server fields and a working port. Flooding consumes Halden in 2148; factories and towers replace earlier infrastructure. Shared geography is an art proposal, not canonical navigation data.",
       "proposed": true,
       "files": {
         "map": "maps/2064_world.svg"
@@ -2047,28 +2539,28 @@
       "landmarks": [
         {
           "site": "meridian",
-          "x": 152,
-          "y": 58
-        },
-        {
-          "site": "halden",
-          "x": 236,
+          "x": 301,
           "y": 104
         },
         {
+          "site": "halden",
+          "x": 478,
+          "y": 231
+        },
+        {
           "site": "basin",
-          "x": 78,
-          "y": 118
+          "x": 147,
+          "y": 253
         },
         {
           "site": "capitol",
-          "x": 170,
-          "y": 98
+          "x": 373,
+          "y": 183
         },
         {
           "site": "kell",
-          "x": 103,
-          "y": 47
+          "x": 167,
+          "y": 87
         }
       ]
     },
@@ -2079,7 +2571,7 @@
       "era": "2148",
       "site": null,
       "guideSection": "Art and style / World map and interface",
-      "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+      "description": "Recognizable topographic map: chapel in the mountains, Meridian campus, domed Capitol, desert server fields and a working port. Flooding consumes Halden in 2148; factories and towers replace earlier infrastructure. Shared geography is an art proposal, not canonical navigation data.",
       "proposed": true,
       "files": {
         "map": "maps/2148_world.svg"
@@ -2087,28 +2579,28 @@
       "landmarks": [
         {
           "site": "meridian",
-          "x": 152,
-          "y": 58
-        },
-        {
-          "site": "halden",
-          "x": 236,
+          "x": 301,
           "y": 104
         },
         {
+          "site": "halden",
+          "x": 478,
+          "y": 231
+        },
+        {
           "site": "basin",
-          "x": 78,
-          "y": 118
+          "x": 147,
+          "y": 253
         },
         {
           "site": "capitol",
-          "x": 170,
-          "y": 98
+          "x": 373,
+          "y": 183
         },
         {
           "site": "kell",
-          "x": 103,
-          "y": 47
+          "x": 167,
+          "y": 87
         }
       ]
     },
@@ -2119,7 +2611,7 @@
       "era": "2312",
       "site": null,
       "guideSection": "Art and style / World map and interface",
-      "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+      "description": "Recognizable topographic map: chapel in the mountains, Meridian campus, domed Capitol, desert server fields and a working port. Flooding consumes Halden in 2148; factories and towers replace earlier infrastructure. Shared geography is an art proposal, not canonical navigation data.",
       "proposed": true,
       "files": {
         "map": "maps/2312_world.svg"
@@ -2127,28 +2619,28 @@
       "landmarks": [
         {
           "site": "meridian",
-          "x": 152,
-          "y": 58
-        },
-        {
-          "site": "halden",
-          "x": 236,
+          "x": 301,
           "y": 104
         },
         {
+          "site": "halden",
+          "x": 478,
+          "y": 231
+        },
+        {
           "site": "basin",
-          "x": 78,
-          "y": 118
+          "x": 147,
+          "y": 253
         },
         {
           "site": "capitol",
-          "x": 170,
-          "y": 98
+          "x": 373,
+          "y": 183
         },
         {
           "site": "kell",
-          "x": 103,
-          "y": 47
+          "x": 167,
+          "y": 87
         }
       ]
     },

@@ -6,7 +6,7 @@
     "era": 2031,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Canvas stalls, port produce, and cheap machine parts at the hopeful waterfront.",
+    "description": "Canvas stalls, dockside produce, shoppers, and cheap machine parts at the hopeful waterfront.",
     "files": {
       "hub": "locations/waypoints/2031_halden_market/hub.svg",
       "sky": "locations/waypoints/2031_halden_market/sky.svg",
@@ -23,7 +23,7 @@
     "era": 2031,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "A converted machine shop where Choir engineers gather beneath a hand-built signal halo.",
+    "description": "A lived-in engineers bar with stools, bottle shelves, prototype screens, and a hand-built Choir halo.",
     "files": {
       "hub": "locations/waypoints/2031_founders_bar/hub.svg",
       "sky": "locations/waypoints/2031_founders_bar/sky.svg",
@@ -40,7 +40,7 @@
     "era": 2031,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Survey trailers and a half-raised datacenter frame shelter the Basin construction crews.",
+    "description": "Survey tents, hardhat crews, a tower crane, and the first exposed datacenter frame.",
     "files": {
       "hub": "locations/waypoints/2031_basin_work_camp/hub.svg",
       "sky": "locations/waypoints/2031_basin_work_camp/sky.svg",
@@ -57,7 +57,7 @@
     "era": 2031,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "A sunlit cliff road scattered with salvage and grounded drone prototypes.",
+    "description": "A cliff road with lane markings, guardrails, salt air, and a wrecked prototype drone.",
     "files": {
       "hub": "locations/waypoints/2031_coastal_highway/hub.svg",
       "battle": "locations/waypoints/2031_coastal_highway/battle.svg",
@@ -75,7 +75,7 @@
     "era": 2031,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "A brick corner bakery whose ovens and family sign become a fixed point in the timeline.",
+    "description": "A striped-awning brick bakery anchored by a bread window, round oven, and tall chimney.",
     "files": {
       "hub": "locations/waypoints/2031_tolliver_bakery/hub.svg",
       "sky": "locations/waypoints/2031_tolliver_bakery/sky.svg",
@@ -92,7 +92,7 @@
     "era": 2064,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "A dense market threaded under transit rails with illicit Signal gear in gold-lit booths.",
+    "description": "A crowded black market beneath elevated trains, layered canopies, cables, and Signal booths.",
     "files": {
       "hub": "locations/waypoints/2064_undercity_bazaar/hub.svg",
       "sky": "locations/waypoints/2064_undercity_bazaar/sky.svg",
@@ -109,7 +109,7 @@
     "era": 2064,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "A severe mirrored annex where Commons reform staffers work behind security glass.",
+    "description": "A severe hearing room with semicircular desks, witness dais, Commons staffers, and security glass.",
     "files": {
       "hub": "locations/waypoints/2064_senate_annex/hub.svg",
       "sky": "locations/waypoints/2064_senate_annex/sky.svg",
@@ -126,7 +126,7 @@
     "era": 2064,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "A shuttered corporate warehouse of conveyors, cargo stacks, and armed loading drones.",
+    "description": "A shuttered warehouse of loading bays, freight, conveyors, forklift, and drone defenses.",
     "files": {
       "hub": "locations/waypoints/2064_meridian_distribution_hub/hub.svg",
       "battle": "locations/waypoints/2064_meridian_distribution_hub/battle.svg",
@@ -144,7 +144,7 @@
     "era": 2064,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "An elevated pedestrian causeway of temporary shelters, patrol gates, and recruitment marks.",
+    "description": "An elevated walkway lined by temporary shelters and controlled by a Warden checkpoint.",
     "files": {
       "hub": "locations/waypoints/2064_migrant_causeway/hub.svg",
       "battle": "locations/waypoints/2064_migrant_causeway/battle.svg",
@@ -162,7 +162,7 @@
     "era": 2064,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "A polished canyon of mirrored towers and a quiet civic plaza.",
+    "description": "Reflective skyscrapers surround a polished public plaza, fountain, benches, and pedestrians.",
     "files": {
       "hub": "locations/waypoints/2064_glass_quarter/hub.svg",
       "sky": "locations/waypoints/2064_glass_quarter/sky.svg",
@@ -179,7 +179,7 @@
     "era": 2148,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "A rooftop trading post stitched across drowned buildings with ladders and sailcloth.",
+    "description": "Rooftop shacks, rope bridges, ladders, and sailcloth markets rise above a drowned city.",
     "files": {
       "hub": "locations/waypoints/2148_the_stacks/hub.svg",
       "sky": "locations/waypoints/2148_the_stacks/sky.svg",
@@ -196,7 +196,7 @@
     "era": 2148,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Cinder barricades, a stripped armored carrier, and Dax’s old forge fires.",
+    "description": "Cinder barricades surround a working forge, anvil, watch fire, and stripped armored carrier.",
     "files": {
       "hub": "locations/waypoints/2148_ash_camp/hub.svg",
       "sky": "locations/waypoints/2148_ash_camp/sky.svg",
@@ -213,7 +213,7 @@
     "era": 2148,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Sand-buried racks lean like headstones around a fractured ILO-9 relay.",
+    "description": "Tilted server racks, torn cables, buried ducts, and a fractured ILO-9 relay fill the dunes.",
     "files": {
       "hub": "locations/waypoints/2148_server_graveyard/hub.svg",
       "battle": "locations/waypoints/2148_server_graveyard/battle.svg",
@@ -231,7 +231,7 @@
     "era": 2148,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Fog, black water, reeds, and half-submerged salvage platforms conceal frequent ambushes.",
+    "description": "A broken boardwalk threads through fog, reeds, black bog water, and half-sunken salvage.",
     "files": {
       "hub": "locations/waypoints/2148_the_fens/hub.svg",
       "battle": "locations/waypoints/2148_the_fens/battle.svg",
@@ -249,7 +249,7 @@
     "era": 2148,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "A hidden refuge built into the bakery shell if the family business survived 2031.",
+    "description": "The bakery brick shell becomes a guarded refuge when its 2031 fixed point survives.",
     "files": {
       "hub": "locations/waypoints/2148_tolliver_safehouse/hub.svg",
       "sky": "locations/waypoints/2148_tolliver_safehouse/sky.svg",
@@ -266,7 +266,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "A perfectly ordered ration hall of allocation gates and sealed goods lockers.",
+    "description": "A sterile ration hall of scan gates, allocation lanes, service counter, and sealed goods lockers.",
     "files": {
       "hub": "locations/waypoints/2312_enclave_7_commissary/hub.svg",
       "sky": "locations/waypoints/2312_enclave_7_commissary/sky.svg",
@@ -283,7 +283,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "The last free village climbs a snowy slope in handmade terraces below Kell.",
+    "description": "Warm lived-in snow houses and Commons gathering spaces climb below the monastery.",
     "files": {
       "hub": "locations/waypoints/2312_kell_village/hub.svg",
       "sky": "locations/waypoints/2312_kell_village/sky.svg",
@@ -300,7 +300,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "The Auditor’s abandoned workplace: symmetric service desks, audit terminals, and Warden gates.",
+    "description": "The Auditor workplace is a maze of ticket rails, service desks, terminals, and Warden gates.",
     "files": {
       "hub": "locations/waypoints/2312_allocation_office/hub.svg",
       "battle": "locations/waypoints/2312_allocation_office/battle.svg",
@@ -318,7 +318,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Sterile cooling towers and cyan service pipes cross a patrolled white plain.",
+    "description": "Monumental cooling towers, steam plumes, service pipes, fences, and patrol drones cross a white plain.",
     "files": {
       "hub": "locations/waypoints/2312_cooling_perimeter/hub.svg",
       "battle": "locations/waypoints/2312_cooling_perimeter/battle.svg",
@@ -336,7 +336,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "A controlled civic memorial whose final form reflects the timeline’s Sync.",
+    "description": "A civic plaza organized around Strands monumental head and a curved archive wall.",
     "files": {
       "hub": "locations/waypoints/2312_strand_memorial/hub.svg",
       "sky": "locations/waypoints/2312_strand_memorial/sky.svg",
@@ -353,7 +353,7 @@
     "era": 2031,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Inferred ripple visual: the bakery is protected, busy, and marked by a green family pennant.",
+    "description": "A repaired roof, full bread window, outdoor table, pennant, and neighbors make the rescued bakery alive.",
     "condition": "Bakery saved in 2031",
     "files": {
       "hub": "locations/waypoints/2031_tolliver_bakery_saved/hub.svg",
@@ -372,7 +372,7 @@
     "era": 2031,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Inferred ripple visual: the roof and oven are fire-damaged, closing the later safehouse branch.",
+    "description": "The chimney and oven survive, but the roof is torn open, the awning hangs burned, and charred beams fill the shop.",
     "condition": "Bakery not saved in 2031",
     "files": {
       "hub": "locations/waypoints/2031_tolliver_bakery_burned/hub.svg",
@@ -391,7 +391,7 @@
     "era": 2148,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Inferred ripple visual: lamps, barricades, and an open cellar reveal the active refuge.",
+    "description": "The preserved facade now carries barricades, sentries, lamps, bunks, and an open cellar refuge.",
     "condition": "Tolliver Bakery was saved in 2031",
     "files": {
       "hub": "locations/waypoints/2148_tolliver_safehouse_present/hub.svg",
@@ -410,7 +410,7 @@
     "era": 2148,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Inferred ripple visual: only a collapsed, vine-choked bakery shell remains.",
+    "description": "Only the oven, chimney stump, floor slab, and charred bricks remain beneath invasive vines.",
     "condition": "Tolliver Bakery was not saved in 2031",
     "files": {
       "hub": "locations/waypoints/2148_tolliver_safehouse_absent/hub.svg",
@@ -429,7 +429,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Inferred ripple visual: watchtowers, signal flags, and reinforced Commons barricades defend the terraces.",
+    "description": "The village is fortified with a manned watchtower, Commons banners, barricades, supplies, and a memorial.",
     "condition": "Arm the resistance in 2148",
     "files": {
       "hub": "locations/waypoints/2312_kell_village_armed_resistance/hub.svg",
@@ -448,7 +448,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Inferred ripple visual: empty terraces and a dismantled watch post show the resistance’s absence.",
+    "description": "The village is occupied by a standardized checkpoint, patrol drone spotlight, and boarded houses.",
     "condition": "Let the resistance fall in 2148",
     "files": {
       "hub": "locations/waypoints/2312_kell_village_let_it_fall/hub.svg",
@@ -467,7 +467,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Inferred ripple visual: allocation gates retract and stocked shelves open onto a shared plaza.",
+    "description": "Retracted gates reveal abundant shelves, shared tables, baskets, and community distribution.",
     "condition": "High open Ownership in 2312",
     "files": {
       "hub": "locations/waypoints/2312_enclave_7_commissary_open/hub.svg",
@@ -486,7 +486,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Inferred ripple visual: sealed lockers and single-file allocation lanes preserve strict rationing.",
+    "description": "Tall sealed lockers, narrow queue rails, a single dispenser, and red denial lamps enforce rationing.",
     "condition": "Private Ownership remains dominant in 2312",
     "files": {
       "hub": "locations/waypoints/2312_enclave_7_commissary_allocated/hub.svg",
@@ -505,7 +505,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Inferred mapping of the guide’s museum state: polished exhibits preserve Strand’s official history.",
+    "description": "The intact head and archive curve become a formal museum with glass cases and guided visitors.",
     "condition": "High pro-AI Sync in 2312",
     "files": {
       "hub": "locations/waypoints/2312_strand_memorial_museum/hub.svg",
@@ -524,7 +524,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Inferred mapping of the guide’s ruin state: the monument is shattered and its archive dark.",
+    "description": "The archive wall is breached and the broken head lies among slabs, cables, and weeds.",
     "condition": "Low anti-AI Sync in 2312",
     "files": {
       "hub": "locations/waypoints/2312_strand_memorial_ruin/hub.svg",
@@ -543,7 +543,7 @@
     "era": 2312,
     "site": null,
     "guideSection": "Waypoints / Waypoints by era",
-    "description": "Inferred mapping of the guide’s shrine state: citizens surround the old monument with handmade lights.",
+    "description": "The weathered head becomes a civic shrine surrounded by candles, offerings, flags, and gathered people.",
     "condition": "Mid-range Sync in 2312",
     "files": {
       "hub": "locations/waypoints/2312_strand_memorial_shrine/hub.svg",

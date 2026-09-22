@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40" width="32" height="40" shape-rendering="crispEdges" role="img" aria-labelledby="title desc">
+<title id="title">Strand Perpetual — Majority Form down</title><desc id="desc">Original rectangular pixel art generated for Provenance.</desc>
+<g id="legs"><rect x="3" y="35" width="26" height="3" fill="#10121A"/></g><g id="torso"><rect x="8" y="29" width="19" height="7" fill="#10121A"/><rect x="10" y="30" width="15" height="5" fill="#283348"/></g><g id="arm-l"><rect x="22" y="33" width="9" height="3" fill="#10121A"/></g><g id="arm-r"><rect x="4" y="37" width="9" height="2" fill="#10121A"/></g><g id="head"><rect x="1" y="31" width="8" height="6" fill="#10121A"/></g><g id="weapon"><rect x="15" y="38" width="16" height="1" fill="#EF9F27"/></g>
+</svg>
