@@ -94,3 +94,18 @@ describe('what the hub button promises', () => {
     }
   });
 });
+
+describe('the battle screen fits without scrolling', () => {
+  it('lays the action list out two wide', () => {
+    expect(rule('.battle .actionmenu .menu.cols')).toMatch(/grid-template-columns:\s*repeat\(2/);
+    const battle = readFileSync(fileURLToPath(new URL('../src/ui/screens/battle.ts', import.meta.url)), 'utf8');
+    expect(battle).toMatch(/columns:\s*2/);
+  });
+
+  it('keeps every enemy on one row, so none sits under the clip', () => {
+    // The last top-level rule for the row is the one that wins.
+    const i = css.lastIndexOf('\n.battle .enemies {');
+    expect(i).toBeGreaterThan(-1);
+    expect(css.slice(i, css.indexOf('}', i))).toMatch(/grid-auto-flow:\s*column/);
+  });
+});

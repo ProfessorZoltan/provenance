@@ -19,10 +19,15 @@ export interface MenuHandle {
   current(): MenuItem | undefined;
 }
 
-/** A focusable vertical list. Up/Down move, A selects, a shortcut button selects directly, clicks work too. */
-export function menu(items: MenuItem[], start = 0, onChange?: (i: number) => void): MenuHandle {
+/**
+ * A focusable list. Up/Down move, A selects, a shortcut button selects directly, clicks work too.
+ * With `columns` above one it lays out as a grid read left to right: Up/Down move a row, Left/Right
+ * move along it, so a long list fits a short box without scrolling.
+ */
+export function menu(items: MenuItem[], start = 0, onChange?: (i: number) => void, opts: { columns?: number } = {}): MenuHandle {
+  const cols = Math.max(1, opts.columns ?? 1);
   const el = document.createElement('ul');
-  el.className = 'menu';
+  el.className = cols > 1 ? `menu cols cols-${cols}` : 'menu';
   el.setAttribute('role', 'listbox');
   let index = Math.min(Math.max(0, start), Math.max(0, items.length - 1));
 
@@ -55,8 +60,8 @@ export function menu(items: MenuItem[], start = 0, onChange?: (i: number) => voi
       onChange?.(index);
     },
     input(btn) {
-      if (btn === 'up') { handle.focus(index - 1); return true; }
-      if (btn === 'down') { handle.focus(index + 1); return true; }
+      const to = gridStep(index, items.length, cols, btn);
+      if (to !== null) { handle.focus(to); return true; }
       if (btn === 'a') { select(); return true; }
       const sc = items.find((it) => it.shortcut === btn);
       if (sc && !sc.disabled) { sc.onSelect?.(); return true; }
@@ -66,6 +71,26 @@ export function menu(items: MenuItem[], start = 0, onChange?: (i: number) => voi
   };
   render();
   return handle;
+}
+
+/**
+ * Where a direction moves focus in a list laid out `cols` wide, read left to right; null when the
+ * button is not a direction the list uses. One column: Up/Down step and wrap. More: Up/Down move a
+ * row in the same column, wrapping to the far end of that column; Left/Right step along the list.
+ */
+export function gridStep(index: number, count: number, cols: number, btn: Button): number | null {
+  if (count <= 0) return null;
+  const wrap = (i: number) => ((i % count) + count) % count;
+  if (cols <= 1) {
+    if (btn === 'up') return wrap(index - 1);
+    if (btn === 'down') return wrap(index + 1);
+    return null;
+  }
+  if (btn === 'up') return index - cols >= 0 ? index - cols : index + cols * Math.floor((count - 1 - index) / cols);
+  if (btn === 'down') return index + cols < count ? index + cols : index % cols;
+  if (btn === 'left') return wrap(index - 1);
+  if (btn === 'right') return wrap(index + 1);
+  return null;
 }
 
 /** A horizontal focus group (cards, tabs). Left/Right move. */

@@ -26,7 +26,10 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
   for (const group of enc.enemies) {
     const def = content.enemies[group.enemy];
     for (let n = 1; n <= group.count; n++) {
-      combatants.push(enemyCombatant(def, group.count > 1 ? `${def.id}#${n}` : def.id, group.count > 1 ? `${def.name} ${n}` : def.name, stand));
+      const e = enemyCombatant(def, group.count > 1 ? `${def.id}#${n}` : def.id, group.count > 1 ? `${def.name} ${n}` : def.name, stand);
+      // Bosses, and a key fight's Construct, are the fight: nothing talks, buys or turns them off the field.
+      e.resistsControl = !!def.boss || (enc.tier === 'key' && !!def.secondBar);
+      combatants.push(e);
     }
   }
 
@@ -204,6 +207,9 @@ export function abilityOptions(b: BattleState, actorId: string, content: Content
         const partner = pairPartner(b, actor, ability, content);
         if (partner.reason) return { ability, usable: false, reason: partner.reason };
       }
+      if ((ability.special === 'parley' || ability.special === 'buyout') && !validTargets(b, actorId, ability, content).length) {
+        return { ability, usable: false, reason: ability.special === 'buyout' ? 'Nobody on the field is failing enough to buy: half Resolve or less, and never a boss' : 'Nothing here can be talked down' };
+      }
     }
     if (ability.damageType === 'signal' && b.partySync <= content.rules.overloadSync) {
       return { ability, usable: false, reason: 'Overload disables Signal abilities' };
@@ -226,13 +232,16 @@ export function pairPartner(b: BattleState, actor: Combatant, ability: AbilityDe
   return { partner };
 }
 
-export function validTargets(b: BattleState, actorId: string, ability: AbilityDef): Combatant[] {
+export function validTargets(b: BattleState, actorId: string, ability: AbilityDef, content?: ContentDB): Combatant[] {
   const actor = b.combatants.find((c) => c.id === actorId);
   if (!actor) return [];
   const foes = actor.side === 'party' ? 'enemy' : 'party';
   switch (ability.target) {
     case 'enemy': {
-      const all = alive(b, foes).filter((e) => !ability.requiresMachine || e.machine);
+      let all = alive(b, foes).filter((e) => !ability.requiresMachine || e.machine);
+      if (ability.special === 'parley' || ability.special === 'buyout') all = all.filter((e) => !e.resistsControl);
+      // Buyout buys a failing position only.
+      if (ability.special === 'buyout') all = all.filter((e) => e.hp <= e.maxHp * (content?.rules.control.buyoutBelow ?? 0.5));
       // Whoever is standing in front takes it: a Bulwark on either side draws every single hit.
       const wall = all.filter((e) => hasStatus(e, 'taunt') || hasStatus(e, 'wall'));
       return wall.length ? wall : all;
@@ -257,6 +266,11 @@ function tickStatuses(b: BattleState, c: Combatant): { b: BattleState; c: Combat
 function beginTurn(b: BattleState, content: ContentDB): BattleState {
   const actor = current(b);
   if (!actor) return b;
+  if (actor.temporary && actor.expiresAfterRound !== undefined && b.round > actor.expiresAfterRound && actor.returnsTo) {
+    b = update(b, actor.id, (c) => ({ ...c, side: c.returnsTo!, temporary: false, expiresAfterRound: undefined, returnsTo: undefined, statuses: [] }));
+    b = log(b, `${actor.name} thinks better of it and turns back.`, 'warn', { actor: actor.name });
+    return beginTurn(b, content);
+  }
   if (actor.temporary && actor.expiresAfterRound !== undefined && b.round > actor.expiresAfterRound) {
     b = update(b, actor.id, (c) => ({ ...c, down: true, hp: 0, statuses: [] }));
     b = log(b, `${actor.name} runs out of time and dissolves.`, 'tempo', { actor: actor.name });
@@ -391,7 +405,8 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   if (ability.special === 'killingSilence') {
     const held = statusCount(actor, 'held');
     const raw = evalFormula(ability.formula ?? '0', { a: actor.stats, d: target.stats, marks: 0, lost: actor.maxHp - actor.hp });
-    const dmg = Math.max(1, Math.round(raw * (1 + (0.6 + (p.holdBonus ?? 0)) * held)));
+    // The same exchange scale every other hit pays: without it this one shot landed twice as hard.
+    const dmg = Math.max(1, Math.round(raw * (1 + (0.6 + (p.holdBonus ?? 0)) * held) * content.rules.damageScale));
     let hp = Math.max(0, target.hp - dmg);
     const enemyDef = content.enemies[target.ref];
     let broke: SecondBar | null = null;
@@ -572,6 +587,14 @@ function applyStatus(b: BattleState, target: Combatant, status: StatusEffect, co
     b = update(b, target.id, (c) => ({ ...c, statuses: c.statuses.filter((st) => st.id !== 'charging') }));
     b = log(b, `${target.name}'s wind-up is broken.`, 'tempo', { target: target.name });
   }
+  // Stacking bonuses stop at a cap: past it, a fresh copy only refreshes the oldest.
+  const cap = content.rules.control.stackCap;
+  if (STATUS_INFO[status.id]?.stacks && statusCount(target, status.id) >= cap) {
+    const i = target.statuses.findIndex((st) => st.id === status.id);
+    const refreshed = target.statuses.map((st, j) => (j === i ? { ...st, turns: Math.max(st.turns, status.turns) } : st));
+    b = update(b, target.id, (c) => ({ ...c, statuses: refreshed }));
+    return log(b, `${target.name} already carries ${cap} of ${statusLabel(status.id)}; the oldest is refreshed instead.`, 'system', { target: target.name });
+  }
   let turns = status.turns;
   if (status.id === 'marked') turns += b.passives[actorId]?.markDuration ?? 0;
   if (status.id === 'bound') turns += b.passives[actorId]?.boundTurns ?? 0;
@@ -592,7 +615,7 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
   if (!opts) throw new Error(`${actor.name} does not have ${abilityId}`);
   if (!opts.usable) throw new Error(opts.reason ?? 'Cannot use');
 
-  const targets = validTargets(b, actorId, ability);
+  const targets = validTargets(b, actorId, ability, content);
   let chosen: Combatant[];
   if (ability.target === 'allEnemies' || ability.target === 'allAllies') chosen = targets;
   else if (ability.target === 'self') chosen = [actor];
@@ -640,6 +663,10 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
 
   if (ability.special === 'parley') {
     const t = chosen[0];
+    if (t?.resistsControl) {
+      b = log(b, `${actor.name} tries to talk ${t.name} down. It hears every word and does not move.`, 'warn', { actor: actor.name, target: t.name, ability: ability.name });
+      return afterAction(b, content);
+    }
     const chance = clamp(0.4 + actor.stats.signal / 200 - t.stats.noise / 400 + (b.passives[actorId]?.parleyBonus ?? 0), 0.2, 0.95);
     const [r, rng] = roll(b.rng);
     b = { ...b, rng };
@@ -652,15 +679,31 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     return afterAction(b, content);
   }
 
+  // Settlement calls in the contracts that are already failing: every bound enemy at half Resolve or
+  // less is settled off the field. A boss is never settled; its contract costs it a slice of Resolve.
   if (ability.special === 'settlement') {
-    const foes = alive(b, actor.side === 'party' ? 'enemy' : 'party');
-    const loose = foes.filter((f) => !hasStatus(f, 'bound'));
-    if (loose.length) {
-      b = log(b, `${actor.name} calls for terms, but ${loose.map((f) => f.name).join(' and ')} ${loose.length === 1 ? 'is' : 'are'} not bound to anything.`, 'warn', { actor: actor.name, ability: ability.name });
+    const ctl = rules.control;
+    const foes = alive(b, actor.side === 'party' ? 'enemy' : 'party').filter((f) => hasStatus(f, 'bound'));
+    if (!foes.length) {
+      b = log(b, `${actor.name} calls for terms, but nobody on the field is bound to anything.`, 'warn', { actor: actor.name, ability: ability.name });
       return afterAction(b, content);
     }
-    for (const f of foes) b = update(b, f.id, (c) => ({ ...c, down: true, parleyed: true, statuses: [] }));
-    b = log(b, `${actor.name} settles. Every contract on the field is called in at once, and the fight is simply over.`, 'tempo', { actor: actor.name, ability: ability.name });
+    const settled: string[] = []; const held: string[] = [];
+    for (const f of foes) {
+      if (f.resistsControl) {
+        const hit = Math.max(1, Math.round(f.maxHp * ctl.settleBossDamage));
+        b = update(b, f.id, (c) => ({ ...c, hp: Math.max(1, c.hp - hit) }));
+        held.push(`${f.name} (${hit})`);
+      } else if (f.hp <= f.maxHp * ctl.settleBelow) {
+        b = update(b, f.id, (c) => ({ ...c, down: true, parleyed: true, statuses: [] }));
+        settled.push(f.name);
+      }
+    }
+    const parts = [
+      settled.length ? `${settled.join(' and ')} ${settled.length === 1 ? 'is' : 'are'} settled and leave${settled.length === 1 ? 's' : ''} the field` : '',
+      held.length ? `${held.join(', ')} ${held.length === 1 ? 'pays' : 'pay'} out of Resolve instead` : '',
+    ].filter(Boolean);
+    b = log(b, parts.length ? `${actor.name} settles. ${parts.join('; ')}.` : `${actor.name} calls the contracts in, but none of them is failing yet: settle below half Resolve.`, parts.length ? 'tempo' : 'warn', { actor: actor.name, ability: ability.name });
     return afterAction(b, content);
   }
 
@@ -686,17 +729,24 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
 
   // Open Weights: every machine on the other side stops being on the other side.
   if (ability.special === 'openWeights') {
-    const machines = alive(b, actor.side === 'party' ? 'enemy' : 'party').filter((c) => c.machine);
+    const other = alive(b, actor.side === 'party' ? 'enemy' : 'party');
+    let machines = other.filter((c) => c.machine && !c.resistsControl);
+    // Someone has to be left to argue with: on a field of nothing but machines, the strongest keeps its mind.
+    if (machines.length === other.length && machines.length) {
+      const holdout = [...machines].sort((x, y) => y.hp + y.shield - (x.hp + x.shield))[0];
+      machines = machines.filter((c) => c.id !== holdout.id);
+    }
     if (!machines.length) {
-      b = log(b, `${actor.name} opens the weights, and nothing on this field is listening.`, 'warn', { actor: actor.name, ability: ability.name });
+      b = log(b, `${actor.name} opens the weights, and nothing on this field that can change its mind is listening.`, 'warn', { actor: actor.name, ability: ability.name });
       return afterAction(b, content);
     }
+    const n = rules.control.openWeightsRounds;
     for (const m of machines) {
       b = update(b, m.id, (c) => ({
-        ...c, side: actor.side, temporary: true, expiresAfterRound: b.round + 3, statuses: [],
+        ...c, side: actor.side, temporary: true, expiresAfterRound: b.round + n, statuses: [], returnsTo: c.side,
       }));
     }
-    b = log(b, `${actor.name} publishes the weights. ${machines.map((m) => m.name).join(', ')} read them and change sides for three rounds.`, 'tempo', { actor: actor.name, ability: ability.name });
+    b = log(b, `${actor.name} publishes the weights. ${machines.map((m) => m.name).join(', ')} read them and change sides for ${n} rounds, then think better of it.`, 'tempo', { actor: actor.name, ability: ability.name });
     return afterAction(b, content);
   }
 
@@ -708,9 +758,10 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
       return afterAction(b, content);
     }
     if (!t) return afterAction(b, content);
+    const n = rules.control.buyoutRounds;
     b = { ...b, passives: { ...b.passives, [actorId]: { ...(b.passives[actorId] ?? {}), boughtOut: 1 } } };
-    b = update(b, t.id, (c) => ({ ...c, side: actor.side, statuses: [], parleyed: false }));
-    b = log(b, `${actor.name} buys ${t.name} out. Terms agreed, paperwork later, and ${t.name} is on this side now.`, 'tempo', { actor: actor.name, target: t.name, ability: ability.name });
+    b = update(b, t.id, (c) => ({ ...c, side: actor.side, statuses: [], parleyed: false, temporary: true, expiresAfterRound: b.round + n }));
+    b = log(b, `${actor.name} buys ${t.name} out. Terms agreed, paperwork later: ${t.name} works this side for ${n} rounds, then walks off the field.`, 'tempo', { actor: actor.name, target: t.name, ability: ability.name });
     return afterAction(b, content);
   }
 
@@ -731,9 +782,9 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
 
   if (ability.special === 'spawnAlly' && ability.spawn) {
     const spec = ability.spawn;
-    const live = alive(b, actor.side).filter((c) => c.temporary).length;
-    if (live >= 2) {
-      b = log(b, `${actor.name} cannot hold a third copy together.`, 'warn', { actor: actor.name, ability: ability.name });
+    const live = alive(b, actor.side).filter((c) => c.temporary && c.id.startsWith(`copy:${actorId}:`)).length;
+    if (live >= rules.control.copiesPerCaster) {
+      b = log(b, `${actor.name} cannot hold another copy together while one is still standing.`, 'warn', { actor: actor.name, ability: ability.name });
       return afterAction(b, content);
     }
     const hp = Math.max(1, Math.round(actor.maxHp * spec.hpFactor));
@@ -1097,7 +1148,7 @@ export function planEnemyAction(b: BattleState, me: Combatant, step: number, thr
   // A wind-up already taken is released, whatever else is on offer.
   const unleash = usable.find((a) => a.special === 'unleash');
   if (unleash) {
-    const targets = validTargets(b, me.id, unleash);
+    const targets = validTargets(b, me.id, unleash, content);
     if (targets.length) return withTarget(unleash, pickTarget(b, me, targets, step, content));
   }
   // Someone hurt gets mended before anyone gets hit.
@@ -1122,7 +1173,7 @@ export function planEnemyAction(b: BattleState, me: Combatant, step: number, thr
   const sorted = [...pool].sort((x, y) => y.cost - x.cost);
   const r = planRoll(b, me, step, 1);
   const pick = r < 0.65 ? sorted[0] : sorted[Math.floor(r * sorted.length) % sorted.length];
-  const targets = validTargets(b, me.id, pick);
+  const targets = validTargets(b, me.id, pick, content);
   if (!targets.length) return null;
   if (pick.target === 'allEnemies' || pick.target === 'allAllies') return withTarget(pick, null);
   if (pick.target === 'self') return withTarget(pick, me);
@@ -1180,6 +1231,14 @@ function checkEnd(b: BattleState, content: ContentDB): BattleState {
     };
     nb = log(nb, 'The fight collapses back to where you banked it. You have been here before and you know what is coming.', 'tempo');
     return nb;
+  }
+  // Turned machines with nobody left to fight on their borrowed side turn back at once.
+  const turned = b.combatants.filter((c) => !c.down && c.returnsTo === 'enemy');
+  if (alive(b, 'enemy').length === 0 && turned.length) {
+    for (const c of turned) b = update(b, c.id, (x) => ({ ...x, side: 'enemy', temporary: false, expiresAfterRound: undefined, returnsTo: undefined, statuses: [] }));
+    // If one of them was mid-turn, the turn is the enemy's now.
+    if (turned.some((c) => c.id === current(b)?.id)) b = { ...b, phase: 'enemy' };
+    b = log(b, `With nobody else left, ${turned.map((c) => c.name).join(' and ')} think${turned.length === 1 ? 's' : ''} better of it and turn${turned.length === 1 ? 's' : ''} back.`, 'warn');
   }
   if (alive(b, 'enemy').length === 0) {
     b = { ...b, phase: 'won', pendingRewards: rewards(b, content) };

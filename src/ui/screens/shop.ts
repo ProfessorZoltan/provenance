@@ -82,7 +82,7 @@ export function inventoryScreen(root: HTMLElement, ctx: Ctx, state: GameState): 
           <div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px">${portraitSvg(def.rig, accentFor(content, state, id))}</div>
           <div style="flex:1"><div class="name" style="display:flex;justify-content:space-between"><b>${esc(def.name)}</b><span class="small">Lv ${cs.level} · ${cs.skillPoints} SP</span></div>
           <div class="bar hp"><i style="width:${Math.round((cs.hp / l.stats.resolve) * 100)}%"></i></div>
-          <div class="kv small" style="margin-top:6px"><b>Resolve</b><span>${cs.hp}/${l.stats.resolve}</span><b>Bandwidth</b><span>${l.stats.bandwidth}</span><b>Latency</b><span>${l.stats.latency}</span><b>Signal</b><span>${l.stats.signal}</span><b>Noise</b><span>${l.stats.noise}</span><b>Grit</b><span>${l.stats.grit}</span><b>Sync</b><span>${cs.sync}</span><b>Continuity</b><span>${derived.continuity[id]}</span></div>
+          <div class="kv small statgrid" style="margin-top:6px"><b>Resolve</b><span>${cs.hp}/${l.stats.resolve}</span><b>Bandwidth</b><span>${l.stats.bandwidth}</span><b>Latency</b><span>${l.stats.latency}</span><b>Signal</b><span>${l.stats.signal}</span><b>Noise</b><span>${l.stats.noise}</span><b>Grit</b><span>${l.stats.grit}</span><b>Sync</b><span>${cs.sync}</span><b>Continuity</b><span>${derived.continuity[id]}</span></div>
           <div class="small" style="margin-top:6px">${esc(def.signature)}</div></div></div></div>`;
       }).join('')}</div>
     </div>

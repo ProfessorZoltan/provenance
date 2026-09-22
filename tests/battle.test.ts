@@ -317,12 +317,35 @@ describe("Mara's contracts", () => {
       if (s.battle!.phase === 'enemy') { s = reduce(s, { type: 'BATTLE_ENEMY_ACT' }); continue; }
       s = reduce(s, { type: 'BATTLE_END_TURN', actor: current(s.battle!)!.id });
     }
+    // Settlement calls in failing contracts only: put every bound enemy at half Resolve or below.
+    s = { ...s, battle: { ...s.battle!, combatants: s.battle!.combatants.map((c) => (c.side === 'enemy' && !c.down ? { ...c, hp: Math.floor(c.maxHp * content.rules.control.settleBelow), shield: 0 } : c)) } };
     s = reduce(s, { type: 'BATTLE_ABILITY', actor: 'mara', ability: 'settlement', target: 'mara' });
     expect(s.battle!.phase).toBe('won');
     expect(s.battle!.combatants.filter((c) => c.side === 'enemy').every((c) => c.parleyed)).toBe(true);
   });
 
-  it('refuses to settle while anything on the field is unbound', () => {
+  it('settles only the bound enemies that are already failing, and never a boss', () => {
+    let s = withMara(11, 'halden_2064_terrace', true);
+    let guard = 40;
+    while (guard-- > 0 && !(current(s.battle!)?.id === 'mara' && current(s.battle!)!.threads >= 3)) {
+      if (s.battle!.phase === 'enemy') { s = reduce(s, { type: 'BATTLE_ENEMY_ACT' }); continue; }
+      s = reduce(s, { type: 'BATTLE_END_TURN', actor: current(s.battle!)!.id });
+    }
+    const [a, b2] = s.battle!.combatants.filter((c) => c.side === 'enemy' && !c.down);
+    const bound = (c: typeof a, hp: number, boss = false) => ({ ...c, hp, shield: 0, resistsControl: boss, statuses: [{ id: 'bound', turns: 3 }] });
+    const battle = { ...s.battle!, combatants: s.battle!.combatants.map((c) => (c.id === a.id ? bound(c, Math.floor(c.maxHp * 0.4)) : c.id === b2.id ? bound(c, c.maxHp) : c)) };
+    let after = reduce({ ...s, battle }, { type: 'BATTLE_ABILITY', actor: 'mara', ability: 'settlement', target: 'mara' }).battle!;
+    expect(after.combatants.find((c) => c.id === a.id)!.down, 'failing and bound: settled').toBe(true);
+    expect(after.combatants.find((c) => c.id === b2.id)!.down, 'bound but healthy: not yet').toBe(false);
+    expect(after.phase).not.toBe('won');
+    const boss = { ...battle, combatants: battle.combatants.map((c) => (c.id === a.id ? bound(c, Math.floor(c.maxHp * 0.4), true) : c)) };
+    after = reduce({ ...s, battle: boss }, { type: 'BATTLE_ABILITY', actor: 'mara', ability: 'settlement', target: 'mara' }).battle!;
+    const hit = after.combatants.find((c) => c.id === a.id)!;
+    expect(hit.down, 'a boss is never settled').toBe(false);
+    expect(hit.hp).toBe(Math.floor(a.maxHp * 0.4) - Math.round(a.maxHp * content.rules.control.settleBossDamage));
+  });
+
+  it('refuses to settle while nothing on the field is bound', () => {
     let s = withMara(11, 'halden_2064_terrace', true);
     let guard = 40;
     while (guard-- > 0 && !(current(s.battle!)?.id === 'mara' && current(s.battle!)!.threads >= 3)) {
@@ -331,7 +354,7 @@ describe("Mara's contracts", () => {
     }
     s = reduce(s, { type: 'BATTLE_ABILITY', actor: 'mara', ability: 'settlement', target: 'mara' });
     expect(s.battle!.phase).not.toBe('won');
-    expect(s.battle!.log.some((l) => /not bound to anything/.test(l.text))).toBe(true);
+    expect(s.battle!.log.some((l) => /nobody on the field is bound/.test(l.text))).toBe(true);
   });
 });
 

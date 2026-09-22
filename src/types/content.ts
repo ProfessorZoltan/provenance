@@ -135,6 +135,8 @@ export interface EnemyDef {
   targeting?: Targeting;
   /** What it is on the field, in a word the Inspect panel can show. */
   role?: string;
+  /** A boss: Parley, Buyout, Open Weights and Settlement cannot take it off the field. */
+  boss?: boolean;
   /** Quorum: what it gains, once, each time another enemy on the field falls. */
   rally?: { id: string; turns: number };
 }
@@ -482,6 +484,12 @@ export interface RulesDef {
   perks: { perLevel: number; choices: number };
   /** Pair techs: the level both partners need, and the threads the partner is short next turn. */
   pairs: { level: number; partnerPenalty: number };
+  /**
+   * Limits on the abilities that take enemies off the field or pile up bonuses: who can be bought and
+   * for how long, how long a turned machine stays turned, who can be settled, how many copies of a
+   * stacking bonus one combatant carries, and how many summons one caster keeps.
+   */
+  control: { buyoutBelow: number; buyoutRounds: number; openWeightsRounds: number; settleBelow: number; settleBossDamage: number; stackCap: number; copiesPerCaster: number };
   fork: { cost: number; entropy: number; threadCost: number };
   echo: { cost: number; entropy: number; turns: number };
   collapse: { cost: number; entropy: number };

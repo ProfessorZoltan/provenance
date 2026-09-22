@@ -67,6 +67,7 @@ standard controller to switch the whole interface to controller glyphs.
 | Action | Controller | Keyboard |
 | --- | --- | --- |
 | Walk the valley, move a cursor | Left stick or D-pad | WASD or arrows |
+| Move along a two-column list | Left and right on the stick or D-pad | A and D, or Left and Right |
 | Confirm, enter a place, dismiss a battle report | A | Enter |
 | Back, leave a place, skip a scanned encounter | B | Esc |
 | Fork in battle, roster and gear outside it | X | X |
@@ -164,8 +165,13 @@ none of it. Pressure does.
 | Maximum | 40 |
 | Also raised by | Some abilities, such as Wren's Vigil, and the Tempo Stim item |
 
-Tempo buys time manipulation. Both sit in the action list in battle, with their cost and effect
-written under them.
+Tempo buys time manipulation. The four actions sit behind the **Time** row of the battle action
+list, which shows your Tempo and which of them you can afford. Pick it to open them, each with its
+cost and effect written under it; B goes back. X still forks and LT still rewinds from anywhere in
+the list, without opening it.
+
+The action list itself runs two columns wide so that it fits without scrolling. Up and Down move a
+row, Left and Right move along the list, and the focused action's full description sits underneath.
 
 | Ability | Cost | Effect | Entropy |
 | --- | --- | --- | --- |
@@ -237,6 +243,13 @@ an option. Bring what the thing in front of you is weak to, and finish.
 | Thermal | Passes straight through machine shields. Half damage against Wardens |
 | Signal | Hacking. Affects machines and cyborgs only, never a human |
 | Chronal | Ignores armor and shields, raises Entropy, and is the only thing that touches an Echo |
+
+### Bosses
+
+A boss, and the Construct at the heart of a key fight, is the fight. Nothing talks it down, buys it
+out, turns it with Open Weights or settles it with Terms: those work on everyone standing beside it.
+Stacking bonuses stop at three: a fourth Litany, Accord or Open Hymn refreshes the oldest rather than
+adding to it.
 
 ### Reading the enemy
 
@@ -387,12 +400,13 @@ She joins at Port Halden in 2064, and only if you did not collapse the vote she 
 | --- | --- | --- |
 | Strike | 1 thread | A plain kinetic hit |
 | Terms | 1 thread | Binds an enemy to a contract for three turns. While bound it takes 20% more damage and deals 30% less, because breaching costs it |
-| Parley | 1 thread | Talks a machine down. Hers lands more often than anyone else's |
+| Parley | 1 thread | Talks a machine down. Hers lands more often than anyone else's. Bosses cannot be talked down |
 | Guard | 1 thread | Halve incoming damage until her next turn |
 
 Her trees are Leverage, which punishes a contract already broken, Diplomacy, which ends fights
 without having them, and Accord, which puts everyone under the same terms. Her capstone, Settlement,
-ends a battle outright if every enemy on the field is bound by Terms when she calls it.
+calls in every contract that is failing: each enemy bound by Terms and at half Resolve or less is
+settled off the field. A boss is never settled; its contract costs it a fifth of its Resolve.
 
 ### Tomas Hale
 
@@ -403,7 +417,7 @@ away if the party's average Sync climbs above +60.
 | Ability | Cost | Effect |
 | --- | --- | --- |
 | Strike | 1 thread | A plain kinetic hit |
-| Held Shot | 1 thread | Settle in. Every turn spent holding adds 60% to the shot you eventually take |
+| Held Shot | 1 thread | Settle in. Every turn spent holding adds 60% to the shot you eventually take, up to three turns |
 | Guard | 1 thread | Halve incoming damage until his next turn |
 
 His trees are Longshot, which spends the charge on one target, Recon, which target-locks the whole
@@ -411,7 +425,8 @@ field so nobody misses, and Patience, which raises the Slack cap to four so he c
 and spend them at once. The charge is paid out the moment he fires, hit or miss.
 
 His capstone, Killing Silence, is one shot that cannot miss and that armor, shields, Guard and
-immunity are not consulted about. It is the only thing in the game that ignores an immunity.
+immunity are not consulted about. It is the only thing in the game that ignores an immunity. A shot
+can be held for three turns at most.
 
 ### Dr. Ines Quiroga
 
@@ -422,14 +437,14 @@ once stopped saying so. She walks away if her Continuity falls to 10.
 | Ability | Cost | Effect |
 | --- | --- | --- |
 | Probe | 1 thread | Signal damage straight into a machine's stack |
-| Blueprint | 2 threads | Builds a Field Unit out of what is on the floor. It fights for three rounds, then comes apart |
+| Blueprint | 2 threads | Builds a Field Unit out of what is on the floor. It fights for three rounds, then comes apart. One at a time |
 | Checksum | 1 thread | Restores Resolve to one ally |
 | Guard | 1 thread | Halve incoming damage until her next turn |
 
 Her trees are Teardown, Blueprint and Tolerances. **Teardown** takes a Construct's shell off at the
 seam: no roll, no damage, the frame is simply removed and whoever is inside is fighting in the open.
-Her capstone, **Open Weights**, publishes them: every machine on the other side reads them and
-changes sides for three rounds.
+Her capstone, **Open Weights**, publishes them: every machine on the other side that can change
+its mind fights for her for two rounds, then turns back. Bosses do not listen.
 
 ### Callum Strand
 
@@ -441,7 +456,7 @@ they are the same afternoon in the same room.
 | Ability | Cost | Effect |
 | --- | --- | --- |
 | Strike | 1 thread | A plain kinetic hit |
-| Buyout | 2 threads | Buys one enemy out, once per battle. They fight on your side for the rest of it |
+| Buyout | 2 threads | Buys out one failing enemy, at half Resolve or less, once per battle. It works your side for two rounds, then walks off the field. Bosses are not for sale |
 | Equity | 1 thread | Takes the field's attention for two turns and absorbs what comes |
 | Guard | 1 thread | Halve incoming damage until his next turn |
 

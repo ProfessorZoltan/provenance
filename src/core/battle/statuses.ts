@@ -32,7 +32,7 @@ export const STATUS_INFO: Record<string, StatusInfo> = {
     label: 'Litany',
     polarity: 'good',
     stacks: true,
-    effect: () => 'Deals 15% more damage per stack.',
+    effect: (r) => `Deals 15% more damage per stack, up to ${r.control.stackCap} stacks.`,
   },
   anchored: {
     label: 'Anchored',
@@ -53,7 +53,7 @@ export const STATUS_INFO: Record<string, StatusInfo> = {
     label: 'Held Shot',
     polarity: 'good',
     stacks: true,
-    effect: () => 'The next released shot hits 60% harder per turn held.',
+    effect: (r) => `The next released shot hits 60% harder per turn held, up to ${r.control.stackCap} turns.`,
   },
   marked: {
     label: 'Marked',

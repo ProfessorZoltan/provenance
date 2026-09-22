@@ -12,7 +12,7 @@ import { accentFor, esc, html, prompts, type Ctx, type ScreenHandle } from '../c
 import { currentPage, narrationPending } from '../narration';
 import { menu, type MenuItem } from '../menu';
 
-type Mode = 'menu' | 'target' | 'items' | 'itemTarget' | 'forkPick' | 'forkTarget' | 'echoPick' | 'relayPick' | 'inspect';
+type Mode = 'menu' | 'target' | 'items' | 'itemTarget' | 'timePick' | 'forkPick' | 'forkTarget' | 'echoPick' | 'relayPick' | 'inspect';
 
 interface UI {
   encounter: string;
@@ -122,7 +122,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
 
   // Targets for the current selection mode.
   let targets: Combatant[] = [];
-  if (actor && (ui.mode === 'target' || ui.mode === 'forkTarget') && ui.ability) targets = validTargets(b, actor.id, content.abilities[ui.ability]);
+  if (actor && (ui.mode === 'target' || ui.mode === 'forkTarget') && ui.ability) targets = validTargets(b, actor.id, content.abilities[ui.ability], content);
   if (ui.mode === 'itemTarget') targets = party.filter((p) => !p.down || content.items[ui.item ?? '']?.effect?.revive);
   if (targets.length) ui.targetIdx = ((ui.targetIdx % targets.length) + targets.length) % targets.length;
   const targeted = targets[ui.targetIdx];
@@ -179,7 +179,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
         ${e.maxShield ? `<div class="bar shield" style="margin-top:2px"><i style="width:${Math.round((e.shield / e.maxShield) * 100)}%"></i></div>` : ''}
         ${e.down ? '' : statusChipsHtml(e, rules)}
         ${intentHtml(e)}
-        <div class="st">${hasStatus(e, 'marked') || b.combatants.some((c) => c.side === 'party' && c.ref === 'player' && (b.passives.player?.markDuration ?? 0) > 0) ? `${e.hp}/${e.maxHp}${e.maxShield ? ` · shield ${e.shield}` : ''} · weak: ${e.weakness ?? 'none'}` : e.parleyed ? 'talked down' : e.down ? 'down' : '&nbsp;'}</div>
+        <div class="st">${hasStatus(e, 'marked') || b.combatants.some((c) => c.side === 'party' && c.ref === 'player' && (b.passives.player?.markDuration ?? 0) > 0) ? `${e.hp}/${e.maxHp}${e.maxShield ? ` · shield ${e.shield}` : ''} · weak: ${e.weakness ?? 'none'}` : e.parleyed ? 'talked down' : e.down ? 'down' : ''}</div>
       </div>`).join('')}</div>
       <div class="actorsrow">${party.map((p) => `<div class="actor ${p.down ? 'down' : ''} ${actor?.id === p.id ? 'active' : ''} ${targeted?.id === p.id ? 'targeted' : ''} ${flashClass(p.id)}">${rigFor(p)}</div>`).join('')}</div>
     </div>
@@ -218,51 +218,24 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     if (!actor) return [];
     return abilityOptions(b, actor.id, content).map((o) => ({
       id: o.ability.id,
-      label: o.ability.pair ? `${o.ability.name} (with ${content.characters[o.ability.pair.with]?.shortName ?? o.ability.pair.with})` : o.ability.name,
+      label: o.ability.name,
       cost: `${o.ability.cost}⟋${o.ability.damageType ? ' ' + o.ability.damageType : ''}${nerveCost(content, o.ability) ? ` · ${nerveCost(content, o.ability)} Nerve` : ''}`,
-      hint: o.usable ? o.ability.description : `${o.reason}. ${o.ability.description}`,
+      hint: `${o.ability.pair ? `With ${content.characters[o.ability.pair.with]?.shortName ?? o.ability.pair.with}. ` : ''}${o.usable ? o.ability.description : `${o.reason}. ${o.ability.description}`}`,
       disabled: !o.usable || (forFork && actor.threads < o.ability.cost + rules.fork.threadCost),
       onSelect: () => beginAbility(o.ability, forFork),
     }));
   };
-  const beginAbility = (a: AbilityDef, forFork: boolean) => {
-    if (!actor) return;
-    const needsPick = a.target === 'enemy' || a.target === 'ally';
-    if (needsPick) { setMode(forFork ? 'forkTarget' : 'target', { ability: a.id, targetIdx: 0 }); return; }
-    commit(a.id, null, forFork);
-  };
-  const commit = (ability: string, target: string | null, forFork: boolean) => {
-    if (!actor) return;
-    // Reset the mode before dispatching: the store re-renders synchronously.
-    const prev = { mode: ui.mode, ability: ui.ability };
-    ui.mode = 'menu';
-    ui.ability = null;
-    if (forFork) store.dispatch({ type: 'BATTLE_FORK', actor: actor.id, ability, target });
-    else store.dispatch({ type: 'BATTLE_ABILITY', actor: actor.id, ability, target });
-    const err = store.lastError();
-    if (err) { Object.assign(ui, prev); ctx.toast(err.message); ctx.audio.sfx('cancel', b.era); rerender(); }
-  };
-
-  if (narrating) {
-    actions.innerHTML = `<div class="eyebrow">${b.phase === 'won' ? 'Victory' : b.phase === 'lost' ? 'Defeat' : playerTurn ? esc(actor!.name) : 'Enemy turn'}</div><p class="small">Read the report, then continue.</p>`;
-    ctx.setPrompts(prompts({ btn: 'a', label: 'Continue' }));
-  } else if (over) {
-    actions.innerHTML = `<div class="eyebrow">${b.phase === 'won' ? 'Victory' : 'Defeat'}</div><p class="small">${b.phase === 'won' ? 'The field is clear.' : 'The party falls.'}</p>`;
-    ctx.setPrompts(prompts({ btn: 'a', label: 'Continue' }));
-  } else if (!playerTurn) {
-    actions.innerHTML = `<div class="eyebrow">Enemy turn</div><p class="small">${esc(actor?.name ?? '')} is acting.</p>`;
-    ctx.setPrompts(prompts({ btn: 'scrollUp', label: 'Scroll log' }));
-  } else if (ui.mode === 'menu') {
-    // Tempo abilities sit in the action list beside the abilities so they explain themselves.
-    // The shortcut glyph on each row teaches the button for players who prefer it.
-    const canFork = b.tempo >= rules.fork.cost && actor!.threads > rules.fork.threadCost;
+  /** Fork, Rewind, Echo and Collapse: the Tempo actions, gathered behind one row so the list stays short. */
+  const timeActions = (): MenuItem[] => {
+    if (!actor) return [];
+    const canFork = b.tempo >= rules.fork.cost && actor.threads > rules.fork.threadCost;
     const canRewind = b.rewindsLeft > 0 && b.tempo >= rules.rewind.cost && !!b.rewindPoint;
     const forkReason = b.tempo < rules.fork.cost ? `Needs ${rules.fork.cost} Tempo.`
-      : actor!.threads <= rules.fork.threadCost ? 'Needs a thread to spare beyond the action itself.' : '';
+      : actor.threads <= rules.fork.threadCost ? 'Needs a thread to spare beyond the action itself.' : '';
     const rewindReason = !b.rewindPoint ? 'Nothing to undo yet: the enemy has not acted.'
       : b.rewindsLeft <= 0 ? 'No Rewinds left this battle.'
       : b.tempo < rules.rewind.cost ? `Needs ${rules.rewind.cost} Tempo.` : '';
-    const items: MenuItem[] = abilityItems(false);
+    const items: MenuItem[] = [];
     items.push({
       id: 'fork',
       label: b.fork ? 'Commit the fork' : 'Fork',
@@ -285,6 +258,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
       hint: `${rewindReason} Spend ${rules.rewind.cost} Tempo to undo the enemy's last turn and make them take it again. ${b.rewindsLeft} left this battle. Raises Entropy by ${rules.rewind.entropy}.`.trim(),
       disabled: !canRewind,
       onSelect: () => {
+        ui.mode = 'menu';
         store.dispatch({ type: 'BATTLE_REWIND' });
         const e = store.lastError();
         if (e) ctx.toast(e.message);
@@ -316,11 +290,50 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
       hint: `${collapseReason} Spend ${rules.collapse.cost} Tempo to bank the fight exactly as it stands. If the party is wiped after that, it resumes from here instead of ending. Raises Entropy by ${rules.collapse.entropy}.`.trim(),
       disabled: !canCollapse,
       onSelect: () => {
+        ui.mode = 'menu';
         store.dispatch({ type: 'BATTLE_COLLAPSE' });
         const e = store.lastError();
         if (e) ctx.toast(e.message);
       },
     });
+    return items;
+  };
+
+  const beginAbility = (a: AbilityDef, forFork: boolean) => {
+    if (!actor) return;
+    const needsPick = a.target === 'enemy' || a.target === 'ally';
+    if (needsPick) { setMode(forFork ? 'forkTarget' : 'target', { ability: a.id, targetIdx: 0 }); return; }
+    commit(a.id, null, forFork);
+  };
+  const commit = (ability: string, target: string | null, forFork: boolean) => {
+    if (!actor) return;
+    // Reset the mode before dispatching: the store re-renders synchronously.
+    const prev = { mode: ui.mode, ability: ui.ability };
+    ui.mode = 'menu';
+    ui.ability = null;
+    if (forFork) store.dispatch({ type: 'BATTLE_FORK', actor: actor.id, ability, target });
+    else store.dispatch({ type: 'BATTLE_ABILITY', actor: actor.id, ability, target });
+    const err = store.lastError();
+    if (err) { Object.assign(ui, prev); ctx.toast(err.message); ctx.audio.sfx('cancel', b.era); rerender(); }
+  };
+
+  if (narrating) {
+    actions.innerHTML = `<div class="eyebrow">${b.phase === 'won' ? 'Victory' : b.phase === 'lost' ? 'Defeat' : playerTurn ? esc(actor!.name) : 'Enemy turn'}</div><p class="small">Read the report, then continue.</p>`;
+    ctx.setPrompts(prompts({ btn: 'a', label: 'Continue' }));
+  } else if (over) {
+    actions.innerHTML = `<div class="eyebrow">${b.phase === 'won' ? 'Victory' : 'Defeat'}</div><p class="small">${b.phase === 'won' ? 'The field is clear.' : 'The party falls.'}</p>`;
+    ctx.setPrompts(prompts({ btn: 'a', label: 'Continue' }));
+  } else if (!playerTurn) {
+    actions.innerHTML = `<div class="eyebrow">Enemy turn</div><p class="small">${esc(actor?.name ?? '')} is acting.</p>`;
+    ctx.setPrompts(prompts({ btn: 'scrollUp', label: 'Scroll log' }));
+  } else if (ui.mode === 'menu') {
+    // Tempo abilities sit in the action list beside the abilities so they explain themselves.
+    // The shortcut glyph on each row teaches the button for players who prefer it.
+    const items: MenuItem[] = abilityItems(false);
+    const time = timeActions();
+    if (b.fork) items.push(time.find((x) => x.id === 'fork')!);
+    const ready = time.filter((x) => !x.disabled && x.id !== 'fork').map((x) => x.label);
+    items.push({ id: 'time', label: 'Time', cost: `${b.tempo} Tempo`, hint: `Fork, Rewind, Echo and Collapse. ${ready.length ? `Ready now: ${ready.join(', ')}.` : 'Nothing affordable yet.'} X forks and LT rewinds from anywhere in this list.`, onSelect: () => setMode('timePick') });
     const itemCount = Object.entries(state.inventory.items).reduce((s, [id, n]) => s + (content.items[id]?.kind === 'consumable' ? n : 0), 0);
     items.push({ id: 'items', label: 'Items', cost: 'free', hint: actor!.itemUsed ? 'One item a turn, and this turn\'s is used.' : itemCount ? `${itemCount} carried. No thread: one a turn, on top of everything else.` : 'None carried', disabled: !itemCount || !!actor!.itemUsed, onSelect: () => setMode('items') });
     // Relay: whoever is benched can take this member's place and the rest of their turn.
@@ -334,7 +347,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     const desc = document.createElement('div');
     desc.className = 'desc';
     const describe = (i: number) => { const it = items[i]; desc.textContent = it?.hint ?? content.abilities[it?.id ?? '']?.description ?? ''; };
-    m = menu(items, ui.menuIdx, (i) => { ui.menuIdx = i; describe(i); });
+    m = menu(items, ui.menuIdx, (i) => { ui.menuIdx = i; describe(i); }, { columns: 2 });
     actions.appendChild(m.el);
     actions.appendChild(desc);
     describe(m.index);
@@ -366,6 +379,17 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
   } else if (ui.mode === 'itemTarget') {
     actions.innerHTML = `<div class="eyebrow">${esc(content.items[ui.item!].name)} · choose ally</div><p class="small">${esc(targeted?.name ?? '')}</p>`;
     ctx.setPrompts(prompts({ btn: 'lb', label: 'Prev' }, { btn: 'rb', label: 'Next' }, { btn: 'a', label: 'Use' }, { btn: 'b', label: 'Back' }));
+  } else if (ui.mode === 'timePick') {
+    const time = timeActions();
+    actions.innerHTML = `<div class="eyebrow">Time · ${b.tempo} Tempo · Entropy ${b.entropy}</div>`;
+    const desc = document.createElement('div');
+    desc.className = 'desc';
+    const describe = (i: number) => { desc.textContent = time[i]?.hint ?? ''; };
+    m = menu(time, 0, describe);
+    actions.appendChild(m.el);
+    actions.appendChild(desc);
+    describe(0);
+    ctx.setPrompts(prompts({ btn: 'dpad', label: 'Choose' }, { btn: 'a', label: 'Use' }, { btn: 'b', label: 'Back' }));
   } else if (ui.mode === 'forkPick') {
     actions.innerHTML = `<div class="eyebrow">Fork · preview which action? (${rules.fork.cost} Tempo, 1 thread, +${rules.fork.entropy} Entropy)</div>`;
     m = menu(abilityItems(true), 0);
@@ -473,8 +497,8 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
           if (btn === 'y') { setMode('inspect', { targetIdx: 0 }); return; }
           m?.input(btn);
           return;
-        case 'items': case 'forkPick': case 'echoPick': case 'relayPick':
-          if (btn === 'b') { setMode('menu'); return; }
+        case 'items': case 'timePick': case 'forkPick': case 'echoPick': case 'relayPick':
+          if (btn === 'b') { setMode(ui.mode === 'forkPick' || ui.mode === 'echoPick' ? 'timePick' : 'menu'); return; }
           m?.input(btn);
           return;
         case 'target': case 'forkTarget': case 'itemTarget':

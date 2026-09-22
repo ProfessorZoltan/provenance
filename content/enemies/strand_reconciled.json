@@ -35,5 +35,6 @@
     }
   ],
   "flavor": "Not a chassis. A man, arguing with the only person in three centuries who has ever been able to tell him he is wrong.",
-  "targeting": "auditor"
+  "targeting": "auditor",
+  "boss": true
 }

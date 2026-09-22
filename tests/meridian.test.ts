@@ -126,23 +126,35 @@ describe('the Meridian kits', () => {
     expect(after.log.some((l) => /at the seam/.test(l.text))).toBe(true);
   });
 
-  it('publishes the weights and every machine on the field changes sides', () => {
+  it('publishes the weights: every machine but the strongest changes sides, for a while', () => {
     const s = inFight('quiroga', 'meridian_2031_courtyard', ['q_blue_1', 'q_blue_2', 'q_blue_4']);
-    const machines = s.battle!.combatants.filter((c) => c.side === 'enemy' && c.machine).map((c) => c.id);
-    expect(machines.length).toBeGreaterThan(0);
+    const machines = s.battle!.combatants.filter((c) => c.side === 'enemy' && c.machine);
+    expect(machines.length).toBeGreaterThan(1);
+    const holdout = [...machines].sort((x, y) => y.hp + y.shield - (x.hp + x.shield))[0];
     const after = resolveAbility(s.battle!, 'quiroga', 'open_weights', 'quiroga', content);
-    for (const id of machines) {
-      const m = after.combatants.find((c) => c.id === id)!;
+    expect(after.combatants.find((c) => c.id === holdout.id)!.side, 'somebody is left to argue with').toBe('enemy');
+    expect(after.phase).not.toBe('won');
+    for (const m0 of machines.filter((c) => c.id !== holdout.id)) {
+      const m = after.combatants.find((c) => c.id === m0.id)!;
       expect(m.side, `${m.name} changed sides`).toBe('party');
       expect(m.temporary, 'and only for a while').toBe(true);
+      expect(m.returnsTo).toBe('enemy');
     }
   });
 
-  it('buys one enemy out per battle and no more', () => {
+  it('buys out one failing enemy per battle, for two rounds, and never a healthy one or a boss', () => {
     const s = inFight('strand_young', 'meridian_2064_atrium');
-    const foes = s.battle!.combatants.filter((c) => c.side === 'enemy' && !c.down);
-    let b = resolveAbility(s.battle!, 'strand_young', 'buyout', foes[0].id, content);
-    expect(b.combatants.find((c) => c.id === foes[0].id)!.side).toBe('party');
+    const foes0 = s.battle!.combatants.filter((c) => c.side === 'enemy' && !c.down);
+    expect(() => resolveAbility(s.battle!, 'strand_young', 'buyout', foes0[0].id, content), 'a healthy enemy is not for sale').toThrow();
+    const failing = { ...s.battle!, combatants: s.battle!.combatants.map((c) => (c.side === 'enemy' ? { ...c, hp: Math.floor(c.maxHp * 0.4) } : c)) };
+    const bossed = { ...failing, combatants: failing.combatants.map((c) => (c.id === foes0[0].id ? { ...c, resistsControl: true } : c)) };
+    expect(() => resolveAbility(bossed, 'strand_young', 'buyout', foes0[0].id, content), 'a boss is not for sale').toThrow();
+    const foes = failing.combatants.filter((c) => c.side === 'enemy' && !c.down);
+    let b = resolveAbility(failing, 'strand_young', 'buyout', foes[0].id, content);
+    const bought = b.combatants.find((c) => c.id === foes[0].id)!;
+    expect(bought.side).toBe('party');
+    expect(bought.temporary).toBe(true);
+    expect(bought.expiresAfterRound).toBe(failing.round + content.rules.control.buyoutRounds);
     // Paid for, not out of threads: the second attempt is refused by the once-per-battle rule.
     b = { ...b, combatants: b.combatants.map((c) => (c.id === 'strand_young' ? { ...c, threads: 3 } : c)) };
     b = resolveAbility(b, 'strand_young', 'buyout', foes[1].id, content);

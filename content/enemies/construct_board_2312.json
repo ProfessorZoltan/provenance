@@ -57,5 +57,6 @@
     }
   ],
   "flavor": "The Board does not keep guards. It keeps a frame, and inside the frame it keeps a proxy.",
-  "targeting": "auditor"
+  "targeting": "auditor",
+  "boss": true
 }

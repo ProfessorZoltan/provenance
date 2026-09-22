@@ -50,13 +50,13 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
     const cost = restCost(content, state);
     const purse = state.inventory.currency[cur] ?? 0;
     if (hasLodging(content, state)) {
-      items.push({ id: 'rest', label: 'Rest', hint: `A night here: ${cost} ${cur} (you have ${purse}). Restores everyone fully.`, disabled: purse < cost, onSelect: () => {
+      items.push({ id: 'rest', label: 'Rest', hint: `${cost} ${cur} a night (you have ${purse}). Full Resolve and Nerve, 50 Entropy let out.`, disabled: purse < cost, onSelect: () => {
         store.dispatch({ type: 'REST' });
         const err = store.lastError();
         if (err) ctx.toast(err.message); else ctx.toast(`The party rests. ${cost} ${cur} spent. Resolve restored.`);
       } });
     }
-    items.push({ id: 'camp', label: 'Make camp', hint: `${state.camps} of ${content.rules.camp.perEra} left this era. Restores half of everyone's Resolve.`, disabled: state.camps <= 0, onSelect: () => {
+    items.push({ id: 'camp', label: 'Make camp', hint: `${state.camps} of ${content.rules.camp.perEra} left this era. Half Resolve, full Nerve, 25 Entropy let out.`, disabled: state.camps <= 0, onSelect: () => {
       store.dispatch({ type: 'CAMP' });
       const err = store.lastError();
       if (err) ctx.toast(err.message); else ctx.toast(`The party makes camp. ${state.camps - 1} left this era.`);
@@ -93,13 +93,18 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
       ${flagsShown.includes('armedResistance') && loc.id === 'kell_2312' ? `<p class="small" style="margin-top:8px">The chapel walls are thicker in this version of 2312.</p>` : ''}
       <div class="entropy-line ${entropyWord(state.entropy, content.rules)}">Entropy ${state.entropy} / ${content.rules.entropyMax}${entropyWord(state.entropy, content.rules) ? ` · ${entropyWord(state.entropy, content.rules)}` : ''}. It follows you from fight to fight. A bed lets ${content.rules.entropyFlow.restDecay} out, a camp ${content.rules.entropyFlow.campDecay}.</div>
     </div>
-    <div class="actions panel"><div class="eyebrow">${heading}</div><div id="m"></div></div>
+    <div class="actions panel"><div class="eyebrow">${heading}</div><div id="m"></div><div class="desc" id="hubdesc"></div></div>
     <div class="party">${partyStrip(ctx, state)}</div>
     <div class="journal panel"><div class="eyebrow">Journal</div>${state.journal.slice(-3).map((j) => `<div>${esc(j)}</div>`).join('') || '<div>Nothing yet.</div>'}</div>
   </section>`);
   const key = `${sub}:${loc.id}`;
-  const m = menu(items, mem[key] ?? 0, (i) => { mem[key] = i; });
+  // Hints sit on one line in the list; the focused one is spelled out in full underneath.
+  const descEl = root.querySelector('#hubdesc') as HTMLElement;
+  const describe = (i: number) => { descEl.textContent = items[i]?.hint ?? ''; };
+  // A long list goes two wide across the open middle of the screen rather than scrolling.
+  const m = menu(items, mem[key] ?? 0, (i) => { mem[key] = i; describe(i); }, { columns: items.length > 6 ? 2 : 1 });
   root.querySelector('#m')!.appendChild(m.el);
+  describe(m.index);
   ctx.setPrompts(prompts(
     { btn: 'dpad', label: 'Move' }, { btn: 'a', label: 'Select' },
     sub === 'hub' ? { btn: 'b', label: 'Leave' } : { btn: 'b', label: 'Back' },

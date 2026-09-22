@@ -51,6 +51,10 @@ export interface Combatant {
   continuity: number;
   /** Party only: the level they hold, which pair techs ask about. */
   level?: number;
+  /** A boss: it cannot be talked down, bought, turned or settled. */
+  resistsControl?: boolean;
+  /** Turned for a while (Open Weights): when the time runs out it goes back to this side instead of dissolving. */
+  returnsTo?: 'party' | 'enemy';
 }
 
 export interface LogMeta {

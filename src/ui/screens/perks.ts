@@ -22,7 +22,7 @@ export function perksScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scre
     items = owed.map((id) => ({
       id,
       label: content.characters[id].name,
-      hint: `${perksOwed(content, state.party[id])} pick${perksOwed(content, state.party[id]) === 1 ? '' : 's'} waiting · Lv ${state.party[id].level}`,
+      hint: `${perksOwed(content, state.party[id])} waiting`,
       onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'perks', character: id } }),
     }));
     if (!items.length) items.push({ id: 'none', label: 'Every level has been spent', disabled: true, onSelect: () => {} });

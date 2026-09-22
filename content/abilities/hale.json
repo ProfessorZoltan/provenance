@@ -1,68 +1,7 @@
 [
-  {
-    "id": "hold",
-    "name": "Held Shot",
-    "cost": 1,
-    "target": "self",
-    "tempoCost": 0,
-    "entropyDelta": 0,
-    "status": {
-      "id": "held",
-      "turns": 9
-    },
-    "special": "hold",
-    "description": "Settle in. Every turn spent holding adds 60% to the shot you eventually take. The charge is spent the moment you fire, hit or miss."
-  },
-  {
-    "id": "longshot",
-    "name": "Longshot",
-    "cost": 2,
-    "damageType": "kinetic",
-    "target": "enemy",
-    "formula": "a.noise * 0.7 + a.signal * 0.4 + 8",
-    "tempoCost": 0,
-    "entropyDelta": 0,
-    "special": "release",
-    "description": "Releases the charge into one target. Heavy on its own; ruinous after three turns of holding."
-  },
-  {
-    "id": "recon",
-    "name": "Recon",
-    "cost": 1,
-    "target": "allEnemies",
-    "tempoCost": 0,
-    "entropyDelta": 0,
-    "status": {
-      "id": "locked",
-      "turns": 2,
-      "onTarget": true
-    },
-    "description": "Calls the field. Everything on it is target-locked for two turns, so nobody in the party can miss."
-  },
-  {
-    "id": "patience",
-    "name": "Patience",
-    "cost": 1,
-    "target": "self",
-    "tempoCost": 0,
-    "entropyDelta": 0,
-    "tempoGain": 6,
-    "status": {
-      "id": "guard",
-      "turns": 1
-    },
-    "description": "Wait. Guard until your next turn and put six into the party's Tempo while you do."
-  },
-  {
-    "id": "killing_silence",
-    "name": "Killing Silence",
-    "cost": 3,
-    "damageType": "kinetic",
-    "target": "enemy",
-    "formula": "a.noise * 0.9 + a.signal * 0.5 + 20",
-    "tempoCost": 0,
-    "entropyDelta": 0,
-    "special": "killingSilence",
-    "description": "Capstone. One shot that cannot miss and that armor, shields, Guard and immunity are not consulted about. Spends the whole charge."
-  }
+  { "id": "hold", "name": "Held Shot", "cost": 1, "target": "self", "tempoCost": 0, "entropyDelta": 0, "status": { "id": "held", "turns": 9 }, "special": "hold", "description": "Hold the shot. Each turn held makes the next Longshot or Killing Silence hit 60% harder, up to three turns." },
+  { "id": "longshot", "name": "Longshot", "cost": 2, "damageType": "kinetic", "target": "enemy", "formula": "a.noise * 0.7 + a.signal * 0.4 + 8", "tempoCost": 0, "entropyDelta": 0, "special": "release", "description": "Releases the charge into one target. Heavy on its own; ruinous after three turns of holding." },
+  { "id": "recon", "name": "Recon", "cost": 1, "target": "allEnemies", "tempoCost": 0, "entropyDelta": 0, "status": { "id": "locked", "turns": 2, "onTarget": true }, "description": "Calls the field. Everything on it is target-locked for two turns, so nobody in the party can miss." },
+  { "id": "patience", "name": "Patience", "cost": 1, "target": "self", "tempoCost": 0, "entropyDelta": 0, "tempoGain": 6, "status": { "id": "guard", "turns": 1 }, "description": "Wait. Guard until your next turn and put six into the party's Tempo while you do." },
+  { "id": "killing_silence", "name": "Killing Silence", "cost": 3, "damageType": "kinetic", "target": "enemy", "formula": "a.noise * 0.9 + a.signal * 0.5 + 20", "tempoCost": 0, "entropyDelta": 0, "special": "killingSilence", "description": "Spends every turn of Held Shot, up to three, on one shot nothing gets a say in: it cannot miss, and armor, shields, guard and immunity are not consulted." }
 ]

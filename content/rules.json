@@ -111,5 +111,14 @@
   "pairs": {
     "level": 4,
     "partnerPenalty": 1
+  },
+  "control": {
+    "buyoutBelow": 0.5,
+    "buyoutRounds": 2,
+    "openWeightsRounds": 2,
+    "settleBelow": 0.5,
+    "settleBossDamage": 0.2,
+    "stackCap": 3,
+    "copiesPerCaster": 1
   }
 }

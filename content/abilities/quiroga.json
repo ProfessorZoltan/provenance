@@ -1,65 +1,7 @@
 [
-  {
-    "id": "blueprint",
-    "name": "Blueprint",
-    "cost": 2,
-    "target": "self",
-    "tempoCost": 0,
-    "entropyDelta": 0,
-    "special": "spawnAlly",
-    "spawn": {
-      "name": "Field Unit",
-      "hpFactor": 0.45,
-      "turns": 3,
-      "abilities": [
-        "probe",
-        "drone_dart"
-      ]
-    },
-    "description": "Builds a unit out of what is on the floor. It fights for three rounds and then comes apart. Two at a time at most, and one falling is not a party wipe."
-  },
-  {
-    "id": "teardown",
-    "name": "Teardown",
-    "cost": 2,
-    "target": "enemy",
-    "tempoCost": 0,
-    "entropyDelta": 0,
-    "special": "teardown",
-    "requiresMachine": true,
-    "description": "Takes a Construct's shell off at the seam. No damage, no roll: the frame is simply removed and whoever is inside is in the open."
-  },
-  {
-    "id": "tolerances",
-    "name": "Tolerances",
-    "cost": 1,
-    "target": "allAllies",
-    "tempoCost": 0,
-    "entropyDelta": 0,
-    "status": {
-      "id": "anchored",
-      "turns": 2
-    },
-    "description": "Holds everything on this side inside its tolerances. Nobody goes down for two turns."
-  },
-  {
-    "id": "field_repair",
-    "name": "Field Repair",
-    "cost": 1,
-    "target": "ally",
-    "heal": "a.signal * 0.5 + 14",
-    "tempoCost": 0,
-    "entropyDelta": 0,
-    "description": "Not medicine. Engineering, applied to a person, which she insists is the same discipline."
-  },
-  {
-    "id": "open_weights",
-    "name": "Open Weights",
-    "cost": 3,
-    "target": "self",
-    "tempoCost": 0,
-    "entropyDelta": 0,
-    "special": "openWeights",
-    "description": "Capstone. Publishes the weights. Every machine on the other side reads them and changes sides for three rounds."
-  }
+  { "id": "blueprint", "name": "Blueprint", "cost": 2, "target": "self", "tempoCost": 0, "entropyDelta": 0, "special": "spawnAlly", "spawn": { "name": "Field Unit", "hpFactor": 0.45, "turns": 3, "abilities": ["probe", "drone_dart"] }, "description": "Puts a Field Unit on the field for three rounds. One at a time." },
+  { "id": "teardown", "name": "Teardown", "cost": 2, "target": "enemy", "tempoCost": 0, "entropyDelta": 0, "special": "teardown", "requiresMachine": true, "description": "Takes a Construct's shell off at the seam. No damage, no roll: the frame is simply removed and whoever is inside is in the open." },
+  { "id": "tolerances", "name": "Tolerances", "cost": 1, "target": "allAllies", "tempoCost": 0, "entropyDelta": 0, "status": { "id": "anchored", "turns": 2 }, "description": "Holds everything on this side inside its tolerances. Nobody goes down for two turns." },
+  { "id": "field_repair", "name": "Field Repair", "cost": 1, "target": "ally", "heal": "a.signal * 0.5 + 14", "tempoCost": 0, "entropyDelta": 0, "description": "Not medicine. Engineering, applied to a person, which she insists is the same discipline." },
+  { "id": "open_weights", "name": "Open Weights", "cost": 3, "target": "self", "tempoCost": 0, "entropyDelta": 0, "special": "openWeights", "description": "Publishes the weights. Every machine on the other side that can change its mind fights for you for two rounds, then turns back. Bosses do not listen." }
 ]
