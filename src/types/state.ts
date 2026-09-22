@@ -1,4 +1,4 @@
-import type { DamageType, EraId, StatBlock } from './content';
+import type { DamageType, DifficultyId, EraId, StatBlock, Targeting } from './content';
 
 export interface StatusEffect {
   id: string;
@@ -55,6 +55,8 @@ export interface Combatant {
   resistsControl?: boolean;
   /** Turned for a while (Open Weights): when the time runs out it goes back to this side instead of dissolving. */
   returnsTo?: 'party' | 'enemy';
+  /** Set on some enemies by a hard difficulty: who they go for, in place of their own personality. */
+  targeting?: Targeting;
 }
 
 export interface LogMeta {
@@ -119,6 +121,8 @@ export interface BattleState {
   passives: Record<string, Record<string, number>>;
   partySync: number;
   pendingRewards: BattleRewards | null;
+  /** The difficulty the fight was started on. Missing, from an older save, is Standard. */
+  difficulty?: DifficultyId;
 }
 
 export interface BattleRewards {
@@ -256,4 +260,6 @@ export interface GameState {
   camps: number;
   /** Entropy carried from fight to fight. Beds and camps let it out; nothing else does. */
   entropy: number;
+  /** How hard this game is. Missing, from an older save, is Standard. */
+  difficulty?: DifficultyId;
 }

@@ -82,6 +82,24 @@ standard controller to switch the whole interface to controller glyphs.
 
 Mouse clicks work on menus, dialogue, enemy portraits and the battle report box.
 
+## Difficulty
+
+New Game asks for one under the stance cards: Up and Down change it. Settings changes it again at
+any time outside a fight, and the save remembers it. A fight is played on the setting it started on.
+
+| Setting | Enemy hits | Enemy Resolve | Bed, per level | Camps an era | Rewinds a fight | Enemies that go for the weakest | Echoes |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Story | ×0.75 | ×0.85 | 3 | 3 | 2 | As their nature | Ordinary hits land at 35% |
+| Standard | ×1 | ×1 | 6 | 2 | 1 | As their nature | Chronal only |
+| Hard | ×1.15 | ×1.1 | 8 | 1 | 1 | Half of every side | Chronal only |
+| Audit | ×1.35 | ×1.25 | 10 | 1 | 0 | All of them | Chronal only |
+
+Anchors and training still add their Rewinds on every setting. Going easier mid-era never hands
+back camps already spent.
+
+Enemies in 2064 and 2031 carry more Resolve on every setting, so the fights keep pace with a party
+that has grown: ordinary fights by 60% in 2064 and 120% in 2031, hard ones by 20% and 30%.
+
 ## Getting around
 
 Travel is physical. Each era has one map you walk: one island, with Kell in the mountains to the
@@ -104,8 +122,8 @@ back.
 
 | | Where | Costs | Gives |
 | --- | --- | --- | --- |
-| Rest | Any Deep Site, and waypoints with a bed to let: the village, the bar, the safehouse, the camps and the commissary | The era's currency: 3 per level of the strongest member fielded | Everyone on the field back to full Resolve and full Nerve, and 50 Entropy let out |
-| Make camp | Anywhere | Nothing, but only twice per era. Jumping to another era refills the count, and so does entering the Stack | Half of everyone's Resolve, full Nerve, and 25 Entropy let out |
+| Rest | Any Deep Site, and waypoints with a bed to let: the village, the bar, the safehouse, the camps and the commissary | The era's currency: 6 per level of the strongest member fielded on Standard. The difficulty sets the price | Everyone on the field back to full Resolve and full Nerve, and 50 Entropy let out |
+| Make camp | Anywhere | Nothing, but only twice per era on Standard. Jumping to another era refills the count, and so does entering the Stack | Half of everyone's Resolve, full Nerve, and 25 Entropy let out |
 
 The Stack has no beds, and four fights. Whatever you carry down it, you carry down it: rotate the
 bench between floors, and camp when the ones going down are hurt.

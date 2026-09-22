@@ -145,6 +145,32 @@ export interface EnemyDef {
  * Enemy targeting personalities. Each is one rule the player can learn and play around, and a
  * field with several on it is a field where no one stance is safe.
  */
+/** How hard the game is. Chosen at New Game and changeable in Settings outside a fight. */
+export type DifficultyId = 'story' | 'standard' | 'hard' | 'audit';
+
+/**
+ * One difficulty. Anything left out is the base rule, which is what Standard plays: Standard is an
+ * empty preset, so the base rules and Standard can never drift apart.
+ */
+export interface DifficultyDef {
+  name: string;
+  blurb: string;
+  /** Multiplies every hit an enemy lands. */
+  enemyDamage?: number;
+  /** Multiplies every enemy's Resolve and shield, on top of tier and era scaling. */
+  enemyResolve?: number;
+  /** A bed's price per level, in place of rest.perLevel. */
+  restPerLevel?: number;
+  /** Camps an era, in place of camp.perEra. */
+  campsPerEra?: number;
+  /** Rewinds every fight starts with, in place of rewind.base. */
+  rewinds?: number;
+  /** The share of each enemy side, from 0 to 1, that ignores its personality and goes for the weakest. */
+  ruthless?: number;
+  /** Share of a non-Chronal hit that still lands on an Echo. 0 keeps Echoes immune. */
+  echoGrace?: number;
+}
+
 export type Targeting = 'weakest' | 'healer' | 'buffed' | 'auditor' | 'revenge' | 'spread' | 'opportunist';
 
 export interface EncounterEnemy {
@@ -509,6 +535,9 @@ export interface RulesDef {
   damageScale: number;
   /** Enemy Resolve and shields by how much of a fight the encounter is meant to be. */
   tierScale: Record<'ordinary' | 'hard' | 'key', number>;
+  /** Extra Resolve by era and tier, so later eras keep pace with the party's levels. Missing is 1. */
+  eraScale: Partial<Record<EraId, Partial<Record<'ordinary' | 'hard' | 'key', number>>>>;
+  difficulty: { default: DifficultyId; presets: Record<DifficultyId, DifficultyDef> };
   /** Past `after` rounds, everything the enemy does grows by `perRound`: no fight stands still. */
   pressure: { after: number; perRound: number };
   markBonus: number;

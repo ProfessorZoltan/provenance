@@ -1,8 +1,8 @@
-import type { EraId } from '../types/content';
+import type { DifficultyId, EraId } from '../types/content';
 import type { GameState, Screen, Settings } from '../types/state';
 
 export type Action =
-  | { type: 'NEW_GAME'; seed: number; lean: 'cinder' | 'choir' | 'commons'; name?: string }
+  | { type: 'NEW_GAME'; seed: number; lean: 'cinder' | 'choir' | 'commons'; name?: string; difficulty?: DifficultyId }
   | { type: 'LOAD_STATE'; state: GameState }
   | { type: 'SET_SCREEN'; screen: Screen }
   | { type: 'START_DIALOGUE'; id: string; returnTo?: Screen }
@@ -41,6 +41,7 @@ export type Action =
   | { type: 'QUEST_COMPLETE'; quest: string }
   | { type: 'TIMELINE_CHOICE'; choice: string }
   | { type: 'SET_SETTINGS'; settings: Partial<Settings> }
+  | { type: 'SET_DIFFICULTY'; difficulty: DifficultyId }
   | { type: 'GAME_OVER_RETURN' }
   | { type: 'PROLOGUE_SKIP' }
   | { type: 'INTRO_ADVANCE' }

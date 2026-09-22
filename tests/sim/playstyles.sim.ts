@@ -3,6 +3,10 @@ import { POLICIES } from './playstyles';
 import { playEra, playStack } from './campaign';
 import { ERA_LEVEL } from '../balance';
 import { content } from '../helpers';
+import type { DifficultyId } from '../../src/types/content';
+
+// DIFF=story|standard|hard|audit plays every fight on that setting.
+const DIFF = process.env.DIFF as DifficultyId | undefined;
 
 const ROSTER: Record<string, string[]> = {
   '2312': ['player', 'wren', 'dax'],
@@ -17,7 +21,7 @@ it('eras', () => {
     for (const era of ['2312', '2148', '2064', '2031'] as const) {
       for (const seed of [3, 7]) {
         const t0 = Date.now();
-        const r = playEra(era, ERA_LEVEL[era], ROSTER[era], name, name === 'competent' ? null : pol, seed);
+        const r = playEra(era, ERA_LEVEL[era], ROSTER[era], name, name === 'competent' ? null : pol, seed, 120, DIFF);
         const avg = (r.rounds.reduce((a, b) => a + b, 0) / r.rounds.length).toFixed(1);
         const lost = r.results.filter((x) => !x.won).map((x) => x.id).join(',');
         for (const tier of ['ordinary', 'hard'] as const) {
@@ -31,7 +35,7 @@ it('eras', () => {
     }
     for (const seed of [3, 7]) {
       for (const level of [14, 20]) {
-        const r = playStack(level, ['player', 'wren', 'dax', 'ilo9', 'mara', 'hale', 'quiroga'], name, name === 'competent' ? null : pol, seed);
+        const r = playStack(level, ['player', 'wren', 'dax', 'ilo9', 'mara', 'hale', 'quiroga'], name, name === 'competent' ? null : pol, seed, DIFF);
         rows.push(`STACK\t${name}\tL${level}\ts${seed}\tfloors ${r.wins}/${r.fights}\trounds ${r.rounds.join('/')}\tworst ${Math.round(r.worst * 100)}%\tcamps ${r.camps}\tentropyPeak ${r.entropyPeak}`);
       }
     }

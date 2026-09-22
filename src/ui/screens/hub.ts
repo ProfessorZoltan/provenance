@@ -1,5 +1,6 @@
 import { evalAll } from '../../core/conditions';
 import { conditionContext } from '../../core/encounter';
+import { difficulty } from '../../core/difficulty';
 import { activeVariant, currencyFor, hasLodging, npcDialogue, npcName, restCost } from '../../core/reducer';
 import { perksOwed } from '../../core/stats';
 import { deriveWorld } from '../../core/timeline';
@@ -56,7 +57,7 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
         if (err) ctx.toast(err.message); else ctx.toast(`The party rests. ${cost} ${cur} spent. Resolve restored.`);
       } });
     }
-    items.push({ id: 'camp', label: 'Make camp', hint: `${state.camps} of ${content.rules.camp.perEra} left this era. Half Resolve, full Nerve, 25 Entropy let out.`, disabled: state.camps <= 0, onSelect: () => {
+    items.push({ id: 'camp', label: 'Make camp', hint: `${state.camps} of ${difficulty(content, state.difficulty).campsPerEra} left this era. Half Resolve, full Nerve, 25 Entropy let out.`, disabled: state.camps <= 0, onSelect: () => {
       store.dispatch({ type: 'CAMP' });
       const err = store.lastError();
       if (err) ctx.toast(err.message); else ctx.toast(`The party makes camp. ${state.camps - 1} left this era.`);

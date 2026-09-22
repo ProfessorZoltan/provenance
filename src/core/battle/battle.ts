@@ -1,6 +1,7 @@
 import { STATUS_INFO, statusClause, statusLabel, statusSentence, turnsText } from './statuses';
 import type { AbilityDef, ContentDB, DamageType, EnemyDef, EraId, ItemDef, SecondBar, Targeting } from '../../types/content';
 import type { BattleLogEntry, BattleRewards, BattleState, Combatant, GameState, LogMeta, RewindPoint, StatusEffect } from '../../types/state';
+import { difficulty, eraScale } from '../difficulty';
 import { evalFormula } from '../formula';
 import { rngFloat, roll, rollInt, seedFromString } from '../rng';
 import { loadout, maxNerve, nerveCost, nerveOf, partySync } from '../stats';
@@ -22,13 +23,21 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
   }
   // How much of a fight this is meant to be. A Warden on a wall walk and the same Warden guarding
   // the Board are the same soldier with different orders and different odds of going home.
-  const stand = content.rules.tierScale[enc.tier] * (enc.scale ?? 1);
+  // Later eras carry more, so a party that has grown keeps meeting fights its own size; the
+  // difficulty scales all of it once more.
+  const diff = difficulty(content, state.difficulty);
+  const stand = content.rules.tierScale[enc.tier] * (enc.scale ?? 1) * eraScale(content, enc.era, enc.tier) * diff.enemyResolve;
+  let foes = 0;
   for (const group of enc.enemies) {
     const def = content.enemies[group.enemy];
     for (let n = 1; n <= group.count; n++) {
       const e = enemyCombatant(def, group.count > 1 ? `${def.id}#${n}` : def.id, group.count > 1 ? `${def.name} ${n}` : def.name, stand);
       // Bosses, and a key fight's Construct, are the fight: nothing talks, buys or turns them off the field.
       e.resistsControl = !!def.boss || (enc.tier === 'key' && !!def.secondBar);
+      // On the harder settings a share of every side stops being itself and goes for the weakest.
+      // Spread evenly: at a half, the second and fourth; at one, all of them.
+      if (Math.floor((foes + 1) * diff.ruthless) > Math.floor(foes * diff.ruthless)) e.targeting = 'weakest';
+      foes++;
       combatants.push(e);
     }
   }
@@ -36,7 +45,7 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
   const sync = partySync(state);
   // One Rewind every fight, whoever is on the field: a charge that cannot be saved up is a charge
   // that gets used. Anchors and the nodes that grant more add to it.
-  let rewinds = content.rules.rewind.base;
+  let rewinds = diff.rewinds;
   let openingTempo = 0;
   for (const id of state.activeParty) {
     const def = content.characters[id];
@@ -56,6 +65,7 @@ export function createBattle(content: ContentDB, state: GameState, encounterId: 
     phase: 'player', surprise, log: [], rewindsLeft: rewinds, rewindPoint: null, fork: null,
     collapsePoint: null, collapseUsed: false, echoAssistUsed: false,
     echoSpawned: false, usedSignal: false, fractures: [], story: enc.story, passives, partySync: sync, pendingRewards: null,
+    difficulty: diff.id,
   };
   b = log(b, surprise ? `Surprise attack. ${enc.flavor}` : enc.flavor, surprise ? 'warn' : 'info');
   if (b.entropy > 0) b = log(b, `Entropy comes in at ${b.entropy}${entropyTier(b, content) ? ` (${entropyTier(b, content)})` : ''}.`, 'tempo');
@@ -428,7 +438,10 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   }
 
   // Immunities and type rules.
-  if (target.immunities.includes(type)) {
+  // On Story an Echo still takes a little from an ordinary hit, so not reading the chart is slower
+  // rather than a wall.
+  const grace = target.family === 'echo' && actor.side === 'party' ? difficulty(content, b.difficulty).echoGrace : 0;
+  if (target.immunities.includes(type) && !grace) {
     return { b, amount: 0, hit: true, immune: true, meta, note: `${actor.name} uses ${ability.name} on ${target.name}, but ${target.name} is immune to ${type} damage.` };
   }
   if (type === 'signal' && !target.machine) {
@@ -496,6 +509,8 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   // Everything in an exchange moves at the same scale, so lowering it lengthens fights without
   // changing which action is the right one. Heals scale with it too, in resolveAbility.
   dmg *= rules.damageScale;
+  if (actor.side === 'enemy') dmg *= difficulty(content, b.difficulty).enemyDamage;
+  if (grace && target.immunities.includes(type)) { dmg *= grace; notes.push('barely'); }
   // A fight that goes on gets worse, and only for the side holding the field. Without this a party
   // that can out-heal what it is taking never has to finish anything, and Echoes it cannot damage
   // become a place to stand rather than a problem.
@@ -1111,7 +1126,7 @@ const GOOD_STATUSES = ['guard', 'taunt', 'wall', 'inspired', 'anchored', 'fixed'
 
 /** Who an enemy goes for, by its personality, among the targets it may legally hit. */
 export function pickTarget(b: BattleState, me: Combatant, targets: Combatant[], step: number, content: ContentDB): Combatant {
-  const mode: Targeting = content.enemies[me.ref]?.targeting ?? 'opportunist';
+  const mode: Targeting = me.targeting ?? content.enemies[me.ref]?.targeting ?? 'opportunist';
   const byHp = [...targets].sort((x, y) => x.hp / x.maxHp - y.hp / y.maxHp);
   if (targets.length === 1) return targets[0];
   switch (mode) {

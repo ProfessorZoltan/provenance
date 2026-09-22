@@ -4,6 +4,7 @@
   "era": "2064",
   "tier": "ordinary",
   "location": "basin_2064",
+  "scale": 0.8,
   "enemies": [
     {
       "enemy": "drone_aisle_2064",

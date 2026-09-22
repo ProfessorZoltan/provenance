@@ -78,3 +78,22 @@ describe('player manual', () => {
     expect(entries[0].html).toContain('&amp;');
   });
 });
+
+describe('the difficulty page', () => {
+  it('prints the numbers each setting actually uses', async () => {
+    const { difficulty, DIFFICULTIES } = await import('../src/core/difficulty');
+    const page = manualPages.find((p) => p.title === 'Difficulty')!;
+    expect(page).toBeTruthy();
+    for (const id of DIFFICULTIES) {
+      const d = difficulty(content, id);
+      const row = page.html.split('<tr>').find((r) => r.includes(`>${d.name}<`))!;
+      expect(row, d.name).toBeTruthy();
+      const cells = [...row.matchAll(/<td>(.*?)<\/td>/g)].map((m) => m[1]);
+      expect(cells[1], `${d.name} enemy hits`).toBe(`×${d.enemyDamage}`);
+      expect(cells[2], `${d.name} enemy Resolve`).toBe(`×${d.enemyResolve}`);
+      expect(cells[3], `${d.name} bed`).toBe(String(d.restPerLevel));
+      expect(cells[4], `${d.name} camps`).toBe(String(d.campsPerEra));
+      expect(cells[5], `${d.name} rewinds`).toBe(String(d.rewinds));
+    }
+  });
+});

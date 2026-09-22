@@ -2,7 +2,8 @@
 import { current } from '../../src/core/battle/battle';
 import type { Action } from '../../src/core/actions';
 import { maxHp, maxNerve } from '../../src/core/stats';
-import type { EraId } from '../../src/types/content';
+import { difficulty } from '../../src/core/difficulty';
+import type { DifficultyId, EraId } from '../../src/types/content';
 import type { BattleState, GameState } from '../../src/types/state';
 import { partyAt } from '../balance';
 import { autoBattle, content, reduce } from '../helpers';
@@ -75,9 +76,9 @@ const SITE: Record<string, string> = { '2312': 'kell_2312', '2148': 'kell_2148',
  * Entropy carried between them. Between fights the party camps when hurt, and pays for a bed when the
  * camps are gone and the purse allows. A loss sends it back to the Deep Site the way the game does.
  */
-export function playEra(era: EraId, level: number, roster: string[], policyName: string, policy: Policy | null, seed: number, purse = 120): EraResult {
+export function playEra(era: EraId, level: number, roster: string[], policyName: string, policy: Policy | null, seed: number, purse = 120, diff?: DifficultyId): EraResult {
   let s = partyAt(level, roster, seed);
-  s = { ...s, location: SITE[era], era, camps: content.rules.camp.perEra, entropy: 0,
+  s = { ...s, difficulty: diff, location: SITE[era], era, camps: difficulty(content, diff).campsPerEra, entropy: 0,
     inventory: { ...s.inventory, items: { ration: 2, tonic: 1, splice: 1, steady: 1 }, currency: { ...s.inventory.currency, [cur(era)]: purse } } };
   const encs = Object.values(content.encounters).filter((e) => e.era === era && e.tier !== 'key' && !/stairwell/.test(e.id))
     .sort((a, b) => (a.tier === b.tier ? a.id.localeCompare(b.id) : a.tier === 'ordinary' ? -1 : 1));
@@ -106,9 +107,9 @@ export function cur(era: string): string {
 }
 
 /** The four floors of the Stack in order, as the endgame is walked: no beds, two camps, bench rotated. */
-export function playStack(level: number, roster: string[], policyName: string, policy: Policy | null, seed: number): EraResult {
+export function playStack(level: number, roster: string[], policyName: string, policy: Policy | null, seed: number, diff?: DifficultyId): EraResult {
   let s = partyAt(level, roster, seed);
-  s = { ...s, camps: content.rules.camp.perEra, entropy: 0, inventory: { ...s.inventory, items: { ration: 2, tonic: 1, dampener: 1 } } };
+  s = { ...s, difficulty: diff, camps: difficulty(content, diff).campsPerEra, entropy: 0, inventory: { ...s.inventory, items: { ration: 2, tonic: 1, dampener: 1 } } };
   const out: EraResult = { era: 'stack', policy: policyName, fights: 0, wins: 0, losses: 0, rounds: [], downs: 0, worst: 1, rests: 0, camps: 0, broke: 0, entropyPeak: 0, results: [] };
   let i = 0;
   for (const id of ['stack_floor_2031', 'stack_floor_2064', 'stack_floor_2148', 'stack_floor_2312', 'strand_perpetual']) {

@@ -33,7 +33,8 @@ Site the way the game does. Two seeds each.
 
 ## Results by era
 
-Wins out of fights played, and the average rounds a won or lost fight lasted.
+Wins out of fights played, and the average rounds a won or lost fight lasted. These are the numbers
+that led to the changes below, measured before later eras got more Resolve and beds got dearer.
 
 | Style | 2312 ordinary | 2312 hard | 2148 ordinary | 2148 hard | 2064 ordinary | 2064 hard | 2031 ordinary | 2031 hard | Source |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -72,10 +73,11 @@ The Stack (four floors, then the Perpetual), with the full roster, two camps and
    party of four, earlier than anything else asks as much.
 2. **The curve falls after 2148.** A Competent player's ordinary fights take 3.1 rounds in 2312, 2.8
    in 2148, 2.6 in 2064 and 1.2 in 2031. By 2031 an ordinary fight is over before the enemy acts
-   twice. Hard fights hold steady at 4 to 5 rounds throughout.
+   twice. Hard fights hold steady at 4 to 5 rounds throughout. Since fixed: see **Later eras** below.
 3. **Beds are too cheap to matter.** A bed costs three per level, and every style could always
    afford one. The Novice and Turtle bought 35 in 2148 alone and never ran out of money. Camps,
-   limited to two an era, are the only recovery that asks for a decision.
+   limited to two an era, are the only recovery that asks for a decision. Beds now cost twice as
+   much; see **Beds** below.
 4. **The Stack is the real test, and it is fair.** No style clears it every time; turtling is the
    most reliable way through, and no fight in it falls in one round any more.
 5. **Playing safe is slow but not punished.** The Turtle takes twice as many rounds as the Basher and
@@ -118,43 +120,92 @@ Discrepancy was left alone on purpose. It is the Auditor's only Chronal attack a
 Echoes: without it the same fights are won 54 times in 70, with it 69. Its speed-up is what an answer
 to a hard counter should look like, and it never wins a fight in two rounds.
 
+## Later eras and beds
+
+Enemies in 2064 and 2031 now carry more Resolve on every setting (`rules.eraScale`), and a bed costs
+6 per level instead of 3 (`rules.rest.perLevel`). Two encounters that were already long for their
+tier were trimmed with their own `scale` so they stay inside the bands `tests/balance.test.ts`
+promises.
+
+| Era and tier | Resolve now | Competent rounds before | Competent rounds after | Source |
+| --- | --- | --- | --- | --- |
+| 2312 ordinary | ×1 | 3.1 | 3.1 | `DIFF=standard npm run sim` |
+| 2148 ordinary | ×1 | 2.8 | 2.8 | `DIFF=standard npm run sim` |
+| 2064 ordinary | ×1.6 | 2.6 | 3.1 | `DIFF=standard npm run sim` |
+| 2031 ordinary | ×2.2 | 1.2 | 2.5 | `DIFF=standard npm run sim` |
+| 2064 hard | ×1.2 | 4.4 | 4.8 | `DIFF=standard npm run sim` |
+| 2031 hard | ×1.3 | 4.9 | 6.4 | `DIFF=standard npm run sim` |
+| Hot Aisle, 2064 | encounter scale 0.8 | 5 | 4 or fewer | `tests/balance.test.ts` |
+| The Wrong Shipment, 2031 | encounter scale 5.0 to 4.5 | 9 | 8 or fewer | `tests/balance.test.ts` |
+
+Ordinary fights now take about three rounds in every era, and hard fights grow a little longer as the
+game goes on instead of shorter.
+
+On beds: a fight pays about 120 of the era's money in 2312, 2148 and 2064 and about 60 in 2031, and
+that pay does not rise with level. At 6 per level a bed is a sixth of a fight's pay in 2312 and a
+fight and a half's in 2031. The simulated players still never ran out, because they spend nothing
+else; a real player choosing between a bed and a shop's gear will feel it.
+
 ## Difficulty settings
 
-Nothing below is implemented. It is the set of levers the rules already expose, what each does to the
-simulated players, and four presets built from them.
+Built. New Game asks for one under the stance cards, Settings changes it outside a fight, and the save
+remembers it. A save from before this has no setting and plays Standard.
 
-### Levers
+| Piece | Source |
+| --- | --- |
+| The presets and their numbers | `rules.difficulty` in `content/rules.json` |
+| Filling in each lever from the preset or the base rule | `src/core/difficulty.ts` |
+| Enemy Resolve, enemy hits, Rewinds, targeting, Echo grace | `createBattle` and `resolveDamage` in `src/core/battle/battle.ts` |
+| Bed price and camps | `restCost`, `CAMP`, `TIME_JUMP`, `SET_DIFFICULTY` in `src/core/reducer.ts` |
+| Choosing it | `newGameScreen` and `settingsScreen` in `src/ui/screens/menus.ts` |
+| Tests | `tests/difficulty.test.ts`, and the manual's table in `tests/manual.test.ts` |
 
-| Lever | Now | Effect | Source |
-| --- | --- | --- | --- |
-| Enemy damage | 0.5 of written (`damageScale`) | The strongest single lever. It moves every style's losses at once | `content/rules.json` |
-| Enemy Resolve by tier | ordinary 1, hard 1.4, key 4 | Longer fights, more Entropy, more chances to go wrong | `rules.tierScale` |
-| Enemy Resolve by encounter | `scale`, set on a few encounters | Raising it across 2064 and 2031 fixes the falling curve without touching the early game | `content/encounters/*.json` |
-| Bed price | 3 per level | Makes rest a choice instead of a reflex | `rules.rest.perLevel` |
-| Camps per era | 2 | The recovery players actually plan around | `rules.camp.perEra` |
-| Nerve | 10 plus 1 a level | How many heals and buffs a party has between beds | `rules.nerve` |
-| Tempo per enemy hit | 3 | How often Fork, Rewind, Echo and Collapse come round | `rules.tempoOnHit` |
-| Entropy per round | 1 | How much long, careful fights cost | `rules.entropyFlow.perRound` |
-| Rewinds per fight | 1 | A second chance after a bad enemy turn | `rules.rewind.base` |
-| Pressure | enemies hit harder after round 10 | Stops a stalled fight lasting forever | `rules.pressure` |
-| Enemy targeting | per-enemy personality | "Opportunist" everywhere makes every foe finish the weakest | `content/enemies/*.json` |
-| Intent display | shown with target | Hiding the target removes most of the planning a turn has | `enemyIntent` in `battle.ts` |
-| Experience | as tuned | Levels arrive earlier or later against fixed enemies | `rules.xpPerLevel` |
+Standard is an empty preset. Every lever it leaves out is the base rule, so Standard and the base
+rules cannot drift apart.
 
-### Presets
+### The presets
 
-| Preset | Enemy damage | Enemy Resolve | Beds | Camps | Nerve | Rewinds | Targeting | Aim | Source |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Story | ×0.75 | ×0.85 | 2 per level | 3 | +4 | 2 | Personalities, never Opportunist | A Novice wins at least 95% of fights, 2148 included; Echo fights also take reduced damage from non-Chronal hits | this simulator |
-| Standard | ×1 | 2064 ×1.25, 2031 ×1.5 on ordinary fights | 5 per level | 2 | as now | 1 | Personalities | A Competent player spends 3 to 4 rounds on an ordinary fight in every era; a Novice wins about 85% | this simulator |
-| Hard | ×1.2 | ×1.15, plus the Standard era scale | 6 per level | 1 | as now | 1 | Half the field Opportunist | A Competent player wins about 85% of hard fights; an Expert still clears the Stack at level 20 | this simulator |
-| Audit | ×1.3 | ×1.25, plus the era scale | none in the Stack, 8 per level elsewhere | 1 | −2 | 0 | Opportunist | Only an Expert clears the Stack; a loss ends the run at the last save | this simulator |
+| Setting | Enemy hits | Enemy Resolve | Bed, per level | Camps an era | Rewinds a fight | Go for the weakest | Echoes | Source |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Story | ×0.75 | ×0.85 | 3 | 3 | 2 | None | Ordinary hits land at 35% | `rules.difficulty.presets.story` |
+| Standard | ×1 | ×1 | 6 | 2 | 1 | None | Chronal only | `rules.difficulty.presets.standard` |
+| Hard | ×1.15 | ×1.1 | 8 | 1 | 1 | Half of every side | Chronal only | `rules.difficulty.presets.hard` |
+| Audit | ×1.35 | ×1.25 | 10 | 1 | 0 | All of them | Chronal only | `rules.difficulty.presets.audit` |
 
-Two notes on building them:
+Anchors and training still add Rewinds on every setting. "Go for the weakest" overrides an enemy's
+own personality, spread evenly: on Hard the second and fourth of a group, on Audit all of them.
 
-1. Scale enemies when the battle is created, not in the content files, so one setting reaches every
-   fight and the save only has to remember the preset. The battle code already multiplies enemy
-   Resolve by `tierScale` and the encounter's `scale` in one place; a difficulty multiplier belongs
-   beside them.
-2. Tune each preset against the simulator's aim, not by feel. Add the preset to `partyAt` in
-   `tests/balance.ts`, rerun `npm run sim`, and check the column above before shipping it.
+### How each setting plays
+
+Era fights won, both seeds and all four eras together; 2148's hard fights on their own, since they
+are the hardest stretch; and the Stack at level 20, one result per seed.
+
+| Setting | Style | Era fights won | 2148 hard fights won | Stack floors at level 20 | Source |
+| --- | --- | --- | --- | --- | --- |
+| Story | Novice | 120/120 | 30/30 | 2/3 and 4/5 | `DIFF=story npm run sim` |
+| Story | Turtle | 114/120 | 24/30 | 5/5 and 5/5 | `DIFF=story npm run sim` |
+| Story | Competent | 120/120 | 30/30 | 4/5 and 5/5 | `DIFF=story npm run sim` |
+| Standard | Novice | 112/120 | 22/30 | 2/3 and 1/2 | `DIFF=standard npm run sim` |
+| Standard | Turtle | 104/120 | 14/30 | 4/5 and 5/5 | `DIFF=standard npm run sim` |
+| Standard | Competent | 120/120 | 30/30 | 2/3 and 4/5 | `DIFF=standard npm run sim` |
+| Standard | Expert | 117/120 | 29/30 | 4/5 and 5/5 | `DIFF=standard npm run sim` |
+| Hard | Novice | 99/120 | 14/30 | 2/3 and 2/3 | `DIFF=hard npm run sim` |
+| Hard | Competent | 120/120 | 30/30 | 2/3 and 3/4 | `DIFF=hard npm run sim` |
+| Hard | Expert | 118/120 | 29/30 | 2/3 and 3/4 | `DIFF=hard npm run sim` |
+| Audit | Novice | 72/120 | 1/30 | 0/1 and 1/2 | `DIFF=audit npm run sim` |
+| Audit | Competent | 112/120 | 24/30 | 2/3 and 1/2 | `DIFF=audit npm run sim` |
+| Audit | Expert | 114/120 | 27/30 | 3/4 and 3/4 | `DIFF=audit npm run sim` |
+
+What that says:
+
+1. **Story does its job.** A Novice wins every era fight, 2148 included. Styles that never use
+   Chronal still lose a few Echo fights, slower rather than stuck.
+2. **Hard is fair in the eras and steep in the Stack.** A player who reads the chart still wins every
+   era fight. No simulated style cleared the Stack on Hard, though they are scripted and never use
+   Collapse or plan a floor ahead, and nothing in the Stack resets when a party comes back.
+3. **Audit separates players.** Novices lose most of 2148, a Competent player loses a fifth of it,
+   and only the Expert gets close to the Stack's bottom.
+
+If the Stack on Hard proves too steep in play, the next lever would let a preset leave key fights at
+Standard's Resolve while keeping everything else, so the eras stay hard and the Stack does not
+compound it.

@@ -344,7 +344,7 @@ body[data-reduced-motion='true'] *, body[data-reduced-motion='true'] *::before, 
 /* NES-inspired presentation: solid colors, pixel sprites, framed command windows. */
 /* Type stays per era (see the design doc): humanist sans in 2031, condensed grotesk in 2064,
    monospace in 2148, geometric sans in 2312. applyEra() sets --font and --tracking. */
-.panel, .title #title-menu, .stance .card {
+.panel, .title #title-menu, .stance .card, .difficulty-pick {
   background: #14234b; color: #f8efd5; border: 3px double #c3d1ed;
   border-radius: 0; box-shadow: 0 3px 0 #080f25; backdrop-filter: none;
   --ink: #f8efd5; --accent: #f4cb76; --commons: #79cf9b; --choir: #b7a6f7; --cinder: #f4977f;
@@ -748,3 +748,10 @@ section.tech > div:first-child { overflow-y: auto; min-height: 0; }
   .hub .actions .desc { min-height: 0; margin-top: 4px; }
   .perks .menu li, .two .panel .menu li { padding-top: 5px; padding-bottom: 5px; }
 }
+
+/* Difficulty on the New Game screen: four chips under the stances, the chosen one explained below. */
+.difficulty-pick { max-width: 720px; margin: 14px auto 0; padding: 10px 18px 12px; text-align: center; }
+.difficulty-pick .chips { display: flex; justify-content: center; gap: 8px; margin: 8px 0 6px; flex-wrap: wrap; }
+.difficulty-pick .chip { padding: 4px 14px; border: 1px solid #5d6f99; background: #1b2d5c; color: #f8efd5; cursor: pointer; font-size: 14px; }
+.difficulty-pick .chip.on { border-color: #f4cb76; background: #334775; }
+.difficulty-pick p.small { min-height: 2.8em; max-width: 640px; margin: 0 auto; }

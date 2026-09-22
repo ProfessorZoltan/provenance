@@ -3,6 +3,7 @@ import type { CharacterState, GameState, Screen } from '../types/state';
 import type { Action } from './actions';
 import { collapse, createBattle, echoAssist, endTurn, enemyTurn, fork, partyCombatant, relay, resolveAbility, rewind, useItem } from './battle/battle';
 import { evalAll } from './conditions';
+import { difficulty } from './difficulty';
 import { buildScan, conditionContext, rollEncounter } from './encounter';
 import { seedFromString } from './rng';
 import { levelForXp, loadout, maxHp, maxNerve, perkOffer, perksOwed } from './stats';
@@ -336,7 +337,7 @@ export function hasLodging(content: ContentDB, state: GameState): boolean {
 /** What a full rest costs here: the era's currency, by the level of the strongest member fielded. */
 export function restCost(content: ContentDB, state: GameState): number {
   const level = Math.max(1, ...state.activeParty.map((id) => state.party[id]?.level ?? 1));
-  return content.rules.rest.perLevel * level;
+  return difficulty(content, state.difficulty).restPerLevel * level;
 }
 
 function arrive(content: ContentDB, state: GameState, locationId: string): GameState {
@@ -346,7 +347,7 @@ function arrive(content: ContentDB, state: GameState, locationId: string): GameS
   const map = node ? { x: node.x, y: node.y + node.radius + 24 } : state.map;
   const fresh = loc.refillCamps && state.location !== locationId;
   state = { ...state, location: locationId, era: loc.era, screen: { id: 'hub' }, scan: null, map, back: { id: 'hub' } };
-  if (fresh) state = { ...state, camps: content.rules.camp.perEra };
+  if (fresh) state = { ...state, camps: difficulty(content, state.difficulty).campsPerEra };
   // Having stood somewhere is a condition in its own right; the case log leans on it.
   state = addFlags(state, [`been:${locationId}`]);
   const variant = activeVariant(content, state, loc);
@@ -481,7 +482,8 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
         party: { player: newCharacter(content, 'player', sync, 0) },
         activeParty: ['player'],
         location: 'allocation_office_2312',
-        camps: content.rules.camp.perEra,
+        difficulty: difficulty(content, action.difficulty).id,
+        camps: difficulty(content, action.difficulty).campsPerEra,
         map: { x: content.rooms.allocation_office.spawn.x, y: content.rooms.allocation_office.spawn.y },
         screen: { id: 'room', room: 'allocation_office' },
       };
@@ -513,7 +515,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       // A save from when four could take the field keeps its first three; the rest go to the bench.
       const max = content.rules.activePartyMax;
       if (s.activeParty.length > max) s.activeParty = [...s.activeParty.filter((id) => id === 'player'), ...s.activeParty.filter((id) => id !== 'player')].slice(0, max);
-      if (typeof s.camps !== 'number') s.camps = content.rules.camp.perEra;
+      if (typeof s.camps !== 'number') s.camps = difficulty(content, s.difficulty).campsPerEra;
       return { ...s, battle: live, scan: null, screen: live ? { id: 'battle' } : s.dialogue ? { id: 'dialogue' } : { id: 'hub' } };
     }
     case 'SET_SCREEN': {
@@ -529,6 +531,15 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       return { ...state, map: { x: action.x, y: action.y } };
     case 'SET_SETTINGS':
       return { ...state, settings: { ...state.settings, ...action.settings } };
+
+    case 'SET_DIFFICULTY': {
+      // Changed between fights, never during one: a fight is played on the terms it started on.
+      if (state.battle) throw new Error('Not in the middle of a fight');
+      const next = difficulty(content, action.difficulty);
+      if (next.id !== action.difficulty) throw new Error(`Unknown difficulty ${action.difficulty}`);
+      // Camps already spent stay spent; a setting with fewer takes the extra away.
+      return journal({ ...state, difficulty: next.id, camps: Math.min(state.camps, next.campsPerEra) }, `Difficulty set to ${next.name}.`);
+    }
 
     case 'START_DIALOGUE':
       return startDialogue(content, state, action.id, action.returnTo ?? state.screen);
@@ -575,7 +586,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       if (!loc.timeLinks.includes(action.era)) throw new Error(`${loc.name} does not reach ${action.era}`);
       const target = Object.values(content.locations).find((l) => l.kind === 'deepSite' && l.site === loc.site && l.era === action.era);
       if (!target) throw new Error(`No ${loc.site} in ${action.era}`);
-      state = { ...state, world: markVisited(state.world, action.era), camps: content.rules.camp.perEra };
+      state = { ...state, world: markVisited(state.world, action.era), camps: difficulty(content, state.difficulty).campsPerEra };
       state = journal(state, `Jumped to ${action.era} at ${target.name}.`);
       return arrive(content, state, target.id);
     }

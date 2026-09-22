@@ -1,4 +1,5 @@
 import { hasLocalSave, loadFromLocal, saveToLocal, serialize, deserialize } from '../../core/save';
+import { DIFFICULTIES, difficulty } from '../../core/difficulty';
 import { seedFromString } from '../../core/rng';
 import type { ContentDB } from '../../types/content';
 import type { GameState } from '../../types/state';
@@ -71,25 +72,34 @@ const STANCES = [
 
 export function newGameScreen(root: HTMLElement, ctx: Ctx, _state: GameState): ScreenHandle {
   let idx = mem.stance ?? 1;
+  let diff = mem.difficulty ?? DIFFICULTIES.indexOf(ctx.content.rules.difficulty.default);
   const draw = () => {
+    const d = difficulty(ctx.content, DIFFICULTIES[diff]);
     html(root, `<section>
       <div class="eyebrow" style="text-align:center;margin-bottom:14px">The Auditor's stance on the Steward</div>
       <div class="stance">${STANCES.map((s, i) => `<div class="card ${i === idx ? 'focused' : ''}" style="--stance-color:${s.color}" data-i="${i}"><h3>${s.name}</h3><p class="small">${s.text}</p></div>`).join('')}</div>
       <p class="small" style="text-align:center;margin-top:18px">Sync moves through dialogue afterwards. The party average gates faction content; it is never shown as a number.</p>
+      <div class="difficulty-pick">
+        <div class="eyebrow">Difficulty · ${glyph('up')}${glyph('down')} to change, and again any time in Settings</div>
+        <div class="chips">${DIFFICULTIES.map((id, i) => `<span class="chip ${i === diff ? 'on' : ''}" data-d="${i}">${esc(difficulty(ctx.content, id).name)}</span>`).join('')}</div>
+        <p class="small">${esc(d.blurb)}</p>
+      </div>
       <p class="small" style="text-align:center;margin-top:10px">${glyph('x')} Skip the prologue and start at Kell.</p>
     </section>`);
     root.querySelectorAll('.card').forEach((c) => c.addEventListener('click', () => { idx = Number((c as HTMLElement).dataset.i); mem.stance = idx; start(); }));
+    root.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', () => { diff = Number((c as HTMLElement).dataset.d); mem.difficulty = diff; draw(); }));
   };
   const start = (skip = false) => {
-    ctx.store.dispatch({ type: 'NEW_GAME', seed: seedFromString(`${Date.now()}:${Math.random()}`), lean: STANCES[idx].id });
+    ctx.store.dispatch({ type: 'NEW_GAME', seed: seedFromString(`${Date.now()}:${Math.random()}`), lean: STANCES[idx].id, difficulty: DIFFICULTIES[diff] });
     if (skip) ctx.store.dispatch({ type: 'PROLOGUE_SKIP' });
   };
   draw();
-  ctx.setPrompts(prompts({ btn: 'dpad', label: 'Choose stance' }, { btn: 'a', label: 'Begin' }, { btn: 'x', label: 'Skip prologue' }, { btn: 'b', label: 'Back' }));
+  ctx.setPrompts(prompts({ btn: 'dpad', label: 'Stance and difficulty' }, { btn: 'a', label: 'Begin' }, { btn: 'x', label: 'Skip prologue' }, { btn: 'b', label: 'Back' }));
   return {
     input(btn) {
       if (btn === 'left' || btn === 'lb') { idx = (idx + 2) % 3; mem.stance = idx; draw(); }
       else if (btn === 'right' || btn === 'rb') { idx = (idx + 1) % 3; mem.stance = idx; draw(); }
+      else if (btn === 'up' || btn === 'down') { diff = (diff + (btn === 'down' ? 1 : DIFFICULTIES.length - 1)) % DIFFICULTIES.length; mem.difficulty = diff; ctx.audio.sfx('move', '2312'); draw(); }
       else if (btn === 'a') { ctx.audio.sfx('confirm', '2312'); start(); }
       else if (btn === 'x') { ctx.audio.sfx('confirm', '2312'); start(true); }
       else if (btn === 'b') ctx.store.dispatch({ type: 'SET_SCREEN', screen: { id: 'title' } });
@@ -105,7 +115,16 @@ export function settingsScreen(root: HTMLElement, ctx: Ctx, state: GameState): S
     <div id="m"></div>
     <p class="small" style="margin-top:12px">Keyboard: ${glyph('dpad')} move · Enter confirm · Esc back · X, Y, Q (LB), E (RB), Z (LT), C (RT), M (menu), Tab (select). A standard-mapping controller works as soon as you press a button on it.</p>
   </div></section>`);
+  // Difficulty belongs to the save, so it shows once a game is under way; New Game asks for it first.
+  const d = difficulty(ctx.content, state.difficulty);
+  const stepDifficulty = (dir: 1 | -1) => {
+    const i = DIFFICULTIES.indexOf(d.id);
+    ctx.store.dispatch({ type: 'SET_DIFFICULTY', difficulty: DIFFICULTIES[(i + dir + DIFFICULTIES.length) % DIFFICULTIES.length] });
+    const e = ctx.store.lastError();
+    if (e) ctx.toast(e.message);
+  };
   const m = menu([
+    ...(state.started ? [{ id: 'difficulty', label: `Difficulty: ${d.name}`, hint: `← → change. ${d.blurb}`, disabled: !!state.battle, onSelect: () => stepDifficulty(1) }] : []),
     { id: 'motion', label: `Reduced motion: ${s.reducedMotion ? 'on' : 'off'}`, hint: 'Freezes the camera, halves particles', onSelect: () => ctx.store.dispatch({ type: 'SET_SETTINGS', settings: { reducedMotion: !s.reducedMotion } }) },
     { id: 'music', label: `Music volume: ${Math.round(s.musicVolume * 100)}%`, hint: '← → adjust' },
     { id: 'sfx', label: `Effects volume: ${Math.round(s.sfxVolume * 100)}%`, hint: '← → adjust' },
@@ -117,6 +136,7 @@ export function settingsScreen(root: HTMLElement, ctx: Ctx, state: GameState): S
   return {
     input(btn) {
       const cur = m.current()?.id;
+      if ((btn === 'left' || btn === 'right') && cur === 'difficulty' && !state.battle) { stepDifficulty(btn === 'right' ? 1 : -1); return; }
       if ((btn === 'left' || btn === 'right') && (cur === 'music' || cur === 'sfx')) {
         const key = cur === 'music' ? 'musicVolume' : 'sfxVolume';
         const v = Math.max(0, Math.min(1, Math.round((s[key] + (btn === 'right' ? 0.1 : -0.1)) * 10) / 10));
