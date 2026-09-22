@@ -34,5 +34,6 @@
       "chance": 0.14
     }
   ],
-  "flavor": "Not built to fight. Built to lift four tonnes, and nobody wrote down what it should do if you are in the way."
+  "flavor": "Not built to fight. Built to lift four tonnes, and nobody wrote down what it should do if you are in the way.",
+  "targeting": "opportunist"
 }

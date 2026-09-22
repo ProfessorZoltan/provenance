@@ -150,6 +150,11 @@ body[data-device='gamepad'] .glyph[data-btn='start'], body[data-device='gamepad'
 .battle .enemy.down { opacity: 0.25; filter: grayscale(1); }
 .battle .enemy .nm { font-size: 13px; margin-top: 4px; display: flex; justify-content: space-between; gap: 6px; }
 .battle .enemy .marker { color: var(--accent); font-size: 11px; }
+.battle .enemy .intent { font-size: 11px; margin-top: 3px; padding: 1px 6px; border-radius: 3px; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink); opacity: 0.9; }
+.battle .enemy .intent.hit { color: var(--hurt); }
+.battle .enemy .intent.heavy { color: var(--hurt); font-weight: 700; background: color-mix(in srgb, var(--hurt) 18%, transparent); }
+.battle .enemy .intent.charge { color: var(--hurt); font-style: italic; }
+.battle .enemy .intent.heal { color: var(--healed); }
 .battle .actorsrow { position: absolute; bottom: 4%; left: 4%; display: flex; gap: 34px; align-items: flex-end; }
 .battle .actor { width: 110px; height: 150px; transition: transform 250ms; }
 .battle .actor svg { width: 100%; height: 100%; }
@@ -510,7 +515,13 @@ body[data-reduced-motion='true'] .battle .narration-box { animation: none; }
 .battle { grid-template-rows: minmax(0, 1fr) auto; }
 .battle .stage { min-height: min(320px, 38vh); }
 .battle .bottom { min-height: 0; max-height: 52vh; overflow-y: auto; }
-.battle .telemetry { min-height: 0; }
+.battle .telemetry { min-height: 0; max-height: 52vh; }
+/* The log scrolls inside the column the action menu sets the height of. Left to grow, it pushed
+   the second grid row taller than the window and squeezed the stage down onto the cards. */
+.battle .telemetry .side { flex: 1 1 0; min-height: 0; }
+.battle .telemetry .log { flex: 1 1 0; min-height: 0; overflow-y: auto; }
+/* An intent that does not fit on one line wraps rather than losing its target to an ellipsis. */
+.battle .enemy .intent { white-space: normal; line-height: 1.25; }
 .scroll-hint { font-size: 11px; opacity: 0.6; text-align: center; padding: 2px 0 0; }
 /* The focused tech node reads at a glance. */
 .tech .node.focused { outline: 4px solid #f4cb76; outline-offset: 0; box-shadow: 0 0 0 2px #0b1128 inset; }

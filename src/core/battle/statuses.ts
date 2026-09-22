@@ -75,6 +75,16 @@ export const STATUS_INFO: Record<string, StatusInfo> = {
     polarity: 'bad',
     effect: () => 'Attacks against it cannot miss.',
   },
+  wall: {
+    label: 'Standing between',
+    polarity: 'good',
+    effect: () => 'Every single hit thrown at its side lands on it instead. It takes them at full strength.',
+  },
+  charging: {
+    label: 'Winding up',
+    polarity: 'good',
+    effect: () => 'Unleashes a heavy hit next turn. Bound by terms or Target Lock breaks the wind-up.',
+  },
 };
 
 export function statusLabel(id: string): string {

@@ -48,5 +48,6 @@
       "chance": 0.12
     }
   ],
-  "flavor": "Flies the cooling fields on a patrol pattern that has not been revised in eighty years."
+  "flavor": "Flies the cooling fields on a patrol pattern that has not been revised in eighty years.",
+  "targeting": "spread"
 }

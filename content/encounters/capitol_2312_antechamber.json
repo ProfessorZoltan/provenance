@@ -6,7 +6,7 @@
   "location": "capitol_2312",
   "enemies": [
     {
-      "enemy": "warden_board_2312",
+      "enemy": "warden_bailiff_2312",
       "count": 1
     },
     {

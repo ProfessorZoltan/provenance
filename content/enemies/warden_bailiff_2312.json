@@ -1,0 +1,41 @@
+{
+  "id": "warden_bailiff_2312",
+  "name": "Board Bailiff",
+  "family": "warden",
+  "era": "2312",
+  "machine": false,
+  "stats": {
+    "resolve": 190,
+    "bandwidth": 2,
+    "latency": 34,
+    "signal": 30,
+    "noise": 30,
+    "grit": 56,
+    "sync": 60,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "bailiff_stand",
+    "warden_baton"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 45,
+  "rig": "warden",
+  "xp": 85,
+  "drops": [
+    {
+      "item": "stim",
+      "chance": 0.3
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Wider than the doorway. Stands where you have to hit him, and remembers who did.",
+  "role": "Bailiff",
+  "targeting": "revenge"
+}

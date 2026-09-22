@@ -43,5 +43,6 @@
       "chance": 0.12
     }
   ],
-  "flavor": "A Board-era kill drone. It does not count; it culls."
+  "flavor": "A Board-era kill drone. It does not count; it culls.",
+  "targeting": "weakest"
 }

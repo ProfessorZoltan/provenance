@@ -38,5 +38,6 @@
       "chance": 0.2
     }
   ],
-  "flavor": "Meridian's first field unit. It flies beautifully and thinks about as well as a wasp."
+  "flavor": "Meridian's first field unit. It flies beautifully and thinks about as well as a wasp.",
+  "targeting": "weakest"
 }

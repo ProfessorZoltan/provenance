@@ -40,6 +40,10 @@ export interface Combatant {
   expiresAfterRound?: number;
   /** Items are free, but one a turn: set once this combatant has used theirs. */
   itemUsed?: boolean;
+  /** Who last damaged this combatant, for enemies that hold a grudge. */
+  lastHitBy?: string;
+  /** Who this combatant last went for, for enemies that spread their attention. */
+  lastTarget?: string;
 }
 
 export interface LogMeta {

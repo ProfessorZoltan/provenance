@@ -1,0 +1,41 @@
+{
+  "id": "drone_lancer_2064",
+  "name": "Gallery Lancer",
+  "family": "drone",
+  "era": "2064",
+  "machine": true,
+  "stats": {
+    "resolve": 82,
+    "bandwidth": 2,
+    "latency": 6,
+    "signal": 52,
+    "noise": 50,
+    "grit": 30,
+    "sync": 100,
+    "continuity": 100
+  },
+  "shield": 22,
+  "abilities": [
+    "spool",
+    "lance",
+    "drone_dart"
+  ],
+  "immunities": [],
+  "perception": 60,
+  "rig": "drone_hunter",
+  "weakness": "signal",
+  "xp": 65,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.6
+    },
+    {
+      "item": "faraday_foil",
+      "chance": 0.18
+    }
+  ],
+  "flavor": "A gallery drone with the safety off its lamp. Spools, then burns a hole in whoever is asking questions.",
+  "role": "Charger",
+  "targeting": "auditor"
+}

@@ -12,6 +12,10 @@
     {
       "enemy": "warden_2148",
       "count": 1
+    },
+    {
+      "enemy": "drone_lancer_2148",
+      "count": 1
     }
   ],
   "surprise": "never",

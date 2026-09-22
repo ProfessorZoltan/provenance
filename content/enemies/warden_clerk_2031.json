@@ -1,0 +1,42 @@
+{
+  "id": "warden_clerk_2031",
+  "name": "Camp Clerk",
+  "family": "warden",
+  "era": "2031",
+  "machine": false,
+  "stats": {
+    "resolve": 105,
+    "bandwidth": 2,
+    "latency": 44,
+    "signal": 40,
+    "noise": 25,
+    "grit": 34,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "clerk_mend",
+    "clerk_minute",
+    "warden_baton"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 35,
+  "rig": "warden",
+  "xp": 75,
+  "drops": [
+    {
+      "item": "ration",
+      "chance": 0.4
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Keeps the roster and the first-aid tin. Fix him first or fix nobody.",
+  "role": "Clerk",
+  "targeting": "weakest"
+}

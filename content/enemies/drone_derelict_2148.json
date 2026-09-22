@@ -34,5 +34,6 @@
       "chance": 0.12
     }
   ],
-  "flavor": "It has been running one instruction for a century, and the instruction is hurt whatever moves."
+  "flavor": "It has been running one instruction for a century, and the instruction is hurt whatever moves.",
+  "targeting": "opportunist"
 }

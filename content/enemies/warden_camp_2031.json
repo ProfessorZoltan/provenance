@@ -35,5 +35,6 @@
       "chance": 0.2
     }
   ],
-  "flavor": "Not security. A crew boss with a clipboard who has decided you are a liability."
+  "flavor": "Not security. A crew boss with a clipboard who has decided you are a liability.",
+  "targeting": "spread"
 }

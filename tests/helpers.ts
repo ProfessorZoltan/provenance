@@ -1,5 +1,6 @@
 import { getContent } from '../src/content/loader';
 import type { Action } from '../src/core/actions';
+import { validTargets } from '../src/core/battle/battle';
 import { createReducer, initialState } from '../src/core/reducer';
 import type { GameState } from '../src/types/state';
 
@@ -74,7 +75,8 @@ export function autoBattle(state: GameState, policy?: (s: GameState) => Action |
       for (const a of actor.abilities) {
         const def = content.abilities[a];
         if (!def?.damageType || !afford(a)) continue;
-        for (const f of foes) {
+        // A competent player reads the board: someone standing between takes every single hit.
+        for (const f of validTargets(b, actor.id, def).filter((c) => c.side === 'enemy')) {
           if (f.immunities.includes(def.damageType)) continue;
           if (def.damageType === 'signal' && !f.machine) continue;
           const score = def.cost * 10 + (f.weakness === def.damageType ? 25 : 0) - f.hp / 20;

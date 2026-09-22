@@ -1,0 +1,44 @@
+{
+  "id": "warden_quorum_2031",
+  "name": "Camp Foreman's Bloc",
+  "family": "warden",
+  "era": "2031",
+  "machine": false,
+  "stats": {
+    "resolve": 105,
+    "bandwidth": 2,
+    "latency": 44,
+    "signal": 15,
+    "noise": 25,
+    "grit": 34,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "warden_baton"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 35,
+  "rig": "warden",
+  "xp": 70,
+  "drops": [
+    {
+      "item": "ration",
+      "chance": 0.3
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Hired together. When one falls the others take it as a wage cut.",
+  "role": "Quorum",
+  "targeting": "spread",
+  "rally": {
+    "id": "inspired",
+    "turns": 3
+  }
+}

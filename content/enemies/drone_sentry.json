@@ -34,5 +34,6 @@
       "chance": 0.12
     }
   ],
-  "flavor": "An allocation drone, repurposed to keep the free town counted."
+  "flavor": "An allocation drone, repurposed to keep the free town counted.",
+  "targeting": "spread"
 }

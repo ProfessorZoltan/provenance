@@ -38,5 +38,6 @@
       "chance": 0.2
     }
   ],
-  "flavor": "Crowd management, leased by the hour. The causeway concession pays for two hundred of these."
+  "flavor": "Crowd management, leased by the hour. The causeway concession pays for two hundred of these.",
+  "targeting": "spread"
 }

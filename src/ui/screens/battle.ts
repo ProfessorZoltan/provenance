@@ -1,6 +1,7 @@
 import { artAssetUrl } from '../../art/library';
 import { rigSvg } from '../../art/rigs';
-import { abilityOptions, current, hasStatus, itemNeedsTarget, validTargets } from '../../core/battle/battle';
+import { abilityOptions, current, enemyIntent, hasStatus, itemNeedsTarget, validTargets } from '../../core/battle/battle';
+import type { Targeting } from '../../types/content';
 import type { AbilityDef, RulesDef } from '../../types/content';
 import { statusChips } from '../../core/battle/statuses';
 import { loadout } from '../../core/stats';
@@ -22,6 +23,17 @@ interface UI {
   logScroll: number;
   lastActor: string;
 }
+
+/** Each personality in the player's terms, for the Inspect panel. */
+const TARGETING_TEXT: Record<Targeting, string> = {
+  opportunist: 'Whoever is weakest, or whoever is nearest. It has no method.',
+  weakest: 'Whoever is closest to going down. It finishes things.',
+  healer: 'Whoever has the highest Signal: the one who mends.',
+  buffed: 'Whoever is carrying the most: Litany, Guard, Anchor. It takes the shine off.',
+  auditor: 'The Auditor. You are the case.',
+  revenge: 'Whoever hurt it last.',
+  spread: 'Never the same target twice running.',
+};
 
 const ui: UI = { encounter: '', mode: 'menu', ability: null, item: null, targetIdx: 0, menuIdx: 0, logScroll: 0, lastActor: '' };
 
@@ -105,6 +117,17 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
   if (targets.length) ui.targetIdx = ((ui.targetIdx % targets.length) + targets.length) % targets.length;
   const targeted = targets[ui.targetIdx];
 
+  // What each enemy will do next, read off the same planner that runs its turn.
+  const intentHtml = (e: Combatant): string => {
+    if (e.down || over) return '';
+    const plan = enemyIntent(b, e, content);
+    if (!plan) return '';
+    const a = plan.ability;
+    const who = plan.target ? plan.target.name : a.target === 'allEnemies' ? 'everyone' : a.target === 'allAllies' ? 'its side' : '';
+    const kind = a.special === 'unleash' ? 'heavy' : a.special === 'charge' ? 'charge' : a.heal ? 'heal' : a.damageType ? 'hit' : 'support';
+    return `<div class="intent ${kind}" title="${esc(a.description)}">▸ ${esc(a.name)}${who ? ` → ${esc(who)}` : ''}</div>`;
+  };
+
   const rigFor = (c: Combatant): string => {
     // Whoever this is a copy of, if anyone: temporaries and Echoes both point back at a character.
     const who = content.characters[c.echoOf ?? ''] ?? content.characters[c.ref];
@@ -145,6 +168,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
         : `<div class="bar hp"><i style="width:${Math.round((e.hp / e.maxHp) * 100)}%"></i></div>`}
         ${e.maxShield ? `<div class="bar shield" style="margin-top:2px"><i style="width:${Math.round((e.shield / e.maxShield) * 100)}%"></i></div>` : ''}
         ${e.down ? '' : statusChipsHtml(e, rules)}
+        ${intentHtml(e)}
         <div class="st">${hasStatus(e, 'marked') || b.combatants.some((c) => c.side === 'party' && c.ref === 'player' && (b.passives.player?.markDuration ?? 0) > 0) ? `${e.hp}/${e.maxHp}${e.maxShield ? ` · shield ${e.shield}` : ''} · weak: ${e.weakness ?? 'none'}` : e.parleyed ? 'talked down' : e.down ? 'down' : '&nbsp;'}</div>
       </div>`).join('')}</div>
       <div class="actorsrow">${party.map((p) => `<div class="actor ${p.down ? 'down' : ''} ${actor?.id === p.id ? 'active' : ''} ${targeted?.id === p.id ? 'targeted' : ''} ${flashClass(p.id)}">${rigFor(p)}</div>`).join('')}</div>
@@ -382,9 +406,12 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     const e = enemies[ui.targetIdx % enemies.length];
     const def = e.echoOf ? null : content.enemies[e.ref];
     const marked = hasStatus(e, 'marked');
-    actions.innerHTML = `<div class="eyebrow">Inspect · ${esc(e.name)}</div>
+    const plan = enemyIntent(b, e, content);
+    actions.innerHTML = `<div class="eyebrow">Inspect · ${esc(e.name)}${def?.role ? ` · ${esc(def.role)}` : ''}</div>
       <p class="small">${esc(def?.flavor ?? 'A glitched copy of one of your own.')}</p>
       <div class="kv small" style="margin-top:6px"><b>Family</b><span>${e.family}${e.machine ? ' · machine' : ''}</span><b>Immune</b><span>${e.immunities.join(', ') || 'nothing'}</span>
+      <b>Goes for</b><span>${esc(TARGETING_TEXT[def?.targeting ?? 'opportunist'])}</span>
+      <b>Next</b><span>${plan ? `${esc(plan.ability.name)}${plan.target ? ' on ' + esc(plan.target.name) : ''}: ${esc(plan.ability.description)}` : 'nothing it can do'}</span>
       ${marked ? `<b>Resolve</b><span>${e.hp}/${e.maxHp}</span><b>Shield</b><span>${e.shield}/${e.maxShield}</span><b>Weakness</b><span>${e.weakness ?? 'none'}</span><b>Grit</b><span>${e.stats.grit}</span><b>Noise</b><span>${e.stats.noise}</span><b>Latency</b><span>${e.stats.latency}</span>` : '<b>Stat sheet</b><span>Hidden. Audit it to expose.</span>'}</div>`;
     ctx.setPrompts(prompts({ btn: 'lb', label: 'Prev' }, { btn: 'rb', label: 'Next' }, { btn: 'b', label: 'Back' }));
   }

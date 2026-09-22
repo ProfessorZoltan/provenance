@@ -7,7 +7,11 @@
   "enemies": [
     {
       "enemy": "warden_capitol_2031",
-      "count": 2
+      "count": 1
+    },
+    {
+      "enemy": "warden_sergeant_2031",
+      "count": 1
     }
   ],
   "surprise": "never",

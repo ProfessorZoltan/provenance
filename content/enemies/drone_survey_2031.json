@@ -29,5 +29,6 @@
       "chance": 0.6
     }
   ],
-  "flavor": "Mapping the Basin floor on a grid, four years before anything is poured."
+  "flavor": "Mapping the Basin floor on a grid, four years before anything is poured.",
+  "targeting": "spread"
 }

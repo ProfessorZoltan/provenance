@@ -43,5 +43,6 @@
       "chance": 0.12
     }
   ],
-  "flavor": "It is not security. It is due diligence with rotors."
+  "flavor": "It is not security. It is due diligence with rotors.",
+  "targeting": "weakest"
 }

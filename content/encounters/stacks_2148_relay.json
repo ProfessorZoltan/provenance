@@ -12,6 +12,10 @@
     {
       "enemy": "echo_worn_2148",
       "count": 1
+    },
+    {
+      "enemy": "warden_stenographer_2148",
+      "count": 1
     }
   ],
   "surprise": "never",

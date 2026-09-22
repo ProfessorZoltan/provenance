@@ -28,5 +28,6 @@
       "chance": 0.5
     }
   ],
-  "flavor": "Allocated to count things on roads. It has never been asked to stop anybody and does not know how."
+  "flavor": "Allocated to count things on roads. It has never been asked to stop anybody and does not know how.",
+  "targeting": "spread"
 }

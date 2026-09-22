@@ -1,0 +1,41 @@
+{
+  "id": "warden_stenographer_2064",
+  "name": "Senate Stenographer",
+  "family": "warden",
+  "era": "2064",
+  "machine": false,
+  "stats": {
+    "resolve": 135,
+    "bandwidth": 3,
+    "latency": 36,
+    "signal": 40,
+    "noise": 30,
+    "grit": 46,
+    "sync": 20,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "steno_strike",
+    "steno_seize"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 45,
+  "rig": "warden",
+  "xp": 95,
+  "drops": [
+    {
+      "item": "stim",
+      "chance": 0.4
+    },
+    {
+      "item": "splice",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Takes the minutes. Takes everything else too.",
+  "role": "Stenographer",
+  "targeting": "buffed"
+}

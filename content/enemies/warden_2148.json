@@ -35,5 +35,6 @@
       "chance": 0.2
     }
   ],
-  "flavor": "Human. Paid. The resistance was not crushed by machines."
+  "flavor": "Human. Paid. The resistance was not crushed by machines.",
+  "targeting": "revenge"
 }

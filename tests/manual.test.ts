@@ -27,7 +27,7 @@ describe('player manual', () => {
     const tempo = manualPages.find((p) => p.title === 'Tempo')!;
     expect(tempo.html).toContain('Rewind');
     expect(tempo.html).toContain('Fork');
-    expect(tempo.html).toContain('2 points for every thread');
+    expect(tempo.html).toContain('every time an enemy lands a hit');
     // The Entropy prices printed here are what the engine actually charges, scale included.
     const charged = (n: number) => `+${Math.round(n * content.rules.damageScale)}`;
     expect(tempo.html, 'Fork').toContain(charged(content.rules.fork.entropy));

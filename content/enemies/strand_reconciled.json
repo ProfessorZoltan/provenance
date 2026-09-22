@@ -34,5 +34,6 @@
       "chance": 1.0
     }
   ],
-  "flavor": "Not a chassis. A man, arguing with the only person in three centuries who has ever been able to tell him he is wrong."
+  "flavor": "Not a chassis. A man, arguing with the only person in three centuries who has ever been able to tell him he is wrong.",
+  "targeting": "auditor"
 }

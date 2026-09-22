@@ -1,0 +1,41 @@
+{
+  "id": "warden_bailiff_2148",
+  "name": "Bailiff",
+  "family": "warden",
+  "era": "2148",
+  "machine": false,
+  "stats": {
+    "resolve": 180,
+    "bandwidth": 2,
+    "latency": 40,
+    "signal": 20,
+    "noise": 30,
+    "grit": 48,
+    "sync": -10,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "bailiff_stand",
+    "warden_baton"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 40,
+  "rig": "warden",
+  "xp": 90,
+  "drops": [
+    {
+      "item": "ration",
+      "chance": 0.4
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Paid to stand in front. Does it well, and takes it personally.",
+  "role": "Bailiff",
+  "targeting": "revenge"
+}

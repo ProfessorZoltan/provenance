@@ -56,6 +56,16 @@ describe('the battle action list', () => {
   });
 });
 
+describe('the battle log', () => {
+  it('scrolls inside a bounded column rather than growing the row under the stage', () => {
+    // Sixteen lines of log made the second grid row taller than the window: the stage shrank to
+    // its minimum and the cards drew over it. The column the log sits in is capped like the
+    // action list beside it, and the log scrolls within that.
+    expect(rule('.battle .telemetry { min-height: 0')).toMatch(/max-height:\s*\d+vh/);
+    expect(rule('.battle .telemetry .log')).toMatch(/overflow-y:\s*auto/);
+  });
+});
+
 describe('the bag', () => {
   // The hub button says "Items and timeline". With a real inventory the item list pushed Relics,
   // Purse and Timeline hundreds of pixels below the panel, and up/down drives the list rather than

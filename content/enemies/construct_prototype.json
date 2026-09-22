@@ -50,5 +50,6 @@
       "chance": 0.18
     }
   ],
-  "flavor": "An exoskeleton with a guard strapped into it. Break the frame and you have not finished."
+  "flavor": "An exoskeleton with a guard strapped into it. Break the frame and you have not finished.",
+  "targeting": "auditor"
 }

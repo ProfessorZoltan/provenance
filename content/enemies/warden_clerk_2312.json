@@ -1,0 +1,42 @@
+{
+  "id": "warden_clerk_2312",
+  "name": "Board Clerk",
+  "family": "warden",
+  "era": "2312",
+  "machine": false,
+  "stats": {
+    "resolve": 110,
+    "bandwidth": 2,
+    "latency": 34,
+    "signal": 44,
+    "noise": 30,
+    "grit": 32,
+    "sync": 60,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "clerk_mend",
+    "clerk_minute",
+    "warden_baton"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 45,
+  "rig": "warden",
+  "xp": 70,
+  "drops": [
+    {
+      "item": "ration",
+      "chance": 0.4
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Human, salaried, and the one who keeps the others standing. The ledger has a line for bandages.",
+  "role": "Clerk",
+  "targeting": "weakest"
+}

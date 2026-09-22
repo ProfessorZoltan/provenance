@@ -43,5 +43,6 @@
       "chance": 0.25
     }
   ],
-  "flavor": "Every engineer who ever knelt at these racks, folded into one shape that keeps reaching for a cable."
+  "flavor": "Every engineer who ever knelt at these racks, folded into one shape that keeps reaching for a cable.",
+  "targeting": "healer"
 }

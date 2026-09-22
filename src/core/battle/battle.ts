@@ -1,8 +1,8 @@
 import { STATUS_INFO, statusClause, statusLabel, statusSentence, turnsText } from './statuses';
-import type { AbilityDef, ContentDB, DamageType, EnemyDef, EraId, ItemDef, SecondBar } from '../../types/content';
+import type { AbilityDef, ContentDB, DamageType, EnemyDef, EraId, ItemDef, SecondBar, Targeting } from '../../types/content';
 import type { BattleLogEntry, BattleRewards, BattleState, Combatant, GameState, LogMeta, RewindPoint, StatusEffect } from '../../types/state';
 import { evalFormula } from '../formula';
-import { roll, rollInt } from '../rng';
+import { rngFloat, roll, rollInt, seedFromString } from '../rng';
 import { loadout, partySync } from '../stats';
 import { clamp } from '../timeline';
 
@@ -147,14 +147,16 @@ export interface AbilityOption {
   reason?: string;
 }
 
-export function abilityOptions(b: BattleState, actorId: string, content: ContentDB): AbilityOption[] {
+export function abilityOptions(b: BattleState, actorId: string, content: ContentDB, threads?: number): AbilityOption[] {
   const actor = b.combatants.find((c) => c.id === actorId);
   if (!actor) return [];
+  const have = threads ?? actor.threads;
   const ids = [...actor.abilities];
   if (actor.side === 'party' && canParley(b, content) && !ids.includes('parley')) ids.push('parley');
   return ids.map((id) => {
     const ability = content.abilities[id];
-    if (actor.threads < ability.cost) return { ability, usable: false, reason: `Needs ${ability.cost} threads` };
+    if (have < ability.cost) return { ability, usable: false, reason: `Needs ${ability.cost} threads` };
+    if (ability.special === 'unleash' && !hasStatus(actor, 'charging')) return { ability, usable: false, reason: 'Needs a wind-up first' };
     if (ability.damageType === 'signal' && b.partySync <= content.rules.overloadSync) {
       return { ability, usable: false, reason: 'Overload disables Signal abilities' };
     }
@@ -168,7 +170,12 @@ export function validTargets(b: BattleState, actorId: string, ability: AbilityDe
   if (!actor) return [];
   const foes = actor.side === 'party' ? 'enemy' : 'party';
   switch (ability.target) {
-    case 'enemy': return alive(b, foes).filter((e) => !ability.requiresMachine || e.machine);
+    case 'enemy': {
+      const all = alive(b, foes).filter((e) => !ability.requiresMachine || e.machine);
+      // Whoever is standing in front takes it: a Bulwark on either side draws every single hit.
+      const wall = all.filter((e) => hasStatus(e, 'taunt') || hasStatus(e, 'wall'));
+      return wall.length ? wall : all;
+    }
     case 'allEnemies': return alive(b, foes);
     case 'ally': return b.combatants.filter((c) => c.side === actor.side && (!c.down || ability.id === 'revive'));
     case 'allAllies': return alive(b, actor.side);
@@ -388,7 +395,17 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
         rigOverride: broke.rig,
         statuses: c.statuses.filter((st) => st.id !== 'marked'),
       }
-    : { ...c, hp, shield, down, statuses: down ? [] : c.statuses }));
+    : { ...c, hp, shield, down, statuses: down ? [] : c.statuses, lastHitBy: actor.id }));
+
+  // Quorum: an enemy that watches one of its own fall closes ranks.
+  if (down && target.side === 'enemy') {
+    for (const ally of alive(b, 'enemy')) {
+      const rally = content.enemies[ally.ref]?.rally;
+      if (!rally) continue;
+      b = log(b, `${ally.name} closes ranks.`, 'warn', { actor: ally.name });
+      b = applyStatus(b, ally, { id: rally.id, turns: rally.turns }, content, ally.id);
+    }
+  }
 
   // Taking a hit is the other thing that earns it: pressure on the party is what pays for the
   // undo, so the fights that need a Rewind are the ones that can afford one.
@@ -414,6 +431,10 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
 function applyStatus(b: BattleState, target: Combatant, status: StatusEffect, content: ContentDB, actorId: string): BattleState {
   if (status.id === 'fear' && target.family === 'drone') {
     return log(b, `${target.name} is a drone. Fear is not something it has.`, 'warn', { target: target.name });
+  }
+  if ((status.id === 'bound' || status.id === 'locked') && hasStatus(target, 'charging')) {
+    b = update(b, target.id, (c) => ({ ...c, statuses: c.statuses.filter((st) => st.id !== 'charging') }));
+    b = log(b, `${target.name}'s wind-up is broken.`, 'tempo', { target: target.name });
   }
   let turns = status.turns;
   if (status.id === 'marked') turns += b.passives[actorId]?.markDuration ?? 0;
@@ -457,6 +478,14 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
   if (ability.entropyDelta) {
     b = { ...b, entropy: addEntropy(b, ability.entropyDelta, content) };
     b = log(b, `Entropy rises to ${b.entropy}.`, 'tempo');
+  }
+  if (ability.tempoDrain && actor.side === 'enemy' && b.tempo > 0) {
+    const taken = Math.min(b.tempo, ability.tempoDrain);
+    b = { ...b, tempo: b.tempo - taken };
+    b = log(b, `${actor.name} strikes ${taken} Tempo from the record.`, 'warn', { actor: actor.name, ability: ability.name });
+  }
+  if (ability.special === 'charge') {
+    b = log(b, `${actor.name} winds up. ${ability.description}`, 'warn', { actor: actor.name, ability: ability.name });
   }
 
   if (ability.special === 'parley') {
@@ -538,7 +567,7 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
   // Acquisition: whatever the target is enjoying, the actor is enjoying instead.
   if (ability.special === 'acquisition') {
     const t = chosen[0];
-    const GOOD = ['guard', 'taunt', 'inspired', 'anchored', 'fixed', 'faraday', 'held'];
+    const GOOD = GOOD_STATUSES.filter((id) => id !== 'charging');
     const taken = t ? t.statuses.filter((st) => GOOD.includes(st.id)) : [];
     if (!t || !taken.length) {
       b = log(b, `${actor.name} looks over ${t?.name ?? 'the field'} and finds nothing worth taking.`, 'warn', { actor: actor.name, ability: ability.name });
@@ -620,6 +649,8 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     }
   }
   if (spendsCharge) b = update(b, actorId, (c) => ({ ...c, statuses: c.statuses.filter((st) => st.id !== 'held') }));
+  if (ability.special === 'unleash') b = update(b, actorId, (c) => ({ ...c, statuses: c.statuses.filter((st) => st.id !== 'charging') }));
+  if (chosen.length === 1 && chosen[0].id !== actorId) b = update(b, actorId, (c) => ({ ...c, lastTarget: chosen[0].id }));
   return afterAction(b, content);
 }
 
@@ -854,6 +885,99 @@ function maybeSpawnEcho(b: BattleState, content: ContentDB): BattleState {
 
 // ---------- enemy AI ----------
 
+export interface EnemyPlan {
+  ability: AbilityDef;
+  target: Combatant | null;
+}
+
+/**
+ * A roll the enemy's plan can make without touching the battle's RNG: the same board and the same
+ * round give the same answer, which is what lets the card say what is coming and mean it.
+ */
+function planRoll(b: BattleState, me: Combatant, step: number, salt: number): number {
+  return rngFloat((b.seed ^ seedFromString(`${me.id}:${b.round}:${step}:${salt}`)) | 0);
+}
+
+const GOOD_STATUSES = ['guard', 'taunt', 'wall', 'inspired', 'anchored', 'fixed', 'faraday', 'held', 'charging'];
+
+/** Who an enemy goes for, by its personality, among the targets it may legally hit. */
+export function pickTarget(b: BattleState, me: Combatant, targets: Combatant[], step: number, content: ContentDB): Combatant {
+  const mode: Targeting = content.enemies[me.ref]?.targeting ?? 'opportunist';
+  const byHp = [...targets].sort((x, y) => x.hp / x.maxHp - y.hp / y.maxHp);
+  if (targets.length === 1) return targets[0];
+  switch (mode) {
+    case 'weakest': return byHp[0];
+    case 'healer': return [...targets].sort((x, y) => y.stats.signal - x.stats.signal || x.hp / x.maxHp - y.hp / y.maxHp)[0];
+    case 'buffed': {
+      const good = (c: Combatant) => c.statuses.filter((st) => GOOD_STATUSES.includes(st.id)).length;
+      return [...targets].sort((x, y) => good(y) - good(x) || x.hp / x.maxHp - y.hp / y.maxHp)[0];
+    }
+    case 'auditor': return targets.find((c) => c.ref === 'player') ?? byHp[0];
+    case 'revenge': return targets.find((c) => c.id === me.lastHitBy) ?? byHp[0];
+    case 'spread': {
+      const fresh = targets.filter((c) => c.id !== me.lastTarget);
+      const pool = fresh.length ? fresh : targets;
+      return pool[Math.floor(planRoll(b, me, step, 2) * pool.length) % pool.length];
+    }
+    default: {
+      const r = planRoll(b, me, step, 2);
+      return r < 0.5 ? byHp[0] : byHp[Math.floor(r * byHp.length) % byHp.length];
+    }
+  }
+}
+
+/**
+ * What an enemy will do with its next action, given the board as it stands. The turn runs on the
+ * same function, so the intent on the card is the truth unless the board changes first.
+ */
+export function planEnemyAction(b: BattleState, me: Combatant, step: number, threads: number, content: ContentDB): EnemyPlan | null {
+  const usable = abilityOptions(b, me.id, content, threads).filter((o) => o.usable).map((o) => o.ability);
+  if (!usable.length) return null;
+  const withTarget = (ability: AbilityDef, target: Combatant | null): EnemyPlan => ({ ability, target });
+  const allies = alive(b, 'enemy');
+
+  // A wind-up already taken is released, whatever else is on offer.
+  const unleash = usable.find((a) => a.special === 'unleash');
+  if (unleash) {
+    const targets = validTargets(b, me.id, unleash);
+    if (targets.length) return withTarget(unleash, pickTarget(b, me, targets, step, content));
+  }
+  // Someone hurt gets mended before anyone gets hit.
+  const heal = usable.find((a) => a.heal && (a.target === 'ally' || a.target === 'allAllies'));
+  if (heal) {
+    const hurt = allies.filter((c) => c.hp < c.maxHp * 0.6).sort((x, y) => x.hp / x.maxHp - y.hp / y.maxHp);
+    if (hurt.length) return withTarget(heal, heal.target === 'ally' ? hurt[0] : null);
+  }
+  // A buff nobody is carrying yet goes on.
+  const buff = usable.find((a) => a.status && !a.damageType && (a.target === 'ally' || a.target === 'allAllies' || a.target === 'self'));
+  if (buff?.status) {
+    const bare = (buff.target === 'self' ? [me] : allies).filter((c) => !hasStatus(c, buff.status!.id));
+    if (bare.length) return withTarget(buff, buff.target === 'ally' ? bare[0] : buff.target === 'self' ? me : null);
+  }
+  // A wind-up is taken most of the time it is on offer: the point of it is that you see it coming.
+  const charge = usable.find((a) => a.special === 'charge');
+  if (charge && !hasStatus(me, 'charging') && planRoll(b, me, step, 3) < 0.7) return withTarget(charge, me);
+
+  const hostile = usable.filter((a) => a.target === 'enemy' || a.target === 'allEnemies').filter((a) => a.special !== 'charge');
+  const pool = hostile.length ? hostile : usable.filter((a) => a.special !== 'charge' && a.special !== 'unleash');
+  if (!pool.length) return null;
+  const sorted = [...pool].sort((x, y) => y.cost - x.cost);
+  const r = planRoll(b, me, step, 1);
+  const pick = r < 0.65 ? sorted[0] : sorted[Math.floor(r * sorted.length) % sorted.length];
+  const targets = validTargets(b, me.id, pick);
+  if (!targets.length) return null;
+  if (pick.target === 'allEnemies' || pick.target === 'allAllies') return withTarget(pick, null);
+  if (pick.target === 'self') return withTarget(pick, me);
+  return withTarget(pick, pickTarget(b, me, targets, step, content));
+}
+
+/** The intent shown on an enemy's card: its first action next time it acts, on this board. */
+export function enemyIntent(b: BattleState, me: Combatant, content: ContentDB): EnemyPlan | null {
+  if (me.down || me.side !== 'enemy') return null;
+  const threads = Math.max(1, me.stats.bandwidth - (hasStatus(me, 'fear') ? 1 : 0));
+  return planEnemyAction(b, me, 0, threads, content);
+}
+
 export function enemyTurn(b: BattleState, content: ContentDB): BattleState {
   const actor = current(b);
   if (!actor || actor.side !== 'enemy' || b.phase !== 'enemy') throw new Error('Not an enemy turn');
@@ -868,25 +992,9 @@ export function enemyTurn(b: BattleState, content: ContentDB): BattleState {
   while (guard++ < 6) {
     const me = current(b);
     if (!me || me.down || me.threads <= 0 || b.phase !== 'enemy') break;
-    const usable = abilityOptions(b, me.id, content).filter((o) => o.usable);
-    if (!usable.length) break;
-    // Prefer the heaviest affordable ability most of the time.
-    const sorted = [...usable].sort((x, y) => y.ability.cost - x.ability.cost);
-    const [r, rng] = roll(b.rng);
-    b = { ...b, rng };
-    const pick = r < 0.65 ? sorted[0] : sorted[Math.floor(r * sorted.length) % sorted.length];
-    const targets = validTargets(b, me.id, pick.ability);
-    if (!targets.length) break;
-    let target: Combatant;
-    const taunter = targets.find((t) => hasStatus(t, 'taunt'));
-    if (taunter && pick.ability.target === 'enemy') target = taunter;
-    else {
-      const [r2, rng2] = roll(b.rng);
-      b = { ...b, rng: rng2 };
-      const byHp = [...targets].sort((x, y) => x.hp / x.maxHp - y.hp / y.maxHp);
-      target = r2 < 0.5 ? byHp[0] : byHp[Math.floor(r2 * byHp.length) % byHp.length];
-    }
-    b = resolveAbility(b, me.id, pick.ability.id, target.id, content);
+    const plan = planEnemyAction(b, me, guard - 1, me.threads, content);
+    if (!plan) break;
+    b = resolveAbility(b, me.id, plan.ability.id, plan.target?.id ?? null, content);
   }
   if (b.phase === 'enemy') {
     const me = current(b);

@@ -6,7 +6,7 @@
   "location": "the_stacks_2148",
   "enemies": [
     {
-      "enemy": "warden_2148",
+      "enemy": "warden_bailiff_2148",
       "count": 1
     },
     {

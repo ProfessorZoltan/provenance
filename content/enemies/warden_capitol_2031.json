@@ -44,5 +44,6 @@
       "chance": 0.2
     }
   ],
-  "flavor": "Keeps order in a chamber where order is the only thing anyone agrees on."
+  "flavor": "Keeps order in a chamber where order is the only thing anyone agrees on.",
+  "targeting": "buffed"
 }

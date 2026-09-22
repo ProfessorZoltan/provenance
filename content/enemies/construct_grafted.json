@@ -53,5 +53,6 @@
       "chance": 0.2
     }
   ],
-  "flavor": "Drone geometry grafted onto a Warden rig. The Board stopped distinguishing between its tools."
+  "flavor": "Drone geometry grafted onto a Warden rig. The Board stopped distinguishing between its tools.",
+  "targeting": "weakest"
 }

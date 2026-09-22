@@ -200,6 +200,35 @@ an option. Bring what the thing in front of you is weak to, and finish.
 | Signal | Hacking. Affects machines and cyborgs only, never a human |
 | Chronal | Ignores armor and shields, raises Entropy, and is the only thing that touches an Echo |
 
+### Reading the enemy
+
+Every enemy card carries a line saying what it will do next and to whom. It is not a guess: the
+enemy's turn runs on the same reasoning that wrote the line, so if the board does not change, that is
+what happens. Change the board and the line changes with it. Kill the target, stand someone between,
+break a wind-up, and read the card again.
+
+Each enemy also has a way of choosing who it goes for. Press Y in a fight to Inspect one and see it.
+
+| Goes for | What it means |
+| --- | --- |
+| The weakest | Whoever is closest to going down. It finishes things |
+| The healer | Whoever has the highest Signal: the one who mends |
+| The buffed | Whoever is carrying the most: Litany, Guard, Anchor. It takes the shine off |
+| The Auditor | You. You are the case |
+| Revenge | Whoever hurt it last |
+| Spread | Never the same target twice running |
+| No method | The weakest, or anyone. The old drones |
+
+Some enemies have a job on the field, and the job is what you have to answer.
+
+| Role | What it does | The answer |
+| --- | --- | --- |
+| Clerk | Amends a hurt ally back up before it hits anyone, and enters allies into the minutes for more damage | Kill it first, or it undoes your work every turn |
+| Bailiff | Stands between: every single hit you throw lands on it, at full strength | Go through it, or use abilities that hit everyone |
+| Stenographer | Seizes whatever you are carrying (Litany, Guard, Anchor) and wears it, and its blows strike Tempo off your record | Do not stack buffs while it stands; Wreck it early |
+| Charger | Winds up one turn and unleashes a heavy blow the next. The card says so | Bound by terms or Target Lock breaks the wind-up. Or Guard whoever it names |
+| Quorum | When one of its bloc falls, the rest close ranks and hit harder | Spread the damage and bring them down together, or Bound the ones left standing so the extra hits land softer |
+
 ### Enemies you will meet
 
 | Family | Notes |

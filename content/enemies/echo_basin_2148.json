@@ -38,5 +38,6 @@
     }
   ],
   "flavor": "Forty men in one outline, all of them carrying the same length of rebar.",
-  "weakness": "chronal"
+  "weakness": "chronal",
+  "targeting": "healer"
 }

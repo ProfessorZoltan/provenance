@@ -12,6 +12,10 @@
     {
       "enemy": "drone_hunter",
       "count": 2
+    },
+    {
+      "enemy": "warden_stenographer_2148",
+      "count": 1
     }
   ],
   "surprise": "never",

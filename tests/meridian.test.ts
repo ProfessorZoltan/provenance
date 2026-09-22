@@ -152,7 +152,7 @@ describe('the Meridian kits', () => {
   });
 
   it("returns everything done to him with Hostile Takeover, and nothing when nothing has been", () => {
-    const s = inFight('strand_young', 'meridian_2064_atrium', ['s_eq_1', 's_eq_2', 's_eq_3']);
+    const s = inFight('strand_young', 'meridian_2064_atrium', ['s_eq_1', 's_eq_2', 's_eq_3'], 13);
     const foe = s.battle!.combatants.find((c) => c.side === 'enemy' && !c.down)!;
     const pool = (b: typeof s.battle) => { const c = b!.combatants.find((x) => x.id === foe.id)!; return c.hp + c.shield; };
     const fresh = pool(s.battle) - pool(resolveAbility(s.battle!, 'strand_young', 'hostile_takeover', foe.id, content));

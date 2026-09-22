@@ -6,7 +6,7 @@
   "location": "halden_2064",
   "enemies": [
     {
-      "enemy": "warden_2064",
+      "enemy": "warden_quorum_2064",
       "count": 2
     },
     {

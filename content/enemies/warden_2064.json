@@ -39,5 +39,6 @@
       "chance": 0.2
     }
   ],
-  "flavor": "Paid by the concession, sworn to the city, and clear in his own mind about which of those is real."
+  "flavor": "Paid by the concession, sworn to the city, and clear in his own mind about which of those is real.",
+  "targeting": "weakest"
 }

@@ -11,7 +11,11 @@
     },
     {
       "enemy": "drone_gallery_2064",
-      "count": 2
+      "count": 1
+    },
+    {
+      "enemy": "warden_clerk_2064",
+      "count": 1
     }
   ],
   "surprise": "never",

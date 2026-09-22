@@ -8,10 +8,14 @@
   "enemies": [
     {
       "enemy": "warden_2031",
-      "count": 2
+      "count": 1
     },
     {
       "enemy": "drone_dock_2031",
+      "count": 1
+    },
+    {
+      "enemy": "warden_clerk_2031",
       "count": 1
     }
   ],

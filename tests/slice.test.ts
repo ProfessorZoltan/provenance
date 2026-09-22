@@ -9,6 +9,15 @@ import { ERA_LEVEL } from './balance';
 import type { GameState } from '../src/types/state';
 import { autoBattle, content, newGame, reduce, run, skipDialogue } from './helpers';
 
+/** The same party, at a level, with full Resolve and no nodes bought: the floor a run stands on. */
+const levelled = (level: number, s: GameState): GameState => (level <= 1 ? s : {
+  ...s,
+  party: Object.fromEntries(Object.entries(s.party).map(([id, c]) => {
+    const xp = xpForLevel(level, content.rules.xpPerLevel);
+    return [id, { ...c, xp, level, hp: maxHp(content, content.characters[id], { ...c, xp, level }) }];
+  })),
+});
+
 describe('vertical slice end to end', () => {
   it('plays the whole loop: explore, scan, fight, quest, jump, choose, return, save and load', () => {
     let s = skipDialogue(newGame(2024));
@@ -221,6 +230,8 @@ describe('the third Deep Site', () => {
     s = skipDialogue(s, 0);
     expect(s.quests.basin_crew).toBe('active');
 
+    // The foreman is a hard fight in 2031: a party that has walked this far is at that era's level.
+    s = levelled(ERA_LEVEL['2031'], s);
     s = reduce(s, { type: 'START_ENCOUNTER', encounterId: 'camp_2031_foreman' });
     s = autoBattle(s);
     expect(s.battle?.phase).toBe('won');
@@ -290,13 +301,7 @@ describe('the fourth Deep Site', () => {
 
 describe('quest objectives are beatable', () => {
   /** A later step in a chain is reached by a party that has already done the earlier one. */
-  const partyFor = (level: number, s: GameState): GameState => (level <= 1 ? s : {
-    ...s,
-    party: Object.fromEntries(Object.entries(s.party).map(([id, c]) => {
-      const xp = xpForLevel(level, content.rules.xpPerLevel);
-      return [id, { ...c, xp, level, hp: maxHp(content, content.characters[id], { ...c, xp, level }) }];
-    })),
-  });
+  const partyFor = levelled;
 
   it('lets a party that has done the earlier steps win every quest fight', () => {
     for (const q of Object.values(content.quests)) {

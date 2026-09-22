@@ -48,5 +48,6 @@
       "chance": 0.2
     }
   ],
-  "flavor": "It is still asking you to stop. The restraint the Board welded on is what is swinging at you."
+  "flavor": "It is still asking you to stop. The restraint the Board welded on is what is swinging at you.",
+  "targeting": "healer"
 }

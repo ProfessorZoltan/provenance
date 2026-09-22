@@ -47,5 +47,6 @@
       "chance": 0.25
     }
   ],
-  "flavor": "Half a million people left this city in eleven years. Some of the leaving is still happening here."
+  "flavor": "Half a million people left this city in eleven years. Some of the leaving is still happening here.",
+  "targeting": "weakest"
 }

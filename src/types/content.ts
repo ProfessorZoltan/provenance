@@ -89,6 +89,8 @@ export interface AbilityDef {
   status?: { id: string; turns: number; onTarget?: boolean };
   special?: string;
   requiresMachine?: boolean;
+  /** Enemy only: how much party Tempo the hit takes away. */
+  tempoDrain?: number;
   /** For abilities that put a short-lived copy of the caster on the field. */
   spawn?: { name: string; hpFactor: number; turns: number; abilities: string[] };
   description: string;
@@ -125,7 +127,19 @@ export interface EnemyDef {
   xp: number;
   drops: { item: string; chance: number }[];
   flavor: string;
+  /** Who it goes for when it has a choice. Missing means the old coin flip: the weakest, or anyone. */
+  targeting?: Targeting;
+  /** What it is on the field, in a word the Inspect panel can show. */
+  role?: string;
+  /** Quorum: what it gains, once, each time another enemy on the field falls. */
+  rally?: { id: string; turns: number };
 }
+
+/**
+ * Enemy targeting personalities. Each is one rule the player can learn and play around, and a
+ * field with several on it is a field where no one stance is safe.
+ */
+export type Targeting = 'weakest' | 'healer' | 'buffed' | 'auditor' | 'revenge' | 'spread' | 'opportunist';
 
 export interface EncounterEnemy {
   enemy: string;

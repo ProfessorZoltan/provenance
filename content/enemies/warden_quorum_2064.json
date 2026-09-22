@@ -1,0 +1,45 @@
+{
+  "id": "warden_quorum_2064",
+  "name": "Quorum Warden",
+  "family": "warden",
+  "era": "2064",
+  "machine": false,
+  "stats": {
+    "resolve": 135,
+    "bandwidth": 2,
+    "latency": 36,
+    "signal": 25,
+    "noise": 30,
+    "grit": 46,
+    "sync": 20,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "warden_baton",
+    "warden_suppress"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 45,
+  "rig": "warden",
+  "xp": 90,
+  "drops": [
+    {
+      "item": "stim",
+      "chance": 0.3
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "One of a bloc. When one goes down, the rest vote harder.",
+  "role": "Quorum",
+  "targeting": "spread",
+  "rally": {
+    "id": "inspired",
+    "turns": 3
+  }
+}

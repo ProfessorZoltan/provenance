@@ -47,5 +47,6 @@
     }
   ],
   "flavor": "Four hundred people who sat in a public gallery to watch a vote that had already happened.",
-  "weakness": "chronal"
+  "weakness": "chronal",
+  "targeting": "spread"
 }

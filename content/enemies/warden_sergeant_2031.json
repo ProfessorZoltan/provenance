@@ -1,0 +1,41 @@
+{
+  "id": "warden_sergeant_2031",
+  "name": "House Sergeant",
+  "family": "warden",
+  "era": "2031",
+  "machine": false,
+  "stats": {
+    "resolve": 170,
+    "bandwidth": 2,
+    "latency": 44,
+    "signal": 15,
+    "noise": 25,
+    "grit": 50,
+    "sync": 0,
+    "continuity": 100
+  },
+  "shield": 0,
+  "abilities": [
+    "bailiff_stand",
+    "warden_baton"
+  ],
+  "immunities": [
+    "signal"
+  ],
+  "perception": 35,
+  "rig": "warden",
+  "xp": 85,
+  "drops": [
+    {
+      "item": "ration",
+      "chance": 0.3
+    },
+    {
+      "item": "steady",
+      "chance": 0.2
+    }
+  ],
+  "flavor": "Stands between the chamber and the door, and takes the first swing as an insult.",
+  "role": "Bailiff",
+  "targeting": "revenge"
+}

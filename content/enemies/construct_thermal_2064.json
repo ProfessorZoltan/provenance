@@ -46,5 +46,6 @@
       "chance": 0.18
     }
   ],
-  "flavor": "A maintenance frame with an operator sealed inside it for the heat."
+  "flavor": "A maintenance frame with an operator sealed inside it for the heat.",
+  "targeting": "spread"
 }

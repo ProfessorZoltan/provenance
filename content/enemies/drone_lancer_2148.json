@@ -1,0 +1,41 @@
+{
+  "id": "drone_lancer_2148",
+  "name": "Ash Lancer",
+  "family": "drone",
+  "era": "2148",
+  "machine": true,
+  "stats": {
+    "resolve": 75,
+    "bandwidth": 2,
+    "latency": 4,
+    "signal": 48,
+    "noise": 45,
+    "grit": 30,
+    "sync": 100,
+    "continuity": 100
+  },
+  "shield": 25,
+  "abilities": [
+    "spool",
+    "lance",
+    "drone_dart"
+  ],
+  "immunities": [],
+  "perception": 55,
+  "rig": "drone_hunter",
+  "weakness": "signal",
+  "xp": 60,
+  "drops": [
+    {
+      "item": "scrap",
+      "chance": 0.6
+    },
+    {
+      "item": "faraday_foil",
+      "chance": 0.18
+    }
+  ],
+  "flavor": "A hunter drone that learned patience in the ash. It spools, and the shot goes through walls.",
+  "role": "Charger",
+  "targeting": "auditor"
+}

@@ -56,5 +56,6 @@
       "chance": 0.2
     }
   ],
-  "flavor": "Meridian leases these to the causeway concession. Somebody has to be inside them; that is in the contract too."
+  "flavor": "Meridian leases these to the causeway concession. Somebody has to be inside them; that is in the contract too.",
+  "targeting": "healer"
 }
