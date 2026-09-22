@@ -81,7 +81,7 @@ export function partyCombatant(content: ContentDB, state: GameState, id: string)
       stats: { ...l.stats }, hp, maxHp, shield: 0, maxShield: 0,
       threads: 0, slack: 0, statuses: [], abilities: [...l.abilities], immunities: [],
       down: hp <= 0, perception: 0,
-      nerve: nerveOf(content, cs), maxNerve: maxNerve(content, cs), continuity,
+      nerve: nerveOf(content, cs), maxNerve: maxNerve(content, cs), continuity, level: cs.level,
     },
   };
 }
@@ -200,6 +200,10 @@ export function abilityOptions(b: BattleState, actorId: string, content: Content
     if (actor.side === 'party') {
       const nerve = nerveCost(content, ability);
       if (nerve > actor.nerve) return { ability, usable: false, reason: `Needs ${nerve} Nerve (${actor.nerve} left)` };
+      if (ability.pair) {
+        const partner = pairPartner(b, actor, ability, content);
+        if (partner.reason) return { ability, usable: false, reason: partner.reason };
+      }
     }
     if (ability.damageType === 'signal' && b.partySync <= content.rules.overloadSync) {
       return { ability, usable: false, reason: 'Overload disables Signal abilities' };
@@ -207,6 +211,19 @@ export function abilityOptions(b: BattleState, actorId: string, content: Content
     if (ability.requiresMachine && !alive(b, 'enemy').some((e) => e.machine)) return { ability, usable: false, reason: 'No machine to talk to' };
     return { ability, usable: true };
   });
+}
+
+/** The partner a pair tech needs, or why it is not on: they have to be standing, at level, and not already lending. */
+export function pairPartner(b: BattleState, actor: Combatant, ability: AbilityDef, content: ContentDB): { partner?: Combatant; reason?: string } {
+  const withId = ability.pair?.with;
+  if (!withId) return {};
+  const name = content.characters[withId]?.shortName ?? withId;
+  const partner = b.combatants.find((c) => c.id === withId && c.side === 'party' && !c.temporary);
+  if (!partner || partner.down) return { reason: `Needs ${name} standing on the field` };
+  const need = content.rules.pairs.level;
+  if ((actor.level ?? 1) < need || (partner.level ?? 1) < need) return { reason: `Both need to be level ${need}` };
+  if (hasStatus(partner, 'spent')) return { reason: `${name} has already lent a hand this round` };
+  return { partner };
 }
 
 export function validTargets(b: BattleState, actorId: string, ability: AbilityDef): Combatant[] {
@@ -251,6 +268,8 @@ function beginTurn(b: BattleState, content: ContentDB): BattleState {
   let threads = c.stats.bandwidth + (c.side === 'party' ? c.slack : 0);
   const feared = hasStatus(c, 'fear');
   if (feared) threads = Math.max(1, threads - 1);
+  const lent = c.side === 'party' && hasStatus(c, 'spent');
+  if (lent) threads = Math.max(1, threads - content.rules.pairs.partnerPenalty);
   c = { ...c, threads, slack: 0, itemUsed: false };
   b = update(b, c.id, () => c);
   b = { ...b, phase: c.side === 'party' ? 'player' : 'enemy', fork: null };
@@ -276,7 +295,7 @@ function beginTurn(b: BattleState, content: ContentDB): BattleState {
     }
   }
   if (c.side === 'party') {
-    b = log(b, `${c.name}'s turn: ${threads} threads${feared ? ' (one short, from Fear)' : ''}.`, 'system');
+    b = log(b, `${c.name}'s turn: ${threads} threads${feared ? ' (one short, from Fear)' : ''}${lent ? ' (short, for the hand they lent)' : ''}.`, 'system');
   }
   return b;
 }
@@ -412,7 +431,8 @@ function resolveDamage(b: BattleState, actor: Combatant, target: Combatant, abil
   if (r > chance) return { b, amount: 0, hit: false, immune: false, meta, note: `${actor.name} uses ${ability.name} on ${target.name}, and misses.` };
 
   const marks = alive(b, actor.side === 'party' ? 'enemy' : 'party').filter((e) => hasStatus(e, 'marked')).length;
-  let dmg = evalFormula(ability.formula ?? '0', { a: actor.stats, d: target.stats, marks, lost: actor.maxHp - actor.hp });
+  const partner = ability.pair ? pairPartner(b, actor, ability, content).partner : undefined;
+  let dmg = evalFormula(ability.formula ?? '0', { a: actor.stats, p: partner?.stats ?? actor.stats, d: target.stats, marks, lost: actor.maxHp - actor.hp });
   const notes: string[] = [];
 
   if (hasStatus(target, 'marked')) dmg *= 1 + rules.markBonus + (p.markBonus ?? 0);
@@ -586,6 +606,13 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
   b = { ...b, fork: null };
   const nerve = actor.side === 'party' ? nerveCost(content, ability) : 0;
   b = update(b, actorId, (c) => ({ ...c, threads: c.threads - ability.cost, nerve: Math.max(0, c.nerve - nerve) }));
+  if (ability.pair) {
+    const { partner } = pairPartner(b, actor, ability, content);
+    if (partner) {
+      b = update(b, partner.id, (c) => ({ ...c, statuses: [...c.statuses, { id: 'spent', turns: 2 }] }));
+      b = log(b, `${partner.name} lends a hand to ${actor.name}: ${ability.name}.`, 'tempo', { actor: partner.name, ability: ability.name });
+    }
+  }
   if (actor.side === 'party') {
     let gain = ability.cost * rules.tempoPerThread + (ability.tempoGain ?? 0);
     if (ability.special === 'mark') gain += (rules.tempoOnMark + (b.passives[actorId]?.tempoOnMark ?? 0)) * chosen.length;
@@ -752,7 +779,8 @@ export function resolveAbility(b: BattleState, actorId: string, abilityId: strin
     }
     if (ability.heal) {
       const a = b.combatants.find((c) => c.id === actorId)!;
-      let amount = evalFormula(ability.heal, { a: a.stats, d: t.stats }) * content.rules.damageScale;
+      const partner = ability.pair ? pairPartner(b, a, ability, content).partner : undefined;
+      let amount = evalFormula(ability.heal, { a: a.stats, p: partner?.stats ?? a.stats, d: t.stats }) * content.rules.damageScale;
       amount *= 1 + (b.passives[actorId]?.healBonus ?? 0);
       if (ability.special === 'selfDamage') {
         if (t.id === actorId) continue;

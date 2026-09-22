@@ -49,6 +49,8 @@ export interface Combatant {
   maxNerve: number;
   /** Party only: how much of this person's own timeline is still theirs. Enemies stand at 100. */
   continuity: number;
+  /** Party only: the level they hold, which pair techs ask about. */
+  level?: number;
 }
 
 export interface LogMeta {
@@ -139,6 +141,9 @@ export interface CharacterState {
   nerve?: number;
   /** Continuity torn away for good by Entropy breaking. */
   frayed?: number;
+  /** Level-up perks kept, in the order they were chosen, and picks still waiting to be made. */
+  perks?: string[];
+  pendingPerks?: number;
 }
 
 export interface HistoryEntry {
@@ -198,6 +203,7 @@ export type Screen =
   | { id: 'battleResult' }
   | { id: 'dialogue' }
   | { id: 'tech'; character: string }
+  | { id: 'perks'; character?: string }
   | { id: 'party' }
   | { id: 'shop' }
   | { id: 'inventory' }

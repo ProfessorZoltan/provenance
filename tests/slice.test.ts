@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { deserialize, serialize } from '../src/core/save';
 import { activeVariant, mapFor, npcDialogue } from '../src/core/reducer';
 import { evalAll } from '../src/core/conditions';
-import { maxHp, maxNerve, xpForLevel } from '../src/core/stats';
+import { maxHp, maxNerve, perkOffer, perksOwed, xpForLevel } from '../src/core/stats';
 import { conditionContext } from '../src/core/encounter';
 import { applyChoice, deriveWorld } from '../src/core/timeline';
 import { ERA_LEVEL } from './balance';
@@ -10,13 +10,23 @@ import type { GameState } from '../src/types/state';
 import { autoBattle, content, newGame, reduce, run, skipDialogue } from './helpers';
 
 /** The same party, at a level, with full Resolve and no nodes bought: the floor a run stands on. */
-const levelled = (level: number, s: GameState): GameState => (level <= 1 ? s : {
-  ...s,
-  party: Object.fromEntries(Object.entries(s.party).map(([id, c]) => {
-    const xp = xpForLevel(level, content.rules.xpPerLevel);
-    return [id, { ...c, xp, level, hp: maxHp(content, content.characters[id], { ...c, xp, level }), nerve: maxNerve(content, { ...c, xp, level }) }];
-  })),
-});
+const levelled = (level: number, s: GameState): GameState => {
+  if (level <= 1) return s;
+  let next: GameState = {
+    ...s,
+    party: Object.fromEntries(Object.entries(s.party).map(([id, c]) => {
+      const xp = xpForLevel(level, content.rules.xpPerLevel);
+      return [id, { ...c, xp, level, perks: [], hp: maxHp(content, content.characters[id], { ...c, xp, level }), nerve: maxNerve(content, { ...c, xp, level }) }];
+    })),
+  };
+  // A party at a level has made that level's picks: first option each time.
+  for (const id of Object.keys(next.party)) {
+    let guard = 60;
+    while (guard-- > 0 && perksOwed(content, next.party[id]) > 0) next = reduce(next, { type: 'CHOOSE_PERK', character: id, perk: perkOffer(content, next.party[id], next.seed)[0].id });
+  }
+  const party = Object.fromEntries(Object.entries(next.party).map(([id, c]) => [id, { ...c, hp: maxHp(content, content.characters[id], c), nerve: maxNerve(content, c) }]));
+  return { ...next, party };
+};
 
 describe('vertical slice end to end', () => {
   it('plays the whole loop: explore, scan, fight, quest, jump, choose, return, save and load', () => {

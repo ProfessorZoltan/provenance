@@ -218,7 +218,7 @@ export function battleScreen(root: HTMLElement, ctx: Ctx, state: GameState): Scr
     if (!actor) return [];
     return abilityOptions(b, actor.id, content).map((o) => ({
       id: o.ability.id,
-      label: o.ability.name,
+      label: o.ability.pair ? `${o.ability.name} (with ${content.characters[o.ability.pair.with]?.shortName ?? o.ability.pair.with})` : o.ability.name,
       cost: `${o.ability.cost}⟋${o.ability.damageType ? ' ' + o.ability.damageType : ''}${nerveCost(content, o.ability) ? ` · ${nerveCost(content, o.ability)} Nerve` : ''}`,
       hint: o.usable ? o.ability.description : `${o.reason}. ${o.ability.description}`,
       disabled: !o.usable || (forFork && actor.threads < o.ability.cost + rules.fork.threadCost),

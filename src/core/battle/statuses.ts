@@ -80,6 +80,11 @@ export const STATUS_INFO: Record<string, StatusInfo> = {
     polarity: 'good',
     effect: () => 'Every single hit thrown at its side lands on it instead. It takes them at full strength.',
   },
+  spent: {
+    label: 'Lent a hand',
+    polarity: 'bad',
+    effect: () => 'Starts the next turn one thread short, for the pair tech they helped with.',
+  },
   charging: {
     label: 'Winding up',
     polarity: 'good',

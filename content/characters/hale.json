@@ -44,7 +44,8 @@
     "strike",
     "hold",
     "longshot",
-    "guard"
+    "guard",
+    "held_ledger"
   ],
   "tags": [],
   "motif": [

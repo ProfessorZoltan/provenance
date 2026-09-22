@@ -22,7 +22,7 @@
     "noiseBelowPerception": 15
   },
   "xpPerLevel": 45,
-  "statGrowthPerLevel": 0.05,
+  "statGrowthPerLevel": 0.035,
   "continuityFloor": 10,
   "continuityPerEdit": 15,
   "relicCap": 5,
@@ -103,5 +103,13 @@
     "resolveFloor": 0.6,
     "flickerBelow": 50,
     "chronalBonus": 0.5
+  },
+  "perks": {
+    "perLevel": 1,
+    "choices": 2
+  },
+  "pairs": {
+    "level": 4,
+    "partnerPenalty": 1
   }
 }

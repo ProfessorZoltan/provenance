@@ -1,0 +1,10 @@
+[
+  { "id": "sturdy", "name": "Sturdy", "description": "+14 Resolve. More to stand on.", "stats": { "resolve": 14 } },
+  { "id": "hard", "name": "Hard", "description": "+5 Grit. Hits land harder and armor bites less.", "stats": { "grit": 5 } },
+  { "id": "sharp", "name": "Sharp", "description": "+5 Signal. Reads, mends and Chronal all scale with it.", "stats": { "signal": 5 } },
+  { "id": "loud", "name": "Loud", "description": "+5 Noise. Harder to hit, harder to talk to.", "stats": { "noise": 5 } },
+  { "id": "quick", "name": "Quick", "description": "-4 Latency. Acts earlier in the round.", "stats": { "latency": -4 } },
+  { "id": "steady", "name": "Steady", "description": "+4 Nerve. More mending, more lifting, more laying on, between beds.", "nerve": 4 },
+  { "id": "patient", "name": "Patient", "description": "+1 Slack cap. One more unspent thread carries into the next turn.", "passive": "slackCap", "value": 1 },
+  { "id": "exacting", "name": "Exacting", "description": "+5% party accuracy. Fewer misses for everyone.", "passive": "partyAccuracy", "value": 0.05 }
+]

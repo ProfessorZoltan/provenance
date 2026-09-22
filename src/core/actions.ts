@@ -28,6 +28,7 @@ export type Action =
   | { type: 'BATTLE_RELAY'; actor: string; incoming: string }
   | { type: 'REST' }
   | { type: 'CAMP' }
+  | { type: 'CHOOSE_PERK'; character: string; perk: string }
   | { type: 'UNLOCK_NODE'; character: string; node: string }
   | { type: 'SET_ACTIVE_PARTY'; members: string[] }
   | { type: 'EQUIP'; character: string; item: string }

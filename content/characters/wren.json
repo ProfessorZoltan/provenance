@@ -6,16 +6,51 @@
   "homeEra": "2312",
   "role": "Healer, chronal anchor",
   "signature": "Vigil: heals with Continuity instead of Resolve",
-  "baseStats": { "resolve": 95, "bandwidth": 3, "latency": 50, "signal": 55, "noise": 25, "grit": 20, "sync": 10, "continuity": 100 },
+  "baseStats": {
+    "resolve": 95,
+    "bandwidth": 3,
+    "latency": 50,
+    "signal": 55,
+    "noise": 25,
+    "grit": 20,
+    "sync": 10,
+    "continuity": 100
+  },
   "rig": "wren",
   "accent": "#1D9E75",
   "trunks": [
-    { "key": "breaker", "name": "Penance", "flavor": "Self-damage that heals allies" },
-    { "key": "weaver", "name": "Litany", "flavor": "Signal buffs that stack per turn" },
-    { "key": "anchor", "name": "Vigil", "flavor": "Continuity restoration and erasure protection" }
+    {
+      "key": "breaker",
+      "name": "Penance",
+      "flavor": "Self-damage that heals allies"
+    },
+    {
+      "key": "weaver",
+      "name": "Litany",
+      "flavor": "Signal buffs that stack per turn"
+    },
+    {
+      "key": "anchor",
+      "name": "Vigil",
+      "flavor": "Continuity restoration and erasure protection"
+    }
   ],
-  "abilities": ["strike", "mend", "guard"],
-  "tags": ["anchor"],
-  "motif": [0, 2, 3, 5, 3, 2],
+  "abilities": [
+    "strike",
+    "mend",
+    "guard",
+    "terms_of_mercy"
+  ],
+  "tags": [
+    "anchor"
+  ],
+  "motif": [
+    0,
+    2,
+    3,
+    5,
+    3,
+    2
+  ],
   "bio": "Keeper of Kell Monastery, the last free place. She has known about the Deep Site under the chapel for twenty years and has never used it. She thinks the past should be asked, not told."
 }

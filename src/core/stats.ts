@@ -1,4 +1,5 @@
-import type { AbilityDef, CharacterDef, ContentDB, NodeDef, StatBlock, StatName } from '../types/content';
+import type { AbilityDef, CharacterDef, ContentDB, NodeDef, PerkDef, StatBlock, StatName } from '../types/content';
+import { rngFloat, seedFromString } from './rng';
 import type { CharacterState, GameState } from '../types/state';
 
 export interface Passives {
@@ -49,6 +50,12 @@ export function loadout(content: ContentDB, def: CharacterDef, cs: CharacterStat
       else if (e.kind === 'passive') passives[e.passive] = (passives[e.passive] ?? 0) + (e.value ?? 1);
     }
   }
+  for (const pid of cs.perks ?? []) {
+    const perk = content.perks[pid];
+    if (!perk) continue;
+    for (const [k, v] of Object.entries(perk.stats ?? {})) stats[k as StatName] += v as number;
+    if (perk.passive) passives[perk.passive] = (passives[perk.passive] ?? 0) + (perk.value ?? 1);
+  }
   for (const id of equippedItems(content, cs)) {
     const gear = content.items[id];
     for (const [k, v] of Object.entries(gear.stats ?? {})) {
@@ -68,7 +75,27 @@ export function maxHp(content: ContentDB, def: CharacterDef, cs: CharacterState)
 
 /** The support budget a character carries between beds. */
 export function maxNerve(content: ContentDB, cs: CharacterState): number {
-  return content.rules.nerve.base + content.rules.nerve.perLevel * cs.level;
+  const perks = (cs.perks ?? []).reduce((s, id) => s + (content.perks[id]?.nerve ?? 0), 0);
+  return content.rules.nerve.base + content.rules.nerve.perLevel * cs.level + perks;
+}
+
+/** Picks still owed: one per level past the first, less the ones already made. Older saves are owed all of theirs. */
+export function perksOwed(content: ContentDB, cs: CharacterState): number {
+  return Math.max(0, (cs.level - 1) * content.rules.perks.perLevel - (cs.perks?.length ?? 0));
+}
+
+/**
+ * The options for a character's next pick. They come off the run's seed, the character and the
+ * pick number, so the same run offers the same two each time it is looked at, and a different run
+ * offers different ones.
+ */
+export function perkOffer(content: ContentDB, cs: CharacterState, seed: number): PerkDef[] {
+  const pool = Object.values(content.perks);
+  const n = Math.min(content.rules.perks.choices, pool.length);
+  const pick = (cs.perks?.length ?? 0) + 1;
+  const order = pool.map((p, i) => ({ p, k: rngFloat((seed ^ seedFromString(`${cs.id}:perk:${pick}:${i}`)) | 0) }))
+    .sort((a, b) => a.k - b.k);
+  return order.slice(0, n).map((o) => o.p);
 }
 
 /** Nerve on hand: a save from before Nerve existed carries a full pool. */

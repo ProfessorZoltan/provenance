@@ -93,6 +93,8 @@ export interface AbilityDef {
   tempoDrain?: number;
   /** Party only: the Nerve this costs. Left out, the cost follows the ability's shape (see nerveCost). */
   nerve?: number;
+  /** A pair tech: only with this partner on the field, who lends a hand and starts their next turn short. Formulas may read the partner as `p`. */
+  pair?: { with: string };
   /** For abilities that put a short-lived copy of the caster on the field. */
   spawn?: { name: string; hpFactor: number; turns: number; abilities: string[] };
   description: string;
@@ -476,6 +478,10 @@ export interface RulesDef {
   };
   /** Continuity on the field: the Resolve ceiling it sets, when a member starts to flicker, and what a thin one does to Chronal. */
   continuityCombat: { resolveFloor: number; flickerBelow: number; chronalBonus: number };
+  /** Level-up perks: how many picks a level grants and how many options each pick shows. */
+  perks: { perLevel: number; choices: number };
+  /** Pair techs: the level both partners need, and the threads the partner is short next turn. */
+  pairs: { level: number; partnerPenalty: number };
   fork: { cost: number; entropy: number; threadCost: number };
   echo: { cost: number; entropy: number; turns: number };
   collapse: { cost: number; entropy: number };
@@ -498,6 +504,18 @@ export interface RulesDef {
   /** Past `after` rounds, everything the enemy does grows by `perRound`: no fight stands still. */
   pressure: { after: number; perRound: number };
   markBonus: number;
+}
+
+/** A level-up choice: every level offers two of these, and one is kept for good. */
+export interface PerkDef {
+  id: string;
+  name: string;
+  description: string;
+  stats?: Partial<StatBlock>;
+  /** Extra Nerve capacity. */
+  nerve?: number;
+  passive?: string;
+  value?: number;
 }
 
 /** One held frame of the opening: a scene, a heading, and what the player reads over it. */
@@ -533,5 +551,6 @@ export interface ContentDB {
   rooms: Record<string, RoomDef>;
   endings: Record<string, EndingDef>;
   intro: Record<string, IntroDef>;
+  perks: Record<string, PerkDef>;
   rules: RulesDef;
 }

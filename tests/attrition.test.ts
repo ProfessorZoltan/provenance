@@ -251,7 +251,8 @@ describe('items are free, once a turn, and do what nothing else can', () => {
   it('is the only cure for Fear, Target Lock and Bound by terms', () => {
     const cures = new Set(Object.values(content.items).flatMap((i) => i.effect?.cure ?? []));
     for (const [id, info] of Object.entries(STATUS_INFO)) {
-      if (info.polarity === 'bad' && id !== 'marked') expect(cures.has(id), `${id} needs an item that clears it`).toBe(true);
+      // Marked is laid on enemies, and 'spent' is the hand you lent to a pair tech: neither is a wound to cure.
+      if (info.polarity === 'bad' && id !== 'marked' && id !== 'spent') expect(cures.has(id), `${id} needs an item that clears it`).toBe(true);
     }
     // Nothing in the ability set clears a status.
     const clearing = Object.values(content.abilities).filter((a) => JSON.stringify(a).includes('"cure"'));

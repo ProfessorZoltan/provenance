@@ -446,6 +446,41 @@ they are the same afternoon in the same room.
 His trees are Equity, Acquisition and Majority. His capstone, **Hostile Takeover**, returns
 everything that has been done to him to one target at once: the more he has taken, the larger it is.
 
+## Levelling up
+
+A level gives a skill point for the tech tree, a little growth in every stat, and a **pick**: two
+perks are offered, one is kept, and it is kept for good. The picks wait at the hub under Level-up
+picks until you make them, and the two on offer are set by the run, so looking again shows the same
+two. A save from before picks existed is owed every pick its levels earned.
+
+| Perk | Gives |
+| --- | --- |
+| Sturdy | +14 Resolve |
+| Hard | +5 Grit |
+| Sharp | +5 Signal |
+| Loud | +5 Noise. Harder to hit, harder to talk to |
+| Quick | -4 Latency. Acts earlier |
+| Steady | +4 Nerve |
+| Patient | +1 Slack cap |
+| Exacting | +5% party accuracy |
+
+## Pair techs
+
+Some things two people can do that neither can alone. A pair tech sits in the lead's action list
+with the partner's name beside it, and needs both on the field at level 4 or better. The lead pays
+the threads and the Nerve; the partner lends a hand and starts their next turn one thread short,
+and cannot lend twice in a round.
+
+| Tech | Who | Does |
+| --- | --- | --- |
+| Terms of Mercy | Wren with Mara | Mends the whole party, off both their Signal |
+| Testimony | The Auditor with Wren | Anchors the whole party for two turns |
+| Cross-Reference | The Auditor with ILO-9 | Marks every enemy at once, weaknesses and all |
+| Precedent | Mara with ILO-9 | Binds every enemy by terms |
+| Breach and Shot | Dax with Hale | One heavy kinetic hit that ignores shields |
+| Teardown Crew | Dax with Quiroga | One heavy kinetic hit that ignores shields, off her Signal |
+| Held Ledger | Hale with young Strand | One Chronal shot down the length of the ledger |
+
 ## Roster and gear
 
 Press X outside a fight. The left column is the roster; A benches or fields whoever is focused. The

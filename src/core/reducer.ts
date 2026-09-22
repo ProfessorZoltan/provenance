@@ -5,7 +5,7 @@ import { collapse, createBattle, echoAssist, endTurn, enemyTurn, fork, partyComb
 import { evalAll } from './conditions';
 import { buildScan, conditionContext, rollEncounter } from './encounter';
 import { seedFromString } from './rng';
-import { levelForXp, loadout, maxHp, maxNerve } from './stats';
+import { levelForXp, loadout, maxHp, maxNerve, perkOffer, perksOwed } from './stats';
 import { unlockNode } from './tech';
 import { applyChoice, choicesOverwrittenBy, clamp, deriveWorld, markVisited } from './timeline';
 
@@ -54,8 +54,9 @@ function newCharacter(content: ContentDB, id: string, sync: number, recruitedAt:
   const level = levelForXp(xp, content.rules.xpPerLevel);
   const cs: CharacterState = {
     id, xp, level, skillPoints: 1 + level, nodes: [], sync, hp: 0, recruitedAt,
-    equipment: { weapon: null, gear: null }, frayed: 0,
+    equipment: { weapon: null, gear: null }, frayed: 0, perks: [], pendingPerks: 0,
   };
+  cs.pendingPerks = perksOwed(content, cs);
   cs.hp = maxHp(content, content.characters[id], cs);
   cs.nerve = maxNerve(content, cs);
   return cs;
@@ -412,6 +413,7 @@ function finishBattle(content: ContentDB, state: GameState): GameState {
       if (level > cs.level) {
         const before = maxHp(content, content.characters[id], cs);
         next = { ...next, level, skillPoints: cs.skillPoints + (level - cs.level) };
+        next.pendingPerks = perksOwed(content, next);
         const after = maxHp(content, content.characters[id], next);
         next.hp = Math.min(after, next.hp + (after - before));
         if (state.activeParty.includes(id)) levelUps.push(`${content.characters[id].shortName} reaches level ${level}`);
@@ -506,6 +508,8 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       const s: GameState = { ...base, ...action.state, map: action.state.map ?? base.map, back: { id: 'hub' }, battleReturn: action.state.battleReturn ?? 'hub' };
       const live = s.battle && s.battle.phase !== 'won' && s.battle.phase !== 'lost' ? { ...s.battle, reserve: s.battle.reserve ?? [], fractures: s.battle.fractures ?? [] } : null;
       if (typeof s.entropy !== 'number') s.entropy = 0;
+      // Levels earned before perks existed are owed their picks.
+      s.party = Object.fromEntries(Object.entries(s.party).map(([id, c]) => [id, { ...c, perks: c.perks ?? [], pendingPerks: perksOwed(content, { ...c, perks: c.perks ?? [] }) }]));
       // A save from when four could take the field keeps its first three; the rest go to the bench.
       const max = content.rules.activePartyMax;
       if (s.activeParty.length > max) s.activeParty = [...s.activeParty.filter((id) => id === 'player'), ...s.activeParty.filter((id) => id !== 'player')].slice(0, max);
@@ -517,7 +521,7 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       // Leaving the result screen discards the finished battle.
       const battle = state.screen.id === 'battleResult' && action.screen.id !== 'battleResult' ? null : state.battle;
       // Overlay screens remember whether they were opened from the map or from inside a location.
-      const overlay = ['tech', 'party', 'inventory', 'save', 'settings', 'shop', 'manual', 'roster', 'log'].includes(action.screen.id);
+      const overlay = ['tech', 'perks', 'party', 'inventory', 'save', 'settings', 'shop', 'manual', 'roster', 'log'].includes(action.screen.id);
       const back = overlay && (state.screen.id === 'hub' || state.screen.id === 'map') ? state.screen : state.back;
       return { ...state, screen: action.screen, battle, back };
     }
@@ -689,6 +693,23 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
       const entropy = Math.max(0, state.entropy - content.rules.entropyFlow.restDecay);
       return { ...state, party, entropy, inventory: { ...state.inventory, currency: { ...state.inventory.currency, [cur]: have - cost } } };
     }
+    case 'CHOOSE_PERK': {
+      const cs = state.party[action.character];
+      if (!cs) throw new Error('Unknown character');
+      if (perksOwed(content, cs) <= 0) throw new Error(`${content.characters[cs.id].shortName} has no pick waiting`);
+      const offer = perkOffer(content, cs, state.seed);
+      const perk = offer.find((p) => p.id === action.perk);
+      if (!perk) throw new Error('That is not one of the two on offer');
+      const before = maxHp(content, content.characters[cs.id], cs);
+      const next: CharacterState = { ...cs, perks: [...(cs.perks ?? []), perk.id] };
+      next.pendingPerks = perksOwed(content, next);
+      const after = maxHp(content, content.characters[cs.id], next);
+      next.hp = Math.min(after, cs.hp + Math.max(0, after - before));
+      if (perk.nerve) next.nerve = Math.min(maxNerve(content, next), (cs.nerve ?? maxNerve(content, cs)) + perk.nerve);
+      let s = { ...state, party: { ...state.party, [cs.id]: next } };
+      s = journal(s, `${content.characters[cs.id].shortName} takes ${perk.name}.`);
+      return s;
+    }
     case 'CAMP': {
       // A half rest in the field, so many times an era. The count refills when the party jumps.
       if (state.camps <= 0) throw new Error('No camps left in this era. Find a bed, or jump.');
@@ -848,7 +869,8 @@ function reduce(content: ContentDB, state: GameState, action: Action): GameState
         const active = state.activeParty.includes(id);
         const xp = cs.xp + Math.round(q.rewards.xp * (active ? 1 : content.rules.benchedXpShare));
         const level = levelForXp(xp, content.rules.xpPerLevel);
-        party[id] = { ...cs, xp, level, skillPoints: cs.skillPoints + (active ? q.rewards.skillPoints : 0) + (level - cs.level) };
+        const grown = { ...cs, xp, level, skillPoints: cs.skillPoints + (active ? q.rewards.skillPoints : 0) + (level - cs.level) };
+        party[id] = { ...grown, pendingPerks: perksOwed(content, grown) };
       }
       const cur = currencyFor(content.locations[q.location].era);
       const inv = stow(content, { ...state.inventory, currency: { ...state.inventory.currency, [cur]: (state.inventory.currency[cur] ?? 0) + q.rewards.currency } }, q.rewards.items).inv;

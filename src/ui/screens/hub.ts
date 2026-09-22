@@ -1,6 +1,7 @@
 import { evalAll } from '../../core/conditions';
 import { conditionContext } from '../../core/encounter';
 import { activeVariant, currencyFor, hasLodging, npcDialogue, npcName, restCost } from '../../core/reducer';
+import { perksOwed } from '../../core/stats';
 import { deriveWorld } from '../../core/timeline';
 import type { RulesDef } from '../../types/content';
 import type { GameState } from '../../types/state';
@@ -62,6 +63,8 @@ export function hubScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
     } });
     if (loc.kind === 'deepSite' && loc.timeLinks.length) items.push({ id: 'jump', label: DESCEND[loc.site] ?? 'Go down where the eras touch', hint: `Deep Site · ${loc.timeLinks.join(', ')}`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'timeJump' } }) });
     items.push({ id: 'tech', label: 'Tech trees', shortcut: 'y', hint: `${state.activeParty.reduce((s, id) => s + state.party[id].skillPoints, 0)} skill points unspent`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'tech', character: 'player' } }) });
+    const picks = Object.keys(state.party).reduce((s, id) => s + perksOwed(content, state.party[id]), 0);
+    items.push({ id: 'perks', label: 'Level-up picks', hint: picks ? `${picks} waiting` : 'Every level spent', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'perks' } }) });
     items.push({ id: 'roster', label: 'Roster and gear', shortcut: 'x', hint: `${state.activeParty.length} of ${content.rules.activePartyMax} active`, onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'roster' } }) });
     items.push({ id: 'inv', label: 'Items and timeline', onSelect: () => store.dispatch({ type: 'SET_SCREEN', screen: { id: 'inventory' } }) });
     const unread = state.log.length - state.logRead;

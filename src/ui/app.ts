@@ -26,11 +26,12 @@ import { gameOverScreen, newGameScreen, saveScreen, settingsScreen, titleScreen 
 import { resultScreen, scanScreen } from './screens/scan';
 import { inventoryScreen, shopScreen } from './screens/shop';
 import { partyScreen, techScreen } from './screens/tech';
+import { perksScreen } from './screens/perks';
 
 const SCREENS: Record<string, ScreenFn> = {
   title: titleScreen, newGame: newGameScreen, hub: hubScreen, map: mapScreen, timeJump: hubScreen,
   scan: scanScreen, battle: battleScreen, battleResult: resultScreen, dialogue: dialogueScreen,
-  tech: techScreen, party: partyScreen, shop: shopScreen, inventory: inventoryScreen,
+  tech: techScreen, perks: perksScreen, party: partyScreen, shop: shopScreen, inventory: inventoryScreen,
   save: saveScreen, gameOver: gameOverScreen, settings: settingsScreen, manual: manualScreen, roster: rosterScreen,
   log: logScreen, room: roomScreen, ending: endingScreen, intro: introScreen,
 };

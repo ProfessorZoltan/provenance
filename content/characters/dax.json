@@ -38,7 +38,9 @@
   "abilities": [
     "strike",
     "wreck",
-    "guard"
+    "guard",
+    "breach_and_shot",
+    "teardown_crew"
   ],
   "tags": [],
   "motif": [

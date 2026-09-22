@@ -1,5 +1,5 @@
 import type { GameState } from '../src/types/state';
-import { levelForXp, maxHp, maxNerve, xpForLevel } from '../src/core/stats';
+import { levelForXp, maxHp, maxNerve, perkOffer, perksOwed, xpForLevel } from '../src/core/stats';
 import { abilityOptions } from '../src/core/battle/battle';
 import { autoBattle, content, newGame, reduce } from './helpers';
 
@@ -26,7 +26,7 @@ export function partyAt(level: number, members: string[], seed = 5): GameState {
     }
   }
   const lv = levelForXp(xp, content.rules.xpPerLevel);
-  for (const id of Object.keys(party)) party[id] = { ...party[id], xp, level: lv, skillPoints: 1 + lv, nodes: [] };
+  for (const id of Object.keys(party)) party[id] = { ...party[id], xp, level: lv, skillPoints: 1 + lv, nodes: [], perks: [] };
   s = { ...s, party, activeParty: members.slice(0, content.rules.activePartyMax) };
   for (let guard = 0; guard < 400; guard++) {
     let did = false;
@@ -41,6 +41,13 @@ export function partyAt(level: number, members: string[], seed = 5): GameState {
       }
     }
     if (!did) break;
+  }
+  // Every pick a level owes is made, first option each time: a chosen party, not a raw one.
+  for (const id of Object.keys(s.party)) {
+    let guard = 60;
+    while (guard-- > 0 && perksOwed(content, s.party[id]) > 0) {
+      s = reduce(s, { type: 'CHOOSE_PERK', character: id, perk: perkOffer(content, s.party[id], s.seed)[0].id });
+    }
   }
   const healed = { ...s.party };
   for (const id of Object.keys(healed)) healed[id] = { ...healed[id], hp: maxHp(content, content.characters[id], healed[id]), nerve: maxNerve(content, healed[id]) };
