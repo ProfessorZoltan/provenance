@@ -330,6 +330,9 @@ body[data-reduced-motion='true'] *, body[data-reduced-motion='true'] *::before, 
 .map .road { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-dasharray: 14 10; opacity: 0.55; }
 .map .node-label { font-size: 20px; fill: var(--ink); text-anchor: middle; }
 .map .node-ring { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0; transition: opacity 200ms; }
+.map .node-art { filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.35)); }
+.map .node.near .node-art { filter: drop-shadow(0 0 8px var(--accent)); }
+.map .node-label { paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round; }
 .map .node.near .node-ring { opacity: 1; }
 .map .node.locked { opacity: 0.35; }
 .map .token { transition: none; }

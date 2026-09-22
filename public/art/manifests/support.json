@@ -6,7 +6,7 @@
     "era": "2031",
     "site": null,
     "guideSection": "Art and style / World map and interface",
-    "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+    "description": "Recognizable topographic map: chapel in the mountains, Meridian campus, domed Capitol, desert server fields and a working port. Flooding consumes Halden in 2148; factories and towers replace earlier infrastructure. Shared geography is an art proposal, not canonical navigation data.",
     "proposed": true,
     "files": {
       "map": "maps/2031_world.svg"
@@ -14,28 +14,28 @@
     "landmarks": [
       {
         "site": "meridian",
-        "x": 152,
-        "y": 58
-      },
-      {
-        "site": "halden",
-        "x": 236,
+        "x": 301,
         "y": 104
       },
       {
+        "site": "halden",
+        "x": 478,
+        "y": 231
+      },
+      {
         "site": "basin",
-        "x": 78,
-        "y": 118
+        "x": 147,
+        "y": 253
       },
       {
         "site": "capitol",
-        "x": 170,
-        "y": 98
+        "x": 373,
+        "y": 183
       },
       {
         "site": "kell",
-        "x": 103,
-        "y": 47
+        "x": 167,
+        "y": 87
       }
     ]
   },
@@ -46,7 +46,7 @@
     "era": "2064",
     "site": null,
     "guideSection": "Art and style / World map and interface",
-    "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+    "description": "Recognizable topographic map: chapel in the mountains, Meridian campus, domed Capitol, desert server fields and a working port. Flooding consumes Halden in 2148; factories and towers replace earlier infrastructure. Shared geography is an art proposal, not canonical navigation data.",
     "proposed": true,
     "files": {
       "map": "maps/2064_world.svg"
@@ -54,28 +54,28 @@
     "landmarks": [
       {
         "site": "meridian",
-        "x": 152,
-        "y": 58
-      },
-      {
-        "site": "halden",
-        "x": 236,
+        "x": 301,
         "y": 104
       },
       {
+        "site": "halden",
+        "x": 478,
+        "y": 231
+      },
+      {
         "site": "basin",
-        "x": 78,
-        "y": 118
+        "x": 147,
+        "y": 253
       },
       {
         "site": "capitol",
-        "x": 170,
-        "y": 98
+        "x": 373,
+        "y": 183
       },
       {
         "site": "kell",
-        "x": 103,
-        "y": 47
+        "x": 167,
+        "y": 87
       }
     ]
   },
@@ -86,7 +86,7 @@
     "era": "2148",
     "site": null,
     "guideSection": "Art and style / World map and interface",
-    "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+    "description": "Recognizable topographic map: chapel in the mountains, Meridian campus, domed Capitol, desert server fields and a working port. Flooding consumes Halden in 2148; factories and towers replace earlier infrastructure. Shared geography is an art proposal, not canonical navigation data.",
     "proposed": true,
     "files": {
       "map": "maps/2148_world.svg"
@@ -94,28 +94,28 @@
     "landmarks": [
       {
         "site": "meridian",
-        "x": 152,
-        "y": 58
-      },
-      {
-        "site": "halden",
-        "x": 236,
+        "x": 301,
         "y": 104
       },
       {
+        "site": "halden",
+        "x": 478,
+        "y": 231
+      },
+      {
         "site": "basin",
-        "x": 78,
-        "y": 118
+        "x": 147,
+        "y": 253
       },
       {
         "site": "capitol",
-        "x": 170,
-        "y": 98
+        "x": 373,
+        "y": 183
       },
       {
         "site": "kell",
-        "x": 103,
-        "y": 47
+        "x": 167,
+        "y": 87
       }
     ]
   },
@@ -126,7 +126,7 @@
     "era": "2312",
     "site": null,
     "guideSection": "Art and style / World map and interface",
-    "description": "Shared stepped coastline, river and five Deep Site landmarks. Geography and waypoint dots are proposed composition, not canonical travel connections. Flooding and infrastructure change with the era.",
+    "description": "Recognizable topographic map: chapel in the mountains, Meridian campus, domed Capitol, desert server fields and a working port. Flooding consumes Halden in 2148; factories and towers replace earlier infrastructure. Shared geography is an art proposal, not canonical navigation data.",
     "proposed": true,
     "files": {
       "map": "maps/2312_world.svg"
@@ -134,28 +134,28 @@
     "landmarks": [
       {
         "site": "meridian",
-        "x": 152,
-        "y": 58
-      },
-      {
-        "site": "halden",
-        "x": 236,
+        "x": 301,
         "y": 104
       },
       {
+        "site": "halden",
+        "x": 478,
+        "y": 231
+      },
+      {
         "site": "basin",
-        "x": 78,
-        "y": 118
+        "x": 147,
+        "y": 253
       },
       {
         "site": "capitol",
-        "x": 170,
-        "y": 98
+        "x": 373,
+        "y": 183
       },
       {
         "site": "kell",
-        "x": 103,
-        "y": 47
+        "x": 167,
+        "y": 87
       }
     ]
   },

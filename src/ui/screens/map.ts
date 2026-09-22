@@ -1,9 +1,11 @@
+import { artAssetUrl } from '../../art/library';
+import { sceneAssetId } from '../../art/pixel-backgrounds';
 import { tokenSvg } from '../../art/rigs';
 import { evalAll } from '../../core/conditions';
 import { conditionContext } from '../../core/encounter';
-import { mapFor } from '../../core/reducer';
+import { activeVariant, mapFor } from '../../core/reducer';
 import { deriveWorld } from '../../core/timeline';
-import type { EraDef, MapDef, MapNode } from '../../types/content';
+import type { ContentDB, EraDef, MapDef, MapNode } from '../../types/content';
 import type { GameState } from '../../types/state';
 import { accentFor, esc, html, partyStrip, prompts, type Ctx, type ScreenHandle } from '../common';
 
@@ -39,26 +41,39 @@ const ICONS: Record<string, (era: EraDef) => string> = {
   gate: (era) => `<rect x="-22" y="-22" width="6" height="40" fill="${era.palette.ink}"/><rect x="16" y="-22" width="6" height="40" fill="${era.palette.ink}"/><rect x="-24" y="-26" width="48" height="6" fill="${era.palette.ink}"/><polygon points="-10,-40 0,-46 10,-40 0,-34" fill="${era.palette.accent}"/>`,
 };
 
-function worldSvg(map: MapDef, era: EraDef, flags: string[], nodes: { n: MapNode; ok: boolean }[]): string {
+/** The era's illustrated map, when the library has one; the drawn coastline stands in otherwise. */
+function worldArt(era: EraDef): string | undefined {
+  return artAssetUrl(`${era.id}_world_map`, 'map');
+}
+
+/** A site's own map icon from the library, for the variant of it this timeline has. */
+function nodeIcon(content: ContentDB, state: GameState, n: MapNode): string | undefined {
+  const loc = n.location ? content.locations[n.location] : undefined;
+  if (!loc) return undefined;
+  return artAssetUrl(sceneAssetId(loc, activeVariant(content, state, loc)), 'icon');
+}
+
+function worldSvg(map: MapDef, era: EraDef, flags: string[], nodes: { n: MapNode; ok: boolean }[], icons: Record<string, string | undefined>): string {
   const W = map.width, H = map.height;
+  const art = worldArt(era);
   const ridge = (y: number, amp: number) => `M0 ${y} ${Array.from({ length: 9 }, (_, i) => `L${(i * W) / 8} ${y - ((i * 37) % 3) * amp - (i % 2) * amp}`).join(' ')} L${W} ${y} L${W} 0 L0 0 Z`;
   const quiet = era.id === '2148';
   const coast = `M0 ${H} L0 ${H - 120} Q${W * 0.19} ${H - 200} ${W * 0.375} ${H - 80} T${W * 0.75} ${H - 120} T${W} ${H - 60} L${W} ${H} Z`;
   return `<svg class="world" viewBox="${camera(map, map.width / 2, map.height / 2)}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
     <rect width="${W}" height="${H}" fill="${era.palette.bg}"/>
-    ${quiet ? '' : `<g stroke="${era.palette.accent2}" stroke-width="0.5" opacity="0.5">${Array.from({ length: Math.ceil(H / 50) }, (_, i) => `<line x1="0" y1="${i * 50}" x2="${W}" y2="${i * 50}"/>`).join('')}${Array.from({ length: Math.ceil(W / 50) }, (_, i) => `<line x1="${i * 50}" y1="0" x2="${i * 50}" y2="${H}"/>`).join('')}</g>`}
+    ${art ? `<image href="${art}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="xMidYMid meet"/>` : `${quiet ? '' : `<g stroke="${era.palette.accent2}" stroke-width="0.5" opacity="0.5">${Array.from({ length: Math.ceil(H / 50) }, (_, i) => `<line x1="0" y1="${i * 50}" x2="${W}" y2="${i * 50}"/>`).join('')}${Array.from({ length: Math.ceil(W / 50) }, (_, i) => `<line x1="${i * 50}" y1="0" x2="${i * 50}" y2="${H}"/>`).join('')}</g>`}
     <path d="${ridge(150, 40)}" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/>
     <path d="${coast}" fill="${era.palette.surface}" stroke="${era.palette.ink}" stroke-width="${era.lineWeight}"/>
     <path d="M${W * 0.737} 0 q-60 ${H * 0.29} 40 ${H * 0.52} t-30 ${H * 0.48}" fill="none" stroke="${quiet ? '#3B6D11' : era.palette.accent}" stroke-width="${quiet ? 10 : 3}" opacity="${quiet ? 0.5 : 0.7}"/>
-    ${quiet ? `<g fill="#3B6D11" opacity="0.35">${Array.from({ length: 24 }, (_, i) => `<ellipse cx="${(i * 233) % W}" cy="${300 + ((i * 131) % Math.max(100, H - 400))}" rx="${30 + (i % 4) * 12}" ry="${10 + (i % 3) * 4}"/>`).join('')}</g>` : ''}
+    ${quiet ? `<g fill="#3B6D11" opacity="0.35">${Array.from({ length: 24 }, (_, i) => `<ellipse cx="${(i * 233) % W}" cy="${300 + ((i * 131) % Math.max(100, H - 400))}" rx="${30 + (i % 4) * 12}" ry="${10 + (i % 3) * 4}"/>`).join('')}</g>` : ''}`}
     ${map.zones.map((z) => `<g><rect class="zone" x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}" rx="18"/><text class="zone-label" x="${z.x + 18}" y="${z.y + 30}">${esc(z.label)}</text></g>`).join('')}
     ${map.roads.map((r) => `<path class="road" d="M${r[0]} ${r[1]} ${r.slice(2).map((v, i) => (i % 2 === 0 ? `L${v}` : ` ${v}`)).join('')}"/>`).join('')}
     ${nodes.map(({ n, ok }) => `<g class="node ${ok ? '' : 'locked'}" data-node="${n.id}" transform="translate(${n.x} ${n.y})">
       <circle class="node-ring" r="${n.radius}"/>
-      ${(ICONS[n.icon ?? ''] ?? ICONS.village)(era)}
+      ${icons[n.id] ? `<image class="node-art" href="${icons[n.id]}" x="-40" y="-56" width="80" height="80"/>` : (ICONS[n.icon ?? ''] ?? ICONS.village)(era)}
       <text class="node-label" y="${n.radius - 4}">${esc(n.label)}</text>
     </g>`).join('')}
-    ${flags.includes('letItFall') && era.id === '2312' ? `<g class="amb-pulse" transform="translate(430 560)"><polygon points="-14,0 0,-5 14,0 0,5" fill="${era.palette.ink}"/><circle r="2.5" fill="${era.palette.accent}"/></g>` : ''}
+    ${flags.includes('letItFall') && era.id === '2312' ? `<g class="amb-pulse" transform="translate(470 540)"><polygon points="-14,0 0,-5 14,0 0,5" fill="${era.palette.ink}"/><circle r="2.5" fill="${era.palette.accent}"/></g>` : ''}
     <g class="token" id="token"></g>
   </svg>`;
 }
@@ -67,6 +82,7 @@ function worldSvg(map: MapDef, era: EraDef, flags: string[], nodes: { n: MapNode
 function minimapSvg(map: MapDef, era: EraDef, nodes: { n: MapNode; ok: boolean }[]): string {
   return `<svg class="minimap" viewBox="0 0 ${map.width} ${map.height}" xmlns="http://www.w3.org/2000/svg">
     <rect width="${map.width}" height="${map.height}" fill="${era.palette.bg}" stroke="${era.palette.ink}" stroke-width="8" opacity="0.9"/>
+    ${worldArt(era) ? `<image href="${worldArt(era)}" x="0" y="0" width="${map.width}" height="${map.height}" preserveAspectRatio="xMidYMid meet" opacity="0.9"/>` : ''}
     ${map.roads.map((r) => `<path d="M${r[0]} ${r[1]} ${r.slice(2).map((v, i) => (i % 2 === 0 ? `L${v}` : ` ${v}`)).join('')}" fill="none" stroke="${era.palette.ink}" stroke-width="6" opacity="0.35"/>`).join('')}
     ${nodes.filter(({ n }) => n.kind === 'location').map(({ n }) => `<circle cx="${n.x}" cy="${n.y}" r="26" fill="${era.palette.accent}"/>`).join('')}
     <rect id="mini-view" x="0" y="0" width="0" height="0" fill="none" stroke="${era.palette.ink}" stroke-width="10"/>
@@ -86,8 +102,9 @@ export function mapScreen(root: HTMLElement, ctx: Ctx, state: GameState): Screen
   // does not exist in this version of history should not be walkable to.
   const nodes = map.nodes.map((n) => ({ n, ok: evalAll(n.requires, cctx) })).filter(({ ok }) => ok);
 
+  const icons = Object.fromEntries(nodes.map(({ n }) => [n.id, nodeIcon(content, state, n)]));
   html(root, `<section class="map">
-    ${worldSvg(map, era, flags, nodes)}
+    ${worldSvg(map, era, flags, nodes, icons)}
     <div class="hud panel"><div class="eyebrow">${esc(era.id)} · ${esc(era.name)}</div><h2 style="font-size:20px">${esc(map.name)}</h2><p class="small">Walk with the left stick or WASD. Dashed regions are wilds: something may find you there, and the Scan card lets you skip it.</p></div>
     <div class="party-mini">${partyStrip(ctx, state)}</div>
     <div class="minimap-panel panel">${minimapSvg(map, era, nodes)}</div>

@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import mapSource from '../src/ui/screens/map.ts?raw';
 import { evalAll } from '../src/core/conditions';
 import { conditionContext } from '../src/core/encounter';
@@ -41,6 +43,20 @@ describe('era maps', () => {
     // The encounter node the village quest unlocks is gated the same way, and already was.
     expect(visible).not.toContain('village_gate');
     expect(() => createReducer(gatedContent)(s, { type: 'TRAVEL', location: 'kell_village_2312' })).toThrow();
+  });
+
+  it('puts every Deep Site where the island draws it, in every era', () => {
+    // The illustrated era maps share one geography, and the landmarks in the art manifest say where.
+    const support = JSON.parse(readFileSync(fileURLToPath(new URL('../public/art/manifests/support.json', import.meta.url)), 'utf8')) as { id: string; era: string; landmarks?: { site: string; x: number; y: number }[] }[];
+    for (const era of ['2031', '2064', '2148', '2312'] as const) {
+      const map = mapFor(content, era)!;
+      const marks = support.find((e) => e.id === `${era}_world_map`)!.landmarks!;
+      const scale = map.width / 640;
+      for (const mark of marks) {
+        const node = map.nodes.find((n) => n.location && content.locations[n.location].kind === 'deepSite' && content.locations[n.location].site === mark.site)!;
+        expect([node.x, node.y], `${era}/${mark.site}`).toEqual([mark.x * scale, mark.y * scale]);
+      }
+    }
   });
 
   it('puts every Deep Site on the same map in every era, joined by road', () => {
@@ -118,11 +134,12 @@ describe('three regions on one map', () => {
       const ids = map.nodes.map((n) => n.id);
       expect(ids, era).toContain(`basin_${era}`);
       for (const w of wps) expect(ids, `${era}/${w}`).toContain(w);
-      // The Basin sits inland, east of both coastal sites.
+      // The island puts the Basin in the desert to the south-west: west of the port, south of Kell.
       const basin = map.nodes.find((n) => n.id === `basin_${era}`)!;
-      for (const n of map.nodes.filter((x) => /^(kell|halden)_/.test(x.id))) {
-        expect(basin.x, `${era}: basin is east of ${n.id}`).toBeGreaterThan(n.x);
-      }
+      const halden = map.nodes.find((n) => n.id === `halden_${era}`)!;
+      const kell = map.nodes.find((n) => n.id === `kell_${era}`)!;
+      expect(basin.x, `${era}: basin is west of the port`).toBeLessThan(halden.x);
+      expect(basin.y, `${era}: basin is south of Kell`).toBeGreaterThan(kell.y);
     }
   });
 });

@@ -2,19 +2,19 @@
   "id": "map_2064",
   "era": "2064",
   "name": "The Handover Coast, 2064",
-  "width": 2600,
-  "height": 1100,
+  "width": 2560,
+  "height": 1440,
   "spawn": {
-    "x": 620,
-    "y": 300
+    "x": 668,
+    "y": 448
   },
   "nodes": [
     {
       "id": "kell_2064",
       "kind": "location",
       "location": "kell_2064",
-      "x": 620,
-      "y": 240,
+      "x": 668,
+      "y": 348,
       "radius": 80,
       "label": "Kell Commune",
       "icon": "monastery"
@@ -23,8 +23,8 @@
       "id": "halden_2064",
       "kind": "location",
       "location": "halden_2064",
-      "x": 1450,
-      "y": 450,
+      "x": 1912,
+      "y": 924,
       "radius": 80,
       "label": "Port Halden",
       "icon": "tower"
@@ -33,8 +33,8 @@
       "id": "glass_quarter_2064",
       "kind": "location",
       "location": "glass_quarter_2064",
-      "x": 1210,
-      "y": 250,
+      "x": 2140,
+      "y": 740,
       "radius": 70,
       "label": "Glass Quarter",
       "icon": "tower"
@@ -43,8 +43,8 @@
       "id": "undercity_bazaar_2064",
       "kind": "location",
       "location": "undercity_bazaar_2064",
-      "x": 1720,
-      "y": 710,
+      "x": 1820,
+      "y": 1200,
       "radius": 70,
       "label": "Undercity Bazaar",
       "icon": "market"
@@ -53,8 +53,8 @@
       "id": "migrant_causeway_2064",
       "kind": "location",
       "location": "migrant_causeway_2064",
-      "x": 1010,
-      "y": 760,
+      "x": 1620,
+      "y": 1080,
       "radius": 76,
       "label": "Migrant Causeway",
       "icon": "gate"
@@ -63,8 +63,8 @@
       "id": "basin_2064",
       "kind": "location",
       "location": "basin_2064",
-      "x": 2240,
-      "y": 380,
+      "x": 588,
+      "y": 1012,
       "radius": 84,
       "label": "The Basin",
       "icon": "basin"
@@ -73,8 +73,8 @@
       "id": "capitol_2064",
       "kind": "location",
       "location": "capitol_2064",
-      "x": 1760,
-      "y": 250,
+      "x": 1492,
+      "y": 732,
       "radius": 82,
       "label": "Capitol Hill",
       "icon": "capitol"
@@ -83,8 +83,8 @@
       "id": "senate_annex_2064",
       "kind": "location",
       "location": "senate_annex_2064",
-      "x": 1980,
-      "y": 190,
+      "x": 1340,
+      "y": 600,
       "radius": 72,
       "label": "Senate Annex",
       "icon": "tower"
@@ -93,8 +93,8 @@
       "id": "meridian_2064",
       "kind": "location",
       "location": "meridian_2064",
-      "x": 1180,
-      "y": 230,
+      "x": 1204,
+      "y": 416,
       "radius": 84,
       "label": "Meridian Campus",
       "icon": "campus"
@@ -103,8 +103,8 @@
       "id": "meridian_hub_2064",
       "kind": "location",
       "location": "meridian_hub_2064",
-      "x": 900,
-      "y": 250,
+      "x": 980,
+      "y": 520,
       "radius": 72,
       "label": "Distribution Hub",
       "icon": "camp"
@@ -112,100 +112,76 @@
   ],
   "roads": [
     [
-      620,
-      320,
-      700,
-      460,
-      850,
-      610,
-      960,
-      720
+      668,
+      348,
+      936,
+      384,
+      1204,
+      416
     ],
     [
-      1010,
-      760,
-      1200,
-      700,
-      1350,
-      550,
-      1430,
-      490
+      1204,
+      416,
+      1340,
+      600,
+      1492,
+      732
     ],
     [
-      1430,
-      380,
-      1310,
-      295,
-      1250,
-      270
-    ],
-    [
-      1480,
-      500,
-      1630,
-      630,
-      1720,
-      670
-    ],
-    [
-      1450,
-      400,
+      1492,
+      732,
       1700,
-      340,
-      1950,
-      340,
-      2160,
-      370
+      820,
+      1912,
+      924
     ],
     [
-      1700,
-      340,
-      1730,
-      300,
-      1760,
-      270
-    ],
-    [
-      1450,
-      400,
-      1600,
-      350,
-      1700,
-      340
-    ],
-    [
-      1760,
-      230,
-      1870,
-      200,
-      1960,
-      190
-    ],
-    [
-      1180,
-      314,
-      1280,
-      360,
-      1420,
-      400
-    ],
-    [
-      1180,
-      230,
+      1492,
+      732,
       1040,
-      240,
-      920,
-      248
+      860,
+      588,
+      1012
+    ],
+    [
+      2140,
+      740,
+      1912,
+      924
+    ],
+    [
+      1820,
+      1200,
+      1912,
+      924
+    ],
+    [
+      1620,
+      1080,
+      1912,
+      924
+    ],
+    [
+      1340,
+      600,
+      1492,
+      732
+    ],
+    [
+      980,
+      520,
+      1204,
+      416
     ]
   ],
   "zones": [
     {
       "id": "commune_terraces",
       "label": "The terraces",
-      "x": 700,
+      "x": 760,
       "y": 380,
       "w": 240,
-      "h": 200,
+      "h": 180,
       "encounters": [
         "kell_2064_terraces"
       ],
@@ -215,10 +191,10 @@
     {
       "id": "causeway",
       "label": "The causeway",
-      "x": 840,
-      "y": 650,
-      "w": 420,
-      "h": 270,
+      "x": 1000,
+      "y": 1020,
+      "w": 520,
+      "h": 240,
       "encounters": [
         "causeway_2064_patrol",
         "causeway_2064_frame"
@@ -229,10 +205,10 @@
     {
       "id": "upper_terrace",
       "label": "Upper terrace",
-      "x": 1160,
-      "y": 500,
-      "w": 300,
-      "h": 220,
+      "x": 1680,
+      "y": 680,
+      "w": 320,
+      "h": 180,
       "encounters": [
         "halden_2064_terrace"
       ],
@@ -242,10 +218,10 @@
     {
       "id": "hot_aisles",
       "label": "Hot aisles",
-      "x": 1900,
-      "y": 430,
+      "x": 340,
+      "y": 820,
       "w": 440,
-      "h": 260,
+      "h": 240,
       "encounters": [
         "basin_2064_aisle",
         "basin_2064_plant"
@@ -256,10 +232,10 @@
     {
       "id": "cloakrooms",
       "label": "The cloakrooms",
-      "x": 1540,
-      "y": 400,
-      "w": 350,
-      "h": 210,
+      "x": 1360,
+      "y": 540,
+      "w": 280,
+      "h": 180,
       "encounters": [
         "capitol_2064_gallery",
         "capitol_2064_cloakroom"
@@ -270,10 +246,10 @@
     {
       "id": "atria",
       "label": "The atrium floor",
-      "x": 960,
-      "y": 330,
-      "w": 340,
-      "h": 200,
+      "x": 1060,
+      "y": 240,
+      "w": 280,
+      "h": 160,
       "encounters": [
         "meridian_2064_atrium"
       ],

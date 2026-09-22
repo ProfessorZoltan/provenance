@@ -83,10 +83,12 @@ Mouse clicks work on menus, dialogue, enemy portraits and the battle report box.
 
 ## Getting around
 
-Travel is physical. Each era has one map you walk, holding the Kell valley in the north-west, Port
-Halden on the coast to the south-east, and the Basin inland to the east, joined by road. The map is
-larger than the screen: the view follows the party, and the panel in the bottom-left corner is the
-whole world with your position on it. Buildings are
+Travel is physical. Each era has one map you walk: one island, with Kell in the mountains to the
+north-west, Meridian Campus north of centre, the Capitol dome in the middle, Port Halden on the coast
+to the south-east and the Basin in the desert to the south-west, joined by road. The island is drawn
+the same in every century and its buildings change with it. The map is larger than the screen: the
+view follows the party, and the panel in the bottom-left corner is the whole world with your position
+on it. Buildings are
 places you step into and enter with A. The dashed regions are wilds, where something may find you as
 you cross.
 
